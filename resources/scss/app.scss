@@ -1,3 +1,32 @@
+@font-face {
+    font-family: CabinetGrotesk;
+    src: url('../fonts/CabinetGrotesk-Variable.woff2') format("truetype-variations");;
+    font-weight: 1 999;
+}
+
 body {
-    background: #ddd;
+    background: #f8f5f1;
+    font-family: CabinetGrotesk;
+    font-weight: 500;
+    font-size: 1vw;
+    margin: 0;
+}
+
+section {
+    padding: 0;
+}
+
+.container {
+    padding: 4em 6em 4em 6em;
+}
+
+p {
+    font-size: 1.2em;
+}
+
+h1 {
+    font-size: 5em;
+    font-weight: 700;
+    margin-top: 0.1em;
+    margin-bottom: 0.25em;
 }
