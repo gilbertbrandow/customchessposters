@@ -7,6 +7,14 @@
     @inertiaHead
   </head>
   <body>
+    <nav class="is--frosted-glass">
+      <div class="container">
+        <a class ="logo" href="/">
+          <img src="{{ URL('/images/ccp-icn.svg') }}" alt="">
+          <div>{{ $title }}</div>
+        </a>
+      </div>
+    </nav>
     @inertia
     @vite('resources/js/app.js') 
   </body>
