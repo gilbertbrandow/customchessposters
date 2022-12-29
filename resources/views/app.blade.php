@@ -10,7 +10,7 @@
     <nav class="is--frosted-glass">
       <div class="container">
         <a class ="logo" href="/">
-          <img src="{{ URL('/images/ccp-icn.svg') }}" alt="">
+          <img src="{{ $logo }}" alt="">
           <div>{{ $title }}</div>
         </a>
       </div>

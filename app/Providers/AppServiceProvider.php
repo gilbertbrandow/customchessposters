@@ -25,5 +25,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         View::share('title', 'Custom Chess Posters');
+        View::share('logo', URL('/images/ccp-icn.svg'));
     }
 }
