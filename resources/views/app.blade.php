@@ -6,16 +6,28 @@
     @vite(['resources/scss/app.scss','resources/css/app.css']) 
     @inertiaHead
   </head>
-  <body>
-    <nav class="is--frosted-glass">
+  <body onload="test()">
+    <nav>
       <div class="container">
         <a class ="logo" href="/">
           <img src="{{ $logo }}" alt="">
           <div>{{ $title }}</div>
         </a>
+        <div class="nav__wrp">
+          <a href="">Contact</a>
+          <a href="">About us</a>
+          <button class="is--black">Sign in <img src="/images/icons/profile-white.svg" alt=""></button>
+          <button class="is--black">Saved designs <img src="/images/icons/bookmark-white.svg" alt=""></button>
+
+        </div>
       </div>
     </nav>
     @inertia
-    @vite('resources/js/app.js') 
+    @vite('resources/js/app.js')
+    <script>
+      function test() {
+    alert("test successful");
+    }
+</script> 
   </body>
 </html>
