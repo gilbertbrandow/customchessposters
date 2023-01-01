@@ -28,6 +28,14 @@ nav {
     z-index: 9999;
 }
 
+nav.is--scrolled {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    background-color: rgba(255, 255, 255, 0.500);
+    border-bottom: rgba(0, 0, 0, 0.1) solid 1px;
+    backdrop-filter: blur(40px);
+}
+
 nav .container{
     padding: 0em 6em 0em 6em;
     display: flex;
@@ -95,14 +103,14 @@ button img {
     height: 1em;
 }
 
-section.hero {
+section.section__hero {
     display: flex;
     padding-top: 1em;
     padding-right: 1em;
     align-items: center;
 }
 
-section.hero .container {
+section.section__hero .container {
     flex: 1; 
 }
 

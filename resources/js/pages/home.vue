@@ -1,7 +1,8 @@
 <template>
-<section class="hero">
+<AppLayout>
+<section class="section__hero">
     <div class="container">
-        <h1>{{title}}</h1>
+        <h1>Create your own personal & unique chess poster.</h1>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. </p>
         <div class="button-wrp">
             <button href="" class="is--black">Create your own custom poster</button>
@@ -32,8 +33,15 @@
     <div class="container"></div>
 </section>
 
+</AppLayout>
 </template>
 
-<script setup>
-const title = 'Create your own personal & unique chess poster.';
+<script>
+import AppLayout from "../Layouts/App.vue";
+
+export default {
+    components: {
+        AppLayout
+    }
+}
 </script>
