@@ -3,7 +3,7 @@
     <div class="container">
       <a class ="logo" href="/">
         <img src="../../../public/images/ccp-icn.svg" alt="">
-        <div>Custom Chess Posters</div>
+        <div>{{ $page.props.site.title }}</div>
       </a>
       <div class="nav__wrp">
         <a href="">Contact</a>
@@ -18,5 +18,32 @@
 </slot>
 </template>
 
-<script>
+<script setup>
+import { onMounted } from 'vue';
+
+onMounted (() => {
+
+  const nav = document.querySelector('nav');
+  const firstHeading = document.querySelector('h1');
+
+  const options = {
+  root: null, 
+  threshold: 1, 
+  rootMargin: "-15% 0px 0px 0px",
+  }
+
+  const observer = new IntersectionObserver (function(entries, observer){
+    entries.forEach(entry => {
+      if(!nav.classList.length && !entry.isIntersecting){
+        nav.classList.add('is--scrolled');
+      } else {
+        nav.classList.remove('is--scrolled');
+      }
+    })
+  }, options); 
+
+  observer.observe(firstHeading);
+
+});
+
 </script>

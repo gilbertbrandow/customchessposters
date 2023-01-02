@@ -26,14 +26,14 @@ nav {
     padding-bottom: 2em;
     align-items: center;
     z-index: 9999;
+    transition-duration: 300ms;
 }
 
 nav.is--scrolled {
     padding-top: 0.5em;
     padding-bottom: 0.5em;
-    background-color: rgba(255, 255, 255, 0.500);
+    background-color: rgba(255, 255, 255);
     border-bottom: rgba(0, 0, 0, 0.1) solid 1px;
-    backdrop-filter: blur(40px);
 }
 
 nav .container{
@@ -56,7 +56,6 @@ nav .nav__wrp {
     align-items: center;
     font-size: 2em;
     font-weight: 600;
-    text-decoration: none;
     color: #000;
 }
 
