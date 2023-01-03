@@ -1,6 +1,6 @@
 <template>
     <AppLayout>
-        <section>
+        <section class="is--pt">
             <div class="container">
                 <h1>Contact us</h1>
             </div>
