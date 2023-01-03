@@ -5,8 +5,8 @@
         <h1>Create your own personal & unique chess poster.</h1>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. </p>
         <div class="button-wrp">
-            <button href="" class="is--black">Create your own custom poster</button>
-            <button href="">Refresh design <img src="/images/icons/refresh.svg" alt="" class=""></button>
+            <Link href="" class="button is--black">Create your own custom poster</Link>
+            <Link href="" class="button" >Refresh design <img src="/images/icons/refresh.svg" alt=""></Link>
         </div>
     </div>
     <div class="poster">
