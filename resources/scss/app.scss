@@ -67,7 +67,7 @@ section {
     padding: 0;
 }
 
-button {
+.button {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -86,7 +86,7 @@ button {
     text-decoration: none;
 }
 
-button.is--black {
+.button.is--black {
     border-style: none;
     background-color: #000;
     color: #fff;
@@ -97,7 +97,7 @@ button.is--black {
     column-gap: 1em;
 }
 
-button img {
+.button img {
     margin-left: 0.5em;
     height: 1em;
 }
