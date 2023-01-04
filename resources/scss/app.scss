@@ -51,6 +51,32 @@ nav .nav__wrp {
     column-gap: 1em;
 }
 
+footer .container {
+    padding-bottom: 2em;
+}
+
+.footer__bottom {
+    height: 4em;
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    border-radius: 1em;
+    padding-left: 2em;
+    padding-right: 2em;
+    display: flex;
+    column-gap: 0.75em;
+}
+
+.footer__bottom div {
+    flex: 1;
+}
+
+.footer__bottom a{
+    font-size: 1em;
+    color: #fff;
+}
+
 .logo {
     display: flex;
     align-items: center;
