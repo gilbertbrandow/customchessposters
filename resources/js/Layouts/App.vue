@@ -1,6 +1,7 @@
 <template>
 <nav class="">
     <div class="container">
+      <input type="text" value="My app">
       <Link class ="logo" href="/">
         <img src="../../../public/images/ccp-icn.svg" alt="">
         <div>{{ $page.props.site.title }}</div>
@@ -16,6 +17,17 @@
   </nav>
 <slot>
 </slot>
+
+<footer>
+  <div class="container">
+    <div class="footer__bottom">
+      <div>All rättigheter reserverade © 2023 Custom Chess Poster. Powered by <a href="https://0100.se">0100</a></div>
+      <a href="">Shipping information</a>
+      <a href="">Return policy</a>
+      <a href="">Privacy policy</a>
+    </div>
+  </div>
+</footer>
 </template>
 
 <script>
@@ -24,7 +36,7 @@ import { Link } from "@inertiajs/inertia-vue3";
 
 export default {
     components: {
-        Link
+        Link,
     }
 }
 </script>
