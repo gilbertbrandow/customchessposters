@@ -1,7 +1,6 @@
 <template>
 <nav class="">
     <div class="container">
-      <input type="text" value="My app">
       <Link class ="logo" href="/">
         <img src="../../../public/images/ccp-icn.svg" alt="">
         <div>{{ $page.props.site.title }}</div>
