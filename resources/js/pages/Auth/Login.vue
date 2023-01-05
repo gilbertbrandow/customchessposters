@@ -9,14 +9,22 @@
                     <div class="field__wrp">
                         <label for="email" class="field__label">Email address</label>
                         <div v-if="form.errors.email" v-text="form.errors.email" class="field__error"></div>
-                        <input v-model="form.email" type="email" class="field" name="email" placeholder="example@email.com" required />
+                        <input v-model="form.email" class="field"
+                            :class="{ 'is--error': form.errors.email }" name="email" placeholder="example@email.com"
+                            required />
                     </div>
                     <div class="field__wrp">
                         <label for="password" class="field__label">Password</label>
-                        <input v-model="form.password" type="password" class="field" name="password" placeholder="***********" required>
+                        <input v-model="form.password" type="password" class="field"
+                            :class="{ 'is--error': form.errors.password }" name="password" placeholder="***********"
+                            required>
                         <div v-if="form.errors.password" v-text="form.errors.password" class="field__error"></div>
                     </div>
-                    <button class="button is--black" :disabled="form.processing">Sign in</button>
+                    <div class="field__wrp">
+                        <button class="button is--black" :disabled="form.processing">
+                            Sign in </button>
+                        <div v-if="form.errors.all" v-text="form.errors.all" class="field__error is--submit"></div>
+                    </div>
                 </form>
             </div>
             <div class="poster">
