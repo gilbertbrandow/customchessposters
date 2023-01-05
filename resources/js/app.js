@@ -2,16 +2,26 @@ import { createApp, h } from 'vue'
 import { createInertiaApp, Link } from '@inertiajs/inertia-vue3'
 
 createInertiaApp({
-  resolve: async name => {
-    let page = (await import(`./Pages/${name}.vue`)).default; 
+  resolve: name => {
+    if(name.includes('/'))
+    {
 
-    return page;
+      let split = name.split('/');
+      let subdir = split[0];
+      let file = split[1];
+      
+      return import(`./Pages/${subdir}/${file}.vue`);
+
+    } else {
+      return import(`./Pages/${name}.vue`);
+    }
   },
   
   setup({ el, App, props, plugin }) {
     createApp({ render: () => h(App, props) })
       .use(plugin) 
       .component("Link", Link)
+      .mixin ({methods: { route }})
       .mount(el)
   },
 }); 

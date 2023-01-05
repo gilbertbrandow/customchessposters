@@ -10,6 +10,6 @@ class RegisterController extends Controller
 {
     public function registration()
     {
-        return inertia('Auth/Registration'); 
+        return inertia('Auth/Register'); 
     }
 }
