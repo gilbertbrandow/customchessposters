@@ -1,6 +1,7 @@
 @font-face {
     font-family: CabinetGrotesk;
-    src: url('../fonts/CabinetGrotesk-Variable.woff2') format("truetype-variations");;
+    src: url("../fonts/CabinetGrotesk-Variable.woff2")
+        format("truetype-variations");
     font-weight: 1 999;
 }
 
@@ -36,7 +37,7 @@ nav.is--scrolled {
     border-bottom: rgba(0, 0, 0, 0.1) solid 1px;
 }
 
-nav .container{
+nav .container {
     padding: 0em 6em 0em 6em;
     display: flex;
     align-items: center;
@@ -46,7 +47,7 @@ nav .container{
 nav .nav__wrp {
     display: flex;
     align-items: center;
-    flex: 1; 
+    flex: 1;
     justify-content: flex-end;
     column-gap: 1em;
 }
@@ -72,7 +73,7 @@ footer .container {
     flex: 1;
 }
 
-.footer__bottom a{
+.footer__bottom a {
     font-size: 1em;
     color: #fff;
 }
@@ -105,7 +106,7 @@ section {
     border-color: rgba(0, 0, 0, 0.1);
     border-radius: 1em;
     background-color: #fff;
-    font-family: 'CabinetGrotesk';
+    font-family: "CabinetGrotesk";
     color: #000;
     font-size: 1.2em;
     font-weight: 500;
@@ -136,7 +137,7 @@ section.section__hero {
 }
 
 section.section__hero .container {
-    flex: 1; 
+    flex: 1;
 }
 
 section.is--pt {
@@ -192,6 +193,74 @@ h1 {
 }
 
 .is--frosted-glass {
-    background-color: rgba(255, 255, 255, 0.500);
+    background-color: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(40px);
+}
+
+/**********************
+****** Form styles
+***********************/
+input:focus {
+    outline-style: solid;
+    outline-width: 2px;
+    outline-color: #000;
+    border-color: transparent;
+}
+
+.field {
+    height: auto;
+    width: 100%;
+    padding: 1.25em 1.25em 0.75em 1.25em;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(0, 0, 0, 0.14);
+    border-radius: 0.5em;
+    background-color: transparent;
+}
+
+.field.is--error {
+    outline-style: solid;
+    outline-width: 2px;
+    outline-color: #c00303;
+    border-color: transparent;
+}
+
+.field__wrp {
+    position: relative;
+    margin-top: 1.5em;
+    width: 100%;
+    display: flex;
+}
+
+.field__label {
+    position: absolute;
+    left: 0.5em;
+    top: -0.6em;
+    margin-bottom: 0px;
+    padding-right: 0.5em;
+    padding-left: 0.5em;
+    background-color: #f8f4f0;
+    font-size: 1.1em;
+}
+
+.field__error {
+    position: absolute;
+    top: -0.6em;
+    right: 0.5em;
+    padding-right: 0.75em;
+    padding-left: 0.75em;
+    border-radius: 0.5em;
+    background-color: #ffb8b8;
+    color: #c00303;
+    line-height: 1.55;
+  }
+
+.form {
+    margin-top: 2em;
+    position: relative;
+
+    .button {
+        margin-top: 1em;
+        cursor: pointer;
+    }
 }
