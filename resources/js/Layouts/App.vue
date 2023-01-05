@@ -1,12 +1,12 @@
 <template>
 <nav class="">
     <div class="container">
-      <Link class ="logo" href="/">
+      <Link class ="logo" :href="route('home.index')">
         <img src="../../../public/images/ccp-icn.svg" alt="">
         <div>{{ $page.props.site.title }}</div>
       </Link>
       <div class="nav__wrp">
-        <Link href="/contact">Contact</Link>
+        <Link :href="route('home.contact')">Contact</Link>
         <Link href="">About us</Link>
         <Link class="button is--black">Sign in <img src="/images/icons/profile-white.svg" alt=""></Link>
         <Link class="button is--black">Saved designs <img src="/images/icons/bookmark-white.svg" alt=""></Link>
