@@ -1,3 +1,5 @@
+$base-color: #f8f4f0;;
+
 @font-face {
     font-family: CabinetGrotesk;
     src: url("../fonts/CabinetGrotesk-Variable.woff2")
@@ -6,7 +8,7 @@
 }
 
 body {
-    background: #f8f4f0;
+    background: $base-color
     font-family: CabinetGrotesk;
     font-weight: 500;
     font-size: 1vw;
@@ -207,6 +209,18 @@ input:focus {
     border-color: transparent;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px $base-color inset;
+}
+
 .field {
     height: auto;
     width: 100%;
@@ -230,6 +244,7 @@ input:focus {
     margin-top: 1.5em;
     width: 100%;
     display: flex;
+    align-items: center;
 }
 
 .field__label {
@@ -239,7 +254,7 @@ input:focus {
     margin-bottom: 0px;
     padding-right: 0.5em;
     padding-left: 0.5em;
-    background-color: #f8f4f0;
+    background-color: $base-color;
     font-size: 1.1em;
 }
 
@@ -253,14 +268,20 @@ input:focus {
     background-color: #ffb8b8;
     color: #c00303;
     line-height: 1.55;
-  }
+}
+
+.field__error.is--submit {
+    position: relative;
+    margin-left: 1em;
+    top: auto;
+    right: auto;
+}
 
 .form {
     margin-top: 2em;
     position: relative;
 
     .button {
-        margin-top: 1em;
         cursor: pointer;
     }
 }
