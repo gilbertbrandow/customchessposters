@@ -31,8 +31,13 @@ Route::get('/contact', [HomeController::class, 'contact'])
 Route::get('/register', [RegisterController::class, 'registration'])
 ->name('auth.registration');
 
+Route::post('/register', [RegisterController::class, 'create'])
+->name('auth.create');
+
 Route::get('/login', [LoginController::class, 'login'])
 ->name('auth.login');
 
 Route::post('/login', [LoginController::class, 'authenticate'])
 ->name('auth.authenticate');
+
+Route::post('/logout', [LoginController::class, 'logout'])->name('auth.logout');
