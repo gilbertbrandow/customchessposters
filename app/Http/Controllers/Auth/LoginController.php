@@ -30,4 +30,10 @@ class LoginController extends Controller
             'all' => 'The provided credentials do not match our records.',
         ])->onlyInput('all');
     }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('home.index');
+    }
 }
