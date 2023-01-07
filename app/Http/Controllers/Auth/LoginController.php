@@ -23,12 +23,17 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
  
-            return redirect()->intended();
+            return redirect()->intended('/account');
         }
  
         return back()->withErrors([
             'all' => 'The provided credentials do not match our records.',
         ])->onlyInput('all');
+    }
+
+    public function account()
+    {
+        return inertia('Auth/Account'); 
     }
 
     public function logout()

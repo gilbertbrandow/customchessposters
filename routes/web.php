@@ -28,6 +28,14 @@ Route::get('/contact', [HomeController::class, 'contact'])
 |--------------------------------------------------------------------------
 */
 
+Route::middleware('auth')->group(function () {
+    Route::get('/account', [LoginController::class, 'account'])
+    ->middleware('auth')
+    ->name('auth.account');
+    
+    Route::post('/logout', [LoginController::class, 'logout'])->name('auth.logout');
+});
+
 Route::get('/register', [RegisterController::class, 'registration'])
 ->name('auth.registration');
 
@@ -39,5 +47,3 @@ Route::get('/login', [LoginController::class, 'login'])
 
 Route::post('/login', [LoginController::class, 'authenticate'])
 ->name('auth.authenticate');
-
-Route::post('/logout', [LoginController::class, 'logout'])->name('auth.logout');
