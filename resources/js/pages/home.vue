@@ -17,6 +17,9 @@
     </div>
 </section>
 
+<Faq>
+</Faq>
+
 <section>
     <div class="container"></div>
 </section>
@@ -38,10 +41,12 @@
 
 <script>
 import AppLayout from "../Layouts/App.vue";
+import Faq from "../Components/Faq.vue";
 
 export default {
     components: {
-        AppLayout
+        AppLayout, 
+        Faq,
     }
 }
 </script>
