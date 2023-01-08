@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Faq;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,7 +12,8 @@ class HomeController extends Controller
 {
     public function home()
     {
-        return inertia('Home'); 
+        $faqs = Faq::All();
+        return inertia('Home', compact('faqs')); 
     }
 
     public function contact ()

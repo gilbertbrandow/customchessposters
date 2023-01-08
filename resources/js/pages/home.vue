@@ -17,8 +17,7 @@
     </div>
 </section>
 
-<Faq>
-</Faq>
+<Faq :faqs="$page.props.faqs" />
 
 <section>
     <div class="container"></div>
@@ -47,6 +46,6 @@ export default {
     components: {
         AppLayout, 
         Faq,
-    }
+    }, 
 }
 </script>
