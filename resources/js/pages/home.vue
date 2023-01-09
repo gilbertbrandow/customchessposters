@@ -40,7 +40,7 @@
 
 <script>
 import AppLayout from "../Layouts/App.vue";
-import Faq from "../Components/Faq.vue";
+import Faq from "./Faq.vue";
 
 export default {
     components: {

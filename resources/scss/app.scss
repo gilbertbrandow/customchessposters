@@ -355,7 +355,6 @@ select:-webkit-autofill:focus {
     display: -ms-flexbox;
     display: flex;
     margin-bottom: 1.5em;
-    padding-bottom: 0.5em;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -webkit-flex-direction: column;
@@ -382,6 +381,8 @@ select:-webkit-autofill:focus {
     -webkit-justify-content: space-between;
     -ms-flex-pack: justify;
     justify-content: space-between;
+    cursor: pointer;
+    padding-bottom: 0.5em;
 }
 
 .question__icon {
@@ -392,11 +393,18 @@ select:-webkit-autofill:focus {
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: transform 400ms ease;
 
     img {
         width: 1.25em;
     }
 }
+
+.question__icon.is--rotated {
+    transform: rotate(180deg);
+}
+
+
 
 .answer {
     overflow: hidden;
