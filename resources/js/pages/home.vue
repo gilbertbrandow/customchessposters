@@ -19,6 +19,8 @@
 
 <Faq :faqs="$page.props.faqs" />
 
+<Features/>
+
 <section>
     <div class="container"></div>
 </section>
@@ -41,11 +43,13 @@
 <script>
 import AppLayout from "../Layouts/App.vue";
 import Faq from "./Faq.vue";
+import Features from "./Features.vue"
 
 export default {
     components: {
         AppLayout, 
         Faq,
+        Features,
     }, 
 }
 </script>
