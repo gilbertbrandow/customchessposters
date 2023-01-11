@@ -277,6 +277,20 @@ input:focus {
     border-color: transparent;
 }
 
+textarea:focus {
+    outline-style: solid;
+    outline-width: 2px;
+    outline-color: #000;
+    border-color: transparent;
+}
+
+input, textarea{
+    font-family: CabinetGrotesk;
+    font-weight: 500;
+    font-size: 1em;
+    letter-spacing: 0.02em;
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -347,6 +361,7 @@ select:-webkit-autofill:focus {
 }
 
 .form {
+    max-width: 40em;
     margin-top: 2em;
     position: relative;
 
