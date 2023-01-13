@@ -19,5 +19,10 @@ class HomeController extends Controller
     public function contact ()
     {
         return inertia('Contact');;
-    }    
+    }   
+    
+    public function your_own () 
+    {
+        return inertia('Your-own');
+    }
 }

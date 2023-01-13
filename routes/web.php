@@ -21,6 +21,9 @@ Route::get('/', [HomeController::class, 'home'])
 Route::get('/contact', [HomeController::class, 'contact'])
 ->name('home.contact');
 
+Route::get('/your-own', [HomeController::class, 'your_own'])
+->name('home.your-own');
+
 
 /*
 |--------------------------------------------------------------------------
