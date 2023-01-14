@@ -1,7 +1,6 @@
 <template>
     <section>
         <div class="container is--grid-4 is--no-pt">
-            {{ test }}
             <div v-for="feature in features" :key="feature.id" class="feature">
                 <div class="feature__icn"><img :src="`/images/icons/${ feature.icon }.svg`" alt=""></div>
                 <h3 v-text="feature.title"></h3>
