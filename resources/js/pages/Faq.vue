@@ -7,7 +7,7 @@
                     tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero
                     vitae
                     erat.</p>
-                <Link class="link-arrow" href="/contact">Still have questions? Contact us <img class="link-arrow__icn"
+                <Link class="link-arrow" :href="route('home.contact')">Still have questions? Contact us <img class="link-arrow__icn"
                     src="../../../public/images/icons/arrow-up.svg" alt=""></Link>
             </div>
             <div class="questions">
