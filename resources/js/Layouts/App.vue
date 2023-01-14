@@ -22,9 +22,9 @@
   <div class="container">
     <div class="footer__bottom">
       <div>All rättigheter reserverade © 2023 Custom Chess Poster. Powered by <a href="https://0100.se">0100</a></div>
-      <a href="">Shipping information</a>
-      <a href="">Return policy</a>
-      <a href="">Privacy policy</a>
+      <Link :href="route('policy.shipping')">Shipping information</Link>
+      <Link :href="route('policy.return')">Return policy</Link>
+      <Link :href="route('policy.privacy')">Privacy policy</Link>
     </div>
   </div>
 </footer>
