@@ -6,8 +6,8 @@
                 <div class="feature__icn"><img :src="`/images/icons/${ feature.icon }.svg`" alt=""></div>
                 <h3 v-text="feature.title"></h3>
                 <p v-text="feature.text"></p>
-                <Link class="link-arrow" :href="feature.url">Read more <img class="link-arrow__icn"
-                    src="../../../public/images/icons/arrow-up.svg" alt=""></Link>
+                <!---<Link class="link-arrow" :href="feature.url">Read more <img class="link-arrow__icn"
+                    src="../../../public/images/icons/arrow-up.svg" alt=""></Link>-->
             </div>
         </div>
     </section>
