@@ -20,9 +20,25 @@ class HomeController extends Controller
     {
         return inertia('Contact');;
     }   
-    
-    public function your_own () 
+
+    /*
+    |--------------------------------------------------------------------------
+    | Policy actions
+    |--------------------------------------------------------------------------
+    */
+
+    public function shipping () 
     {
-        return inertia('Your-own');
+        return inertia('Policy/Shipping');
+    }
+
+    public function return () 
+    {
+        return inertia('Policy/Return');
+    }
+
+    public function privacy () 
+    {
+        return inertia('Policy/Privacy');
     }
 }
