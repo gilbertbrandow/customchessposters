@@ -17,37 +17,25 @@
     </div>
 </section>
 
+<Poster />
+
 <Faq :faqs="$page.props.faqs" />
 
 <Features/>
-
-<section>
-    <div class="container"></div>
-</section>
-
-<section>
-    <div class="container"></div>
-</section>
-
-<section>
-    <div class="container"></div>
-</section>
-
-<section>
-    <div class="container"></div>
-</section>
 
 </AppLayout>
 </template>
 
 <script>
 import AppLayout from "../Layouts/App.vue";
-import Faq from "./Faq.vue";
-import Features from "./Features.vue"
+import Poster from "./Components/Poster.vue"
+import Faq from "./Components/Faq.vue";
+import Features from "./Components/Features.vue"
 
 export default {
     components: {
         AppLayout, 
+        Poster,
         Faq,
         Features,
     }, 
