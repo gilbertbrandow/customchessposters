@@ -491,11 +491,11 @@ select:-webkit-autofill:focus {
     max-height: 0px;
     opacity: 0;
     -webkit-transition: opacity 400ms ease, max-height 400ms ease;
-    transition: opacity 400ms ease, max-height 400ms ease;
+    transition: opacity 400ms ease, max-height 1000ms ease;
 }
 
 .answer.is--visible {
-    max-height: 1000px;
+    max-height: 400px;
     opacity: 1;
 }
 
