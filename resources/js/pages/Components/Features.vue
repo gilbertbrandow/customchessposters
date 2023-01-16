@@ -1,5 +1,6 @@
 <template>
     <section>
+        <div class="container"><h2>Our Benefits</h2>- Among other things</div>
         <div class="container is--grid-4 is--no-pt">
             <div v-for="feature in features" :key="feature.id" class="feature">
                 <div class="feature__icn"><img :src="`/images/icons/${ feature.icon }.svg`" alt=""></div>
