@@ -15,9 +15,11 @@
       </div>
     </div>
   </nav>
+  <main>
 <slot>
 </slot>
 
+</main>
 <footer>
   <div class="container">
     <div class="footer__bottom">
