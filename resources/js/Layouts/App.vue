@@ -22,6 +22,7 @@
 </main>
 <footer>
   <div class="container">
+    <Newsletter/>
     <div class="footer__bottom">
       <div>All rättigheter reserverade © 2023 Custom Chess Poster. Powered by <a href="https://0100.se">0100</a></div>
       <Link :href="route('policy.shipping')">Shipping information</Link>
@@ -35,6 +36,7 @@
 <script>
 import { onMounted } from 'vue';
 import { Link } from "@inertiajs/inertia-vue3";
+import Newsletter from "../Pages/Components/Newsletter.vue"
 
 export default {
     components: {
