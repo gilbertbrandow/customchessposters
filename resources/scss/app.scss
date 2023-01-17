@@ -370,6 +370,30 @@ select:-webkit-autofill:focus {
     }
 }
 
+.form.is--newsletter {
+    display: flex;
+    column-gap: 1em;
+    margin-top: 0em;
+    flex: 1;
+
+    .field__wrp {
+        margin-top: 0em;
+        flex: 1;
+    }
+}
+
+.newsletter-wrp {
+    display: flex;
+    column-gap: 8em;
+    align-items: center;
+    margin-bottom: 4em;
+
+    h2 {
+      margin-bottom: 0em;
+      margin-top: 0em;
+    }
+}
+
 
 
 /**********************
