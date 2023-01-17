@@ -322,6 +322,13 @@ select:-webkit-autofill:focus {
     border-color: transparent;
 }
 
+.field.is--success {
+    outline-style: solid;
+    outline-width: 2px;
+    outline-color: #03c02c;
+    border-color: transparent;
+}
+
 .field__wrp {
     position: relative;
     margin-top: 1.5em;
@@ -351,6 +358,11 @@ select:-webkit-autofill:focus {
     background-color: #ffb8b8;
     color: #c00303;
     line-height: 1.55;
+}
+
+.field__error.is--success {
+    background-color: #beffca;
+    color: #03c02c
 }
 
 .field__error.is--submit {
