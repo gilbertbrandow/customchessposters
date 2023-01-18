@@ -48,7 +48,7 @@ export default {
 </script>
 
 <script setup>
-import { useForm } from '@inertiajs/inertia-vue3';
+import { useForm } from '@inertiajs/vue3';
 
 
 let form = useForm({

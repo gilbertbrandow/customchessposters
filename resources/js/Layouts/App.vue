@@ -7,10 +7,10 @@
       </Link>
       <div class="nav__wrp">
         <Link :href="route('home.contact')">Contact</Link>
-        <Link href="">About us</Link>
-        <Link v-if="$page.props.auth" class="button is--black">{{ $page.props.auth.user.name }} <img src="/images/icons/profile-white.svg" alt=""></Link>
-        <Link v-else class="button is--black" :href="route('auth.login')">Sign in <img src="/images/icons/profile-white.svg" alt=""></Link>
-        <Link class="button is--black">Saved designs <img src="/images/icons/bookmark-white.svg" alt=""></Link>
+        <Link href="/">About us</Link>
+        <Link href="" v-if="$page.props.auth" class="button is--black">{{ $page.props.auth.user.name }} <img src="/images/icons/profile-white.svg" alt=""></Link>
+        <Link href="" v-else class="button is--black" :href="route('auth.login')">Sign in <img src="/images/icons/profile-white.svg" alt=""></Link>
+        <Link href="" class="button is--black">Saved designs <img src="/images/icons/bookmark-white.svg" alt=""></Link>
 
       </div>
     </div>
@@ -35,7 +35,7 @@
 
 <script>
 import { onMounted } from 'vue';
-import { Link } from "@inertiajs/inertia-vue3";
+import { Link } from "@inertiajs/vue3";
 import Newsletter from "../Pages/Components/Newsletter.vue"
 
 export default {
