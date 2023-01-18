@@ -9,7 +9,7 @@
         <Link :href="route('home.contact')">Contact</Link>
         <Link href="/">About us</Link>
         <Link href="" v-if="$page.props.auth" class="button is--black">{{ $page.props.auth.user.name }} <img src="/images/icons/profile-white.svg" alt=""></Link>
-        <Link href="" v-else class="button is--black" :href="route('auth.login')">Sign in <img src="/images/icons/profile-white.svg" alt=""></Link>
+        <Link href="/login" v-else class="button is--black" :href="route('auth.login')">Sign in <img src="/images/icons/profile-white.svg" alt=""></Link>
         <Link href="" class="button is--black">Saved designs <img src="/images/icons/bookmark-white.svg" alt=""></Link>
 
       </div>
