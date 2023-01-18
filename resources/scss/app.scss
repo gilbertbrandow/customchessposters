@@ -380,6 +380,11 @@ select:-webkit-autofill:focus {
     .button {
         cursor: pointer;
     }
+
+    button:disabled,
+    button[disabled] {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
 }
 
 .form.is--newsletter {
