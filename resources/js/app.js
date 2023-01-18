@@ -1,5 +1,5 @@
 import { createApp, h } from 'vue'
-import { createInertiaApp, Link } from '@inertiajs/inertia-vue3'
+import { createInertiaApp, Link } from '@inertiajs/vue3'
 
 createInertiaApp({
   resolve: name => {
@@ -23,5 +23,11 @@ createInertiaApp({
       .component("Link", Link)
       .mixin ({methods: { route }})
       .mount(el)
+  },
+
+  progress: {
+    delay: 0, 
+    color: '#000', 
+    spinner: false, 
   },
 }); 
