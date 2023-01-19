@@ -29,7 +29,9 @@
                     </div>
                     <div class="field__wrp">
                         <button class="button is--black" :disabled="form.processing">
-                            Sign in </button>
+                            Register </button>
+                            <Link class="link-arrow" :href="route('auth.login')">Already have an account? Sign in here <img class="link-arrow__icn"
+                    src="../../../../public/images/icons/arrow-up.svg" alt=""></Link>
                         <div v-if="form.errors.all" v-text="form.errors.all" class="field__error is--submit"></div>
                     </div>
                 </form>
