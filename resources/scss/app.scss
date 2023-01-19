@@ -335,6 +335,7 @@ select:-webkit-autofill:focus {
     width: 100%;
     display: flex;
     align-items: center;
+    column-gap: 1em;
 }
 
 .field__label {
@@ -366,8 +367,9 @@ select:-webkit-autofill:focus {
 }
 
 .field__error.is--submit {
-    position: relative;
-    margin-left: 1em;
+    position: absolut;
+    bottom: -2em;
+    margin-left: 0em;
     top: auto;
     right: auto;
 }
