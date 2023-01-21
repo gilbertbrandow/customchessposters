@@ -8,10 +8,22 @@ use Illuminate\Http\Request;
 
 class MailController extends Controller
 {
-    public function sendEmail () {
-        
-        Mail::to('simon@0100.se')->send(new Contact());
+    public function sendContactEmail (Request $request) {
 
-        return inertia('Home', compact('faqs'));
+        $request->validate([
+            'name' => ['required', 'min:5', 'max:10'],
+            'email' => ['required', 'email'],
+            'message' => ['required', 'min:5'],
+        ]);
+  
+        $data = [
+        'name' => $request->name,
+        'email' => $request->email,
+        'content' => $request->message
+        ];
+
+        Mail::to('simon@0100.se')->send(new Contact($data));
+
+        return inertia('Contact');
     }
 }
