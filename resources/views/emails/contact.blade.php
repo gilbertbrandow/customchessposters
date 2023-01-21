@@ -1,0 +1,1 @@
+{{ $data['name'] }}{{ $data['email'] }}{{ $data['content'] }}
