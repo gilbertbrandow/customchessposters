@@ -48,6 +48,10 @@ class HandleInertiaRequests extends Middleware
                 ]
             ] : false,
 
+            'profile' => [
+                'name' => fn () => $request->session()->get('name')
+            ],
+
             'flash' => function () use ($request) {
                 return [
                     'success' => $request->session()->get('success'),
