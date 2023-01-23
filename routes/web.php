@@ -24,6 +24,8 @@ Route::post('/newsletter', [NewsletterController::class, 'subscribe'])
 
 Route::post('/contact', [MailController::class, 'sendContactEmail'])->name('mail.sendEmail');
 
+Route::get('/thank-you', [HomeController::class, 'thankYou'])->name('home.thankYou');
+
 
 /*
 |--------------------------------------------------------------------------
