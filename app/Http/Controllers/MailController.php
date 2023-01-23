@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\Contact; 
 
 use Illuminate\Http\Request;
+use Illuminate\Routing\RedirectController;
 
 class MailController extends Controller
 {
@@ -24,6 +25,6 @@ class MailController extends Controller
 
         Mail::to('simon@0100.se')->send(new Contact($data));
 
-        return inertia('Contact');
+        return redirect()->route('home.thankYou');
     }
 }
