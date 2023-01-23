@@ -12,7 +12,7 @@ class MailController extends Controller
     public function sendContactEmail (Request $request) {
 
         $request->validate([
-            'name' => ['required', 'min:5', 'max:10'],
+            'name' => ['required', 'min:5', 'max:25'],
             'email' => ['required', 'email'],
             'message' => ['required', 'min:5'],
         ]);
@@ -25,6 +25,8 @@ class MailController extends Controller
 
         Mail::to('simon@0100.se')->send(new Contact($data));
 
-        return redirect()->route('home.thankYou');
+        $name = explode(' ',$data['name'])[0];
+
+        return redirect()->route('home.thankYou')->with('name', $name);
     }
 }
