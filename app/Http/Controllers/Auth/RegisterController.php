@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Welcome; 
 use App\Models\User;
 
 class RegisterController extends Controller
@@ -17,12 +19,14 @@ class RegisterController extends Controller
     public function create(Request $request)
     {
         $credentials = $request->validate([
-            'name' => ['required', 'min:5', 'max:10'],
+            'name' => ['required', 'min:5', 'max:25'],
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
- 
+
         User::create($credentials);
+
+        Mail::to($credentials['email'])->send(new Welcome($credentials['name']));
 
         return Redirect('/');
     }
