@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Contact; 
-
 use Illuminate\Http\Request;
-use Illuminate\Routing\RedirectController;
 
 class MailController extends Controller
 {
