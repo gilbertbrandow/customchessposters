@@ -59,7 +59,14 @@ let form = useForm({
 });
 
 let submit = () => {
-    form.post('/login');
-}
+    form.post('/login', {
+
+onError: () => form.reset("password"),
+
+onFinish: () => form.reset("password"),
+
+onSuccess: () => form.reset("password"),
+});
+};
 
 </script>
