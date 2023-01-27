@@ -19,11 +19,11 @@ class NewsletterController extends Controller
 
         if (Newsletter::isSubscribed($credentials['email'])) {
 
-            return redirect()->back()->with('error', 'Email already subscribed');
+            return redirect()->back()->with('newsletterError', 'Email already subscribed');
 
         } else {
             Newsletter::subscribe($credentials['email']);
-            return redirect()->back()->with('success', 'Welcome as a new subscriber!');
+            return redirect()->back()->with('newsletterSuccess', 'Welcome as a new subscriber!');
         }
 
         return Redirect('/')->with($credentials);
