@@ -82,5 +82,11 @@ Route::get('/login', [LoginController::class, 'login'])
 Route::post('/login', [LoginController::class, 'authenticate'])
 ->name('auth.authenticate');
 
-Route::get('/reset-password', [ResetPasswordController::class, 'show'])
-->name('auth.resetPassword');
+Route::get('/forgot-password', [ResetPasswordController::class, 'show'])
+->name('auth.forgotPassword');
+
+Route::post('/forgot-password', [ResetPasswordController::class, 'sendLink']);
+
+Route::get('/reset-password/{token}', function ($token) {
+    return view('auth.reset-password', ['token' => $token]);
+})->name('password.reset');
