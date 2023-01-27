@@ -49,7 +49,7 @@ let form = useForm({
 });
 
 let submit = () => {
-    form.post('/reset-password');
+    form.post('/forgot-password');
 };
 
 </script>
