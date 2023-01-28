@@ -28,6 +28,13 @@
                         <div v-if="form.errors.password" v-text="form.errors.password" class="field__error"></div>
                     </div>
                     <div class="field__wrp">
+                        <label for="password" class="field__label">Password</label>
+                        <input v-model="form.confirm_password" type="password" class="field"
+                            :class="{ 'is--error': form.errors.confirm_password }" name="password" placeholder="***********"
+                            required>
+                        <div v-if="form.errors.confirm_password" v-text="form.errors.confirm_password" class="field__error"></div>
+                    </div>
+                    <div class="field__wrp">
                         <button class="button is--black" :disabled="form.processing">
                             Register </button>
                             <Link class="link-arrow" :href="route('auth.login')">Already have an account? Sign in here <img class="link-arrow__icn"
@@ -65,12 +72,13 @@ let form = useForm({
     name: '',
     email: '',
     password: '',
+    confirm_password: '',
 });
 
 let submit = () => {
     form.post('/register', {
 
-        onError: () => form.reset("password"),
+        onError: () => form.reset("password", "confirm_password"),
 
         onFinish: () => form.reset("password"),
 
