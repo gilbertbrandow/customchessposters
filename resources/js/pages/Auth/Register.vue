@@ -28,11 +28,11 @@
                         <div v-if="form.errors.password" v-text="form.errors.password" class="field__error"></div>
                     </div>
                     <div class="field__wrp">
-                        <label for="password" class="field__label">Password</label>
-                        <input v-model="form.confirm_password" type="password" class="field"
-                            :class="{ 'is--error': form.errors.confirm_password }" name="password" placeholder="***********"
+                        <label for="password_confirmation" class="field__label">Confirm Password</label>
+                        <input v-model="form.password_confirmation" type="password" class="field"
+                            :class="{ 'is--error': form.errors.password_confirmation || form.errors.password }" name="password_confirmation" placeholder="***********"
                             required>
-                        <div v-if="form.errors.confirm_password" v-text="form.errors.confirm_password" class="field__error"></div>
+                        <div v-if="form.errors.password_confirmation" v-text="form.errors.password_confirmation" class="field__error"></div>
                     </div>
                     <div class="field__wrp">
                         <button class="button is--black" :disabled="form.processing">
@@ -72,13 +72,13 @@ let form = useForm({
     name: '',
     email: '',
     password: '',
-    confirm_password: '',
+    password_confirmation: '',
 });
 
 let submit = () => {
     form.post('/register', {
 
-        onError: () => form.reset("password", "confirm_password"),
+        onError: () => form.reset("password", "password_confirmation"),
 
         onFinish: () => form.reset("password"),
 

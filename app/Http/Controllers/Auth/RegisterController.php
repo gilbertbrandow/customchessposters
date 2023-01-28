@@ -28,6 +28,7 @@ class RegisterController extends Controller
 
         Mail::to($credentials['email'])->send(new Welcome($credentials['name']));
 
+        //TODO: Set new redirect to login(?) with flash message of user created.
         return Redirect('/');
     }
 }
