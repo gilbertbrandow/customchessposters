@@ -5,6 +5,7 @@
                 <h1>Sign in</h1>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum
                     tristique. </p>
+                <div v-if="$page.props.flash.success" v-text="$page.props.flash.success" class="field__error is--static is--success"></div>
                 <form @submit.prevent="submit" class="form">
                     <div class="field__wrp">
                         <label for="email" class="field__label">Email address</label>
