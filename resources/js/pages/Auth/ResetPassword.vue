@@ -14,8 +14,22 @@
                             required />
                     </div>
                     <div class="field__wrp">
+                        <label for="password" class="field__label">Password</label>
+                        <input v-model="form.password" type="password" class="field"
+                            :class="{ 'is--error': form.errors.password }" name="password" placeholder="***********"
+                            required>
+                        <div v-if="form.errors.password" v-text="form.errors.password" class="field__error"></div>
+                    </div>
+                    <div class="field__wrp">
+                        <label for="password_confirmation" class="field__label">Confirm Password</label>
+                        <input v-model="form.password_confirmation" type="password" class="field"
+                            :class="{ 'is--error': form.errors.password_confirmation || form.errors.password }" name="password_confirmation" placeholder="***********"
+                            required>
+                        <div v-if="form.errors.password_confirmation" v-text="form.errors.password_confirmation" class="field__error"></div>
+                    </div>
+                    <div class="field__wrp">
                         <button class="button is--black" :disabled="form.processing">
-                            Send me my link! </button>
+                           Reset Password </button>
                         <div v-if="form.errors.all" v-text="form.errors.all" class="field__error is--submit"></div>
                     </div>
                 </form>
@@ -39,17 +53,22 @@ export default {
         AppLayout
     }
 }
+
 </script>
 
 <script setup>
 import { useForm } from '@inertiajs/vue3';
+import { usePage } from '@inertiajs/vue3';
 
 let form = useForm({
     email: '',
+    password: '', 
+    password_confirmation: '', 
+    token: usePage().props.route.params.token
 });
 
 let submit = () => {
-    form.post('/forgot-password');
+    form.post('/reset-password');
 };
 
 </script>
