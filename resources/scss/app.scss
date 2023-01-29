@@ -367,11 +367,16 @@ select:-webkit-autofill:focus {
 }
 
 .field__error.is--submit {
-    position: absolut;
+    position: absolute;
     bottom: -2em;
     margin-left: 0em;
     top: auto;
     right: auto;
+}
+
+.field__error.is--static {
+    display: inline-block;
+    position: static;
 }
 
 .form {
