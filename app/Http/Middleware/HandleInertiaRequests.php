@@ -49,21 +49,23 @@ class HandleInertiaRequests extends Middleware
             ] : false,
 
             'profile' => [
-                'name' => fn () => $request->session()->get('name')
+                'name' => $request->session()->get('name')
             ],
 
-            'flash' => function () use ($request) {
-                return [
+            'flash' => [
 
                     'newsletter' => [
-                        'success' => fn () => $request->session()->get('newsletterSuccess'),
+                        'success' => $request->session()->get('newsletterSuccess'),
                         'error' => $request->session()->get('newsletterError'),
                     ],
 
                     'success' => $request->session()->get('success'),
                     'error' => $request->session()->get('error'),
-                ];
-            },
+            ], 
+            
+            'route' => [
+                'params' => $request->route()->parameters(),
+            ],
         ]);
     }
 }
