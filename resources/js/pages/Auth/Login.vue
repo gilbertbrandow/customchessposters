@@ -21,6 +21,7 @@
                             required>
                         <div v-if="form.errors.password" v-text="form.errors.password" class="field__error"></div>
                     </div>
+                    <div class="field__checkbox"><input v-model="form.remember" type="checkbox" id="scales" name="remember"/><label for="remember">Remember me</label></div>
                     <div class="field__wrp">
                         <button class="button is--black" :disabled="form.processing">
                             Sign in </button>
@@ -57,6 +58,7 @@ import { useForm } from '@inertiajs/vue3';
 let form = useForm({
     email: '',
     password: '',
+    remember: '',
 });
 
 let submit = () => {
