@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\PosterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -90,3 +91,12 @@ Route::post('/forgot-password', [ResetPasswordController::class, 'sendLink']);
 Route::get('/reset-password/{token}', [ResetPasswordController::class, 'showReset'])->name('password.reset');
 
 Route::post('/reset-password', [ResetPasswordController::class, 'passwordUpdate'])->name('password.update');
+
+/*
+|--------------------------------------------------------------------------
+| Create poster routes
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/create-poster', [PosterController::class, 'createPoster'])->name('poster.create');
+
