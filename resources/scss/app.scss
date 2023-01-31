@@ -352,7 +352,6 @@ select:-webkit-autofill:focus {
 .field__checkbox {
     display: flex;
     align-items: center;
-    margin-top: 0.75em;
 }
 
 label {
@@ -411,6 +410,22 @@ label {
     button:disabled,
     button[disabled] {
         background-color: rgba(0, 0, 0, 0.5);
+    }
+}
+
+.form__bottom {
+    margin-top: 0.75em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .link-arrow {
+        font-size: 1em;
+        opacity: 0.5;
+    }
+
+    .link-arrow:hover {
+        opacity: 1;
     }
 }
 
