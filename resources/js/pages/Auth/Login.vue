@@ -21,7 +21,10 @@
                             required>
                         <div v-if="form.errors.password" v-text="form.errors.password" class="field__error"></div>
                     </div>
-                    <div class="field__checkbox"><input v-model="form.remember" type="checkbox" id="scales" name="remember"/><label for="remember">Remember me</label></div>
+                    <div class="form__bottom">
+                    <div class="field__checkbox"><input v-model="form.remember" type="checkbox" id="remember" name="remember"/><label for="remember">Remember me</label></div>
+                    <Link class="link-arrow" :href="route('auth.forgotPassword')">Forgot your password?</Link>
+                    </div>
                     <div class="field__wrp">
                         <button class="button is--black" :disabled="form.processing">
                             Sign in </button>
