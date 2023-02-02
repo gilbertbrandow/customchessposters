@@ -1,4 +1,4 @@
-$base-color: #f8f4f0;
+$base-color: #fafafa;
 
 @font-face {
     font-family: CabinetGrotesk;
@@ -52,6 +52,45 @@ nav .nav__wrp {
     flex: 1;
     justify-content: flex-end;
     column-gap: 1em;
+}
+
+.nav__button {
+    div {
+        display: none;
+    }
+
+    img {
+        height: 1em;
+        width: 1em;
+        filter: invert(100%);
+    }
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2em;
+    height: 2em;
+    border-radius: 5em;
+    border: solid 1px #000;
+    transition: all 500ms;
+}
+
+.nav__button:hover {
+    div {
+       display: block;
+    }
+
+    img {
+        filter: invert(0%);
+    }
+
+    background-color: #000;
+    padding-left: 1em;
+    padding-right: 1em;
+    column-gap: 0.5em;
+
+    width: auto;
 }
 
 footer .container {

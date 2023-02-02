@@ -7,11 +7,11 @@
       </Link>
       <div class="nav__wrp">
         <Link :href="route('home.contact')">Contact</Link>
-        <Link href="/">About us</Link>
-        <Link :href="route('auth.account')" v-if="$page.props.auth" class="button is--black">{{ $page.props.auth.user.name }} <img src="/images/icons/profile-white.svg" alt=""></Link>
+        <div class="dropdown"><img src=""/> USA / USD $</div>
+        <Link :href="route('auth.account')" v-if="$page.props.auth" class="nav__button"><div>{{ $page.props.auth.user.name }} </div><img src="/images/icons/profile-white.svg" alt=""></Link>
         <Link :href="route('auth.login')" v-else class="button is--black">Sign in <img src="/images/icons/profile-white.svg" alt=""></Link>
-        <Link :href="route('home.index')" class="button is--black">Saved designs <img src="/images/icons/bookmark-white.svg" alt=""></Link>
-
+        <Link :href="route('home.index')" class="nav__button"><div>Saved designs</div><img src="/images/icons/bookmark-white.svg" alt=""></Link>
+        <Link :href="route('home.index')" class="nav__button"><div>Cart</div> <img src="/images/icons/bookmark-white.svg" alt=""></Link>
       </div>
     </div>
   </nav>
