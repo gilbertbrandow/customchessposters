@@ -55,8 +55,44 @@ nav .nav__wrp {
 }
 
 .nav__button {
-    div {
-        display: none;
+    .info {
+        display: flex;
+        align-items: center;
+        white-space: nowrap;
+        font-size: 0.8em;
+        font-weight: 400;
+        opacity: 0;
+        width: auto;
+        pointer-events: none;
+        position: absolute;
+        top: 3em;
+        margin-top: -1em;
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+        padding-top: 0.25em;
+        padding-bottom: 0.25em;
+        color: #fff;
+        background-color: #000;
+        border: solid 1px #000;
+        transition: opacity 400ms;
+        transition: margin 200ms;
+        border-radius: 0.5em;
+
+        div {
+            position: absolute;
+            top: 0em;
+            left: 0; 
+            right: 0; 
+            margin-left: auto; 
+            margin-right: auto; 
+            margin-top: -0.3em;
+            transform: rotate(45deg);
+            width: 0.6em;
+            height: 0.6em;
+            background-color: #000;
+            border-top: solid #000 1px;
+            border-left: solid #000 1px;
+        }
     }
 
     img {
@@ -64,7 +100,7 @@ nav .nav__wrp {
         width: 1em;
         filter: invert(100%);
     }
-    color: #fff;
+    position: relative;
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -77,20 +113,15 @@ nav .nav__wrp {
 }
 
 .nav__button:hover {
-    div {
-       display: block;
+    .info {
+        opacity: 1;
+        margin-top: 0.25em;
     }
 
     img {
         filter: invert(0%);
     }
-
     background-color: #000;
-    padding-left: 1em;
-    padding-right: 1em;
-    column-gap: 0.5em;
-
-    width: auto;
 }
 
 footer .container {
