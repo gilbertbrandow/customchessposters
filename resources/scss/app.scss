@@ -20,6 +20,11 @@ a {
     font-size: 1.2em;
 }
 
+ul {
+    padding-left: 0px;
+    list-style-type: none;
+}
+
 nav {
     display: flex;
     position: fixed;
@@ -167,6 +172,7 @@ section {
 }
 
 .button {
+    cursor: pointer;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -202,6 +208,7 @@ section {
 }
 
 .link-arrow {
+    cursor: pointer;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -305,9 +312,59 @@ h3 {
     line-height: 1.1;
 }
 
+h4 {
+    font-size: 1.25em;
+    font-weight: 700;
+    margin-top: 0.1em;
+    margin-bottom: 0.25em;
+    line-height: 1.1;
+}
+
 .is--frosted-glass {
     background-color: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(40px);
+}
+
+.message {
+    padding: 1em;
+    padding-top: 0.75em;
+    padding-right: 4em;
+    position: relative;
+    background-color: whitesmoke;
+    border-radius: 1em;
+    border: solid 1px #ebebeb;
+
+    p {
+        font-size: 0.9em;
+        margin-block-end: 0em;
+        margin-block-start: 0.75em;
+    }
+
+    div {
+        cursor: pointer;
+        position: absolute;
+        top: 0.75em;
+        right: 0.75em;
+        width: 1.5em;
+        height: 1.5em;
+        border-radius: 2em;
+        border: 1px solid #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+            width: 0.5em;
+        }
+    }
+
+    div:hover {
+        background-color: #000;
+
+        img {
+            filter: invert(100%);
+        }
+    }
 }
 
 
@@ -368,11 +425,16 @@ h3 {
     }
 
     .poster__buttons-wrp {
+        font-size: 0.8em;
         position: absolute;
-        right: 1em;
-        bottom: 1em;
+        right: 2.6em;
+        bottom: 2.4em;
         display: flex;
         column-gap: 1em;
+
+        .button {
+            border-color: #fff;
+        }
     }
 
 }
@@ -384,56 +446,183 @@ h3 {
     margin-right: -1em;
     display: flex;
     flex-direction: column;
-    padding: 2em 2.5em 1.5em 2.5em;
+    padding: 2em 2.5em 2em 2.5em;
+    width: 44em;
+
+    .message {
+        margin-top: 2em;
+    }
 
 }
 
-.poster__header {
+.module__header {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    column-gap: 8em;
+    margin-bottom: 2em;
 }
 
-.poster__navigation {
+.module__step {
+    flex: 1;
+}
+
+.themes {
+    margin-top: 2em;
+    display: flex;
+    column-gap: 2em;
+    p {
+        margin-block-start: 0em;
+        margin-block-end: 0em;
+    }
+}
+
+.theme {    
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    column-gap: 0.5em;
+    color: rgba(0, 0, 0, 0.5);
+
+    p {
+        font-size: 0.8em;
+    }
+
+    h4 {
+        margin-top: 0em;
+    }
+}
+
+.theme__colour-wrp {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3.3em;
+    width: 3.3em;
+    border-radius: 100%;
+    border: solid transparent 1px;
+}
+
+.theme__colour {
+    width: 80%;
+    height: 80%;
+    border: 1px solid #f5f5f5;
+    border-radius: 100%;
+    display: flex;
+    overflow: hidden;
+    transform: rotateZ(-35deg);
+
+
+    div {
+        width: 50%;
+        height: 100%;
+        background-color: red;
+    }
+
+    div:first-child {
+        background-color: green;
+    }
+}
+
+.theme:hover {
+    color: #000;
+}
+
+.theme.is--active {
+
+    color: #000;
+    
+    .theme__colour-wrp {
+        border-color: #000;
+    }
+
+}
+
+.module__navigation {
     display: flex;
     align-items: flex-end;
-    flex: 1;
 
-    .poster__buttons {
+    .module__buttons {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         row-gap: 1em;
     }
 
-    .poster__progress-wrp {
-
-        .poster__progress {
-            display: flex;
-            align-items: center;
-            column-gap: 1em;
-        }
+    .module__progress-wrp {
 
         flex: 1;
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
-        padding-left: 8em;
-        padding-bottom: 0.25em;
+        padding-left: 16em;
+        padding-bottom: 0.3em;
 
-        .progress-bar-wrp {
-            flex: 1;
-            height: 4px;
-            overflow: hidden;
-            border-radius: 4px;
-            background-color: #bebebe;
+        .module__progress {
+            position: relative;
+            display: flex;
+            align-items: center;
+            column-gap: 1em;
+            justify-content: space-between;
         }
 
-        .progress-bar {
-            width: 5%;
+        .progress__bar {
+            flex: 1;
+            left: 1.75em;
+            right: 1.75em;
+            height: 1px;
+            overflow: hidden;
+            background-color: #bebebe;
+            position: absolute;
+        }
+
+        .progress__bar-indicator {
+            width: 33%;
             height: 100%;
             background-color: #000;
+        }
+
+        .progress__step {
+            cursor: pointer;
+            width: 1.75em;
+            height: 1.55em;
+            padding-top: 0.2em;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: solid 1px #bebebe;
+            border-radius: 2em;
+            background-color: #fff;
+            transition: border-color 400ms;
+
+            div {
+                pointer-events: none;
+                transition: opacity 400ms;
+                font-size: 0.7em;
+                position: absolute;
+                white-space: nowrap;
+                bottom: 100%;
+                margin-bottom: 0.5em;
+                opacity: 0;
+            }
+        }
+
+        .progress__step:hover, .progress__step.is--filled:hover {
+            border-color: #000;
+
+            div {
+                opacity: 1;
+            }
+        }
+
+        .progress__step.is--filled {
+            border-color: #000;
+            background-color: #000;
+            color: #fff;
+
+            div {
+                color: #000;
+            }
         }
     }
 }
