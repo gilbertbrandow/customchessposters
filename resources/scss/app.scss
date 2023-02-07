@@ -600,12 +600,15 @@ h4 {
         }
 
         .progress__bar-indicator {
-            width: 33%;
+            transition: width 400ms ease-in;
+            min-width: 5%;
             height: 100%;
             background-color: #000;
         }
 
         .progress__step {
+            transition: border-color 400ms ease;
+            transition: background-color 400ms ease;
             cursor: pointer;
             width: 1.75em;
             height: 1.55em;
@@ -617,7 +620,6 @@ h4 {
             border: solid 1px #bebebe;
             border-radius: 2em;
             background-color: #fff;
-            transition: border-color 400ms;
 
             div {
                 pointer-events: none;
