@@ -15,38 +15,26 @@
                             <p>Choose a theme for your poster from the list below:</p>
                             <ul class="themes">
 
-                                <li class="theme is--active">
+                                <li v-for="theme in themes" :key="theme.id" @click="setTheme(theme.id)" class="theme">
                                     <div class="theme__colour-wrp">
                                         <div class="theme__colour">
-                                            <div></div>
-                                            <div></div>
+                                            <div><img style="height: 100%"
+                                                    :src="`/images/posters/themes${theme.texture}`" alt=""></div>
+                                            <div :style="{ backgroundColor: theme.colour, }"></div>
                                         </div>
                                     </div>
                                     <div class="theme__text">
-                                        <h4>New Waves</h4>
-                                        <p>Warm & modern</p>
-                                    </div>
-                                </li>
-
-                                <li class="theme">
-                                    <div class="theme__colour-wrp">
-                                        <div class="theme__colour">
-                                            <div></div>
-                                            <div></div>
-                                        </div>
-                                    </div>
-                                    <div class="theme__text">
-                                        <h4>Old Knowledge</h4>
-                                        <p>Vintage & nostalgic</p>
+                                        <h4 v-text="theme.title"></h4>
+                                        <p v-text="theme.desc"></p>
                                     </div>
                                 </li>
 
                             </ul>
 
-                            <div class="message">
-                                <div><img src="/images/icons/close.svg" /></div>
+                            <div v-if="!isHidden" class="message">
+                                <div @click="isHidden = true"><img src="/images/icons/close.svg" /></div>
                                 <h4>Don't sweat it if you feel unsure</h4>
-                                <p>You can always come back to this section down the road and jump between steps as you
+                                <p>You can always come back to this section down the road and jump between steps to make changes as you
                                     need before you are completely happy with the result. </p>
 
                             </div>
@@ -66,10 +54,14 @@
                     </div>
                     <div class="module__navigation">
                         <div class="module__buttons">
-                            <div class="link-arrow is--low-op is--visible" @click="prevStep">Go back <img class="link-arrow__icn" src="../../../../public/images/icons/back.svg" alt=""></div>
+                            <div class="link-arrow is--low-op is--visible"
+                                @click="changeStep(getIndexOfCurrentStep() - 1)">Go back <img class="link-arrow__icn"
+                                    src="../../../../public/images/icons/back.svg" alt=""></div>
 
-                            <div class="button is--black" @click="nextStep">Next Step <img src="../../../../public/images/icons/right-arrow-white.svg" alt=""></div>
-                            <div class="button is--black">Add to cart <img src="../../../../public/images/icons/bag-white.svg" alt=""></div>
+                            <div class="button is--black" @click="changeStep(getIndexOfCurrentStep() + 1)">Next Step <img
+                                    src="../../../../public/images/icons/right-arrow-white.svg" alt=""></div>
+                            <div class="button is--black">Add to cart <img
+                                    src="../../../../public/images/icons/bag-white.svg" alt=""></div>
 
                         </div>
                         <div class="module__progress-wrp">
@@ -77,13 +69,13 @@
                                 <div class="progress__bar">
                                     <div class="progress__bar-indicator"></div>
                                 </div>
-                                <div class="progress__step">1 <div>Your design</div>
+                                <div class="progress__step" @click="changeStep(0)">1 <div>Your design</div>
                                 </div>
-                                <div class="progress__step">2 <div>The Moves</div>
+                                <div class="progress__step" @click="changeStep(1)">2 <div>The Moves</div>
                                 </div>
-                                <div class="progress__step">3 <div>The Position</div>
+                                <div class="progress__step" @click="changeStep(2)">3 <div>The Position</div>
                                 </div>
-                                <div class="progress__step">4 <div>The Game</div>
+                                <div class="progress__step" @click="changeStep(3)">4 <div>The Game</div>
                                 </div>
                             </div>
                         </div>
@@ -106,12 +98,41 @@
 
 <script>
 import { onMounted } from 'vue';
+export default {
+    data() {
+        return {
+            isHidden: false,
+
+            themes: [
+                {
+                    id: 0,
+                    title: 'New Waves',
+                    desc: 'Warm & Modern',
+                    texture: '/new-waves/waves.svg',
+                    colour: '#fbf4ea',
+                    poster: '',
+                },
+
+                {
+                    id: 1,
+                    title: 'Old Knowledge',
+                    desc: 'Vintage & Nostalgic',
+                    texture: '/old-knowledge/lines.jpg',
+                    colour: '#f5f5f5',
+                    poster: '',
+                }
+
+            ],
+        }
+    }
+}
 </script>
 
 <script setup>
 
 onMounted(() => {
     changeStep(0);
+    setTheme(0);
 });
 
 function getIndexOfCurrentStep() {
@@ -129,7 +150,6 @@ function changeStep(index) {
     let progressSteps = document.querySelectorAll('.progress__step');
     let progressBar = document.querySelector('.progress__bar-indicator');
     let width = (index / 3 * 100) + "%";
-    if(index == 0) width = "5%";
 
     if (document.querySelector('.module__step.is--active')) { document.querySelector('.module__step.is--active').classList.remove('is--active'); }
     active.classList.add('is--active');
@@ -138,18 +158,18 @@ function changeStep(index) {
 
         progressSteps[i].classList.remove('is--active');
 
-        if(i == index) {
+        if (i == index) {
             progressSteps[i].classList.add('is--active');
         }
-        else if(i < index) {
+        else if (i < index) {
             progressSteps[i].classList.add('is--passed');
         }
-        else if(i > index){
+        else if (i > index) {
             progressSteps[i].classList.remove('is--passed');
         }
     }
 
-   progressBar.style.width = width;
+    progressBar.style.width = width;
 
     if (index == 0) {
         buttons[0].classList.remove('is--visible')
@@ -162,21 +182,18 @@ function changeStep(index) {
         buttons[2].classList.add('is--visible')
     } else if (!buttons[1].classList.contains('is--visible')) {
         buttons[1].classList.add('is--visible')
-    } 
-    
-    if(index != 3){
+    }
+
+    if (index != 3) {
         buttons[2].classList.remove('is--visible')
     }
 
 
 }
 
-function nextStep() {
-    changeStep(getIndexOfCurrentStep() + 1);
-}
-
-function prevStep() {
-    changeStep(getIndexOfCurrentStep() - 1);
+function setTheme (id) {
+    if(document.querySelector('.theme.is--active'))document.querySelector('.theme.is--active').classList.remove('is--active');
+    document.querySelector('.themes').children[id].classList.add('is--active'); 
 }
 
 </script>
