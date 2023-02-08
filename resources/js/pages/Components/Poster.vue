@@ -146,15 +146,14 @@ export default {
         },
 
         changeStep(index) {
-
             this.$data.currStep = index;
         }
 
     },
 
     mounted() {
-        this.setTheme(0)
         this.changeStep(this.$data.currStep)
+        this.setTheme(this.$data.currTheme)
     }
 }
 </script>
