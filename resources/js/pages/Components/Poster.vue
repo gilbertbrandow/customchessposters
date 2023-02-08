@@ -10,7 +10,7 @@
                             class="link-arrow__icn" src="../../../../public/images/icons/arrow-up.svg" alt=""></Link>
                     </div>
                     <div class="module__mask" ref="mask">
-                        <div ref="step0" class="module__step">
+                        <div :class="[currStep == 0 ? 'is--active' : '']" class="module__step">
                             <h3>1. Your Design</h3>
                             <p>Choose a theme for your poster from the list below:</p>
                             <ul class="themes" ref="themes">
@@ -41,15 +41,15 @@
 
                             </div>
                         </div>
-                        <div ref="step1" class="module__step">
+                        <div :class="[currStep == 1 ? 'is--active' : '']" class="module__step">
                             <h3>2. The Moves</h3>
                             <p>Insert the moves of the game</p>
                         </div>
-                        <div ref="step2" class="module__step">
+                        <div :class="[currStep == 2 ? 'is--active' : '']" class="module__step">
                             <h3>3. The Position</h3>
                             <p>Choose which position of the game you will share with the world!</p>
                         </div>
-                        <div ref="step3" class="module__step">
+                        <div :class="[currStep == 3 ? 'is--active' : '']" class="module__step">
                             <h3>4. The Game</h3>
                             <p>Other interesting information to give your poster some more backstory.</p>
                         </div>
@@ -69,7 +69,7 @@
                         <div class="module__progress-wrp">
                             <div class="module__progress">
                                 <div class="progress__bar">
-                                    <div ref="progressBar" class="progress__bar-indicator"></div>
+                                    <div :style="{ width: (currStep / 3 * 100) + '%' }" class="progress__bar-indicator"></div>
                                 </div>
                                 <div :class="[currStep == 0 ? 'is--active' : '', currStep > 0 ? 'is--passed' : '' ]" class="progress__step" @click="changeStep(0)">1 <div>Your design</div>
                                 </div>
@@ -138,15 +138,7 @@ export default {
         },
 
         changeStep(index) {
-
-            //Display the correct step
-            this.$refs['step' + this.$data.currStep].classList.remove('is--active');
-            this.$refs['step' + index].classList.add('is--active');
-
-            //Move progressbar
-            this.$refs.progressBar.style.width = (index / 3 * 100) + "%";
             
-            //Change currStep data
             this.$data.currStep = index;
         }
 
