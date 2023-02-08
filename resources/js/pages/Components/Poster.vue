@@ -9,13 +9,13 @@
                         <Link class="link-arrow is--low-op" :href="route('home.index')">How does it work? <img
                             class="link-arrow__icn" src="../../../../public/images/icons/arrow-up.svg" alt=""></Link>
                     </div>
-                    <div class="module__mask">
+                    <div class="module__mask" ref="mask">
                         <div class="module__step">
                             <h3>1. Your Design</h3>
                             <p>Choose a theme for your poster from the list below:</p>
-                            <ul class="themes">
+                            <ul class="themes" ref="themes">
 
-                                <li v-for="theme in themes" :key="theme.id" @click="setTheme(theme.id)" class="theme">
+                                <li v-for="theme in themes" :key="theme.id" @click="setTheme(theme.id)" :ref="'theme' + theme.id" class="theme">
                                     <div class="theme__colour-wrp">
                                         <div class="theme__colour">
                                             <div><img style="height: 100%"
@@ -103,6 +103,8 @@ export default {
         return {
             isHidden: false,
 
+            currStep: 0,
+
             themes: [
                 {
                     id: 0,
@@ -124,6 +126,28 @@ export default {
 
             ],
         }
+    },
+
+    methods: { 
+
+        getIndexOfCurrentStep() {
+            let mask = this.$refs.mask
+            let currentStep = document.querySelector('.module__step.is--active');
+            let index = Array.prototype.indexOf.call(mask.children, currentStep);
+            return index;
+        },
+
+         setTheme (id) {
+            if(document.querySelector('.theme.is--active'))document.querySelector('.theme.is--active').classList.remove('is--active');
+            this.$refs['theme' + id][0].classList.add('is--active'); 
+
+            console.log(this.$refs['theme' + id][0])
+        },
+
+    }, 
+
+    mounted() {
+        this.setTheme(0)
     }
 }
 </script>
@@ -132,15 +156,7 @@ export default {
 
 onMounted(() => {
     changeStep(0);
-    setTheme(0);
 });
-
-function getIndexOfCurrentStep() {
-    let mask = document.querySelector('.module__mask');
-    let currentStep = document.querySelector('.module__step.is--active');
-    let index = Array.prototype.indexOf.call(mask.children, currentStep);
-    return index;
-}
 
 function changeStep(index) {
 
@@ -189,11 +205,6 @@ function changeStep(index) {
     }
 
 
-}
-
-function setTheme (id) {
-    if(document.querySelector('.theme.is--active'))document.querySelector('.theme.is--active').classList.remove('is--active');
-    document.querySelector('.themes').children[id].classList.add('is--active'); 
 }
 
 </script>
