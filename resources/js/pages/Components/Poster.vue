@@ -12,7 +12,7 @@
                     <div class="module__mask" ref="mask">
                         <div :class="[currStep == 0 ? 'is--active' : '']" class="module__step">
                             <h3>1. Your Design</h3>
-                            <p>Choose a theme for your poster from the list below:</p>
+                            <p>Choose a theme for your poster from the list below and if the position should be viewed from whites or blacks point of view.</p>
                             <ul class="themes" ref="themes">
 
                                 <li v-for="theme in themes" :key="theme.id" @click="setTheme(theme.id)"
@@ -29,8 +29,18 @@
                                         <p v-text="theme.desc"></p>
                                     </div>
                                 </li>
-
                             </ul>
+
+                            <div class="field__wrp">
+                                <label for="orientation" class="field__label">Orientation</label>
+            
+                                <select id="orientation" class="field" name="orientation">
+                                <option value="White">White</option>
+                                <option value="White">Black</option>
+                                </select>
+
+                            </div>
+
 
                             <div v-if="!isHidden" class="message">
                                 <div @click="isHidden = true"><img src="/images/icons/close.svg" /></div>

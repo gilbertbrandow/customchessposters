@@ -453,6 +453,11 @@ h4 {
         margin-top: 2em;
     }
 
+    .field__label {
+        background-color: white;
+        font-weight: 600;
+    }
+
 }
 
 .module__header {
@@ -468,6 +473,10 @@ h4 {
 
 .module__step {
     display: none;
+
+    ul {
+        margin-bottom: 3em;
+    }
 }
 
 .module__step.is--active {
@@ -693,6 +702,7 @@ select:-webkit-autofill:focus {
 }
 
 .field {
+    font-size: 1em;
     height: auto;
     width: 100%;
     padding: 1.25em 1.25em 0.75em 1.25em;
@@ -701,6 +711,15 @@ select:-webkit-autofill:focus {
     border-color: rgba(0, 0, 0, 0.14);
     border-radius: 0.5em;
     background-color: transparent;
+}
+
+select.field {
+    padding-left: 1em;
+    padding-top: 1em;
+}
+
+select.field:focus {
+    outline-color: #000;
 }
 
 .field.is--error {
