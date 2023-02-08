@@ -555,20 +555,7 @@ h4 {
         align-items: flex-start;
         row-gap: 1em;
 
-        .button {
-            display: none;
-        }
-
         .link-arrow {
-            display: none;
-        }
-
-        .button.is--visible {
-            display: flex;
-        }
-
-        .link-arrow.is--visible {
-            display: flex;
             column-gap: 0.25em;
         }
     }
