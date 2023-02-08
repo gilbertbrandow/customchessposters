@@ -132,13 +132,6 @@ export default {
 
     methods: {
 
-        getIndexOfCurrentStep() {
-            let mask = this.$refs.mask
-            let currentStep = document.querySelector('.module__step.is--active');
-            let index = Array.prototype.indexOf.call(mask.children, currentStep);
-            return index;
-        },
-
         setTheme(id) {
             if (document.querySelector('.theme.is--active')) document.querySelector('.theme.is--active').classList.remove('is--active');
             this.$refs['theme' + id][0].classList.add('is--active');
