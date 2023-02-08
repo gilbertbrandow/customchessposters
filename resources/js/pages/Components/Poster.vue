@@ -10,12 +10,13 @@
                             class="link-arrow__icn" src="../../../../public/images/icons/arrow-up.svg" alt=""></Link>
                     </div>
                     <div class="module__mask" ref="mask">
-                        <div class="module__step">
+                        <div ref="step0" class="module__step">
                             <h3>1. Your Design</h3>
                             <p>Choose a theme for your poster from the list below:</p>
                             <ul class="themes" ref="themes">
 
-                                <li v-for="theme in themes" :key="theme.id" @click="setTheme(theme.id)" :ref="'theme' + theme.id" class="theme">
+                                <li v-for="theme in themes" :key="theme.id" @click="setTheme(theme.id)"
+                                    :ref="'theme' + theme.id" class="theme">
                                     <div class="theme__colour-wrp">
                                         <div class="theme__colour">
                                             <div><img style="height: 100%"
@@ -34,48 +35,49 @@
                             <div v-if="!isHidden" class="message">
                                 <div @click="isHidden = true"><img src="/images/icons/close.svg" /></div>
                                 <h4>Don't sweat it if you feel unsure</h4>
-                                <p>You can always come back to this section down the road and jump between steps to make changes as you
+                                <p>You can always come back to this section down the road and jump between steps to make
+                                    changes as you
                                     need before you are completely happy with the result. </p>
 
                             </div>
                         </div>
-                        <div class="module__step">
+                        <div ref="step1" class="module__step">
                             <h3>2. The Moves</h3>
                             <p>Insert the moves of the game</p>
                         </div>
-                        <div class="module__step">
+                        <div ref="step2" class="module__step">
                             <h3>3. The Position</h3>
                             <p>Choose which position of the game you will share with the world!</p>
                         </div>
-                        <div class="module__step">
+                        <div ref="step3" class="module__step">
                             <h3>4. The Game</h3>
                             <p>Other interesting information to give your poster some more backstory.</p>
                         </div>
                     </div>
                     <div class="module__navigation">
-                        <div class="module__buttons">
-                            <div class="link-arrow is--low-op is--visible"
-                                @click="changeStep(getIndexOfCurrentStep() - 1)">Go back <img class="link-arrow__icn"
+                        <div ref="buttonWrapper" class="module__buttons">
+                            <div v-if="this.$data.currStep != 0" class="link-arrow is--low-op"
+                                @click="changeStep(this.$data.currStep - 1)">Go back <img class="link-arrow__icn"
                                     src="../../../../public/images/icons/back.svg" alt=""></div>
 
-                            <div class="button is--black" @click="changeStep(getIndexOfCurrentStep() + 1)">Next Step <img
-                                    src="../../../../public/images/icons/right-arrow-white.svg" alt=""></div>
-                            <div class="button is--black">Add to cart <img
+                            <div v-if="this.$data.currStep != 3" class="button is--black" @click="changeStep(this.$data.currStep + 1)">Next Step
+                                <img src="../../../../public/images/icons/right-arrow-white.svg" alt=""></div>
+                            <div v-if="this.$data.currStep == 3" class="button is--black">Add to cart <img
                                     src="../../../../public/images/icons/bag-white.svg" alt=""></div>
 
                         </div>
                         <div class="module__progress-wrp">
                             <div class="module__progress">
                                 <div class="progress__bar">
-                                    <div class="progress__bar-indicator"></div>
+                                    <div ref="progressBar" class="progress__bar-indicator"></div>
                                 </div>
-                                <div class="progress__step" @click="changeStep(0)">1 <div>Your design</div>
+                                <div :class="[currStep == 0 ? 'is--active' : '', currStep > 0 ? 'is--passed' : '' ]" class="progress__step" @click="changeStep(0)">1 <div>Your design</div>
                                 </div>
-                                <div class="progress__step" @click="changeStep(1)">2 <div>The Moves</div>
+                                <div :class="[currStep == 1 ? 'is--active' : '', currStep > 1 ? 'is--passed' : '' ]" class="progress__step" @click="changeStep(1)">2 <div>The Moves</div>
                                 </div>
-                                <div class="progress__step" @click="changeStep(2)">3 <div>The Position</div>
+                                <div :class="[currStep == 2 ? 'is--active' : '', currStep > 2 ? 'is--passed' : '' ]" class="progress__step" @click="changeStep(2)">3 <div>The Position</div>
                                 </div>
-                                <div class="progress__step" @click="changeStep(3)">4 <div>The Game</div>
+                                <div :class="[currStep == 3 ? 'is--active' : '']" class="progress__step" @click="changeStep(3)">4 <div>The Game</div>
                                 </div>
                             </div>
                         </div>
@@ -128,7 +130,7 @@ export default {
         }
     },
 
-    methods: { 
+    methods: {
 
         getIndexOfCurrentStep() {
             let mask = this.$refs.mask
@@ -137,74 +139,29 @@ export default {
             return index;
         },
 
-         setTheme (id) {
-            if(document.querySelector('.theme.is--active'))document.querySelector('.theme.is--active').classList.remove('is--active');
-            this.$refs['theme' + id][0].classList.add('is--active'); 
-
-            console.log(this.$refs['theme' + id][0])
+        setTheme(id) {
+            if (document.querySelector('.theme.is--active')) document.querySelector('.theme.is--active').classList.remove('is--active');
+            this.$refs['theme' + id][0].classList.add('is--active');
         },
 
-    }, 
+        changeStep(index) {
+
+            //Display the correct step
+            this.$refs['step' + this.$data.currStep].classList.remove('is--active');
+            this.$refs['step' + index].classList.add('is--active');
+
+            //Move progressbar
+            this.$refs.progressBar.style.width = (index / 3 * 100) + "%";
+            
+            //Change currStep data
+            this.$data.currStep = index;
+        }
+
+    },
 
     mounted() {
         this.setTheme(0)
+        this.changeStep(this.$data.currStep)
     }
 }
-</script>
-
-<script setup>
-
-onMounted(() => {
-    changeStep(0);
-});
-
-function changeStep(index) {
-
-    let steps = document.querySelectorAll('.module__step');
-    let active = steps.item(index);
-    let buttons = document.querySelector('.module__buttons').children;
-    let progressSteps = document.querySelectorAll('.progress__step');
-    let progressBar = document.querySelector('.progress__bar-indicator');
-    let width = (index / 3 * 100) + "%";
-
-    if (document.querySelector('.module__step.is--active')) { document.querySelector('.module__step.is--active').classList.remove('is--active'); }
-    active.classList.add('is--active');
-
-    for (let i = 0; i < progressSteps.length; i++) {
-
-        progressSteps[i].classList.remove('is--active');
-
-        if (i == index) {
-            progressSteps[i].classList.add('is--active');
-        }
-        else if (i < index) {
-            progressSteps[i].classList.add('is--passed');
-        }
-        else if (i > index) {
-            progressSteps[i].classList.remove('is--passed');
-        }
-    }
-
-    progressBar.style.width = width;
-
-    if (index == 0) {
-        buttons[0].classList.remove('is--visible')
-    } else if (!buttons[0].classList.contains('is--visble')) {
-        buttons[0].classList.add('is--visible')
-    }
-
-    if (index == 3) {
-        buttons[1].classList.remove('is--visible')
-        buttons[2].classList.add('is--visible')
-    } else if (!buttons[1].classList.contains('is--visible')) {
-        buttons[1].classList.add('is--visible')
-    }
-
-    if (index != 3) {
-        buttons[2].classList.remove('is--visible')
-    }
-
-
-}
-
 </script>
