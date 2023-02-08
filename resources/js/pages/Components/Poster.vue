@@ -15,8 +15,7 @@
                             <p>Choose a theme for your poster from the list below:</p>
                             <ul class="themes" ref="themes">
 
-                                <li v-for="theme in themes" :key="theme.id" @click="setTheme(theme.id)"
-                                    :ref="'theme' + theme.id" class="theme">
+                                <li v-for="theme in themes" :key="theme.id" @click="setTheme(theme.id)" :class="[currTheme == theme.id ? 'is--active' : '']" class="theme">
                                     <div class="theme__colour-wrp">
                                         <div class="theme__colour">
                                             <div><img style="height: 100%"
@@ -107,6 +106,8 @@ export default {
 
             currStep: 0,
 
+            currTheme: 0,
+
             themes: [
                 {
                     id: 0,
@@ -133,12 +134,11 @@ export default {
     methods: {
 
         setTheme(id) {
-            if (document.querySelector('.theme.is--active')) document.querySelector('.theme.is--active').classList.remove('is--active');
-            this.$refs['theme' + id][0].classList.add('is--active');
+            this.$data.currTheme = id;
         },
 
         changeStep(index) {
-            
+
             this.$data.currStep = index;
         }
 
