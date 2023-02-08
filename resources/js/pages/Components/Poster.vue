@@ -15,7 +15,8 @@
                             <p>Choose a theme for your poster from the list below:</p>
                             <ul class="themes" ref="themes">
 
-                                <li v-for="theme in themes" :key="theme.id" @click="setTheme(theme.id)" :class="[currTheme == theme.id ? 'is--active' : '']" class="theme">
+                                <li v-for="theme in themes" :key="theme.id" @click="setTheme(theme.id)"
+                                    :class="[currTheme == theme.id ? 'is--active' : '']" class="theme">
                                     <div class="theme__colour-wrp">
                                         <div class="theme__colour">
                                             <div><img style="height: 100%"
@@ -59,8 +60,10 @@
                                 @click="changeStep(this.$data.currStep - 1)">Go back <img class="link-arrow__icn"
                                     src="../../../../public/images/icons/back.svg" alt=""></div>
 
-                            <div v-if="this.$data.currStep != 3" class="button is--black" @click="changeStep(this.$data.currStep + 1)">Next Step
-                                <img src="../../../../public/images/icons/right-arrow-white.svg" alt=""></div>
+                            <div v-if="this.$data.currStep != 3" class="button is--black"
+                                @click="changeStep(this.$data.currStep + 1)">Next Step
+                                <img src="../../../../public/images/icons/right-arrow-white.svg" alt="">
+                            </div>
                             <div v-if="this.$data.currStep == 3" class="button is--black">Add to cart <img
                                     src="../../../../public/images/icons/bag-white.svg" alt=""></div>
 
@@ -68,15 +71,20 @@
                         <div class="module__progress-wrp">
                             <div class="module__progress">
                                 <div class="progress__bar">
-                                    <div :style="{ width: (currStep / 3 * 100) + '%' }" class="progress__bar-indicator"></div>
+                                    <div :style="{ width: (currStep / 3 * 100) + '%' }" class="progress__bar-indicator">
+                                    </div>
                                 </div>
-                                <div :class="[currStep == 0 ? 'is--active' : '', currStep > 0 ? 'is--passed' : '' ]" class="progress__step" @click="changeStep(0)">1 <div>Your design</div>
+                                <div :class="[currStep == 0 ? 'is--active' : '', currStep > 0 ? 'is--passed' : '']"
+                                    class="progress__step" @click="changeStep(0)">1 <div>Your design</div>
                                 </div>
-                                <div :class="[currStep == 1 ? 'is--active' : '', currStep > 1 ? 'is--passed' : '' ]" class="progress__step" @click="changeStep(1)">2 <div>The Moves</div>
+                                <div :class="[currStep == 1 ? 'is--active' : '', currStep > 1 ? 'is--passed' : '']"
+                                    class="progress__step" @click="changeStep(1)">2 <div>The Moves</div>
                                 </div>
-                                <div :class="[currStep == 2 ? 'is--active' : '', currStep > 2 ? 'is--passed' : '' ]" class="progress__step" @click="changeStep(2)">3 <div>The Position</div>
+                                <div :class="[currStep == 2 ? 'is--active' : '', currStep > 2 ? 'is--passed' : '']"
+                                    class="progress__step" @click="changeStep(2)">3 <div>The Position</div>
                                 </div>
-                                <div :class="[currStep == 3 ? 'is--active' : '']" class="progress__step" @click="changeStep(3)">4 <div>The Game</div>
+                                <div :class="[currStep == 3 ? 'is--active' : '']" class="progress__step"
+                                    @click="changeStep(3)">4 <div>The Game</div>
                                 </div>
                             </div>
                         </div>
@@ -106,8 +114,6 @@ export default {
 
             currStep: 0,
 
-            currTheme: 0,
-
             themes: [
                 {
                     id: 0,
@@ -128,6 +134,8 @@ export default {
                 }
 
             ],
+
+            currTheme: 0,
         }
     },
 
