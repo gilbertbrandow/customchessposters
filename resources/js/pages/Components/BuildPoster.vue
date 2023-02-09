@@ -4,15 +4,12 @@
             <div class="poster__builder">
 
                 <div class="poster__module">
-                    <div class="module__header">
-                        <h2>Create Your Poster</h2>
-                        <Link class="link-arrow is--low-op" :href="route('home.index')">How does it work? <img
-                            class="link-arrow__icn" src="../../../../public/images/icons/arrow-up.svg" alt=""></Link>
-                    </div>
-                    <div class="module__mask" ref="mask">
+                    
+                        <h2>Create Your Custom Poster</h2>
+                        <div class="module__mask" ref="mask">
                         <div :class="[currStep == 0 ? 'is--active' : '']" class="module__step">
                             <h3>1. Your Design</h3>
-                            <p>Choose a theme for your poster from the list below and if the position should be viewed from whites or blacks point of view.</p>
+                            <p>Choose a theme for your poster from the list below and decide if the position should be viewed from whites or blacks point of view.</p>
                             <ul class="themes" ref="themes">
 
                                 <li v-for="theme in themes" :key="theme.id" @click="setTheme(theme.id)"
@@ -63,6 +60,10 @@
                             <h3>4. The Game</h3>
                             <p>Other interesting information to give your poster some more backstory.</p>
                         </div>
+                        <div :class="[currStep == 4 ? 'is--active' : '']" class="module__step">
+                            <h3>5. The Poster</h3>
+                            <p>How big would you like your poster?</p>
+                        </div>
                     </div>
                     <div class="module__navigation">
                         <div ref="buttonWrapper" class="module__buttons">
@@ -70,18 +71,18 @@
                                 @click="changeStep(this.$data.currStep - 1)">Go back <img class="link-arrow__icn"
                                     src="../../../../public/images/icons/back.svg" alt=""></div>
 
-                            <div v-if="this.$data.currStep != 3" class="button is--black"
+                            <div v-if="this.$data.currStep != 4" class="button is--black"
                                 @click="changeStep(this.$data.currStep + 1)">Next Step
                                 <img src="../../../../public/images/icons/right-arrow-white.svg" alt="">
                             </div>
-                            <div v-if="this.$data.currStep == 3" class="button is--black">Add to cart <img
+                            <div v-if="this.$data.currStep == 4" class="button is--black">Add to cart <img
                                     src="../../../../public/images/icons/bag-white.svg" alt=""></div>
 
                         </div>
                         <div class="module__progress-wrp">
                             <div class="module__progress">
                                 <div class="progress__bar">
-                                    <div :style="{ width: (currStep / 3 * 100) + '%' }" class="progress__bar-indicator">
+                                    <div :style="{ width: (currStep / 4 * 100) + '%' }" class="progress__bar-indicator">
                                     </div>
                                 </div>
                                 <div :class="[currStep == 0 ? 'is--active' : '', currStep > 0 ? 'is--passed' : '']"
@@ -93,8 +94,11 @@
                                 <div :class="[currStep == 2 ? 'is--active' : '', currStep > 2 ? 'is--passed' : '']"
                                     class="progress__step" @click="changeStep(2)">3 <div>The Position</div>
                                 </div>
-                                <div :class="[currStep == 3 ? 'is--active' : '']" class="progress__step"
+                                <div :class="[currStep == 3 ? 'is--active' : '', currStep > 2 ? 'is--passed' : '']" class="progress__step"
                                     @click="changeStep(3)">4 <div>The Game</div>
+                                </div>
+                                <div :class="[currStep == 4 ? 'is--active' : '']" class="progress__step"
+                                    @click="changeStep(4)">5 <div>The Poster</div>
                                 </div>
                             </div>
                         </div>
@@ -120,6 +124,9 @@ import { onMounted } from 'vue';
 export default {
     data() {
         return {
+
+            price: 0,
+
             isHidden: false,
 
             currStep: 0,
@@ -127,6 +134,7 @@ export default {
             themes: [
                 {
                     id: 0,
+                    price: 19,
                     title: 'New Waves',
                     desc: 'Warm & Modern',
                     texture: '/new-waves/waves.svg',
@@ -136,6 +144,7 @@ export default {
 
                 {
                     id: 1,
+                    price: 32,
                     title: 'Old Knowledge',
                     desc: 'Vintage & Nostalgic',
                     texture: '/old-knowledge/lines.jpg',
@@ -153,6 +162,7 @@ export default {
 
         setTheme(id) {
             this.$data.currTheme = id;
+            this.$data.price = this.$data.themes[id].price;
         },
 
         changeStep(index) {
