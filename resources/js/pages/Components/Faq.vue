@@ -7,16 +7,20 @@
                     tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero
                     vitae
                     erat.</p>
-                <Link class="link-arrow" :href="route('home.contact')">Still have questions? Contact us <img class="link-arrow__icn"
-                    src="../../../../public/images/icons/arrow-up.svg" alt=""></Link>
+                <Link class="link-arrow" :href="route('home.contact')">Still have questions? Contact us <img
+                    class="link-arrow__icn" src="../../../../public/images/icons/arrow-up.svg" alt=""></Link>
             </div>
             <div class="questions">
-                <div v-for="faq in faqs" :key="faq.id" class="question-wrp" ref="question">
-                    <div class="question" @click="showAnswer($event)"><h3 v-text="faq.question"></h3><div class="question__icon"><img src="../../../../public/images/icons/dropdown.svg" alt=""></div>
+                <div v-for="faq in faqs" :key="faq.id" class="question-wrp" :ref="'question' + faq.id">
+                    <div class="question" @click="toggleAnswer(faq.id)">
+                        <h3 v-text="faq.question"></h3>
+                        <div class="question__icon"><img src="../../../../public/images/icons/dropdown.svg" alt="">
+                        </div>
 
                     </div>
                     <div class="answer">
                         <p v-text="faq.answer"></p>
+                        <p>Last updated at {{formatDate(faq.updated_at)}}</p>
                     </div>
                 </div>
             </div>
@@ -26,41 +30,22 @@
 
 <script>
 
+import moment from 'moment'
+
 export default {
 
     props: {
         faqs: Array
     },
     methods: {
-        showAnswer: (event) => {
-            
-            let current = event.target;
+        toggleAnswer(id) {
 
-            if(!current.classList.contains('.question') )
-            {
-                current = event.target.closest('.question'); 
-            } 
-
-            //console.log(current.querySelector('.question__icon').classList.contains('is--rotated'));
-            
-            if(current.querySelector('.question__icon').classList.contains('is--rotated'))
-            {
-                current.nextSibling.classList.remove('is--visible');
-                current.querySelector('.question__icon').classList.remove('is--rotated');
-
-            } else {
-
-                if(document.querySelector('.question__icon.is--rotated')) document.querySelector('.question__icon.is--rotated').classList.remove('is--rotated');
-                if(document.querySelector('.answer.is--visible')) document.querySelector('.answer.is--visible').classList.remove('is--visible');
-
-                current.nextSibling.classList.add('is--visible');
-                current.querySelector('.question__icon').classList.add('is--rotated');
-
-            }
-
-            
+            this.$refs['question' + id][0].classList.toggle("is--active");
+        },
+        formatDate(value) {
+            return moment(String(value)).format('DD/MM - YYYY');
         }
-    }
+    },
 }
 
 </script>
