@@ -1,5 +1,5 @@
 <template>
-<nav class="">
+<nav class="is--scrolled">
     <div class="container">
       <Link class ="logo" :href="route('home.index')">
         <img src="../../../public/images/ccp-icn.svg" alt="">
@@ -33,42 +33,13 @@
 </template>
 
 <script>
-import { onMounted } from 'vue';
 import { Link } from "@inertiajs/vue3";
 import Newsletter from "../Pages/Components/Newsletter.vue"
 
 export default {
     components: {
         Link,
+        Newsletter
     }
 }
-</script>
-
-<script setup>
-
-onMounted (() => {
-
-const nav = document.querySelector('nav');
-const heroSection = document.querySelector('section');
-
-const options = {
-root: null, 
-threshold: 1, 
-rootMargin: "3% 0px 100% 0px",
-}
-
-const observer = new IntersectionObserver (function(entries, observer){
-  entries.forEach(entry => {
-    if(!nav.classList.length && !entry.isIntersecting){
-      nav.classList.add('is--scrolled');
-    } else {
-      nav.classList.remove('is--scrolled');
-    }
-  })
-}, options); 
-
-observer.observe(heroSection);
-
-});
-
 </script>

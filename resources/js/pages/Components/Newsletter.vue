@@ -5,10 +5,13 @@
             <div class="field__wrp">
                 <label for="email" class="field__label">Email address</label>
                 <div v-if="form.errors.email" v-text="form.errors.email" class="field__error"></div>
-                <div v-if="$page.props.flash.newsletter.error" v-text="$page.props.flash.newsletter.error" class="field__error"></div>
-                <div v-if="$page.props.flash.newsletter.success" v-text="$page.props.flash.newsletter.success" class="field__error is--success"></div>
-                <input v-model="form.email" class="field" :class="{ 'is--error': form.errors.email || $page.props.flash.newsletter.error, 'is--success' : $page.props.flash.newsletter.success}" name="email"
-                    placeholder="example@email.com" required />
+                <div v-if="$page.props.flash.newsletter.error" v-text="$page.props.flash.newsletter.error"
+                    class="field__error"></div>
+                <div v-if="$page.props.flash.newsletter.success" v-text="$page.props.flash.newsletter.success"
+                    class="field__error is--success"></div>
+                <input v-model="form.email" class="field"
+                    :class="{ 'is--error': form.errors.email || $page.props.flash.newsletter.error, 'is--success': $page.props.flash.newsletter.success }"
+                    name="email" placeholder="example@email.com" required />
             </div>
 
             <button class="button is--black" :disabled="form.processing"> Sign up </button>
