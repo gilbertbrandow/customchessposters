@@ -21,30 +21,30 @@ export default {
             features: [
                 {
                 id: 1,
-                title: 'Your very own', 
+                title: 'Your Very Own', 
                 text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum', 
                 icon: 'custom',
                 url: '/your-own'
                 }, 
                 {
                 id: 2,
-                title: 'Safe payment', 
+                title: 'High Quality', 
                 text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum', 
-                icon: 'safe',
+                icon: 'quality',
                 url: '',
                 }, 
                 {
                 id: 3,
-                title: 'Fast shipping', 
+                title: 'Worldwide Shipping', 
                 text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum', 
                 icon: 'shipping',
                 url: '',
-                }, 
+                },
                 {
                 id: 4,
-                title: 'High quality', 
+                title: 'Safe Payments', 
                 text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum', 
-                icon: 'quality',
+                icon: 'safe',
                 url: '',
                 }, 
             ]
