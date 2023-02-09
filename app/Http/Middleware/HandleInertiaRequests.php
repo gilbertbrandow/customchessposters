@@ -40,7 +40,7 @@ class HandleInertiaRequests extends Middleware
         return array_merge(parent::share($request), [
 
             'site' => [
-                'title' => 'Custom Chess Poster'
+                'title' => 'Custom Chess Posters'
             ],
             'auth' => Auth::check() ? [
                 'user' => [
