@@ -558,6 +558,15 @@ h4 {
 
 }
 
+.manual-moves {
+    .field__wrp {
+        flex: 1;
+    }
+    display: flex;
+    align-items: center;
+    column-gap: 2em;
+}
+
 .module__navigation {
     display: flex;
     align-items: flex-end;
