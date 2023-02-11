@@ -52,23 +52,33 @@
                         <div :class="[currStep == 1 ? 'is--active' : '']" class="module__step">
                             <h3>2. The Moves</h3>
                             <p>Insert the moves of the game</p>
+
+                            <div style="margin-top: 2em;">Current PGN: {{ this.$data.gamePgn }} </div>
+                            <div style="margin-bottom: 2em;">Current FEN: {{ this.$data.chessGame.fen() }} </div>
+
+
+
+                            <h4>Input moves manually</h4>
                             <div class="manual-moves">
-                                <h4>Move 1</h4>
                                 <div class="field__wrp">
-                                    <label for="email" class="field__label">White move</label>
-                                    <div class="field__error"> Move 1</div>
-                                    <input v-model="whiteMove" v-on:input="checkIfValidMove()" class="field"
-                                        name="email" placeholder="Nf3" required />
+                                    <label for="whiteMove" class="field__label">Move {{
+                                        this.$data.chessGame._moveNumber
+                                    }}</label>
+                                    <div v-if="!currMove.valid" class="field__error"> Move is not valid</div>
+                                    <input v-model="currMove.pgn" @input="makeMove()" class="field" name="email"
+                                        id="whiteMove"
+                                        :placeholder="this.$data.chessGame.turn() == 'w' ? 'White to move' : 'Black to move'"
+                                        required />
                                 </div>
-                                <div class="field__wrp">
-                                    <label for="email" class="field__label">Black move</label>
-                                    <div class="field__error"> Move 1</div>
-                                    <input class="field" name="email" placeholder="e5" required />
+                                <div class="link-arrow is--low-op" @click="undoMove()">Undo Last Move <img
+                                        class="link-arrow__icn" src="../../../../public/images/icons/back.svg" alt="">
                                 </div>
                             </div>
 
-                            <div style="margin-top: 4em;">Current FEN: {{ this.$data.FEN }}</div>
-                            <div>Current PGN: {{ this.$data.PGN }}</div>
+                            <h4>Upload PGN</h4>
+
+
+
 
                         </div>
                         <div :class="[currStep == 2 ? 'is--active' : '']" class="module__step">
@@ -183,9 +193,12 @@ export default {
 
             chessGame: new Chess(),
 
-            whiteMove: "",
+            gamePgn: "",
 
-            PGN: '1. e4 e5',
+            currMove: {
+                pgn: "",
+                valid: "false",
+            },
 
             startingPosition: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
         }
@@ -203,24 +216,26 @@ export default {
             this.$data.currStep = index;
         },
 
-        checkIfValidMove(value) {
-            console.log(this.$data.whiteMove);
+        makeMove() {
+
+            if (this.$data.currMove.pgn == "") { console.log('Test'); return; }
 
             try {
-                this.$data.chessGame.move(this.$data.whiteMove);
+                this.$data.chessGame.move(this.$data.currMove.pgn);
             } catch (error) {
-                console.log("Not valid move");
+                this.$data.currMove.valid = false;
                 return;
             }
-            
-            console.log(this.$data.chessGame.ascii());
-            //console.log("Move is valid")
+
+            this.$data.gamePgn = this.$data.chessGame.pgn();
+            this.$data.currMove.pgn = "";
+            this.$data.currMove.valid = true;
 
         },
 
-        makeMove(move) {
-            this.$data.chessGame.move(move);
-            console.log(this.$data.chessGame.ascii());
+        undoMove() {
+            this.$data.chessGame.undo();
+            this.$data.gamePgn = this.$data.chessGame.pgn();
         },
 
     },
@@ -228,8 +243,6 @@ export default {
     mounted() {
         this.changeStep(this.$data.currStep)
         this.setTheme(this.$data.currTheme)
-        //this.makeMove('e4');
-
     }
 }
 </script>
