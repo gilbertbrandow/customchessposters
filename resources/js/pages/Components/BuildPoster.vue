@@ -56,24 +56,26 @@
                             <div style="margin-top: 2em;">Current PGN: {{ this.$data.gamePgn }} </div>
                             <div style="margin-bottom: 2em;">Current FEN: {{ this.$data.chessGame.fen() }} </div>
 
-
-
                             <h4>Input moves manually</h4>
                             <div class="manual-moves">
                                 <div class="field__wrp">
-                                    <label v-if="currMove.valid" for="whiteMove" class="field__label">{{ this.$data.chessGame.turn() == 'w' ? 'White to move' : 'Black, move'}}</label>
+                                    <label v-if="currMove.valid" for="whiteMove" class="field__label">{{
+                                        this.$data.chessGame.turn() == 'w' ? 'White to move' : 'Black, move'
+                                    }}</label>
                                     <div v-if="!currMove.valid" class="field__error"> Move is not valid</div>
-                                    <input v-model="currMove.pgn" @input="makeMove()" class="field" name="email"
+                                    <input v-model="currMove.pgn" @input="makeMove(false)" class="field" name="email"
                                         id="whiteMove"
-                                        :placeholder="'Move number ' + this.$data.chessGame._moveNumber "
-                                        required />
+                                        :placeholder="'Move number ' + this.$data.chessGame._moveNumber" />
                                 </div>
+                                <button v-if="currMove.substr" class="button is--black" @click="makeMove(true);"> Confirm move</button>
                                 <div class="link-arrow is--low-op" @click="undoMove()">Undo Last Move <img
                                         class="link-arrow__icn" src="../../../../public/images/icons/undo.svg" alt="">
                                 </div>
                             </div>
 
-                            <h4>Upload PGN</h4>
+                            <h4>Paste PGN</h4>
+
+                            <h4>Upload game</h4>
 
 
 
@@ -86,6 +88,16 @@
                         <div :class="[currStep == 3 ? 'is--active' : '']" class="module__step">
                             <h3>4. The Game</h3>
                             <p>Other interesting information to give your poster some more backstory.</p>
+                            <h4>Title</h4>
+                            <div class="field__wrp">
+                                <label for="gameTitle" class="field__label">Title</label>
+                                <div v-if="false" class="field__error">Title not valid</div>
+                                <input v-model="gameMeta.title" class="field" name="gameTitle"
+                                    id="gameTitle" placeholder="Lorem ipsum dolor set ami" />
+                            </div>
+                            <h4>White Player</h4>
+                            <h4>Black Player</h4>
+                            <h4>When & Where</h4>
                         </div>
                         <div :class="[currStep == 4 ? 'is--active' : '']" class="module__step">
                             <h3>5. The Poster</h3>
@@ -195,7 +207,23 @@ export default {
 
             currMove: {
                 pgn: "",
-                valid: "false",
+                valid: true,
+                substr: false,
+                confirmMove: false,
+            },
+
+            gameMeta: {
+                title: "",
+                white: {
+                    name: "",
+                    elo: "",
+                    title: "",
+                },
+                black: {
+                    name: "",
+                    elo: "",
+                    title: "",
+                },  
             },
 
             startingPosition: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
@@ -214,13 +242,22 @@ export default {
             this.$data.currStep = index;
         },
 
-        makeMove() {
+        makeMove(confirmed) {
 
-            if (this.$data.currMove.pgn == "") { console.log('Test'); return; }
+            //console.log(this.$data.chessGame.moves())
+            
+            if (this.$data.currMove.pgn == "") return;
+
+            if(this.$data.currMove.pgn == "O-O" && this.$data.chessGame.moves().includes("O-O-O") && !confirmed) { 
+                this.$data.currMove.substr = true; 
+                this.$data.currMove.valid = true;
+                return; 
+            }
 
             try {
                 this.$data.chessGame.move(this.$data.currMove.pgn);
             } catch (error) {
+                this.$data.currMove.substr = false;
                 this.$data.currMove.valid = false;
                 return;
             }
@@ -228,6 +265,8 @@ export default {
             this.$data.gamePgn = this.$data.chessGame.pgn();
             this.$data.currMove.pgn = "";
             this.$data.currMove.valid = true;
+            this.$data.currMove.substr = false;
+            this.$data.currMove.confirmMove = false;
 
         },
 
@@ -241,6 +280,8 @@ export default {
     mounted() {
         this.changeStep(this.$data.currStep)
         this.setTheme(this.$data.currTheme)
+        //this.$data.chessGame.header('Title', 'Lorem ipsum dolor set ami');
+        //this.$data.chessGame.loadPgn('1. e4 e5 2. d4 d5 3. Nc3 Nf6 4. Be2 Nc6 5. Bg5 Bb4 6. Nf3 Bd7 7. Qd2 Qe7');
     }
 }
 </script>
