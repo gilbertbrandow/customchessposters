@@ -67,7 +67,8 @@
                                         id="whiteMove"
                                         :placeholder="'Move number ' + this.$data.chessGame._moveNumber" />
                                 </div>
-                                <button v-if="currMove.substr" class="button is--black" @click="makeMove(true);"> Confirm move</button>
+                                <button v-if="currMove.substr" class="button is--black" @click="makeMove(true);">
+                                    Confirm move</button>
                                 <div class="link-arrow is--low-op" @click="undoMove()">Undo Last Move <img
                                         class="link-arrow__icn" src="../../../../public/images/icons/undo.svg" alt="">
                                 </div>
@@ -92,8 +93,8 @@
                             <div class="field__wrp">
                                 <label for="gameTitle" class="field__label">Title</label>
                                 <div v-if="false" class="field__error">Title not valid</div>
-                                <input v-model="gameMeta.title" class="field" name="gameTitle"
-                                    id="gameTitle" placeholder="Lorem ipsum dolor set ami" />
+                                <input v-model="gameMeta.title" class="field" name="gameTitle" id="gameTitle"
+                                    placeholder="Lorem ipsum dolor set ami" />
                             </div>
                             <h4>White Player</h4>
                             <h4>Black Player</h4>
@@ -223,7 +224,7 @@ export default {
                     name: "",
                     elo: "",
                     title: "",
-                },  
+                },
             },
 
             startingPosition: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
@@ -242,31 +243,62 @@ export default {
             this.$data.currStep = index;
         },
 
+        findIfAnyMoveStartWith(array, string) {
+            return array.find(value => {
+                return value.startsWith(string);
+            });
+        },
+
         makeMove(confirmed) {
 
-            //console.log(this.$data.chessGame.moves())
-            
+            //Don't run if no move
             if (this.$data.currMove.pgn == "") return;
 
-            if(this.$data.currMove.pgn == "O-O" && this.$data.chessGame.moves().includes("O-O-O") && !confirmed) { 
-                this.$data.currMove.substr = true; 
-                this.$data.currMove.valid = true;
-                return; 
-            }
+            //Declare useful variables
+            let moves = this.$data.chessGame.moves();
+            let move = this.$data.currMove.pgn
 
-            try {
-                this.$data.chessGame.move(this.$data.currMove.pgn);
-            } catch (error) {
-                this.$data.currMove.substr = false;
+            //Check to see if is valid start
+            if (!this.findIfAnyMoveStartWith(moves, move)) {
                 this.$data.currMove.valid = false;
                 return;
+            } else {
+                this.$data.currMove.valid = true;
             }
 
-            this.$data.gamePgn = this.$data.chessGame.pgn();
-            this.$data.currMove.pgn = "";
-            this.$data.currMove.valid = true;
-            this.$data.currMove.substr = false;
-            this.$data.currMove.confirmMove = false;
+            var index = moves.indexOf(move);
+
+            if (index !== -1) {
+                moves.splice(index, 1);
+
+                //Check if any more possible moves start with
+                if (this.findIfAnyMoveStartWith(moves, move) && !confirmed) {
+
+                    //Flag that this moves need confirmation
+                    this.$data.currMove.substr = true;
+                    return;
+
+                } else {
+
+                    //All checks okay, make move
+                    try {
+                        this.$data.chessGame.move(this.$data.currMove.pgn);
+                    } catch (error) {
+
+                        //Display general error message
+                        return;
+                    }
+
+                    //Move was made
+                    this.$data.gamePgn = this.$data.chessGame.pgn();
+                    this.$data.currMove.pgn = "";
+                    this.$data.currMove.substr = false;
+                    this.$data.currMove.confirmMove = false;
+                }
+            } else {
+                //If not a complete move
+                return;
+            }
 
         },
 
@@ -281,7 +313,7 @@ export default {
         this.changeStep(this.$data.currStep)
         this.setTheme(this.$data.currTheme)
         //this.$data.chessGame.header('Title', 'Lorem ipsum dolor set ami');
-        //this.$data.chessGame.loadPgn('1. e4 e5 2. d4 d5 3. Nc3 Nf6 4. Be2 Nc6 5. Bg5 Bb4 6. Nf3 Bd7 7. Qd2 Qe7');
+        this.$data.chessGame.loadPgn('1. e4 e5 2. d4 d5 3. Nc3 Nf6 4. Be2 Nc6 5. Bg5 Bb4 6. Nf3 Bd7 7. Qd2 Qe7');
     }
 }
 </script>
