@@ -61,17 +61,15 @@
                             <h4>Input moves manually</h4>
                             <div class="manual-moves">
                                 <div class="field__wrp">
-                                    <label for="whiteMove" class="field__label">Move {{
-                                        this.$data.chessGame._moveNumber
-                                    }}</label>
+                                    <label v-if="currMove.valid" for="whiteMove" class="field__label">{{ this.$data.chessGame.turn() == 'w' ? 'White to move' : 'Black, move'}}</label>
                                     <div v-if="!currMove.valid" class="field__error"> Move is not valid</div>
                                     <input v-model="currMove.pgn" @input="makeMove()" class="field" name="email"
                                         id="whiteMove"
-                                        :placeholder="this.$data.chessGame.turn() == 'w' ? 'White to move' : 'Black to move'"
+                                        :placeholder="'Move number ' + this.$data.chessGame._moveNumber "
                                         required />
                                 </div>
                                 <div class="link-arrow is--low-op" @click="undoMove()">Undo Last Move <img
-                                        class="link-arrow__icn" src="../../../../public/images/icons/back.svg" alt="">
+                                        class="link-arrow__icn" src="../../../../public/images/icons/undo.svg" alt="">
                                 </div>
                             </div>
 
