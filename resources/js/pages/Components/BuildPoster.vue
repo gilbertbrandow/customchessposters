@@ -80,7 +80,7 @@
                                             <input v-model="manualMove.pgn" @input="makeMove(false)" class="field"
                                                 :class="{ 'is--error': !manualMove.valid }" name="manualMove"
                                                 id="whiteMove"
-                                                :placeholder=" isGameOver ? 'Game ended' : 'Move number ' + this.$data.chessGame._moveNumber"
+                                                :placeholder=" isGameOver ? 'Game ended' : 'Move ' + this.$data.chessGame._moveNumber + '.'"
                                                 :disabled="isGameOver" />
                                         </div>
                                         <button v-if="manualMove.substr" class="button is--black"
@@ -111,11 +111,13 @@
                                     <div class="field__wrp">
                                         <label for="gameUrl" class="field__label">Game URL</label>
                                         <div v-if="false" class="field__error"> URL is not valid</div>
-                                        <input v-model="manualMove.pgn" @input="makeMove(false)" class="field"
-                                            :class="{ 'is--error': false }" name="gameUrl" id="gameUrl"
-                                            placeholder="https://lichess.org/Sxov6E94" />
+                                        <input v-model="posterBuilder.gameUrl" class="field"
+                                                :class="{ 'is--error': false }" name="gameUrl"
+                                                id="gameUrl"
+                                                placeholder="https://lichess.org/Sxov6E94"
+                                                />
                                     </div>
-                                    <div class="button is--black"> Upload </div>
+                                    <div class="button is--black" @click="uploadGameFromLichess(this.$data.posterBuilder.gameUrl)"> Load </div>
                                 </div>
                             </div>
 
@@ -202,6 +204,7 @@
 
 <script>
 import { Chess } from 'chess.js'
+import axios from 'axios'
 
 export default {
     data() {
@@ -214,6 +217,7 @@ export default {
                 announcement: false,
                 currEnvironment: "",
                 currTab: 0,
+                gameUrl: "",
             },
 
             poster: {
@@ -389,7 +393,19 @@ export default {
                 this.$data.poster.gamePgn.valid = false;
                 return;
             }
-        }
+        }, 
+
+        uploadGameFromLichess(url){
+
+            let gameId = url.replace('https://lichess.org/', '');
+
+            axios
+            .get('https://lichess.org/game/export/' + gameId, { params: { tags: false, clocks: false, evals: false, opening: false }  })
+            .then(response => (
+                this.$data.poster.gamePgn.moves = response.data,
+                this.chessGame.loadPgn(this.$data.poster.gamePgn.moves)
+            ))
+        },
 
     },
 
@@ -397,7 +413,7 @@ export default {
         this.changeStep(this.$data.posterBuilder.currStep)
         this.setTheme(this.$data.poster.themeId)
         //this.$data.chessGame.loadPgn('1. e4 e5 2. d4 d5 3. Nc3 Nf6 4. Be2 Nc6 5. Bg5 Bb4 6. Nf3 Bd7 7. Qd2 Qe7');
-        this.$data.poster.gamePgn.moves = this.$data.chessGame.pgn();
+        this.$data.poster.gamePgn.moves = this.$data.chessGame.pgn(); 
     }
 }
 </script>
