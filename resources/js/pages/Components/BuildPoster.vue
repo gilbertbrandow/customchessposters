@@ -54,8 +54,8 @@
                             <h3>2. The Moves</h3>
                             <p>Insert the moves of the game</p>
 
-                            <div>Current PGN: {{ this.$data.poster.gamePgn.moves }} </div>
-                            <div style="margin-bottom: 2em;">Current FEN: {{ this.$data.chessGame.fen() }} </div>
+                            <!-- <div>Current PGN: {{ this.$data.poster.gamePgn.moves }} </div>
+                            <div style="margin-bottom: 2em;">Current FEN: {{ this.$data.chessGame.fen() }} </div> -->
                             <div class="tabs">
                                 <div class="tabs__header">
                                     <div class="tab__item" :class="[posterBuilder.currTab == 0 ? 'is--active' : '']"
@@ -73,23 +73,37 @@
                                 </div>
                                 <div class="tab" v-if="posterBuilder.currTab == 0">
                                     <div class="manual-moves">
-                                        <div class="field__wrp">
-                                            <label v-if="manualMove.valid && !isGameOver" for="whiteMove" class="field__label"
-                                                v-text="this.$data.chessGame.turn() == 'w' ? 'White to move' : 'Black to move'"></label>
-                                            <div v-if="!manualMove.valid" class="field__error"> Move is not valid</div>
-                                            <input v-model="manualMove.pgn" @input="makeMove(false)" class="field"
-                                                :class="{ 'is--error': !manualMove.valid }" name="manualMove"
-                                                id="whiteMove"
-                                                :placeholder=" isGameOver ? 'Game ended' : 'Move ' + this.$data.chessGame._moveNumber + '.'"
-                                                :disabled="isGameOver" />
+
+                                        <div class="row">
+                                            <div class="field__wrp">
+                                                <label v-if="posterBuilder.manualMove.possibleMoves && !isGameOver"
+                                                    for="whiteMove" class="field__label"
+                                                    v-text="this.$data.chessGame.turn() == 'w' ? 'White to move' : 'Black to move'"></label>
+                                                <div v-if="!posterBuilder.manualMove.possibleMoves"
+                                                    class="field__error">
+                                                    Move is not valid</div>
+                                                <input v-model="posterBuilder.manualMove.pgn" @input="makeMove(false)"
+                                                    class="field"
+                                                    :class="{ 'is--error': !posterBuilder.manualMove.possibleMoves }"
+                                                    id="whiteMove"
+                                                    :placeholder="isGameOver ? 'Game ended' : 'Move ' + this.$data.chessGame._moveNumber + '.'"
+                                                    :disabled="isGameOver" />
+                                            </div>
+
+                                            <button v-if="posterBuilder.manualMove.substr" class="button is--black"
+                                                @click="makeMove(true);">
+                                                Confirm move</button>
+                                            <div v-if="!(this.$data.chessGame.turn() == 'w' && this.$data.chessGame._moveNumber == 1)"
+                                                class="link-arrow is--low-op" @click="undoMove()">Undo Last Move <img
+                                                    class="link-arrow__icn"
+                                                    src="../../../../public/images/icons/undo.svg" alt="">
+                                            </div>
                                         </div>
-                                        <button v-if="manualMove.substr" class="button is--black"
-                                            @click="makeMove(true);">
-                                            Confirm move</button>
-                                        <div v-if="!(this.$data.chessGame.turn() == 'w' && this.$data.chessGame._moveNumber == 1)"
-                                            class="link-arrow is--low-op" @click="undoMove()">Undo Last Move <img
-                                                class="link-arrow__icn" src="../../../../public/images/icons/undo.svg"
-                                                alt="">
+
+                                        <div v-if="posterBuilder.manualMove.possibleMoves.length == 1"
+                                            @click="posterBuilder.manualMove.pgn = posterBuilder.manualMove.possibleMoves[0]; makeMove()"
+                                            class="text__link">Do you mean
+                                            <span v-text="posterBuilder.manualMove.possibleMoves[0]"></span>?
                                         </div>
                                     </div>
                                 </div>
@@ -98,26 +112,27 @@
 
                                     <div class="field__wrp">
                                         <label for="UploadPgn" class="field__label">Paste your PGN below</label>
-                                        <textarea v-model="poster.gamePgn.moves" class="field"
-                                            :class="{ 'is--error': !poster.gamePgn.valid }" name="password"
+                                        <textarea v-model="poster.posterBuilder.pastePGN.pgn" class="field"
+                                            :class="{ 'is--error': !poster.posterBuilder.pastePGN.valid }" name="password"
                                             placeholder="1.e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. b4..." id="gamePgn">
                                 </textarea>
-                                        <div v-if="!poster.gamePgn.valid" class="field__error">Invalid PGN</div>
+                                        <div v-if="!posterBuilder.pastePgn.valid" class="field__error">Invalid PGN</div>
                                     </div>
-                                    <div class="button is--black" @click="loadPgn(poster.gamePgn.moves);"> Upload </div>
+                                    <div class="button is--black" @click="loadPgn(posterBuilder.pastePgn.PGN);"> Upload </div>
                                 </div>
 
                                 <div class="tab" v-if="posterBuilder.currTab == 2">
                                     <div class="field__wrp">
                                         <label for="gameUrl" class="field__label">Game URL</label>
                                         <div v-if="false" class="field__error"> URL is not valid</div>
+                                        <div v-if="this.$data.gameUrl.success"
+                                        class="field__error is--success">Game uploaded successfully!</div>
                                         <input v-model="posterBuilder.gameUrl" class="field"
-                                                :class="{ 'is--error': false }" name="gameUrl"
-                                                id="gameUrl"
-                                                placeholder="https://lichess.org/Sxov6E94"
-                                                />
+                                            :class="{ 'is--error': false }" name="gameUrl" id="gameUrl"
+                                            placeholder="https://lichess.org/Sxov6E94" />
                                     </div>
-                                    <div class="button is--black" @click="uploadGameFromLichess(this.$data.posterBuilder.gameUrl)"> Load </div>
+                                    <div class="button is--black"
+                                        @click="uploadGameFromLichess(this.$data.posterBuilder.gameUrl), this.$data.posterBuilder.gameUrl = ''"> Load </div>
                                 </div>
                             </div>
 
@@ -217,15 +232,26 @@ export default {
                 announcement: false,
                 currEnvironment: "",
                 currTab: 0,
-                gameUrl: "",
+                
+                manualMove: {
+                    pgn: "",
+                    possibleMoves: true,
+                    suggestion: "",
+                    substr: false,
+                },
+                uploadLichess: {
+                    gameUrl: "",
+                    success: false,
+                },
+                pastePGN: {
+                    pgn: "",
+                    success: false,
+                },
             },
 
             poster: {
                 themeId: 0,
-                gamePgn: {
-                    moves: "",
-                    valid: true,
-                },
+                gamePgn: "",
                 gameMeta: {
                     title: "",
                     white: {
@@ -265,12 +291,6 @@ export default {
                 }
 
             ],
-
-            manualMove: {
-                pgn: "",
-                valid: true,
-                substr: false,
-            },
         }
     },
     computed: {
@@ -282,8 +302,7 @@ export default {
         //I get recursive error, again?
         gameTermination() {
 
-            if(this.$data.chessGame.isCheckmate())
-            {
+            if (this.$data.chessGame.isCheckmate()) {
                 return "The game ended in checkmate";
 
             } else if (this.$data.chessGame.isThreefoldRepetition()) {
@@ -318,71 +337,95 @@ export default {
             this.$data.posterBuilder.currStep = index;
         },
 
-        findIfAnyMoveStartWith(array, string) {
-            return array.find(value => {
-                return value.startsWith(string);
-            });
+        findMovesThatStartWith(moves, move) {
+
+            var result = [];
+
+            for (let i = 0; i < moves.length; i++) {
+                if (moves[i].startsWith(move)) result.push(moves[i]);
+            }
+
+            if (result.length == 0) return false;
+
+            return result;
+
         },
 
         makeMove(confirmed) {
 
-            //Don't run if no move
-            if (this.$data.manualMove.pgn == "") {
+            //If no input
+            if (this.$data.posterBuilder.manualMove.pgn == "") {
 
-                this.$data.manualMove.valid = true;
+                this.$data.posterBuilder.manualMove.possibleMoves = true;
                 return;
             }
 
-            //Declare useful variables
-            let moves = this.$data.chessGame.moves();
-            let move = this.$data.manualMove.pgn
+            //Declare variables
+            const moves = this.$data.chessGame.moves();
+            const input = this.$data.posterBuilder.manualMove.pgn
 
-            //Check to see if is valid start
-            if (!this.findIfAnyMoveStartWith(moves, move)) {
-                this.$data.manualMove.valid = false;
-                return;
-            } else {
-                this.$data.manualMove.valid = true;
-            }
+            //Run function to get the possible moves considering the input and get boolean value to determine if complete move
+            this.$data.posterBuilder.manualMove.possibleMoves = this.findMovesThatStartWith(moves, input);
 
-            var index = moves.indexOf(move);
+            if (!this.$data.posterBuilder.manualMove.possibleMoves) return;
 
-            if (index !== -1) {
-                moves.splice(index, 1);
+            const completeMove = this.$data.posterBuilder.manualMove.possibleMoves.includes(input);
 
-                //Check if any more possible moves start with
-                if (this.findIfAnyMoveStartWith(moves, move) && !confirmed) {
+            if (completeMove && (this.$data.posterBuilder.manualMove.possibleMoves.length == 1 || confirmed)) {
 
-                    //Flag that this moves need confirmation
-                    this.$data.manualMove.substr = true;
+                //The input is a complete move and there is only that possible move or the input hase been confirmed
+
+                try {
+                    this.$data.chessGame.move(input);
+                } catch (error) {
+
+                    //Display general error message
                     return;
-
-                } else {
-
-                    //All checks okay, make move
-                    try {
-                        this.$data.chessGame.move(this.$data.manualMove.pgn);
-                    } catch (error) {
-
-                        //Display general error message
-                        return;
-                    }
-
-                    //Move was made
-                    this.$data.poster.gamePgn.moves = this.$data.chessGame.pgn();
-                    this.$data.manualMove.pgn = "";
-                    this.$data.manualMove.substr = false;
                 }
-            } else {
-                //If not a complete move
+
+                this.$data.poster.gamePgn = this.$data.chessGame.pgn();
+                this.$data.posterBuilder.manualMove.pgn = "";
+                this.$data.posterBuilder.manualMove.substr = false;
+                this.$data.posterBuilder.manualMove.possibleMoves = true;
+
                 return;
+
+            } else if (completeMove && this.$data.posterBuilder.manualMove.possibleMoves.length > 1 && !confirmed) {
+
+                //The input is a complete move but the input is also substring of another possible move and the input is not confirmed
+
+                //Flag that this input need confirmation
+                this.$data.posterBuilder.manualMove.substr = true;
+                this.$data.posterBuilder.manualMove.possibleMoves = true;
+                return;
+
+            } else if (!completeMove && this.$data.posterBuilder.manualMove.possibleMoves.length == 1) {
+
+                //The input is not a complete move but there is only 1 possible move
+
+                //Show suggestion
+                this.$data.posterBuilder.manualMove.substr = false;
+
+                return;
+
+            } else {
+
+                //The input is not a complete and there are more than 1 possibleMoves
+                this.$data.posterBuilder.manualMove.substr = false;
+                this.$data.posterBuilder.manualMove.possibleMoves = true;
+
+                return;
+
             }
 
         },
 
         undoMove() {
             this.$data.chessGame.undo();
-            this.$data.poster.gamePgn.moves = this.$data.chessGame.pgn();
+            this.$data.poster.gamePgn = this.$data.chessGame.pgn();
+            this.$data.posterBuilder.manualMove.pgn = "";
+            this.makeMove();
+            return;
         },
 
         loadPgn(pgn) {
@@ -390,21 +433,23 @@ export default {
             try {
                 this.$data.chessGame.loadPgn(pgn);
             } catch {
-                this.$data.poster.gamePgn.valid = false;
+                this.$data.posterBuilder.gamePgn.valid = false;
                 return;
             }
-        }, 
+            this.$data.poster.gamePgn = this.$data.chessGame.loadPgn(pgn);
 
-        uploadGameFromLichess(url){
+        },
+
+        uploadGameFromLichess(url) {
 
             let gameId = url.replace('https://lichess.org/', '');
 
             axios
-            .get('https://lichess.org/game/export/' + gameId, { params: { tags: false, clocks: false, evals: false, opening: false }  })
-            .then(response => (
-                this.$data.poster.gamePgn.moves = response.data,
-                this.chessGame.loadPgn(this.$data.poster.gamePgn.moves)
-            ))
+                .get('https://lichess.org/game/export/' + gameId, { params: { tags: false, clocks: false, evals: false, opening: false } })
+                .then(response => (
+                    this.$data.chessGame.loadPgn(response.data),
+                    this.$data.poster.gamePgn = this.$data.chessGame.pgn()
+                ))
         },
 
     },
@@ -412,8 +457,7 @@ export default {
     mounted() {
         this.changeStep(this.$data.posterBuilder.currStep)
         this.setTheme(this.$data.poster.themeId)
-        //this.$data.chessGame.loadPgn('1. e4 e5 2. d4 d5 3. Nc3 Nf6 4. Be2 Nc6 5. Bg5 Bb4 6. Nf3 Bd7 7. Qd2 Qe7');
-        this.$data.poster.gamePgn.moves = this.$data.chessGame.pgn(); 
+        this.$data.poster.gamePgn.moves = this.$data.chessGame.pgn();
     }
 }
 </script>
