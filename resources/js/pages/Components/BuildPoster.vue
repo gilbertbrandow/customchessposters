@@ -32,9 +32,9 @@
                             <div class="field__wrp">
                                 <label for="orientation" class="field__label">Orientation</label>
 
-                                <select id="orientation" class="field" name="orientation">
+                                <select v-model="poster.orientation" id="orientation" class="field" name="orientation">
                                     <option value="White">White</option>
-                                    <option value="White">Black</option>
+                                    <option value="Black">Black</option>
                                 </select>
 
                             </div>
@@ -259,6 +259,7 @@ export default {
 
             poster: {
                 themeId: 0,
+                orientation: "White",
                 gamePgn: "",
                 gameMeta: {
                     title: "",
