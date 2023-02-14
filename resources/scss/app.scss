@@ -655,9 +655,18 @@ h4 {
         margin-top: 0.5em;
         margin-left: 1em;
         text-decoration: none;
+        cursor: default;
+        opacity: 1;
+        color: rgba(0, 0, 0, 0.6);
 
-        span {
+        span.suggestion {
             text-decoration: underline;
+            cursor: pointer;
+        }
+        
+        span.suggestion:hover {
+            opacity: 1;
+            color: rgba(0, 0, 0);
         }
     }
 }
