@@ -112,27 +112,31 @@
 
                                     <div class="field__wrp">
                                         <label for="UploadPgn" class="field__label">Paste your PGN below</label>
-                                        <textarea v-model="poster.posterBuilder.pastePGN.pgn" class="field"
-                                            :class="{ 'is--error': !poster.posterBuilder.pastePGN.valid }" name="password"
-                                            placeholder="1.e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. b4..." id="gamePgn">
+                                        <textarea v-model="posterBuilder.pastePgn.moves" class="field"
+                                            :class="{ 'is--error': !posterBuilder.pastePgn.valid, 'is--success' : posterBuilder.pastePgn.success  }" name="password"
+                                            placeholder="1.e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. b4..." id="gamePgn"
+                                            @input="posterBuilder.pastePgn.success = false, posterBuilder.pastePgn.valid = true">
                                 </textarea>
                                         <div v-if="!posterBuilder.pastePgn.valid" class="field__error">Invalid PGN</div>
+                                        <div v-if="posterBuilder.pastePgn.success"
+                                        class="field__error is--success">PGN loaded successfully!</div>
                                     </div>
-                                    <div class="button is--black" @click="loadPgn(posterBuilder.pastePgn.PGN);"> Upload </div>
+                                    <div class="button is--black" @click="loadPgn(posterBuilder.pastePgn.moves);"> Upload </div>
                                 </div>
 
                                 <div class="tab" v-if="posterBuilder.currTab == 2">
                                     <div class="field__wrp">
                                         <label for="gameUrl" class="field__label">Game URL</label>
-                                        <div v-if="false" class="field__error"> URL is not valid</div>
-                                        <div v-if="this.$data.gameUrl.success"
+                                        <div v-if="!posterBuilder.uploadLichess.valid" class="field__error"> URL is not valid</div>
+                                        <div v-if="posterBuilder.uploadLichess.success"
                                         class="field__error is--success">Game uploaded successfully!</div>
                                         <input v-model="posterBuilder.gameUrl" class="field"
-                                            :class="{ 'is--error': false }" name="gameUrl" id="gameUrl"
-                                            placeholder="https://lichess.org/Sxov6E94" />
+                                            :class="{ 'is--error': !posterBuilder.uploadLichess.valid, 'is--success' : posterBuilder.uploadLichess.success }" name="gameUrl" id="gameUrl"
+                                            placeholder="https://lichess.org/Sxov6E94" 
+                                            @input="posterBuilder.uploadLichess.success = false, posterBuilder.uploadLichess.valid = true" />
                                     </div>
                                     <div class="button is--black"
-                                        @click="uploadGameFromLichess(this.$data.posterBuilder.gameUrl), this.$data.posterBuilder.gameUrl = ''"> Load </div>
+                                        @click="uploadGameFromLichess(posterBuilder.gameUrl), posterBuilder.gameUrl = ''"> Load </div>
                                 </div>
                             </div>
 
@@ -242,10 +246,12 @@ export default {
                 uploadLichess: {
                     gameUrl: "",
                     success: false,
+                    valid: true,
                 },
-                pastePGN: {
-                    pgn: "",
+                pastePgn: {
+                    moves: "",
                     success: false,
+                    valid: true,
                 },
             },
 
@@ -367,7 +373,11 @@ export default {
             //Run function to get the possible moves considering the input and get boolean value to determine if complete move
             this.$data.posterBuilder.manualMove.possibleMoves = this.findMovesThatStartWith(moves, input);
 
-            if (!this.$data.posterBuilder.manualMove.possibleMoves) return;
+            if (!this.$data.posterBuilder.manualMove.possibleMoves) {
+               
+                //findSuggestions() - check with first letter capitalized and maybe add x as second char, strip input of all non compatible characters h-z and >= 9
+                return;
+            }
 
             const completeMove = this.$data.posterBuilder.manualMove.possibleMoves.includes(input);
 
@@ -403,14 +413,13 @@ export default {
 
                 //The input is not a complete move but there is only 1 possible move
 
-                //Show suggestion
                 this.$data.posterBuilder.manualMove.substr = false;
 
                 return;
 
             } else {
 
-                //The input is not a complete and there are more than 1 possibleMoves
+                //The input is not a complete move and there are more than 1 possibleMoves
                 this.$data.posterBuilder.manualMove.substr = false;
                 this.$data.posterBuilder.manualMove.possibleMoves = true;
 
@@ -433,9 +442,11 @@ export default {
             try {
                 this.$data.chessGame.loadPgn(pgn);
             } catch {
-                this.$data.posterBuilder.gamePgn.valid = false;
+                this.$data.posterBuilder.pastePgn.valid = false;
                 return;
             }
+
+            this.$data.posterBuilder.pastePgn.success = true;
             this.$data.poster.gamePgn = this.$data.chessGame.loadPgn(pgn);
 
         },
@@ -448,7 +459,13 @@ export default {
                 .get('https://lichess.org/game/export/' + gameId, { params: { tags: false, clocks: false, evals: false, opening: false } })
                 .then(response => (
                     this.$data.chessGame.loadPgn(response.data),
-                    this.$data.poster.gamePgn = this.$data.chessGame.pgn()
+                    this.$data.poster.gamePgn = this.$data.chessGame.pgn(),
+                    this.$data.posterBuilder.uploadLichess.success = true, 
+                    console.log('success')
+                ))
+                .catch(() => (
+                    console.clear(),
+                    this.$data.posterBuilder.uploadLichess.valid = false
                 ))
         },
 
@@ -457,7 +474,6 @@ export default {
     mounted() {
         this.changeStep(this.$data.posterBuilder.currStep)
         this.setTheme(this.$data.poster.themeId)
-        this.$data.poster.gamePgn.moves = this.$data.chessGame.pgn();
     }
 }
 </script>
