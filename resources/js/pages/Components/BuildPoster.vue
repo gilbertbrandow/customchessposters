@@ -98,7 +98,7 @@
                                         </div>
 
                                         <div v-if="posterBuilder.manualMove.suggestions.length"
-                                            class="text__link">Do you mean
+                                            class="text__link">{{ posterBuilder.manualMove.valid ? 'Do' : 'Did' }} you mean
                                             <span v-for="(suggestion, index) in posterBuilder.manualMove.suggestions">
                                                 <span 
                                                 @click="posterBuilder.manualMove.pgn = suggestion; makeMove(true)"
@@ -106,8 +106,7 @@
                                                 class="suggestion"
                                                 ></span>
                                                 <span v-if="index + 1  != posterBuilder.manualMove.suggestions.length" v-text="(index + 2 == posterBuilder.manualMove.suggestions.length) ? ' or ' : ', '"></span>
-                                            </span>
-                                            ?
+                                            </span>?
                                         </div>
                                     </div>
                                 </div>
@@ -362,7 +361,35 @@ export default {
 
         findSuggestions(moves, input) {
 
-            //Start by capitalizing first character and return
+            if(input.length > 10) return [];
+
+            //strip input of all non compatible characters, except lowercased pieces. Since this is common occurrence
+            let regEx = /[^abcdefghABCDEFGH12345678KQBNRkqbnrx+#O\-]/g;
+            input = input.replace(regEx,'');
+
+            let suggestions = [];
+
+            //Check if piece indication is not done with uppercase
+            let capitalized = input.charAt(0).toUpperCase() + input.slice(1);
+            suggestions = this.findMovesThatStartWith(moves, capitalized);
+            if(suggestions && suggestions.length < 5) return suggestions;
+
+            //Try by inserting x as second char
+            let capture = input.substr(0, 1) + 'x' + input.substr(1);
+            suggestions = this.findMovesThatStartWith(moves, capture)
+            if(suggestions) return suggestions;
+
+            //Try the combination of changing to uppercase and inserting x
+            let combination = capture.charAt(0).toUpperCase() + capture.slice(1);
+            suggestions = this.findMovesThatStartWith(moves, capture)
+            if(suggestions) return suggestions;
+
+            //Try turning first letter to lowercase
+            let lowerCase = input.charAt(0).toLowerCase() + input.slice(1);
+            suggestions = this.findMovesThatStartWith(moves, lowerCase);
+            if(suggestions && suggestions.length < 5) return suggestions;
+        
+            return [];
         },
 
         makeMove(confirmed) {
@@ -385,9 +412,12 @@ export default {
             if (!possibleMoves) {
                
                 this.$data.posterBuilder.manualMove.valid = false;
-                //findSuggestions() - check with first letter capitalized and maybe add x as second char, strip input of all non compatible characters h-z and >= 9
+                this.$data.posterBuilder.manualMove.suggestions = this.findSuggestions(moves, input);
+
                 return;
             }
+
+            this.$data.posterBuilder.manualMove.valid = true;
 
             const completeMove = possibleMoves.includes(input);
 
@@ -406,15 +436,12 @@ export default {
 
                 this.$data.poster.gamePgn = this.$data.chessGame.pgn();
                 this.$data.posterBuilder.manualMove.pgn = "";
-                this.$data.posterBuilder.manualMove.valid = true;
 
                 return;
 
             } else if (completeMove && possibleMoves.length > 1 && !confirmed) {
 
                 //The input is a complete move but the input is also substring of another possible move and the input is not confirmed
-
-                this.$data.posterBuilder.manualMove.valid = true;
                 this.$data.posterBuilder.manualMove.suggestions = [];
                 this.$data.posterBuilder.manualMove.suggestions = possibleMoves;
                 return;
@@ -430,8 +457,6 @@ export default {
 
                 //The input is not a complete move and there are more than 1 possibleMoves
                 this.$data.posterBuilder.manualMove.suggestions = [];
-                this.$data.posterBuilder.manualMove.valid = true;
-
                 return;
 
             }
