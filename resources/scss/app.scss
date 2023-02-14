@@ -86,10 +86,10 @@ nav .nav__wrp {
         div {
             position: absolute;
             top: 0em;
-            left: 0; 
-            right: 0; 
-            margin-left: auto; 
-            margin-right: auto; 
+            left: 0;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
             margin-top: -0.3em;
             transform: rotate(45deg);
             width: 0.6em;
@@ -211,6 +211,17 @@ section {
     height: 1em;
 }
 
+.text__link {
+    opacity: 0.6;
+    text-decoration: underline;
+    transition: opacity 400ms;
+    cursor: pointer;
+}
+
+.text__link:hover {
+    opacity: 1;
+}
+
 .link-arrow {
     cursor: pointer;
     display: -webkit-box;
@@ -273,11 +284,11 @@ section.is--pt {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     -ms-grid-rows: auto;
     grid-template-rows: auto;
-  }
-  
-  .container.is--grid-4.is--no-pt {
+}
+
+.container.is--grid-4.is--no-pt {
     padding-top: 0em;
-  }
+}
 
 .container.is--flex {
     display: flex;
@@ -375,7 +386,6 @@ h4 {
     }
 }
 
-
 /**********************
 ****** Poster & builder styles
 ***********************/
@@ -444,11 +454,10 @@ h4 {
             border-color: #fff;
         }
     }
-
 }
 
 .poster__module {
-    border-top-left-radius: 1em; 
+    border-top-left-radius: 1em;
     border-bottom-left-radius: 1em;
     border: solid 1px rgba(0, 0, 0, 0.1);
     margin-right: -1em;
@@ -465,7 +474,6 @@ h4 {
         background-color: white;
         font-weight: 600;
     }
-
 }
 
 .module__header {
@@ -493,13 +501,13 @@ h4 {
     display: block;
 }
 
-.module__step:nth-child(4)  {
+.module__step:nth-child(4) {
     h4 {
         margin-top: 2em;
     }
 }
 
-.module__step.is--active:nth-child(2)  {
+.module__step.is--active:nth-child(2) {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -515,7 +523,7 @@ h4 {
     }
 }
 
-.theme {    
+.theme {
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -549,7 +557,6 @@ h4 {
     overflow: hidden;
     transform: rotateZ(-35deg);
 
-
     div {
         width: 50%;
         height: 100%;
@@ -568,11 +575,9 @@ h4 {
 }
 
 .theme.is--active {
-    
     .theme__colour-wrp {
         border-color: #000;
     }
-
 }
 
 .tabs__header {
@@ -601,7 +606,7 @@ h4 {
     }
 
     h4 {
-        margin: 0em
+        margin: 0em;
     }
 }
 
@@ -622,10 +627,12 @@ h4 {
 
 .manual-moves {
     margin-top: 1.5em;
-    display: flex;
-    align-items: center;
-    column-gap: 1em;
 
+    .row {
+        display: flex;
+        align-items: center;
+        column-gap: 1em;
+    }
     .field__wrp {
         margin-top: 0em;
         width: auto;
@@ -644,6 +651,15 @@ h4 {
         column-gap: 0.25em;
     }
 
+    .text__link {
+        margin-top: 0.5em;
+        margin-left: 1em;
+        text-decoration: none;
+
+        span {
+            text-decoration: underline;
+        }
+    }
 }
 
 .module__navigation {
@@ -663,7 +679,6 @@ h4 {
     }
 
     .module__progress-wrp {
-
         width: 18em;
         display: flex;
         flex-direction: column;
@@ -722,7 +737,8 @@ h4 {
             }
         }
 
-        .progress__step:hover, .progress__step.is--filled:hover {
+        .progress__step:hover,
+        .progress__step.is--filled:hover {
             border-color: #000;
 
             div {
@@ -756,11 +772,11 @@ input:focus {
     border-color: transparent;
 }
 
-input[type=checkbox]:focus {
+input[type="checkbox"]:focus {
     outline: none;
 }
 
-input[type=checkbox] {
+input[type="checkbox"] {
     margin-top: 1px;
     margin-right: 0.25em;
     border-color: rgba(0, 0, 0, 0.14);
@@ -774,11 +790,13 @@ textarea:focus {
     border-color: transparent;
 }
 
-input, textarea{
+input,
+textarea {
     font-family: CabinetGrotesk;
     font-weight: 500;
     font-size: 1em;
     letter-spacing: 0.02em;
+    resize: vertical;
 }
 
 input:-webkit-autofill,
@@ -791,7 +809,7 @@ select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
     -webkit-box-shadow: 0 0 0px 1000px $base-color inset;
-    box-shadow: 0 0 0px 1000px $base-color inset;;
+    box-shadow: 0 0 0px 1000px $base-color inset;
 }
 
 .field {
@@ -818,7 +836,7 @@ select.field:focus {
 .field:disabled {
     width: auto;
     background-color: whitesmoke;
-    padding-top: 0.75em 
+    padding-top: 0.75em;
 }
 
 .field.is--error {
@@ -877,7 +895,7 @@ label {
 
 .field__error.is--success {
     background-color: #beffca;
-    color: #03c02c
+    color: #03c02c;
 }
 
 .field__error.is--submit {
@@ -944,12 +962,10 @@ label {
     margin-bottom: 2em;
 
     h2 {
-      margin-bottom: 0em;
-      margin-top: 0em;
+        margin-bottom: 0em;
+        margin-top: 0em;
     }
 }
-
-
 
 /**********************
 ****** Features Styles
@@ -973,13 +989,13 @@ label {
     align-items: center;
     border: 1px solid #000;
     border-radius: 5em;
-    
+
     img {
         width: 1.5em;
     }
-  }
-  
-  .feature {
+}
+
+.feature {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -993,9 +1009,8 @@ label {
     -webkit-align-items: flex-start;
     -ms-flex-align: start;
     align-items: flex-start;
-  }
+}
 
-  
 /**********************
 ****** Faq Styles
 ***********************/
@@ -1026,7 +1041,6 @@ label {
 }
 
 .question-wrp.is--active {
-
     .question__icon {
         transform: rotate(180deg);
     }
@@ -1038,7 +1052,7 @@ label {
 }
 
 .question-wrp:hover {
-    border-bottom: 2px solid rgba(0, 0, 0,);
+    border-bottom: 2px solid rgba(0, 0, 0);
 }
 
 .question {
@@ -1068,7 +1082,6 @@ label {
         width: 1.25em;
     }
 }
-
 
 .answer {
     overflow: hidden;
