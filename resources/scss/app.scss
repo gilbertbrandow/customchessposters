@@ -386,8 +386,21 @@ h4 {
     }
 }
 
+.row {
+    display: flex;
+    align-items: center;
+    column-gap: 1em;
+}
+
+.row.is--player-input {
+
+    .field__wrp:not(:first-child){
+        width: 12.5em;
+    }
+}
+
 /**********************
-****** Poster & builder styles
+****** Poster builder styles
 ***********************/
 
 .poster {
@@ -627,12 +640,6 @@ h4 {
 
 .manual-moves {
     margin-top: 1.5em;
-
-    .row {
-        display: flex;
-        align-items: center;
-        column-gap: 1em;
-    }
     .field__wrp {
         margin-top: 0em;
         width: auto;
@@ -663,7 +670,7 @@ h4 {
             text-decoration: underline;
             cursor: pointer;
         }
-        
+
         span.suggestion:hover {
             opacity: 1;
             color: rgba(0, 0, 0);
