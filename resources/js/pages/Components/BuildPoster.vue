@@ -79,8 +79,7 @@
                                                 <label v-if="posterBuilder.manualMove.valid && !isGameOver"
                                                     for="whiteMove" class="field__label"
                                                     v-text="this.$data.chessGame.turn() == 'w' ? 'White to move' : 'Black to move'"></label>
-                                                <div v-if="!posterBuilder.manualMove.valid"
-                                                    class="field__error">
+                                                <div v-if="!posterBuilder.manualMove.valid" class="field__error">
                                                     Move is not valid</div>
                                                 <input v-model="posterBuilder.manualMove.pgn" @input="makeMove(false)"
                                                     class="field"
@@ -97,15 +96,14 @@
                                             </div>
                                         </div>
 
-                                        <div v-if="posterBuilder.manualMove.suggestions.length"
-                                            class="text__link">{{ posterBuilder.manualMove.valid ? 'Do' : 'Did' }} you mean
+                                        <div v-if="posterBuilder.manualMove.suggestions.length" class="text__link">{{
+                                            posterBuilder.manualMove.valid ? 'Do' : 'Did'
+                                        }} you mean
                                             <span v-for="(suggestion, index) in posterBuilder.manualMove.suggestions">
-                                                <span 
-                                                @click="posterBuilder.manualMove.pgn = suggestion; makeMove(true)"
-                                                v-text="suggestion"
-                                                class="suggestion"
-                                                ></span>
-                                                <span v-if="index + 1  != posterBuilder.manualMove.suggestions.length" v-text="(index + 2 == posterBuilder.manualMove.suggestions.length) ? ' or ' : ', '"></span>
+                                                <span @click="posterBuilder.manualMove.pgn = suggestion; makeMove(true)"
+                                                    v-text="suggestion" class="suggestion"></span>
+                                                <span v-if="index + 1 != posterBuilder.manualMove.suggestions.length"
+                                                    v-text="(index + 2 == posterBuilder.manualMove.suggestions.length) ? ' or ' : ', '"></span>
                                             </span>?
                                         </div>
                                     </div>
@@ -116,30 +114,34 @@
                                     <div class="field__wrp">
                                         <label for="UploadPgn" class="field__label">Paste your PGN below</label>
                                         <textarea v-model="posterBuilder.pastePgn.moves" class="field"
-                                            :class="{ 'is--error': !posterBuilder.pastePgn.valid, 'is--success' : posterBuilder.pastePgn.success  }" name="password"
-                                            placeholder="1.e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. b4..." id="gamePgn"
+                                            :class="{ 'is--error': !posterBuilder.pastePgn.valid, 'is--success': posterBuilder.pastePgn.success }"
+                                            name="password" placeholder="1.e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. b4..."
+                                            id="gamePgn"
                                             @input="posterBuilder.pastePgn.success = false, posterBuilder.pastePgn.valid = true">
                                 </textarea>
                                         <div v-if="!posterBuilder.pastePgn.valid" class="field__error">Invalid PGN</div>
-                                        <div v-if="posterBuilder.pastePgn.success"
-                                        class="field__error is--success">PGN loaded successfully!</div>
+                                        <div v-if="posterBuilder.pastePgn.success" class="field__error is--success">PGN
+                                            loaded successfully!</div>
                                     </div>
-                                    <div class="button is--black" @click="loadPgn(posterBuilder.pastePgn.moves);"> Upload </div>
+                                    <div class="button is--black" @click="loadPgn(posterBuilder.pastePgn.moves);">
+                                        Upload </div>
                                 </div>
 
                                 <div class="tab" v-if="posterBuilder.currTab == 2">
                                     <div class="field__wrp">
                                         <label for="gameUrl" class="field__label">Game URL</label>
-                                        <div v-if="!posterBuilder.uploadLichess.valid" class="field__error"> URL is not valid</div>
+                                        <div v-if="!posterBuilder.uploadLichess.valid" class="field__error"> URL is not
+                                            valid</div>
                                         <div v-if="posterBuilder.uploadLichess.success"
-                                        class="field__error is--success">Game uploaded successfully!</div>
+                                            class="field__error is--success">Game uploaded successfully!</div>
                                         <input v-model="posterBuilder.gameUrl" class="field"
-                                            :class="{ 'is--error': !posterBuilder.uploadLichess.valid, 'is--success' : posterBuilder.uploadLichess.success }" name="gameUrl" id="gameUrl"
-                                            placeholder="https://lichess.org/Sxov6E94" 
+                                            :class="{ 'is--error': !posterBuilder.uploadLichess.valid, 'is--success': posterBuilder.uploadLichess.success }"
+                                            name="gameUrl" id="gameUrl" placeholder="https://lichess.org/Sxov6E94"
                                             @input="posterBuilder.uploadLichess.success = false, posterBuilder.uploadLichess.valid = true" />
                                     </div>
                                     <div class="button is--black"
-                                        @click="uploadGameFromLichess(posterBuilder.gameUrl), posterBuilder.gameUrl = ''"> Load </div>
+                                        @click="uploadGameFromLichess(posterBuilder.gameUrl), posterBuilder.gameUrl = ''">
+                                        Load </div>
                                 </div>
                             </div>
 
@@ -152,17 +154,97 @@
                         </div>
                         <div :class="[posterBuilder.currStep == 3 ? 'is--active' : '']" class="module__step">
                             <h3>4. The Game</h3>
-                            <p>Other interesting information to give your poster some more backstory.</p>
-                            <h4>Title</h4>
+                            <p>Other interesting information to give your poster some context.</p>
+
                             <div class="field__wrp">
                                 <label for="gameTitle" class="field__label">Title</label>
                                 <div v-if="false" class="field__error">Title not valid</div>
                                 <input v-model="poster.gameMeta.title" class="field" name="gameTitle" id="gameTitle"
                                     placeholder="Lorem ipsum dolor set ami" />
                             </div>
-                            <h4>White Player</h4>
-                            <h4>Black Player</h4>
-                            <h4>When & Where</h4>
+                            <div class="row is--player-input">
+                                <div class="field__wrp">
+                                    <label for="whitePlayer" class="field__label">White player</label>
+                                    <div v-if="false" class="field__error">Game not valid</div>
+                                    <input v-model="poster.gameMeta.white.name" class="field" name="whitePlayer"
+                                        id="gameTitle" placeholder="Carlsen, Magnus" />
+                                </div>
+
+                                <div class="field__wrp">
+                                    <label for="whiteRating" class="field__label">Rating</label>
+                                    <div v-if="false" class="field__error">Game not valid</div>
+                                    <input v-model="poster.gameMeta.white.rating" class="field" name="whiteRating"
+                                        id="whiteRating" type="number" placeholder="2126" />
+                                </div>
+
+                                <div class="field__wrp">
+
+                                    <label for="whiteTitle" class="field__label">Title</label>
+
+                                    <select v-model="poster.gameMeta.white.title" id="whiteTitle" class="field"
+                                        name="orientation">
+                                        <option value="None">None</option>
+                                        <option value="GM">GM</option>
+                                        <option value="WGM">WGM</option>
+                                        <option value="IM">IM</option>
+                                        <option value="WIM">WIM</option>
+                                        <option value="FM">FM</option>
+                                        <option value="WFM">WFM</option>
+                                        <option value="CM">CM</option>
+                                        <option value="WCM">WCM</option>
+                                    </select>
+
+                                </div>
+                            </div>
+                            <div class="row is--player-input">
+                                <div class="field__wrp">
+                                    <label for="blackPlayer" class="field__label">Black player</label>
+                                    <div v-if="false" class="field__error">Title not valid</div>
+                                    <input v-model="poster.gameMeta.black.name" class="field" name="gameTitle"
+                                        id="gameTitle" placeholder="Abdusattorov, Nodirbek" />
+                                </div>
+
+                                <div class="field__wrp">
+                                    <label for="blackRating" class="field__label">Rating</label>
+                                    <div v-if="false" class="field__error">Game not valid</div>
+                                    <input v-model="poster.gameMeta.black.rating" class="field" name="blackRating"
+                                        id="blackRating" type="number" placeholder="2126" />
+                                </div>
+
+                                <div class="field__wrp">
+
+                                    <label for="blackTitle" class="field__label">Title</label>
+
+                                    <select v-model="poster.gameMeta.black.title" id="blackTitle" class="field"
+                                        name="orientation">
+                                        <option value="None">None</option>
+                                        <option value="GM">GM</option>
+                                        <option value="WGM">WGM</option>
+                                        <option value="IM">IM</option>
+                                        <option value="WIM">WIM</option>
+                                        <option value="FM">FM</option>
+                                        <option value="WFM">WFM</option>
+                                        <option value="CM">CM</option>
+                                        <option value="WCM">WCM</option>
+                                    </select>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="field__wrp">
+                                    <label for="gameTitle" class="field__label">Where</label>
+                                    <div v-if="false" class="field__error">Not valid string</div>
+                                    <input v-model="poster.gameMeta.where" class="field" name="gameTitle" id="gameTitle"
+                                        placeholder="Wijk aan Zee, Netherlands" />
+                                </div>
+                                <div class="field__wrp">
+                                    <label for="gameTitle" class="field__label">When</label>
+                                    <div v-if="false" class="field__error">Not valid string</div>
+                                    <input v-model="poster.gameMeta.when" class="field" name="gameTitle" id="gameTitle"
+                                        placeholder="January, 2023" />
+                                </div>
+                            </div>
                         </div>
                         <div :class="[posterBuilder.currStep == 4 ? 'is--active' : '']" class="module__step">
                             <h3>5. The Poster</h3>
@@ -239,7 +321,7 @@ export default {
                 announcement: false,
                 currEnvironment: "",
                 currTab: 0,
-                
+
                 manualMove: {
                     pgn: "",
                     valid: true,
@@ -266,12 +348,12 @@ export default {
                     white: {
                         name: "",
                         elo: "",
-                        title: "",
+                        title: "None",
                     },
                     black: {
                         name: "",
                         elo: "",
-                        title: "",
+                        title: "None",
                     },
                 },
             },
@@ -362,34 +444,34 @@ export default {
 
         findSuggestions(moves, input) {
 
-            if(input.length > 10) return [];
+            if (input.length > 10) return [];
 
             //strip input of all non compatible characters, except lowercased pieces. Since this is common occurrence
             let regEx = /[^abcdefghABCDEFGH12345678KQBNRkqbnrx+#O\-]/g;
-            input = input.replace(regEx,'');
+            input = input.replace(regEx, '');
 
             let suggestions = [];
 
             //Check if piece indication is not done with uppercase
             let capitalized = input.charAt(0).toUpperCase() + input.slice(1);
             suggestions = this.findMovesThatStartWith(moves, capitalized);
-            if(suggestions && suggestions.length < 5) return suggestions;
+            if (suggestions && suggestions.length < 5) return suggestions;
 
             //Try by inserting x as second char
             let capture = input.substr(0, 1) + 'x' + input.substr(1);
             suggestions = this.findMovesThatStartWith(moves, capture)
-            if(suggestions) return suggestions;
+            if (suggestions) return suggestions;
 
             //Try the combination of changing to uppercase and inserting x
             let combination = capture.charAt(0).toUpperCase() + capture.slice(1);
             suggestions = this.findMovesThatStartWith(moves, capture)
-            if(suggestions) return suggestions;
+            if (suggestions) return suggestions;
 
             //Try turning first letter to lowercase
             let lowerCase = input.charAt(0).toLowerCase() + input.slice(1);
             suggestions = this.findMovesThatStartWith(moves, lowerCase);
-            if(suggestions && suggestions.length < 5) return suggestions;
-        
+            if (suggestions && suggestions.length < 5) return suggestions;
+
             return [];
         },
 
@@ -411,7 +493,7 @@ export default {
             const possibleMoves = this.findMovesThatStartWith(moves, input);
 
             if (!possibleMoves) {
-               
+
                 this.$data.posterBuilder.manualMove.valid = false;
                 this.$data.posterBuilder.manualMove.suggestions = this.findSuggestions(moves, input);
 
@@ -454,7 +536,7 @@ export default {
 
                 return;
 
-            }else {
+            } else {
 
                 //The input is not a complete move and there are more than 1 possibleMoves
                 this.$data.posterBuilder.manualMove.suggestions = [];
