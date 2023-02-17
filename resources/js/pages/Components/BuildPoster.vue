@@ -151,6 +151,13 @@
                         <div :class="[posterBuilder.currStep == 2 ? 'is--active' : '']" class="module__step">
                             <h3>3. The Position</h3>
                             <p>Choose which position of the game you will share with the world!</p>
+                            <div class="poster__moves">
+                                <div v-for="(move, index) in pgnArray" :key="index">
+                                    <span v-if="index % 2 == 0" v-text="(index / 2 + 1) + '. '"></span>
+                                    <span class="move" :class="{ 'is--active': index == poster.diagramPosition }"
+                                        v-text="move" @click="poster.diagramPosition = index"></span>
+                                </div>
+                            </div>
                         </div>
                         <div :class="[posterBuilder.currStep == 3 ? 'is--active' : '']" class="module__step">
                             <h3>4. The Game</h3>
@@ -162,7 +169,7 @@
                                 <input v-model="poster.gameMeta.title" class="field" name="gameTitle" id="gameTitle"
                                     placeholder="Lorem ipsum dolor set ami" />
                             </div>
-                            <div class="row is--player-input">
+                            <div class="row is--player-input is--margin-top">
                                 <div class="field__wrp">
                                     <label for="whitePlayer" class="field__label">White player</label>
                                     <div v-if="false" class="field__error">Game not valid</div>
@@ -196,7 +203,7 @@
 
                                 </div>
                             </div>
-                            <div class="row is--player-input">
+                            <div class="row is--player-input is--margin-top">
                                 <div class="field__wrp">
                                     <label for="blackPlayer" class="field__label">Black player</label>
                                     <div v-if="false" class="field__error">Title not valid</div>
@@ -231,7 +238,7 @@
                                 </div>
                             </div>
 
-                            <div class="row">
+                            <div class="row is--margin-top">
                                 <div class="field__wrp">
                                     <label for="gameTitle" class="field__label">Where</label>
                                     <div v-if="false" class="field__error">Not valid string</div>
@@ -343,6 +350,7 @@ export default {
                 themeId: 0,
                 orientation: "White",
                 gamePgn: "",
+                diagramPosition: 0,
                 gameMeta: {
                     title: "",
                     white: {
@@ -414,6 +422,30 @@ export default {
             } else {
                 return 0;
             }
+        },
+
+        pgnArray() {
+
+            let string = this.$data.poster.gamePgn;
+            const gameArray = [];
+
+            for (let i = 0; i < string.length; i++) {
+
+                if (string[i] == " ") continue;
+
+                for (var k = i + 1; k < string.length; k++) {
+                    if (string[k] == " ") break;
+                    if (string[k] == ".") {
+                        i = k
+                        break;
+                    }
+                }
+
+                if (k > i) gameArray.push(string.substring(i, k));
+                i = k;
+            }
+
+            return gameArray;
         }
     },
     methods: {
@@ -585,6 +617,12 @@ export default {
                 ))
         },
 
+    },
+
+    watch: {
+        'poster.gamePgn' () {
+            this.$data.poster.diagramPosition = this.pgnArray.length - 1;
+        }
     },
 
     mounted() {
