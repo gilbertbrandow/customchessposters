@@ -175,6 +175,12 @@ section {
     margin-top: 1em;
 }
 
+button {
+    border: none;
+    background-color: transparent;
+    padding: 0em;
+}
+
 .button {
     cursor: pointer;
     display: -webkit-box;
