@@ -260,16 +260,16 @@
                     </div>
                     <div class="module__navigation">
                         <div ref="buttonWrapper" class="module__buttons">
-                            <div v-if="this.$data.posterBuilder.currStep != 0" class="link-arrow is--low-op"
+                            <button v-if="this.$data.posterBuilder.currStep != 0" class="link-arrow is--low-op"
                                 @click="changeStep(this.$data.posterBuilder.currStep - 1)">Go back <img
-                                    class="link-arrow__icn" src="../../../../public/images/icons/back.svg" alt=""></div>
+                                    class="link-arrow__icn" src="../../../../public/images/icons/back.svg" alt=""></button>
 
-                            <div v-if="this.$data.posterBuilder.currStep != 4" class="button is--black"
+                            <button v-if="this.$data.posterBuilder.currStep != 4" class="button is--black"
                                 @click="changeStep(this.$data.posterBuilder.currStep + 1)">Next Step
                                 <img src="../../../../public/images/icons/right-arrow-white.svg" alt="">
-                            </div>
-                            <div v-if="this.$data.posterBuilder.currStep == 4" class="button is--black">Add to cart <img
-                                    src="../../../../public/images/icons/bag-white.svg" alt=""></div>
+                        </button>
+                            <button v-if="this.$data.posterBuilder.currStep == 4" class="button is--black">Add to cart <img
+                                    src="../../../../public/images/icons/bag-white.svg" alt=""></button>
 
                         </div>
                         <div class="module__progress-wrp">
