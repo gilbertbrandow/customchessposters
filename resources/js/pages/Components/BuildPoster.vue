@@ -158,6 +158,14 @@
                                         v-text="move" @click="poster.diagramPosition = index"></span>
                                 </div>
                             </div>
+                            <div v-if="!pgnArray.length" class="message">
+
+                                <h4>You need to insert some moves!</h4>
+                                <p>In order to be able to choose a position for your poster, you need to insert some
+                                    moves in the previous step. If you are unsure of how to do that, you can always load a game from our  <a
+                                        href="/game-collection" class="text__link">Game Collection</a>!</p>
+
+                            </div>
                         </div>
                         <div :class="[posterBuilder.currStep == 3 ? 'is--active' : '']" class="module__step">
                             <h3>4. The Game</h3>
@@ -262,14 +270,15 @@
                         <div ref="buttonWrapper" class="module__buttons">
                             <button v-if="this.$data.posterBuilder.currStep != 0" class="link-arrow is--low-op"
                                 @click="changeStep(this.$data.posterBuilder.currStep - 1)">Go back <img
-                                    class="link-arrow__icn" src="../../../../public/images/icons/back.svg" alt=""></button>
+                                    class="link-arrow__icn" src="../../../../public/images/icons/back.svg"
+                                    alt=""></button>
 
                             <button v-if="this.$data.posterBuilder.currStep != 4" class="button is--black"
                                 @click="changeStep(this.$data.posterBuilder.currStep + 1)">Next Step
                                 <img src="../../../../public/images/icons/right-arrow-white.svg" alt="">
-                        </button>
-                            <button v-if="this.$data.posterBuilder.currStep == 4" class="button is--black">Add to cart <img
-                                    src="../../../../public/images/icons/bag-white.svg" alt=""></button>
+                            </button>
+                            <button v-if="this.$data.posterBuilder.currStep == 4" class="button is--black">Add to cart
+                                <img src="../../../../public/images/icons/bag-white.svg" alt=""></button>
 
                         </div>
                         <div class="module__progress-wrp">
@@ -620,7 +629,7 @@ export default {
     },
 
     watch: {
-        'poster.gamePgn' () {
+        'poster.gamePgn'() {
             this.$data.poster.diagramPosition = this.pgnArray.length - 1;
         }
     },
