@@ -41,7 +41,7 @@
 
 
                             <div v-if="!posterBuilder.announcement" class="message">
-                                <div @click="posterBuilder.announcement = true"><img src="/images/icons/close.svg" />
+                                <div @click="posterBuilder.announcement = true"><Icon name="close" />
                                 </div>
                                 <h4>Don't sweat it if you feel unsure</h4>
                                 <p>You can always come back to this section down the road and jump between steps to make
@@ -90,9 +90,7 @@
                                             </div>
 
                                             <div v-if="!(this.$data.chessGame.turn() == 'w' && this.$data.chessGame._moveNumber == 1)"
-                                                class="link-arrow is--low-op" @click="undoMove()">Undo Last Move <img
-                                                    class="link-arrow__icn"
-                                                    src="../../../../public/images/icons/undo.svg" alt="">
+                                                class="link-arrow is--low-op" @click="undoMove()">Undo Last Move <Icon name="undo"/>
                                             </div>
                                         </div>
 
@@ -163,7 +161,7 @@
                                 <h4>You need to insert some moves!</h4>
                                 <p>In order to be able to choose a position for your poster, you need to insert some
                                     moves in the previous step. If you are unsure of how to do that, you can always load a game from our  <a
-                                        href="/game-collection" class="text__link">Game Collection</a>!</p>
+                                        href="/game-collection" class="text__link">Game Collection</a></p>
 
                             </div>
                         </div>
@@ -269,16 +267,14 @@
                     <div class="module__navigation">
                         <div ref="buttonWrapper" class="module__buttons">
                             <button v-if="this.$data.posterBuilder.currStep != 0" class="link-arrow is--low-op"
-                                @click="changeStep(this.$data.posterBuilder.currStep - 1)">Go back <img
-                                    class="link-arrow__icn" src="../../../../public/images/icons/back.svg"
-                                    alt=""></button>
+                                @click="changeStep(this.$data.posterBuilder.currStep - 1)">Go back <Icon name="arrow-back"/></button>
 
                             <button v-if="this.$data.posterBuilder.currStep != 4" class="button is--black"
                                 @click="changeStep(this.$data.posterBuilder.currStep + 1)">Next Step
-                                <img src="../../../../public/images/icons/right-arrow-white.svg" alt="">
+                                <Icon name="arrow-right"/>
                             </button>
                             <button v-if="this.$data.posterBuilder.currStep == 4" class="button is--black">Add to cart
-                                <img src="../../../../public/images/icons/bag-white.svg" alt=""></button>
+                                <Icon name="cart"/></button>
 
                         </div>
                         <div class="module__progress-wrp">
@@ -310,8 +306,8 @@
 
                 <div class="poster">
                     <div class="poster__buttons-wrp">
-                        <div class="button">Full screen<img src="/images/icons/full-screen.svg" /></div>
-                        <div class="button"> Save this design <img src="/images/icons/bookmark-black.svg" /></div>
+                        <div class="button">Full screen<Icon name="fullScreen"/></div>
+                        <div class="button"> Save this design <Icon name="bookmark"/></div>
                     </div>
                     <div class="poster__svg-wrp"><img src="/images/posters/poster-test.svg" /></div>
                     <img class="poster__environment" :src="this.$data.posterBuilder.currEnvironment" />

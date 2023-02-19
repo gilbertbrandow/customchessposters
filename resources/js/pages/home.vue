@@ -6,7 +6,7 @@
                 tristique. </p>
             <div class="button-wrp">
                 <Link href="/create-poster" class="button is--black">Create your own custom poster</Link>
-                <Link href="" class="button">Refresh design <img src="/images/icons/refresh.svg" alt=""></Link>
+                <Link href="" class="button">Refresh design <Icon name="refresh"/></Link>
             </div>
         </div>
         <div class="poster">
