@@ -100,11 +100,11 @@ nav .nav__wrp {
         }
     }
 
-    img {
+    svg {
         height: 1em;
-        width: 1em;
-        filter: invert(100%);
+        width: 1em; 
     }
+
     position: relative;
     text-decoration: none;
     display: flex;
@@ -118,14 +118,14 @@ nav .nav__wrp {
 }
 
 .nav__button:hover {
+
     .info {
         opacity: 1;
         margin-top: 0.25em;
     }
 
-    img {
-        filter: invert(0%);
-    }
+    color: #fff;
+
     background-color: #000;
 }
 
