@@ -1,6 +1,6 @@
 import { createApp, h } from 'vue'
 import { createInertiaApp, Link } from '@inertiajs/vue3'
-import Icons from './Pages/Components/ScalableVectorGraphics/Icons.vue'
+import Icons from './SVG/Icons.vue'
 
 createInertiaApp({
   resolve: name => {
