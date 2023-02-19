@@ -1,5 +1,6 @@
 import { createApp, h } from 'vue'
 import { createInertiaApp, Link } from '@inertiajs/vue3'
+import Icons from './Pages/Components/ScalableVectorGraphics/Icons.vue'
 
 createInertiaApp({
   resolve: name => {
@@ -21,6 +22,7 @@ createInertiaApp({
     createApp({ render: () => h(App, props) })
       .use(plugin) 
       .component("Link", Link)
+      .component("Icons", Icons)
       .mixin ({methods: { route }})
       .mount(el)
   },
