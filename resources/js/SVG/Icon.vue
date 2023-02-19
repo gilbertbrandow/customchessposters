@@ -1,8 +1,8 @@
 <template>
 
-    <svg v-if="user" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
-        xmlns:svgjs="http://svgjs.com/svgjs" width="512" height="512" x="0" y="0" viewBox="0 0 512 512"
-        style="enable-background:new 0 0 512 512" xml:space="preserve" class="">
+    <svg v-if="name === 'user'" xmlns="http://www.w3.org/2000/svg" version="1.1"
+        xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="512" height="512" x="0"
+        y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve" class="">
         <g>
             <g>
                 <path d="M333.187,237.405c32.761-23.893,54.095-62.561,54.095-106.123C387.282,58.893,328.389,0,256,0
@@ -16,7 +16,7 @@
         </g>
     </svg>
 
-    <svg v-else-if="bookmark" xmlns="http://www.w3.org/2000/svg" version="1.1"
+    <svg v-else-if="name === 'bookmark'" xmlns="http://www.w3.org/2000/svg" version="1.1"
         xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="512" height="512" x="0"
         y="0" viewBox="0 0 32 32" style="enable-background:new 0 0 512 512" xml:space="preserve" class="">
         <g>
@@ -26,21 +26,27 @@
         </g>
     </svg>
 
-    <svg v-else-if="shoppingBag" xmlns="http://www.w3.org/2000/svg" version="1.1"
+    <svg v-else-if="name === 'cart'" xmlns="http://www.w3.org/2000/svg" version="1.1"
         xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="512" height="512" x="0"
         y="0" viewBox="0 0 32 32" style="enable-background:new 0 0 512 512" xml:space="preserve" class="">
         <g>
             <g data-name="Layer 2">
                 <path
                     d="M16 17.82A6 6 0 0 1 10.11 13a1 1 0 0 1 1-1.15 1 1 0 0 1 1 .83 4 4 0 0 0 7.83 0 1 1 0 0 1 1-.83 1 1 0 0 1 1 1.15A6 6 0 0 1 16 17.82z"
-                    fill="currentColor" data-original="#000000"></path>
+                    fill="currentColor"></path>
                 <path
                     d="M24.9 31H7.1a3 3 0 0 1-3-3.15l.81-17.24a3 3 0 0 1 3-2.87h16.18a3 3 0 0 1 3 2.87l.81 17.24a3 3 0 0 1-3 3.15zM7.91 9.75a1 1 0 0 0-1 1l-.81 17.2a1 1 0 0 0 1 1.05h17.8a1 1 0 0 0 1-1.05l-.81-17.24a1 1 0 0 0-1-1z"
-                    fill="currentColor" data-original="#000000"></path>
-                <path d="M22 8.75h-2V7a4 4 0 0 0-8 0v1.75h-2V7a6 6 0 0 1 12 0z" fill="currentColor"
-                    data-original="#000000">
+                    fill="currentColor"></path>
+                <path d="M22 8.75h-2V7a4 4 0 0 0-8 0v1.75h-2V7a6 6 0 0 1 12 0z" fill="currentColor">
                 </path>
             </g>
+        </g>
+    </svg>
+
+    <svg v-else-if="name === 'dropdown'" height="512" viewBox="0 0 24 24" width="512" xmlns="http://www.w3.org/2000/svg">
+        <g id="_16" data-name="16">
+            <path
+                d="m12 16a1 1 0 0 1 -.71-.29l-6-6a1 1 0 0 1 1.42-1.42l5.29 5.3 5.29-5.29a1 1 0 0 1 1.41 1.41l-6 6a1 1 0 0 1 -.7.29z" />
         </g>
     </svg>
 
@@ -49,9 +55,7 @@
 <script>
 export default {
     props: {
-        user: false,
-        bookmark: false,
-        shoppingBag: false,
+        name: '',
     }
 }
 </script>

@@ -7,10 +7,10 @@
       </Link>
       <div class="nav__wrp">
         <div class="dropdown"><img src=""/> USA / USD $</div>
-        <Link :href="route('auth.account')" v-if="$page.props.auth" class="nav__button"><div class="info"><div></div>Your Account ({{ $page.props.auth.user.name }}) </div><Icons user="true"/></Link>
-        <Link :href="route('auth.login')" v-else class="nav__button"><div class="info"><div></div>Sign in </div><Icons user="true"/></Link>
-        <Link :href="route('home.index')" class="nav__button"><div class="info"><div></div>Your saved designs</div><Icons bookmark="true"/></Link>
-        <Link :href="route('home.index')" class="nav__button"><div class="info"><div></div>Cart</div><Icons shoppingBag="true"/></Link>
+        <Link :href="route('auth.account')" v-if="$page.props.auth" class="nav__button"><div class="info"><div></div>Your Account ({{ $page.props.auth.user.name }}) </div><Icon name="user"/></Link>
+        <Link :href="route('auth.login')" v-else class="nav__button"><div class="info"><div></div>Sign in </div><Icon name="user"/></Link>
+        <Link :href="route('home.index')" class="nav__button"><div class="info"><div></div>Your saved designs</div><Icon name="bookmark"/></Link>
+        <Link :href="route('home.index')" class="nav__button"><div class="info"><div></div>Cart</div><Icon name="cart"/></Link>
       </div>
     </div>
   </nav>

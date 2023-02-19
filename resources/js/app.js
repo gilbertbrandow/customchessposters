@@ -1,6 +1,6 @@
 import { createApp, h } from 'vue'
 import { createInertiaApp, Link } from '@inertiajs/vue3'
-import Icons from './SVG/Icons.vue'
+import Icon from './SVG/Icon.vue'
 
 createInertiaApp({
   resolve: name => {
@@ -22,7 +22,7 @@ createInertiaApp({
     createApp({ render: () => h(App, props) })
       .use(plugin) 
       .component("Link", Link)
-      .component("Icons", Icons)
+      .component("Icon", Icon)
       .mixin ({methods: { route }})
       .mount(el)
   },
