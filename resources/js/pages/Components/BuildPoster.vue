@@ -54,8 +54,6 @@
                             <h3>2. The Moves</h3>
                             <p>Insert the moves of the game</p>
 
-                            <!-- <div>Current PGN: {{ this.$data.poster.gamePgn.moves }} </div>
-                            <div style="margin-bottom: 2em;">Current FEN: {{ this.$data.chessGame.fen() }} </div> -->
                             <div class="tabs">
                                 <div class="tabs__header">
                                     <div class="tab__item" :class="[posterBuilder.currTab == 0 ? 'is--active' : '']"
@@ -98,7 +96,7 @@
                                             posterBuilder.manualMove.valid ? 'Do' : 'Did'
                                         }} you mean
                                             <span v-for="(suggestion, index) in posterBuilder.manualMove.suggestions">
-                                                <span @click="posterBuilder.manualMove.pgn = suggestion; makeMove(true)"
+                                                <span role="button" @click="posterBuilder.manualMove.pgn = suggestion; makeMove(true)"
                                                     v-text="suggestion" class="suggestion"></span>
                                                 <span v-if="index + 1 != posterBuilder.manualMove.suggestions.length"
                                                     v-text="(index + 2 == posterBuilder.manualMove.suggestions.length) ? ' or ' : ', '"></span>
@@ -148,7 +146,7 @@
                         </div>
                         <div :class="[posterBuilder.currStep == 2 ? 'is--active' : '']" class="module__step">
                             <h3>3. The Position</h3>
-                            <p>Choose which position of the game you will share with the world!</p>
+                            <p>Choose which position of the game you will share with the world</p>
                             <div class="poster__moves">
                                 <div v-for="(move, index) in pgnArray" :key="index">
                                     <span v-if="index % 2 == 0" v-text="(index / 2 + 1) + '. '"></span>
@@ -158,7 +156,7 @@
                             </div>
                             <div v-if="!pgnArray.length" class="message">
 
-                                <h4>You need to insert some moves!</h4>
+                                <h4>You need to make some moves!</h4>
                                 <p>In order to be able to choose a position for your poster, you need to insert some
                                     moves in the previous step. If you are unsure of how to do that, you can always load a game from our  <a
                                         href="/game-collection" class="text__link">Game Collection</a></p>
@@ -333,19 +331,18 @@ export default {
                 announcement: false,
                 currEnvironment: "",
                 currTab: 0,
-
                 manualMove: {
                     pgn: "",
                     valid: true,
                     suggestions: [],
                 },
-                uploadLichess: {
-                    gameUrl: "",
+                pastePgn: {
+                    moves: "",
                     success: false,
                     valid: true,
                 },
-                pastePgn: {
-                    moves: "",
+                uploadLichess: {
+                    gameUrl: "",
                     success: false,
                     valid: true,
                 },
@@ -494,7 +491,7 @@ export default {
             suggestions = this.findMovesThatStartWith(moves, capitalized);
             if (suggestions && suggestions.length < 5) return suggestions;
 
-            //Try by inserting x as second char
+            //Try by inserting x as second char, i.e capture was not specified
             let capture = input.substr(0, 1) + 'x' + input.substr(1);
             suggestions = this.findMovesThatStartWith(moves, capture)
             if (suggestions) return suggestions;
@@ -508,6 +505,17 @@ export default {
             let lowerCase = input.charAt(0).toLowerCase() + input.slice(1);
             suggestions = this.findMovesThatStartWith(moves, lowerCase);
             if (suggestions && suggestions.length < 5) return suggestions;
+
+            //Try removing the last char and recalling the function
+            if(input.length > 1) {
+                let shortened = input.substring(0,input.length-1);
+                let validStart = this.findSuggfindMovesThatStartWith(moves, shortened)
+                if(validStart){
+                    return validStart;
+                } else {
+                    this.findSuggestions(moves, shortened);
+                }
+            }
 
             return [];
         },
@@ -575,7 +583,7 @@ export default {
 
             } else {
 
-                //The input is not a complete move and there are more than 1 possibleMoves
+                //The input is not a complete move and there are more than 6 possibleMoves
                 this.$data.posterBuilder.manualMove.suggestions = [];
                 return;
 
