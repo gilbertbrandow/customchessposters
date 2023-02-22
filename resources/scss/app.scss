@@ -35,6 +35,47 @@ nav {
     align-items: center;
     z-index: 9999;
     transition-duration: 300ms;
+
+    .flash-message {
+        display: flex;
+        align-items: center;
+        column-gap: 0.5em;
+        position: absolute;
+        background-color: #000;
+        color: #fff;
+        left: 6em;
+        top: 100%;
+        margin-top: -1.5em;
+        padding: 0.5em 0.75em 0.5em 1em;
+        transition: margin 300ms;
+        border-radius: 1em;
+
+        div {
+            cursor: pointer;
+            width: 1.25em;
+            height: 1.25em;
+            border-radius: 2em;
+            border: 1px solid #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 200ms ease;
+
+            svg {
+                width: 0.5em;
+                fill: #fff;
+                transition: fill 200ms ease;
+            }
+        }
+
+        div:hover {
+            background-color: #fff;
+
+            svg {
+                fill: #000;
+            }
+        }
+    }
 }
 
 nav.is--scrolled {
@@ -42,6 +83,10 @@ nav.is--scrolled {
     padding-bottom: 0.5em;
     background-color: rgba(255, 255, 255);
     border-bottom: rgba(0, 0, 0, 0.1) solid 1px;
+
+    .flash-message {
+        margin-top: 0.5em;
+    }
 }
 
 nav .container {
@@ -102,7 +147,7 @@ nav .nav__wrp {
 
     svg {
         height: 1em;
-        width: 1em; 
+        width: 1em;
     }
 
     position: relative;
@@ -118,7 +163,6 @@ nav .nav__wrp {
 }
 
 .nav__button:hover {
-
     .info {
         opacity: 1;
         margin-top: 0.25em;
@@ -417,8 +461,7 @@ h4 {
 }
 
 .row.is--player-input {
-
-    .field__wrp:not(:first-child){
+    .field__wrp:not(:first-child) {
         width: 12.5em;
     }
 }
@@ -513,12 +556,11 @@ h4 {
     }
 
     .poster__moves {
-
         line-height: 1;
         div {
             float: left;
             margin-bottom: 0.5em;
-        }   
+        }
 
         span {
             margin-right: 0.25em;
@@ -539,7 +581,7 @@ h4 {
             background-color: black;
             color: white;
             padding: 0.15em 0.35em 0.1em 0.35em;
-            margin: -0.15em 0.15em -0.15em -0.35em
+            margin: -0.15em 0.15em -0.15em -0.35em;
         }
     }
 }
@@ -568,7 +610,6 @@ h4 {
 .module__step.is--active {
     display: block;
 }
-
 
 .themes {
     margin-top: 2em;
