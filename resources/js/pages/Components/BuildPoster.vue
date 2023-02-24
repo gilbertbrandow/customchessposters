@@ -307,7 +307,10 @@
                         <div class="button">Full screen<Icon name="fullScreen"/></div>
                         <div class="button"> Save this design <Icon name="bookmark"/></div>
                     </div>
-                    <div class="poster__svg-wrp"><img src="/images/posters/poster-test.svg" /></div>
+                    <div class="poster__svg-wrp">
+                        <NewWavesPoster v-if="poster.themeId == 0" :poster="poster" />
+                        <OldKnowledgePoster v-if="poster.themeId == 1" :poster="poster" />
+                    </div>
                     <img class="poster__environment" :src="this.$data.posterBuilder.currEnvironment" />
                 </div>
 
@@ -319,6 +322,8 @@
 <script>
 import { Chess } from 'chess.js'
 import axios from 'axios'
+import NewWavesPoster from '../../Themes/New Waves/Poster.vue'
+import OldKnowledgePoster from '../../Themes/Old Knowledge/Poster.vue'
 
 export default {
     data() {
@@ -480,7 +485,7 @@ export default {
 
             if (input.length > 10) return [];
 
-            //strip input of all non compatible characters, except lowercased pieces. Since this is common occurrence
+            //strip input of all non compatible characters, except lowercased letters who capitalized correlate to pieces
             let regEx = /[^abcdefghABCDEFGH12345678KQBNRkqbnrx+#O\-]/g;
             input = input.replace(regEx, '');
 
@@ -636,6 +641,11 @@ export default {
         'poster.gamePgn'() {
             this.$data.poster.diagramPosition = this.pgnArray.length - 1;
         }
+    },
+
+    components: {
+        NewWavesPoster,
+        OldKnowledgePoster,
     },
 
     mounted() {
