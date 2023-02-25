@@ -33,7 +33,6 @@
         </Link>
       </div>
     </div>
-    <div v-if="true" class="flash-message">Poster design saved <div><Icon name="close"/></div></div>
   </nav>
   <main>
     <slot>
