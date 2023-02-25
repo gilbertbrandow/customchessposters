@@ -169,8 +169,8 @@
 
                             <div class="field__wrp">
                                 <label for="gameTitle" class="field__label">Title</label>
-                                <div v-if="false" class="field__error">Title not valid</div>
-                                <input v-model="poster.gameMeta.title" class="field" name="gameTitle" id="gameTitle"
+                                <div v-if="!posterBuilder.titleValid" class="field__error">Title is too long</div>
+                                <input v-model="poster.gameMeta.title" class="field" :class="{ 'is--error': !posterBuilder.titleValid }" name="gameTitle" id="gameTitle"
                                     placeholder="Lorem ipsum dolor set ami" />
                             </div>
                             <div class="row is--player-input is--margin-top">
@@ -351,10 +351,12 @@ export default {
                     success: false,
                     valid: true,
                 },
+
+                titleValid: true,
             },
 
             poster: {
-                themeId: 0,
+                themeId: 1,
                 orientation: "White",
                 gamePgn: "",
                 diagramPosition: 0,
