@@ -13,6 +13,11 @@
 
         <!-- The PGN -->
 
+        <text font-size="48" font-family="AdobeClean-Regular, Adobe Clean">
+            <tspan v-for="(row, index) in pgnRows" x="200" :y="2700 - (75 * (pgnRows.length - 1 - index))">{{ row }}
+            </tspan>
+        </text>
+
     </svg>
 
 </template>
@@ -28,32 +33,30 @@ export default {
     computed: {
         title() {
 
-            //Need to build this smarter so that it does not split words randomly, also maybe adjust text size dynamically to fit more chars?
             const string = this.$props.poster.gameMeta.title;
             var title = [];
             this.$parent.$data.posterBuilder.titleValid = true;
 
             let words = string.split(' ');
-            let rowCount = 0; 
+            let rowCount = 0;
 
-            for(let i = 0; i < words.length; i++)
-            {
+            for (let i = 0; i < words.length; i++) {
 
-                if(rowCount + words[i].length < 26 && !title[1]){
-                    rowCount = rowCount + words[i].length + 1; 
+                if (rowCount + words[i].length < 26 && !title[1]) {
+                    rowCount = rowCount + words[i].length + 1;
 
-                    if(i == 0){ 
+                    if (i == 0) {
                         title[0] = words[i];
                     } else {
                         title[0] += ' ' + words[i];
                     }
                 } else {
 
-                    if(!title[1]) {
+                    if (!title[1]) {
 
                         rowCount = words[i].length;
 
-                        if(rowCount < 26) {
+                        if (rowCount < 26) {
                             title[1] = words[i];
                         } else {
                             this.$parent.$data.posterBuilder.titleValid = false;
@@ -61,9 +64,9 @@ export default {
 
                     } else {
 
-                        rowCount = rowCount + words[i].length + 1; 
+                        rowCount = rowCount + words[i].length + 1;
 
-                        if(rowCount < 26) {
+                        if (rowCount < 26) {
                             title[1] += ' ' + words[i];
                         } else {
                             this.$parent.$data.posterBuilder.titleValid = false;
@@ -72,8 +75,43 @@ export default {
                 }
 
             }
-
             return title;
+        },
+
+        pgnRows() {
+
+            var gamePgn = this.$props.poster.gamePgn;
+            var rows = [];
+            rows[0] = "test"
+            let rowsIndex = 0;
+
+            //Figure out max chars per row, max rows and do while loop and push to rows array when possible
+
+            //Nested while loop to take the whole next move (Up until space followed by number)
+            for (let i = 0; i < gamePgn.length; i++) {
+
+                if ((gamePgn[i] == ' ' && this.containsNumbers(gamePgn[i + 1])) || !gamePgn[i + 1]) {
+                    //Create substring of the next full move, remove it from gamePgn
+                    var move = gamePgn.substring(0, i);
+                    gamePgn = gamePgn.substring(i + 1);
+                    i = 0;
+                    console.log(move);
+                }
+            }
+
+            //Check if fits in curent row[]
+
+            //Else if next row < 10 begin new row
+
+            //Else break and set pgn to invalid?
+
+            return rows;
+        }
+    }, 
+    methods: {
+
+        containsNumbers(str) {
+            return /[0-9]/.test(str);
         },
     }
 }
