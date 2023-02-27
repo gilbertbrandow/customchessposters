@@ -13,8 +13,8 @@
 
         <!-- The PGN -->
 
-        <text font-size="48" font-family="AdobeClean-Regular, Adobe Clean">
-            <tspan v-for="(row, index) in pgnRows" x="200" :y="2700 - (75 * (pgnRows.length - 1 - index))">{{ row }}
+        <text font-size="20" font-family="AdobeClean-Regular, Adobe Clean">
+            <tspan v-for="(row, index) in pgnRows" x="200" :y="2700 - (40 * (pgnRows.length - 1 - index))">{{ row }}
             </tspan>
         </text>
 
@@ -82,7 +82,6 @@ export default {
 
             var gamePgn = this.$props.poster.gamePgn;
             var rows = [];
-            rows[0] = "test"
             let rowsIndex = 0;
 
             //Figure out max chars per row, max rows and do while loop and push to rows array when possible
@@ -92,18 +91,29 @@ export default {
 
                 if ((gamePgn[i] == ' ' && this.containsNumbers(gamePgn[i + 1])) || !gamePgn[i + 1]) {
                     //Create substring of the next full move, remove it from gamePgn
-                    var move = gamePgn.substring(0, i);
+                    var move = gamePgn.substring(0, i + 1);
                     gamePgn = gamePgn.substring(i + 1);
                     i = 0;
                     console.log(move);
+
+                    //Check if fits in curent row[]
+                    if(rows[rowsIndex]){
+                        if(rows[rowsIndex].length + move.length < 200)
+                        {
+                            rows[rowsIndex] += ' ' + move;
+
+                        } else if(rowsIndex < 10){
+                            rowsIndex++;
+                            rows[rowsIndex] = move;
+                        } else {
+                            rows[rowsIndex] += "..."; 
+                            return rows;
+                        }
+                    } else {
+                        rows[rowsIndex] = move;
+                    }
                 }
             }
-
-            //Check if fits in curent row[]
-
-            //Else if next row < 10 begin new row
-
-            //Else break and set pgn to invalid?
 
             return rows;
         }
