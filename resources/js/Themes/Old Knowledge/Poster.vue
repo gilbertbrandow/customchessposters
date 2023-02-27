@@ -94,7 +94,6 @@ export default {
                     var move = gamePgn.substring(0, i + 1);
                     gamePgn = gamePgn.substring(i + 1);
                     i = 0;
-                    console.log(move);
 
                     //Check if fits in curent row[]
                     if(rows[rowsIndex]){
