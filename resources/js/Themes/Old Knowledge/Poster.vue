@@ -7,6 +7,16 @@
             <tspan v-if="title[1]" x="200" y="500">{{ title[1] }}</tspan>
         </text>
 
+        <text font-size="60" font-family="AdobeClean-Regular, Adobe Clean">
+            <tspan x="200" y="700">{{ poster.gameMeta.where }}</tspan>
+        </text>
+
+        <text font-size="40" font-family="AdobeClean-Regular, Adobe Clean">
+            <tspan text-anchor="end" x="1800" y="700">{{ poster.gameMeta.when }}</tspan>
+        </text>
+
+
+
         <!-- Players name, title and ranking -->
 
         <!-- The board (!!!!!)-->
