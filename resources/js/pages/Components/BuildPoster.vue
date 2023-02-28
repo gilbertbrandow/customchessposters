@@ -183,8 +183,7 @@
 
                                 <div class="field__wrp">
                                     <label for="whiteRating" class="field__label">Rating</label>
-                                    <div v-if="false" class="field__error">Game not valid</div>
-                                    <input v-model="poster.gameMeta.white.rating" class="field" name="whiteRating"
+                                    <input v-model="poster.gameMeta.white.rating" maxlength="4" class="field" name="whiteRating"
                                         id="whiteRating" type="number" placeholder="2126" />
                                 </div>
 
@@ -194,7 +193,7 @@
 
                                     <select v-model="poster.gameMeta.white.title" id="whiteTitle" class="field"
                                         name="orientation">
-                                        <option value="None">None</option>
+                                        <option value="">None</option>
                                         <option value="GM">GM</option>
                                         <option value="WGM">WGM</option>
                                         <option value="IM">IM</option>
@@ -217,9 +216,8 @@
 
                                 <div class="field__wrp">
                                     <label for="blackRating" class="field__label">Rating</label>
-                                    <div v-if="false" class="field__error">Game not valid</div>
                                     <input v-model="poster.gameMeta.black.rating" class="field" name="blackRating"
-                                        id="blackRating" type="number" placeholder="2126" />
+                                        id="blackRating" type="number" maxlength="4" placeholder="2126" />
                                 </div>
 
                                 <div class="field__wrp">
@@ -228,7 +226,7 @@
 
                                     <select v-model="poster.gameMeta.black.title" id="blackTitle" class="field"
                                         name="orientation">
-                                        <option value="None">None</option>
+                                        <option value="">None</option>
                                         <option value="GM">GM</option>
                                         <option value="WGM">WGM</option>
                                         <option value="IM">IM</option>
@@ -246,14 +244,14 @@
                                 <div class="field__wrp">
                                     <label for="gameTitle" class="field__label">Where</label>
                                     <div v-if="false" class="field__error">Not valid string</div>
-                                    <input v-model="poster.gameMeta.where" class="field" name="gameTitle" id="gameTitle"
+                                    <input maxlength="25" v-model="poster.gameMeta.where" class="field" name="gameTitle" id="gameTitle"
                                         placeholder="Wijk aan Zee, Netherlands" />
                                 </div>
                                 <div class="field__wrp">
                                     <label for="gameTitle" class="field__label">When</label>
                                     <div v-if="false" class="field__error">Not valid string</div>
-                                    <input v-model="poster.gameMeta.when" class="field" name="gameTitle" id="gameTitle"
-                                        placeholder="January, 2023" />
+                                    <input maxlength="40" v-model="poster.gameMeta.when" class="field" name="gameTitle" id="gameTitle"
+                                        placeholder="Tata Steel, January 2023. Round 3" />
                                 </div>
                             </div>
                         </div>
@@ -365,13 +363,15 @@ export default {
                     white: {
                         name: "",
                         elo: "",
-                        title: "None",
+                        title: "",
                     },
                     black: {
                         name: "",
                         elo: "",
-                        title: "None",
+                        title: "",
                     },
+                    when: "",
+                    where: "",
                 },
             },
 
