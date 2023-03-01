@@ -176,9 +176,8 @@
                             <div class="row is--player-input is--margin-top">
                                 <div class="field__wrp">
                                     <label for="whitePlayer" class="field__label">White player</label>
-                                    <div v-if="false" class="field__error">Game not valid</div>
-                                    <input v-model="poster.gameMeta.white.name" class="field" name="whitePlayer"
-                                        id="gameTitle" placeholder="Carlsen, Magnus" />
+                                    <input maxlength="45" v-model="poster.gameMeta.white.name" class="field" name="whitePlayer"
+                                        id="whitePlayer" placeholder="Carlsen, Magnus" />
                                 </div>
 
                                 <div class="field__wrp">
@@ -210,7 +209,7 @@
                                 <div class="field__wrp">
                                     <label for="blackPlayer" class="field__label">Black player</label>
                                     <div v-if="false" class="field__error">Title not valid</div>
-                                    <input v-model="poster.gameMeta.black.name" class="field" name="gameTitle"
+                                    <input maxlength="45" v-model="poster.gameMeta.black.name" class="field" name="gameTitle"
                                         id="gameTitle" placeholder="Abdusattorov, Nodirbek" />
                                 </div>
 
