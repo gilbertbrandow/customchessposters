@@ -496,7 +496,7 @@ export default {
             //Check if piece indication is not done with uppercase
             let capitalized = input.charAt(0).toUpperCase() + input.slice(1);
             suggestions = this.findMovesThatStartWith(moves, capitalized);
-            if (suggestions && suggestions.length < 5) return suggestions;
+            if (suggestions) return suggestions;
 
             //Try by inserting x as second char, i.e capture was not specified
             let capture = input.substr(0, 1) + 'x' + input.substr(1);
@@ -505,7 +505,7 @@ export default {
 
             //Try the combination of changing to uppercase and inserting x
             let combination = capture.charAt(0).toUpperCase() + capture.slice(1);
-            suggestions = this.findMovesThatStartWith(moves, capture)
+            suggestions = this.findMovesThatStartWith(moves, combination)
             if (suggestions) return suggestions;
 
             //Try turning first letter to lowercase
@@ -516,7 +516,7 @@ export default {
             //Try removing the last char and recalling the function
             if(input.length > 1) {
                 let shortened = input.substring(0,input.length-1);
-                let validStart = this.findSuggfindMovesThatStartWith(moves, shortened)
+                let validStart = this.findMovesThatStartWith(moves, shortened)
                 if(validStart){
                     return validStart;
                 } else {
