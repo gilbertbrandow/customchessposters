@@ -20,23 +20,29 @@
         <text font-size="60" font-family="AdobeClean-Regular, Adobe Clean" x="200" :y="title[1] ? 800 : 600">
             <tspan font-weight="600" v-if="poster.gameMeta.white.title"> {{ poster.gameMeta.white.title + ' ' }} </tspan>
             <tspan v-if="poster.gameMeta.white.name"> {{ poster.gameMeta.white.name + ' ' }} </tspan>
-            <tspan font-size="40" v-if="poster.gameMeta.white.rating">({{ poster.gameMeta.white.rating + ' FIDE' }}) </tspan>
-        </text>
-
-        <text font-size="60" font-family="AdobeClean-Regular, Adobe Clean" x="200" :y="title[1] ? 900 : 700">
-            <tspan font-weight="600" v-if="poster.gameMeta.black.title"> {{ poster.gameMeta.black.title + ' ' }} </tspan>
+            <!-- <tspan font-size="40" v-if="poster.gameMeta.white.rating">({{ poster.gameMeta.white.rating + ' FIDE' }}) </tspan> -->
+            <tspan font-size="40"> - </tspan>
+            <!-- <tspan font-weight="600" v-if="poster.gameMeta.black.title"> {{ poster.gameMeta.black.title + ' ' }} </tspan> -->
             <tspan v-if="poster.gameMeta.black.name"> {{ poster.gameMeta.black.name + ' ' }} </tspan>
             <tspan font-size="40" v-if="poster.gameMeta.black.rating">({{ poster.gameMeta.black.rating + ' FIDE' }}) </tspan>
         </text>
 
+       <!--  <text font-size="60" font-family="AdobeClean-Regular, Adobe Clean" x="200" :y="title[1] ? 900 : 700">
+            <tspan font-weight="600" v-if="poster.gameMeta.black.title"> {{ poster.gameMeta.black.title + ' ' }} </tspan>
+            <tspan v-if="poster.gameMeta.black.name"> {{ poster.gameMeta.black.name + ' ' }} </tspan>
+            <tspan font-size="40" v-if="poster.gameMeta.black.rating">({{ poster.gameMeta.black.rating + ' FIDE' }}) </tspan>
+        </text> -->
+
 
 
         <!-- The board (!!!!!)-->
+        <Board/>
+
 
         <!-- The PGN -->
 
         <text font-size="20" font-family="AdobeClean-Regular, Adobe Clean">
-            <tspan v-for="(row, index) in pgnRows" x="200" :y="2700 - (40 * (pgnRows.length - 1 - index))">{{ row }}
+            <tspan v-for="(row, index) in pgnRows" x="200" :y="2900 - (40 * (pgnRows.length - 1 - index))">{{ row }}
             </tspan>
         </text>
 
@@ -46,7 +52,13 @@
 
 <script>
 
+import Board from './Board.vue';
+
 export default {
+
+    components: {
+        Board,
+    }, 
 
     props: {
         poster: {},
