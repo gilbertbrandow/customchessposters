@@ -2,29 +2,26 @@
     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 2000 3000">
 
         <!-- The Title -->
-        <text font-size="150" font-family="AdobeClean-Regular, Adobe Clean">
-            <tspan x="200" y="300">{{ title[0] }}</tspan>
-            <tspan v-if="title[1]" x="200" y="500">{{ title[1] }}</tspan>
+        <text font-size="150" font-family="AdobeClean-Regular, Adobe Clean" text-anchor="middle">
+            <tspan x="1000" y="300">{{ title[0] }}</tspan>
+            <tspan v-if="title[1]" x="1000" y="500">{{ title[1] }}</tspan>
         </text>
 
-        <!-- Where and when -->
-        <text font-size="60" font-family="AdobeClean-Regular, Adobe Clean">
-            <tspan x="200" :y="title[1] ? 625 : 425">{{ poster.gameMeta.where }}</tspan>
-        </text>
-
-        <text font-size="40" font-family="AdobeClean-Regular, Adobe Clean">
-            <tspan text-anchor="end" x="1800" :y="title[1] ? 625 : 425">{{ poster.gameMeta.when }}</tspan>
-        </text>
-
-        <!-- Players name, title and ranking -->
-        <text font-size="60" font-family="AdobeClean-Regular, Adobe Clean" x="200" :y="title[1] ? 800 : 600">
+         <!-- Players name, title and ranking -->
+         <text font-size="70" font-family="AdobeClean-Regular, Adobe Clean" text-anchor="middle" x="1000" :y="title[1] ? 700 : 500" >
             <tspan font-weight="600" v-if="poster.gameMeta.white.title"> {{ poster.gameMeta.white.title + ' ' }} </tspan>
             <tspan v-if="poster.gameMeta.white.name"> {{ poster.gameMeta.white.name + ' ' }} </tspan>
             <!-- <tspan font-size="40" v-if="poster.gameMeta.white.rating">({{ poster.gameMeta.white.rating + ' FIDE' }}) </tspan> -->
             <tspan font-size="40"> - </tspan>
-            <!-- <tspan font-weight="600" v-if="poster.gameMeta.black.title"> {{ poster.gameMeta.black.title + ' ' }} </tspan> -->
+            <tspan font-weight="600" v-if="poster.gameMeta.black.title"> {{ poster.gameMeta.black.title + ' ' }} </tspan>
             <tspan v-if="poster.gameMeta.black.name"> {{ poster.gameMeta.black.name + ' ' }} </tspan>
-            <tspan font-size="40" v-if="poster.gameMeta.black.rating">({{ poster.gameMeta.black.rating + ' FIDE' }}) </tspan>
+        <!--<tspan font-size="40" v-if="poster.gameMeta.black.rating">({{ poster.gameMeta.black.rating + ' FIDE' }}) </tspan> -->
+        </text>
+
+        <!-- Where and when -->
+        <text font-size="40" font-family="AdobeClean-Regular, Adobe Clean"  text-anchor="middle" x="1000" :y="title[1] ? 800 : 600">
+            <tspan>{{ poster.gameMeta.where }}</tspan>
+            <tspan>{{ poster.gameMeta.when }}</tspan>
         </text>
 
        <!--  <text font-size="60" font-family="AdobeClean-Regular, Adobe Clean" x="200" :y="title[1] ? 900 : 700">
@@ -36,7 +33,7 @@
 
 
         <!-- The board (!!!!!)-->
-        <Board/>
+        <Board :y="2900 - (40 * (pgnRows.length)) - 50 - 1590.381"/>
 
 
         <!-- The PGN -->
