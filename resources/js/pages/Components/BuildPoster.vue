@@ -41,7 +41,8 @@
 
 
                             <div v-if="!posterBuilder.announcement" class="message">
-                                <div @click="posterBuilder.announcement = true"><Icon name="close" />
+                                <div @click="posterBuilder.announcement = true">
+                                    <Icon name="close" />
                                 </div>
                                 <h4>Don't sweat it if you feel unsure</h4>
                                 <p>You can always come back to this section down the road and jump between steps to make
@@ -88,7 +89,8 @@
                                             </div>
 
                                             <div v-if="!(this.$data.chessGame.turn() == 'w' && this.$data.chessGame._moveNumber == 1)"
-                                                class="link-arrow is--low-op" @click="undoMove()">Undo Last Move <Icon name="undo"/>
+                                                class="link-arrow is--low-op" @click="undoMove()">Undo Last Move
+                                                <Icon name="undo" />
                                             </div>
                                         </div>
 
@@ -96,7 +98,8 @@
                                             posterBuilder.manualMove.valid ? 'Do' : 'Did'
                                         }} you mean
                                             <span v-for="(suggestion, index) in posterBuilder.manualMove.suggestions">
-                                                <span role="button" @click="posterBuilder.manualMove.pgn = suggestion; makeMove(true)"
+                                                <span role="button"
+                                                    @click="posterBuilder.manualMove.pgn = suggestion; makeMove(true)"
                                                     v-text="suggestion" class="suggestion"></span>
                                                 <span v-if="index + 1 != posterBuilder.manualMove.suggestions.length"
                                                     v-text="(index + 2 == posterBuilder.manualMove.suggestions.length) ? ' or ' : ', '"></span>
@@ -158,8 +161,9 @@
 
                                 <h4>You need to make some moves!</h4>
                                 <p>In order to be able to choose a position for your poster, you need to insert some
-                                    moves in the previous step. If you are unsure of how to do that, you can always load a game from our  <a
-                                        href="/game-collection" class="text__link">Game Collection</a></p>
+                                    moves in the previous step. If you are unsure of how to do that, you can always load
+                                    a game from our <a href="/game-collection" class="text__link">Game Collection</a>
+                                </p>
 
                             </div>
                         </div>
@@ -170,20 +174,22 @@
                             <div class="field__wrp">
                                 <label for="gameTitle" class="field__label">Title</label>
                                 <div v-if="!posterBuilder.titleValid" class="field__error">Title is too long</div>
-                                <input v-model="poster.gameMeta.title" class="field" :class="{ 'is--error': !posterBuilder.titleValid }" name="gameTitle" id="gameTitle"
+                                <input v-model="poster.gameMeta.title" class="field"
+                                    :class="{ 'is--error': !posterBuilder.titleValid }" name="gameTitle" id="gameTitle"
                                     placeholder="Lorem ipsum dolor set ami" />
                             </div>
+
                             <div class="row is--player-input is--margin-top">
                                 <div class="field__wrp">
                                     <label for="whitePlayer" class="field__label">White player</label>
-                                    <input maxlength="45" v-model="poster.gameMeta.white.name" class="field" name="whitePlayer"
-                                        id="whitePlayer" placeholder="Carlsen, Magnus" />
+                                    <input maxlength="45" v-model="poster.gameMeta.white.name" class="field"
+                                        name="whitePlayer" id="whitePlayer" placeholder="Carlsen, Magnus" />
                                 </div>
 
                                 <div class="field__wrp">
                                     <label for="whiteRating" class="field__label">Rating</label>
-                                    <input v-model="poster.gameMeta.white.rating" maxlength="4" class="field" name="whiteRating"
-                                        id="whiteRating" type="number" placeholder="2126" />
+                                    <input v-model="poster.gameMeta.white.rating" maxlength="4" class="field"
+                                        name="whiteRating" id="whiteRating" type="number" placeholder="2126" />
                                 </div>
 
                                 <div class="field__wrp">
@@ -209,8 +215,8 @@
                                 <div class="field__wrp">
                                     <label for="blackPlayer" class="field__label">Black player</label>
                                     <div v-if="false" class="field__error">Title not valid</div>
-                                    <input maxlength="45" v-model="poster.gameMeta.black.name" class="field" name="gameTitle"
-                                        id="gameTitle" placeholder="Abdusattorov, Nodirbek" />
+                                    <input maxlength="45" v-model="poster.gameMeta.black.name" class="field"
+                                        name="gameTitle" id="gameTitle" placeholder="Abdusattorov, Nodirbek" />
                                 </div>
 
                                 <div class="field__wrp">
@@ -238,19 +244,16 @@
 
                                 </div>
                             </div>
-
                             <div class="row is--margin-top">
                                 <div class="field__wrp">
-                                    <label for="gameTitle" class="field__label">Where</label>
-                                    <div v-if="false" class="field__error">Not valid string</div>
-                                    <input maxlength="25" v-model="poster.gameMeta.where" class="field" name="gameTitle" id="gameTitle"
-                                        placeholder="Wijk aan Zee, Netherlands" />
+                                    <label for="gameWhere" class="field__label">Where</label>
+                                    <input maxlength="25" v-model="poster.gameMeta.where" class="field" name="gameTitle"
+                                        id="gameWhere" placeholder="Wijk aan Zee, Netherlands" />
                                 </div>
                                 <div class="field__wrp">
-                                    <label for="gameTitle" class="field__label">When</label>
-                                    <div v-if="false" class="field__error">Not valid string</div>
-                                    <input maxlength="40" v-model="poster.gameMeta.when" class="field" name="gameTitle" id="gameTitle"
-                                        placeholder="Tata Steel, January 2023. Round 3" />
+                                    <label for="gameWhen" class="field__label">When</label>
+                                    <input maxlength="40" v-model="poster.gameMeta.when" class="field" name="gameTitle"
+                                        id="gameWhen" placeholder="Tata Steel, January 2023. Round 3" />
                                 </div>
                             </div>
                         </div>
@@ -262,14 +265,17 @@
                     <div class="module__navigation">
                         <div ref="buttonWrapper" class="module__buttons">
                             <button v-if="this.$data.posterBuilder.currStep != 0" class="link-arrow is--low-op"
-                                @click="changeStep(this.$data.posterBuilder.currStep - 1)">Go back <Icon name="arrow-back"/></button>
+                                @click="changeStep(this.$data.posterBuilder.currStep - 1)">Go back
+                                <Icon name="arrow-back" />
+                            </button>
 
                             <button v-if="this.$data.posterBuilder.currStep != 4" class="button is--black"
                                 @click="changeStep(this.$data.posterBuilder.currStep + 1)">Next Step
-                                <Icon name="arrow-right"/>
+                                <Icon name="arrow-right" />
                             </button>
                             <button v-if="this.$data.posterBuilder.currStep == 4" class="button is--black">Add to cart
-                                <Icon name="cart"/></button>
+                                <Icon name="cart" />
+                            </button>
 
                         </div>
                         <div class="module__progress-wrp">
@@ -301,8 +307,12 @@
 
                 <div class="poster">
                     <div class="poster__buttons-wrp">
-                        <div class="button">Full screen<Icon name="fullScreen"/></div>
-                        <div class="button"> Save this design <Icon name="bookmark"/></div>
+                        <div class="button">Full screen
+                            <Icon name="fullScreen" />
+                        </div>
+                        <div class="button"> Save this design
+                            <Icon name="bookmark" />
+                        </div>
                     </div>
                     <div class="poster__svg-wrp">
                         <NewWavesPoster v-if="poster.themeId == 0" :poster="poster" />
@@ -355,22 +365,22 @@ export default {
             poster: {
                 themeId: 1,
                 orientation: "White",
-                gamePgn: "",
+                gamePgn: "1. d4 Nf6 2. c4 e6 3. Nf3 d5 4. Nc3 dxc4 { D37 Queen's Gambit Declined: Three Knights, Vienna Variation } 5. e4 Bb4 6. Bxc4 Nxe4 7. O-O Nf6 8. Qa4+ Nc6 9. Ne5 Bd6 10. Nxc6 bxc6 11. Qxc6+ Bd7 12. Qf3 O-O 13. Bg5 h6 14. Bh4 Rb8 15. b3 Rb6 16. Ne4 Be7 17. Nxf6+ Bxf6 18. Bxf6 Qxf6 19. Qxf6 gxf6 20. d5 e5 21. Rfc1 a5 22. Be2 c6 23. dxc6 Rxc6 24. Rxc6 Bxc6 25. Rc1 Bd7 26. Rc5 Ra8 27. f4 exf4 28. Bf3 Ra6 29. Kf2 Be6 30. Be2 Ra8 31. Bf3 Ra6 32. Bb7 Ra7 33. Be4 Kg7 34. Kf3 a4 35. Bc2 axb3 36. Bxb3 Rb7 37. Kxf4 Bxb3 38. axb3 Rxb3 39. g3 Rb4+ 40. Kf3 Rb3+ 41. Kf4 Rb4+ 42. Kf3 Rb3+ 43. Kf4 { The game is a draw. } 1/2-1/2",
                 diagramPosition: 0,
                 gameMeta: {
-                    title: "",
+                    title: "Lorem ipsum dolor sit amet, consectetur adi",
                     white: {
-                        name: "",
-                        elo: "",
-                        title: "",
+                        name: "Magnus Carlsen",
+                        elo: "2881",
+                        title: "GM",
                     },
                     black: {
-                        name: "",
-                        elo: "",
-                        title: "",
+                        name: "Fabiano Caruana",
+                        elo: "2815",
+                        title: "GM",
                     },
-                    when: "",
-                    where: "",
+                    when: "Tata Steel Chess, January 2014. Round 3",
+                    where: "Wijk aan Zee, Netherlands",
                 },
             },
 
@@ -513,10 +523,10 @@ export default {
             if (suggestions && suggestions.length < 5) return suggestions;
 
             //Try removing the last char and recalling the function
-            if(input.length > 1) {
-                let shortened = input.substring(0,input.length-1);
+            if (input.length > 1) {
+                let shortened = input.substring(0, input.length - 1);
                 let validStart = this.findMovesThatStartWith(moves, shortened)
-                if(validStart){
+                if (validStart) {
                     return validStart;
                 } else {
                     this.findSuggestions(moves, shortened);
