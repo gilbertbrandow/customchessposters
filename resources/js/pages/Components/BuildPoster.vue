@@ -63,7 +63,7 @@
                                     </div>
                                     <div class="tab__item" :class="[posterBuilder.currTab == 1 ? 'is--active' : '']"
                                         @click="posterBuilder.currTab = 1">
-                                        <h4>Load PGN</h4>
+                                        <h4>Paste PGN</h4>
                                     </div>
                                     <div class="tab__item" :class="[posterBuilder.currTab == 2 ? 'is--active' : '']"
                                         @click="posterBuilder.currTab = 2">
@@ -111,18 +111,18 @@
                                 <div class="tab" v-if="posterBuilder.currTab == 1">
 
                                     <div class="field__wrp">
-                                        <label for="UploadPgn" class="field__label">Paste your PGN below</label>
+                                        <label for="pastePgn" class="field__label">Paste your PGN below</label>
                                         <textarea v-model="posterBuilder.pastePgn.moves" class="field"
                                             :class="{ 'is--error': !posterBuilder.pastePgn.valid, 'is--success': posterBuilder.pastePgn.success }"
                                             name="password" placeholder="1.e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. b4..."
-                                            id="gamePgn"
+                                            id="pastePgn"
                                             @input="posterBuilder.pastePgn.success = false, posterBuilder.pastePgn.valid = true">
                                 </textarea>
                                         <div v-if="!posterBuilder.pastePgn.valid" class="field__error">Invalid PGN</div>
                                         <div v-if="posterBuilder.pastePgn.success" class="field__error is--success">PGN
                                             loaded successfully!</div>
                                     </div>
-                                    <div class="button is--black" @click="loadPgn(posterBuilder.pastePgn.moves);">
+                                    <div class="button is--black" @click="pastePgn(posterBuilder.pastePgn.moves);">
                                         Upload </div>
                                 </div>
 
@@ -214,7 +214,6 @@
                             <div class="row is--player-input is--margin-top">
                                 <div class="field__wrp">
                                     <label for="blackPlayer" class="field__label">Black player</label>
-                                    <div v-if="false" class="field__error">Title not valid</div>
                                     <input maxlength="45" v-model="poster.gameMeta.black.name" class="field"
                                         name="gameTitle" id="gameTitle" placeholder="Abdusattorov, Nodirbek" />
                                 </div>
@@ -365,7 +364,7 @@ export default {
             poster: {
                 themeId: 1,
                 orientation: "White",
-                gamePgn: "1. d4 Nf6 2. c4 e6 3. Nf3 d5 4. Nc3 dxc4 { D37 Queen's Gambit Declined: Three Knights, Vienna Variation } 5. e4 Bb4 6. Bxc4 Nxe4 7. O-O Nf6 8. Qa4+ Nc6 9. Ne5 Bd6 10. Nxc6 bxc6 11. Qxc6+ Bd7 12. Qf3 O-O 13. Bg5 h6 14. Bh4 Rb8 15. b3 Rb6 16. Ne4 Be7 17. Nxf6+ Bxf6 18. Bxf6 Qxf6 19. Qxf6 gxf6 20. d5 e5 21. Rfc1 a5 22. Be2 c6 23. dxc6 Rxc6 24. Rxc6 Bxc6 25. Rc1 Bd7 26. Rc5 Ra8 27. f4 exf4 28. Bf3 Ra6 29. Kf2 Be6 30. Be2 Ra8 31. Bf3 Ra6 32. Bb7 Ra7 33. Be4 Kg7 34. Kf3 a4 35. Bc2 axb3 36. Bxb3 Rb7 37. Kxf4 Bxb3 38. axb3 Rxb3 39. g3 Rb4+ 40. Kf3 Rb3+ 41. Kf4 Rb4+ 42. Kf3 Rb3+ 43. Kf4 { The game is a draw. } 1/2-1/2",
+                gamePgn: "1. d4 Nf6 2. c4 e6 3. Nf3 d5 4. Nc3 dxc4 5. e4 Bb4 6. Bxc4 Nxe4 7. O-O Nf6 8. Qa4+ Nc6 9. Ne5 Bd6 10. Nxc6 bxc6 11. Qxc6+ Bd7 12. Qf3 O-O 13. Bg5 h6 14. Bh4 Rb8 15. b3 Rb6 16. Ne4 Be7 17. Nxf6+ Bxf6 18. Bxf6 Qxf6 19. Qxf6 gxf6 20. d5 e5 21. Rfc1 a5 22. Be2 c6 23. dxc6 Rxc6 24. Rxc6 Bxc6 25. Rc1 Bd7 26. Rc5 Ra8 27. f4 exf4 28. Bf3 Ra6 29. Kf2 Be6 30. Be2 Ra8 31. Bf3 Ra6 32. Bb7 Ra7 33. Be4 Kg7 34. Kf3 a4 35. Bc2 axb3 36. Bxb3 Rb7 37. Kxf4 Bxb3 38. axb3 Rxb3 39. g3 Rb4+ 40. Kf3 Rb3+ 41. Kf4 Rb4+ 42. Kf3 Rb3+ 43. Kf4",
                 diagramPosition: 0,
                 gameMeta: {
                     title: "Lorem ipsum dolor sit amet, consectetur adi",
@@ -615,7 +614,7 @@ export default {
             return;
         },
 
-        loadPgn(pgn) {
+        pastePgn(pgn) {
 
             try {
                 this.$data.chessGame.loadPgn(pgn);
