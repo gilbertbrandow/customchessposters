@@ -21,25 +21,22 @@
         <!-- Where and when -->
         <text font-size="40" font-family="AdobeClean-Regular, Adobe Clean"  text-anchor="middle" x="1000" :y="title[1] ? 800 : 600">
             <tspan>{{ poster.gameMeta.where }}</tspan>
+            <tspan v-if="poster.gameMeta.where && poster.gameMeta.when"> | </tspan>
             <tspan>{{ poster.gameMeta.when }}</tspan>
-        </text>
-
-       <!--  <text font-size="60" font-family="AdobeClean-Regular, Adobe Clean" x="200" :y="title[1] ? 900 : 700">
-            <tspan font-weight="600" v-if="poster.gameMeta.black.title"> {{ poster.gameMeta.black.title + ' ' }} </tspan>
-            <tspan v-if="poster.gameMeta.black.name"> {{ poster.gameMeta.black.name + ' ' }} </tspan>
-            <tspan font-size="40" v-if="poster.gameMeta.black.rating">({{ poster.gameMeta.black.rating + ' FIDE' }}) </tspan>
-        </text> -->
+        </text> 
 
 
 
-        <!-- The board (!!!!!)-->
-        <Board :y="2900 - (40 * (pgnRows.length)) - 50 - 1590.381"/>
+        <!-- The board (!!!!!) set anchor to middle, calculate by getting bottom of when and where (800/600) and top of first row 2900 - (40 * (pgnRows.length - 1) divide the difference by 2 and add 800-->
+        
+        
+        <Board :y="((2900 - (40 * (pgnRows.length)) - (title[1] ? 800 : 600)) / 2) + (title[1] ? 800 : 600) - 800"/>
 
 
         <!-- The PGN -->
 
-        <text font-size="20" font-family="AdobeClean-Regular, Adobe Clean">
-            <tspan v-for="(row, index) in pgnRows" x="200" :y="2900 - (40 * (pgnRows.length - 1 - index))">{{ row }}
+        <text font-size="20"  text-anchor="middle" font-family="AdobeClean-Regular, Adobe Clean">
+            <tspan v-for="(row, index) in pgnRows" x="1000" :y="2900 - (40 * (pgnRows.length - 1 - index))">{{ row }}
             </tspan>
         </text>
 
