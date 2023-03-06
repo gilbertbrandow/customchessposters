@@ -153,8 +153,8 @@
                             <div class="poster__moves">
                                 <div v-for="(move, index) in pgnArray" :key="index">
                                     <span v-if="index % 2 == 0" v-text="(index / 2 + 1) + '. '"></span>
-                                    <span class="move" :class="{ 'is--active': index == poster.diagramPosition }"
-                                        v-text="move" @click="poster.diagramPosition = index"></span>
+                                    <span class="move" :class="{ 'is--active': index + 1 == poster.diagramPosition }"
+                                        v-text="move" @click="poster.diagramPosition = index + 1"></span>
                                 </div>
                             </div>
                             <div v-if="!pgnArray.length" class="message">
@@ -364,7 +364,7 @@ export default {
             poster: {
                 themeId: 1,
                 orientation: "w",
-                gamePgn: "1. d4 Nf6 2. c4 e6 3. Nf3 d5 4. Nc3 dxc4 5. e4 Bb4 6. Bxc4 Nxe4 7. O-O Nf6 8. Qa4+ Nc6 9. Ne5 Bd6 10. Nxc6 bxc6 11. Qxc6+ Bd7 12. Qf3 O-O 13. Bg5 h6 14. Bh4 Rb8 15. b3 Rb6 16. Ne4 Be7 17. Nxf6+ Bxf6 18. Bxf6 Qxf6 19. Qxf6 gxf6 20. d5 e5 21. Rfc1 a5 22. Be2 c6 23. dxc6 Rxc6 24. Rxc6 Bxc6 25. Rc1 Bd7 26. Rc5 Ra8 27. f4 exf4 28. Bf3 Ra6 29. Kf2 Be6 30. Be2 Ra8 31. Bf3 Ra6 32. Bb7 Ra7 33. Be4 Kg7 34. Kf3 a4 35. Bc2 axb3 36. Bxb3 Rb7 37. Kxf4 Bxb3 38. axb3 Rxb3 39. g3 Rb4+ 40. Kf3 Rb3+ 41. Kf4 Rb4+ 42. Kf3 Rb3+ 43. Kf4",
+                gamePgn: "",
                 diagramPosition: 0,
                 gameMeta: {
                     title: "Lorem ipsum dolor sit amet, consectetur adi",
@@ -461,6 +461,8 @@ export default {
                 if (k > i) gameArray.push(string.substring(i, k));
                 i = k;
             }
+
+            this.$data.poster.diagramPosition = gameArray.length;
 
             return gameArray;
         }
@@ -624,7 +626,7 @@ export default {
             }
 
             this.$data.posterBuilder.pastePgn.success = true;
-            this.$data.poster.gamePgn = this.$data.chessGame.loadPgn(pgn);
+            this.$data.poster.gamePgn = this.$data.chessGame.pgn();
 
         },
 
@@ -645,12 +647,6 @@ export default {
                 ))
         },
 
-    },
-
-    watch: {
-        'poster.gamePgn'() {
-            this.$data.poster.diagramPosition = this.pgnArray.length - 1;
-        }
     },
 
     components: {
