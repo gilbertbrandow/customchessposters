@@ -114,10 +114,7 @@
                                             <template v-for="(move, index) in pgnArray" :key="index">
                                                 <div v-if="pgnArray.length < 5 || pgnArray.length - index < 5">
                                                     <span v-if="index % 2 == 0" v-text="(index / 2 + 1) + '. '"></span>
-                                                    <span class="move"
-                                                        :class="{ 'is--active': index + 1 == poster.diagramPosition }"
-                                                        v-text="move"
-                                                        @click="poster.diagramPosition = index + 1"></span>
+                                                    <span class="move" v-text="move"></span>
                                                 </div>
                                             </template>
                                         </div>
