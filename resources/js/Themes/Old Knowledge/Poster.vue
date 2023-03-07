@@ -31,12 +31,9 @@
         </text>
 
 
-
-
-
         <!-- The board -->
         <svg width="1645" height="1671" viewBox="0 0 1645 1671"  x="200"
-            :y="((2900 - (40 * (pgnRows.length)) - (title[1] ? 800 : 600)) / 2) + (title[1] ? 800 : 600) - 815">
+            :y="((2900 - (40 * (pgnRows.length)) - (title[1] ? 800 : 600)) / 2) + (title[1] ? 800 : 600) - 800">
             
             <g id="frame" transform="translate(-436 -972)">
                 <path id="Path_948" data-name="Path 948"
@@ -55,17 +52,16 @@
                 <tspan v-for="index in 8" :x="45 + (200 * index) - 200" y="1665" >{{ poster.orientation == "w" ? String.fromCharCode(96 + index) : String.fromCharCode(96 + 9 - index) }}</tspan>
             </text>
 
-            <!-- The baord itself with pieces -->
-            <Game :diagramPosition="this.$props.poster.diagramPosition"/>
+            <!-- The board itself with pieces -->
+            <Game ref="Game" :diagramPosition="this.$props.poster.diagramPosition"/>
 
         </svg>
 
 
         <!-- The PGN -->
-
         <text font-size="20" text-anchor="middle" font-family="AdobeClean-Regular, Adobe Clean">
             <tspan v-for="(row, index) in pgnRows" x="1000"
-                :y="((2900 - (40 * (pgnRows.length)) - (title[1] ? 800 : 600)) / 2) + (title[1] ? 800 : 600) + 920 + (40 * (pgnRows.length - 1 - index))">
+                :y="2900 - (40 * (pgnRows.length - 1 - index))">
                 {{ row }}
             </tspan>
         </text>
