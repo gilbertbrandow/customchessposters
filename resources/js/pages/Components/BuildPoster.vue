@@ -315,7 +315,7 @@
                     </div>
                     <div class="poster__svg-wrp">
                         <NewWavesPoster v-if="poster.themeId == 0" :poster="poster" />
-                        <OldKnowledgePoster v-if="poster.themeId == 1" :poster="poster" />
+                        <OldKnowledgePoster ref="Poster" v-if="poster.themeId == 1" :poster="poster" />
                     </div>
                     <img class="poster__environment" :src="this.$data.posterBuilder.currEnvironment" />
                 </div>
@@ -609,6 +609,19 @@ export default {
         },
 
         undoMove() {
+
+            //Visually make move on diagram
+            var history = this.chessGame.history({ "verbose": true });
+            var lastMove = history[history.length - 1];
+            
+            if (lastMove.san == "O-O" && lastMove.color == "w") this.$refs.Poster.$refs.Game.movePiece("f1", "h1", history.length - 1);
+            else if (lastMove.san == "O-O" && lastMove.color == "b") this.$refs.Poster.$refs.Game.movePiece("f8", "h8", history.length - 1);
+            else if (lastMove.san == "O-O-O" && lastMove.color == "w") this.$refs.Poster.$refs.Game.movePiece("d1", "a1", history.length - 1);
+            else if (lastMove.san == "O-O-O" && lastMove.color == "b") this.$refs.Poster.$refs.Game.movePiece("d8", "a8", history.length - 1);
+            this.$refs.Poster.$refs.Game.movePiece(lastMove.to, lastMove.from, history.length - 1);
+            this.$refs.Poster.$refs.Game.boardPosition--;
+
+            //Undo move objects
             this.$data.chessGame.undo();
             this.$data.poster.gamePgn = this.$data.chessGame.pgn();
             this.$data.posterBuilder.manualMove.pgn = "";
@@ -618,6 +631,8 @@ export default {
 
         pastePgn(pgn) {
 
+            //TODO: Reset board visually if new game is pasted
+
             try {
                 this.$data.chessGame.loadPgn(pgn);
             } catch {
@@ -626,12 +641,16 @@ export default {
             }
 
             this.$data.posterBuilder.pastePgn.success = true;
+
+            //TODO: Remove all comments and headers before parsing into poster object
             this.$data.poster.gamePgn = this.$data.chessGame.pgn();
 
         },
 
         uploadGameFromLichess(url) {
 
+            //TODO: Reset board visually if new game is pasted
+            
             let gameId = url.replace('https://lichess.org/', '');
 
             axios

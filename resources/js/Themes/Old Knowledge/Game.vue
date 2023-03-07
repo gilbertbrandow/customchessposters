@@ -32,7 +32,9 @@ export default {
     data() {
         return {
 
-            //Each piece has a unique key and consists of first a value indicating when it was captured and last known position
+            //Each piece has a unique key and consists of first a value indicating which move it was captured, 0 if not captured, and last known position. 
+            //TODO: Add piece type to array to handle promotion
+
             pieces: {
 
 
@@ -81,6 +83,10 @@ export default {
     methods: {
         movePiece(from, to, moveNumber) {
 
+            //TODO: Need to move logic for castling to this function
+            
+            //TODO: Handle promotion of piece
+
             for (var piece in this.pieces) {
 
                 //Remove or put back captured piece
@@ -89,7 +95,7 @@ export default {
                     if(!this.pieces[piece][0]) this.pieces[piece][0] = moveNumber;
                     continue;
 
-                } else if (this.pieces[piece][1] == from && this.boardPosition > this.diagramPosition && this.pieces[piece][0] == moveNumber) {
+                } else if (this.pieces[piece][1] == from && this.boardPosition >= this.diagramPosition && this.pieces[piece][0] == moveNumber && moveNumber != 0) {
                     this.pieces[piece][0] = 0;
                     continue;
                 }
@@ -140,6 +146,8 @@ export default {
                 }
 
             }
+
+
 
         }
 
