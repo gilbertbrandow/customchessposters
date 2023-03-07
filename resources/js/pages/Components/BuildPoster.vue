@@ -106,6 +106,23 @@
                                             </span>?
                                         </div>
                                     </div>
+
+                                    <div v-if="pgnArray.length != 0">
+                                        <strong>Previuos moves: </strong>
+                                        <div style="display: flex; column-gap: 0.5em;">
+                                            <div v-if="pgnArray.length >= 5" style="margin-right: -0.25em;">...</div>
+                                            <template v-for="(move, index) in pgnArray" :key="index">
+                                                <div v-if="pgnArray.length < 5 || pgnArray.length - index < 5">
+                                                    <span v-if="index % 2 == 0" v-text="(index / 2 + 1) + '. '"></span>
+                                                    <span class="move"
+                                                        :class="{ 'is--active': index + 1 == poster.diagramPosition }"
+                                                        v-text="move"
+                                                        @click="poster.diagramPosition = index + 1"></span>
+                                                </div>
+                                            </template>
+                                        </div>
+                                    </div>
+
                                 </div>
 
                                 <div class="tab" v-if="posterBuilder.currTab == 1">
@@ -613,7 +630,7 @@ export default {
             //Visually make move on diagram
             var history = this.chessGame.history({ "verbose": true });
             var lastMove = history[history.length - 1];
-            
+
             if (lastMove.san == "O-O" && lastMove.color == "w") this.$refs.Poster.$refs.Game.movePiece("f1", "h1", history.length - 1);
             else if (lastMove.san == "O-O" && lastMove.color == "b") this.$refs.Poster.$refs.Game.movePiece("f8", "h8", history.length - 1);
             else if (lastMove.san == "O-O-O" && lastMove.color == "w") this.$refs.Poster.$refs.Game.movePiece("d1", "a1", history.length - 1);
@@ -650,7 +667,7 @@ export default {
         uploadGameFromLichess(url) {
 
             //TODO: Reset board visually if new game is pasted
-            
+
             let gameId = url.replace('https://lichess.org/', '');
 
             axios
