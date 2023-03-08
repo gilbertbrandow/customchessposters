@@ -660,6 +660,7 @@ export default {
 
             }
 
+            this.$refs.Poster.$refs.Game.resetBoard();
             this.$data.poster.gamePgn = pgnStrict;
 
         },
@@ -674,6 +675,7 @@ export default {
                 .get('https://lichess.org/game/export/' + gameId, { params: { tags: false, clocks: false, evals: false, opening: false } })
                 .then(response => (
                     this.$data.chessGame.loadPgn(response.data),
+                    this.$refs.Poster.$refs.Game.resetBoard(),
                     this.$data.poster.gamePgn = this.$data.chessGame.pgn(),
                     this.$data.posterBuilder.uploadLichess.success = true
                 ))
