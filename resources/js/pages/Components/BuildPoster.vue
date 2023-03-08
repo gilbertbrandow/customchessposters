@@ -51,7 +51,8 @@
                         </div>
                         <div :class="[posterBuilder.currStep == 1 ? 'is--active' : '']" class="module__step">
                             <h3>2. The Moves</h3>
-                            <p>Insert the moves of the game. <a v-if="poster.gamePgn" class="text__link" @click="resetBoard()">Reset game</a></p>
+                            <p>Insert the moves of the game. <a v-if="poster.gamePgn" class="text__link"
+                                    @click="resetBoard()">Reset game</a></p>
 
                             <div class="tabs">
                                 <div class="tabs__header">
@@ -639,10 +640,12 @@ export default {
         },
 
         resetBoard() {
-            this.$refs.Poster.$refs.Game.startingPosition(); 
+
+            this.$refs.Poster.$refs.Game.startingPosition();
             this.$data.chessGame.reset();
             this.$data.poster.gamePgn = "";
             this.$data.poster.diagramPosition = "0";
+
         },
 
         pastePgn(pgn) {
@@ -655,25 +658,27 @@ export default {
             }
 
             this.$data.posterBuilder.pastePgn.success = true;
-            this.resetBoard();
+
+            this.resetBoard()
+
+            this.$data.chessGame.loadPgn(pgn);
 
             let history = this.$data.chessGame.history();
             let pgnStrict = "";
 
-            //Loop through history and concatinate to string
-            for(let i = 0; i < history.length; i++){
+            //Loop through history of only moves and concatinate to string
+            for (let i = 0; i < history.length; i++) {
 
-                if(i % 2 == 0) pgnStrict += i + '. '
+                if (i % 2 == 0) pgnStrict += i + '. '
                 pgnStrict += history[i] + ' ';
 
             }
+
             this.$data.poster.gamePgn = pgnStrict;
 
         },
 
         uploadGameFromLichess(url) {
-
-            //TODO: Reset board visually if new game is pasted
 
             let gameId = url.replace('https://lichess.org/', '');
 
@@ -699,7 +704,6 @@ export default {
     },
 
     mounted() {
-        this.changeStep(this.$data.posterBuilder.currStep)
         this.setTheme(this.$data.poster.themeId)
     }
 }
