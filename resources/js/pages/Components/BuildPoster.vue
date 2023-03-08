@@ -2,9 +2,7 @@
     <section>
         <div class="container">
             <div class="poster__builder">
-
                 <div class="poster__module">
-
                     <h2>Create Your Custom Poster</h2>
                     <div class="module__mask" ref="mask">
                         <div :class="[posterBuilder.currStep == 0 ? 'is--active' : '']" class="module__step">
@@ -260,7 +258,7 @@
                             <div class="row is--margin-top">
                                 <div class="field__wrp">
                                     <label for="gameWhere" class="field__label">Where</label>
-                                    <input maxlength="25" v-model="poster.gameMeta.where" class="field" name="gameTitle"
+                                    <input maxlength="40" v-model="poster.gameMeta.where" class="field" name="gameTitle"
                                         id="gameWhere" placeholder="Wijk aan Zee, Netherlands" />
                                 </div>
                                 <div class="field__wrp">
@@ -511,6 +509,8 @@ export default {
 
             if (input.length > 10) return [];
 
+            //TODO: Make case for missing piece specification
+
             //strip input of all non compatible characters, except lowercased letters who capitalized correlate to pieces
             let regEx = /[^abcdefghABCDEFGH12345678KQBNRkqbnrx+#O\-]/g;
             input = input.replace(regEx, '');
@@ -624,18 +624,13 @@ export default {
 
         undoMove() {
 
-            //Visually make move on diagram
+            //Visually make move on diagram, needs to be done first so full latest history can be retrieved
             var history = this.chessGame.history({ "verbose": true });
             var lastMove = history[history.length - 1];
-
-            if (lastMove.san == "O-O" && lastMove.color == "w") this.$refs.Poster.$refs.Game.movePiece("f1", "h1", history.length - 1);
-            else if (lastMove.san == "O-O" && lastMove.color == "b") this.$refs.Poster.$refs.Game.movePiece("f8", "h8", history.length - 1);
-            else if (lastMove.san == "O-O-O" && lastMove.color == "w") this.$refs.Poster.$refs.Game.movePiece("d1", "a1", history.length - 1);
-            else if (lastMove.san == "O-O-O" && lastMove.color == "b") this.$refs.Poster.$refs.Game.movePiece("d8", "a8", history.length - 1);
-            this.$refs.Poster.$refs.Game.movePiece(lastMove.to, lastMove.from, history.length - 1);
+            this.$refs.Poster.$refs.Game.movePiece(lastMove.from, lastMove.to, history.length - 1, lastMove.san, 0);
             this.$refs.Poster.$refs.Game.boardPosition--;
 
-            //Undo move objects
+            //Undo move
             this.$data.chessGame.undo();
             this.$data.poster.gamePgn = this.$data.chessGame.pgn();
             this.$data.posterBuilder.manualMove.pgn = "";
@@ -644,8 +639,6 @@ export default {
         },
 
         pastePgn(pgn) {
-
-            //TODO: Reset board visually if new game is pasted
 
             try {
                 this.$data.chessGame.loadPgn(pgn);
@@ -656,8 +649,18 @@ export default {
 
             this.$data.posterBuilder.pastePgn.success = true;
 
-            //TODO: Remove all comments and headers before parsing into poster object
-            this.$data.poster.gamePgn = this.$data.chessGame.pgn();
+            let history = this.$data.chessGame.history();
+            let pgnStrict = "";
+
+            //Loop through history and concatinate to string
+            for(let i = 0; i < history.length; i++){
+
+                if(i % 2 == 0) pgnStrict += i + '. '
+                pgnStrict += history[i] + ' ';
+
+            }
+
+            this.$data.poster.gamePgn = pgnStrict;
 
         },
 
