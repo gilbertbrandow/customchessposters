@@ -51,7 +51,7 @@
                         </div>
                         <div :class="[posterBuilder.currStep == 1 ? 'is--active' : '']" class="module__step">
                             <h3>2. The Moves</h3>
-                            <p>Insert the moves of the game</p>
+                            <p>Insert the moves of the game. <a v-if="poster.gamePgn" class="text__link" @click="resetBoard()">Reset game</a></p>
 
                             <div class="tabs">
                                 <div class="tabs__header">
@@ -638,6 +638,13 @@ export default {
             return;
         },
 
+        resetBoard() {
+            this.$refs.Poster.$refs.Game.startingPosition(); 
+            this.$data.chessGame.reset();
+            this.$data.poster.gamePgn = "";
+            this.$data.poster.diagramPosition = "0";
+        },
+
         pastePgn(pgn) {
 
             try {
@@ -648,6 +655,7 @@ export default {
             }
 
             this.$data.posterBuilder.pastePgn.success = true;
+            this.resetBoard();
 
             let history = this.$data.chessGame.history();
             let pgnStrict = "";
@@ -659,8 +667,6 @@ export default {
                 pgnStrict += history[i] + ' ';
 
             }
-
-            this.$refs.Poster.$refs.Game.resetBoard();
             this.$data.poster.gamePgn = pgnStrict;
 
         },
@@ -674,8 +680,8 @@ export default {
             axios
                 .get('https://lichess.org/game/export/' + gameId, { params: { tags: false, clocks: false, evals: false, opening: false } })
                 .then(response => (
+                    this.resetBoard(),
                     this.$data.chessGame.loadPgn(response.data),
-                    this.$refs.Poster.$refs.Game.resetBoard(),
                     this.$data.poster.gamePgn = this.$data.chessGame.pgn(),
                     this.$data.posterBuilder.uploadLichess.success = true
                 ))
