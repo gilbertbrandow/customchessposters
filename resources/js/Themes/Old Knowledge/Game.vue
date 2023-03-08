@@ -37,6 +37,8 @@ export default {
     },
 
     methods: {
+
+        //The method to visually move the piece on the board. Direction = 0 || false lets function know to undo the move
         movePiece(from, to, moveNumber, san, direction) {
 
             if (!direction) {
@@ -67,10 +69,11 @@ export default {
                 //Move piece if on move coordinate and not captured
                 if (this.pieces[piece][1] == from && !this.pieces[piece][0]) {
                     this.pieces[piece][1] = to;
+
+                    //Handle promotion of piece
+                    if(san.includes("=")) this.pieces[piece][2] =  (direction) ? this.pieces[piece][2].slice(0, -1) + san[san.indexOf("=") + 1] : this.pieces[piece][2].slice(0, -1) + "p";
                 }
             }
-
-            //TODO: Handle promotion of piece
 
         },
 
