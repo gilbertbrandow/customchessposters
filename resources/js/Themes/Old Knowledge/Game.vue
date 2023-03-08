@@ -3,11 +3,11 @@
 
         <Board />
 
-        <template v-for="(coordinates, piece) in pieces" :key="coordinates">
-            <svg v-if="!coordinates[0]" width="200" height="200" fill="none" viewbox="0 0 200 200"
-                :x="this.$parent.poster.orientation == 'w' ? (coordinates[1].charCodeAt(0) - 97) * 200 : (7 - (coordinates[1].charCodeAt(0) - 97)) * 200"
-                :y="this.$parent.poster.orientation == 'w' ? (8 - Number(coordinates[1][1])) * 200 : (Number(coordinates[1][1]) - 1) * 200">
-                <Pieces :piece="piece.substring(0, 2)" />
+        <template v-for="(value, piece) in pieces" :key="piece">
+            <svg v-if="!value[0]" width="200" height="200" fill="none" viewbox="0 0 200 200"
+                :x="this.$parent.poster.orientation == 'w' ? (value[1].charCodeAt(0) - 97) * 200 : (7 - (value[1].charCodeAt(0) - 97)) * 200"
+                :y="this.$parent.poster.orientation == 'w' ? (8 - Number(value[1][1])) * 200 : (Number(value[1][1]) - 1) * 200">
+                <Pieces :piece="value[2]" />
             </svg>
         </template>
 
@@ -31,51 +31,7 @@ export default {
 
     data() {
         return {
-
-            //Each piece has a unique key and consists of first a value indicating which move it was captured, 0 if not captured, and last known position. 
-            //TODO: Add piece type to array to handle promotion
-
-            pieces: {
-
-
-                //White pieces
-                "wp0": [0, "a2",],
-                "wp1": [0, "b2",],
-                "wp2": [0, "c2",],
-                "wp3": [0, "d2",],
-                "wp4": [0, "e2",],
-                "wp5": [0, "f2",],
-                "wp6": [0, "g2",],
-                "wp7": [0, "h2",],
-                "wR0": [0, "a1",],
-                "wR1": [0, "h1",],
-                "wN0": [0, "b1",],
-                "wN1": [0, "g1",],
-                "wB0": [0, "c1",],
-                "wB1": [0, "f1",],
-                "wQ": [0, "d1",],
-                "wK": [0, "e1",],
-
-                //Black pieces
-                "bp0": [0, "a7",],
-                "bp1": [0, "b7",],
-                "bp2": [0, "c7",],
-                "bp3": [0, "d7",],
-                "bp4": [0, "e7",],
-                "bp5": [0, "f7",],
-                "bp6": [0, "g7",],
-                "bp7": [0, "h7",],
-                "bR0": [0, "a8",],
-                "bR1": [0, "h8",],
-                "bN0": [0, "b8",],
-                "bN1": [0, "g8",],
-                "bB0": [0, "c8"],
-                "bB1": [0, "f8",],
-                "bQ": [0, "d8",],
-                "bK": [0, "e8",],
-
-            },
-
+            pieces: {},
             boardPosition: 0,
         }
     },
@@ -83,13 +39,13 @@ export default {
     methods: {
         movePiece(from, to, moveNumber, san, direction) {
 
-            if(!direction){
+            if (!direction) {
                 let temp = from;
-                from = to; 
+                from = to;
                 to = temp;
             }
 
-            //Handling edge case of castling
+            //Handling castling
             if (san == "O-O" && (from == "e1" || from == "g1")) this.movePiece("h1", "f1", 1, false, direction);
             else if (san == "O-O" && (from == "e8" || from == "g8")) this.movePiece("h8", "f8", 1, false, direction);
             else if (san == "O-O-O" && (from == "e1" || from == "c1")) this.movePiece("a1", "d1", 1, false, direction);
@@ -100,7 +56,7 @@ export default {
                 //Remove or put back captured piece
                 if (this.pieces[piece][1] == to && this.boardPosition < this.diagramPosition) {
 
-                    if(!this.pieces[piece][0]) this.pieces[piece][0] = moveNumber;
+                    if (!this.pieces[piece][0]) this.pieces[piece][0] = moveNumber;
                     continue;
 
                 } else if (this.pieces[piece][1] == from && this.boardPosition >= this.diagramPosition && this.pieces[piece][0] == moveNumber && moveNumber != 0) {
@@ -118,9 +74,49 @@ export default {
 
         },
 
-        resetBoard() {
-            //TODO: Set all pieces to their starting square
-        }
+        startingPosition() {
+
+            const pieces = {
+                //White pieces
+                "wp0": [0, "a2", "wp"],
+                "wp1": [0, "b2", "wp"],
+                "wp2": [0, "c2", "wp"],
+                "wp3": [0, "d2", "wp"],
+                "wp4": [0, "e2", "wp"],
+                "wp5": [0, "f2", "wp"],
+                "wp6": [0, "g2", "wp"],
+                "wp7": [0, "h2", "wp"],
+                "wR0": [0, "a1", "wR"],
+                "wR1": [0, "h1", "wR"],
+                "wN0": [0, "b1", "wN"],
+                "wN1": [0, "g1", "wN"],
+                "wB0": [0, "c1", "wB"],
+                "wB1": [0, "f1", "wB"],
+                "wQ": [0, "d1", "wQ"],
+                "wK": [0, "e1", "wK"],
+
+                //Black pieces
+                "bp0": [0, "a7", "bp"],
+                "bp1": [0, "b7", "bp"],
+                "bp2": [0, "c7", "bp"],
+                "bp3": [0, "d7", "bp"],
+                "bp4": [0, "e7", "bp"],
+                "bp5": [0, "f7", "bp"],
+                "bp6": [0, "g7", "bp"],
+                "bp7": [0, "h7", "bp"],
+                "bR0": [0, "a8", "bR"],
+                "bR1": [0, "h8", "bR"],
+                "bN0": [0, "b8", "bN"],
+                "bN1": [0, "g8", "bN"],
+                "bB0": [0, "c8", "bB"],
+                "bB1": [0, "f8", "bB"],
+                "bQ": [0, "d8", "bQ"],
+                "bK": [0, "e8", "bK"],
+            }; 
+
+            this.$data.pieces = pieces;
+            this.$data.boardPosition = 0;
+        },
 
     },
 
@@ -155,6 +151,10 @@ export default {
 
         }
 
+    },
+
+    mounted() {
+        this.startingPosition();
     },
 
 }
