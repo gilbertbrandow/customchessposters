@@ -81,11 +81,19 @@ export default {
     },
 
     methods: {
-        movePiece(from, to, moveNumber) {
+        movePiece(from, to, moveNumber, san, direction) {
 
-            //TODO: Need to move logic for castling to this function
-            
-            //TODO: Handle promotion of piece
+            if(!direction){
+                let temp = from;
+                from = to; 
+                to = temp;
+            }
+
+            //Handling edge case of castling
+            if (san == "O-O" && (from == "e1" || from == "g1")) this.movePiece("h1", "f1", 1, false, direction);
+            else if (san == "O-O" && (from == "e8" || from == "g8")) this.movePiece("h8", "f8", 1, false, direction);
+            else if (san == "O-O-O" && (from == "e1" || from == "c1")) this.movePiece("a1", "d1", 1, false, direction);
+            else if (san == "O-O-O" && (from == "e8" || from == "c8")) this.movePiece("a8", "d8", 1, false, direction);
 
             for (var piece in this.pieces) {
 
@@ -106,7 +114,13 @@ export default {
                 }
             }
 
+            //TODO: Handle promotion of piece
+
         },
+
+        resetBoard() {
+            //TODO: Set all pieces to their starting square
+        }
 
     },
 
@@ -121,12 +135,7 @@ export default {
 
                 for (let i = this.boardPosition; i < this.diagramPosition; i++) {
 
-                    if (history[i].san == "O-O" && history[i].color == "w") this.movePiece("h1", "f1", i);
-                    else if (history[i].san == "O-O" && history[i].color == "b") this.movePiece("h8", "f8", i);
-                    else if (history[i].san == "O-O-O" && history[i].color == "w") this.movePiece("a1", "d1", i);
-                    else if (history[i].san == "O-O-O" && history[i].color == "b") this.movePiece("a8", "d8", i);
-
-                    this.movePiece(history[i].from, history[i].to, i);
+                    this.movePiece(history[i].from, history[i].to, i, history[i].san, 1);
 
                     this.boardPosition++;
                 }
@@ -135,12 +144,7 @@ export default {
 
                 for (let i = this.boardPosition - 1; i >= this.diagramPosition; i--) {
 
-                    if (history[i].san == "O-O" && history[i].color == "w") this.movePiece("f1", "h1", i);
-                    else if (history[i].san == "O-O" && history[i].color == "b") this.movePiece("f8", "h8", i);
-                    else if (history[i].san == "O-O-O" && history[i].color == "w") this.movePiece("d1", "a1", i);
-                    else if (history[i].san == "O-O-O" && history[i].color == "b") this.movePiece("d8", "a8", i);
-
-                    this.movePiece(history[i].to, history[i].from, i);
+                    this.movePiece(history[i].from, history[i].to, i, history[i].san, 0);
 
                     this.boardPosition--;
                 }
