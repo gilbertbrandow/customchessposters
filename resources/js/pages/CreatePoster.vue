@@ -4,7 +4,7 @@
 
 <script>
 import AppLayout from "../Layouts/App.vue";
-import BuildPoster from "./Components/BuildPoster.vue"
+import BuildPoster from "./Components/Poster/BuildPoster.vue"
 
 export default {
     components: {

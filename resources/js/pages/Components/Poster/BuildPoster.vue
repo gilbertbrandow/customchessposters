@@ -327,8 +327,7 @@
                         </div>
                     </div>
                     <div class="poster__svg-wrp">
-                        <NewWavesPoster v-if="poster.themeId == 0" :poster="poster" />
-                        <OldKnowledgePoster ref="Poster" v-if="poster.themeId == 1" :poster="poster" />
+                        <Poster ref="Poster" :poster="poster" />
                     </div>
                     <img class="poster__environment" :src="this.$data.posterBuilder.currEnvironment" />
                 </div>
@@ -341,8 +340,7 @@
 <script>
 import { Chess } from 'chess.js'
 import axios from 'axios'
-import NewWavesPoster from '../../Themes/New Waves/Poster.vue'
-import OldKnowledgePoster from '../../Themes/Old Knowledge/Poster.vue'
+import Poster from './Poster.vue'
 
 export default {
     data() {
@@ -699,8 +697,7 @@ export default {
     },
 
     components: {
-        NewWavesPoster,
-        OldKnowledgePoster,
+        Poster,
     },
 
     mounted() {

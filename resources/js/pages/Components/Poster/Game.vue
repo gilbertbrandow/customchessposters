@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import Board from './Board.vue';
-import Pieces from './Pieces.vue';
+import Board from '../../../Themes/Old Knowledge/Board.vue';
+import Pieces from '../../../Themes/Old Knowledge/Pieces.vue';
 
 export default {
 
