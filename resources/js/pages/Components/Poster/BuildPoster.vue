@@ -202,7 +202,7 @@
                                 <div class="field__wrp">
                                     <label for="whiteRating" class="field__label">Rating</label>
                                     <input v-model="poster.gameMeta.white.rating" maxlength="4" class="field"
-                                        name="whiteRating" id="whiteRating" type="number" placeholder="2126" />
+                                        name="whiteRating" id="whiteRating" type="tel" placeholder="2126" />
                                 </div>
 
                                 <div class="field__wrp">
@@ -234,7 +234,7 @@
                                 <div class="field__wrp">
                                     <label for="blackRating" class="field__label">Rating</label>
                                     <input v-model="poster.gameMeta.black.rating" class="field" name="blackRating"
-                                        id="blackRating" type="number" maxlength="4" placeholder="2126" />
+                                        id="blackRating" type="tel" maxlength="4" placeholder="2126" />
                                 </div>
 
                                 <div class="field__wrp">
