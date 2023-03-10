@@ -51,8 +51,8 @@
                         </div>
                         <div :class="[posterBuilder.currStep == 1 ? 'is--active' : '']" class="module__step">
                             <h3>2. The Moves</h3>
-                            <p>Insert the moves of the game. <a v-if="poster.gamePgn" class="text__link"
-                                    @click="resetBoard()">Reset game</a></p>
+                            <p>Insert the moves of the game, next step you will pick a position to display. <a
+                                    v-if="poster.gamePgn" class="text__link" @click="resetBoard()">Reset game</a></p>
 
                             <div class="tabs">
                                 <div class="tabs__header">
@@ -509,33 +509,44 @@ export default {
 
             if (input.length > 10) return [];
 
-            //TODO: Make case for missing piece specification
-
             //strip input of all non compatible characters, except lowercased letters who capitalized correlate to pieces
             let regEx = /[^abcdefghABCDEFGH12345678KQBNRkqbnrx+#O\-]/g;
             input = input.replace(regEx, '');
 
             let suggestions = [];
 
+            //Check possible moves if exact match when modifications are made
+            moves.forEach(move => {
+                if (move[0] == input[0] && move.includes(input.substr(1)) ||
+                    move == input.charAt(0).toUpperCase() + input.slice(1) ||
+                    move == input.substr(0, 1) + 'x' + input.substr(1) ||
+                    move == input.charAt(0).toLowerCase() + input.slice(1)
+                ) {
+                    suggestions.push(move);
+                }
+            });
+
+            if (suggestions.length) return suggestions;
+
+            //Try finding moves that start with input with modifications
+            let variations = [];
+
             //Check if piece indication is not done with uppercase
-            let capitalized = input.charAt(0).toUpperCase() + input.slice(1);
-            suggestions = this.findMovesThatStartWith(moves, capitalized);
-            if (suggestions) return suggestions;
+            variations.push(input.charAt(0).toUpperCase() + input.slice(1));
 
             //Try by inserting x as second char, i.e capture was not specified
-            let capture = input.substr(0, 1) + 'x' + input.substr(1);
-            suggestions = this.findMovesThatStartWith(moves, capture)
-            if (suggestions) return suggestions;
+            variations.push(input.substr(0, 1) + 'x' + input.substr(1));
 
             //Try the combination of changing to uppercase and inserting x
-            let combination = capture.charAt(0).toUpperCase() + capture.slice(1);
-            suggestions = this.findMovesThatStartWith(moves, combination)
-            if (suggestions) return suggestions;
+            variations.push(variations[1].charAt(0).toUpperCase() + variations[1].slice(1));
 
             //Try turning first letter to lowercase
-            let lowerCase = input.charAt(0).toLowerCase() + input.slice(1);
-            suggestions = this.findMovesThatStartWith(moves, lowerCase);
-            if (suggestions && suggestions.length < 5) return suggestions;
+            variations.push(input.charAt(0).toLowerCase() + input.slice(1));
+
+            for(let i = 0; i < variations.length; i++){
+                suggestions = this.findMovesThatStartWith(moves, variations[i]);
+                if (suggestions.length) return suggestions;
+            }
 
             //Try removing the last char and recalling the function
             if (input.length > 1) {
@@ -544,7 +555,7 @@ export default {
                 if (validStart) {
                     return validStart;
                 } else {
-                    this.findSuggestions(moves, shortened);
+                    return this.findSuggestions(moves, shortened);
                 }
             }
 
@@ -667,25 +678,30 @@ export default {
         tryHeaders() {
             const headers = this.$data.chessGame.header();
 
-            if(!headers) return;
+            if (!headers) return;
 
-            if(headers.White) this.poster.gameMeta.white.name = headers.White;
-            if(headers.WhiteElo){
+            if (headers.White) this.poster.gameMeta.white.name = headers.White;
+            if (headers.WhiteElo && typeof headers.WhiteElo == 'number') {
                 this.poster.gameMeta.white.rating = headers.WhiteElo
-                if(headers.WhiteElo > 2500) this.poster.gameMeta.white.title = "GM"
+                this.poster.gameMeta.white.rating = (headers.WhiteElo > 2500) ? "GM" : "";
+            } else {
+                this.poster.gameMeta.white.title = "";
             }
 
-            if(headers.Black) this.poster.gameMeta.black.name = headers.Black;
-            if(headers.BlackElo){
+            if (headers.Black) this.poster.gameMeta.black.name = headers.Black;
+
+            if (headers.BlackElo && typeof headers.BlackElo == 'number') {
                 this.poster.gameMeta.black.rating = headers.BlackElo
-                if(headers.BlackElo > 2500) this.poster.gameMeta.black.title = "GM"
+                this.poster.gameMeta.black.rating = (headers.BlackElo > 2500) ? "GM" : "";
+            } else {
+                this.poster.gameMeta.black.title = "";
             }
 
 
-            if(headers.Site) this.poster.gameMeta.where = headers.Site;
-            if(headers.Event) this.poster.gameMeta.when = headers.Event;
-            if(headers.Round) this.poster.gameMeta.when += ' Round ' + headers.Round;
-            if(headers.Result) this.poster.result = headers.Result;
+            if (headers.Site) this.poster.gameMeta.where = headers.Site;
+            if (headers.Event) this.poster.gameMeta.when = headers.Event;
+            if (headers.Round) this.poster.gameMeta.when += ' Round ' + headers.Round;
+            if (headers.Result) this.poster.result = headers.Result;
 
             return;
 
@@ -717,7 +733,7 @@ export default {
             let gameId = url.replace('https://lichess.org/', '');
 
             axios
-                .get('https://lichess.org/game/export/' + gameId, { params: {pgnInJson: true, tags: true, clocks: false, evals: false, opening: false } })
+                .get('https://lichess.org/game/export/' + gameId, { params: { pgnInJson: true, tags: true, clocks: false, evals: false, opening: false } })
                 .then(response => (
                     //console.log(response.data),
                     this.resetBoard(),
