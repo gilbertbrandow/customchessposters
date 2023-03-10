@@ -646,6 +646,23 @@ export default {
 
         },
 
+        getStrictPgn() {
+
+            let history = this.$data.chessGame.history();
+            let pgnStrict = "";
+
+            //Loop through history of only moves and concatinate to string
+            for (let i = 0; i < history.length; i++) {
+
+                if (i % 2 == 0) pgnStrict += i + '. '
+                pgnStrict += history[i] + ' ';
+
+            }
+
+            return pgnStrict;
+
+        },
+
         pastePgn(pgn) {
 
             try {
@@ -661,18 +678,7 @@ export default {
 
             this.$data.chessGame.loadPgn(pgn);
 
-            let history = this.$data.chessGame.history();
-            let pgnStrict = "";
-
-            //Loop through history of only moves and concatinate to string
-            for (let i = 0; i < history.length; i++) {
-
-                if (i % 2 == 0) pgnStrict += i + '. '
-                pgnStrict += history[i] + ' ';
-
-            }
-
-            this.$data.poster.gamePgn = pgnStrict;
+            this.$data.poster.gamePgn = this.getStrictPgn();
 
         },
 
@@ -681,11 +687,13 @@ export default {
             let gameId = url.replace('https://lichess.org/', '');
 
             axios
-                .get('https://lichess.org/game/export/' + gameId, { params: { tags: false, clocks: false, evals: false, opening: false } })
+                .get('https://lichess.org/game/export/' + gameId, { params: {pgnInJson: true, tags: true, clocks: false, evals: false, opening: false } })
                 .then(response => (
+                    //console.log(response.data),
                     this.resetBoard(),
                     this.$data.chessGame.loadPgn(response.data),
-                    this.$data.poster.gamePgn = this.$data.chessGame.pgn(),
+                    console.log(this.$data.chessGame.header()),
+                    this.$data.poster.gamePgn = this.getStrictPgn(),
                     this.$data.posterBuilder.uploadLichess.success = true
                 ))
                 .catch(() => (
