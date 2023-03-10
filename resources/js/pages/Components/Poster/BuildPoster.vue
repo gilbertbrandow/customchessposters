@@ -107,7 +107,7 @@
                                     </div>
 
                                     <div v-if="pgnArray.length != 0">
-                                        <strong>Previuos moves: </strong>
+                                        <strong>Previous moves: </strong>
                                         <div style="display: flex; column-gap: 0.5em;">
                                             <div v-if="pgnArray.length >= 5" style="margin-right: -0.25em;">...</div>
                                             <template v-for="(move, index) in pgnArray" :key="index">
@@ -518,6 +518,7 @@ export default {
             //Check possible moves if exact match when modifications are made
             moves.forEach(move => {
                 if (move[0] == input[0] && move.includes(input.substr(1)) ||
+                    move[0] == input[0].toUpperCase() && move.includes(input.substr(1)) ||
                     move == input.charAt(0).toUpperCase() + input.slice(1) ||
                     move == input.substr(0, 1) + 'x' + input.substr(1) ||
                     move == input.charAt(0).toLowerCase() + input.slice(1)
@@ -543,7 +544,8 @@ export default {
             //Try turning first letter to lowercase
             variations.push(input.charAt(0).toLowerCase() + input.slice(1));
 
-            for(let i = 0; i < variations.length; i++){
+            //Loop through variations and try finding moves that start with
+            for (let i = 0; i < variations.length; i++) {
                 suggestions = this.findMovesThatStartWith(moves, variations[i]);
                 if (suggestions.length) return suggestions;
             }
