@@ -28,7 +28,7 @@
                             </ul>
 
                             <div class="field__wrp">
-                                <label for="orientation" class="field__label">Orientation</label>
+                                <label for="orientation" class="field__label">Diagram orientation</label>
 
                                 <select v-model="poster.orientation" id="orientation" class="field" name="orientation">
                                     <option value="w">White</option>
@@ -668,7 +668,7 @@ export default {
             //Loop through history of only moves and concatinate to string
             for (let i = 0; i < history.length; i++) {
 
-                if (i % 2 == 0) pgnStrict += i + '. '
+                if (i % 2 == 0) pgnStrict += (i / 2 + 1) + '. '
                 pgnStrict += history[i] + ' ';
 
             }
