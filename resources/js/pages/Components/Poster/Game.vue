@@ -48,10 +48,10 @@ export default {
             }
 
             //Handling castling
-            if (san == "O-O" && (from == "e1" || from == "g1")) this.movePiece("h1", "f1", 1, false, direction);
-            else if (san == "O-O" && (from == "e8" || from == "g8")) this.movePiece("h8", "f8", 1, false, direction);
-            else if (san == "O-O-O" && (from == "e1" || from == "c1")) this.movePiece("a1", "d1", 1, false, direction);
-            else if (san == "O-O-O" && (from == "e8" || from == "c8")) this.movePiece("a8", "d8", 1, false, direction);
+            if (san == "O-O" && (from == "e1" || from == "g1")) this.movePiece("h1", "f1", 1, "", direction);
+            else if (san == "O-O" && (from == "e8" || from == "g8")) this.movePiece("h8", "f8", 1, "", direction);
+            else if (san == "O-O-O" && (from == "e1" || from == "c1")) this.movePiece("a1", "d1", 1, "", direction);
+            else if (san == "O-O-O" && (from == "e8" || from == "c8")) this.movePiece("a8", "d8", 1, "", direction);
 
             for (var piece in this.pieces) {
 
