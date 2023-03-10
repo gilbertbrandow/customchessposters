@@ -1,15 +1,15 @@
 <template>
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 2000 3000"
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 2000 3000" font-family="Bodoni Moda, serif"
         style="background-color: #f8f5f1">
 
         <!-- The Title -->
-        <text font-size="150" font-family="AdobeClean-Regular, Adobe Clean" text-anchor="middle">
+        <text font-size="150" text-anchor="middle">
             <tspan x="1000" y="300">{{ title[0] }}</tspan>
             <tspan v-if="title[1]" x="1000" y="500">{{ title[1] }}</tspan>
         </text>
 
         <!-- Players name, title and ranking -->
-        <text font-size="70" font-family="AdobeClean-Regular, Adobe Clean" text-anchor="middle" x="1000"
+        <text font-size="70" text-anchor="middle" x="1000"
             :y="title[1] ? 700 : 500">
             <tspan font-weight="600" v-if="poster.gameMeta.white.title"> {{ poster.gameMeta.white.title + ' ' }}
             </tspan>
@@ -23,7 +23,7 @@
         </text>
 
         <!-- Where and when -->
-        <text font-size="40" font-family="AdobeClean-Regular, Adobe Clean" text-anchor="middle" x="1000"
+        <text font-size="40" text-anchor="middle" x="1000"
             :y="title[1] ? 800 : 600">
             <tspan>{{ poster.gameMeta.where }}</tspan>
             <tspan v-if="poster.gameMeta.where && poster.gameMeta.when"> | </tspan>
@@ -69,6 +69,10 @@
     </svg>
 
 </template>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda&display=swap');
+</style>
 
 <script>
 
