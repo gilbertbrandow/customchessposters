@@ -377,6 +377,7 @@ export default {
                 orientation: "w",
                 gamePgn: "",
                 diagramPosition: 0,
+                result: "",
                 gameMeta: {
                     title: "Lorem ipsum dolor sit amet, consectetur adi",
                     white: {
@@ -663,6 +664,33 @@ export default {
 
         },
 
+        tryHeaders() {
+            const headers = this.$data.chessGame.header();
+
+            if(!headers) return;
+
+            if(headers.White) this.poster.gameMeta.white.name = headers.White;
+            if(headers.WhiteElo){
+                this.poster.gameMeta.white.rating = headers.WhiteElo
+                if(headers.WhiteElo > 2500) this.poster.gameMeta.white.title = "GM"
+            }
+
+            if(headers.Black) this.poster.gameMeta.black.name = headers.Black;
+            if(headers.BlackElo){
+                this.poster.gameMeta.black.rating = headers.BlackElo
+                if(headers.BlackElo > 2500) this.poster.gameMeta.black.title = "GM"
+            }
+
+
+            if(headers.Site) this.poster.gameMeta.where = headers.Site;
+            if(headers.Event) this.poster.gameMeta.when = headers.Event;
+            if(headers.Round) this.poster.gameMeta.when += ' Round ' + headers.Round;
+            if(headers.Result) this.poster.result = headers.Result;
+
+            return;
+
+        },
+
         pastePgn(pgn) {
 
             try {
@@ -680,6 +708,8 @@ export default {
 
             this.$data.poster.gamePgn = this.getStrictPgn();
 
+            this.tryHeaders();
+
         },
 
         uploadGameFromLichess(url) {
@@ -692,7 +722,7 @@ export default {
                     //console.log(response.data),
                     this.resetBoard(),
                     this.$data.chessGame.loadPgn(response.data),
-                    console.log(this.$data.chessGame.header()),
+                    this.tryHeaders(),
                     this.$data.poster.gamePgn = this.getStrictPgn(),
                     this.$data.posterBuilder.uploadLichess.success = true
                 ))
