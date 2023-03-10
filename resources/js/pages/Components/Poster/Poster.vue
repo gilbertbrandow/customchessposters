@@ -34,7 +34,7 @@
 
 
         <!-- The board -->
-        <svg width="1645" height="1671" viewBox="0 0 1645 1671"  x="200"
+        <svg width="1645" height="1671" viewBox="0 0 1645 1671" x="177.5" 
             :y="((2900 - (40 * (pgnRows.length)) - (title[1] ? 800 : 600)) / 2) + (title[1] ? 800 : 600) - 800">
             
 
@@ -56,7 +56,7 @@
 
 
         <!-- The PGN -->
-        <text font-size="20" text-anchor="middle" font-family="AdobeClean-Regular, Adobe Clean">
+        <text font-size="20" text-anchor="middle">
             <tspan v-for="(row, index) in pgnRows" x="1000"
                 :y="2900 - (40 * (pgnRows.length - 1 - index))">
                 {{ row }}
@@ -154,7 +154,7 @@ export default {
 
                     //Check if fits in curent row[]
                     if (rows[rowsIndex]) {
-                        if (rows[rowsIndex].length + move.length < 200) {
+                        if (rows[rowsIndex].length + move.length < 180) {
                             rows[rowsIndex] += ' ' + move;
 
                         } else if (rowsIndex < 10) {
