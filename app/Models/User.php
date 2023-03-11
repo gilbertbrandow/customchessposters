@@ -46,4 +46,14 @@ class User extends Authenticatable
     public function setPasswordAttribute($value) {
         $this->attributes['password'] = Hash::make($value);
     } 
+
+    public function created_posters()
+    {
+        return $this->hasMany(Poster::class, 'user_id')->get();
+    }
+
+    public function saved_posters()
+    {
+        return $this->belongsToMany(Poster::class);
+    }
 }
