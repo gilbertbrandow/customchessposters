@@ -5,8 +5,8 @@
 
         <template v-for="(value, piece) in pieces" :key="piece">
             <svg v-if="!value[0]" width="200" height="200" fill="none" viewbox="0 0 200 200"
-                :x="this.$parent.poster.orientation == 'w' ? (value[1].charCodeAt(0) - 97) * 200 : (7 - (value[1].charCodeAt(0) - 97)) * 200"
-                :y="this.$parent.poster.orientation == 'w' ? (8 - Number(value[1][1])) * 200 : (Number(value[1][1]) - 1) * 200">
+                :x="this.$parent.poster.orientation ? (value[1].charCodeAt(0) - 97) * 200 : (7 - (value[1].charCodeAt(0) - 97)) * 200"
+                :y="this.$parent.poster.orientation ? (8 - Number(value[1][1])) * 200 : (Number(value[1][1]) - 1) * 200">
                 <Pieces :piece="value[2]" />
             </svg>
         </template>
@@ -127,8 +127,9 @@ export default {
 
         diagramPosition() {
 
-            //Get history TODO: Dont work if move is undone, the last history[] cant be retrieved
-            var history = this.$parent.$parent.chessGame.history({ "verbose": true });
+            //Try to compress into one loop?
+
+            var history = this.$parent.$parent.$data.chessGame.history({ "verbose": true });
 
             if (this.boardPosition < this.diagramPosition) {
 
