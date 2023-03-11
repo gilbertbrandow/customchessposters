@@ -39,11 +39,11 @@
             
 
             <text id="a" font-size="40">
-                <tspan v-for="index in 8" x="0" :y="40 + (200 * index) - 200" >{{ poster.orientation == "w" ? 9 - index : index}}</tspan>
+                <tspan v-for="index in 8" x="0" :y="40 + (200 * index) - 200" >{{ poster.orientation ? 9 - index : index}}</tspan>
             </text>
 
             <text id="a" font-size="40">
-                <tspan v-for="index in 8" :x="45 + (200 * index) - 200" y="1665" >{{ poster.orientation == "w" ? String.fromCharCode(96 + index) : String.fromCharCode(96 + 9 - index) }}</tspan>
+                <tspan v-for="index in 8" :x="45 + (200 * index) - 200" y="1665" >{{ poster.orientation ? String.fromCharCode(96 + index) : String.fromCharCode(96 + 9 - index) }}</tspan>
             </text>
 
             <!-- Frame of the board -->

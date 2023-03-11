@@ -31,8 +31,8 @@
                                 <label for="orientation" class="field__label">Diagram orientation</label>
 
                                 <select v-model="poster.orientation" id="orientation" class="field" name="orientation">
-                                    <option value="w">White</option>
-                                    <option value="b">Black</option>
+                                    <option :value="true">White</option>
+                                    <option :value="false">Black</option>
                                 </select>
 
                             </div>
@@ -210,7 +210,7 @@
                                     <label for="whiteTitle" class="field__label">Title</label>
 
                                     <select v-model="poster.gameMeta.white.title" id="whiteTitle" class="field"
-                                        name="orientation">
+                                        name="whiteTitle">
                                         <option value="">None</option>
                                         <option value="GM">GM</option>
                                         <option value="WGM">WGM</option>
@@ -242,7 +242,7 @@
                                     <label for="blackTitle" class="field__label">Title</label>
 
                                     <select v-model="poster.gameMeta.black.title" id="blackTitle" class="field"
-                                        name="orientation">
+                                        name="blackTitle">
                                         <option value="">None</option>
                                         <option value="GM">GM</option>
                                         <option value="WGM">WGM</option>
@@ -322,12 +322,14 @@
                         <div class="button">Full screen
                             <Icon name="fullScreen" />
                         </div>
-                        <div class="button"> Save this design
-                            <Icon name="bookmark" />
-                        </div>
+                        <form @submit.prevent="submitForm(this.$data.poster)">
+                            <button class="button" type="submit"> Save this design
+                                <Icon name="bookmark" />
+                            </button>
+                        </form>
                     </div>
                     <div class="poster__svg-wrp">
-                        <Poster ref="Poster" :poster="poster" />
+                        <Poster ref="PosterSVG" :poster="poster" />
                     </div>
                     <img class="poster__environment" :src="this.$data.posterBuilder.currEnvironment" />
                 </div>
@@ -337,10 +339,30 @@
     </section>
 </template>
 
+<script setup>
+
+import { useForm } from '@inertiajs/vue3';
+
+let form = useForm({
+    name: "My saved poster",
+    posterData: {},
+});
+
+function submitForm(poster) {
+    form.posterData = poster;
+    form.post('/save-poster');
+}
+
+</script>
+
+
+
 <script>
 import { Chess } from 'chess.js'
 import axios from 'axios'
 import Poster from './Poster.vue'
+
+
 
 export default {
     data() {
@@ -374,7 +396,7 @@ export default {
 
             poster: {
                 themeId: 1,
-                orientation: "w",
+                orientation: true,
                 gamePgn: "",
                 diagramPosition: 0,
                 result: "",
@@ -606,7 +628,7 @@ export default {
                     return;
                 }
 
-                this.$data.poster.gamePgn = this.$data.chessGame.pgn();
+                this.$data.poster.gamePgn = this.getStrictPgn();
                 this.$data.posterBuilder.manualMove.pgn = "";
 
                 return;
@@ -640,8 +662,8 @@ export default {
             //Visually make move on diagram, needs to be done first so full latest history can be retrieved
             var history = this.chessGame.history({ "verbose": true });
             var lastMove = history[history.length - 1];
-            this.$refs.Poster.$refs.Game.movePiece(lastMove.from, lastMove.to, history.length - 1, lastMove.san, 0);
-            this.$refs.Poster.$refs.Game.boardPosition--;
+            this.$refs.PosterSVG.$refs.Game.movePiece(lastMove.from, lastMove.to, history.length - 1, lastMove.san, 0);
+            this.$refs.PosterSVG.$refs.Game.boardPosition--;
 
             //Undo move
             this.$data.chessGame.undo();
@@ -653,7 +675,7 @@ export default {
 
         resetBoard() {
 
-            this.$refs.Poster.$refs.Game.startingPosition();
+            this.$refs.PosterSVG.$refs.Game.startingPosition();
             this.$data.chessGame.reset();
             this.$data.poster.gamePgn = "";
             this.$data.poster.diagramPosition = "0";
@@ -737,7 +759,6 @@ export default {
             axios
                 .get('https://lichess.org/game/export/' + gameId, { params: { pgnInJson: true, tags: true, clocks: false, evals: false, opening: false } })
                 .then(response => (
-                    //console.log(response.data),
                     this.resetBoard(),
                     this.$data.chessGame.loadPgn(response.data),
                     this.tryHeaders(),
