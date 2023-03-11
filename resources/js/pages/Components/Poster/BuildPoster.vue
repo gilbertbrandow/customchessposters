@@ -404,12 +404,12 @@ export default {
                     title: "Lorem ipsum dolor sit amet, consectetur adi",
                     white: {
                         name: "Magnus Carlsen",
-                        elo: "2881",
+                        rating: "2881",
                         title: "GM",
                     },
                     black: {
                         name: "Fabiano Caruana",
-                        elo: "2815",
+                        rating: "2815",
                         title: "GM",
                     },
                     when: "Tata Steel Chess, January 2014. Round 3",
@@ -705,7 +705,7 @@ export default {
             if (!headers) return;
 
             if (headers.White) this.poster.gameMeta.white.name = headers.White;
-            if (headers.WhiteElo && typeof headers.WhiteElo == 'number') {
+            if (headers.WhiteElo && typeof headers.WhiteElo) {
                 this.poster.gameMeta.white.rating = headers.WhiteElo
                 this.poster.gameMeta.white.rating = (headers.WhiteElo > 2500) ? "GM" : "";
             } else {
@@ -714,7 +714,7 @@ export default {
 
             if (headers.Black) this.poster.gameMeta.black.name = headers.Black;
 
-            if (headers.BlackElo && typeof headers.BlackElo == 'number') {
+            if (headers.BlackElo && typeof headers.BlackElo) {
                 this.poster.gameMeta.black.rating = headers.BlackElo
                 this.poster.gameMeta.black.rating = (headers.BlackElo > 2500) ? "GM" : "";
             } else {
