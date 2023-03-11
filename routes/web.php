@@ -97,9 +97,9 @@ Route::post('/reset-password', [ResetPasswordController::class, 'passwordUpdate'
 
 /*
 |--------------------------------------------------------------------------
-| Create poster routes
+| Poster Routes
 |--------------------------------------------------------------------------
 */
 
 //Route::get('/create-poster', [PosterController::class, 'createPoster'])->name('poster.create');
-
+Route::post('/save-poster', [PosterController::class, 'save'])->name('poster.store');
