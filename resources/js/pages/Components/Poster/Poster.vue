@@ -11,23 +11,23 @@
         <!-- Players name, title and ranking -->
         <text font-size="70" text-anchor="middle" x="1000"
             :y="title[1] ? 700 : 500">
-            <tspan font-weight="600" v-if="poster.gameMeta.white.title"> {{ poster.gameMeta.white.title + ' ' }}
+            <tspan font-weight="600" v-if="poster.white_title"> {{ poster.white_title + ' ' }}
             </tspan>
-            <tspan v-if="poster.gameMeta.white.name"> {{ poster.gameMeta.white.name + ' ' }} </tspan>
-            <!-- <tspan font-size="40" v-if="poster.gameMeta.white.rating">({{ poster.gameMeta.white.rating + ' FIDE' }}) </tspan> -->
+            <tspan v-if="poster.white_player"> {{ poster.white_player + ' ' }} </tspan>
+            <!-- <tspan font-size="40" v-if="poster.white_rating">({{ poster.white_rating + ' FIDE' }}) </tspan> -->
             <tspan font-size="40"> - </tspan>
-            <tspan font-weight="600" v-if="poster.gameMeta.black.title"> {{ poster.gameMeta.black.title + ' ' }}
+            <tspan font-weight="600" v-if="poster.black_title"> {{ poster.black_title + ' ' }}
             </tspan>
-            <tspan v-if="poster.gameMeta.black.name"> {{ poster.gameMeta.black.name + ' ' }} </tspan>
-            <!--<tspan font-size="40" v-if="poster.gameMeta.black.rating">({{ poster.gameMeta.black.rating + ' FIDE' }}) </tspan> -->
+            <tspan v-if="poster.black_player"> {{ poster.black_player + ' ' }} </tspan>
+            <!--<tspan font-size="40" v-if="poster.black_rating">({{ poster.black_rating + ' FIDE' }}) </tspan> -->
         </text>
 
         <!-- Where and when -->
         <text font-size="40" text-anchor="middle" x="1000"
             :y="title[1] ? 800 : 600">
-            <tspan>{{ poster.gameMeta.where }}</tspan>
-            <tspan v-if="poster.gameMeta.where && poster.gameMeta.when"> | </tspan>
-            <tspan>{{ poster.gameMeta.when }}</tspan>
+            <tspan>{{ poster.where }}</tspan>
+            <tspan v-if="poster.where && poster.when"> | </tspan>
+            <tspan>{{ poster.when }}</tspan>
         </text>
 
         <!-- Result -->
@@ -90,7 +90,7 @@ export default {
     computed: {
         title() {
 
-            const string = this.$props.poster.gameMeta.title;
+            const string = this.$props.poster.title;
             var title = [];
             this.$parent.$data.posterBuilder.titleValid = true;
 
@@ -137,19 +137,17 @@ export default {
 
         pgnRows() {
 
-            var gamePgn = this.$props.poster.gamePgn;
+            var pgn = this.$props.poster.pgn;
             var rows = [];
             let rowsIndex = 0;
 
-            //Figure out max chars per row, max rows and do while loop and push to rows array when possible
-
             //Nested while loop to take the whole next move (Up until space followed by number)
-            for (let i = 0; i < gamePgn.length; i++) {
+            for (let i = 0; i < pgn.length; i++) {
 
-                if ((gamePgn[i] == ' ' && this.containsNumbers(gamePgn[i + 1])) || !gamePgn[i + 1]) {
-                    //Create substring of the next full move, remove it from gamePgn
-                    var move = gamePgn.substring(0, i + 1);
-                    gamePgn = gamePgn.substring(i + 1);
+                if ((pgn[i] == ' ' && this.containsNumbers(pgn[i + 1])) || !pgn[i + 1]) {
+                    //Create substring of the next full move, remove it from pgn
+                    var move = pgn.substring(0, i + 1);
+                    pgn = pgn.substring(i + 1);
                     i = 0;
 
                     //Check if fits in curent row[]

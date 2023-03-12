@@ -12,7 +12,7 @@
                             <ul class="themes" ref="themes">
 
                                 <li v-for="theme in themes" :key="theme.id" @click="setTheme(theme.id)"
-                                    :class="[poster.themeId == theme.id ? 'is--active' : '']" class="theme">
+                                    :class="[poster.theme == theme.id ? 'is--active' : '']" class="theme">
                                     <div class="theme__colour-wrp">
                                         <div class="theme__colour">
                                             <div><img style="height: 100%"
@@ -52,7 +52,7 @@
                         <div :class="[posterBuilder.currStep == 1 ? 'is--active' : '']" class="module__step">
                             <h3>2. The Moves</h3>
                             <p>Insert the moves of the game, next step you will pick a position to display. <a
-                                    v-if="poster.gamePgn" class="text__link" @click="resetBoard()">Reset game</a></p>
+                                    v-if="poster.pgn" class="text__link" @click="resetBoard()">Reset game</a></p>
 
                             <div class="tabs">
                                 <div class="tabs__header">
@@ -187,7 +187,7 @@
                             <div class="field__wrp">
                                 <label for="gameTitle" class="field__label">Title</label>
                                 <div v-if="!posterBuilder.titleValid" class="field__error">Title is too long</div>
-                                <input v-model="poster.gameMeta.title" class="field"
+                                <input v-model="poster.title" class="field"
                                     :class="{ 'is--error': !posterBuilder.titleValid }" name="gameTitle" id="gameTitle"
                                     placeholder="Lorem ipsum dolor set ami" />
                             </div>
@@ -195,13 +195,13 @@
                             <div class="row is--player-input is--margin-top">
                                 <div class="field__wrp">
                                     <label for="whitePlayer" class="field__label">White player</label>
-                                    <input maxlength="45" v-model="poster.gameMeta.white.name" class="field"
+                                    <input maxlength="45" v-model="poster.white_player" class="field"
                                         name="whitePlayer" id="whitePlayer" placeholder="Carlsen, Magnus" />
                                 </div>
 
                                 <div class="field__wrp">
                                     <label for="whiteRating" class="field__label">Rating</label>
-                                    <input v-model="poster.gameMeta.white.rating" maxlength="4" class="field"
+                                    <input v-model="poster.white_rating" maxlength="4" class="field"
                                         name="whiteRating" id="whiteRating" type="tel" placeholder="2126" />
                                 </div>
 
@@ -209,7 +209,7 @@
 
                                     <label for="whiteTitle" class="field__label">Title</label>
 
-                                    <select v-model="poster.gameMeta.white.title" id="whiteTitle" class="field"
+                                    <select v-model="poster.white_title" id="whiteTitle" class="field"
                                         name="whiteTitle">
                                         <option value="">None</option>
                                         <option value="GM">GM</option>
@@ -227,13 +227,13 @@
                             <div class="row is--player-input is--margin-top">
                                 <div class="field__wrp">
                                     <label for="blackPlayer" class="field__label">Black player</label>
-                                    <input maxlength="45" v-model="poster.gameMeta.black.name" class="field"
+                                    <input maxlength="45" v-model="poster.black_player" class="field"
                                         name="gameTitle" id="gameTitle" placeholder="Abdusattorov, Nodirbek" />
                                 </div>
 
                                 <div class="field__wrp">
                                     <label for="blackRating" class="field__label">Rating</label>
-                                    <input v-model="poster.gameMeta.black.rating" class="field" name="blackRating"
+                                    <input v-model="poster.black_rating" class="field" name="blackRating"
                                         id="blackRating" type="tel" maxlength="4" placeholder="2126" />
                                 </div>
 
@@ -241,7 +241,7 @@
 
                                     <label for="blackTitle" class="field__label">Title</label>
 
-                                    <select v-model="poster.gameMeta.black.title" id="blackTitle" class="field"
+                                    <select v-model="poster.black_title" id="blackTitle" class="field"
                                         name="blackTitle">
                                         <option value="">None</option>
                                         <option value="GM">GM</option>
@@ -259,12 +259,12 @@
                             <div class="row is--margin-top">
                                 <div class="field__wrp">
                                     <label for="gameWhere" class="field__label">Where</label>
-                                    <input maxlength="40" v-model="poster.gameMeta.where" class="field" name="gameTitle"
+                                    <input maxlength="40" v-model="poster.where" class="field" name="gameTitle"
                                         id="gameWhere" placeholder="Wijk aan Zee, Netherlands" />
                                 </div>
                                 <div class="field__wrp">
                                     <label for="gameWhen" class="field__label">When</label>
-                                    <input maxlength="40" v-model="poster.gameMeta.when" class="field" name="gameTitle"
+                                    <input maxlength="40" v-model="poster.when" class="field" name="gameTitle"
                                         id="gameWhen" placeholder="Tata Steel, January 2023. Round 3" />
                                 </div>
                             </div>
@@ -395,26 +395,21 @@ export default {
             },
 
             poster: {
-                themeId: 1,
+                name: "",
+                theme: 1,
                 orientation: true,
-                gamePgn: "",
+                pgn: "",
                 diagramPosition: 0,
                 result: "",
-                gameMeta: {
-                    title: "Lorem ipsum dolor sit amet, consectetur adi",
-                    white: {
-                        name: "Magnus Carlsen",
-                        rating: "2881",
-                        title: "GM",
-                    },
-                    black: {
-                        name: "Fabiano Caruana",
-                        rating: "2815",
-                        title: "GM",
-                    },
-                    when: "Tata Steel Chess, January 2014. Round 3",
-                    where: "Wijk aan Zee, Netherlands",
-                },
+                title: "Lorem ipsum dolor sit amet, consectetur adi",
+                white_player: "Magnus Carlsen",
+                black_player: "Fabiano Caruana",
+                white_rating: 2881,
+                black_rating: 2815,
+                white_title: "GM",
+                black_title: "GM",
+                when: "Tata Steel Chess, January 2014. Round 3",
+                where: "Wijk aan Zee, Netherlands",
             },
 
             themes: [
@@ -477,7 +472,7 @@ export default {
 
         pgnArray() {
 
-            let string = this.$data.poster.gamePgn;
+            let string = this.$data.poster.pgn;
             const gameArray = [];
 
             for (let i = 0; i < string.length; i++) {
@@ -504,8 +499,7 @@ export default {
     methods: {
 
         setTheme(id) {
-            this.$data.poster.themeId = id;
-            this.$data.price = this.$data.themes[id].price;
+            this.$data.poster.theme = id;
             this.$data.posterBuilder.currEnvironment = this.$data.themes[id].environment;
         },
 
@@ -628,7 +622,7 @@ export default {
                     return;
                 }
 
-                this.$data.poster.gamePgn = this.getStrictPgn();
+                this.$data.poster.pgn = this.getStrictPgn();
                 this.$data.posterBuilder.manualMove.pgn = "";
 
                 return;
@@ -667,7 +661,7 @@ export default {
 
             //Undo move
             this.$data.chessGame.undo();
-            this.$data.poster.gamePgn = this.$data.chessGame.pgn();
+            this.$data.poster.pgn = this.$data.chessGame.pgn();
             this.$data.posterBuilder.manualMove.pgn = "";
             this.makeMove();
             return;
@@ -677,7 +671,7 @@ export default {
 
             this.$refs.PosterSVG.$refs.Game.startingPosition();
             this.$data.chessGame.reset();
-            this.$data.poster.gamePgn = "";
+            this.$data.poster.pgn = "";
             this.$data.poster.diagramPosition = "0";
 
         },
@@ -704,27 +698,27 @@ export default {
 
             if (!headers) return;
 
-            if (headers.White) this.poster.gameMeta.white.name = headers.White;
+            if (headers.White) this.poster.white_player = headers.White;
             if (headers.WhiteElo && typeof headers.WhiteElo) {
-                this.poster.gameMeta.white.rating = headers.WhiteElo
-                this.poster.gameMeta.white.rating = (headers.WhiteElo > 2500) ? "GM" : "";
+                this.poster.white_rating = headers.WhiteElo
+                this.poster.white_title = (headers.WhiteElo > 2500) ? "GM" : "";
             } else {
-                this.poster.gameMeta.white.title = "";
+                this.poster.white_title = "";
             }
 
-            if (headers.Black) this.poster.gameMeta.black.name = headers.Black;
+            if (headers.Black) this.poster.black_player = headers.Black;
 
             if (headers.BlackElo && typeof headers.BlackElo) {
-                this.poster.gameMeta.black.rating = headers.BlackElo
-                this.poster.gameMeta.black.rating = (headers.BlackElo > 2500) ? "GM" : "";
+                this.poster.black_rating = headers.BlackElo
+                this.poster.black_rating = (headers.BlackElo > 2500) ? "GM" : "";
             } else {
-                this.poster.gameMeta.black.title = "";
+                this.poster.black_title = "";
             }
 
 
-            if (headers.Site) this.poster.gameMeta.where = headers.Site;
-            if (headers.Event) this.poster.gameMeta.when = headers.Event;
-            if (headers.Round) this.poster.gameMeta.when += ' Round ' + headers.Round;
+            if (headers.Site) this.poster.where = headers.Site;
+            if (headers.Event) this.poster.when = headers.Event;
+            if (headers.Round) this.poster.when += ' Round ' + headers.Round;
             if (headers.Result) this.poster.result = headers.Result;
 
             return;
@@ -746,7 +740,7 @@ export default {
 
             this.$data.chessGame.loadPgn(pgn);
 
-            this.$data.poster.gamePgn = this.getStrictPgn();
+            this.$data.poster.pgn = this.getStrictPgn();
 
             this.tryHeaders();
 
@@ -762,7 +756,7 @@ export default {
                     this.resetBoard(),
                     this.$data.chessGame.loadPgn(response.data),
                     this.tryHeaders(),
-                    this.$data.poster.gamePgn = this.getStrictPgn(),
+                    this.$data.poster.pgn = this.getStrictPgn(),
                     this.$data.posterBuilder.uploadLichess.success = true
                 ))
                 .catch(() => (
@@ -778,7 +772,7 @@ export default {
     },
 
     mounted() {
-        this.setTheme(this.$data.poster.themeId)
+        this.setTheme(this.$data.poster.theme)
     }
 }
 </script>
