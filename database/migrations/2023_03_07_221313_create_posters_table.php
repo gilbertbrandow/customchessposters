@@ -23,13 +23,14 @@ return new class extends Migration
             $table->text('pgn')->nullable();
             $table->unsignedTinyInteger('diagram_position');
             $table->string('fen', 100);
+            $table->string('result', 10)->nullable();
             $table->string('title', 50)->nullable();;
-            $table->string('white_name', 50)->nullable();;
-            $table->string('black_name', 50)->nullable();;
+            $table->string('white_player', 50)->nullable();;
+            $table->string('black_player', 50)->nullable();;
             $table->unsignedSmallInteger('white_rating')->nullable();;
             $table->unsignedSmallInteger('black_rating')->nullable();;
-            $table->string('white_title')->nullable();;
-            $table->string('black_title')->nullable();;
+            $table->string('white_title', 4)->nullable();;
+            $table->string('black_title', 4)->nullable();;
             $table->text('when', 50)->nullable();
             $table->text('where', 50)->nullable();;
             $table->timestamps();
