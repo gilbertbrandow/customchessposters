@@ -36,7 +36,6 @@
         <!-- The board -->
         <svg width="1645" height="1671" viewBox="0 0 1645 1671" x="177.5" 
             :y="((Math.min(2900 - (40 * (pgnRows.length)), 2860) - (title[1] ? 800 : 600)) / 2) + (title[1] ? 800 : 600) - 800">
-            
 
             <text id="a" font-size="40">
                 <tspan v-for="index in 8" x="0" :y="40 + (200 * index) - 200" >{{ poster.orientation ? 9 - index : index}}</tspan>
