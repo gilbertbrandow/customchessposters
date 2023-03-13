@@ -91,7 +91,7 @@ export default {
 
             const string = this.$props.poster.title;
             var title = [];
-            this.$parent.$data.posterBuilder.titleValid = true;
+            //this.$parent.$data.posterBuilder.titleValid = true;
 
             let words = string.split(' ');
             let rowCount = 0;
@@ -115,7 +115,7 @@ export default {
                         if (rowCount < 26) {
                             title[1] = words[i];
                         } else {
-                            this.$parent.$data.posterBuilder.titleValid = false;
+                            //this.$parent.$data.posterBuilder.titleValid = false;
                         }
 
                     } else {
@@ -125,7 +125,7 @@ export default {
                         if (rowCount < 26) {
                             title[1] += ' ' + words[i];
                         } else {
-                            this.$parent.$data.posterBuilder.titleValid = false;
+                            //this.$parent.$data.posterBuilder.titleValid = false;
                         }
                     }
                 }
