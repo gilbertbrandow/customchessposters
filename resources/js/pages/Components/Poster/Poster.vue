@@ -35,7 +35,7 @@
 
         <!-- The board -->
         <svg width="1645" height="1671" viewBox="0 0 1645 1671" x="177.5" 
-            :y="((2900 - (40 * (pgnRows.length)) - (title[1] ? 800 : 600)) / 2) + (title[1] ? 800 : 600) - 800">
+            :y="((Math.min(2900 - (40 * (pgnRows.length)), 2860) - (title[1] ? 800 : 600)) / 2) + (title[1] ? 800 : 600) - 800">
             
 
             <text id="a" font-size="40">
