@@ -50,7 +50,7 @@
             <Frame/>
 
             <!-- The board itself with pieces -->
-            <Game ref="Game" :diagramPosition="this.$props.poster.diagramPosition"/>
+            <Game ref="Game" :fen="this.$props.poster.fen"/>
 
         </svg>
 
@@ -172,7 +172,6 @@ export default {
         }
     },
     methods: {
-
         containsNumbers(str) {
             return /[0-9]/.test(str);
         },
