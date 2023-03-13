@@ -419,6 +419,12 @@ h4 {
     column-gap: 1em;
 }
 
+.row.is--title-result {
+    .field__wrp:not(:first-child) {
+        width: 12.5em;
+    }
+}
+
 .row.is--player-input {
     .field__wrp:not(:first-child) {
         width: 12.5em;
