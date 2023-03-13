@@ -166,8 +166,8 @@
                             <div class="poster__moves">
                                 <div v-for="(move, index) in pgnArray" :key="index">
                                     <span v-if="index % 2 == 0" v-text="(index / 2 + 1) + '. '"></span>
-                                    <span class="move" :class="{ 'is--active': index + 1 == poster.diagramPosition }"
-                                        v-text="move" @click="poster.diagramPosition = index + 1"></span>
+                                    <span class="move" :class="{ 'is--active': index + 1 == poster.diagram_position }"
+                                        v-text="move" @click="poster.diagram_position = index + 1"></span>
                                 </div>
                             </div>
                             <div v-if="!pgnArray.length" class="message">
@@ -184,25 +184,38 @@
                             <h3>4. The Game</h3>
                             <p>Other interesting information to give your poster some context.</p>
 
-                            <div class="field__wrp">
-                                <label for="gameTitle" class="field__label">Title</label>
-                                <div v-if="!posterBuilder.titleValid" class="field__error">Title is too long</div>
-                                <input v-model="poster.title" class="field"
-                                    :class="{ 'is--error': !posterBuilder.titleValid }" name="gameTitle" id="gameTitle"
-                                    placeholder="Lorem ipsum dolor set ami" />
+                            <div class="row is--title-result">
+                                <div class="field__wrp">
+                                    <label for="gameTitle" class="field__label">Title</label>
+                                    <div v-if="!posterBuilder.titleValid" class="field__error">Title is too long</div>
+                                    <input v-model="poster.title" class="field"
+                                        :class="{ 'is--error': !posterBuilder.titleValid }" name="gameTitle"
+                                        id="gameTitle" placeholder="Lorem ipsum dolor set ami" />
+                                </div>
+
+                                <div class="field__wrp">
+                                    <label for="result" class="field__label">Result</label>
+                                    <select v-model="poster.result" id="result" class="field" name="result">
+                                        <option value="">Result</option>
+                                        <option value="1-0">White won</option>
+                                        <option value="0-1">Black won</option>
+                                        <option value="1/2 - 1/2">Draw</option>
+                                    </select>
+                                </div>
+
                             </div>
 
                             <div class="row is--player-input is--margin-top">
                                 <div class="field__wrp">
                                     <label for="whitePlayer" class="field__label">White player</label>
-                                    <input maxlength="45" v-model="poster.white_player" class="field"
-                                        name="whitePlayer" id="whitePlayer" placeholder="Carlsen, Magnus" />
+                                    <input maxlength="45" v-model="poster.white_player" class="field" name="whitePlayer"
+                                        id="whitePlayer" placeholder="Carlsen, Magnus" />
                                 </div>
 
                                 <div class="field__wrp">
                                     <label for="whiteRating" class="field__label">Rating</label>
-                                    <input v-model="poster.white_rating" maxlength="4" class="field"
-                                        name="whiteRating" id="whiteRating" type="tel" placeholder="2126" />
+                                    <input v-model="poster.white_rating" maxlength="4" class="field" name="whiteRating"
+                                        id="whiteRating" type="tel" placeholder="2126" />
                                 </div>
 
                                 <div class="field__wrp">
@@ -227,8 +240,8 @@
                             <div class="row is--player-input is--margin-top">
                                 <div class="field__wrp">
                                     <label for="blackPlayer" class="field__label">Black player</label>
-                                    <input maxlength="45" v-model="poster.black_player" class="field"
-                                        name="gameTitle" id="gameTitle" placeholder="Abdusattorov, Nodirbek" />
+                                    <input maxlength="45" v-model="poster.black_player" class="field" name="gameTitle"
+                                        id="gameTitle" placeholder="Abdusattorov, Nodirbek" />
                                 </div>
 
                                 <div class="field__wrp">
@@ -344,11 +357,11 @@
 import { useForm } from '@inertiajs/vue3';
 
 let form = useForm({
-    name: "My saved poster",
     posterData: {},
 });
 
 function submitForm(poster) {
+    poster.name = "My saved poster"
     form.posterData = poster;
     form.post('/save-poster');
 }
@@ -399,7 +412,7 @@ export default {
                 theme: 1,
                 orientation: true,
                 pgn: "",
-                diagramPosition: 0,
+                diagram_position: 0,
                 fen: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR",
                 result: "",
                 title: "Lorem ipsum dolor sit amet, consectetur adi",
@@ -492,7 +505,7 @@ export default {
                 i = k;
             }
 
-            this.$data.poster.diagramPosition = gameArray.length;
+            this.$data.poster.diagram_position = gameArray.length;
 
             return gameArray;
         }
@@ -653,7 +666,7 @@ export default {
         },
 
         undoMove() {
-            
+
             //Undo move
             this.$data.chessGame.undo();
             this.$data.poster.pgn = this.$data.chessGame.pgn();
@@ -666,7 +679,7 @@ export default {
 
             this.$data.chessGame.reset();
             this.$data.poster.pgn = "";
-            this.$data.poster.diagramPosition = "0";
+            this.$data.poster.diagram_position = "0";
 
         },
 
@@ -761,13 +774,13 @@ export default {
     },
 
     watch: {
-        'poster.diagramPosition'(){
+        'poster.diagram_position'() {
 
-            if(this.pgnArray.length == this.poster.diagramPosition){
-                this.$data.poster.fen = this.chessGame.fen(); 
+            if (this.pgnArray.length == this.poster.diagram_position) {
+                this.$data.poster.fen = this.chessGame.fen();
             } else {
-                let history = this.chessGame.history({verbose: true});
-                this.$data.poster.fen = history[this.poster.diagramPosition].fen;
+                let history = this.chessGame.history({ verbose: true });
+                this.$data.poster.fen = history[this.poster.diagram_position].fen;
             }
         }
     },
