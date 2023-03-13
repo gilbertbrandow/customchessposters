@@ -704,7 +704,7 @@ export default {
 
             if (headers.BlackElo && typeof headers.BlackElo) {
                 this.poster.black_rating = headers.BlackElo
-                this.poster.black_rating = (headers.BlackElo > 2500) ? "GM" : "";
+                this.poster.black_title = (headers.BlackElo > 2500) ? "GM" : "";
             } else {
                 this.poster.black_title = "";
             }
