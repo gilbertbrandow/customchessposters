@@ -400,6 +400,7 @@ export default {
                 orientation: true,
                 pgn: "",
                 diagramPosition: 0,
+                fen: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR",
                 result: "",
                 title: "Lorem ipsum dolor sit amet, consectetur adi",
                 white_player: "Magnus Carlsen",
@@ -652,13 +653,7 @@ export default {
         },
 
         undoMove() {
-
-            //Visually make move on diagram, needs to be done first so full latest history can be retrieved
-            var history = this.chessGame.history({ "verbose": true });
-            var lastMove = history[history.length - 1];
-            this.$refs.PosterSVG.$refs.Game.movePiece(lastMove.from, lastMove.to, history.length - 1, lastMove.san, 0);
-            this.$refs.PosterSVG.$refs.Game.boardPosition--;
-
+            
             //Undo move
             this.$data.chessGame.undo();
             this.$data.poster.pgn = this.$data.chessGame.pgn();
@@ -669,7 +664,6 @@ export default {
 
         resetBoard() {
 
-            this.$refs.PosterSVG.$refs.Game.startingPosition();
             this.$data.chessGame.reset();
             this.$data.poster.pgn = "";
             this.$data.poster.diagramPosition = "0";
@@ -760,11 +754,22 @@ export default {
                     this.$data.posterBuilder.uploadLichess.success = true
                 ))
                 .catch(() => (
-                    console.clear(),
                     this.$data.posterBuilder.uploadLichess.valid = false
                 ))
         },
 
+    },
+
+    watch: {
+        'poster.diagramPosition'(){
+
+            if(this.pgnArray.length == this.poster.diagramPosition){
+                this.$data.poster.fen = this.chessGame.fen(); 
+            } else {
+                let history = this.chessGame.history({verbose: true});
+                this.$data.poster.fen = history[this.poster.diagramPosition].fen;
+            }
+        }
     },
 
     components: {
