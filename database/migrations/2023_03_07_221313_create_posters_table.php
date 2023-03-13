@@ -16,11 +16,13 @@ return new class extends Migration
         Schema::create('posters', function (Blueprint $table) {
             $table->id();
             $table->string('name', 50);
-            $table->foreignId('user_id')->nullable()->constrained();
+            $table->unsignedBigInteger('created_by');
+            $table->foreign('created_by')->references('id')->on('users')->nullable();
             $table->unsignedTinyInteger('theme');
             $table->boolean('orientation');
-            $table->text('pgn', 500)->nullable();;
+            $table->text('pgn')->nullable();
             $table->unsignedTinyInteger('diagram_position');
+            $table->string('fen', 100);
             $table->string('title', 50)->nullable();;
             $table->string('white_name', 50)->nullable();;
             $table->string('black_name', 50)->nullable();;
