@@ -19,7 +19,7 @@
         </div>
         <Icon name="user" />
         </Link>
-        <Link :href="route('home.index')" class="nav__button">
+        <Link :href="route('auth.saved')" class="nav__button">
         <div class="info">
           <div></div>Your saved designs
         </div>

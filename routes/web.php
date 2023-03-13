@@ -68,8 +68,10 @@ Route::get('/privacy', [HomeController::class, 'privacy'])
 
 Route::middleware('auth')->group(function () {
     Route::get('/account', [LoginController::class, 'account'])
-    ->middleware('auth')
     ->name('auth.account');
+
+    Route::get('/saved-designs', [PosterController::class, 'saved_posters'])
+    ->name('auth.saved');
     
     Route::post('/logout', [LoginController::class, 'logout'])->name('auth.logout');
 });
