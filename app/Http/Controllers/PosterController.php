@@ -51,4 +51,13 @@ class PosterController extends Controller
         $poster->where = $request->posterData["where"];
         $poster->save();
     }
+
+    public function saved_posters() {
+
+        $posters = Poster::all();
+
+        //dd($posters);
+
+        return inertia('Auth/SavedPosters', compact('posters')); 
+    }
 }
