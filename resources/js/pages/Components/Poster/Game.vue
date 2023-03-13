@@ -26,8 +26,7 @@ export default {
     },
 
     props: {
-        diagramPosition: 0,
-        fen: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR",
+        fen: "",
     },
 
     data() {
