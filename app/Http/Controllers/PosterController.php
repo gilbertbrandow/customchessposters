@@ -31,33 +31,12 @@ class PosterController extends Controller
     public function save(Request $request)
     {
 
-        $poster = new Poster;
-        $poster->name = $request->posterData["name"];
-        $poster->created_by = Auth::id();
-        $poster->theme = $request->posterData["theme"];
-        $poster->orientation = $request->posterData["orientation"];
-        $poster->pgn = $request->posterData["pgn"];
-        $poster->diagram_position = $request->posterData["diagram_position"];
-        $poster->fen = $request->posterData["fen"];
-        $poster->result = $request->posterData["result"];
-        $poster->title = $request->posterData["title"];
-        $poster->white_player = $request->posterData["white_player"];
-        $poster->black_player = $request->posterData["black_player"];
-        $poster->white_rating = $request->posterData["white_rating"];
-        $poster->black_rating = $request->posterData["black_rating"];
-        $poster->white_title = $request->posterData["white_title"];
-        $poster->black_title = $request->posterData["black_title"];
-        $poster->when = $request->posterData["when"];
-        $poster->where = $request->posterData["where"];
-        $poster->save();
-    }
+        $data = $request->posterData;
+        $data["pgn"] = $data["pgn"] ? $data["pgn"] : "";
+        $data['created_by']=Auth::id();
+        $poster = Poster::create($data);
+        $poster->users_saved()->attach(Auth::id());
+        return redirect()->back()->with('savedSuccess', 'Poster saved!');
 
-    public function saved_posters() {
-
-        $posters = Poster::all();
-
-        //dd($posters);
-
-        return inertia('Auth/SavedPosters', compact('posters')); 
     }
 }
