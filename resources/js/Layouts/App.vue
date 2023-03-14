@@ -20,8 +20,8 @@
         <Icon name="user" />
         </Link>
         <Link :href="route('auth.saved')" class="nav__button">
-        <div class="info">
-          <div></div>Your saved designs
+        <div class="info" :class="{active: $page.props.flash.saved.success}">
+          <div></div> {{ $page.props.flash.saved.success ? $page.props.flash.saved.success : 'Your saved designs' }}
         </div>
         <Icon name="bookmark" />
         </Link>
