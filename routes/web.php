@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\PosterController;
+use App\Http\Controllers\Auth\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -67,10 +68,10 @@ Route::get('/privacy', [HomeController::class, 'privacy'])
 */
 
 Route::middleware('auth')->group(function () {
-    Route::get('/account', [LoginController::class, 'account'])
+    Route::get('/account', [UserController::class, 'account'])
     ->name('auth.account');
 
-    Route::get('/saved-designs', [PosterController::class, 'saved_posters'])
+    Route::get('/saved-designs', [UserController::class, 'saved_posters'])
     ->name('auth.saved');
     
     Route::post('/logout', [LoginController::class, 'logout'])->name('auth.logout');
