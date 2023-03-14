@@ -19,9 +19,10 @@ class Poster extends Model
         'pgn',
         'diagram_position',
         'fen',
+        'result',
         'title',
-        'white_name',
-        'black_name',
+        'white_player',
+        'black_player',
         'white_rating',
         'black_rating',
         'white_title',
@@ -35,8 +36,8 @@ class Poster extends Model
         return $this->belongsTo(User::class, 'created_by');
     }
 
-    public function saved_posters()
+    public function users_saved()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class)->withTimestamps();
     }
 }
