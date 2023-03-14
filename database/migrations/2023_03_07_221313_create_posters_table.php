@@ -20,7 +20,7 @@ return new class extends Migration
             $table->foreign('created_by')->references('id')->on('users')->nullable();
             $table->unsignedTinyInteger('theme');
             $table->boolean('orientation');
-            $table->text('pgn')->nullable();
+            $table->text('pgn');
             $table->unsignedTinyInteger('diagram_position');
             $table->string('fen', 100);
             $table->string('result', 10)->nullable();
