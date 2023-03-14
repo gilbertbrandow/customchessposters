@@ -24,11 +24,13 @@ class RegisterController extends Controller
             'password' => ['required', 'min:6', 'confirmed'],
         ]);
 
-        User::create($credentials);
+        $user = User::create($credentials);
+
+        Auth::login($user);
+
+        $firstname = explode(' ', $request->name)[0];
 
         Mail::to($credentials['email'])->send(new Welcome($credentials['name']));
-
-        //TODO: Set new redirect to login(?) with flash message of user created.
-        return Redirect('/');
+        return redirect('/')->with('accountSuccess', 'Welcome ' . $firstname .'!');
     }
 }
