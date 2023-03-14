@@ -59,6 +59,11 @@ class HandleInertiaRequests extends Middleware
                         'error' => $request->session()->get('newsletterError'),
                     ],
 
+                    'saved' => [
+                        'success' => $request->session()->get('savedSuccess'),
+                        'error' => $request->session()->get('savedError'),
+                    ],
+
                     'success' => $request->session()->get('success'),
                     'error' => $request->session()->get('error'),
             ], 
