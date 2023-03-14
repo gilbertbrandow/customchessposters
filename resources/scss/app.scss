@@ -104,6 +104,11 @@ nav .nav__wrp {
         }
     }
 
+    .info.active {
+        opacity: 1;
+        margin-top: 0.25em;
+    }
+
     svg {
         height: 1em;
         width: 1em;
