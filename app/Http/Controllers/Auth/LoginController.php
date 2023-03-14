@@ -35,11 +35,6 @@ class LoginController extends Controller
         ])->onlyInput('all');
     }
 
-    public function account()
-    {
-        return inertia('Auth/Account'); 
-    }
-
     public function logout()
     {
         Auth::logout();
