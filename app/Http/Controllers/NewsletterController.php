@@ -25,8 +25,6 @@ class NewsletterController extends Controller
             Newsletter::subscribe($credentials['email']);
             return redirect()->back()->with('newsletterSuccess', 'Welcome as a new subscriber!');
         }
-
-        return Redirect('/')->with($credentials);
     }
 
     public function signup()
