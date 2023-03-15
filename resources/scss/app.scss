@@ -292,6 +292,10 @@ section.section__hero {
     padding-top: 1em;
     padding-right: 1em;
     align-items: center;
+
+    .poster {
+        width: 50%;
+    }
 }
 
 section.section__hero .container {
@@ -441,7 +445,6 @@ h4 {
 ***********************/
 
 .poster {
-    width: 50%;
     height: auto;
     position: relative;
     border-radius: 1em;
@@ -828,6 +831,45 @@ h4 {
 
         .progress__step.is--passed {
             border-color: #000;
+        }
+    }
+}
+
+/**********************
+****** Saved posters style
+***********************/
+ul.saved__posters {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    column-gap: 2em;
+
+    li {
+        overflow: hidden;
+        border-radius: 1em;
+        background-color: #fff;
+
+        .poster__svg-wrp {
+            position: absolute;
+            top: 13.4%;
+            right: 19.75%;
+            width: 61%;
+            height: 75.5%;
+            mix-blend-mode: multiply;
+        }
+
+        .content {
+            padding: 1em;
+
+            .button-wrp {
+                margin-top: 1em;
+                font-size: 0.8em;
+            }
+        }
+
+        h3 {
+            font-size: 1.4em;
+            line-height: 1.6;
+            margin-bottom: 0em;
         }
     }
 }
