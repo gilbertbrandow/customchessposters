@@ -71,7 +71,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/account', [UserController::class, 'account'])
     ->name('auth.account');
 
-    Route::get('/saved-designs', [UserController::class, 'saved_posters'])
+    Route::get('/saved-designs', [UserController::class, 'savedPosters'])
     ->name('auth.saved');
     
     Route::post('/logout', [LoginController::class, 'logout'])->name('auth.logout');

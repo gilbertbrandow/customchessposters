@@ -12,10 +12,10 @@ class UserController extends Controller
         return inertia('Auth/Account'); 
     }
 
-    public function saved_posters()
+    public function savedPosters()
     {
         $user = User::find(Auth::id());
-        $posters = $user->saved_posters;
+        $posters = $user->savedPosters;
         return inertia('Auth/SavedPosters', compact('posters')); 
     }
 }
