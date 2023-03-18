@@ -37,6 +37,16 @@
 
                             </div>
 
+                            <div class="field__wrp">
+                                <label v-text="'Starting position'" for="startingPosition"
+                                    class="field__label"></label>
+                                <div v-if="!posterBuilder.validStartingPosition" class="field__error">
+                                    FEN is not valid </div>
+                                <input v-model="poster.startingPosition" @input="makeMove(false)" class="field"
+                                    :class="{ 'is--error': !posterBuilder.validStartingPosition }" id="startingPosition"
+                                    placeholder="rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR" />
+                            </div>
+
 
                             <div v-if="!posterBuilder.announcement" class="message">
                                 <div @click="posterBuilder.announcement = true">
@@ -388,6 +398,7 @@ export default {
                 announcement: false,
                 currEnvironment: "",
                 currTab: 0,
+                validStartingPosition: "", 
                 manualMove: {
                     pgn: "",
                     valid: true,
