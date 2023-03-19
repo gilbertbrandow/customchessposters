@@ -836,7 +836,21 @@ h4 {
 }
 
 /**********************
-****** Saved posters style
+****** Lightbox styles
+***********************/
+
+.lightbox {
+    position: fixed;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+/**********************
+****** Saved posters styles
 ***********************/
 ul.saved__posters {
     display: grid;
