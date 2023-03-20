@@ -1,6 +1,6 @@
 <template>
 
-    <div class="lightbox">
+    <div class="lightbox" v-if="this.visible">
         <div class="content">
 
             <div class="lightbox__mask">
@@ -50,7 +50,7 @@ import Icon from '../../Icons/Icon.vue'
 
 export default {
     props: {
-
+    
     },
 
     components: {
@@ -60,7 +60,7 @@ export default {
 
     data() {
         return {
-
+            visible: 1,
             currSlide: 0,
 
             //Create array to hold each environment and display by for loop in mask. Try to make it work with only one Poster element. 
@@ -106,6 +106,36 @@ export default {
             where: "Wijk aan Zee, Netherlands",
             },
         }
-    }
+    }, 
+
+    methods: {
+        onKeydown(e) {
+            if(this.visible){
+                switch(e.key){
+                    case 'ArrowRight': 
+                    this.currSlide != this.slides.length - 1?  this.currSlide++ : this.currSlide = 0;
+                    break; 
+
+                    case 'ArrowLeft': 
+                    this.currSlide != 0 ?  this.currSlide-- : this.currSlide = this.slides.length - 1;
+                    break; 
+
+                    case 'Escape':
+                    this.visible = false;
+                    break;
+
+                } 
+
+            }
+        }
+    },
+
+    mounted() {
+        window.addEventListener('keydown', this.onKeydown)
+    },
+
+    destroyed() {
+        window.removeEventListener('keydown', this.onKeydown)
+    },
 }
 </script>
