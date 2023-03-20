@@ -4,9 +4,9 @@
         <div class="content">
 
             <div class="lightbox__mask">
-
-                <!-- TODO: Fix so that poster__svg-wrp is relative to image, not parent -->
+                <!-- TODO: Make zoom effect by using css transform: scale(2.5) -->
                 <div class="poster">
+                    <!-- TODO: Fix so that poster__svg-wrp is relative to image, not parent -->
                     <div class="poster__svg-wrp">
                         <Poster ref="PosterSVG" :poster="poster" />
                     </div>
@@ -25,11 +25,11 @@
                     </div>
                     <div class="lightbox__arrows">
                         <button
-                            @click="this.currSlide != 0 ? this.currSlide-- : this.currSlide = this.slides.length - 1">
+                            @click="this.prevSlide()">
                             <Icon name="small-arrow" />
                         </button>
                         <button
-                            @click="this.currSlide != this.slides.length - 1 ? this.currSlide++ : this.currSlide = 0">
+                            @click="this.nextSlide()">
                             <Icon name="small-arrow" />
                         </button>
                     </div>
@@ -50,7 +50,7 @@ import Icon from '../../Icons/Icon.vue'
 
 export default {
     props: {
-    
+
     },
 
     components: {
@@ -88,44 +88,50 @@ export default {
             ],
 
             poster: {
-            name: "",
-            theme: 1,
-            orientation: true,
-            pgn: "",
-            diagram_position: 0,
-            fen: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR",
-            result: "",
-            title: "Lorem ipsum dolor sit amet, consectetur adi",
-            white_player: "Magnus Carlsen",
-            black_player: "Fabiano Caruana",
-            white_rating: 2881,
-            black_rating: 2815,
-            white_title: "GM",
-            black_title: "GM",
-            when: "Tata Steel Chess, January 2014. Round 3",
-            where: "Wijk aan Zee, Netherlands",
+                name: "",
+                theme: 1,
+                orientation: true,
+                pgn: "",
+                diagram_position: 0,
+                fen: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR",
+                result: "",
+                title: "Lorem ipsum dolor sit amet, consectetur adi",
+                white_player: "Magnus Carlsen",
+                black_player: "Fabiano Caruana",
+                white_rating: 2881,
+                black_rating: 2815,
+                white_title: "GM",
+                black_title: "GM",
+                when: "Tata Steel Chess, January 2014. Round 3",
+                where: "Wijk aan Zee, Netherlands",
             },
         }
-    }, 
+    },
 
     methods: {
-        onKeydown(e) {
-            if(this.visible){
-                switch(e.key){
-                    case 'ArrowRight': 
-                    this.currSlide != this.slides.length - 1?  this.currSlide++ : this.currSlide = 0;
-                    break; 
+        nextSlide() {
+            this.currSlide != this.slides.length - 1 ? this.currSlide++ : this.currSlide = 0;
+        },
 
-                    case 'ArrowLeft': 
-                    this.currSlide != 0 ?  this.currSlide-- : this.currSlide = this.slides.length - 1;
-                    break; 
+        prevSlide() {
+            this.currSlide != 0 ? this.currSlide-- : this.currSlide = this.slides.length - 1;
+        },
+
+        onKeydown(e) {
+            if (this.visible) {
+                switch (e.key) {
+                    case 'ArrowRight':
+                        this.nextSlide();
+                        break;
+
+                    case 'ArrowLeft':
+                        this.prevSlide();
+                        break;
 
                     case 'Escape':
-                    this.visible = false;
-                    break;
-
-                } 
-
+                        this.visible = false;
+                        break;
+                }
             }
         }
     },
