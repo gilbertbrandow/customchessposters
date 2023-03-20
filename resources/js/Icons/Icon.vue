@@ -51,8 +51,8 @@
         </g>
     </svg>
 
-    <svg v-else-if="name === 'close'" enable-background="new 0 0 320.591 320.591"
-        viewBox="0 0 320.591 320.591" xmlns="http://www.w3.org/2000/svg">
+    <svg v-else-if="name === 'close'" enable-background="new 0 0 320.591 320.591" viewBox="0 0 320.591 320.591"
+        xmlns="http://www.w3.org/2000/svg">
         <g>
             <g id="close_1_">
                 <path
@@ -83,8 +83,9 @@
         </g>
     </svg>
 
-    <svg v-else-if="name === 'refresh'" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-        y="0px" viewBox="0 0 491.236 491.236" style="enable-background:new 0 0 491.236 491.236;" xml:space="preserve">
+    <svg v-else-if="name === 'refresh'" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 491.236 491.236"
+        style="enable-background:new 0 0 491.236 491.236;" xml:space="preserve">
         <g>
             <g>
                 <path d="M55.89,262.818c-3-26-0.5-51.1,6.3-74.3c22.6-77.1,93.5-133.8,177.6-134.8v-50.4c0-2.8,3.5-4.3,5.8-2.6l103.7,76.2
@@ -136,6 +137,11 @@
             </g>
         </g>
 
+    </svg>
+
+    <svg v-else-if="name === 'small-arrow'" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"
+        viewBox="0 0 24 24">
+        <path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z" />
     </svg>
 
     <svg v-else-if="name === 'custom'" id="Layer_1" enable-background="new 0 0 128 128" height="512"
