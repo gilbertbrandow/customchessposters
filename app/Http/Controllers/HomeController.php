@@ -46,4 +46,9 @@ class HomeController extends Controller
     {
         return inertia('Policy/Privacy');
     }
+
+    public function lightbox () 
+    {
+        return inertia('Components/Lightbox');
+    }
 }
