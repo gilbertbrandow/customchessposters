@@ -106,3 +106,11 @@ Route::post('/reset-password', [ResetPasswordController::class, 'passwordUpdate'
 
 //Route::get('/create-poster', [PosterController::class, 'createPoster'])->name('poster.create');
 Route::post('/save-poster', [PosterController::class, 'save'])->name('poster.store');
+
+/*
+|--------------------------------------------------------------------------
+| Development routes
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/lightbox', [HomeController::class, 'lightbox'])->name('home.lightbox');
