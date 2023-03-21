@@ -3,9 +3,9 @@
     <div class="lightbox" v-if="this.visible">
         <div class="content">
 
-            <div class="lightbox__mask">
+            <div class="lightbox__mask" @click="this.zoom = !this.zoom">
                 <!-- TODO: Make zoom effect by using css transform: scale(2.5) -->
-                <div class="poster">
+                <div class="poster" :class="[zoom ? 'is--zoomed' : '']">
                     <!-- TODO: Fix so that poster__svg-wrp is relative to image, not parent -->
                     <div class="poster__svg-wrp">
                         <Poster ref="PosterSVG" :poster="poster" />
@@ -24,12 +24,10 @@
                             @click="this.currSlide = index"></div>
                     </div>
                     <div class="lightbox__arrows">
-                        <button
-                            @click="this.prevSlide()">
+                        <button @click="this.prevSlide()">
                             <Icon name="small-arrow" />
                         </button>
-                        <button
-                            @click="this.nextSlide()">
+                        <button @click="this.nextSlide()">
                             <Icon name="small-arrow" />
                         </button>
                     </div>
@@ -62,6 +60,7 @@ export default {
         return {
             visible: 1,
             currSlide: 0,
+            zoom: true,
 
             //Create array to hold each environment and display by for loop in mask. Try to make it work with only one Poster element. 
             slides: [
@@ -132,6 +131,40 @@ export default {
                         this.visible = false;
                         break;
                 }
+            }
+        },
+
+        zoomIn() {
+            if (!this.zoom) this.zoom = true;
+            else return;
+        },
+
+        mouseMove(e) {
+
+            // Get the target
+            const target = document.querySelector('.lightbox__mask')
+
+            // Get the bounding rectangle of target
+            const element = target.getBoundingClientRect();
+
+            // Mouse position
+            const x = (e.clientX - element.left) / (element.right - element.left);
+            const y = (e.clientY - element.top) / (element.bottom - element.top);
+
+            //Move poster element relative to the x and y. 
+            target.querySelector('.poster').style.top = (50 - Math.max(y, 0) * 100) + '%';
+            target.querySelector('.poster').style.right = (Math.max(x, 0) * 100 - 50) + '%';
+
+        },
+    },
+
+    computed: {
+        zoomEvent() {
+            if (this.$data.zoom) document.querySelector('.lightbox__mask').addEventListener('mousemove', this.mouseMove);
+            else {
+                document.querySelector('.lightbox__mask').firstElementChild.style.top = '';
+                document.querySelector('.lightbox__mask').firstElementChild.style.right = '';
+                document.querySelector('.lightbox__mask').removeEventListener('mousemove', this.mouseMove);
             }
         }
     },
