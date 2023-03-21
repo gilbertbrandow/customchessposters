@@ -60,7 +60,7 @@ export default {
         return {
             visible: 1,
             currSlide: 0,
-            zoom: true,
+            zoom: false,
 
             //Create array to hold each environment and display by for loop in mask. Try to make it work with only one Poster element. 
             slides: [
@@ -150,6 +150,12 @@ export default {
             // Mouse position
             const x = (e.clientX - element.left) / (element.right - element.left);
             const y = (e.clientY - element.top) / (element.bottom - element.top);
+
+            if (x * 100 < 0.5 || y * 100 < 0.5 || x * 100 > 99.5 || y * 100 > 99.5 ) {
+
+                this.zoom = false;
+                return;
+            }
 
             //Move poster element relative to the x and y. 
             target.querySelector('.poster').style.top = (50 - Math.max(y, 0) * 100) + '%';
