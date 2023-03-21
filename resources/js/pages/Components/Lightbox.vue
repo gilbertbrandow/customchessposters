@@ -2,12 +2,11 @@
 
     <div class="lightbox" v-if="this.visible">
         <div class="content">
-
-            <div class="lightbox__mask" @click="this.zoom = !this.zoom">
-                <!-- TODO: Make zoom effect by using css transform: scale(2.5) -->
+            <div class="lightbox__mask" @click="this.$data.zoom = !this.$data.zoom, this.mouseMove($event)">
                 <div class="poster" :class="[zoom ? 'is--zoomed' : '']">
+
                     <!-- TODO: Fix so that poster__svg-wrp is relative to image, not parent -->
-                    <div class="poster__svg-wrp">
+                    <div class="poster__svg-wrp" :class="this.slides[`${this.currSlide}`].class">
                         <Poster ref="PosterSVG" :poster="poster" />
                     </div>
                     <img class="poster__environment" :src="this.slides[`${this.currSlide}`].src" />
@@ -66,22 +65,27 @@ export default {
             slides: [
                 {
                     title: 'Medium (50 x 75cm)',
+                    class: 'is--lightbox-medium',
                     src: '/images/environments/environment-medium.jpg',
                 },
                 {
                     title: 'Medium (50 x 75cm)',
+                    class: 'is--lightbox-medium',
                     src: '/images/environments/environment-medium.jpg',
                 },
                 {
                     title: 'Medium (50 x 75cm)',
+                    class: 'is--lightbox-medium',
                     src: '/images/environments/environment-medium.jpg',
                 },
                 {
                     title: 'Medium (50 x 75cm)',
+                    class: 'is--lightbox-medium',
                     src: '/images/environments/environment-medium.jpg',
                 },
                 {
                     title: 'Medium (50 x 75cm)',
+                    class: 'is--lightbox-medium',
                     src: '/images/environments/environment-medium.jpg',
                 },
             ],
@@ -134,11 +138,6 @@ export default {
             }
         },
 
-        zoomIn() {
-            if (!this.zoom) this.zoom = true;
-            else return;
-        },
-
         mouseMove(e) {
 
             // Get the target
@@ -151,8 +150,7 @@ export default {
             const x = (e.clientX - element.left) / (element.right - element.left);
             const y = (e.clientY - element.top) / (element.bottom - element.top);
 
-            if (x * 100 < 0.5 || y * 100 < 0.5 || x * 100 > 99.5 || y * 100 > 99.5 ) {
-
+            if (x * 100 < 0.5 || y * 100 < 0.5 || x * 100 > 99.5 || y * 100 > 99.5) {
                 this.zoom = false;
                 return;
             }
@@ -172,6 +170,8 @@ export default {
                 document.querySelector('.lightbox__mask').firstElementChild.style.right = '';
                 document.querySelector('.lightbox__mask').removeEventListener('mousemove', this.mouseMove);
             }
+
+            return;
         }
     },
 
