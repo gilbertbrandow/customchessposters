@@ -64,9 +64,9 @@ export default {
             //Create array to hold each environment and display by for loop in mask. Try to make it work with only one Poster element. 
             slides: [
                 {
-                    title: 'Medium (50 x 75cm)',
-                    class: 'is--lightbox-medium',
-                    src: '/images/environments/environment-medium.jpg',
+                    title: 'Small (30.5 x 46 cm)',
+                    class: 'is--lightbox-small',
+                    src: '/images/environments/environment-small.jpg',
                 },
                 {
                     title: 'Medium (50 x 75cm)',
@@ -74,9 +74,9 @@ export default {
                     src: '/images/environments/environment-medium.jpg',
                 },
                 {
-                    title: 'Medium (50 x 75cm)',
-                    class: 'is--lightbox-medium',
-                    src: '/images/environments/environment-medium.jpg',
+                    title: 'Large (61 x 91cm)',
+                    class: 'is--lightbox-large',
+                    src: '/images/environments/environment-large.jpg',
                 },
                 {
                     title: 'Medium (50 x 75cm)',

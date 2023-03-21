@@ -859,10 +859,24 @@ h4 {
         flex-direction: column;
     }
 
+    .poster__svg-wrp.is--lightbox-small {
+        top: 10.75%;
+        right: 26.75%;
+        width: 24em;
+        height: auto;
+    }
+
     .poster__svg-wrp.is--lightbox-medium {
-        top: 10.5%;
+        top: 10.2%;
         right: 32.7%;
         width: 23.65em;
+        height: auto;
+    }
+
+    .poster__svg-wrp.is--lightbox-large {
+        top: 13.75%;
+        right: 36.75%;
+        width: 30.75%;
         height: auto;
     }
 
