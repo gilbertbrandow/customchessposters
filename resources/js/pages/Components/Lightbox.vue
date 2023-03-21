@@ -78,16 +78,6 @@ export default {
                     class: 'is--lightbox-large',
                     src: '/images/environments/environment-large.jpg',
                 },
-                {
-                    title: 'Medium (50 x 75cm)',
-                    class: 'is--lightbox-medium',
-                    src: '/images/environments/environment-medium.jpg',
-                },
-                {
-                    title: 'Medium (50 x 75cm)',
-                    class: 'is--lightbox-medium',
-                    src: '/images/environments/environment-medium.jpg',
-                },
             ],
 
             poster: {
