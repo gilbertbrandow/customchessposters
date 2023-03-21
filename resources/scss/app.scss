@@ -865,12 +865,18 @@ h4 {
         position: relative;
         overflow: hidden;
         border-radius: 1em;
+        cursor: zoom-in;  
+    }
+
+    .lightbox__mask:has(.poster.is--zoomed){
+         cursor: zoom-out;
     }
 
     .poster {
         height: 100%;
         width: 100%;
         position: absolute;
+        border-radius: 0em;
 
         .poster__environment {
             height: 100%;
@@ -883,6 +889,10 @@ h4 {
             width: 23.65em;
             height: auto;
         }
+    }
+
+    .poster.is--zoomed {
+        transform: scale(2);
     }
 
     .lightbox__footer {
