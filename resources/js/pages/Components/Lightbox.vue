@@ -2,7 +2,7 @@
 
     <div class="lightbox" v-if="this.visible">
         <div class="content">
-            <div class="lightbox__mask" @click="this.$data.zoom = !this.$data.zoom, this.mouseMove($event)">
+            <div class="lightbox__mask" @click="[this.updateZoom(), this.mouseMove($event)]">
                 <div class="poster" :class="[zoom ? 'is--zoomed' : '']">
 
                     <!-- TODO: Fix so that poster__svg-wrp is relative to image, not parent -->
@@ -138,6 +138,10 @@ export default {
             }
         },
 
+        updateZoom() {
+            this.zoom = !this.zoom; 
+        },
+
         mouseMove(e) {
 
             // Get the target
@@ -162,9 +166,9 @@ export default {
         },
     },
 
-    computed: {
-        zoomEvent() {
-            if (this.$data.zoom) document.querySelector('.lightbox__mask').addEventListener('mousemove', this.mouseMove);
+    watch: {
+        zoom() {
+            if (this.zoom) document.querySelector('.lightbox__mask').addEventListener('mousemove', this.mouseMove);
             else {
                 document.querySelector('.lightbox__mask').firstElementChild.style.top = '';
                 document.querySelector('.lightbox__mask').firstElementChild.style.right = '';
