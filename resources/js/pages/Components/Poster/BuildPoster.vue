@@ -56,7 +56,7 @@
                                         @click="this.posterBuilder.starting_position.confirm = false">cancel</button>?
                                 </div>
                             </div>
-                            <div v-if="this.posterBuilder.starting_position.fen != 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1' && this.poster.pgn.length == 0"
+                            <div v-if="this.posterBuilder.starting_position.fen != 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1' && (this.poster.pgn.length == 0 || this.poster.starting_position == 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1')"
                                 class="link-arrow is--low-op is--margin-top"
                                 @click="this.posterBuilder.starting_position.fen = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1', this.updateStartingFen()">
                                 Reset to default starting position
@@ -554,6 +554,8 @@ export default {
         },
 
         updateStartingFen() {
+
+            if(this.poster.starting_position == this.posterBuilder.starting_position.fen) return; 
 
             try {
                 this.chessGame.load(this.posterBuilder.starting_position.fen)
