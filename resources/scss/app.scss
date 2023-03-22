@@ -184,6 +184,7 @@ section {
 }
 
 button {
+    font-size: 1em;
     border: none;
     background-color: transparent;
     padding: 0em;
@@ -199,7 +200,7 @@ button {
     padding: 0.5em 1em;
     border-style: solid;
     border-width: 1px;
-    border-color: rgba(0, 0, 0, 0.1);
+    border-color: rgba(0, 0, 0, 0.14);
     border-radius: 1em;
     background-color: #fff;
     font-family: "CabinetGrotesk";
@@ -217,6 +218,11 @@ button {
     svg {
         fill: #fff;
     }
+}
+
+.confirm {
+    white-space: nowrap;
+    margin-top: 1.25em;
 }
 
 .button-wrp {
@@ -249,10 +255,7 @@ button {
 
 .link-arrow {
     cursor: pointer;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
+    display: inline-flex;
     -webkit-box-align: center;
     -webkit-align-items: center;
     -ms-flex-align: center;
@@ -426,6 +429,12 @@ h4 {
     display: flex;
     align-items: center;
     column-gap: 1em;
+}
+
+.row.is--starting-position {
+    button {
+        margin-top: 1.25em;
+    }
 }
 
 .row.is--title-result {

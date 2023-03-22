@@ -37,15 +37,25 @@
 
                             </div>
 
-                            <div class="field__wrp">
-                                <label v-text="'Starting position'" for="startingPosition"
-                                    class="field__label"></label>
-                                <div v-if="!posterBuilder.validStartingPosition" class="field__error">
-                                    FEN is not valid </div>
-                                <input v-model="poster.startingPosition" @input="makeMove(false)" class="field"
-                                    :class="{ 'is--error': !posterBuilder.validStartingPosition }" id="startingPosition"
-                                    placeholder="rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR" />
+                            <div class="row is--starting-position">
+                                <div class="field__wrp">
+                                    <label v-text="'Starting position'" for="starting_position"
+                                        class="field__label"></label>
+                                    <div v-if="!posterBuilder.starting_position.valid" class="field__error">
+                                        FEN is not valid </div>
+                                    <input v-model="posterBuilder.starting_position.fen" class="field"
+                                        :class="{ 'is--error': !posterBuilder.starting_position.valid }"
+                                        id="starting_position"
+                                        placeholder="rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1" />
+                                </div>
+                                <button v-if="!this.posterBuilder.starting_position.confirm" class="link-arrow" @click="this.poster.pgn.length == 0 ? this.updateStartingFen() : this.posterBuilder.starting_position.confirm = true">Update</button>
+                                <div v-else class="confirm">This will reset the moves. Do you wish to <button class="link-arrow" @click="this.updateStartingFen()">continue</button> or <button class="link-arrow" @click="this.posterBuilder.starting_position.confirm = false">cancel</button>?</div>
                             </div>
+                            <div v-if="this.posterBuilder.starting_position.fen != 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1' && this.poster.pgn.length == 0"
+                                                class="link-arrow is--low-op is--margin-top" @click="this.posterBuilder.starting_position.fen = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1', this.updateStartingFen()">
+                                                Reset to default starting position
+                                                <Icon name="undo" />
+                                            </div>
 
 
                             <div v-if="!posterBuilder.announcement" class="message">
@@ -398,7 +408,12 @@ export default {
                 announcement: false,
                 currEnvironment: "",
                 currTab: 0,
-                validStartingPosition: "", 
+                starting_position: {
+                    valid: true,
+                    fen: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", 
+                    confirm: false,
+                    success: false,
+                },
                 manualMove: {
                     pgn: "",
                     valid: true,
@@ -422,6 +437,7 @@ export default {
                 name: "",
                 theme: 1,
                 orientation: true,
+                starting_position: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
                 pgn: "",
                 diagram_position: 0,
                 fen: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR",
@@ -530,6 +546,25 @@ export default {
 
         changeStep(index) {
             this.$data.posterBuilder.currStep = index;
+        },
+
+        updateStartingFen() {
+
+            try {
+                this.chessGame.load(this.posterBuilder.starting_position.fen)
+            } catch (e) {
+                this.posterBuilder.starting_position.valid = false;
+                return;
+            }
+
+            this.posterBuilder.starting_position.valid = true;
+            this.posterBuilder.starting_position.confirm = false;
+            this.posterBuilder.starting_position.success = true;
+            this.$data.poster.pgn = "";
+            this.$data.poster.diagram_position = "0";
+            this.poster.starting_position = this.posterBuilder.starting_position.fen;
+            this.poster.fen = this.posterBuilder.starting_position.fen;
+
         },
 
         findMovesThatStartWith(moves, input) {
@@ -680,7 +715,8 @@ export default {
 
             //Undo move
             this.$data.chessGame.undo();
-            this.$data.poster.pgn = this.$data.chessGame.pgn();
+            console.log(this.$data.chessGame.pgn());
+            this.$data.poster.pgn = this.getStrictPgn(),
             this.$data.posterBuilder.manualMove.pgn = "";
             this.makeMove();
             return;
@@ -802,6 +838,8 @@ export default {
 
     mounted() {
         this.setTheme(this.$data.poster.theme)
+        this.posterBuilder.starting_position.fen = this.poster.starting_position;
+        this.updateStartingFen();
     }
 }
 </script>
