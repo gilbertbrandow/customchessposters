@@ -48,14 +48,20 @@
                                         id="starting_position"
                                         placeholder="rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1" />
                                 </div>
-                                <button v-if="!this.posterBuilder.starting_position.confirm" class="link-arrow" @click="this.poster.pgn.length == 0 ? this.updateStartingFen() : this.posterBuilder.starting_position.confirm = true">Update</button>
-                                <div v-else class="confirm">This will reset the moves. Do you wish to <button class="link-arrow" @click="this.updateStartingFen()">continue</button> or <button class="link-arrow" @click="this.posterBuilder.starting_position.confirm = false">cancel</button>?</div>
+                                <button v-if="!this.posterBuilder.starting_position.confirm" class="link-arrow"
+                                    @click="this.poster.pgn.length == 0 ? this.updateStartingFen() : this.posterBuilder.starting_position.confirm = true">Update</button>
+                                <div v-else class="confirm">This will reset the moves. Do you wish to <button
+                                        class="link-arrow" @click="this.updateStartingFen()">continue</button> or
+                                    <button class="link-arrow"
+                                        @click="this.posterBuilder.starting_position.confirm = false">cancel</button>?
+                                </div>
                             </div>
                             <div v-if="this.posterBuilder.starting_position.fen != 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1' && this.poster.pgn.length == 0"
-                                                class="link-arrow is--low-op is--margin-top" @click="this.posterBuilder.starting_position.fen = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1', this.updateStartingFen()">
-                                                Reset to default starting position
-                                                <Icon name="undo" />
-                                            </div>
+                                class="link-arrow is--low-op is--margin-top"
+                                @click="this.posterBuilder.starting_position.fen = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1', this.updateStartingFen()">
+                                Reset to default starting position
+                                <Icon name="undo" />
+                            </div>
 
 
                             <div v-if="!posterBuilder.announcement" class="message">
@@ -396,7 +402,6 @@ import axios from 'axios'
 import Poster from './Poster.vue'
 
 
-
 export default {
     data() {
         return {
@@ -410,7 +415,7 @@ export default {
                 currTab: 0,
                 starting_position: {
                     valid: true,
-                    fen: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", 
+                    fen: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
                     confirm: false,
                     success: false,
                 },
@@ -717,7 +722,7 @@ export default {
             this.$data.chessGame.undo();
             console.log(this.$data.chessGame.pgn());
             this.$data.poster.pgn = this.getStrictPgn(),
-            this.$data.posterBuilder.manualMove.pgn = "";
+                this.$data.posterBuilder.manualMove.pgn = "";
             this.makeMove();
             return;
         },
@@ -818,6 +823,28 @@ export default {
                 ))
         },
 
+        onKeydown(e) {
+            if (this.poster.pgn != "") {
+                switch (e.key) {
+                    case 'ArrowRight':
+                        if (this.poster.diagram_position < this.pgnArray.length) this.poster.diagram_position++;
+                        break;
+
+                    case 'ArrowLeft':
+                        if (this.poster.diagram_position > 0) this.poster.diagram_position--;
+                        break;
+
+                    case 'ArrowDown':
+                        this.poster.diagram_position = 0;
+                        break;
+
+                    case 'ArrowUp':
+                        this.poster.diagram_position = this.pgnArray.length;
+                        break;
+                }
+            }
+        },
+
     },
 
     watch: {
@@ -829,7 +856,13 @@ export default {
                 let history = this.chessGame.history({ verbose: true });
                 this.$data.poster.fen = history[this.poster.diagram_position].fen;
             }
-        }
+        },
+        'posterBuilder.currStep'() {
+
+            if (this.posterBuilder.currStep == 2) window.addEventListener('keydown', this.onKeydown)
+            else window.removeEventListener('keydown', this.onKeydown)
+
+        },
     },
 
     components: {
