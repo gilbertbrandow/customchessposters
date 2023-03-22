@@ -109,8 +109,9 @@
                                                     class="field"
                                                     :class="{ 'is--error': !posterBuilder.manualMove.valid }"
                                                     id="whiteMove"
-                                                    :placeholder="isGameOver ? 'Game ended' : 'Move ' + this.$data.chessGame._moveNumber + '.'"
-                                                    :disabled="isGameOver" />
+                                                    :placeholder="isGameOver ? this.posterBuilder.result : 'Move ' + this.$data.chessGame._moveNumber + '.'"
+                                                    :disabled="isGameOver" 
+                                                    :style="isGameOver ? 'width:' + this.posterBuilder.result.length * 0.75 + 'em;': ''" />
                                             </div>
 
                                             <div v-if="!(this.$data.chessGame.turn() == 'w' && this.$data.chessGame._moveNumber == 1)"
@@ -434,7 +435,7 @@ export default {
                     success: false,
                     valid: true,
                 },
-
+                result: "",
                 titleValid: true,
             },
 
@@ -490,7 +491,6 @@ export default {
             return this.$data.chessGame.isGameOver();
         },
 
-        //I get recursive error, again?
         gameTermination() {
 
             if (this.$data.chessGame.isCheckmate()) {
@@ -555,7 +555,7 @@ export default {
 
         updateStartingFen() {
 
-            if(this.poster.starting_position == this.posterBuilder.starting_position.fen) return; 
+            if (this.poster.starting_position == this.posterBuilder.starting_position.fen) return;
 
             try {
                 this.chessGame.load(this.posterBuilder.starting_position.fen)
@@ -722,7 +722,6 @@ export default {
 
             //Undo move
             this.$data.chessGame.undo();
-            console.log(this.$data.chessGame.pgn());
             this.$data.poster.pgn = this.getStrictPgn(),
                 this.$data.posterBuilder.manualMove.pgn = "";
             this.makeMove();
@@ -865,6 +864,34 @@ export default {
             else window.removeEventListener('keydown', this.onKeydown)
 
         },
+
+        isGameOver() {
+
+                if (this.$data.chessGame.isCheckmate()) {
+                    this.poster.result = this.pgnArray.length % 2 == 1 ? "1-0" : "0-1"
+                    this.posterBuilder.result = "The game ended in checkmate";
+
+                } else if (this.$data.chessGame.isThreefoldRepetition()) {
+                    this.poster.result = "1/2-1/2"
+                    this.posterBuilder.result = "The game ended in a draw due to threefold repetition";
+
+                } else if (this.$data.chessGame.isStalemate()) {
+                    this.poster.result = "1/2-1/2"
+                    this.posterBuilder.result = "The game ended in a draw due to stalemate";
+
+                } else if (this.$data.chessGame.isInsufficientMaterial()) {
+                    this.poster.result = "1/2-1/2"
+                    this.posterBuilder.result = "The game ended in a draw due to insufficent material";
+
+                } else if (this.$data.chessGame.isDraw()) {
+                    this.poster.result = "1/2-1/2"
+                    this.posterBuilder.result = "The game ended in a draw due to the 50-move rule";
+                } else {
+                    this.poster.result = "";
+                }
+
+            return; 
+        }
     },
 
     components: {
