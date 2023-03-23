@@ -1,22 +1,22 @@
 <template>
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 2000 3000" font-family="Bodoni Moda, serif"
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 2000 3000" font-family="EB Garamond, serif"
         style="background-color: #f8f5f1">
 
         <!-- The Title -->
-        <text font-size="150" text-anchor="middle">
+        <text font-size="150" text-anchor="middle" font-weight="400">
             <tspan x="1000" y="300">{{ title[0] }}</tspan>
             <tspan v-if="title[1]" x="1000" y="500">{{ title[1] }}</tspan>
         </text>
 
         <!-- Players name, title and ranking -->
-        <text font-size="70" text-anchor="middle" x="1000"
+        <text font-size="70" text-anchor="middle" x="1000" font-weight="400"
             :y="title[1] ? 700 : 500">
-            <tspan font-weight="600" v-if="poster.white_title"> {{ poster.white_title + ' ' }}
+            <tspan v-if="poster.white_title"> {{ poster.white_title + ' ' }}
             </tspan>
             <tspan v-if="poster.white_player"> {{ poster.white_player + ' ' }} </tspan>
             <!-- <tspan font-size="40" v-if="poster.white_rating">({{ poster.white_rating + ' FIDE' }}) </tspan> -->
             <tspan font-size="40"> - </tspan>
-            <tspan font-weight="600" v-if="poster.black_title"> {{ poster.black_title + ' ' }}
+            <tspan v-if="poster.black_title"> {{ poster.black_title + ' ' }}
             </tspan>
             <tspan v-if="poster.black_player"> {{ poster.black_player + ' ' }} </tspan>
             <!--<tspan font-size="40" v-if="poster.black_rating">({{ poster.black_rating + ' FIDE' }}) </tspan> -->
@@ -34,15 +34,15 @@
 
 
         <!-- The board -->
-        <svg width="1645" height="1671" viewBox="0 0 1645 1671" x="177.5" 
+        <svg width="1645" height="1671" viewBox="0 0 1645 1671" x="200" style="overflow: visible;"
             :y="((Math.min(2900 - (40 * (pgnRows.length)), 2860) - (title[1] ? 800 : 600)) / 2) + (title[1] ? 800 : 600) - 800">
 
-            <text id="a" font-size="40">
-                <tspan v-for="index in 8" x="0" :y="40 + (200 * index) - 200" >{{ poster.orientation ? 9 - index : index}}</tspan>
+            <text id="rows" font-size="40">
+                <tspan v-for="index in 8" x="1635" :y="90 + (200 * index) - 200" >{{ poster.orientation ? 9 - index : index}}</tspan>
             </text>
 
-            <text id="a" font-size="40">
-                <tspan v-for="index in 8" :x="45 + (200 * index) - 200" y="1665" >{{ poster.orientation ? String.fromCharCode(96 + index) : String.fromCharCode(96 + 9 - index) }}</tspan>
+            <text id="columns" font-size="40">
+                <tspan v-for="index in 8" :x="20 + (200 * index) - 200" y="0" >{{ poster.orientation ? String.fromCharCode(96 + index) : String.fromCharCode(96 + 9 - index) }}</tspan>
             </text>
 
             <!-- Frame of the board -->
@@ -59,6 +59,7 @@
             <tspan v-for="(row, index) in pgnRows" x="1000"
                 :y="2900 - (40 * (pgnRows.length - 1 - index))">
                 {{ row }}
+                <tspan v-if="index == pgnRows.length - 1 && this.poster.result" font-weight="800"> {{ this.poster.result }}</tspan>
             </tspan>
         </text>
 
@@ -67,7 +68,15 @@
 </template>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;500;600;700;800;900&display=swap');
+</style>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Prata&display=swap');
+</style>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap');
 </style>
 
 <script>
