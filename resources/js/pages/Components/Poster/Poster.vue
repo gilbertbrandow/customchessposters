@@ -30,15 +30,13 @@
             <tspan>{{ poster.when }}</tspan>
         </text>
 
-        <!-- Result -->
 
-
-        <!-- The board -->
-        <svg width="1645" height="1671" viewBox="0 0 1645 1671" x="200" style="overflow: visible;"
+        <!-- The chess -->
+        <svg width="1645" height="1690" viewBox="0 0 1645 1671" x="185" style="overflow: visible;"
             :y="((Math.min(2900 - (40 * (pgnRows.length)), 2860) - (title[1] ? 800 : 600)) / 2) + (title[1] ? 800 : 600) - 800">
 
             <text id="rows" font-size="40">
-                <tspan v-for="index in 8" x="1635" :y="90 + (200 * index) - 200" >{{ poster.orientation ? 9 - index : index}}</tspan>
+                <tspan v-for="index in 8" x="1625" :y="80 + (200 * index) - 200" >{{ poster.orientation ? 9 - index : index}}</tspan>
             </text>
 
             <text id="columns" font-size="40">
@@ -51,6 +49,9 @@
             <!-- The board itself with pieces -->
             <Game ref="Game" :fen="this.$props.poster.fen"/>
 
+            <!-- Diagram comment -->
+            <text v-if="this.poster.pgn" y="1690" x="815" text-anchor="middle" font-size="32">Position after 1. e4</text>
+
         </svg>
 
 
@@ -59,7 +60,7 @@
             <tspan v-for="(row, index) in pgnRows" x="1000"
                 :y="2900 - (40 * (pgnRows.length - 1 - index))">
                 {{ row }}
-                <tspan v-if="index == pgnRows.length - 1 && this.poster.result" font-weight="800"> {{ this.poster.result }}</tspan>
+                <tspan v-if="index == pgnRows.length - 1 && this.poster.result" font-weight="800"> | {{ this.poster.result }}</tspan>
             </tspan>
         </text>
 
@@ -153,6 +154,7 @@ export default {
             for (let i = 0; i < pgn.length; i++) {
 
                 if ((pgn[i] == ' ' && this.containsNumbers(pgn[i + 1])) || !pgn[i + 1]) {
+
                     //Create substring of the next full move, remove it from pgn
                     var move = pgn.substring(0, i + 1);
                     pgn = pgn.substring(i + 1);
@@ -183,7 +185,24 @@ export default {
         containsNumbers(str) {
             return /[0-9]/.test(str);
         },
+    }, 
+
+    watch: {
+        'poster.diagram_position'(){
+            if(this.poster.diagram_position == 0) return; 
+
+            let pgn = this.poster.pgn; 
+
+            let indexOfMove = pgn.indexOf((Math.round(this.poster.diagram_position / 2)) + '.') + 3; 
+
+            let indexOfLastSpace = pgn.indexOf(' ', pgn.indexOf(' ', indexOfMove)); 
+
+            console.log(pgn.indexOf(' ', pgn.indexOf(' ', indexOfMove)));
+
+            console.log(pgn.substring(indexOfMove, indexOfLastSpace));
+        }
     }
+
 }
 
 </script>
