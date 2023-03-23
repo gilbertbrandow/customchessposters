@@ -1,5 +1,5 @@
 <template>
-    <svg x="0" y="40" view-box="0 0 1600 1600">
+    <svg x="0" y="30" view-box="0 0 1600 1600">
 
         <Board />
 
