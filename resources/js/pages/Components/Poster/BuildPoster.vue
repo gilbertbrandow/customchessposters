@@ -64,8 +64,8 @@
                             </div>
 
 
-                            <div v-if="!posterBuilder.announcement" class="message">
-                                <div @click="posterBuilder.announcement = true">
+                            <div v-if="posterBuilder.announcement" class="message">
+                                <div @click="posterBuilder.announcement = false">
                                     <Icon name="close" />
                                 </div>
                                 <h4>Don't sweat it if you feel unsure</h4>
@@ -110,8 +110,8 @@
                                                     :class="{ 'is--error': !posterBuilder.manualMove.valid }"
                                                     id="whiteMove"
                                                     :placeholder="isGameOver ? this.posterBuilder.result : 'Move ' + this.$data.chessGame._moveNumber + '.'"
-                                                    :disabled="isGameOver" 
-                                                    :style="isGameOver ? 'width:' + this.posterBuilder.result.length * 0.75 + 'em;': ''" />
+                                                    :disabled="isGameOver"
+                                                    :style="isGameOver ? 'width:' + this.posterBuilder.result.length * 0.75 + 'em;' : ''" />
                                             </div>
 
                                             <div v-if="!(this.$data.chessGame.turn() == 'w' && this.$data.chessGame._moveNumber == 1)"
@@ -175,12 +175,22 @@
                                             class="field__error is--success">Game uploaded successfully!</div>
                                         <input v-model="posterBuilder.gameUrl" class="field"
                                             :class="{ 'is--error': !posterBuilder.uploadLichess.valid, 'is--success': posterBuilder.uploadLichess.success }"
-                                            name="gameUrl" id="gameUrl" placeholder="https://lichess.org/Sxov6E94"
+                                            name="gameUrl" id="gameUrl" placeholder="https://lichess.org/SwuG1qFK"
                                             @input="posterBuilder.uploadLichess.success = false, posterBuilder.uploadLichess.valid = true" />
                                     </div>
                                     <div class="button is--black"
                                         @click="uploadGameFromLichess(posterBuilder.gameUrl), posterBuilder.gameUrl = ''">
                                         Load </div>
+
+                                    <div v-if="posterBuilder.gameDesc" class="message">
+                                        <div @click="posterBuilder.gameDesc = false">
+                                            <Icon name="close" />
+                                        </div>
+                                        <h4>How to load game?</h4>
+                                        <p>Simply look up any game on the <a class="text__link"
+                                                href="https://lichess.org">Lichess</a> website and go to the page of that
+                                            game, for example: <a class="text__link" target="_blank" href="https://lichess.org/SwuG1qFK">Polgar v. Shakhriyar</a>. Then copy the URL and paste it here.</p>
+                                    </div>
                                 </div>
                             </div>
 
@@ -388,7 +398,6 @@ let form = useForm({
 });
 
 function submitForm(poster) {
-    poster.name = "My saved poster"
     form.posterData = poster;
     form.post('/save-poster');
 }
@@ -411,7 +420,8 @@ export default {
 
             posterBuilder: {
                 currStep: 0,
-                announcement: false,
+                announcement: true,
+                gameDesc: true,
                 currEnvironment: "",
                 currTab: 0,
                 starting_position: {
@@ -440,7 +450,7 @@ export default {
             },
 
             poster: {
-                name: "",
+                id: "",
                 theme: 1,
                 orientation: true,
                 starting_position: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
@@ -555,7 +565,10 @@ export default {
 
         updateStartingFen() {
 
-            if (this.poster.starting_position == this.posterBuilder.starting_position.fen) return;
+            if (this.poster.starting_position == this.posterBuilder.starting_position.fen) {
+                this.posterBuilder.starting_position.valid = true;
+                return;
+            }
 
             try {
                 this.chessGame.load(this.posterBuilder.starting_position.fen)
@@ -867,30 +880,30 @@ export default {
 
         isGameOver() {
 
-                if (this.$data.chessGame.isCheckmate()) {
-                    this.poster.result = this.pgnArray.length % 2 == 1 ? "1-0" : "0-1"
-                    this.posterBuilder.result = "The game ended in checkmate";
+            if (this.$data.chessGame.isCheckmate()) {
+                this.poster.result = this.pgnArray.length % 2 == 1 ? "1-0" : "0-1"
+                this.posterBuilder.result = "The game ended in checkmate";
 
-                } else if (this.$data.chessGame.isThreefoldRepetition()) {
-                    this.poster.result = "1/2-1/2"
-                    this.posterBuilder.result = "The game ended in a draw due to threefold repetition";
+            } else if (this.$data.chessGame.isThreefoldRepetition()) {
+                this.poster.result = "1/2-1/2"
+                this.posterBuilder.result = "The game ended in a draw due to threefold repetition";
 
-                } else if (this.$data.chessGame.isStalemate()) {
-                    this.poster.result = "1/2-1/2"
-                    this.posterBuilder.result = "The game ended in a draw due to stalemate";
+            } else if (this.$data.chessGame.isStalemate()) {
+                this.poster.result = "1/2-1/2"
+                this.posterBuilder.result = "The game ended in a draw due to stalemate";
 
-                } else if (this.$data.chessGame.isInsufficientMaterial()) {
-                    this.poster.result = "1/2-1/2"
-                    this.posterBuilder.result = "The game ended in a draw due to insufficent material";
+            } else if (this.$data.chessGame.isInsufficientMaterial()) {
+                this.poster.result = "1/2-1/2"
+                this.posterBuilder.result = "The game ended in a draw due to insufficent material";
 
-                } else if (this.$data.chessGame.isDraw()) {
-                    this.poster.result = "1/2-1/2"
-                    this.posterBuilder.result = "The game ended in a draw due to the 50-move rule";
-                } else {
-                    this.poster.result = "";
-                }
+            } else if (this.$data.chessGame.isDraw()) {
+                this.poster.result = "1/2-1/2"
+                this.posterBuilder.result = "The game ended in a draw due to the 50-move rule";
+            } else {
+                this.poster.result = "";
+            }
 
-            return; 
+            return;
         }
     },
 

@@ -243,14 +243,14 @@ button {
 
 .text__link {
     font-size: 1em;
-    opacity: 0.6;
+    opacity: 1;
     text-decoration: underline;
     transition: opacity 400ms;
     cursor: pointer;
 }
 
 .text__link:hover {
-    opacity: 1;
+    opacity: 0.6;
 }
 
 .link-arrow {
@@ -655,7 +655,7 @@ h4 {
 }
 
 .tabs {
-    display: inline-block;
+   width: 100%;
 }
 
 .tabs__header {
@@ -666,6 +666,7 @@ h4 {
     border-radius: 1em;
     background-color: whitesmoke;
     border: 1px solid #ebebeb;
+    justify-content: space-between;
 
     .tab__item {
         cursor: pointer;
