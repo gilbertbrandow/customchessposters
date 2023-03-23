@@ -409,7 +409,7 @@ function submitForm(poster) {
 <script>
 import { Chess } from 'chess.js'
 import axios from 'axios'
-import Poster from './Poster.vue'
+import Poster from './Poster/Poster.vue'
 
 
 export default {
