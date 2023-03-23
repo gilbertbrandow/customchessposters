@@ -26,7 +26,7 @@
 
 <script>
 import AppLayout from "../Layouts/App.vue";
-import BuildPoster from "./Components/Poster/BuildPoster.vue"
+import BuildPoster from "./Components/BuildPoster.vue"
 import Faq from "./Components/Faq.vue";
 import Features from "./Components/Features.vue"
 import { onMounted } from 'vue';
