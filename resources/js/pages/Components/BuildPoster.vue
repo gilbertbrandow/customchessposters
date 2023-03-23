@@ -791,6 +791,7 @@ export default {
 
             if (headers.Site) this.poster.where = headers.Site;
             if (headers.Event) this.poster.when = headers.Event;
+            if(headers.Date) this.poster.when += ', ' + headers.Date; 
             if (headers.Round) this.poster.when += ' Round ' + headers.Round;
             if (headers.Result) this.poster.result = headers.Result;
 
