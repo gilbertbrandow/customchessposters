@@ -12,12 +12,11 @@
                         <img class="poster__environment" src="/images/environments/builder-mockup.jpeg" />
                     </div>
                     <div class="content">
-                        <h3>Magnus wins with the Benkö Gambit</h3>
+                        <h3 v-text="poster.pivot.name"></h3>
                         <div class="button-wrp">
                             <button class="button" type="submit"> Add to cart
                                 <Icon name="cart" />
                             </button>
-
                         </div>
                     </div>
                 </li>
