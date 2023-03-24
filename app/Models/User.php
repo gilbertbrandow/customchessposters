@@ -54,6 +54,6 @@ class User extends Authenticatable
 
     public function savedPosters()
     {
-        return $this->belongsToMany(Poster::class);
+        return $this->belongsToMany(Poster::class)->withPivot(['name']);
     }
 }
