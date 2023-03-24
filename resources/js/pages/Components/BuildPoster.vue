@@ -186,7 +186,7 @@
                                         <div @click="posterBuilder.gameDesc = false">
                                             <Icon name="close" />
                                         </div>
-                                        <h4>How to load game?</h4>
+                                        <h4>How it works</h4>
                                         <p>Simply look up any game on the <a class="text__link"
                                                 href="https://lichess.org">Lichess</a> website and go to the page of that
                                             game, for example: <a class="text__link" target="_blank" href="https://lichess.org/SwuG1qFK">Polgar v. Shakhriyar</a>. Then copy the URL and paste it here.</p>
@@ -608,6 +608,8 @@ export default {
             //strip input of all non compatible characters, except lowercased letters who capitalized correlate to pieces
             let regEx = /[^abcdefghABCDEFGH12345678KQBNRkqbnrx+#O\-]/g;
             input = input.replace(regEx, '');
+
+            if(!input) return []; 
 
             let suggestions = [];
 
