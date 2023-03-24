@@ -54,7 +54,8 @@
             <Game ref="Game" :fen="this.$props.poster.fen" />
 
             <!-- Diagram comment -->
-            <text v-if="this.poster.pgn" y="1690" x="815" text-anchor="middle" font-size="32" v-text="this.$data.diagram_info"></text>
+            <text v-if="this.poster.pgn" y="1690" x="815" text-anchor="middle" font-size="32"
+                v-text="this.$data.diagram_info"></text>
 
         </svg>
 
@@ -199,14 +200,13 @@ export default {
 
             let pgn = this.poster.pgn;
 
-            //Loop through the array until finding correct move number
-            let indexOfMove = pgn.indexOf((Math.round(this.poster.diagram_position / 2)) + '.') + 3;
-
-            //Depending on if half move or not, look until next ' ', or from next ' ' to the one after that
+            //Loop through the array until finding correct move number and set starting index of that move
+            let indexOfMove = pgn.indexOf((Math.round(this.poster.diagram_position / 2)) + '.') + Math.round(this.poster.diagram_position / 2).toString().length + 2;
 
             //Get index of next space
             let spaceIndex = pgn.indexOf(' ', indexOfMove);
 
+            //Depending on if half move or not, look until next ' ', or from next ' ' to the one after that
             if (this.poster.diagram_position % 2 != 0) {
                 //White move
                 this.diagram_info = "Position after Whites move " + Math.round(this.poster.diagram_position / 2) + '. ' + pgn.substring(indexOfMove, spaceIndex);
