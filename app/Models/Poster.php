@@ -16,6 +16,7 @@ class Poster extends Model
         'created_by',
         'theme',
         'orientation',
+        'starting_position',
         'pgn',
         'diagram_position',
         'fen',
