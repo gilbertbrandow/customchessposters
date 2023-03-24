@@ -31,12 +31,31 @@ class PosterController extends Controller
     public function save(Request $request)
     {
 
+        //Format data
         $data = $request->posterData;
         $data["pgn"] = $data["pgn"] ? $data["pgn"] : "";
-        $data['created_by']=Auth::id();
-        $poster = Poster::create($data);
-        $poster->users_saved()->attach(Auth::id());
-        return redirect()->back()->with('savedSuccess', 'Poster saved!');
 
+
+        //TODO: How to handle if poster is being edited? i.e id is present and created_by == Auth::id()
+        if ($data['id'] && Poster::find($data['id'])->get(['created_by']) == Auth::id()) {
+
+            //Get and edit poster instead
+            Poster::find($request->id)->update($data)->save();
+        } else {
+
+            //Check if any poster exists that matches all the request data except id && created_by
+            unset($data['id']);
+            $poster = Poster::where($data)->first();
+
+            if (!$poster) {
+                //No match create new poster 
+                $data['created_by'] = Auth::id();
+                $poster = Poster::create($data);
+            }
+
+            //Attach a relationship with name 
+            $poster->users_saved()->attach([Auth::id() => ['name' => 'My saved poster 2']]);
+            return redirect()->back()->with('savedSuccess', 'Poster saved!');
+        }
     }
 }
