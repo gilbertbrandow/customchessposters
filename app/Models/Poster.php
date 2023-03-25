@@ -19,6 +19,7 @@ class Poster extends Model
         'starting_position',
         'pgn',
         'diagram_position',
+        'move_comment',
         'fen',
         'result',
         'title',
