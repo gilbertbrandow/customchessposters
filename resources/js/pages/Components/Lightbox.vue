@@ -1,13 +1,13 @@
 <template>
 
-    <div class="lightbox" v-if="this.visible">
+    <div class="lightbox" v-if="this.$page.props.lightbox.visible && this.$page.props.lightbox.poster">
         <div class="content">
             <div class="lightbox__mask" @click="[this.updateZoom(), this.mouseMove($event)]">
                 <div class="poster" :class="[zoom ? 'is--zoomed' : '']">
 
                     <!-- TODO: Fix so that poster__svg-wrp is relative to image, not parent -->
                     <div class="poster__svg-wrp" :class="this.slides[`${this.currSlide}`].class">
-                        <Poster ref="PosterSVG" :poster="poster" />
+                        <Poster ref="PosterSVG" :poster="this.$page.props.lightbox.poster" />
                     </div>
                     <img class="poster__environment" :src="this.slides[`${this.currSlide}`].src" />
                 </div>
@@ -43,12 +43,9 @@
 
 <script>
 import Poster from './Poster/Poster.vue';
-import Icon from '../../Icons/Icon.vue'
+import Icon from '../../Icons/Icon.vue';
 
 export default {
-    props: {
-
-    },
 
     components: {
         Poster,
@@ -57,7 +54,6 @@ export default {
 
     data() {
         return {
-            visible: 1,
             currSlide: 0,
             zoom: false,
 
@@ -79,25 +75,6 @@ export default {
                     src: '/images/environments/environment-large.jpg',
                 },
             ],
-
-            poster: {
-                name: "",
-                theme: 1,
-                orientation: true,
-                pgn: "",
-                diagram_position: 0,
-                fen: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR",
-                result: "",
-                title: "Lorem ipsum dolor sit amet, consectetur adi",
-                white_player: "Magnus Carlsen",
-                black_player: "Fabiano Caruana",
-                white_rating: 2881,
-                black_rating: 2815,
-                white_title: "GM",
-                black_title: "GM",
-                when: "Tata Steel Chess, January 2014. Round 3",
-                where: "Wijk aan Zee, Netherlands",
-            },
         }
     },
 
@@ -111,7 +88,7 @@ export default {
         },
 
         onKeydown(e) {
-            if (this.visible) {
+            if (this.$page.props.lightbox.visible) {
                 switch (e.key) {
                     case 'ArrowRight':
                         this.nextSlide();
@@ -122,14 +99,14 @@ export default {
                         break;
 
                     case 'Escape':
-                        this.visible = false;
+                        this.$page.props.lightbox.visible = false;
                         break;
                 }
             }
         },
 
         updateZoom() {
-            this.zoom = !this.zoom; 
+            this.zoom = !this.zoom;
         },
 
         mouseMove(e) {
@@ -166,7 +143,7 @@ export default {
             }
 
             return;
-        }
+        },
     },
 
     mounted() {
