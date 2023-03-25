@@ -369,7 +369,7 @@
 
                 <div class="poster">
                     <div class="poster__buttons-wrp">
-                        <div class="button">Full screen
+                        <div class="button" @click="this.$page.props.lightbox.poster = this.poster, this.$page.props.lightbox.visible = true">Full screen
                             <Icon name="fullScreen" />
                         </div>
                         <form @submit.prevent="submitForm(this.$data.poster)">
