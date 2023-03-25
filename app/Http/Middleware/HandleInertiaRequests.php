@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Middleware;
+use stdClass;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -37,6 +38,7 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+
         return array_merge(parent::share($request), [
 
             'site' => [
@@ -72,6 +74,11 @@ class HandleInertiaRequests extends Middleware
                     'success' => $request->session()->get('success'),
                     'error' => $request->session()->get('error'),
             ], 
+
+            'lightbox' => [
+                'visible' => false,
+                'poster' =>  new stdClass(),
+            ],
             
             'route' => [
                 'params' => $request->route()->parameters(),
