@@ -216,6 +216,14 @@
                                 </p>
 
                             </div>
+
+                            <div v-else class="field__wrp is--margin-top">
+                                    <label for="moveComment" class="field__label">Move comment (optional)</label>
+                                    <input v-model="poster.move_comment" class="field"
+                                        name="moveComment"
+                                        maxlength="92"
+                                        id="moveComment" placeholder="Lorem ipsum dolor set ami" />
+                            </div>
                         </div>
                         <div :class="[posterBuilder.currStep == 3 ? 'is--active' : '']" class="module__step">
                             <h3>4. The Game</h3>
@@ -456,6 +464,7 @@ export default {
                 starting_position: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
                 pgn: "",
                 diagram_position: 0,
+                move_comment: "",
                 fen: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR",
                 result: "",
                 title: "Lorem ipsum dolor sit amet, consectetur adi",
