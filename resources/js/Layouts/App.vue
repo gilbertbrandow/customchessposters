@@ -34,6 +34,7 @@
       </div>
     </div>
   </nav>
+  <aside><Lightbox/></aside>
   <main>
     <slot>
     </slot>
@@ -56,11 +57,13 @@
 <script>
 import { Link } from "@inertiajs/vue3";
 import Newsletter from "../Pages/Components/Newsletter.vue"
+import Lightbox from "../Pages/Components/Lightbox.vue"
 
 export default {
   components: {
     Link,
-    Newsletter
-  },
+    Newsletter,
+    Lightbox
+},
 }
 </script>
