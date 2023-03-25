@@ -4,12 +4,12 @@
         <div class="content">
             <div class="lightbox__mask" @click="[this.updateZoom(), this.mouseMove($event)]">
                 <div class="poster" :class="[zoom ? 'is--zoomed' : '']">
-
-                    <!-- TODO: Fix so that poster__svg-wrp is relative to image, not parent -->
                     <div class="poster__svg-wrp" :class="this.slides[`${this.currSlide}`].class">
                         <Poster ref="PosterSVG" :poster="this.$page.props.lightbox.poster" />
                     </div>
-                    <img class="poster__environment" :src="this.slides[`${this.currSlide}`].src" />
+                    <img v-if="this.slides[`${this.currSlide}`].size == 's'" class="poster__environment" src="/images/environments/environment-small.jpg" />
+                    <img v-else-if="this.slides[`${this.currSlide}`].size == 'm'" class="poster__environment" src="/images/environments/environment-medium.jpg" />
+                    <img v-else-if="this.slides[`${this.currSlide}`].size == 'l'" class="poster__environment" src="/images/environments/environment-large.jpg" />
                 </div>
             </div>
 
@@ -45,6 +45,31 @@
 import Poster from './Poster/Poster.vue';
 import Icon from '../../Icons/Icon.vue';
 
+//import { usePage } from '@inertiajs/vue3'
+
+//const visible = computed(() => usePage().props.lightbox.visible);
+
+/* import { usePage } from '@inertiajs/vue3';
+import { computed, ref, watch } from 'vue';
+
+
+const page = usePage();
+
+const showFlash = ref(false);
+
+const flash = computed(function () {
+  return page.props.value.flash;
+});
+
+watch(page.props, function (val) {
+  if (val?.flash) {
+    showFlash.value = true;
+  }
+}, {
+  immediate: true,
+  deep: true,
+}); */
+
 export default {
 
     components: {
@@ -62,17 +87,17 @@ export default {
                 {
                     title: 'Small (30.5 x 46 cm)',
                     class: 'is--lightbox-small',
-                    src: '/images/environments/environment-small.jpg',
+                    size: 's',
                 },
                 {
                     title: 'Medium (50 x 75cm)',
                     class: 'is--lightbox-medium',
-                    src: '/images/environments/environment-medium.jpg',
+                    size: 'm',
                 },
                 {
                     title: 'Large (61 x 91cm)',
                     class: 'is--lightbox-large',
-                    src: '/images/environments/environment-large.jpg',
+                    size: 'l',
                 },
             ],
         }
@@ -146,6 +171,7 @@ export default {
         },
     },
 
+    //TODO: add and remove event listener based on watch of page prop "lighbox.visible", cant tho since it does not seem to work
     mounted() {
         window.addEventListener('keydown', this.onKeydown)
     },
