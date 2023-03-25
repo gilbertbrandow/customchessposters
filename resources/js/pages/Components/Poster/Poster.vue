@@ -55,7 +55,7 @@
 
             <!-- Diagram comment -->
             <text v-if="this.poster.pgn" y="1690" x="815" text-anchor="middle" font-size="32"
-                v-text="this.$data.diagram_info"></text>
+                v-text="diagram_info + ', ' + this.$props.poster.move_comment"></text>
 
         </svg>
 
@@ -180,22 +180,9 @@ export default {
             }
 
             return rows;
-        }
-    },
-    methods: {
-        containsNumbers(str) {
-            return /[0-9]/.test(str);
         },
-    },
 
-    data() {
-        return {
-            diagram_info: "",
-        }
-    },
-
-    watch: {
-        'poster.diagram_position'() {
+        diagram_info() {
             if (this.poster.diagram_position == 0) return;
 
             let pgn = this.poster.pgn;
@@ -209,14 +196,19 @@ export default {
             //Depending on if half move or not, look until next ' ', or from next ' ' to the one after that
             if (this.poster.diagram_position % 2 != 0) {
                 //White move
-                this.diagram_info = "Position after Whites move " + Math.round(this.poster.diagram_position / 2) + '. ' + pgn.substring(indexOfMove, spaceIndex);
+                return "Position after White's move " + Math.round(this.poster.diagram_position / 2) + '. ' + pgn.substring(indexOfMove, spaceIndex);
             } else {
                 //Black move
                 let nextSpaceIndex = pgn.indexOf(' ', spaceIndex + 1);
-                this.diagram_info = "Position after Blacks move " + Math.round(this.poster.diagram_position / 2) + '. ... ' + pgn.substring(spaceIndex + 1, nextSpaceIndex);
+                return "Position after Black's move " + Math.round(this.poster.diagram_position / 2) + '. ... ' + pgn.substring(spaceIndex + 1, nextSpaceIndex);
             }
         }
-    }
+    },
+    methods: {
+        containsNumbers(str) {
+            return /[0-9]/.test(str);
+        },
+    },
 
 }
 
