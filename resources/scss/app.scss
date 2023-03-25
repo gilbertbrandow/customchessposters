@@ -542,6 +542,10 @@ h4 {
         flex-wrap: wrap;
         row-gap: 0.5em;
 
+        span {
+            margin-right: 0.25em;
+        }
+
         .move {
             border-radius: 0.5em;
             cursor: pointer;
