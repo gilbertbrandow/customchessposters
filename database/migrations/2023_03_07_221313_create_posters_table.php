@@ -15,14 +15,12 @@ return new class extends Migration
     {
         Schema::create('posters', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('created_by');
-            $table->foreign('created_by')->references('id')->on('users')->nullable();
             $table->unsignedTinyInteger('theme');
             $table->boolean('orientation');
             $table->string('starting_position', 100);
             $table->text('pgn');
             $table->unsignedTinyInteger('diagram_position');
-            $table->string('move_comment', 50);
+            $table->string('move_comment', 50)->nullable();
             $table->string('fen', 100);
             $table->string('result', 10)->nullable();
             $table->string('title', 50)->nullable();
