@@ -64,7 +64,7 @@
                             </div>
 
 
-                            <div v-if="posterBuilder.announcement" class="message">
+                            <div v-if="posterBuilder.announcement" class="message is--margin-top">
                                 <div @click="posterBuilder.announcement = false">
                                     <Icon name="close" />
                                 </div>
@@ -182,7 +182,7 @@
                                         @click="uploadGameFromLichess(posterBuilder.gameUrl), posterBuilder.gameUrl = ''">
                                         Load </div>
 
-                                    <div v-if="posterBuilder.gameDesc" class="message">
+                                    <div v-if="posterBuilder.gameDesc" class="message is--margin-top">
                                         <div @click="posterBuilder.gameDesc = false">
                                             <Icon name="close" />
                                         </div>
@@ -458,7 +458,7 @@ export default {
             },
 
             poster: {
-                id: "",
+                id: 1,
                 theme: 1,
                 orientation: true,
                 starting_position: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
