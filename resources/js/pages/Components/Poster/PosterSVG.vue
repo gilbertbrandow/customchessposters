@@ -55,7 +55,7 @@
 
             <!-- Diagram comment -->
             <text v-if="this.poster.pgn" y="1690" x="815" text-anchor="middle" font-size="32"
-                v-text="diagram_info + ', ' + this.$props.poster.move_comment"></text>
+                v-text="this.$props.poster.move_comment ? diagram_info + ', ' + this.$props.poster.move_comment: diagram_info"></text>
 
         </svg>
 
