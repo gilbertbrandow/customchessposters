@@ -375,7 +375,7 @@
                     </div>
                 </div>
 
-                <Poster :poster="poster" :environment="this.$data.posterBuilder.currEnvironment"></Poster>
+                <Poster :poster="poster" :environment="this.$data.posterBuilder.currEnvironment" :controls="true"></Poster>
 
             </div>
         </div>
@@ -426,7 +426,7 @@ export default {
             },
 
             poster: {
-                id: 1,
+                id: null,
                 theme: 1,
                 orientation: true,
                 starting_position: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
