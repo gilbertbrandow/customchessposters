@@ -12,22 +12,21 @@ class PosterService
     public function savePoster($posterData, $name): Poster
     {
         $posterData["pgn"] = $posterData["pgn"] ? $posterData["pgn"] : "";
-        $id = array_shift($posterData['id']);
+        $id = array_shift($posterData);
+
 
         //Search in DB for exact record
         $poster = Poster::where($posterData)->first();
 
-        if (!$poster) { //What happens when a user tries to save an exact copy of their own design?
+        if (!$poster) {
 
             //Check if it was an edit of existing poster
             if ($poster = Poster::find($id)) {
-
                 if ($poster->usersSaved->count() == 1 && $poster->usersSaved->first()->id == Auth::id()) {
 
                     //Existing poster record can be updated
                     $poster->update($posterData)->save();
                     return $poster;
-
                 } else {
 
                     //The old relationship needs to be detached since that poster can not be updated
@@ -39,7 +38,7 @@ class PosterService
         }
 
         //Attach a relationship
-        $poster->users_saved()->attach([Auth::id() => ['name' => $name]]);
+        $poster->usersSaved()->attach([Auth::id() => ['name' => $name]]);
 
         return $poster;
     }
@@ -48,8 +47,7 @@ class PosterService
     {
         //Create and return path to png?
         $path = "";
-        
-        return $path;
 
+        return $path;
     }
 }
