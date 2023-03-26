@@ -5,7 +5,7 @@
             <h1>{{ $page.props.auth.user.name }}'s saved designs</h1>
             <ul class="saved__posters">
                 <li v-for="poster in $page.props.posters">
-                    <Poster :poster="poster" environment="/images/environments/builder-mockup.jpeg"></Poster>
+                    <Poster :poster="poster" environment="/images/environments/builder-mockup.jpeg" :controls="false"></Poster>
                     <div class="content">
                         <h3 v-text="poster.pivot.name"></h3>
                         <div class="button-wrp">
