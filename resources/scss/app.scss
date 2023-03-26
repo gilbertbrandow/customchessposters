@@ -472,6 +472,7 @@ h4 {
     width: 35%;
     height: 50%;
     mix-blend-mode: multiply;
+    pointer-events: none;
 }
 
 .poster__svg-wrp img {
@@ -528,13 +529,22 @@ h4 {
     padding: 2em 3.5em 2em 2.5em;
     width: 44em;
 
-    .message {
-        margin-top: 2em;
-    }
-
     .field__label {
         background-color: white;
         font-weight: 600;
+    }
+
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    textarea:-webkit-autofill,
+    textarea:-webkit-autofill:hover,
+    textarea:-webkit-autofill:focus,
+    select:-webkit-autofill,
+    select:-webkit-autofill:hover,
+    select:-webkit-autofill:focus {
+        -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+        box-shadow: 0 0 0px 1000px #fff inset;
     }
 
     .poster__moves {
@@ -653,7 +663,7 @@ h4 {
 }
 
 .tabs {
-   width: 100%;
+    width: 100%;
 }
 
 .tabs__header {
