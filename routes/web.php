@@ -75,6 +75,8 @@ Route::middleware('auth')->group(function () {
     ->name('auth.saved');
     
     Route::post('/logout', [LoginController::class, 'logout'])->name('auth.logout');
+
+    Route::post('/save-poster', [PosterController::class, 'save'])->name('poster.save');
 });
 
 Route::get('/register', [RegisterController::class, 'registration'])
@@ -105,7 +107,7 @@ Route::post('/reset-password', [ResetPasswordController::class, 'passwordUpdate'
 */
 
 //Route::get('/create-poster', [PosterController::class, 'createPoster'])->name('poster.create');
-Route::post('/save-poster', [PosterController::class, 'save'])->name('poster.store');
+
 
 /*
 |--------------------------------------------------------------------------
