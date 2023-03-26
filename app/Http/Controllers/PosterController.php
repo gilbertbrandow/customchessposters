@@ -23,7 +23,7 @@ class PosterController extends Controller
     public function save(Request $request, PosterService $service)
     {
         //Call service class method
-        $poster = $service->savePoster($request->posterData, $request->savedName);
+        $poster = $service->savePoster($request->posterData, 'Temporary poster name');
 
         if ($poster) {
             return redirect()->back()->with('savedSuccess', 'Poster saved!');
@@ -39,8 +39,6 @@ class PosterController extends Controller
         $poster = $service->createPng($request->posterData, $request->savedName);
 
         //Call serivce class method to place order at printful
-
-        dd();
 
         $response = Http::withHeaders(['Authorization' => 'Bearer ' . env('PRINTFUL_SK')])->get($this->endpoint . 'stores');
 
