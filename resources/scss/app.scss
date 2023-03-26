@@ -995,6 +995,16 @@ h4 {
                 transform: rotate(180deg);
             }
         }
+
+        button:last-child{
+            background-color: #fff;
+            border: 1px solid #000;
+
+            svg {
+                width: 0.6em;
+                filter: invert(0%);
+            }
+        }
     }
 }
 
