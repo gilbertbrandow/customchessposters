@@ -33,12 +33,8 @@ class Poster extends Model
         'where',
     ];
 
-    public function created_by()
-    {
-        return $this->belongsTo(User::class, 'created_by');
-    }
-
-    public function users_saved()
+    
+    public function usersSaved()
     {
         return $this->belongsToMany(User::class)->withTimestamps();
     }
