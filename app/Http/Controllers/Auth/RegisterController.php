@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Welcome; 
 use App\Models\User;
+use App\Services\PosterService;
 
 class RegisterController extends Controller
 {
@@ -16,7 +17,7 @@ class RegisterController extends Controller
         return inertia('Auth/Register'); 
     }
 
-    public function create(Request $request)
+    public function create(Request $request, PosterService $service)
     {
         $credentials = $request->validate([
             'name' => ['required', 'min:5', 'max:25'],
@@ -27,6 +28,11 @@ class RegisterController extends Controller
         $user = User::create($credentials);
 
         Auth::login($user);
+
+        //Save poster if exists as saved in session
+        if ($request->session()->exists('poster') && $request->session()->get('poster_name')) {
+            $service->savePoster($request->session()->get('poster'), $request->session()->get('poster_name'));
+        }
 
         $firstname = explode(' ', $request->name)[0];
 
