@@ -375,49 +375,17 @@
                     </div>
                 </div>
 
-                <div class="poster">
-                    <div class="poster__buttons-wrp">
-                        <div class="button" @click="this.$page.props.lightbox.poster = this.poster, this.$page.props.lightbox.visible = true">Full screen
-                            <Icon name="fullScreen" />
-                        </div>
-                        <form @submit.prevent="submitForm(this.$data.poster)">
-                            <button class="button" type="submit"> Save this design
-                                <Icon name="bookmark" />
-                            </button>
-                        </form>
-                    </div>
-                    <div class="poster__svg-wrp">
-                        <Poster ref="PosterSVG" :poster="poster" />
-                    </div>
-                    <img class="poster__environment" :src="this.$data.posterBuilder.currEnvironment" />
-                </div>
+                <Poster :poster="poster" :environment="this.$data.posterBuilder.currEnvironment"></Poster>
 
             </div>
         </div>
     </section>
 </template>
 
-<script setup>
-
-import { useForm } from '@inertiajs/vue3';
-
-let form = useForm({
-    posterData: {},
-});
-
-function submitForm(poster) {
-    form.posterData = poster;
-    form.post('/save-poster');
-}
-
-</script>
-
-
-
 <script>
 import { Chess } from 'chess.js'
 import axios from 'axios'
-import Poster from './Poster/Poster.vue'
+import Poster from './Poster.vue'
 
 
 export default {

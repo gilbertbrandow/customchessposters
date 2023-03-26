@@ -5,12 +5,7 @@
             <h1>{{ $page.props.auth.user.name }}'s saved designs</h1>
             <ul class="saved__posters">
                 <li v-for="poster in $page.props.posters">
-                    <div class="poster">
-                        <div class="poster__svg-wrp">
-                            <Poster ref="PosterSVG" :poster="poster" />
-                        </div>
-                        <img class="poster__environment" src="/images/environments/builder-mockup.jpeg" />
-                    </div>
+                    <Poster :poster="poster" environment="/images/environments/builder-mockup.jpeg"></Poster>
                     <div class="content">
                         <h3 v-text="poster.pivot.name"></h3>
                         <div class="button-wrp">
@@ -28,7 +23,7 @@
 
 <script>
 import AppLayout from "../../Layouts/App.vue";
-import Poster from "../Components/Poster/Poster.vue"
+import Poster from "../Components/Poster.vue"
 
 export default {
     layout: AppLayout,
