@@ -7,9 +7,12 @@
                     <div class="poster__svg-wrp" :class="this.slides[`${this.currSlide}`].class">
                         <Poster ref="PosterSVG" :poster="this.$page.props.lightbox.poster" />
                     </div>
-                    <img v-if="this.slides[`${this.currSlide}`].size == 's'" class="poster__environment" src="/images/environments/environment-small.jpg" />
-                    <img v-else-if="this.slides[`${this.currSlide}`].size == 'm'" class="poster__environment" src="/images/environments/environment-medium.jpg" />
-                    <img v-else-if="this.slides[`${this.currSlide}`].size == 'l'" class="poster__environment" src="/images/environments/environment-large.jpg" />
+                    <img v-if="this.slides[`${this.currSlide}`].size == 's'" class="poster__environment"
+                        src="/images/environments/environment-small.jpg" />
+                    <img v-else-if="this.slides[`${this.currSlide}`].size == 'm'" class="poster__environment"
+                        src="/images/environments/environment-medium.jpg" />
+                    <img v-else-if="this.slides[`${this.currSlide}`].size == 'l'" class="poster__environment"
+                        src="/images/environments/environment-large.jpg" />
                 </div>
             </div>
 
@@ -29,6 +32,9 @@
                         <button @click="this.nextSlide()">
                             <Icon name="small-arrow" />
                         </button>
+                        <button @click="this.$page.props.lightbox.visible = false">
+                            <Icon name="close" />
+                        </button>
                     </div>
                 </div>
             </div>
@@ -44,31 +50,6 @@
 <script>
 import Poster from './Poster/Poster.vue';
 import Icon from '../../Icons/Icon.vue';
-
-//import { usePage } from '@inertiajs/vue3'
-
-//const visible = computed(() => usePage().props.lightbox.visible);
-
-/* import { usePage } from '@inertiajs/vue3';
-import { computed, ref, watch } from 'vue';
-
-
-const page = usePage();
-
-const showFlash = ref(false);
-
-const flash = computed(function () {
-  return page.props.value.flash;
-});
-
-watch(page.props, function (val) {
-  if (val?.flash) {
-    showFlash.value = true;
-  }
-}, {
-  immediate: true,
-  deep: true,
-}); */
 
 export default {
 
@@ -158,6 +139,12 @@ export default {
         },
     },
 
+    computed: {
+        visible() {
+            return this.$page.props.lightbox.visible;
+        },
+    },
+
     watch: {
         zoom() {
             if (this.zoom) document.querySelector('.lightbox__mask').addEventListener('mousemove', this.mouseMove);
@@ -169,15 +156,14 @@ export default {
 
             return;
         },
-    },
 
-    //TODO: add and remove event listener based on watch of page prop "lighbox.visible", cant tho since it does not seem to work
-    mounted() {
-        window.addEventListener('keydown', this.onKeydown)
-    },
-
-    destroyed() {
-        window.removeEventListener('keydown', this.onKeydown)
+        visible() {
+            if (this.$page.props.lightbox.visible) {
+                window.addEventListener('keydown', this.onKeydown)
+            } else {
+                window.removeEventListener('keydown', this.onKeydown)
+            }
+        },
     },
 }
 </script>
