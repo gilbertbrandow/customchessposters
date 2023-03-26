@@ -1,6 +1,6 @@
 <template>
     <div class="poster">
-        <div class="poster__buttons-wrp">
+        <div v-if="controls" class="poster__buttons-wrp">
             <div class="button"
                 @click="this.$page.props.lightbox.poster = this.poster, this.$page.props.lightbox.visible = true">
                 Full screen
@@ -30,7 +30,7 @@ let form = useForm({
 
 function submitForm(poster) {
     form.posterData = poster;
-    form.post('/save-poster');
+    form.post('/save-poster', { preserveScroll: true });
 }
 
 </script>
@@ -41,6 +41,7 @@ export default {
     props: {
         poster: {},
         environment: "",
+        controls: true,
     },
 
 
