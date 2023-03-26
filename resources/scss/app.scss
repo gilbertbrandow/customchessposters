@@ -1015,6 +1015,7 @@ ul.saved__posters {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     column-gap: 2em;
+    row-gap: 2em;
 
     li {
         overflow: hidden;
@@ -1022,12 +1023,9 @@ ul.saved__posters {
         background-color: #fff;
 
         .poster__svg-wrp {
-            position: absolute;
-            top: 13.4%;
-            right: 19.75%;
-            width: 61%;
-            height: 75.5%;
-            mix-blend-mode: multiply;
+            top: 14.1%;
+            right: 19%;
+            width: 61.5%;
         }
 
         .content {
