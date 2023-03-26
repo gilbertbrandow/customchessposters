@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import Poster from './Poster/Poster.vue';
+import Poster from './Poster/PosterSVG.vue';
 import Icon from '../../Icons/Icon.vue';
 
 export default {
@@ -137,6 +137,12 @@ export default {
             target.querySelector('.poster').style.right = (Math.max(x, 0) * 100 - 50) + '%';
 
         },
+
+        clickToClose(e) {
+
+            if(e.target.closest('.lightbox') && !e.target.closest('.content'))  this.$page.props.lightbox.visible = false;
+            return
+        },
     },
 
     computed: {
@@ -160,8 +166,10 @@ export default {
         visible() {
             if (this.$page.props.lightbox.visible) {
                 window.addEventListener('keydown', this.onKeydown)
+                window.addEventListener('click', this.clickToClose)
             } else {
                 window.removeEventListener('keydown', this.onKeydown)
+                window.removeEventListener('click', this.clickToClose)
             }
         },
     },
