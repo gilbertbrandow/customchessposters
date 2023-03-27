@@ -34,7 +34,7 @@
       </div>
     </div>
   </nav>
-  <aside><Lightbox/></aside>
+  <Lightbox></Lightbox>
   <main>
     <slot>
     </slot>
@@ -58,12 +58,14 @@
 import { Link } from "@inertiajs/vue3";
 import Newsletter from "../Pages/Components/Newsletter.vue"
 import Lightbox from "../Pages/Components/Lightbox.vue"
+import AccountOverlay from "../Pages/Components/AccountOverlay.vue";
 
 export default {
   components: {
     Link,
     Newsletter,
-    Lightbox
+    Lightbox,
+    AccountOverlay
 },
 }
 </script>

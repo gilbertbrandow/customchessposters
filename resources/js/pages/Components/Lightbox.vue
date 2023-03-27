@@ -1,49 +1,50 @@
 <template>
-
-    <div class="lightbox" v-if="this.$page.props.lightbox.visible && this.$page.props.lightbox.poster">
-        <div class="content">
-            <div class="lightbox__mask" @click="[this.updateZoom(), this.mouseMove($event)]">
-                <div class="poster" :class="[zoom ? 'is--zoomed' : '']">
-                    <div class="poster__svg-wrp" :class="this.slides[`${this.currSlide}`].class">
-                        <Poster ref="PosterSVG" :poster="this.$page.props.lightbox.poster" />
-                    </div>
-                    <img v-if="this.slides[`${this.currSlide}`].size == 's'" class="poster__environment"
-                        src="/images/environments/environment-small.jpg" />
-                    <img v-else-if="this.slides[`${this.currSlide}`].size == 'm'" class="poster__environment"
-                        src="/images/environments/environment-medium.jpg" />
-                    <img v-else-if="this.slides[`${this.currSlide}`].size == 'l'" class="poster__environment"
-                        src="/images/environments/environment-large.jpg" />
-                </div>
-            </div>
-
-            <div class="lightbox__footer">
-                <h3>{{ this.slides[`${this.currSlide}`].title }}</h3>
-
-                <div class="lightbox__nav">
-                    <span> {{ this.currSlide + 1 }} / {{ this.slides.length }}</span>
-                    <div class="lightbox__indexes">
-                        <div v-for="(slide, index) in slides" :class="[index == this.currSlide ? 'active' : '']"
-                            @click="this.currSlide = index"></div>
-                    </div>
-                    <div class="lightbox__arrows">
-                        <button @click="this.prevSlide()">
-                            <Icon name="small-arrow" />
-                        </button>
-                        <button @click="this.nextSlide()">
-                            <Icon name="small-arrow" />
-                        </button>
-                        <button @click="this.$page.props.lightbox.visible = false">
-                            <Icon name="close" />
-                        </button>
+    <aside v-if="this.$page.props.lightbox.visible && this.$page.props.lightbox.poster">
+        <div class="lightbox">
+            <div class="content">
+                <div class="lightbox__mask" @click="[this.updateZoom(), this.mouseMove($event)]">
+                    <div class="poster" :class="[zoom ? 'is--zoomed' : '']">
+                        <div class="poster__svg-wrp" :class="this.slides[`${this.currSlide}`].class">
+                            <Poster ref="PosterSVG" :poster="this.$page.props.lightbox.poster" />
+                        </div>
+                        <img v-if="this.slides[`${this.currSlide}`].size == 's'" class="poster__environment"
+                            src="/images/environments/environment-small.jpg" />
+                        <img v-else-if="this.slides[`${this.currSlide}`].size == 'm'" class="poster__environment"
+                            src="/images/environments/environment-medium.jpg" />
+                        <img v-else-if="this.slides[`${this.currSlide}`].size == 'l'" class="poster__environment"
+                            src="/images/environments/environment-large.jpg" />
                     </div>
                 </div>
-            </div>
 
-            <div>
-            </div>
+                <div class="lightbox__footer">
+                    <h3>{{ this.slides[`${this.currSlide}`].title }}</h3>
 
+                    <div class="lightbox__nav">
+                        <span> {{ this.currSlide + 1 }} / {{ this.slides.length }}</span>
+                        <div class="lightbox__indexes">
+                            <div v-for="(slide, index) in slides" :class="[index == this.currSlide ? 'active' : '']"
+                                @click="this.currSlide = index"></div>
+                        </div>
+                        <div class="lightbox__arrows">
+                            <button @click="this.prevSlide()">
+                                <Icon name="small-arrow" />
+                            </button>
+                            <button @click="this.nextSlide()">
+                                <Icon name="small-arrow" />
+                            </button>
+                            <button @click="this.$page.props.lightbox.visible = false">
+                                <Icon name="close" />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                </div>
+
+            </div>
         </div>
-    </div>
+    </aside>
 
 </template>
 
@@ -140,7 +141,7 @@ export default {
 
         clickToClose(e) {
 
-            if(e.target.closest('.lightbox') && !e.target.closest('.content'))  this.$page.props.lightbox.visible = false;
+            if (e.target.closest('.lightbox') && !e.target.closest('.content')) this.$page.props.lightbox.visible = false;
             return
         },
     },
