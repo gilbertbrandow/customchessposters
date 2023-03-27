@@ -22,8 +22,11 @@ class PosterController extends Controller
 
     public function save(Request $request, PosterService $service)
     {
+
+        $name = "Temporary poster name"; //Should be able to set in /saved-posters and not in build poster module?
+
         //Call service class method
-        $poster = $service->savePoster($request->posterData, 'Temporary poster name');
+        $poster = $service->savePoster($request->posterData, $name, User::find(Auth::id()));
 
         if ($poster) {
             return redirect()->back()->with('savedSuccess', 'Poster saved!');
@@ -36,10 +39,9 @@ class PosterController extends Controller
     {
 
         //Call service class method to create png
-        $poster = $service->createPng($request->posterData, $request->savedName);
+        $poster = $service->createPng($request->posterData, $request->savedName, Auth::id());
 
         //Call serivce class method to place order at printful
-
         $response = Http::withHeaders(['Authorization' => 'Bearer ' . env('PRINTFUL_SK')])->get($this->endpoint . 'stores');
 
         $content = json_decode($response->body())->result[0];

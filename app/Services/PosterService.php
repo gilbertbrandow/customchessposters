@@ -4,12 +4,11 @@ namespace App\Services;
 
 use App\Models\Poster;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 
 class PosterService
 {
 
-    public function savePoster($posterData, $name): Poster
+    public function savePoster($posterData, $name, $user): Poster
     {
         $posterData["pgn"] = $posterData["pgn"] ? $posterData["pgn"] : "";
         $id = array_shift($posterData);
@@ -22,15 +21,15 @@ class PosterService
 
             //Check if it was an edit of existing poster
             if ($poster = Poster::find($id)) {
-                if ($poster->usersSaved->count() == 1 && $poster->usersSaved->first()->id == Auth::id()) {
+                if ($poster->usersSaved->count() == 1 && $poster->usersSaved->first()->id == $user->id) {
 
-                    //Existing poster record can be updated
+                    //Existing poster record can be updated, no need to attach relationship
                     $poster->update($posterData)->save();
                     return $poster;
                 } else {
 
                     //The old relationship needs to be detached since that poster can not be updated
-                    User::find(Auth::id())->savedPosters()->detach($id);
+                    $user->savedPosters()->detach($id);
                 }
             }
 
@@ -38,7 +37,7 @@ class PosterService
         }
 
         //Attach a relationship
-        $poster->usersSaved()->attach([Auth::id() => ['name' => $name]]);
+        $poster->usersSaved()->attach([$user->id => ['name' => $name]]);
 
         return $poster;
     }
