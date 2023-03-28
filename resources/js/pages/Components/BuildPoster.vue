@@ -285,8 +285,8 @@
                             <div class="row is--player-input is--margin-top">
                                 <div class="field__wrp">
                                     <label for="blackPlayer" class="field__label">Black player</label>
-                                    <input maxlength="45" v-model="poster.black_player" class="field" name="gameTitle"
-                                        id="gameTitle" placeholder="Abdusattorov, Nodirbek" />
+                                    <input maxlength="45" v-model="poster.black_player" class="field" name="blackPlayer"
+                                        id="blackPlayer" placeholder="Abdusattorov, Nodirbek" />
                                 </div>
 
                                 <div class="field__wrp">
