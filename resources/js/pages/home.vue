@@ -6,7 +6,9 @@
                 tristique. </p>
             <div class="button-wrp">
                 <Link href="/create-poster" class="button is--black">Create your own custom poster</Link>
-                <Link href="" class="button">Refresh design <Icon name="refresh"/></Link>
+                <Link href="" class="button">Refresh design
+                <Icon name="refresh" />
+                </Link>
             </div>
         </div>
         <div class="poster">
@@ -57,7 +59,7 @@ onMounted(() => {
 
     const observer = new IntersectionObserver(function (entries, observer) {
         entries.forEach(entry => {
-            if (!nav.classList.length && !entry.isIntersecting) {
+            if ((!nav.classList.length && !entry.isIntersecting)) {
                 nav.classList.add('is--scrolled');
             } else {
                 nav.classList.remove('is--scrolled');
