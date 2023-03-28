@@ -14,7 +14,9 @@ class RegisterController extends Controller
 {
     public function registration()
     {
-        return inertia('Auth/Register'); 
+
+        return redirect()->back()->with('authenticateRegister', true);
+
     }
 
     public function create(Request $request, PosterService $service)

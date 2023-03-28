@@ -15,7 +15,7 @@ class ResetPasswordController extends Controller
 {
     public function showForgot()
     {
-        return inertia('Auth/ForgotPassword'); 
+        return redirect()->back()->with('authenticateForgot', true);
     }
 
     public function sendLink(Request $request)
@@ -26,8 +26,8 @@ class ResetPasswordController extends Controller
 
 
         return $status === Password::RESET_LINK_SENT
-        ? back()->with('success', 'Check your inbox to find instructions on how to reset your password')
-        : back()->withErrors(['all' => 'We cant find any account that match that email'])->onlyInput('all');
+        ? back()->with(['success' => 'Check your inbox to find instructions on how to reset your password', 'authenticateForgot' => true])
+        : back()->with('authenticateForgot', true)->withErrors(['all' => 'We cant find any account that match that email'])->onlyInput('all');
     }
 
 

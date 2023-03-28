@@ -12,7 +12,7 @@ class LoginController extends Controller
 {
     public function login()
     {
-        return inertia('Auth/Login');
+        return redirect()->back()->with(['authenticate' => true, 'authenticateLogin' => true,]);
     }
 
     public function authenticate(Request $request, PosterService $service)
@@ -35,7 +35,7 @@ class LoginController extends Controller
 
             $request->session()->regenerate();
 
-            return redirect()->intended('/account');
+            return redirect()->intended('/account')->with('accountSuccess', 'Logged in');
         }
 
         return back()->withErrors([
