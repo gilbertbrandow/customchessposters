@@ -1009,6 +1009,35 @@ h4 {
 }
 
 /**********************
+****** Authenticate slide-out style
+***********************/
+
+.slide-out__wrp {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-end;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+
+    .field__label {
+        background-color: #fff;
+    }
+}
+
+.slide-out {
+    position: relative;
+    width: 40em;
+    height: 100%;
+    background-color: #fff;
+    display: flex;
+    padding: 6em 4em 4em 4em;
+    border-left: rgba(0, 0, 0, 0.1) solid 1px;
+}
+
+/**********************
 ****** Saved posters styles
 ***********************/
 ul.saved__posters {
