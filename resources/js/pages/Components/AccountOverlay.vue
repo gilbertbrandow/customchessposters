@@ -2,6 +2,9 @@
     <aside v-if="this.$page.props.authenticate.visible">
         <div class="slide-out__wrp">
             <div class="slide-out">
+                <button @click="this.$page.props.authenticate.visible = false">
+                    <Icon name="close" />
+                </button>
                 <div v-if="this.$page.props.authenticate.login">
                     <h1>Sign in</h1>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros
@@ -20,18 +23,20 @@
                             <label for="password" class="field__label">Password</label>
                             <input v-model="login.password" type="password" class="field"
                                 :class="{ 'is--error': login.errors.password }" name="password"
-                                placeholder="***********" required>
+                                placeholder="••••••••" required>
                             <div v-if="login.errors.password" v-text="login.errors.password" class="field__error"></div>
                         </div>
                         <div class="form__bottom">
                             <div class="field__checkbox"><input v-model="login.remember" type="checkbox" id="remember"
                                     name="remember" /><label for="remember">Remember me</label></div>
-                            <Link class="link-arrow" :href="route('auth.forgotPassword')" preserve-scroll>Forgot your password?</Link>
+                            <Link class="link-arrow" :href="route('auth.forgotPassword')" preserve-scroll>Forgot your
+                            password?</Link>
                         </div>
                         <div class="field__wrp">
                             <button class="button is--black" :disabled="login.processing">
                                 Sign in </button>
-                            <Link class="link-arrow" :href="route('auth.registration')" preserve-scroll>Dont have an account? Register
+                            <Link class="link-arrow" :href="route('auth.registration')" preserve-scroll>Dont have an
+                            account? Register
                             here
                             <Icon name="arrow-up" />
                             </Link>
@@ -63,7 +68,7 @@
                             <label for="password" class="field__label">Password</label>
                             <input v-model="register.password" type="password" class="field"
                                 :class="{ 'is--error': register.errors.password }" name="password"
-                                placeholder="***********" required>
+                                placeholder="••••••••" required>
                             <div v-if="register.errors.password" v-text="register.errors.password" class="field__error">
                             </div>
                         </div>
@@ -71,14 +76,15 @@
                             <label for="password_confirmation" class="field__label">Confirm Password</label>
                             <input v-model="register.password_confirmation" type="password" class="field"
                                 :class="{ 'is--error': register.errors.password_confirmation || register.errors.password }"
-                                name="password_confirmation" placeholder="***********" required>
+                                name="password_confirmation" placeholder="••••••••" required>
                             <div v-if="register.errors.password_confirmation"
                                 v-text="register.errors.password_confirmation" class="field__error"></div>
                         </div>
                         <div class="field__wrp">
                             <button class="button is--black" :disabled="register.processing">
                                 Register </button>
-                            <Link class="link-arrow" :href="route('auth.login')" preserve-scroll>Already have an account? Sign in here
+                            <Link class="link-arrow" :href="route('auth.login')" preserve-scroll>Already have an
+                            account? Sign in here
                             <Icon name="arrow-up" />
                             </Link>
                             <div v-if="register.errors.all" v-text="register.errors.all"
@@ -103,7 +109,8 @@
                         <div class="field__wrp">
                             <button class="button is--black" :disabled="forgot.processing">
                                 Send me my link! </button>
-                            <Link class="link-arrow" :href="route('auth.registration')" preserve-scroll>Dont have an account? Register
+                            <Link class="link-arrow" :href="route('auth.registration')" preserve-scroll>Dont have an
+                            account? Register
                             here
                             <Icon name="arrow-up" />
                             </Link>
@@ -210,6 +217,6 @@ export default {
                 window.removeEventListener('click', this.clickToClose)
             }
         },
-    }, 
+    },
 }
 </script>

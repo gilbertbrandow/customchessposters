@@ -18,7 +18,7 @@
                 <div class="field__wrp">
                     <label for="message" class="field__label">Message</label>
                     <textarea v-model="form.message" class="field" :class="{ 'is--error': form.errors.message }"
-                        name="password" placeholder="Lorem ipsum dolor set ami..." required>
+                        name="message" placeholder="Lorem ipsum dolor set ami..." required>
                         </textarea>
                     <div v-if="form.errors.message" v-text="form.errors.message" class="field__error"></div>
                 </div>

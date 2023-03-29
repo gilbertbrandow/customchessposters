@@ -14,7 +14,7 @@
                 <div class="field__wrp">
                     <label for="password" class="field__label">Password</label>
                     <input v-model="form.password" type="password" class="field"
-                        :class="{ 'is--error': form.errors.password }" name="password" placeholder="***********"
+                        :class="{ 'is--error': form.errors.password }" name="password" placeholder="••••••••"
                         required>
                     <div v-if="form.errors.password" v-text="form.errors.password" class="field__error"></div>
                 </div>
@@ -22,7 +22,7 @@
                     <label for="password_confirmation" class="field__label">Confirm Password</label>
                     <input v-model="form.password_confirmation" type="password" class="field"
                         :class="{ 'is--error': form.errors.password_confirmation || form.errors.password }"
-                        name="password_confirmation" placeholder="***********" required>
+                        name="password_confirmation" placeholder="••••••••" required>
                     <div v-if="form.errors.password_confirmation" v-text="form.errors.password_confirmation"
                         class="field__error"></div>
                 </div>
