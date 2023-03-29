@@ -89,7 +89,7 @@
 
                 <div v-else-if="this.$page.props.authenticate.forgot">
 
-                    <h1 v-text="$page.props.flash.success ? 'We sent you an email!' : 'Forgot Your Password?' "></h1>
+                    <h1 v-text="$page.props.flash.success ? 'We sent you an email!' : 'Forgot Your Password?'"></h1>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros
                         elementum
                         tristique. </p>
@@ -107,7 +107,8 @@
                             here
                             <Icon name="arrow-up" />
                             </Link>
-                            <div v-if="forgot.errors.all" v-text="forgot.errors.all" class="field__error is--submit"></div>
+                            <div v-if="forgot.errors.all" v-text="forgot.errors.all" class="field__error is--submit">
+                            </div>
                         </div>
                     </form>
                     <div v-if="$page.props.flash.success" v-text="$page.props.flash.success"
@@ -184,5 +185,31 @@ let submit = ($form) => {
 
 <script>
 export default {
+
+    computed: {
+        visible() {
+            return this.$page.props.authenticate.visible;
+        },
+    },
+
+
+    methods: {
+        clickToClose(e) {
+
+            if (e.target.closest('.slide-out__wrp') && !e.target.closest('.slide-out')) this.$page.props.authenticate.visible = false;
+            return
+        },
+    },
+
+    watch: {
+
+        visible() {
+            if (this.$page.props.authenticate.visible) {
+                window.addEventListener('click', this.clickToClose)
+            } else {
+                window.removeEventListener('click', this.clickToClose)
+            }
+        },
+    }, 
 }
 </script>
