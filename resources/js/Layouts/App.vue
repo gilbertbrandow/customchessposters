@@ -13,7 +13,7 @@
         </div>
         <Icon name="user" />
         </Link>
-        <Link :href="route('auth.login')" v-else class="nav__button">
+        <Link :href="route('auth.login')" v-else class="nav__button" preserve-scroll>
         <div class="info">
           <div></div>Sign in
         </div>

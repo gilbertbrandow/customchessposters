@@ -26,12 +26,12 @@
                         <div class="form__bottom">
                             <div class="field__checkbox"><input v-model="login.remember" type="checkbox" id="remember"
                                     name="remember" /><label for="remember">Remember me</label></div>
-                            <Link class="link-arrow" :href="route('auth.forgotPassword')">Forgot your password?</Link>
+                            <Link class="link-arrow" :href="route('auth.forgotPassword')" preserve-scroll>Forgot your password?</Link>
                         </div>
                         <div class="field__wrp">
                             <button class="button is--black" :disabled="login.processing">
                                 Sign in </button>
-                            <Link class="link-arrow" :href="route('auth.registration')">Dont have an account? Register
+                            <Link class="link-arrow" :href="route('auth.registration')" preserve-scroll>Dont have an account? Register
                             here
                             <Icon name="arrow-up" />
                             </Link>
@@ -78,7 +78,7 @@
                         <div class="field__wrp">
                             <button class="button is--black" :disabled="register.processing">
                                 Register </button>
-                            <Link class="link-arrow" :href="route('auth.login')">Already have an account? Sign in here
+                            <Link class="link-arrow" :href="route('auth.login')" preserve-scroll>Already have an account? Sign in here
                             <Icon name="arrow-up" />
                             </Link>
                             <div v-if="register.errors.all" v-text="register.errors.all"
@@ -103,7 +103,7 @@
                         <div class="field__wrp">
                             <button class="button is--black" :disabled="forgot.processing">
                                 Send me my link! </button>
-                            <Link class="link-arrow" :href="route('auth.registration')">Dont have an account? Register
+                            <Link class="link-arrow" :href="route('auth.registration')" preserve-scroll>Dont have an account? Register
                             here
                             <Icon name="arrow-up" />
                             </Link>
