@@ -16,7 +16,7 @@
                 <div class="field__wrp">
                     <label for="password" class="field__label">Password</label>
                     <input v-model="form.password" type="password" class="field"
-                        :class="{ 'is--error': form.errors.password }" name="password" placeholder="***********"
+                        :class="{ 'is--error': form.errors.password }" name="password" placeholder="••••••••"
                         required>
                     <div v-if="form.errors.password" v-text="form.errors.password" class="field__error"></div>
                 </div>
