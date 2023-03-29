@@ -17,7 +17,6 @@ body {
 
 a {
     color: #000;
-    font-size: 1.2em;
 }
 
 ul {
@@ -64,6 +63,8 @@ nav .nav__wrp {
 }
 
 .nav__button {
+    font-size: 1.2em;
+
     .info {
         display: flex;
         align-items: center;
