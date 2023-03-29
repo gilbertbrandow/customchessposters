@@ -59,10 +59,10 @@ onMounted(() => {
 
     const observer = new IntersectionObserver(function (entries, observer) {
         entries.forEach(entry => {
-            if ((!nav.classList.length && !entry.isIntersecting)) {
-                nav.classList.add('is--scrolled');
-            } else {
+            if ((nav.classList.length && entry.isIntersecting)) {
                 nav.classList.remove('is--scrolled');
+            } else {
+                nav.classList.add('is--scrolled');
             }
         })
     }, options);
