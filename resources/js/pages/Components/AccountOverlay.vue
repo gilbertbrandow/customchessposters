@@ -2,7 +2,7 @@
     <aside v-if="this.$page.props.authenticate.visible">
         <div class="slide-out__wrp">
             <div class="slide-out">
-                <button @click="this.$page.props.authenticate.visible = false">
+                <button class="button__rnd-icn" @click="this.$page.props.authenticate.visible = false">
                     <Icon name="close" />
                 </button>
                 <div v-if="this.$page.props.authenticate.login">

@@ -221,6 +221,31 @@ button {
     }
 }
 
+.button__rnd-icn {
+    width: 2.5em;
+    height: 2.5em;
+    border: 1px solid #000;
+    border-radius: 3em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    svg {
+        width: 0.6em;
+    }
+}
+
+.button__rnd-icn:hover {
+
+    background-color: #000;
+
+    svg {
+        fill: #fff;
+    }
+
+}
+
 .confirm {
     white-space: nowrap;
     margin-top: 1.25em;
@@ -1049,6 +1074,12 @@ h4 {
     display: flex;
     padding: 6em 4em 4em 4em;
     border-left: rgba(0, 0, 0, 0.1) solid 1px;
+
+    .button__rnd-icn {
+        position: absolute;
+        top: 2em;
+        right: 2em;
+    }
 }
 
 /**********************
