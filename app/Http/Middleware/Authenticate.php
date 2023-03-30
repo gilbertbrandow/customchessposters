@@ -14,8 +14,9 @@ class Authenticate extends Middleware
      */
     protected function redirectTo($request)
     {
+
         //If the request contains data to store/save poster save it in session before redirecting to login
-        if ($request->posterData && $request->name) {
+        if ($request->posterData) {
             $request->session()->put('poster', $request->posterData);
             $request->session()->put('poster_name', $request->name);
         }
