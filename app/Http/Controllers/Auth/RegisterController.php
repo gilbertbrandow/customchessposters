@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Auth\LoginController as AuthLoginController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Welcome; 
 use App\Models\User;
@@ -12,14 +14,14 @@ use App\Services\PosterService;
 
 class RegisterController extends Controller
 {
-    public function registration()
+    public function show()
     {
 
         return redirect()->back()->with('authenticateRegister', true);
 
     }
 
-    public function create(Request $request, PosterService $service)
+    public function register(Request $request, LoginController $login)
     {
         $credentials = $request->validate([
             'name' => ['required', 'min:5', 'max:25'],
@@ -29,16 +31,13 @@ class RegisterController extends Controller
 
         $user = User::create($credentials);
 
-        Auth::login($user);
+        $login->login($credentials, false, $request);
 
-        //Save poster if exists as saved in session
-        if ($request->session()->exists('poster') && $request->session()->get('poster_name')) {
-            $service->savePoster($request->session()->get('poster'), $request->session()->get('poster_name'));
-        }
-
-        $firstname = explode(' ', $request->name)[0];
+        $firstname = explode(' ', $user->name)[0];
 
         Mail::to($credentials['email'])->send(new Welcome($credentials['name']));
+
+        //TODO: Customize return message based on if poster was saved or not!
         return redirect('/')->with('accountSuccess', 'Welcome ' . $firstname .'!');
     }
 }
