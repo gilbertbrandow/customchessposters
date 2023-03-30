@@ -79,13 +79,13 @@ Route::middleware('auth')->group(function () {
     Route::post('/save-poster', [PosterController::class, 'save'])->name('poster.save');
 });
 
-Route::get('/register', [RegisterController::class, 'registration'])
+Route::get('/register', [RegisterController::class, 'show'])
 ->name('auth.registration');
 
-Route::post('/register', [RegisterController::class, 'create'])
+Route::post('/register', [RegisterController::class, 'register'])
 ->name('auth.create');
 
-Route::get('/login', [LoginController::class, 'login'])
+Route::get('/login', [LoginController::class, 'show'])
 ->name('auth.login');
 
 Route::post('/login', [LoginController::class, 'authenticate'])
