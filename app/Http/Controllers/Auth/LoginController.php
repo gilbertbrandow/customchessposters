@@ -10,37 +10,50 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    public function login()
+
+    public function show()
     {
         return redirect()->back()->with(['authenticate' => true, 'authenticateLogin' => true,]);
     }
 
-    public function authenticate(Request $request, PosterService $service)
+    public function authenticate(Request $request)
     {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
 
-        $remember = false;
+        if ($this->login($credentials, $request->remember, $request)) {
 
-        if ($request->remember)  $remember = true;
+            //TODO: Customize return message based on if poster was saved or not!
+            return redirect()->intended('/account')->with('accountSuccess', 'Logged in');
+        } else {
+            return back()->withErrors([
+                'all' => 'The provided credentials do not match our records.',
+            ])->onlyInput('all');
+        }
+    }
+
+    //helper method to be called upon
+    public function login($credentials, $remember, Request $request)
+    {
 
         if (Auth::attempt($credentials, $remember)) {
 
             //Save poster if exists as saved in session
-            if ($request->session()->exists('poster') && $request->session()->get('poster_name')) {
-                $service->savePoster($request->session()->get('poster'), $request->session()->get('poster_name'));
+            if ($request->session()->exists('poster')) {
+
+                //TODO: Customize return message based on if poster was saved or not!
+                (new PosterService())->savePoster($request->session()->get('poster'), 'Flow like water', Auth::user());
             }
 
             $request->session()->regenerate();
 
-            return redirect()->intended('/account')->with('accountSuccess', 'Logged in');
-        }
+            return true;
+        } else {
 
-        return back()->withErrors([
-            'all' => 'The provided credentials do not match our records.',
-        ])->onlyInput('all');
+            return false;
+        }
     }
 
     public function logout()
