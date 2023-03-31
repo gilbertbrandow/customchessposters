@@ -2,23 +2,26 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Auth\LoginController as AuthLoginController;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\Welcome; 
+use App\Mail\Welcome;
 use App\Models\User;
-use App\Services\PosterService;
+use Illuminate\Support\Facades\Route;
 
 class RegisterController extends Controller
 {
-    public function show()
+    static public function show()
     {
+        $url = url()->previous();
 
-        return redirect()->back()->with('authenticateRegister', true);
+        $route = collect(Route::getRoutes())->first(function ($route) use ($url) {
+             return $route->matches(request()->create($url));
+        });
 
+        if(in_array('auth', $route->gatherMiddleware())) return redirect('/')->with('authenticateRegister', true);
+        else return redirect()->back()->with('authenticateRegister', true);
     }
 
     public function register(Request $request, LoginController $login)
@@ -38,6 +41,6 @@ class RegisterController extends Controller
         Mail::to($credentials['email'])->send(new Welcome($credentials['name']));
 
         //TODO: Customize return message based on if poster was saved or not!
-        return redirect('/')->with('accountSuccess', 'Welcome ' . $firstname .'!');
+        return redirect('/')->with('accountSuccess', 'Welcome ' . $firstname . '!');
     }
 }
