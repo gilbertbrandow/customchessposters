@@ -19,7 +19,7 @@
         </div>
         <Icon name="user" />
         </Link>
-        <Link :href="route('auth.saved')" class="nav__button">
+        <Link :href="route('auth.saved')" class="nav__button" preserve-scroll>
         <div class="info" :class="{active: $page.props.flash.saved.success}">
           <div></div> {{ $page.props.flash.saved.success ? $page.props.flash.saved.success : 'Your saved designs' }}
         </div>
@@ -34,8 +34,7 @@
       </div>
     </div>
   </nav>
-  <AccountOverlay></AccountOverlay>
-  <Lightbox></Lightbox>
+  <Overlay></Overlay>
   <main>
     <slot>
     </slot>
@@ -58,15 +57,13 @@
 <script>
 import { Link } from "@inertiajs/vue3";
 import Newsletter from "../Pages/Components/Newsletter.vue"
-import Lightbox from "../Pages/Components/Lightbox.vue"
-import AccountOverlay from "../Pages/Components/AccountOverlay.vue";
+import Overlay from "../Pages/Components/Overlay.vue"
 
 export default {
   components: {
     Link,
     Newsletter,
-    Lightbox,
-    AccountOverlay
+    Overlay,
 },
 }
 </script>
