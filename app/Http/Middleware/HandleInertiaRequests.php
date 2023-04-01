@@ -44,15 +44,11 @@ class HandleInertiaRequests extends Middleware
             'site' => [
                 'title' => 'Custom Chess Posters'
             ],
-            'auth' => Auth::check() ? [
+            'auth' => Auth::check() || $request->session()->get('name') ? [
                 'user' => [
-                    'name' => Auth::user()->name
+                    'name' => $request->session()->get('name') || Auth::user()->name
                 ]
             ] : false,
-
-            'profile' => [
-                'name' => $request->session()->get('name')
-            ],
 
             'flash' => [
 
