@@ -237,13 +237,11 @@ button {
 }
 
 .button__rnd-icn:hover {
-
     background-color: #000;
 
     svg {
         fill: #fff;
     }
-
 }
 
 .confirm {
@@ -880,29 +878,40 @@ h4 {
 }
 
 /**********************
-****** Lightbox styles
+****** Overlay styles
 ***********************/
-
-.lightbox {
+.overlay {
     position: fixed;
     background-color: rgba(0, 0, 0, 0.75);
     display: flex;
-    align-items: center;
-    justify-content: center;
     width: 100vw;
     height: 100vh;
     z-index: 99999;
+}
 
-    .content {
-        width: 75em;
-        height: 50em;
-        border-radius: 1em;
-        overflow: hidden;
-        background-color: #fff;
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-    }
+.overlay:has(.lightbox) {
+    align-items: center;
+    justify-content: center;
+}
+
+.overlay:has(.slide-out) {
+    align-items: stretch;
+    justify-content: flex-end;
+}
+
+/**********************
+****** Lightbox Styles
+***********************/
+
+.lightbox {
+    width: 75em;
+    height: 50em;
+    border-radius: 1em;
+    overflow: hidden;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 
     .poster__svg-wrp.is--lightbox-small {
         top: 10.75%;
@@ -1038,15 +1047,20 @@ h4 {
 ****** Authenticate slide-out style
 ***********************/
 
-.slide-out__wrp {
-    position: fixed;
-    background-color: rgba(0, 0, 0, 0.75);
+.slide-out {
+    position: relative;
+    width: 40em;
+    height: 100%;
+    background-color: #fff;
     display: flex;
-    align-items: stretch;
-    justify-content: flex-end;
-    width: 100vw;
-    height: 100vh;
-    z-index: 9999;
+    padding: 6em 4em 4em 4em;
+    border-left: rgba(0, 0, 0, 0.1) solid 1px;
+
+    .button__rnd-icn {
+        position: absolute;
+        top: 2em;
+        right: 2em;
+    }
 
     .field__label {
         background-color: #fff;
@@ -1063,22 +1077,6 @@ h4 {
     select:-webkit-autofill:focus {
         -webkit-box-shadow: 0 0 0px 1000px #fff inset;
         box-shadow: 0 0 0px 1000px #fff inset;
-    }
-}
-
-.slide-out {
-    position: relative;
-    width: 40em;
-    height: 100%;
-    background-color: #fff;
-    display: flex;
-    padding: 6em 4em 4em 4em;
-    border-left: rgba(0, 0, 0, 0.1) solid 1px;
-
-    .button__rnd-icn {
-        position: absolute;
-        top: 2em;
-        right: 2em;
     }
 }
 
