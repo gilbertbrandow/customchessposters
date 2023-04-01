@@ -13,7 +13,7 @@ class LoginController extends Controller
 
     public function show()
     {
-        return redirect()->back()->with(['authenticate' => true, 'authenticateLogin' => true,]);
+        return redirect()->back()->with('authenticateLogin', true);
     }
 
     public function authenticate(Request $request)
