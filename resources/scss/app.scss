@@ -1053,8 +1053,14 @@ h4 {
     height: 100%;
     background-color: #fff;
     display: flex;
+    flex-direction: column;
     padding: 6em 4em 4em 4em;
     border-left: rgba(0, 0, 0, 0.1) solid 1px;
+
+    .form {
+        flex: auto;
+        margin-top: 0em;
+    }
 
     .button__rnd-icn {
         position: absolute;
