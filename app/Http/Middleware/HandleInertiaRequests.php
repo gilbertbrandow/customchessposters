@@ -50,6 +50,8 @@ class HandleInertiaRequests extends Middleware
                 ]
             ] : false,
 
+            'poster'=> $request->session()->get('poster'),
+
             'flash' => [
 
                     'newsletter' => [
@@ -73,7 +75,7 @@ class HandleInertiaRequests extends Middleware
 
             'overlay' => [
                 'visible' =>  $request->session()->get('authenticateLogin') || $request->session()->get('authenticateRegister') || $request->session()->get('authenticateForgot'),
-                'lightbox' =>  new stdClass(),
+                'lightbox' =>  '',
                 'login' => $request->session()->get('authenticateLogin'),
                 'register' => $request->session()->get('authenticateRegister'),
                 'forgot' => $request->session()->get('authenticateForgot'),
