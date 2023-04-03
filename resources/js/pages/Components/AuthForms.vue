@@ -6,7 +6,7 @@
         </button>
 
         <h2 v-text="title"></h2>
-        <div v-if="this.$page.props.poster" class="currentPoster">
+        <div v-if="this.$page.props.poster && !this.$page.props.overlay.forgot" class="currentPoster">
             <div><Icon name="bookmark" /></div>"{{ this.$page.props.poster.title }}"
         </div>
         <p v-text="text"></p>
