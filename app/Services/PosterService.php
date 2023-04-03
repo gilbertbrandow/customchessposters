@@ -39,6 +39,8 @@ class PosterService
         //Attach a relationship
         $poster->usersSaved()->attach([$user->id => ['name' => $name]]);
 
+        session()->flash('savedSuccess', 'A poster was saved!');
+
         return $poster;
     }
 
