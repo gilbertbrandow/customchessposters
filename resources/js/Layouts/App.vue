@@ -8,7 +8,7 @@
       <div class="nav__wrp">
         <div class="dropdown"><img src="" /> USA / USD $</div>
         <Link :href="route('auth.account')" v-if="$page.props.auth" class="nav__button">
-        <div class="info" :class="{active: $page.props.flash.account.success}">
+        <div class="info" :class="[ ($page.props.flash.account.success && !$page.props.flash.saved.success) ? 'active' : '']">
           <div></div> {{ $page.props.flash.account.success ? $page.props.flash.account.success : 'Your Account (' + $page.props.auth.user.name + ')'}}
         </div>
         <Icon name="user" />
