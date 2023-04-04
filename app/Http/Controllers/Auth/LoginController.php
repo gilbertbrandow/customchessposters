@@ -44,7 +44,7 @@ class LoginController extends Controller
             if ($request->session()->exists('poster')) {
 
                 //TODO: Customize return message based on if poster was saved or not!
-                (new PosterService())->savePoster($request->session()->get('poster'), 'Flow like water', Auth::user());
+                (new PosterService())->savePoster($request->session()->get('poster'), null, Auth::user());
             }
 
             $request->session()->regenerate();
