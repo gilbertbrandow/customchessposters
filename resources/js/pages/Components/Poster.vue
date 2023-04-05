@@ -1,13 +1,14 @@
 <template>
     <div class="poster">
-        <div v-if="controls" class="poster__buttons-wrp">
-            <div class="button"
+        <div v-if="controls" class="poster__buttons-wrp"  :class="[ (controls.small) ? 'small' : '']">
+            <button class="button"
                 @click="this.$page.props.overlay.lightbox = this.poster, this.$page.props.overlay.visible = true;">
-                Full screen
+                <span v-if="!controls.small">Full screen</span>
                 <Icon name="fullScreen" />
-            </div>
-            <form @submit.prevent="submitForm(this.poster)">
-                <button class="button" type="submit"> Save this design
+            </button>
+            <form v-if="controls.save" @submit.prevent="submitForm(this.poster)">
+                <button class="button" type="submit"> 
+                    <span v-if="!controls.small">Save this design</span>
                     <Icon name="bookmark" />
                 </button>
             </form>
