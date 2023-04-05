@@ -1,35 +1,39 @@
 <template>
     <div class="container account">
         <ul class="account__menu">
-            <li class="is--active">
-                <Link :href="route('home.index')">
+            <li>
+                Signed in as <br>
+                <h3>Simon Gustafsson</h3>
+            </li>
+            <li :class="{ 'is--active': $page.url === '/account' }">
+                <Link :href="route('auth.account')">
                 <div>
                     <Icon name="user"></Icon>
                 </div>Account
                 </Link>
             </li>
-            <li>
-                <Link :href="route('home.index')">
+            <li  :class="{ 'is--active': $page.url === '/saved-designs' }">
+                <Link :href="route('auth.saved')">
                 <div>
                     <Icon name="bookmark"></Icon>
                 </div>Saved Posters
                 </Link>
             </li>
-            <li>
+            <li :class="{ 'is--active': $page.url === '/orders' }">
                 <Link :href="route('home.index')">
                 <div>
                     <Icon name="bookmark"></Icon>
                 </div>Orders
                 </Link>
             </li>
-            <li>
+            <li  :class="{ 'is--active': $page.url === '/shipping-addresses' }">
                 <Link :href="route('home.index')">
                 <div>
                     <Icon name="bookmark"></Icon>
                 </div>Shipping Address
                 </Link>
             </li>
-            <li>
+            <li  :class="{ 'is--active': $page.url === '/create-review' }">
                 <Link :href="route('home.index')">
                 <div>
                     <Icon name="bookmark"></Icon>
