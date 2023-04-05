@@ -48,7 +48,7 @@
                 <label for="name" class="field__label">Name</label>
                 <div v-if="register.errors.name" v-text="register.errors.name" class="field__error"></div>
                 <input v-model="register.name" class="field" :class="{ 'is--error': register.errors.name }" name="name"
-                    placeholder="John Doe" required />
+                    placeholder="John Doe" maxlength="25"  required />
             </div>
             <div class="field__wrp">
                 <label for="email" class="field__label">Email address</label>
