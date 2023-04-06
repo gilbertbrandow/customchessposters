@@ -375,7 +375,7 @@
                     </div>
                 </div>
 
-                <Poster :poster="poster" :environment="this.$data.posterBuilder.currEnvironment" :controls="true"></Poster>
+                <Poster :poster="poster" :environment="this.$data.posterBuilder.currEnvironment" :controls="{save: true}"></Poster>
 
             </div>
         </div>
