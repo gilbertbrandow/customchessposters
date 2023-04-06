@@ -1172,6 +1172,7 @@ h4 {
 
         li a,
         li button {
+            border: 1px solid #fff;
             text-decoration: none;
             cursor: pointer;
             display: flex;
@@ -1211,7 +1212,7 @@ h4 {
         li.is--active button {
             background-color: #f5f5f5;
             border: 1px solid #ebebeb;
-            
+
             div {
                 background-color: #000;
 
@@ -1255,7 +1256,7 @@ ul.saved__posters {
 
         .content {
             flex: 1;
-            padding: 1em;
+            padding: 0.75em 1em 0.75em 1em;
             display: flex;
             flex-direction: column;
 
@@ -1263,7 +1264,6 @@ ul.saved__posters {
                 display: flex;
                 align-items: flex-end;
                 flex: auto;
-                margin-top: 1em;
                 font-size: 0.8em;
             }
         }
