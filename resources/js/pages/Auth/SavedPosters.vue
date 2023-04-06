@@ -5,7 +5,6 @@
             <li v-for="poster in $page.props.posters">
                 <Poster :poster="poster" environment="/images/environments/builder-mockup.jpeg" :controls="{'small': true, 'save': false }"></Poster>
                 <div class="content">
-                    <h3 v-text="poster.pivot.name"></h3>
                     <div class="button-wrp">
                         <button class="button is--black"> Add to cart
                             <Icon name="cart" />

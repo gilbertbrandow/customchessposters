@@ -24,8 +24,6 @@ class LoginController extends Controller
         ]);
 
         if ($this->login($credentials, $request->remember, $request)) {
-
-            //TODO: Customize return message based on if poster was saved or not!
             return redirect()->intended('/account')->with('accountSuccess', 'Logged in');
         } else {
             return back()->withErrors([
@@ -34,7 +32,6 @@ class LoginController extends Controller
         }
     }
 
-    //helper method to be called upon
     public function login($credentials, $remember, Request $request)
     {
 
@@ -43,15 +40,13 @@ class LoginController extends Controller
             //Save poster if exists as saved in session
             if ($request->session()->exists('poster')) {
 
-                //TODO: Customize return message based on if poster was saved or not!
-                (new PosterService())->savePoster($request->session()->get('poster'), null, Auth::user());
+                (new PosterService())->savePoster($request->session()->get('poster'), Auth::user());
             }
 
             $request->session()->regenerate();
 
             return true;
         } else {
-
             return false;
         }
     }

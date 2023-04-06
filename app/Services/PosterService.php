@@ -8,7 +8,7 @@ use App\Models\User;
 class PosterService
 {
 
-    public function savePoster($posterData, $name, $user): Poster
+    public function savePoster($posterData, $user): Poster
     {
         $posterData["pgn"] = $posterData["pgn"] ? $posterData["pgn"] : "";
         $id = array_shift($posterData);
@@ -37,7 +37,7 @@ class PosterService
         }
 
         //Attach a relationship
-        $poster->usersSaved()->attach([$user->id => ['name' => $name ?? 'My saved poster']]);
+        $poster->usersSaved()->attach($user->id);
 
         session()->flash('savedSuccess', 'A poster was saved!');
 
