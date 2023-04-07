@@ -797,7 +797,7 @@ export default {
 
         uploadGameFromLichess(url) {
 
-            let gameId = url.replace('https://lichess.org/', '');
+            let gameId = url.replace('https://lichess.org/', '').slice(0, 8);
 
             axios
                 .get('https://lichess.org/game/export/' + gameId, { params: { pgnInJson: true, tags: true, clocks: false, evals: false, opening: false } })
