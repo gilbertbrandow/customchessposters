@@ -10,10 +10,10 @@
                             <Icon name="cart" />
                         </button>
 
-                        <button class="button">
+                        <a class="button" :href="route('poster.edit', {'id': poster.id})">
                             Edit
                             <Icon name="edit" />
-                        </button>
+                        </a>
                     </div>
                 </div>
             </li>
