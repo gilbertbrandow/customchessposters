@@ -3,7 +3,7 @@
         <div class="container">
             <div class="poster__builder">
                 <div class="poster__module">
-                    <h2>Create Your Custom Poster</h2>
+                    <h2 v-text="(this.$page.props.editPoster) ? 'Editing poster' : 'Create Your Custom Poster'"></h2>
                     <div class="module__mask" ref="mask">
                         <div :class="[posterBuilder.currStep == 0 ? 'is--active' : '']" class="module__step">
                             <h3>1. Your Design</h3>
@@ -15,8 +15,8 @@
                                     :class="[poster.theme == theme.id ? 'is--active' : '']" class="theme">
                                     <div class="theme__colour-wrp">
                                         <div class="theme__colour">
-                                            <div><img style="height: 100%"
-                                                    :src="`/images/posters/themes${theme.texture}`" alt=""></div>
+                                            <div><img style="height: 100%" :src="`/images/posters/themes${theme.texture}`"
+                                                    alt=""></div>
                                             <div :style="{ backgroundColor: theme.colour, }"></div>
                                         </div>
                                     </div>
@@ -31,8 +31,8 @@
                                 <label for="orientation" class="field__label">Diagram orientation</label>
 
                                 <select v-model="poster.orientation" id="orientation" class="field" name="orientation">
-                                    <option :value="true">White</option>
-                                    <option :value="false">Black</option>
+                                    <option value="1">White</option>
+                                    <option value="0">Black</option>
                                 </select>
 
                             </div>
@@ -100,14 +100,13 @@
 
                                         <div class="row">
                                             <div class="field__wrp">
-                                                <label v-if="posterBuilder.manualMove.valid && !isGameOver"
-                                                    for="whiteMove" class="field__label"
+                                                <label v-if="posterBuilder.manualMove.valid && !isGameOver" for="whiteMove"
+                                                    class="field__label"
                                                     v-text="this.$data.chessGame.turn() == 'w' ? 'White to move' : 'Black to move'"></label>
                                                 <div v-if="!posterBuilder.manualMove.valid" class="field__error">
                                                     Move is not valid</div>
                                                 <input v-model="posterBuilder.manualMove.pgn" @input="makeMove(false)"
-                                                    class="field"
-                                                    :class="{ 'is--error': !posterBuilder.manualMove.valid }"
+                                                    class="field" :class="{ 'is--error': !posterBuilder.manualMove.valid }"
                                                     id="whiteMove"
                                                     :placeholder="isGameOver ? this.posterBuilder.result : 'Move ' + this.$data.chessGame._moveNumber + '.'"
                                                     :disabled="isGameOver"
@@ -157,7 +156,7 @@
                                             name="password" placeholder="1.e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. b4..."
                                             id="pastePgn"
                                             @input="posterBuilder.pastePgn.success = false, posterBuilder.pastePgn.valid = true">
-                                </textarea>
+                                                                </textarea>
                                         <div v-if="!posterBuilder.pastePgn.valid" class="field__error">Invalid PGN</div>
                                         <div v-if="posterBuilder.pastePgn.success" class="field__error is--success">PGN
                                             loaded successfully!</div>
@@ -171,8 +170,8 @@
                                         <label for="gameUrl" class="field__label">Game URL</label>
                                         <div v-if="!posterBuilder.uploadLichess.valid" class="field__error"> URL is not
                                             valid</div>
-                                        <div v-if="posterBuilder.uploadLichess.success"
-                                            class="field__error is--success">Game uploaded successfully!</div>
+                                        <div v-if="posterBuilder.uploadLichess.success" class="field__error is--success">
+                                            Game uploaded successfully!</div>
                                         <input v-model="posterBuilder.gameUrl" class="field"
                                             :class="{ 'is--error': !posterBuilder.uploadLichess.valid, 'is--success': posterBuilder.uploadLichess.success }"
                                             name="gameUrl" id="gameUrl" placeholder="https://lichess.org/SwuG1qFK"
@@ -189,7 +188,9 @@
                                         <h4>How it works</h4>
                                         <p>Simply look up any game on the <a class="text__link"
                                                 href="https://lichess.org">Lichess</a> website and go to the page of that
-                                            game, for example: <a class="text__link" target="_blank" href="https://lichess.org/SwuG1qFK">Polgar v. Shakhriyar</a>. Then copy the URL and paste it here.</p>
+                                            game, for example: <a class="text__link" target="_blank"
+                                                href="https://lichess.org/SwuG1qFK">Polgar v. Shakhriyar</a>. Then copy the
+                                            URL and paste it here.</p>
                                     </div>
                                 </div>
                             </div>
@@ -218,11 +219,9 @@
                             </div>
 
                             <div v-else class="field__wrp is--margin-top">
-                                    <label for="moveComment" class="field__label">Move comment (optional)</label>
-                                    <input v-model="poster.move_comment" class="field"
-                                        name="moveComment"
-                                        maxlength="92"
-                                        id="moveComment" placeholder="Lorem ipsum dolor set ami" />
+                                <label for="moveComment" class="field__label">Move comment (optional)</label>
+                                <input v-model="poster.move_comment" class="field" name="moveComment" maxlength="92"
+                                    id="moveComment" placeholder="Lorem ipsum dolor set ami" />
                             </div>
                         </div>
                         <div :class="[posterBuilder.currStep == 3 ? 'is--active' : '']" class="module__step">
@@ -234,8 +233,8 @@
                                     <label for="gameTitle" class="field__label">Title</label>
                                     <div v-if="!posterBuilder.titleValid" class="field__error">Title is too long</div>
                                     <input v-model="poster.title" class="field"
-                                        :class="{ 'is--error': !posterBuilder.titleValid }" name="gameTitle"
-                                        id="gameTitle" placeholder="Lorem ipsum dolor set ami" />
+                                        :class="{ 'is--error': !posterBuilder.titleValid }" name="gameTitle" id="gameTitle"
+                                        placeholder="Lorem ipsum dolor set ami" />
                                 </div>
 
                                 <div class="field__wrp">
@@ -267,8 +266,7 @@
 
                                     <label for="whiteTitle" class="field__label">Title</label>
 
-                                    <select v-model="poster.white_title" id="whiteTitle" class="field"
-                                        name="whiteTitle">
+                                    <select v-model="poster.white_title" id="whiteTitle" class="field" name="whiteTitle">
                                         <option value="">None</option>
                                         <option value="GM">GM</option>
                                         <option value="WGM">WGM</option>
@@ -291,16 +289,15 @@
 
                                 <div class="field__wrp">
                                     <label for="blackRating" class="field__label">Rating</label>
-                                    <input v-model="poster.black_rating" class="field" name="blackRating"
-                                        id="blackRating" type="tel" maxlength="4" placeholder="2126" />
+                                    <input v-model="poster.black_rating" class="field" name="blackRating" id="blackRating"
+                                        type="tel" maxlength="4" placeholder="2126" />
                                 </div>
 
                                 <div class="field__wrp">
 
                                     <label for="blackTitle" class="field__label">Title</label>
 
-                                    <select v-model="poster.black_title" id="blackTitle" class="field"
-                                        name="blackTitle">
+                                    <select v-model="poster.black_title" id="blackTitle" class="field" name="blackTitle">
                                         <option value="">None</option>
                                         <option value="GM">GM</option>
                                         <option value="WGM">WGM</option>
@@ -322,8 +319,8 @@
                                 </div>
                                 <div class="field__wrp">
                                     <label for="gameWhen" class="field__label">When</label>
-                                    <input maxlength="40" v-model="poster.when" class="field" name="gameTitle"
-                                        id="gameWhen" placeholder="Tata Steel, January 2023. Round 3" />
+                                    <input maxlength="40" v-model="poster.when" class="field" name="gameTitle" id="gameWhen"
+                                        placeholder="Tata Steel, January 2023. Round 3" />
                                 </div>
                             </div>
                         </div>
@@ -375,7 +372,8 @@
                     </div>
                 </div>
 
-                <Poster :poster="poster" :environment="this.$data.posterBuilder.currEnvironment" :controls="{save: true}"></Poster>
+                <Poster :poster="poster" :environment="this.$data.posterBuilder.currEnvironment" :controls="{ save: true }">
+                </Poster>
 
             </div>
         </div>
@@ -425,10 +423,10 @@ export default {
                 titleValid: true,
             },
 
-            poster: {
+            poster: this.$page.props.editPoster || {
                 id: null,
                 theme: 1,
-                orientation: true,
+                orientation: 1,
                 starting_position: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
                 pgn: "",
                 diagram_position: 0,
@@ -524,8 +522,6 @@ export default {
                 i = k;
             }
 
-            this.$data.poster.diagram_position = gameArray.length;
-
             return gameArray;
         }
     },
@@ -558,7 +554,7 @@ export default {
             this.posterBuilder.starting_position.confirm = false;
             this.posterBuilder.starting_position.success = true;
             this.$data.poster.pgn = "";
-            this.$data.poster.diagram_position = "0";
+            this.$data.poster.diagram_position = 0;
             this.poster.starting_position = this.posterBuilder.starting_position.fen;
             this.poster.fen = this.posterBuilder.starting_position.fen;
 
@@ -586,7 +582,7 @@ export default {
             let regEx = /[^abcdefghABCDEFGH12345678KQBNRkqbnrx+#O\-]/g;
             input = input.replace(regEx, '');
 
-            if(!input) return []; 
+            if (!input) return [];
 
             let suggestions = [];
 
@@ -682,6 +678,7 @@ export default {
                 }
 
                 this.$data.poster.pgn = this.getStrictPgn();
+                this.$data.poster.diagram_position = this.pgnArray.length;
                 this.$data.posterBuilder.manualMove.pgn = "";
 
                 return;
@@ -715,7 +712,8 @@ export default {
             //Undo move
             this.$data.chessGame.undo();
             this.$data.poster.pgn = this.getStrictPgn(),
-                this.$data.posterBuilder.manualMove.pgn = "";
+            this.$data.posterBuilder.manualMove.pgn = "";
+            this.$data.poster.diagram_position = this.pgnArray.length;
             this.makeMove();
             return;
         },
@@ -770,7 +768,7 @@ export default {
 
             if (headers.Site) this.poster.where = headers.Site;
             if (headers.Event) this.poster.when = headers.Event;
-            if(headers.Date) this.poster.when += ', ' + headers.Date; 
+            if (headers.Date) this.poster.when += ', ' + headers.Date;
             if (headers.Round) this.poster.when += ' Round ' + headers.Round;
             if (headers.Result) this.poster.result = headers.Result;
 
@@ -789,9 +787,7 @@ export default {
 
             this.$data.posterBuilder.pastePgn.success = true;
 
-            this.resetBoard()
-
-            this.$data.chessGame.loadPgn(pgn);
+            this.$data.poster.diagram_position = this.pgnArray.length;
 
             this.$data.poster.pgn = this.getStrictPgn();
 
@@ -810,7 +806,8 @@ export default {
                     this.$data.chessGame.loadPgn(response.data),
                     this.tryHeaders(),
                     this.$data.poster.pgn = this.getStrictPgn(),
-                    this.$data.posterBuilder.uploadLichess.success = true
+                    this.$data.posterBuilder.uploadLichess.success = true,
+                    this.$data.poster.diagram_position = this.pgnArray.length
                 ))
                 .catch(() => (
                     this.$data.posterBuilder.uploadLichess.valid = false
@@ -892,9 +889,9 @@ export default {
     },
 
     mounted() {
-        this.setTheme(this.$data.poster.theme)
-        this.posterBuilder.starting_position.fen = this.poster.starting_position;
-        this.updateStartingFen();
+        this.setTheme(this.$data.poster.theme);
+        this.chessGame.load(this.$data.poster.starting_position); 
+        this.chessGame.loadPgn(this.$data.poster.pgn);
     }
 }
 </script>
