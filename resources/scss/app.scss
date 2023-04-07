@@ -221,6 +221,23 @@ button {
     }
 }
 
+.button.is--only-icon {
+    width: 2.5em;
+    height: 2.5em;
+    border: 1px solid #ebebeb;
+    padding: 0;
+    border-radius: 3em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    svg {
+        margin-left: 0.1em;
+        width: 0.8em;
+    }
+}
+
 .button__rnd-icn {
     width: 2.5em;
     height: 2.5em;
