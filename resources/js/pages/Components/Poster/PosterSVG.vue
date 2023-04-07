@@ -199,7 +199,8 @@ export default {
                 return "Position after White's move " + Math.round(this.poster.diagram_position / 2) + '. ' + pgn.substring(indexOfMove, spaceIndex);
             } else {
                 //Black move
-                let nextSpaceIndex = pgn.indexOf(' ', spaceIndex + 1);
+                let nextSpaceIndex = (pgn.indexOf(' ', spaceIndex + 1) > 0) ? pgn.indexOf(' ', spaceIndex + 1) : spaceIndex;
+                
                 return "Position after Black's move " + Math.round(this.poster.diagram_position / 2) + '. ... ' + pgn.substring(spaceIndex + 1, nextSpaceIndex);
             }
         }
