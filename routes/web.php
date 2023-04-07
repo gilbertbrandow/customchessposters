@@ -110,6 +110,10 @@ Route::get('/build-poster', [PosterController::class, 'show'])
 Route::get('/edit-poster/{id}', [PosterController::class, 'edit'])
 ->name('poster.edit');
 
+
+Route::post('/remove-poster', [UserController::class, 'removeSavedPoster'])
+->name('poster.remove');
+
 //Route::get('/create-poster', [PosterController::class, 'createPoster'])->name('poster.create');
 
 
