@@ -22,9 +22,6 @@ Route::get('/', [HomeController::class, 'home'])
 Route::get('/contact', [HomeController::class, 'contact'])
 ->name('home.contact');
 
-Route::get('/create-poster', [PosterController::class, 'show'])
-->name('home.poster');
-
 Route::post('/newsletter', [NewsletterController::class, 'subscribe'])
 ->name('newsletter.register');
 
@@ -105,6 +102,13 @@ Route::post('/reset-password', [ResetPasswordController::class, 'passwordUpdate'
 | Poster Routes
 |--------------------------------------------------------------------------
 */
+
+
+Route::get('/build-poster', [PosterController::class, 'show'])
+->name('poster.show');
+
+Route::get('/edit-poster/{id}', [PosterController::class, 'edit'])
+->name('poster.edit');
 
 //Route::get('/create-poster', [PosterController::class, 'createPoster'])->name('poster.create');
 
