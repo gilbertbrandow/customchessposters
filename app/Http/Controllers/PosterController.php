@@ -22,17 +22,21 @@ class PosterController extends Controller
 
     public function save(Request $request, PosterService $service)
     {
-
-        $name = "Temporary poster name"; //Should be able to set in /saved-posters and not in build poster module?
-
         //Call service class method
-        $poster = $service->savePoster($request->posterData, $name, User::find(Auth::id()));
+        $poster = $service->savePoster($request->posterData, User::find(Auth::id()));
 
         if ($poster) {
             return redirect()->back()->with('savedSuccess', 'Poster saved!');
         } else {
             return redirect()->back()->with('savedError', 'Something went wrong, please try again later.');
         }
+    }
+
+    public function edit ($id)
+    {
+        $editPoster = Poster::find($id);
+
+        return inertia('CreatePoster', compact('editPoster'));
     }
 
     public function placeOrder(Request $request, PosterService $service)
