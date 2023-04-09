@@ -207,14 +207,14 @@
                                 <div v-for="(move, index) in pgnArray" :key="index">
 
                                     <div
-                                        v-if="pgnArray.length < 140 || (index < poster.diagram_position + 70 + Math.max(0, (70 - poster.diagram_position)) && index > poster.diagram_position - 70 - Math.max(0, (70 - poster.diagram_position)))">
+                                        v-if="pgnArray.length < 140 || (index < poster.diagram_position + 70 + Math.max(0, (70 - poster.diagram_position)) && index > poster.diagram_position - (70 + Math.max(0, (70 - (pgnArray.length - poster.diagram_position)))))">
                                         <span v-if="index % 2 == 0" v-text="(index / 2 + 1) + '. '"></span>
                                         <span class="move" :class="{ 'is--active': index + 1 == poster.diagram_position }"
                                             v-text="move" @click="poster.diagram_position = index + 1"></span>
                                     </div>
                                 </div>
                                 <span
-                                    v-if="pgnArray.length > 140 && poster.diagram_position <= pgnArray.length - 70">...</span>
+                                    v-if="pgnArray.length > 140 && poster.diagram_position < pgnArray.length - 70">...</span>
                             </div>
                             <div v-if="!pgnArray.length" class="message">
 
