@@ -156,7 +156,7 @@
                                             name="password" placeholder="1.e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. b4..."
                                             id="pastePgn"
                                             @input="posterBuilder.pastePgn.success = false, posterBuilder.pastePgn.valid = true">
-                                                                </textarea>
+                                                                        </textarea>
                                         <div v-if="!posterBuilder.pastePgn.valid" class="field__error">Invalid PGN</div>
                                         <div v-if="posterBuilder.pastePgn.success" class="field__error is--success">PGN
                                             loaded successfully!</div>
@@ -202,11 +202,19 @@
                             <h3>3. The Position</h3>
                             <p>Choose which position of the game you will share with the world</p>
                             <div class="poster__moves">
+                                <span
+                                    v-if="pgnArray.length > 140 && poster.diagram_position >= 70">...</span>
                                 <div v-for="(move, index) in pgnArray" :key="index">
-                                    <span v-if="index % 2 == 0" v-text="(index / 2 + 1) + '. '"></span>
-                                    <span class="move" :class="{ 'is--active': index + 1 == poster.diagram_position }"
-                                        v-text="move" @click="poster.diagram_position = index + 1"></span>
+
+                                    <div
+                                        v-if="pgnArray.length < 140 || (index < poster.diagram_position + 70 + Math.max(0, (70 - poster.diagram_position)) && index > poster.diagram_position - 70 - Math.max(0, (70 - poster.diagram_position)))">
+                                        <span v-if="index % 2 == 0" v-text="(index / 2 + 1) + '. '"></span>
+                                        <span class="move" :class="{ 'is--active': index + 1 == poster.diagram_position }"
+                                            v-text="move" @click="poster.diagram_position = index + 1"></span>
+                                    </div>
                                 </div>
+                                <span
+                                    v-if="pgnArray.length > 140 && poster.diagram_position <= pgnArray.length - 70">...</span>
                             </div>
                             <div v-if="!pgnArray.length" class="message">
 
@@ -712,7 +720,7 @@ export default {
             //Undo move
             this.$data.chessGame.undo();
             this.$data.poster.pgn = this.getStrictPgn(),
-            this.$data.posterBuilder.manualMove.pgn = "";
+                this.$data.posterBuilder.manualMove.pgn = "";
             this.$data.poster.diagram_position = this.pgnArray.length;
             this.makeMove();
             return;
@@ -890,7 +898,7 @@ export default {
 
     mounted() {
         this.setTheme(this.$data.poster.theme);
-        this.chessGame.load(this.$data.poster.starting_position); 
+        this.chessGame.load(this.$data.poster.starting_position);
         this.chessGame.loadPgn(this.$data.poster.pgn);
     }
 }
