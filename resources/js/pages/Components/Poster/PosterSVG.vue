@@ -61,7 +61,7 @@
 
 
         <!-- The PGN -->
-        <text font-size="20" text-anchor="middle">
+        <text font-size="18" text-anchor="middle">
             <tspan v-for="(row, index) in pgnRows" x="1000" :y="2900 - (40 * (pgnRows.length - 1 - index))">
                 {{ row }}
                 <tspan v-if="index == pgnRows.length - 1 && this.poster.result" font-weight="800"> | {{
@@ -163,10 +163,10 @@ export default {
 
                     //Check if fits in curent row[]
                     if (rows[rowsIndex]) {
-                        if (rows[rowsIndex].length + move.length < 180) {
+                        if (rows[rowsIndex].length + move.length < 210) {
                             rows[rowsIndex] += ' ' + move;
 
-                        } else if (rowsIndex < 10) {
+                        } else if (rowsIndex < 5) {
                             rowsIndex++;
                             rows[rowsIndex] = move;
                         } else {
