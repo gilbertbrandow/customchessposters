@@ -26,6 +26,13 @@
                 </div>Orders
                 </Link>
             </li>
+            <li :class="{ 'is--active': $page.url === '/faq-edit' }">
+                <Link :href="route('faq.show')">
+                <div>
+                    <Icon name="edit"></Icon>
+                </div>FAQs
+                </Link>
+            </li>
             <li  :class="{ 'is--active': $page.url === '/shipping-addresses' }">
                 <Link :href="route('home.index')">
                 <div>
