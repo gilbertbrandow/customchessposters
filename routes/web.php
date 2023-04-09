@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\PosterController;
 use App\Http\Controllers\Auth\UserController;
+use App\Http\Controllers\Auth\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -97,6 +98,9 @@ Route::get('/reset-password/{token}', [ResetPasswordController::class, 'showRese
 
 Route::post('/reset-password', [ResetPasswordController::class, 'passwordUpdate'])->name('password.update');
 
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Poster Routes
@@ -110,17 +114,19 @@ Route::get('/build-poster', [PosterController::class, 'show'])
 Route::get('/edit-poster/{id}', [PosterController::class, 'edit'])
 ->name('poster.edit');
 
-
 Route::post('/remove-poster', [UserController::class, 'removeSavedPoster'])
 ->name('poster.remove');
 
-//Route::get('/create-poster', [PosterController::class, 'createPoster'])->name('poster.create');
 
 
 /*
 |--------------------------------------------------------------------------
-| Development routes
+| Admin routes
 |--------------------------------------------------------------------------
 */
 
-Route::get('/lightbox', [HomeController::class, 'lightbox'])->name('home.lightbox');
+Route::get('/faq-edit', [AdminController::class, 'showFaq'])
+->name('faq.show');
+
+Route::post('/faq-edit', [AdminController::class, 'editFaq'])
+->name('faq.edit');
