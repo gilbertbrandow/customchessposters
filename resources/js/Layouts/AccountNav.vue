@@ -26,7 +26,7 @@
                 </div>Orders
                 </Link>
             </li>
-            <li :class="{ 'is--active': $page.url === '/faq-edit' }">
+            <li v-if="this.$page.props.auth.user.admin" :class="{ 'is--active': $page.url === '/faq-edit' }">
                 <Link :href="route('faq.show')">
                 <div>
                     <Icon name="edit"></Icon>
