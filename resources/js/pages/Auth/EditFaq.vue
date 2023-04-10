@@ -31,23 +31,43 @@
                     placeholder="Lorem ipsum dolor set ami"> </textarea>
             </div>
 
-            <button class="button is--black is--margin-top" type="submit">
-                Post
-            </button>
+
+            <div v-if="this.faq.id != 0" class="is--margin-top"><input v-model="this.faq.delete" type="checkbox"
+                    id="delete"> <label for="delete">Delete post</label></div>
+
+            <div class="is--flex is--margin-top">
+                <button class="button is--black" type="submit">
+                    Update
+                </button>
+
+                <div v-if="this.$page.props.flash.success" v-text="this.$page.props.flash.success" class="is--error is--success"></div>
+            </div>
         </form>
     </section>
 </template>
 
 <script setup>
-import { useForm, usePage } from '@inertiajs/vue3';
+import { useForm } from '@inertiajs/vue3';
 
 let form = useForm({
     faq: {},
 });
 
+function resetForm(faq) {
+    faq.id = 0;
+    faq.question = "";
+    faq.answer = "";
+    faq.delete = false;
+}
+
 let submit = (faq) => {
-    form.faq = faq; 
-    form.post('/faq-edit');
+    form.faq = faq;
+    form.post('/faq-edit', {
+
+        onFinish: () => resetForm(faq),
+        onSuccess: () => resetForm(faq),
+
+    });
 };
 
 </script>
@@ -65,6 +85,7 @@ export default {
         return {
             faq: {
                 id: 0,
+                delete: false,
                 question: '',
                 answer: '',
             }
@@ -77,6 +98,7 @@ export default {
             if (event.target.value == 0) {
 
                 this.faq.id = 0;
+                this.faq.delete = 0;
                 this.faq.question = '';
                 this.faq.answer = '';
                 return;
