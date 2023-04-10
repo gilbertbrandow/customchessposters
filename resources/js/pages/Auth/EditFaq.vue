@@ -1,12 +1,12 @@
 <template>
     <section>
         <h1>FAQs</h1>
-        <p>This is a graphical interface to edit or create a frequently asked question.</p>
+        <p>This is a graphical interface to edit, create or delete a frequently asked question.</p>
         <form @submit.prevent="submit(this.$data.faq)" class="form">
             <div class="field__wrp">
-                <label for="orientation" class="field__label">Diagram orientation</label>
+                <label for="faqOption" class="field__label">Choose an option</label>
 
-                <select v-model="this.faq.id" id="orientation" class="field" name="orientation"
+                <select v-model="this.faq.id" id="faqOption" class="field" name="faqOption"
                     @change="updateCurrFaq($event)">
                     <option value="0">Create new FAQ</option>
                     <option v-for="faq in this.$page.props.faqs" :value="faq.id">{{ 'Edit: "' + faq.question + '"' }}
@@ -55,9 +55,9 @@ let form = useForm({
 
 function resetForm(faq) {
     faq.id = 0;
+    faq.delete = false;
     faq.question = "";
     faq.answer = "";
-    faq.delete = false;
 }
 
 let submit = (faq) => {
@@ -98,7 +98,7 @@ export default {
             if (event.target.value == 0) {
 
                 this.faq.id = 0;
-                this.faq.delete = 0;
+                this.faq.delete = false;
                 this.faq.question = '';
                 this.faq.answer = '';
                 return;
