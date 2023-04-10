@@ -18,13 +18,22 @@ class AdminController extends Controller
     public function editFaq(Request $request)
     {
 
-        if($request->id == 0) {
+        $message = "Something went wrong"; 
+
+        if($request->faq['id'] == 0) {
             Faq::create(['question' => $request->faq['question'], 'answer' => $request->faq['answer']]);
+            $message = "FAQ Created"; 
+        } else {
+            if($request->faq['delete']){
+                Faq::find($request->faq['id'])->delete(); 
+                $message = "FAQ Deleted"; 
+            } else {
+                Faq::find($request->faq['id'])->update(['question' => $request->faq['question'], 'answer' => $request->faq['answer']]);
+                $message = "FAQ Updated";  
+            }
         }
 
-
-
-        return redirect()->back()->with('success', 'FAQ update or created');
+        return redirect()->back()->with('success', $message);
     }
 
 }
