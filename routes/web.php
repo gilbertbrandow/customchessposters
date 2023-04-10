@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -18,13 +19,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'home'])
-->name('home.index');
+    ->name('home.index');
 
 Route::get('/contact', [HomeController::class, 'contact'])
-->name('home.contact');
+    ->name('home.contact');
 
 Route::post('/newsletter', [NewsletterController::class, 'subscribe'])
-->name('newsletter.register');
+    ->name('newsletter.register');
 
 Route::post('/contact', [MailController::class, 'sendContactEmail'])->name('mail.sendEmail');
 
@@ -39,7 +40,7 @@ Route::get('/thank-you', [HomeController::class, 'thankYou'])->name('home.thankY
 */
 
 Route::get('/newsletter', [NewsletterController::class, 'signup'])
-->name('newsletter.signup');
+    ->name('newsletter.signup');
 
 
 
@@ -50,13 +51,13 @@ Route::get('/newsletter', [NewsletterController::class, 'signup'])
 */
 
 Route::get('/shipping', [HomeController::class, 'shipping'])
-->name('policy.shipping');
+    ->name('policy.shipping');
 
 Route::get('/return', [HomeController::class, 'return'])
-->name('policy.return');
+    ->name('policy.return');
 
 Route::get('/privacy', [HomeController::class, 'privacy'])
-->name('policy.privacy');
+    ->name('policy.privacy');
 
 
 /*
@@ -67,30 +68,30 @@ Route::get('/privacy', [HomeController::class, 'privacy'])
 
 Route::middleware('auth')->group(function () {
     Route::get('/account', [UserController::class, 'account'])
-    ->name('auth.account');
+        ->name('auth.account');
 
     Route::get('/saved-designs', [UserController::class, 'savedPosters'])
-    ->name('auth.saved');
-    
+        ->name('auth.saved');
+
     Route::post('/logout', [LoginController::class, 'logout'])->name('auth.logout');
 
     Route::post('/save-poster', [PosterController::class, 'save'])->name('poster.save');
 });
 
 Route::get('/register', [RegisterController::class, 'show'])
-->name('auth.registration');
+    ->name('auth.registration');
 
 Route::post('/register', [RegisterController::class, 'register'])
-->name('auth.create');
+    ->name('auth.create');
 
 Route::get('/login', [LoginController::class, 'show'])
-->name('auth.login');
+    ->name('auth.login');
 
 Route::post('/login', [LoginController::class, 'authenticate'])
-->name('auth.authenticate');
+    ->name('auth.authenticate');
 
 Route::get('/forgot-password', [ResetPasswordController::class, 'showForgot'])
-->name('auth.forgotPassword');
+    ->name('auth.forgotPassword');
 
 Route::post('/forgot-password', [ResetPasswordController::class, 'sendLink']);
 
@@ -109,13 +110,13 @@ Route::post('/reset-password', [ResetPasswordController::class, 'passwordUpdate'
 
 
 Route::get('/build-poster', [PosterController::class, 'show'])
-->name('poster.show');
+    ->name('poster.show');
 
 Route::get('/edit-poster/{id}', [PosterController::class, 'edit'])
-->name('poster.edit');
+    ->name('poster.edit');
 
 Route::post('/remove-poster', [UserController::class, 'removeSavedPoster'])
-->name('poster.remove');
+    ->name('poster.remove');
 
 
 
@@ -125,8 +126,11 @@ Route::post('/remove-poster', [UserController::class, 'removeSavedPoster'])
 |--------------------------------------------------------------------------
 */
 
-Route::get('/faq-edit', [AdminController::class, 'showFaq'])
-->name('faq.show');
+Route::middleware('admin')->group(function () {
 
-Route::post('/faq-edit', [AdminController::class, 'editFaq'])
-->name('faq.edit');
+    Route::get('/faq-edit', [AdminController::class, 'showFaq'])
+        ->name('faq.show');
+
+    Route::post('/faq-edit', [AdminController::class, 'editFaq'])
+        ->name('faq.edit');
+});
