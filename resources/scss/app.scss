@@ -184,6 +184,12 @@ section {
     margin-top: 1em;
 }
 
+.is--flex {
+    display: flex;
+    align-items: center;
+    column-gap: 1em;
+}
+
 button {
     font-size: 1em;
     border: none;
