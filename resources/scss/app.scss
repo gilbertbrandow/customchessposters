@@ -40,7 +40,7 @@ nav.is--scrolled {
     padding-top: 0.5em;
     padding-bottom: 0.5em;
     background-color: rgba(255, 255, 255);
-    border-bottom: rgba(0, 0, 0, 0.1) solid 1px;
+    border-bottom: rgba(0, 0, 0, 0.1) solid 0.06em;
 
     .flash-message {
         margin-top: 0.5em;
@@ -83,7 +83,7 @@ nav .nav__wrp {
         padding-bottom: 0.25em;
         color: #fff;
         background-color: #000;
-        border: solid 1px #000;
+        border: solid 0.06em #000;
         transition: opacity 400ms;
         transition: margin 200ms;
         border-radius: 0.5em;
@@ -100,8 +100,8 @@ nav .nav__wrp {
             width: 0.6em;
             height: 0.6em;
             background-color: #000;
-            border-top: solid #000 1px;
-            border-left: solid #000 1px;
+            border-top: solid #000 0.06em;
+            border-left: solid #000 0.06em;
         }
     }
 
@@ -123,7 +123,7 @@ nav .nav__wrp {
     width: 2em;
     height: 2em;
     border-radius: 5em;
-    border: solid 1px #000;
+    border: solid 0.06em #000;
     transition: all 500ms;
 }
 
@@ -206,7 +206,7 @@ button {
     align-items: center;
     padding: 0.5em 1em;
     border-style: solid;
-    border-width: 1px;
+    border-width: 0.06em;
     border-color: rgba(0, 0, 0, 0.14);
     border-radius: 1em;
     background-color: #fff;
@@ -230,7 +230,7 @@ button {
 .button.is--only-icon {
     width: 2.5em;
     height: 2.5em;
-    border: 1px solid #ebebeb;
+    border: 0.06em solid #ebebeb;
     padding: 0;
     border-radius: 3em;
     display: flex;
@@ -247,7 +247,7 @@ button {
 .button__rnd-icn {
     width: 2.5em;
     height: 2.5em;
-    border: 1px solid #000;
+    border: 0.06em solid #000;
     border-radius: 3em;
     display: flex;
     align-items: center;
@@ -307,7 +307,7 @@ button {
     -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.14);
+    border-bottom: 0.06em solid rgba(0, 0, 0, 0.14);
     text-decoration: none;
 
     svg {
@@ -437,7 +437,7 @@ h4 {
     position: relative;
     background-color: whitesmoke;
     border-radius: 1em;
-    border: solid 1px #ebebeb;
+    border: solid 0.06em #ebebeb;
 
     p {
         font-size: 0.9em;
@@ -453,7 +453,7 @@ h4 {
         width: 1.5em;
         height: 1.5em;
         border-radius: 2em;
-        border: 1px solid #000;
+        border: 0.06em solid #000;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -549,7 +549,7 @@ h4 {
 .poster__module {
     border-top-left-radius: 1em;
     border-bottom-left-radius: 1em;
-    border: solid 1px rgba(0, 0, 0, 0.1);
+    border: solid 0.06em rgba(0, 0, 0, 0.1);
     margin-right: -1em;
     display: flex;
     flex-direction: column;
@@ -659,13 +659,13 @@ h4 {
     height: 3.3em;
     width: 3.3em;
     border-radius: 100%;
-    border: solid transparent 1px;
+    border: solid transparent 0.06em;
 }
 
 .theme__colour {
     width: 80%;
     height: 80%;
-    border: 1px solid #f5f5f5;
+    border: 0.06em solid #f5f5f5;
     border-radius: 100%;
     display: flex;
     overflow: hidden;
@@ -700,7 +700,7 @@ h4 {
     padding: 0.25em;
     border-radius: 1em;
     background-color: whitesmoke;
-    border: 1px solid #ebebeb;
+    border: 0.06em solid #ebebeb;
     justify-content: space-between;
 
     .tab__item {
@@ -815,7 +815,7 @@ h4 {
             flex: 1;
             left: 1.75em;
             right: 1.75em;
-            height: 1px;
+            height: 0.06em;
             overflow: hidden;
             background-color: #bebebe;
             position: absolute;
@@ -839,7 +839,7 @@ h4 {
             display: flex;
             align-items: center;
             justify-content: center;
-            border: solid 1px #bebebe;
+            border: solid 0.06em #bebebe;
             border-radius: 2em;
             background-color: #fff;
 
@@ -1082,7 +1082,7 @@ h4 {
 
         button:last-child {
             background-color: #fff;
-            border: 1px solid #000;
+            border: 0.06em solid #000;
 
             svg {
                 width: 0.6em;
@@ -1104,14 +1104,14 @@ h4 {
     display: flex;
     flex-direction: column;
     padding: 6em 4em 4em 4em;
-    border-left: rgba(0, 0, 0, 0.1) solid 1px;
+    border-left: rgba(0, 0, 0, 0.1) solid 0.06em;
 
     .currentPoster {
         display: inline-flex;
         align-items: center;
         padding: 0.5em;
         padding-right: 1em;
-        border: 1px solid #ebebeb;
+        border: 0.06em solid #ebebeb;
         column-gap: 0.5em;
         border-radius: 0.5em;
         background-color: whitesmoke;
@@ -1176,7 +1176,7 @@ h4 {
     .account__menu {
         background-color: #fff;
         border-radius: 0.5em;
-        border: solid 0.075em rgba(0, 0, 0, 0.1);
+        border: solid 0.06em rgba(0, 0, 0, 0.1);
         padding: 0.5em;
         display: flex;
         flex-direction: column;
@@ -1195,7 +1195,7 @@ h4 {
 
         li a,
         li button {
-            border: 1px solid #fff;
+            border: 0.06em solid #fff;
             text-decoration: none;
             cursor: pointer;
             display: flex;
@@ -1207,7 +1207,7 @@ h4 {
                 width: 2em;
                 height: 2em;
                 border-radius: 2em;
-                border: 0.075em solid #000;
+                border: 0.06em solid #000;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -1234,7 +1234,7 @@ h4 {
         li.is--active a,
         li.is--active button {
             background-color: #f5f5f5;
-            border: 1px solid #ebebeb;
+            border: 0.06em solid #ebebeb;
 
             div {
                 background-color: #000;
@@ -1314,7 +1314,7 @@ input[type="checkbox"]:focus {
 }
 
 input[type="checkbox"] {
-    margin-top: 1px;
+    margin-top: 0.06em;
     margin-right: 0.25em;
     border-color: rgba(0, 0, 0, 0.14);
     accent-color: #000;
@@ -1355,7 +1355,7 @@ select:-webkit-autofill:focus {
     width: 100%;
     padding: 1.25em 1.25em 0.75em 1.25em;
     border-style: solid;
-    border-width: 1px;
+    border-width: 0.06em;
     border-color: rgba(0, 0, 0, 0.14);
     border-radius: 0.5em;
     background-color: transparent;
@@ -1528,7 +1528,7 @@ label {
     -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
-    border: 1px solid #000;
+    border: 0.06em solid #000;
     border-radius: 5em;
 
     svg {
@@ -1612,7 +1612,7 @@ label {
 .question__icon {
     width: 2.25em;
     height: 2.25em;
-    border: 1px solid #000;
+    border: 0.06em solid #000;
     border-radius: 3em;
     display: flex;
     align-items: center;
