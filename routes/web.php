@@ -8,7 +8,6 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\PosterController;
 use App\Http\Controllers\Auth\UserController;
-use App\Http\Controllers\Auth\AdminController;
 use App\Http\Controllers\FaqController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,8 +31,8 @@ Route::post('/contact', [MailController::class, 'sendContactEmail'])->name('mail
 
 Route::get('/thank-you', [HomeController::class, 'thankYou'])->name('home.thankYou');
 
-Route::get('/faq', [FaqController::class, 'show'])
-->name('faq.show');
+Route::get('/faq', [FaqController::class, 'index'])
+    ->name('faq.index');
 
 
 /*
@@ -132,12 +131,18 @@ Route::post('/remove-poster', [UserController::class, 'removeSavedPoster'])
 
 Route::middleware('admin')->group(function () {
 
-    Route::get('/faq-edit', [AdminController::class, 'showFaq'])
+    Route::get('/faq-edit', [FaqController::class, 'show'])
         ->name('faq.show');
 
-    Route::post('/faq-edit', [AdminController::class, 'editFaq'])
-        ->name('faq.edit');
+    Route::post('/faq-create', [FaqController::class, 'create'])
+        ->name('faq.update');
 
-    Route::get('/game-edit', [GameController::class, 'edit'])
-        ->name('game.edit');
+    Route::post('/faq-update', [FaqController::class, 'update'])
+        ->name('faq.update');
+
+    Route::post('/faq-delete', [FaqController::class, 'destroy'])
+        ->name('faq.delete');
+
+    Route::get('/game-show', [GameController::class, 'show'])
+        ->name('game.show');
 });

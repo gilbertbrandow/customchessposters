@@ -12,7 +12,7 @@
                 </div>Account
                 </Link>
             </li>
-            <li  :class="{ 'is--active': $page.url === '/saved-designs' }">
+            <li :class="{ 'is--active': $page.url === '/saved-designs' }">
                 <Link :href="route('auth.saved')">
                 <div>
                     <Icon name="bookmark"></Icon>
@@ -33,14 +33,21 @@
                 </div>FAQs
                 </Link>
             </li>
-            <li  :class="{ 'is--active': $page.url === '/shipping-addresses' }">
+            <li v-if="this.$page.props.auth.user.admin" :class="{ 'is--active': $page.url === '/game-edit' }">
+                <Link :href="route('game.show')">
+                <div>
+                    <Icon name="edit"></Icon>
+                </div>Games
+                </Link>
+            </li>
+            <li :class="{ 'is--active': $page.url === '/shipping-addresses' }">
                 <Link :href="route('home.index')">
                 <div>
                     <Icon name="bookmark"></Icon>
                 </div>Shipping Address
                 </Link>
             </li>
-            <li  :class="{ 'is--active': $page.url === '/create-review' }">
+            <li :class="{ 'is--active': $page.url === '/create-review' }">
                 <Link :href="route('home.index')">
                 <div>
                     <Icon name="bookmark"></Icon>
