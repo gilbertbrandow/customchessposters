@@ -9,6 +9,7 @@ use App\Http\Controllers\MailController;
 use App\Http\Controllers\PosterController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\Auth\AdminController;
+use App\Http\Controllers\FaqController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,6 +31,9 @@ Route::post('/newsletter', [NewsletterController::class, 'subscribe'])
 Route::post('/contact', [MailController::class, 'sendContactEmail'])->name('mail.sendEmail');
 
 Route::get('/thank-you', [HomeController::class, 'thankYou'])->name('home.thankYou');
+
+Route::get('/faq', [FaqController::class, 'show'])
+->name('faq.show');
 
 
 /*
@@ -133,4 +137,7 @@ Route::middleware('admin')->group(function () {
 
     Route::post('/faq-edit', [AdminController::class, 'editFaq'])
         ->name('faq.edit');
+
+    Route::get('/game-edit', [GameController::class, 'edit'])
+        ->name('game.edit');
 });
