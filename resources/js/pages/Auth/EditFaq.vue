@@ -6,8 +6,7 @@
             <div class="field__wrp">
                 <label for="faqOption" class="field__label">Choose an option</label>
 
-                <select v-model="this.faq.id" id="faqOption" class="field" name="faqOption"
-                    @change="updateCurrFaq($event)">
+                <select v-model="this.faq.id" id="faqOption" class="field" name="faqOption" @change="updateCurrFaq($event)">
                     <option value="0">Create new FAQ</option>
                     <option v-for="faq in this.$page.props.faqs" :value="faq.id">{{ 'Edit: "' + faq.question + '"' }}
                     </option>
@@ -40,7 +39,8 @@
                     Update
                 </button>
 
-                <div v-if="this.$page.props.flash.success" v-text="this.$page.props.flash.success" class="is--error is--success"></div>
+                <div v-if="this.$page.props.flash.success" v-text="this.$page.props.flash.success"
+                    class="is--error is--success"></div>
             </div>
         </form>
     </section>
@@ -62,7 +62,15 @@ function resetForm(faq) {
 
 let submit = (faq) => {
     form.faq = faq;
-    form.post('/faq-edit', {
+
+    let url = '/faq-';
+
+    if (faq.delete) url += 'delete'
+    else if (form.faq.id == 0) url += 'create'
+    else url += 'update'
+
+
+    form.post(url, {
 
         onFinish: () => resetForm(faq),
         onSuccess: () => resetForm(faq),
