@@ -34,7 +34,7 @@
                 </Link>
             </li>
             <li v-if="this.$page.props.auth.user.admin" :class="{ 'is--active': $page.url === '/game-edit' }">
-                <Link :href="route('game.show')">
+                <Link :href="route('game.edit')">
                 <div>
                     <Icon name="edit"></Icon>
                 </div>Games

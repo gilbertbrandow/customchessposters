@@ -9,6 +9,7 @@ use App\Http\Controllers\MailController;
 use App\Http\Controllers\PosterController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\FaqController;
+use App\Http\Controllers\GameController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -143,6 +144,6 @@ Route::middleware('admin')->group(function () {
     Route::post('/faq-delete', [FaqController::class, 'destroy'])
         ->name('faq.delete');
 
-    Route::get('/game-show', [GameController::class, 'show'])
-        ->name('game.show');
+    Route::get('/game-edit', [GameController::class, 'show'])
+        ->name('game.edit');
 });
