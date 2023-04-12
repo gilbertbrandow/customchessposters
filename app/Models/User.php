@@ -47,13 +47,15 @@ class User extends Authenticatable
         $this->attributes['password'] = Hash::make($value);
     } 
 
-    public function createdPosters()
-    {
-        return $this->hasMany(Poster::class, 'user_id')->get();
-    }
-
     public function savedPosters()
     {
         return $this->belongsToMany(Poster::class);
     }
+
+    public function savedPostersIdTitle()
+    {
+        return $this->belongsToMany(Poster::class)->select(['posters.id', 'posters.title']);
+    }
+
+
 }
