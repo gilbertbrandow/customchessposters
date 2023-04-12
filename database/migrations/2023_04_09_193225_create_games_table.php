@@ -13,24 +13,20 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('poster_collection', function (Blueprint $table) {
+        Schema::create('games', function (Blueprint $table) {
             $table->id();
             $table->foreignId('poster_id')->constrained();
             $table->string('name', 100);
             $table->date('when');
-
-            $table->integer('white_player')->unsigned(); 
-            $table->foreign('white_player')->references('id')->on('players'); 
-            
-            $table->integer('black_player')->unsigned();
-            $table->foreign('black_player')->references('id')->on('players');
-
+            $table->bigInteger('white_player')->unsigned()->nullable()->index();
+            $table->bigInteger('black_player')->unsigned()->nullable()->index();
             $table->boolean('world_championship_game');
-
-            $table->integer('opening')->unsigned(); 
-            $table->foreign('opening')->references('id')->on('openings'); 
-
+            $table->foreignId('opening_id')->constrained();
             $table->timestamps();
+
+            $table->foreign('white_player')->references('id')->on('players')->onDelete('cascade');
+            $table->foreign('black_player')->references('id')->on('players')->onDelete('cascade');
+        
         });
     }
 
