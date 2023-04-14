@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('openings', function (Blueprint $table) {
             $table->id();
-            $table->string('eco', 5); 
-            $table->string('name', 50);
+            $table->string('eco', 5)->unique(); 
+            $table->string('name');
             $table->timestamps();
         });
     }
