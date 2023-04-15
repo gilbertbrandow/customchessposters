@@ -16,11 +16,13 @@ class GameController extends Controller
 
     public function index()
     {
-        return inertia('GameCollection');
+        return inertia('Game');
     }
 
     public function show()
     {
+
+        $games = Game::All();
 
         $user = User::where('admin', true)->first();
 
@@ -34,14 +36,23 @@ class GameController extends Controller
             ->orderBy('name', 'asc')
             ->get();
 
-        $games = Game::All();
-
-        return inertia('Auth/GameCollection', compact('posters', 'openings', 'players'));
+        return inertia('Auth/Game', compact('games', 'posters', 'openings', 'players'));
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        return inertia('EditGame');
+
+        Game::create([
+            'name' => $request->name, 
+            'when' => $request->when, 
+            'poster_id' => $request->poster_id, 
+            'black_player' => $request->black_player, 
+            'white_player' => $request->white_player, 
+            'world_championship_game' => $request->world_championship_game, 
+            'opening_id' => $request->opening_id, 
+        ]); 
+
+        return redirect()->back()->with('success', 'Game successfully created');
     }
 
     public function update()
