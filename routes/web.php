@@ -10,6 +10,8 @@ use App\Http\Controllers\PosterController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\OpeningController;
+use App\Http\Controllers\PlayerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -136,7 +138,7 @@ Route::middleware('admin')->group(function () {
         ->name('faq.show');
 
     Route::post('/faq-create', [FaqController::class, 'create'])
-        ->name('faq.update');
+        ->name('faq.create');
 
     Route::post('/faq-update', [FaqController::class, 'update'])
         ->name('faq.update');
@@ -146,4 +148,10 @@ Route::middleware('admin')->group(function () {
 
     Route::get('/game-edit', [GameController::class, 'show'])
         ->name('game.edit');
+
+    Route::post('/opening-create', [OpeningController::class, 'create'])
+        ->name('opening.create');
+
+    Route::post('/player-create', [PlayerController::class, 'create'])
+        ->name('player.create');
 });
