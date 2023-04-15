@@ -9,7 +9,6 @@
                 <select v-model="game.id" id="gameOption" class="field" name="gameOption"
                     @change="updateCurrGame($event, game)">
                     <option value="0">Create new game</option>
-                    <option value="1">Fischer - Spassky, Game 6 1972</option>
                     <option v-for="game in this.$page.props.games" :value="game.id">{{ 'Edit: "' + game.name + '"'
                     }}
                     </option>
@@ -24,7 +23,7 @@
 
             <div class="field__wrp">
                 <label for="posterOption" class="field__label">Poster</label>
-                <select v-model="game.poster" id="posterOption" class="field" name="posterOption">
+                <select v-model="game.poster_id" id="posterOption" class="field" name="posterOption">
                     <option value="0">Choose from saved posters</option>
                     <option v-for="poster in this.$page.props.posters" :value="poster.id">{{ 'Use: "' + poster.title + '"'
                     }}
@@ -36,7 +35,7 @@
             <div class="field__wrp">
                 <label for="opening" class="field__label">Opening</label>
 
-                <select v-model="game.opening" id="opening" class="field" name="opening">
+                <select v-model="game.opening_id" id="opening" class="field" name="opening">
                     <option value="0">Choose opening</option>
                     <option value="-1">Create new opening</option>
                     <option v-for="opening in this.$page.props.openings" :value="opening.id">{{ opening.eco +
@@ -74,8 +73,17 @@
                 <label v-text="'When'" for="when" class="field__label"></label>
                 <input v-model="game.when" type="date" class="field" id="when" placeholder="" />
             </div>
+            <div class="is--margin-top"><input v-model="game.world_championship_game" type="checkbox" id="wc"> <label
+                    for="wc">Is a World Championship Game</label></div>
+
+            <div v-if="game.id != 0" class="is--margin-top"><input v-model="game.delete" type="checkbox" id="delete"> <label
+                    for="delete">Delete Game</label></div>
+
             <button type="submit" class="button is--black is--margin-top"
                 v-text="game.id != 0 ? 'Update game' : 'Create Game'"></button>
+
+            <div v-if="this.$page.props.flash.success" v-text="this.$page.props.flash.success"
+                class="is--error is--success"></div>
         </form>
 
         <form @submit.prevent="submitOpening()" v-if="game.opening == -1" class="card is--margin-top">
@@ -91,7 +99,8 @@
             <button type="submit" class="button is--black is--margin-top">Create opening</button>
         </form>
 
-        <form @submit.prevent="submitPlayer()" v-if="game.white_player == -1 || game.black_player == -1" class="card is--margin-top">
+        <form @submit.prevent="submitPlayer()" v-if="game.white_player == -1 || game.black_player == -1"
+            class="card is--margin-top">
             <div class="field__wrp">
                 <label v-text="'Player name'" for="playerName" class="field__label"></label>
                 <input v-model="player.name" class="field" id="playerName" placeholder="Pope Franciscus XII" />
@@ -113,12 +122,13 @@ import { usePage } from '@inertiajs/vue3';
 let game = useForm({
     id: 0,
     name: '',
-    poster: 0,
+    poster_id: 0,
     white_player: 0,
     black_player: 0,
-    opening: 0,
+    opening_id: 0,
     when: '',
-    delete: false,
+    world_championship_game: false,
+    deleteGame: false,
 });
 
 let opening = useForm({
@@ -137,19 +147,20 @@ function resetGame(game) {
     game.delete = false;
 }
 
-let submitGame = (game) => {
-    game.game = this.$data.game;
+let submitGame = () => {
+
+    console.log(game.deleteGame);
 
     let url = '/game-';
 
-    if (game.delete) url += 'delete'
+    if (game.deleteGame) url += 'delete'
     else if (game.id == 0) url += 'create'
     else url += 'update'
 
     game.post(url, {
 
-        onFinish: () => resetGame(game),
-        onSuccess: () => resetGame(game),
+        onFinish: () => game.reset(),
+        onSuccess: () => game.reset(),
 
     });
 };
@@ -182,8 +193,8 @@ let submitPlayer = () => {
                 if (element.id > latestId) latestId = element.id
             });
 
-            if(game.white_player == -1) {
-                game.white_player = latestId; 
+            if (game.white_player == -1) {
+                game.white_player = latestId;
             } else {
                 game.black_player = latestId;
             }
