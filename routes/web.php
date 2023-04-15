@@ -149,6 +149,9 @@ Route::middleware('admin')->group(function () {
     Route::get('/game-edit', [GameController::class, 'show'])
         ->name('game.edit');
 
+    Route::post('/game-create', [GameController::class, 'create'])
+        ->name('game.create');
+
     Route::post('/opening-create', [OpeningController::class, 'create'])
         ->name('opening.create');
 
