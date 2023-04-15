@@ -17,7 +17,7 @@ class OpeningController extends Controller
     public function create (Request $request) {
 
         Opening::create(['eco' => $request->eco, 'name' => $request->name]);
-        return redirect()->back()->with('success', 'Opening successfully created');
+        return redirect()->back()->with('success', 'Opening created');
     }
 
     public function update () {
