@@ -19,6 +19,6 @@ class Game extends Model
         'black_player',
         'white_rating',
         'world_championship_game',
-        'opening',
+        'opening_id',
     ];
 }
