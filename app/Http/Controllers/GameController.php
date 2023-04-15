@@ -55,11 +55,24 @@ class GameController extends Controller
         return redirect()->back()->with('success', 'Game successfully created');
     }
 
-    public function update()
+    public function update(Request $request)
     {
+        Game::find($request->id)->update([
+            'name' => $request->name, 
+            'when' => $request->when, 
+            'poster_id' => $request->poster_id, 
+            'black_player' => $request->black_player, 
+            'white_player' => $request->white_player, 
+            'world_championship_game' => $request->world_championship_game, 
+            'opening_id' => $request->opening_id, 
+        ]);
+
+        return redirect()->back()->with('success', 'Game successfully updated');
     }
 
-    public function destroy()
+    public function destroy(Request $request)
     {
+        Game::find($request->id)->delete();
+        return redirect()->back()->with('success', 'Game successfully deleted');
     }
 }
