@@ -76,7 +76,7 @@
             <div class="is--margin-top"><input v-model="game.world_championship_game" type="checkbox" id="wc"> <label
                     for="wc">Is a World Championship Game</label></div>
 
-            <div v-if="game.id != 0" class="is--margin-top"><input v-model="game.delete" type="checkbox" id="delete"> <label
+            <div v-if="game.id != 0" class="is--margin-top"><input v-model="game.deleteGame" type="checkbox" id="delete"> <label
                     for="delete">Delete Game</label></div>
 
             <div class="is--flex is--margin-top">
@@ -144,15 +144,7 @@ let player = useForm({
     country: '',
 });
 
-function resetGame(game) {
-    game.id = 0;
-    game.opening = 0;
-    game.delete = false;
-}
-
 let submitGame = () => {
-
-    console.log(game.deleteGame);
 
     let url = '/game-';
 
@@ -243,7 +235,7 @@ export default {
                         game.black_player = this.$page.props.games[i].black_player;
                         game.opening_id = this.$page.props.games[i].opening_id;
                         game.when = this.$page.props.games[i].when;
-                        game.world_championship_game = this.$page.props.games[i].world_championship_game;
+                        game.world_championship_game = this.$page.props.games[i].world_championship_game ? true : false;
                         game.deleteGame = false;
                         break;
                     }
