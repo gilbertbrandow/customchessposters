@@ -3,7 +3,7 @@
         <ul class="account__menu">
             <li>
                 Signed in as <br>
-                <h3>Simon Gustafsson</h3>
+                <h3 v-text="this.$page.props.auth.user.name"></h3>
             </li>
             <li :class="{ 'is--active': $page.url === '/account' }">
                 <Link :href="route('auth.account')">
