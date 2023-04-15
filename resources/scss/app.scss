@@ -360,6 +360,17 @@ section.is--pt {
     padding: 4em 6em 4em 6em;
 }
 
+.card {
+    background-color: #fff;
+    border-radius: 1em;
+    border: 0.075em solid #ebebeb;
+    padding: 2em;
+
+    .field__label {
+        background-color: #fff;
+    }
+}
+
 .container.is--grid-4 {
     display: -ms-grid;
     display: grid;
@@ -1302,6 +1313,12 @@ ul.saved__posters {
 /**********************
 ****** Form styles
 ***********************/
+
+fieldset {
+    border: none;
+    padding: 0;
+}
+
 input:focus {
     outline-style: solid;
     outline-width: 2px;
