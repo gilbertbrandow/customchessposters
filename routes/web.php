@@ -152,6 +152,12 @@ Route::middleware('admin')->group(function () {
     Route::post('/game-create', [GameController::class, 'create'])
         ->name('game.create');
 
+    Route::post('/game-update', [GameController::class, 'update'])
+        ->name('game.update');
+
+    Route::post('/game-delete', [GameController::class, 'destroy'])
+        ->name('game.delete');
+
     Route::post('/opening-create', [OpeningController::class, 'create'])
         ->name('opening.create');
 
