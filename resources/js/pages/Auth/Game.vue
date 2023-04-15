@@ -79,11 +79,14 @@
             <div v-if="game.id != 0" class="is--margin-top"><input v-model="game.delete" type="checkbox" id="delete"> <label
                     for="delete">Delete Game</label></div>
 
-            <button type="submit" class="button is--black is--margin-top"
-                v-text="game.id != 0 ? 'Update game' : 'Create Game'"></button>
+            <div class="is--flex is--margin-top">
+                <button type="submit" class="button is--black"
+                    v-text="game.id != 0 ? 'Update game' : 'Create Game'"></button>
 
-            <div v-if="this.$page.props.flash.success" v-text="this.$page.props.flash.success"
-                class="is--error is--success"></div>
+                <div v-if="this.$page.props.flash.success" v-text="this.$page.props.flash.success"
+                    class="is--error is--success"></div>
+            </div>
+
         </form>
 
         <form @submit.prevent="submitOpening()" v-if="game.opening == -1" class="card is--margin-top">
@@ -218,10 +221,34 @@ export default {
         updateCurrGame(event, game) {
 
             if (event.target.value == 0) {
-                return;
+
+                game.id = 0;
+                game.name = '';
+                game.poster_id = 0;
+                game.white_player = 0;
+                game.black_player = 0;
+                game.opening_id = 0;
+                game.when = '',
+                game.world_championship_game = false;
+                game.deleteGame = false;
+
             } else {
 
-                //TODO: Set game to game values
+                for (let i = 0; i < this.$page.props.games.length; i++) {
+                    if (this.$page.props.games[i].id == event.target.value) {
+                        game.id = this.$page.props.games[i].id;
+                        game.name = this.$page.props.games[i].name;
+                        game.poster_id = this.$page.props.games[i].poster_id;
+                        game.white_player = this.$page.props.games[i].white_player;
+                        game.black_player = this.$page.props.games[i].black_player;
+                        game.opening_id = this.$page.props.games[i].opening_id;
+                        game.when = this.$page.props.games[i].when;
+                        game.world_championship_game = this.$page.props.games[i].world_championship_game;
+                        game.deleteGame = false;
+                        break;
+                    }
+                }
+
             }
         },
     },
