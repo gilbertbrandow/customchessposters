@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('poster_id')->constrained();
             $table->string('name', 100);
+            $table->text('description')->nullabel(); 
             $table->date('when');
             $table->bigInteger('white_player')->unsigned()->nullable()->index();
             $table->bigInteger('black_player')->unsigned()->nullable()->index();

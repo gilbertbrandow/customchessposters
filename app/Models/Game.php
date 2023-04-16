@@ -14,6 +14,7 @@ class Game extends Model
     protected $fillable = [
         'poster_id',
         'name',
+        'description', 
         'when',
         'white_player',
         'black_player',

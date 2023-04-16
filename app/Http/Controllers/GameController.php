@@ -44,6 +44,7 @@ class GameController extends Controller
 
         Game::create([
             'name' => $request->name, 
+            'description' => $request->description, 
             'when' => $request->when, 
             'poster_id' => $request->poster_id, 
             'black_player' => $request->black_player, 
@@ -59,6 +60,7 @@ class GameController extends Controller
     {
         Game::find($request->id)->update([
             'name' => $request->name, 
+            'description' => $request->description, 
             'when' => $request->when, 
             'poster_id' => $request->poster_id, 
             'black_player' => $request->black_player, 
