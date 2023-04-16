@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('starting_position', 100);
             $table->text('pgn');
             $table->unsignedTinyInteger('diagram_position');
-            $table->string('move_comment', 50)->nullable();
+            $table->string('move_comment', 100)->nullable();
             $table->string('fen', 100);
             $table->string('result', 10)->nullable();
             $table->string('title', 50)->nullable();
