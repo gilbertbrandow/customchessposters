@@ -24,7 +24,7 @@ class GameController extends Controller
 
         $games = Game::All();
 
-        $user = User::where('admin', true)->first();
+        $user = User::find(Auth::id()); 
 
         $posters = $user->savedPostersIdTitle;
 
