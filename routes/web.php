@@ -134,6 +134,9 @@ Route::post('/remove-poster', [UserController::class, 'removeSavedPoster'])
 
 Route::middleware('admin')->group(function () {
 
+    Route::get('/poster-data', [UserController::class, 'savedPostersData'])
+    ->name('poster-data');
+
     Route::get('/faq-edit', [FaqController::class, 'show'])
         ->name('faq.show');
 
