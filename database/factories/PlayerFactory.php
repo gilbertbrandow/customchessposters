@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Player>
  */
-class PlayersFactory extends Factory
+class PlayerFactory extends Factory
 {
     /**
      * Define the model's default state.
