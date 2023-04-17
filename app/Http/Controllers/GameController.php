@@ -82,6 +82,7 @@ class GameController extends Controller
     public function showGamesData()
     {
         $games = Game::All();
-        return inertia('Auth/PosterData', compact('games'));
+
+        return inertia('Auth/GamesData', compact('games'));
     }
 }
