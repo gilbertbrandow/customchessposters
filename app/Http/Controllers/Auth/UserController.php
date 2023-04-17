@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Game;
 use App\Models\Poster;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -38,8 +39,8 @@ class UserController extends Controller
 
         $poster = Poster::find($request->deleteSavedPosterId);
 
-        //Delete poster if has no relationships with users. TODO: Make sure posters in game collection does not suffer the same fate
-        if (!$poster->usersSaved()->count()) $poster->delete();
+        //Delete poster if has no relationships with users.
+        if (!$poster->usersSaved()->count() && !Game::where('poster_id', $poster->id)) $poster->delete();
 
         return redirect()->back()->with('savedSuccess', 'Poster was removed');
     }
