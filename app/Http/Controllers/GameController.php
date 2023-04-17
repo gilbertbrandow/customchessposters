@@ -77,4 +77,11 @@ class GameController extends Controller
         Game::find($request->id)->delete();
         return redirect()->back()->with('success', 'Game successfully deleted');
     }
+
+
+    public function showGamesData()
+    {
+        $games = Game::All();
+        return inertia('Auth/PosterData', compact('games'));
+    }
 }
