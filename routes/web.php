@@ -135,7 +135,7 @@ Route::post('/remove-poster', [UserController::class, 'removeSavedPoster'])
 Route::middleware('admin')->group(function () {
 
     Route::get('/poster-data', [UserController::class, 'savedPostersData'])
-    ->name('poster-data');
+        ->name('poster-data');
 
     Route::get('/faq-edit', [FaqController::class, 'show'])
         ->name('faq.show');
@@ -160,6 +160,9 @@ Route::middleware('admin')->group(function () {
 
     Route::post('/game-delete', [GameController::class, 'destroy'])
         ->name('game.delete');
+
+    Route::get('/games-data', [GameController::class, 'showGamesData'])
+        ->name('games-data');
 
     Route::post('/opening-create', [OpeningController::class, 'create'])
         ->name('opening.create');
