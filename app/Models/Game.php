@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Game extends Model
 {
@@ -15,7 +14,7 @@ class Game extends Model
     protected $fillable = [
         'poster_id',
         'name',
-        'description', 
+        'description',
         'when',
         'white_player',
         'black_player',
@@ -24,11 +23,23 @@ class Game extends Model
         'opening_id',
     ];
 
-    public function poster() {
+    public function poster()
+    {
         return $this->belongsTo(Poster::class);
     }
 
-    public function opening() {
+    public function opening()
+    {
         return $this->belongsTo(Opening::class);
+    }
+
+    public function whitePlayer()
+    {
+        return $this->belongsTo(Player::class, 'white_player', 'id');
+    }
+
+    public function blackPlayer()
+    {
+        return $this->belongsTo(Player::class, 'black_player', 'id');
     }
 }
