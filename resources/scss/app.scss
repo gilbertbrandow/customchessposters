@@ -935,6 +935,10 @@ h4 {
     .button {
         border-color: #fff;
     }
+
+    .button.saved {
+        filter: invert(100%);
+    }
 }
 
 .poster__buttons-wrp.small {
@@ -1306,6 +1310,53 @@ ul.saved__posters {
             font-size: 1.4em;
             line-height: 1.6;
             margin-bottom: 0em;
+        }
+    }
+}
+
+/**********************
+****** Game collection styles
+***********************/
+ul.game__collection {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 2em;
+    row-gap: 2em;
+
+    li {
+        display: flex;
+        overflow: hidden;
+        border-radius: 1em;
+        background-color: #fff;
+
+        .content {
+            flex: 1;
+            padding: 1em 1.5em 1em 1.5em;
+            display: flex;
+            flex-direction: column;
+
+            h2 {
+                font-size: 1.4em;
+                line-height: 1.6;
+                margin-bottom: 0em;
+            }
+
+            p {
+                font-size: 1em;
+                line-height: 1.6;
+                font-weight: 500;
+                flex: 1;
+            }
+
+            .button-wrp {
+                font-size: 0.8em;
+            }
+        }
+
+        .poster__svg-wrp {
+            top: 14%;
+            right: 19.5%;
+            width: 61%;
         }
     }
 }
