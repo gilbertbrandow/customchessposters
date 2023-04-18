@@ -35,7 +35,6 @@ import { onMounted } from 'vue';
 
 export default {
     components: {
-        AppLayout,
         BuildPoster,
         Faq,
         Features,
