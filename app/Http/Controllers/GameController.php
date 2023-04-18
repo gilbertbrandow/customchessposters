@@ -3,9 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Game;
-use App\Models\Opening;
-use App\Models\Player;
-use App\Models\Poster;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,7 +13,10 @@ class GameController extends Controller
 
     public function index()
     {
-        return inertia('Game');
+
+        $games = Game::with(['poster', 'opening', 'whitePlayer', 'blackPlayer'])->get();
+
+        return inertia('GameCollection', compact('games'));
     }
 
     public function show()
@@ -24,9 +24,9 @@ class GameController extends Controller
 
         $games = Game::All();
 
-        $user = User::find(Auth::id()); 
+        $user = User::find(Auth::id());
 
-        $posters = $user->savedPostersIdTitle;
+        $posters = $user->posters->pluck(['id', 'title']);
 
         $openings = DB::table('openings')
             ->orderBy('eco', 'asc')
@@ -43,15 +43,15 @@ class GameController extends Controller
     {
 
         Game::create([
-            'name' => $request->name, 
-            'description' => $request->description, 
-            'when' => $request->when, 
-            'poster_id' => $request->poster_id, 
-            'black_player' => $request->black_player, 
-            'white_player' => $request->white_player, 
-            'world_championship_game' => $request->world_championship_game, 
-            'opening_id' => $request->opening_id, 
-        ]); 
+            'name' => $request->name,
+            'description' => $request->description,
+            'when' => $request->when,
+            'poster_id' => $request->poster_id,
+            'black_player' => $request->black_player,
+            'white_player' => $request->white_player,
+            'world_championship_game' => $request->world_championship_game,
+            'opening_id' => $request->opening_id,
+        ]);
 
         return redirect()->back()->with('success', 'Game successfully created');
     }
@@ -59,14 +59,14 @@ class GameController extends Controller
     public function update(Request $request)
     {
         Game::find($request->id)->update([
-            'name' => $request->name, 
-            'description' => $request->description, 
-            'when' => $request->when, 
-            'poster_id' => $request->poster_id, 
-            'black_player' => $request->black_player, 
-            'white_player' => $request->white_player, 
-            'world_championship_game' => $request->world_championship_game, 
-            'opening_id' => $request->opening_id, 
+            'name' => $request->name,
+            'description' => $request->description,
+            'when' => $request->when,
+            'poster_id' => $request->poster_id,
+            'black_player' => $request->black_player,
+            'white_player' => $request->white_player,
+            'world_championship_game' => $request->world_championship_game,
+            'opening_id' => $request->opening_id,
         ]);
 
         return redirect()->back()->with('success', 'Game successfully updated');
