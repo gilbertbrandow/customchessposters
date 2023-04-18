@@ -15,7 +15,7 @@ class GamesSeeder extends Seeder
      */
     public function run()
     {
-        Game::factory()->count(1)
+        Game::factory()->count(2)
             ->sequence(
                 [
                     'poster_id' => 1,
@@ -26,6 +26,17 @@ class GamesSeeder extends Seeder
                     'black_player' => 2,
                     'world_championship_game' => 1,
                     'opening_id' => 3,
+                ],
+
+                [
+                    'poster_id' => 2,
+                    'name' => 'A masterclass in king hunts from the greatest ever female player',
+                    'description' => 'Solidifying her reputation as one of the greatest attacking players, Polgar goes for the head against a promising talent.',
+                    'when' => '2002-10-29',
+                    'white_player' => 3,
+                    'black_player' => 4,
+                    'world_championship_game' => 0,
+                    'opening_id' => 1,
                 ],
             )
             ->create();
