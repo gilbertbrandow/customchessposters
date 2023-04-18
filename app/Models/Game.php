@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Game extends Model
 {
@@ -22,4 +23,12 @@ class Game extends Model
         'world_championship_game',
         'opening_id',
     ];
+
+    public function poster() {
+        return $this->belongsTo(Poster::class);
+    }
+
+    public function opening() {
+        return $this->belongsTo(Opening::class);
+    }
 }
