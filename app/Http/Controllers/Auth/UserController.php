@@ -19,14 +19,14 @@ class UserController extends Controller
     public function savedPosters()
     {
         $user = User::find(Auth::id());
-        $posters = $user->savedPosters;
+        $posters = $user->posters;
         return inertia('Auth/SavedPosters', compact('posters'));
     }
 
-    public function savedPostersData()
+    public function postersData()
     {
         $user = User::find(Auth::id());
-        $posters = $user->savedPosters;
+        $posters = $user->posters;
 
         return inertia('Auth/PosterData', compact('posters'));
     }
@@ -35,7 +35,7 @@ class UserController extends Controller
     {
         $user = User::find(Auth::id());
 
-        $user->savedPosters()->detach($request->deleteSavedPosterId);
+        $user->posters->detach($request->deleteSavedPosterId);
 
         $poster = Poster::find($request->deleteSavedPosterId);
 
