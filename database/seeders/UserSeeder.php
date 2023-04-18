@@ -26,6 +26,6 @@ class UserSeeder extends Seeder
 
         $posters = Poster::All()->pluck('id')->toArray();
 
-        $user->savedPosters()->sync($posters);
+        $user->posters()->sync($posters);
     }
 }

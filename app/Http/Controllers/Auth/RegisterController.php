@@ -40,7 +40,6 @@ class RegisterController extends Controller
 
         Mail::to($credentials['email'])->send(new Welcome($credentials['name']));
 
-        //TODO: Customize return message based on if poster was saved or not!
         return redirect('/')->with('accountSuccess', 'Welcome ' . $firstname . '!');
     }
 }

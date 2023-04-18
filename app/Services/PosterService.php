@@ -29,7 +29,7 @@ class PosterService
                 } else {
 
                     //The old relationship needs to be detached since that poster can not be updated
-                    $user->savedPosters()->detach($id);
+                    $user->posters()->detach($id);
                 }
             }
 
@@ -38,7 +38,7 @@ class PosterService
         }
 
         //If user already has this poster poster saved, prevent duplicate relationships to same poster id
-        if($user->savedPosters()->find($poster))  $user->savedPosters()->detach($poster->id);
+        if($user->posters()->find($poster))  $user->posters()->detach($poster->id);
 
         //Attach user
         $poster->usersSaved()->attach($user->id);
