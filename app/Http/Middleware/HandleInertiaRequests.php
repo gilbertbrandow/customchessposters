@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Middleware;
@@ -48,6 +49,7 @@ class HandleInertiaRequests extends Middleware
                 'user' => [
                     'name' => $request->session()->get('name') ? $request->session()->get('name') : Auth::user()->name,
                     'admin' => Auth::user()->admin, 
+                    'saved' => User::find(Auth::id())->posters->pluck('id'),
                 ], 
             ] : false,
 
