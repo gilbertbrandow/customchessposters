@@ -7,7 +7,7 @@
                 <Icon name="fullScreen" />
             </button>
             <form v-if="controls.save" @submit.prevent="submitForm(this.poster)">
-                <button class="button" type="submit"> 
+                <button class="button" type="submit" :class="[(this.$page.props.auth.user && this.$page.props.auth.user.saved.includes(this.poster.id)) ? 'saved' : '']" :disabled="this.$page.props.auth.user && this.$page.props.auth.user.saved.includes(this.poster.id)"> 
                     <span v-if="!controls.small">Save this design</span>
                     <Icon name="bookmark" />
                 </button>
@@ -44,7 +44,5 @@ export default {
         environment: "",
         controls: true,
     },
-
-
 }
 </script>
