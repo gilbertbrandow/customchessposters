@@ -8,8 +8,8 @@
                 <div class="field__wrp">
                     <label for="sortBy" class="field__label">Sort by</label>
                     <select v-model="sortBy" id="sortBy" class="field" name="sortBy">
-                        <option value="date:desc">Date, newest to oldest</option>
-                        <option value="date:asc">Date, oldest to newest</option>
+                        <option value="date-desc">Date, newest to oldest</option>
+                        <option value="date-asc">Date, oldest to newest</option>
                     </select>
 
                 </div>
