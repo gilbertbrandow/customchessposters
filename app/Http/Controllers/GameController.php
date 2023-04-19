@@ -11,12 +11,16 @@ use Illuminate\Support\Facades\DB;
 class GameController extends Controller
 {
 
-    public function index()
+    public function index($order)
     {
 
-        $games = Game::with(['poster', 'opening', 'whitePlayer', 'blackPlayer'])->get();
+        $sortBy = $order; 
+        
+        $order = explode(':', $order); 
 
-        return inertia('GameCollection', compact('games'));
+        $games = Game::with(['poster', 'opening', 'whitePlayer', 'blackPlayer'])->orderBy($order[0], $order[1])->get();
+
+        return inertia('GameCollection', compact('games', 'sortBy'));
     }
 
     public function show()
