@@ -27,7 +27,7 @@ Route::get('/', [HomeController::class, 'home'])
 Route::get('/contact', [HomeController::class, 'contact'])
     ->name('home.contact');
 
-Route::get('/game-collection/{order}', [GameController::class, 'index'])
+Route::get('/game-collection/{sort?}/{filter?}', [GameController::class, 'index'])
     ->name('game.index');
 
 Route::post('/newsletter', [NewsletterController::class, 'subscribe'])
