@@ -35,7 +35,7 @@ class UserController extends Controller
     {
         $user = User::find(Auth::id());
 
-        $user->posters->detach($request->deleteSavedPosterId);
+        $user->posters()->detach($request->deleteSavedPosterId);
 
         $poster = Poster::find($request->deleteSavedPosterId);
 
