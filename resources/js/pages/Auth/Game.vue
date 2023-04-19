@@ -77,8 +77,8 @@
             </div>
 
             <div class="field__wrp">
-                <label v-text="'When'" for="when" class="field__label"></label>
-                <input v-model="game.when" type="date" class="field" id="when" placeholder="" />
+                <label v-text="'Date'" for="date" class="field__label"></label>
+                <input v-model="game.date" type="date" class="field" id="date" placeholder="" />
             </div>
             <div class="is--margin-top"><input v-model="game.world_championship_game" type="checkbox" id="wc"> <label
                     for="wc">Is a World Championship Game</label></div>
@@ -138,7 +138,7 @@ let game = useForm({
     white_player: 0,
     black_player: 0,
     opening_id: 0,
-    when: '',
+    date: '',
     world_championship_game: false,
     deleteGame: false,
 });
@@ -230,7 +230,7 @@ export default {
                 game.white_player = 0;
                 game.black_player = 0;
                 game.opening_id = 0;
-                game.when = '',
+                game.date = '',
                     game.world_championship_game = false;
                 game.deleteGame = false;
 
@@ -245,7 +245,7 @@ export default {
                         game.white_player = this.$page.props.games[i].white_player;
                         game.black_player = this.$page.props.games[i].black_player;
                         game.opening_id = this.$page.props.games[i].opening_id;
-                        game.when = this.$page.props.games[i].when;
+                        game.date = this.$page.props.games[i].date;
                         game.world_championship_game = this.$page.props.games[i].world_championship_game ? true : false;
                         game.deleteGame = false;
                         break;

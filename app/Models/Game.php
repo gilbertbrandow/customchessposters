@@ -15,7 +15,7 @@ class Game extends Model
         'poster_id',
         'name',
         'description',
-        'when',
+        'date',
         'white_player',
         'black_player',
         'white_rating',
