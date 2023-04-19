@@ -1328,12 +1328,16 @@ ul.game__collection {
         overflow: hidden;
         border-radius: 1em;
         background-color: #fff;
+        //box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
 
         .content {
             flex: 1;
-            padding: 1em 1.5em 1em 1.5em;
+            padding: 1em 3.5em 1em 1.5em;
+            margin-right: -2em;
             display: flex;
             flex-direction: column;
+            border: solid 0.06em rgba(0, 0, 0, 0.1);
+            border-radius: 1em;
 
             h2 {
                 font-size: 1.4em;
@@ -1353,15 +1357,21 @@ ul.game__collection {
             }
         }
 
-        .poster__buttons-wrp.small {
-            justify-content: end;
-            right: 1em;
-        }
+        .poster {
 
-        .poster__svg-wrp {
-            top: 14%;
-            right: 19.5%;
-            width: 61%;
+            margin-bottom: -1px;
+
+            .poster__buttons-wrp.small {
+                justify-content: end;
+                right: 1em;
+            }
+    
+            .poster__svg-wrp {
+                top: 14%;
+                right: 19.5%;
+                width: 61%;
+            }
+
         }
     }
 }
