@@ -30,7 +30,7 @@ class GameController extends Controller
 
         $user = User::find(Auth::id());
 
-        $posters = $user->posters->pluck(['id', 'title']);
+        $posters = $user->posters->pluck('id', 'title');
 
         $openings = DB::table('openings')
             ->orderBy('eco', 'asc')

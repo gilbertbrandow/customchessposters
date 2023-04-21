@@ -32,7 +32,7 @@
                 <label for="posterOption" class="field__label">Poster</label>
                 <select v-model="game.poster_id" id="posterOption" class="field" name="posterOption">
                     <option value="0">Choose from saved posters</option>
-                    <option v-for="poster in this.$page.props.posters" :value="poster.id">{{ 'Use: "' + poster.title + '"'
+                    <option v-for="(key, value, index) in this.$page.props.posters" :value="key">{{ 'Use: "' + value + '"'
                     }}
                     </option>
                 </select>
