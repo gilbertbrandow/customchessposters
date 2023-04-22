@@ -11,7 +11,7 @@
             <div v-if="this.$page.props.poster && !this.$page.props.overlay.forgot" class="currentPoster">
                 <div>
                     <Icon name="bookmark" />
-                </div>"{{ this.$page.props.poster.title }}"
+                </div><strong>Authenticate to save: </strong>"{{ this.$page.props.poster.title }}"
             </div>
             <p v-text="text"></p>
 
@@ -193,8 +193,8 @@ export default {
         },
 
         title() {
-            if (this.$page.props.overlay.login) return 'Log in';
-            else if (this.$page.props.overlay.register) return this.$page.props.poster ? 'Register to save Poster' : 'Register';
+            if (this.$page.props.overlay.login) return this.$page.props.poster ? 'You need an account to save poster' : 'Log in';
+            else if (this.$page.props.overlay.register) return this.$page.props.poster ? 'You need an account to save poster' : 'Register';
             else if (this.$page.props.overlay.forgot) return 'Forgot password?';
         },
 
