@@ -194,12 +194,23 @@
         </g>
     </svg>
 
-    <svg v-else-if="name === 'delete'" xmlns="http://www.w3.org/2000/svg" id="Layer_2" data-name="Layer 2" width="512" height="512" viewBox="0 0 24 24">
+    <svg v-else-if="name === 'delete'" xmlns="http://www.w3.org/2000/svg" id="Layer_2" data-name="Layer 2" width="512"
+        height="512" viewBox="0 0 24 24">
         <path
             d="M19,7a1,1,0,0,0-1,1V19.191A1.92,1.92,0,0,1,15.99,21H8.01A1.92,1.92,0,0,1,6,19.191V8A1,1,0,0,0,4,8V19.191A3.918,3.918,0,0,0,8.01,23h7.98A3.918,3.918,0,0,0,20,19.191V8A1,1,0,0,0,19,7Z" />
         <path d="M20,4H16V2a1,1,0,0,0-1-1H9A1,1,0,0,0,8,2V4H4A1,1,0,0,0,4,6H20a1,1,0,0,0,0-2ZM10,4V3h4V4Z" />
         <path d="M11,17V10a1,1,0,0,0-2,0v7a1,1,0,0,0,2,0Z" />
         <path d="M15,17V10a1,1,0,0,0-2,0v7a1,1,0,0,0,2,0Z" />
+    </svg>
+
+
+    <svg v-else-if="name === 'update'" height="512" viewBox="0 0 24 24" width="512" xmlns="http://www.w3.org/2000/svg">
+        <g id="Layer_2" data-name="Layer 2">
+            <path
+                d="m15 14a1 1 0 0 1 -.71-.29l-2.29-2.3-2.29 2.3a1 1 0 0 1 -1.42-1.42l3-3a1 1 0 0 1 1.42 0l3 3a1 1 0 0 1 0 1.42 1 1 0 0 1 -.71.29z" />
+            <path
+                d="m18 21h-4a3 3 0 0 1 -3-3v-8a1 1 0 0 1 2 0v8a1 1 0 0 0 1 1h4a2 2 0 0 0 2-2v-10a2 2 0 0 0 -2-2h-12a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h2a1 1 0 0 1 0 2h-2a4 4 0 0 1 -4-4v-10a4 4 0 0 1 4-4h12a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4z" />
+        </g>
     </svg>
 </template>
 
