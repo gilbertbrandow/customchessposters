@@ -6,10 +6,10 @@
                 <span v-if="!controls.small">Full screen</span>
                 <Icon name="fullScreen" />
             </button>
-            <form v-if="controls.save" @submit.prevent="submitForm(this.poster)">
-                <button class="button" type="submit" :class="[(this.$page.props.auth.user && this.$page.props.auth.user.saved.includes(this.poster.id)) ? 'saved' : '']" :disabled="this.$page.props.auth.user && this.$page.props.auth.user.saved.includes(this.poster.id)"> 
-                    <span v-if="!controls.small">Save this design</span>
-                    <Icon name="bookmark" />
+            <form v-if="controls.save || controls.update" @submit.prevent="submitForm(this.poster)">
+                <button class="button" type="submit" :class="[(this.$page.props.auth.user && this.$page.props.auth.user.saved.includes(this.poster.id) && !controls.update) ? 'saved' : '']" :disabled="this.$page.props.auth.user && this.$page.props.auth.user.saved.includes(this.poster.id)"> 
+                    <span v-if="!controls.small" v-text="(controls.update) ? 'Update poster' : (this.$page.props.auth.user && this.$page.props.auth.user.saved.includes(this.poster.id)) ? 'Poster saved' : 'Save this design' "></span>
+                    <Icon :name="(controls.update) ? 'update' : 'bookmark'" />
                 </button>
             </form>
         </div>
