@@ -868,9 +868,9 @@ export default {
         poster: {
             handler(newValue, oldValue) {
                 if (JSON.stringify(this.$data.poster) != this.$data.originalPoster) {
-                    this.$data.controls = { save: false, update: true };
+                    this.$data.controls.update = true;
                 } else {
-                    this.$data.controls = { save: false, update: false };
+                    this.$data.controls.update = false; 
                 }
             },
             deep: true
