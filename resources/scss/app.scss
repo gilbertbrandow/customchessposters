@@ -190,6 +190,10 @@ section {
     column-gap: 1em;
 }
 
+.is--space-between {
+    justify-content: space-between;
+}
+
 button {
     font-size: 1em;
     border: none;

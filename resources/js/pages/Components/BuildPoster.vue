@@ -3,7 +3,13 @@
         <div class="container">
             <div class="poster__builder">
                 <div class="poster__module">
-                    <h2 v-text="(this.$page.props.editPoster) ? 'Editing poster' : 'Create Your Custom Poster'"></h2>
+                    <div class="is--flex is--space-between">
+                        <h2 v-text="(this.$page.props.editPoster) ? 'Editing poster' : 'Create Your Custom Poster'"></h2>
+                        <button v-if="this.$data.controls.update" class="link-arrow is--low-op" @click="resetChanges()">
+                            Undo all changes
+                            <Icon name="undo" />
+                        </button>
+                    </div>
                     <div class="module__mask" ref="mask">
                         <div :class="[posterBuilder.currStep == 0 ? 'is--active' : '']" class="module__step">
                             <h3>1. Your Design</h3>
@@ -122,7 +128,8 @@
                                         <div v-if="posterBuilder.manualMove.suggestions.length" class="text__link">{{
                                             posterBuilder.manualMove.valid ? 'Do' : 'Did'
                                         }} you mean
-                                            <span v-for="(suggestion, index) in  posterBuilder.manualMove.suggestions ">
+                                            <span
+                                                v-for="(suggestion, index) in      posterBuilder.manualMove.suggestions     ">
                                                 <span role="button"
                                                     @click="posterBuilder.manualMove.pgn = suggestion; makeMove(true)"
                                                     v-text="suggestion" class="suggestion"></span>
@@ -136,7 +143,7 @@
                                         <strong>Previous moves: </strong>
                                         <div style="display: flex; column-gap: 0.5em;">
                                             <div v-if=" pgnArray.length >= 5 " style="margin-right: -0.25em;">...</div>
-                                            <template v-for="( move, index ) in  pgnArray " :key="index">
+                                            <template v-for="(     move, index     ) in      pgnArray     " :key="index">
                                                 <div v-if=" pgnArray.length < 5 || pgnArray.length - index < 5 ">
                                                     <span v-if=" index % 2 == 0 " v-text=" (index / 2 + 1) + '. ' "></span>
                                                     <span class="move" v-text=" move "></span>
@@ -203,7 +210,7 @@
                             <p>Choose which position of the game you will share with the world</p>
                             <div class="poster__moves">
                                 <span v-if=" pgnArray.length > 140 && poster.diagram_position >= 70 ">...</span>
-                                <div v-for="( move, index ) in  pgnArray " :key=" index ">
+                                <div v-for="(     move, index     ) in      pgnArray     " :key=" index ">
 
                                     <div
                                         v-if=" pgnArray.length < 140 || (index < poster.diagram_position + 70 + Math.max(0, (70 - poster.diagram_position)) && index > poster.diagram_position - (70 + Math.max(0, (70 - (pgnArray.length - poster.diagram_position))))) ">
@@ -240,8 +247,8 @@
                                     <label for="gameTitle" class="field__label">Title</label>
                                     <div v-if=" !posterBuilder.titleValid " class="field__error">Title is too long</div>
                                     <input v-model=" poster.title " class="field"
-                                        :class=" { 'is--error': !posterBuilder.titleValid } " name="gameTitle" id="gameTitle"
-                                        placeholder="Lorem ipsum dolor set ami" />
+                                        :class=" { 'is--error': !posterBuilder.titleValid } " name="gameTitle"
+                                        id="gameTitle" placeholder="Lorem ipsum dolor set ami" />
                                 </div>
 
                                 <div class="field__wrp">
@@ -326,8 +333,8 @@
                                 </div>
                                 <div class="field__wrp">
                                     <label for="gameWhen" class="field__label">When</label>
-                                    <input maxlength="40" v-model=" poster.when " class="field" name="gameTitle" id="gameWhen"
-                                        placeholder="Tata Steel, January 2023. Round 3" />
+                                    <input maxlength="40" v-model=" poster.when " class="field" name="gameTitle"
+                                        id="gameWhen" placeholder="Tata Steel, January 2023. Round 3" />
                                 </div>
                             </div>
                         </div>
@@ -379,7 +386,7 @@
                     </div>
                 </div>
 
-                <Poster :poster="poster" :environment=" this.$data.posterBuilder.currEnvironment " :controls="controls">
+                <Poster :poster=" poster " :environment=" this.$data.posterBuilder.currEnvironment " :controls=" controls ">
                 </Poster>
 
             </div>
@@ -849,17 +856,22 @@ export default {
             }
         },
 
+        resetChanges() {
+            if(this.$data.originalPoster) {
+                this.$data.poster = JSON.parse(this.$data.originalPoster); 
+            }
+        },
+
     },
 
     watch: {
         poster: {
             handler(newValue, oldValue) {
-               if(JSON.stringify(this.$data.poster) != this.$data.originalPoster) {
-                console.log("Changes have been made");
-                this.$data.controls = { save: false, update:true };
-               } else {
-                console.log("No changes registered");
-               }
+                if (JSON.stringify(this.$data.poster) != this.$data.originalPoster) {
+                    this.$data.controls = { save: false, update: true };
+                } else {
+                    this.$data.controls = { save: false, update: false };
+                }
             },
             deep: true
         },
@@ -915,8 +927,8 @@ export default {
 
     mounted() {
 
-        if(this.$page.props.editPoster) {
-           this.$data.originalPoster = JSON.stringify(Object.assign({}, this.$page.props.editPoster));
+        if (this.$page.props.editPoster) {
+            this.$data.originalPoster = JSON.stringify(Object.assign({}, this.$page.props.editPoster));
         }
 
         this.setTheme(this.$data.poster.theme);
