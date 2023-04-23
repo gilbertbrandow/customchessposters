@@ -26,9 +26,7 @@
                         <div class="player"><Flags :country="game.black_player.country"/>{{ game.black_player.name }}</div>
 
                         <div class="banner">
-                            <div>
-                                <Icon v-if="game.world_championship_game" name="king" />
-                            </div>
+                            <Icon v-if="game.world_championship_game" name="king" />
                            <span v-text="(game.world_championship_game) ? 'World Championship' : 'Played'"></span>{{ game.date + ' in ' + game.poster.where}}
                         </div>
 

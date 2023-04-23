@@ -1364,24 +1364,27 @@ ul.game__collection {
 
             .banner {
                 font-size: 0.6em;
-                margin-top: 1em;
-                padding-top: 0.1em;
+                margin-top: 1.25em;
                 display: inline-flex;
-                border-radius: 0.5em;
-                background-color: whitesmoke;
-                border: 0.075em solid #ebebeb;
-                padding: 0.5em 0.75em;
                 line-height: 1;
                 align-items: center;
 
+                span {
+                    margin-right: 0.25em;
+                }
+            }
+
+            .banner:has(svg) {
+                border-radius: 0.5em;
+                background-color: whitesmoke;
+                border: 0.075em solid #ebebeb;
+                padding: 0.65em 0.75em 0.5em 0.6em;
+
                 svg {
+                    margin-top: -0.15em;
                     height: 1.5em;
                     width: 1.5em;
                     margin-right: 0.5em;
-                }
-
-                span {
-                    margin-right: 0.25em;
                 }
             }
 
