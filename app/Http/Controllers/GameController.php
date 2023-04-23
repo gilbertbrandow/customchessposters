@@ -14,13 +14,11 @@ class GameController extends Controller
     public function index($order = 'date-desc')
     {
 
-        $sortBy = $order; 
-
         $order = explode('-', $order); 
 
         $games = Game::with(['poster', 'opening', 'whitePlayer', 'blackPlayer'])->orderBy($order[0], $order[1])->get();
 
-        return inertia('GameCollection', compact('games', 'sortBy'));
+        return inertia('GameCollection', compact('games'));
     }
 
     public function show()

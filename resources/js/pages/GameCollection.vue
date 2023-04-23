@@ -85,15 +85,16 @@ export default {
                 dateTo: null,
             },
 
-            sortBy: this.$page.props.sortBy,
+            sortBy: 'date-desc',
         }
     },
 
     watch: {
         sortBy() {
             router.visit('/game-collection/' + this.$data.sortBy, {
-                only: ['games', 'sortBy'],
+                only: ['games'],
                 preserveScroll: true,
+                preserveState: true,
             })
         },
     }
