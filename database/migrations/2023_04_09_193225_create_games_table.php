@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('games', function (Blueprint $table) {
             $table->id();
             $table->foreignId('poster_id')->constrained();
-            $table->string('name', 100);
-            $table->text('description')->nullabel(); 
+            $table->string('name', 75);
+            $table->text('description', 250)->nullabel(); 
             $table->date('date');
             $table->bigInteger('white_player')->unsigned()->nullable()->index();
             $table->bigInteger('black_player')->unsigned()->nullable()->index();
@@ -25,8 +25,8 @@ return new class extends Migration
             $table->foreignId('opening_id')->constrained();
             $table->timestamps();
 
-            $table->foreign('white_player')->references('id')->on('players')->onDelete('cascade');
-            $table->foreign('black_player')->references('id')->on('players')->onDelete('cascade');
+            $table->foreign('white_player')->references('id')->on('players');
+            $table->foreign('black_player')->references('id')->on('players');
         
         });
     }
