@@ -969,6 +969,15 @@ h4 {
             margin-left: 0em;
         }
     }
+
+    form {
+        button {
+            svg {
+                height: 0.85em;
+                width: 0.85em;
+            }
+        }
+    }
 }
 
 /**********************
@@ -1356,6 +1365,7 @@ ul.game__collection {
             .banner {
                 font-size: 0.8em;
                 margin-top: 1em;
+                padding-top: 0.1em;
                 display: inline-flex;
                 border-radius: 0.5em;
                 background-color: whitesmoke;
