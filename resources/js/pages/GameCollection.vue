@@ -8,8 +8,10 @@
                 <div class="field__wrp">
                     <label for="sortBy" class="field__label">Sort by</label>
                     <select v-model="sortBy" id="sortBy" class="field" name="sortBy">
-                        <option value="date-desc">Date, newest to oldest</option>
-                        <option value="date-asc">Date, oldest to newest</option>
+                        <option value="updated_at-desc">Most recent</option>
+                        <option value="updated_at-asc">Least recent</option>
+                        <option value="date-desc">Date played, newest to oldest</option>
+                        <option value="date-asc">Date played, oldest to newest</option>
                         <Icon name="sort"></Icon>
                     </select>
 
@@ -23,23 +25,23 @@
                         <div class="player"><Flags :country="game.white_player.country"/>{{ game.white_player.name }}</div>
                         <div class="player"><Flags :country="game.black_player.country"/>{{ game.black_player.name }}</div>
 
-                        <div class="banner" v-if="game.world_championship_game">
+                        <div class="banner">
                             <div>
-                                <Icon name="king" />
+                                <Icon v-if="game.world_championship_game" name="king" />
                             </div>
-                            World Championship {{ game.date.substring(0, 4) }}
+                           <span v-text="(game.world_championship_game) ? 'World Championship' : 'Played'"></span>{{ game.date + ' in ' + game.poster.where}}
                         </div>
 
                         <strong class="is--small">{{ game.opening.eco + ': ' + game.opening.name }}</strong>
                     
-                        <p><span style="text-decoration: underline;">{{  game.date  }}</span>: {{ game.description }}</p>
+                        <p>{{ game.description }}</p>
                         <div class="button-wrp">
                             <button class="button is--black"> Add to cart
                                 <Icon name="cart" />
                             </button>
 
                             <a class="button" :href="route('poster.edit', { 'id': game.poster.id })">
-                                Edit
+                                Edit poster
                                 <Icon name="edit" />
                             </a>
                         </div>
