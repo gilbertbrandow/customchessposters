@@ -49,7 +49,7 @@ class GameController extends Controller
         Game::create([
             'name' => $request->name,
             'description' => $request->description,
-            'when' => $request->when,
+            'date' => $request->date,
             'poster_id' => $request->poster_id,
             'black_player' => $request->black_player,
             'white_player' => $request->white_player,
