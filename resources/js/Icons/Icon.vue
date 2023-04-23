@@ -25,12 +25,12 @@
         </g>
     </svg>
 
-
-    <svg v-else-if="name === 'bookmark-filled'" id="Layer_1" enable-background="new 0 0 511.958 511.958" height="512"
-        viewBox="0 0 511.958 511.958" width="512" xmlns="http://www.w3.org/2000/svg">
-        <path
-            d="m400.579 0h-289.2c-25.487 0-47.133 20.556-47.133 47.133v427.63c.075 33.733 41.277 49.561 64.701 25.882l110.235-110.204c8.834-9.216 24.76-9.216 33.594 0l110.235 110.204c23.434 23.688 64.631 7.836 64.701-25.882v-427.63c0-26.577-21.646-47.133-47.133-47.133z" />
+    <svg v-else-if="name === 'bookmark-small'"  xmlns="http://www.w3.org/2000/svg" width="433.466" height="561.998" viewBox="0 0 433.466 561.998">
+        <path id="Path_1094" data-name="Path 1094"
+            d="M400.579,0h-289.2A47.129,47.129,0,0,0,64.246,47.133v427.63c.075,33.733,41.277,49.561,64.7,25.882l110.235-110.2c8.834-9.216,24.76-9.216,33.594,0l110.235,110.2c23.434,23.688,64.631,7.836,64.7-25.882V47.133A47.129,47.129,0,0,0,400.579,0Z"
+            transform="translate(-39.246 25)" fill="none" stroke="#000" stroke-width="50" />
     </svg>
+
 
     <svg v-else-if="name === 'cart'" xmlns="http://www.w3.org/2000/svg" version="1.1"
         xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="512" height="512" x="0" y="0"
