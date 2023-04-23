@@ -10,6 +10,7 @@
                     <select v-model="sortBy" id="sortBy" class="field" name="sortBy">
                         <option value="date-desc">Date, newest to oldest</option>
                         <option value="date-asc">Date, oldest to newest</option>
+                        <Icon name="sort"></Icon>
                     </select>
 
                 </div>
@@ -19,9 +20,19 @@
                     <div class="content">
                         <h2 v-text="game.name"></h2>
 
-                        <div v-if="game.world_championship_game">World Championships {{ game.date.substring(0, 4) }}</div>
+                        <div class="player"><Flags :country="game.white_player.country"/>{{ game.white_player.name }}</div>
+                        <div class="player"><Flags :country="game.black_player.country"/>{{ game.black_player.name }}</div>
 
-                        <p v-text="game.description"></p>
+                        <div class="banner" v-if="game.world_championship_game">
+                            <div>
+                                <Icon name="king" />
+                            </div>
+                            World Championship {{ game.date.substring(0, 4) }}
+                        </div>
+
+                        <strong class="is--small">{{ game.opening.eco + ': ' + game.opening.name }}</strong>
+                    
+                        <p><span style="text-decoration: underline;">{{  game.date  }}</span>: {{ game.description }}</p>
                         <div class="button-wrp">
                             <button class="button is--black"> Add to cart
                                 <Icon name="cart" />
@@ -44,6 +55,7 @@
 <script>
 import AppLayout from "../Layouts/App.vue";
 import Poster from "./Components/Poster.vue"
+import Flags from "../Icons/Flags.vue"
 import { router } from '@inertiajs/vue3'
 
 export default {
@@ -52,6 +64,7 @@ export default {
 
     components: {
         Poster,
+        Flags,
     },
 
     props: {
