@@ -15,7 +15,7 @@ class PostersSeeder extends Seeder
     public function run()
     {
 
-        Poster::factory()->count(2)
+        Poster::factory()->count(3)
             ->sequence(
                 [
                     'theme' => 1,
@@ -55,6 +55,26 @@ class PostersSeeder extends Seeder
                     'black_title' => 'GM',
                     'when' => 'Bled ol (Men), 2002.10.29 Round 4.2',
                     'where' => 'Slovenia, Bled',
+                ],
+
+                [
+                    'theme' => 1,
+                    'orientation' => 1,
+                    'starting_position' => 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                    'pgn' => '1. d4 Nf6 2. Nf3 d5 3. Bf4 c5 4. e3 Nc6 5. Nbd2 cxd4 6. exd4 Bf5 7. c3 e6 8. Bb5 Bd6 9. Bxd6 Qxd6 10. O-O O-O 11. Re1 h6 12. Ne5 Ne7 13. a4 a6 14. Bf1 Nd7 15. Nxd7 Qxd7 16. a5 Qc7 17. Qf3 Rfc8 18. Ra3 Bg6 19. Nb3 Nc6 20. Qg3 Qe7 21. h4 Re8 22. Nc5 e5 23. Rb3 Nxa5 24. Rxe5 Qf6 25. Ra3 Nc4 26. Bxc4 dxc4 27. h5 Bc2 28. Nxb7 Qb6 29. Nd6 Rxe5 30. Qxe5 Qxb2 31. Ra5 Kh7 32. Rc5 Qc1+ 33. Kh2 f6 34. Qg3 a5 35. Nxc4 a4 36. Ne3 Bb1 37. Rc7 Rg8 38. Nd5 Kh8 39. Ra7 a3 40. Ne7 Rf8 41. d5 a2 42. Qc7 Kh7 43. Ng6 Rg8 44. Qf7',
+                    'diagram_position' => 81,
+                    'move_comment' => 'Unassuming, but devastating',
+                    'fen' => '5r1k/R3N1p1/5p1p/3P3P/8/p1P3Q1/5PPK/1bq5 b - - 0 41',
+                    'result' => '1-0',
+                    'title' => 'Casting a deep mating net',
+                    'white_player' => 'Liren, Ding',
+                    'black_player' => 'Nepomniachtchi, Ian',
+                    'white_rating' => 2788,
+                    'black_rating' => 2795,
+                    'white_title' => 'GM',
+                    'black_title' => 'GM',
+                    'when' => 'FIDE World Championship 2023, Round 6',
+                    'where' => 'Astana, Kazakhstan',
                 ],
 
             )

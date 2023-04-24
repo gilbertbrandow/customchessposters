@@ -16,7 +16,7 @@ class OpeningsSeeder extends Seeder
     public function run()
     {
 
-        Opening::factory()->count(3)
+        Opening::factory()->count(4)
         ->sequence(
             [
                 'eco' => 'C80',
@@ -31,6 +31,11 @@ class OpeningsSeeder extends Seeder
             [
                 'eco' => 'D59',
                 'name' => "Queen's Gambit Declined: Tartakower Defense",
+            ],
+
+            [
+                'eco' => 'D02',
+                'name' => "Queen Pawn Game: London System",
             ],
         )
         ->create();

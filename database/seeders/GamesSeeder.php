@@ -40,6 +40,17 @@ class GamesSeeder extends Seeder
                 'opening_id' => 1,
             ],
 
+            [
+                'poster_id' => 3,
+                'name' => 'Ding Liren manages to win with his back against the wall',
+                'description' => 'The legend of Game six in the WCC has seen grueling long wins, brilliant novelties and splashes of creativity. This game checked all the boxes.',
+                'date' => '2023-04-16',
+                'white_player' => 5,
+                'black_player' => 6,
+                'world_championship_game' => 1,
+                'opening_id' => 4,
+                ],
+
         ]; 
 
         foreach($games as $game) {
