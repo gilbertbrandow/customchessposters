@@ -7,25 +7,27 @@
       </Link>
       <div class="nav__wrp">
         <div class="dropdown"><img src="" /> USA / USD $</div>
-        <Link :href="route('auth.account')" v-if="$page.props.auth" class="nav__button">
-        <div class="info" :class="[ ($page.props.flash.account.success && !$page.props.flash.saved.success) ? 'active' : '']">
-          <div></div> {{ $page.props.flash.account.success ? $page.props.flash.account.success : 'Your Account (' + $page.props.auth.user.name + ')'}}
+        <Link @mouseover="resetFlash()" :href="route('auth.account')" v-if="$page.props.auth" class="nav__button">
+        <div class="info"
+          :class="[($page.props.flash.account.success && !$page.props.flash.saved.success) ? 'active' : '']">
+          <div></div> {{ $page.props.flash.account.success ? $page.props.flash.account.success : 'Your Account (' +
+            $page.props.auth.user.name + ')' }}
         </div>
         <Icon name="user" />
         </Link>
-        <Link :href="route('auth.login')" v-else class="nav__button" preserve-scroll>
+        <Link @mouseover="resetFlash()" :href="route('auth.login')" v-else class="nav__button" preserve-scroll>
         <div class="info">
           <div></div>Sign in
         </div>
         <Icon name="user" />
         </Link>
-        <Link :href="route('auth.saved')" class="nav__button" preserve-scroll>
-        <div class="info" :class="{active: $page.props.flash.saved.success}">
+        <Link @mouseover="resetFlash()" :href="route('auth.saved')" class="nav__button" preserve-scroll>
+        <div class="info" :class="{ active: $page.props.flash.saved.success }">
           <div></div> {{ $page.props.flash.saved.success ? $page.props.flash.saved.success : 'Your saved designs' }}
         </div>
         <Icon name="bookmark" />
         </Link>
-        <Link :href="route('home.index')" class="nav__button">
+        <Link @mouseover="resetFlash()" :href="route('home.index')" class="nav__button">
         <div class="info">
           <div></div>Cart
         </div>
@@ -64,6 +66,13 @@ export default {
     Link,
     Newsletter,
     Overlay,
-},
+  },
+
+  methods: {
+    resetFlash() {
+      this.$page.props.flash.account.success = '';
+      this.$page.props.flash.saved.success = '';
+    }
+  }
 }
 </script>
