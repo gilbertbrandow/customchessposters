@@ -22,8 +22,15 @@
                     <div class="content">
                         <h2 v-text="game.name"></h2>
 
-                        <div class="player"><Flags :country="game.white_player.country"/>{{ game.white_player.name }}</div>
-                        <div class="player"><Flags :country="game.black_player.country"/>{{ game.black_player.name }}</div>
+                        <div class="player">
+                                <div class="flag"><Flags :country="game.white_player.country"/><div class="info"><div></div>{{game.white_player.country }} </div></div>
+                                {{ game.white_player.name }}
+                        </div>
+                        
+                        <div class="player">
+                            <div class="flag"><Flags :country="game.black_player.country"/><div class="info"><div></div>{{game.black_player.country }} </div></div>
+                            {{ game.black_player.name }}
+                        </div>
 
                         <div class="banner">
                             <Icon v-if="game.world_championship_game" name="king" />

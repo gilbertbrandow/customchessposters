@@ -64,52 +64,6 @@ nav .nav__wrp {
 
 .nav__button {
     font-size: 1.2em;
-
-    .info {
-        display: flex;
-        align-items: center;
-        white-space: nowrap;
-        font-size: 0.8em;
-        font-weight: 400;
-        opacity: 0;
-        width: auto;
-        pointer-events: none;
-        position: absolute;
-        top: 3em;
-        margin-top: -1em;
-        padding-left: 0.5em;
-        padding-right: 0.5em;
-        padding-top: 0.25em;
-        padding-bottom: 0.25em;
-        color: #fff;
-        background-color: #000;
-        border: solid 0.06em #000;
-        transition: opacity 400ms;
-        transition: margin 200ms;
-        border-radius: 0.5em;
-
-        div {
-            position: absolute;
-            top: 0em;
-            left: 0;
-            right: 0;
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: -0.3em;
-            transform: rotate(45deg);
-            width: 0.6em;
-            height: 0.6em;
-            background-color: #000;
-            border-top: solid #000 0.06em;
-            border-left: solid #000 0.06em;
-        }
-    }
-
-    .info.active {
-        opacity: 1;
-        margin-top: 0.25em;
-    }
-
     svg {
         height: 1em;
         width: 1em;
@@ -125,6 +79,51 @@ nav .nav__wrp {
     border-radius: 5em;
     border: solid 0.06em #000;
     transition: all 500ms;
+}
+
+.info {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    font-size: 0.8em;
+    font-weight: 400;
+    opacity: 0;
+    width: auto;
+    pointer-events: none;
+    position: absolute;
+    top: 3em;
+    margin-top: -1em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
+    color: #fff;
+    background-color: #000;
+    border: solid 0.06em #000;
+    transition: opacity 400ms;
+    transition: margin 200ms;
+    border-radius: 0.5em;
+
+    div {
+        position: absolute;
+        top: 0em;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: -0.3em;
+        transform: rotate(45deg);
+        width: 0.6em;
+        height: 0.6em;
+        background-color: #000;
+        border-top: solid #000 0.06em;
+        border-left: solid #000 0.06em;
+    }
+}
+
+.info.active {
+    opacity: 1;
+    margin-top: 0.25em;
 }
 
 .nav__button:hover {
@@ -1363,7 +1362,7 @@ ul.game__collection {
             }
 
             .banner {
-                font-size: 0.6em;
+                font-size: 0.7em;
                 margin-top: 1.25em;
                 display: inline-flex;
                 line-height: 1;
@@ -1399,6 +1398,32 @@ ul.game__collection {
                     width: 1.25em;
                     height: 1.25em;
                 }
+
+                .flag {
+                    position: relative;
+                    display: flex;
+                    justify-content: center;
+
+                    svg {
+                        margin-top: -0.15em;
+                        width: 1.25em;
+                        height: 1.25em;
+                    }
+
+                    .info {
+                        z-index: 2;
+                        top: 1em;
+                        margin-top: -0.25em;
+                    }
+                }
+
+                .flag:hover {
+                    .info {
+                        opacity: 1;
+                        margin-top: 0.25em;
+                    }
+                }
+
             }
 
             strong {
