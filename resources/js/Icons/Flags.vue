@@ -56,19 +56,12 @@
         </g>
     </svg>
 
-
-
-    <svg v-else-if="country == 'Sweden'" id="Layer_1" enable-background="new 0 0 512 512" viewBox="0 0 512 512"
-        xmlns="http://www.w3.org/2000/svg">
-        <circle cx="256" cy="256" fill="#ffda44" r="256" />
-        <g fill="#0052b4">
-            <path
-                d="m200.349 222.609h309.484c-16.363-125.607-123.766-222.609-253.833-222.609-19.114 0-37.733 2.113-55.652 6.085v216.524z" />
-            <path d="m133.565 222.608v-191.481c-70.294 38.354-120.615 108.705-131.398 191.482h131.398z" />
-            <path d="m133.564 289.391h-131.397c10.783 82.777 61.104 153.128 131.398 191.481z" />
-            <path
-                d="m200.348 289.392v216.523c17.919 3.972 36.538 6.085 55.652 6.085 130.067 0 237.47-97.002 253.833-222.609h-309.485z" />
-        </g>
+    <svg v-else-if="country == 'Sweden'" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
+        style="enable-background:new 0 0 512 512;" xml:space="preserve">
+        <rect y="85.333" style="fill:#0052B4;" width="512" height="341.337" />
+        <polygon style="fill:#FFDA44;" points="192,85.33 128,85.33 128,223.996 0,223.996 0,287.996 128,287.996 128,426.662 192,426.662 
+	192,287.996 512,287.996 512,223.996 192,223.996 " />
     </svg>
 
     <svg v-else-if="country == 'Azerbaijan'" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
