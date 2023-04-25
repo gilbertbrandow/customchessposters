@@ -15,7 +15,7 @@ class PlayersSeeder extends Seeder
     public function run()
     {
 
-        Player::factory()->count(6)
+        Player::factory()->count(11)
         ->sequence(
             [
                 'name' => 'Fischer, Robert James',
@@ -41,6 +41,31 @@ class PlayersSeeder extends Seeder
 
             [
                 'name' => 'Nepomniachtchi, Ian',
+                'country' => 'Russia',
+            ],
+
+            [
+                'name' => 'Byrne, Donald',
+                'country' => 'USA',
+            ],
+
+            [
+                'name' => 'Botvinnik, Mikhail',
+                'country' => 'USSR',
+            ],
+
+            [
+                'name' => 'Tal, Mikhail',
+                'country' => 'USSR',
+            ],
+
+            [
+                'name' => 'Cramling, Pia',
+                'country' => 'Sweden',
+            ],
+
+            [
+                'name' => 'Galliamova, Alisa',
                 'country' => 'Russia',
             ],
         )

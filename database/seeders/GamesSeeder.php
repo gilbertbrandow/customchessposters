@@ -49,13 +49,46 @@ class GamesSeeder extends Seeder
                 'black_player' => 6,
                 'world_championship_game' => 1,
                 'opening_id' => 4,
-                ],
+            ],
 
-        ]; 
+            [
+                'poster_id' => 4,
+                'name' => 'Tal wins another famous Game 6 in WCC 1960',
+                'description' => 'The principled, scientific and reigning world champion Mikhail Botvinnik faced of against the brash, creative and talented challenger Mikhail Tal in a WCC for the ages.',
+                'date' => '1960-03-26',
+                'white_player' => 7,
+                'black_player' => 8,
+                'world_championship_game' => 1,
+                'opening_id' => 5,
+            ],
 
-        foreach($games as $game) {
-            
-            Game::create($game); 
+            [
+                'poster_id' => 5,
+                'name' => 'Young Bobby Fischer shows a glimpse of what is to come',
+                'description' => 'IM Donald Byrne, one of the top American masters at the time, had the white pieces against the young Fischer, who was still a year or two away from being well-known. But not too young to give us a true show of brilliancy.',
+                'date' => '1956-10-17',
+                'white_player' => 9,
+                'black_player' => 1,
+                'world_championship_game' => 0,
+                'opening_id' => 6,
+            ],
+
+            [
+                'poster_id' => 6,
+                'name' => 'Pia Cramling gets an important win with a spectacular finish',
+                'description' => 'The most logical way of promotion, promoting a pawn to a Queen, is almost always the best choice. Knowing when it is not takes a great player.',
+                'date' => '1994-09-29',
+                'white_player' => 10,
+                'black_player' => 11,
+                'world_championship_game' => 0,
+                'opening_id' => 7,
+            ],
+
+        ];
+
+        foreach ($games as $game) {
+
+            Game::create($game);
 
             //In order to be able to sort by created_at and not get confusing results
             sleep(1);

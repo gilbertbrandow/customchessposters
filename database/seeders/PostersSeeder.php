@@ -15,7 +15,7 @@ class PostersSeeder extends Seeder
     public function run()
     {
 
-        Poster::factory()->count(3)
+        Poster::factory()->count(6)
             ->sequence(
                 [
                     'theme' => 1,
@@ -66,7 +66,7 @@ class PostersSeeder extends Seeder
                     'move_comment' => 'Unassuming, but devastating',
                     'fen' => '5r1k/R3N1p1/5p1p/3P3P/8/p1P3Q1/5PPK/1bq5 b - - 0 41',
                     'result' => '1-0',
-                    'title' => 'Casting a deep mating net',
+                    'title' => 'Casting a Deep Mating Net',
                     'white_player' => 'Liren, Ding',
                     'black_player' => 'Nepomniachtchi, Ian',
                     'white_rating' => 2788,
@@ -75,6 +75,61 @@ class PostersSeeder extends Seeder
                     'black_title' => 'GM',
                     'when' => 'FIDE World Championship 2023, Round 6',
                     'where' => 'Astana, Kazakhstan',
+                ],
+
+                [
+                    'theme' => 1,
+                    'orientation' => 0,
+                    'starting_position' => 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                    'pgn' => '1. c4 Nf6 2. Nf3 g6 3. g3 Bg7 4. Bg2 O-O 5. d4 d6 6. Nc3 Nbd7 7. O-O e5 8. e4 c6 9. h3 Qb6 10. d5 cxd5 11. cxd5 Nc5 12. Ne1 Bd7 13. Nd3 Nxd3 14. Qxd3 Rfc8 15. Rb1 Nh5 16. Be3 Qb4 17. Qe2 Rc4 18. Rfc1 Rac8 19. Kh2 f5 20. exf5 Bxf5 21. Ra1 Nf4 22. gxf4 exf4 23. Bd2 Qxb2 24. Rab1 f3 25. Rxb2 fxe2 26. Rb3 Rd4 27. Be1 Be5+ 28. Kg1 Bf4 29. Nxe2 Rxc1 30. Nxd4 Rxe1+ 31. Bf1 Be4 32. Ne2 Be5 33. f4 Bf6 34. Rxb7 Bxd5 35. Rc7 Bxa2 36. Rxa7 Bc4 37. Ra8+ Kf7 38. Ra7+ Ke6 39. Ra3 d5 40. Kf2 Bh4+ 41. Kg2 Kd6 42. Ng3 Bxg3 43. Bxc4 dxc4 44. Kxg3 Kd5 45. Ra7 c3 46. Rc7 Kd4 47. Rd7+',
+                    'diagram_position' => 42,
+                    'move_comment' => 'The crowd became so excited, the game had to be continued behind closed doors',
+                    'fen' => '2r3k1/pp4bp/3p2p1/3Ppb2/1qr2n2/2N1B1PP/PP2QPBK/R1R5 w - - 2 22',
+                    'result' => '0-1',
+                    'title' => 'An Unstoppable Force Meets an Immovable Object',
+                    'white_player' => 'Mikhail Botvinnik',
+                    'black_player' => 'Mikhail Tal',
+                    'white_title' => 'GM',
+                    'black_title' => 'GM',
+                    'when' => 'Botvinnik - Tal World Championship Match, 1960.03.26 Round 6',
+                    'where' => 'Moscow, USSR',
+                ],
+
+                [
+                    'theme' => 1,
+                    'orientation' => 1,
+                    'starting_position' => 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                    'pgn' => '1. Nf3 Nf6 2. c4 g6 3. Nc3 Bg7 4. d4 O-O 5. Bf4 d5 6. Qb3 dxc4 7. Qxc4 c6 8. e4 Nbd7 9. Rd1 Nb6 10. Qc5 Bg4 11. Bg5 Na4 12. Qa3 Nxc3 13. bxc3 Nxe4 14. Bxe7 Qb6 15. Bc4 Nxc3 16. Bc5 Rfe8+ 17. Kf1 Be6 18. Bxb6 Bxc4+ 19. Kg1 Ne2+ 20. Kf1 Nxd4+ 21. Kg1 Ne2+ 22. Kf1 Nc3+ 23. Kg1 axb6 24. Qb4 Ra4 25. Qxb6 Nxd1 26. h3 Rxa2 27. Kh2 Nxf2 28. Re1 Rxe1 29. Qd8+ Bf8 30. Nxe1 Bd5 31. Nf3 Ne4 32. Qb8 b5 33. h4 h5 34. Ne5 Kg7 35. Kg1 Bc5+ 36. Kf1 Ng3+ 37. Ke1 Bb4+ 38. Kd1 Bb3+ 39. Kc1 Ne2+ 40. Kb1 Nc3+ 41. Kc1 Rc2#',
+                    'diagram_position' => 34,
+                    'move_comment' => 'Leaving the Queen En Prise',
+                    'fen' => 'r3r1k1/pp3pbp/1qp1b1p1/2B5/2BP4/Q1n2N2/P4PPP/3R1K1R w - - 4 18',
+                    'result' => '0-1',
+                    'title' => 'Game Of The Century',
+                    'white_player' => 'Donald Byrne',
+                    'black_player' => 'Robert James Fischer',
+                    'white_title' => 'IM',
+                    'when' => 'Third Rosenwald Trophy, 1956.10.17 Round 8',
+                    'where' => 'New York, NY USA',
+                ],
+
+                [
+                    'theme' => 1,
+                    'orientation' => 1,
+                    'starting_position' => 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                    'pgn' => '1. d4 d5 2. c4 c6 3. Nc3 Nf6 4. Nf3 e6 5. Bg5 dxc4 6. e4 b5 7. a4 Bb7 8. axb5 cxb5 9. Nxb5 Qb6 10. Qa4 Nc6 11. Bxf6 gxf6 12. Bxc4 a6 13. Nc3 Qxb2 14. O-O Qxc3 15. d5 Qb4 16. dxc6 Bc8 17. Qa2 Bh6 18. Qe2 a5 19. Rfb1 Qc3 20. Ra4 O-O 21. h3 Bf4 22. g3 Rb8 23. Rxb8 Bxb8 24. Qd3 Qc1+ 25. Kg2 Bc7 26. Qd2 Qxd2 27. Nxd2 e5 28. Nb3 Be6 29. Nc5 Bxc4 30. Rxc4 Ra8 31. Kf3 Kf8 32. Kg4 Ke7 33. Kf5 Bb6 34. Nd7 Bxf2 35. Nxf6 Bxg3 36. Nd5+ Kd6 37. Nb6 Rg8 38. c7 Bh4 39. c8=N+',
+                    'diagram_position' => 77,
+                    'move_comment' => 'Underpromotion leads to immediate resignation',
+                    'fen' => '2N3r1/5p1p/1N1k4/p3pK2/2R1P2b/7P/8/8 b - - 0 39',
+                    'result' => '1-0',
+                    'title' => 'Finishing in style',
+                    'white_player' => 'Pia Cramling',
+                    'black_player' => 'Alisa Mikhailovna Galliamova',
+                    'white_rating' => 2515,
+                    'black_rating' => 2412,
+                    'white_title' => 'GM',
+                    'black_title' => 'IM',
+                    'when' => 'Candidates (Women), 1994.09.29 Round 17',
+                    'where' => 'Tilburg, Netherlands',
                 ],
 
             )
