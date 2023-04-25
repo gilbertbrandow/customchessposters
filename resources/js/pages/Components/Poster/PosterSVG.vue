@@ -193,6 +193,8 @@ export default {
             //Get index of next space
             let spaceIndex = pgn.indexOf(' ', indexOfMove);
 
+            if(spaceIndex == -1) { spaceIndex = pgn.length}
+
             //Depending on if half move or not, look until next ' ', or from next ' ' to the one after that
             if (this.poster.diagram_position % 2 != 0) {
                 //White move
