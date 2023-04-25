@@ -13,7 +13,8 @@ class GameController extends Controller
 
     public function index(Request $request)
     {
-        $order = explode('-', $request->input('sort'));
+        
+        $order = explode('-', $request->input('sort') ?? 'date-desc');
 
         $games = DB::table('games')
             ->join('posters', 'games.poster_id', '=', 'posters.id')
