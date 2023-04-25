@@ -11,12 +11,50 @@ use Illuminate\Support\Facades\DB;
 class GameController extends Controller
 {
 
-    public function index($order = 'date-desc')
+    public function index(Request $request)
     {
+        $order = explode('-', $request->input('sort'));
 
-        $order = explode('-', $order); 
-
-        $games = Game::with(['poster', 'opening', 'whitePlayer', 'blackPlayer'])->orderBy($order[0], $order[1])->get();
+        $games = DB::table('games')
+            ->join('posters', 'games.poster_id', '=', 'posters.id')
+            ->join('openings', 'games.opening_id', '=', 'openings.id')
+            ->join('players as white_player', 'games.white_player', '=', 'white_player.id')
+            ->join('players as black_player', 'games.black_player', '=', 'black_player.id')
+            ->select(
+                'games.name',
+                'games.description',
+                'games.date',
+                'games.world_championship_game',
+                'games.created_at',
+                'games.updated_at as recent',
+                'posters.id',
+                'posters.theme',
+                'posters.orientation',
+                'posters.starting_position',
+                'posters.pgn',
+                'posters.diagram_position',
+                'posters.move_comment',
+                'posters.fen',
+                'posters.result',
+                'posters.title',
+                'posters.white_player',
+                'posters.black_player',
+                'posters.white_rating',
+                'posters.black_rating',
+                'posters.white_title',
+                'posters.black_title',
+                'posters.when',
+                'posters.where',
+                'openings.name as opening_name',
+                'openings.eco as opening_eco',
+                'white_player.name AS white_name',
+                'white_player.country AS white_country',
+                'black_player.name AS black_name',
+                'black_player.country AS black_country',
+            )
+            //->where('white_player.country', '=', 'Sweden')
+            ->orderBy($order[0], $order[1])
+            ->paginate(2);
 
         return inertia('GameCollection', compact('games'));
     }
