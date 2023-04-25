@@ -370,7 +370,7 @@ section.is--pt {
 .card {
     background-color: #fff;
     border-radius: 1em;
-    border: 0.075em solid #ebebeb;
+    border: solid 0.06em rgba(0, 0, 0, 0.1);
     padding: 2em;
 
     .field__label {
@@ -1423,7 +1423,6 @@ ul.game__collection {
                         margin-top: 0.25em;
                     }
                 }
-
             }
 
             strong {
@@ -1456,6 +1455,48 @@ ul.game__collection {
                 right: 19.5%;
                 width: 61%;
             }
+        }
+    }
+}
+
+.pagination {
+    margin-top: 2em;
+    padding: 1em 1.5em 1em 1.5em;
+
+    .links {
+        display: flex;
+        align-items: center;
+
+        a, div {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 0.25em;
+            margin-right: 0.25em;
+            width: 2em;
+            height: 1.85em;
+            border-radius: 2em;
+            border: solid 0.06em rgba(0, 0, 0, 0.1);
+            line-height: 1;
+            padding-top: 0.15em;
+        }
+
+        a:hover {
+            border-color: #000;
+        }
+
+        *:last-child, *:first-child {
+            width: auto;
+            height: auto;
+            border-radius: 0;
+            border: none;
+        }
+
+        .active {
+            background-color: #000;
+            color: #fff;
+            border-color: #000;
         }
     }
 }
