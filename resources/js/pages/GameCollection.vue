@@ -59,11 +59,17 @@
                 <span>Showing {{ this.$page.props.games.from }} - {{ this.$page.props.games.to }} of {{ this.$page.props.games.total }} results </span>
                 <div class="links">
 
-                    <template  v-for="link in this.$page.props.games.links">
-                        <Link v-if="link.url" :href="link.url" :only="['games']" :class="[link.active ? 'active' : '' ]" preserve-scroll preserve-state>
-                            {{ link.label }}
-                        </Link>
-                        <div v-else> {{ link.label }} </div>
+                    <template  v-for="(link, index) in this.$page.props.games.links">
+
+                        <div v-if="index > 0 && index < this.$page.props.games.links.length - 1"
+                             @click="this.$data.query.page = index" 
+                             :class="[link.active ? 'page-link active' : 'page-link' ]"
+                             v-text="link.label"
+                             ></div>
+
+                        <div v-else v-text="link.label"  
+                            @click="pageChange(index)">
+                        </div>
                     </template>
                 </div>
             </aside>
@@ -96,16 +102,32 @@ export default {
         return {
 
             query: {
-                sort: 'date-desc',
                 search: null,
-                players: [],
-                openings: [],
-                countries: [],
-                result: [],
+                players: null,
+                openings: null,
+                countries: null,
+                result: null,
                 championshipGame: null,
                 dateFrom: null,
                 dateTo: null,
+                sort: 'date-desc',
+                page: this.$page.props.games.current_page,
             },
+        }
+    },
+
+    methods: {
+        pageChange(index) {
+
+            if(!index) console.log(this.$data.query.page != 1);
+
+            if(index && this.$data.query.page != this.$page.props.games.last_page){
+                this.$data.query.page++
+            } else if(!index &&  this.$data.query.page != 1 ) {
+                this.$data.query.page--
+            }
+
+            return; 
         }
     },
 
@@ -117,7 +139,7 @@ export default {
                 let params = {};
 
                 for (var key in this.$data.query) {
-                    if (this.$data.query.hasOwnProperty(key) && this.$data.query[key] && this.$data.query[key].length) {
+                    if (this.$data.query.hasOwnProperty(key) && this.$data.query[key]) {
                         params[key] = this.$data.query[key];
                     }
                 }
