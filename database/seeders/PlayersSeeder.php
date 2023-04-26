@@ -65,8 +65,14 @@ class PlayersSeeder extends Seeder
             ],
 
             [
-                'name' => 'Galliamova, Alisa',
-                'country' => 'Russia',
+                'name' => 'Gaprindashvili, Nona',
+                'country' => 'Georgia',
+            ],
+
+
+            [
+                'name' => 'Sznapik, Aleksander',
+                'country' => 'Poland',
             ],
         )
         ->create();

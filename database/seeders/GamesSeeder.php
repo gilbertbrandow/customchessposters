@@ -84,6 +84,17 @@ class GamesSeeder extends Seeder
                 'opening_id' => 7,
             ],
 
+            [
+                'poster_id' => 7,
+                'name' => 'Queen Sacrifice by the trailblazer Nona Gaprindashvili',
+                'description' => 'With white threatening a seemingly unstoppable mate on a8, Nona (First ever female GM) pulls an ace out of her sleeve. Uncorking an aesthetically pleasing combination to take the initiative!',
+                'date' => '1976-09-06',
+                'white_player' => 12,
+                'black_player' => 13,
+                'world_championship_game' => 0,
+                'opening_id' => 8,
+            ],
+
         ];
 
         foreach ($games as $game) {

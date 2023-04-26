@@ -16,7 +16,7 @@ class OpeningsSeeder extends Seeder
     public function run()
     {
 
-        Opening::factory()->count(7)
+        Opening::factory()->count(8)
         ->sequence(
             [
                 'eco' => 'C80',
@@ -54,6 +54,14 @@ class OpeningsSeeder extends Seeder
                 'eco' => 'D44',
                 'name' => "Semi-Slav Defense: Botvinnik Variation",
             ],
+
+
+            [
+                'eco' => 'B01',
+                'name' => "Scandinavian Defense: Modern. Gipslis Variation",
+            ],
+
+
         )
         ->create();
     }

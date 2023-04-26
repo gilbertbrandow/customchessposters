@@ -15,7 +15,7 @@ class PostersSeeder extends Seeder
     public function run()
     {
 
-        Poster::factory()->count(6)
+        Poster::factory()->count(7)
             ->sequence(
                 [
                     'theme' => 1,
@@ -131,6 +131,26 @@ class PostersSeeder extends Seeder
                     'when' => 'Candidates (Women), 1994.09.29 Round 17',
                     'where' => 'Tilburg, Netherlands',
                 ],
+
+                [
+                    'theme' => 1,
+                    'orientation' => 1,
+                    'starting_position' => 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                    'pgn' => '1. e4 d5 2. exd5 Nf6 3. d4 Nxd5 4. Nf3 Bg4 5. Be2 Nc6 6. O-O e6 7. c4 Nb6 8. Be3 Bxf3 9. Bxf3 Nxc4 10. Qb3 Nb6 11. d5 exd5 12. Bxb6 axb6 13. Bxd5 Qf6 14. Nc3 Be7 15. Ne4 Qg6 16. f4 O-O-O 17. f5 Qg4 18. Bxc6 bxc6 19. Qa4 Kb8 20. Qxc6 Bd6 21. Rac1 Be5 22. Rf3 Rhe8 23. Nf2 Qh5 24. Rh3 Qg5 25. Ra3 Qxc1+ 26. Qxc1 Bxb2 27. Ra8+ Kxa8 28. Qc6+ Kb8 29. Ne4 Bd4+ 30. Kh1 Re5 31. g4 Rde8 32. Ng3 Bc5 33. a4 Bd6 34. Qd7 R8e7 35. Qc6 Rc5 36. Qf3 Rc4 37. Kg2 Rxa4 38. Nh5 Ra2+ 39. Kf1 Bb4',
+                    'diagram_position' => 50,
+                    'move_comment' => 'The end of the beginning',
+                    'fen' => '1k1rr3/2p2ppp/1pQ5/4bP2/8/R7/PP3NPP/2q3K1 w - - 0 26',
+                    'result' => '0-1',
+                    'title' => 'Queen Sacrifice',
+                    'white_player' => 'Aleksander Sznapik',
+                    'black_player' => 'Nona Gaprindashvili',
+                    'white_rating' => '',
+                    'black_rating' => '',
+                    'white_title' => 'IM',
+                    'black_title' => 'GM',
+                    'when' => 'Sandomierz Vitrobud op, 1976.09.06 Round 8',
+                    'where' => 'Sandomierz, Poland',
+                    ],
 
             )
             ->create();
