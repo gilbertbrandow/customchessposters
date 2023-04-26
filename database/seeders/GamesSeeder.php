@@ -95,6 +95,17 @@ class GamesSeeder extends Seeder
                 'opening_id' => 8,
             ],
 
+            [
+                'poster_id' => 8,
+                'name' => 'A Short King Walk - Creativity Unleashed',
+                'description' => 'In one of the most renowned finishes of any chess game, Nigel Short goes against every chess principle and breaks all the rules. He brings his king to the enemy territory to deliver mate!',
+                'date' => '1991-10-21',
+                'white_player' => 14,
+                'black_player' => 15,
+                'world_championship_game' => 0,
+                'opening_id' => 9,
+            ],
+
         ];
 
         foreach ($games as $game) {
