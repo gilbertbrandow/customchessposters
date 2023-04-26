@@ -859,6 +859,8 @@ export default {
         resetChanges() {
             if(this.$data.originalPoster) {
                 this.$data.poster = JSON.parse(this.$data.originalPoster); 
+                this.updateStartingFen();
+                this.$data.chessGame.loadPgn(this.$data.poster.pgn);
             }
         },
 
@@ -867,6 +869,9 @@ export default {
     watch: {
         poster: {
             handler(newValue, oldValue) {
+
+                if(!this.$page.props.editPoster) return;
+
                 if (JSON.stringify(this.$data.poster) != this.$data.originalPoster) {
                     this.$data.controls.update = true;
                 } else {
