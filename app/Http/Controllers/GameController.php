@@ -16,6 +16,17 @@ class GameController extends Controller
         
         $order = explode('-', $request->input('sort') ?? 'date-desc');
 
+
+        $params = []; 
+
+        if($request->input('wcc')) array_push($params, ['games.world_championship_game', '=', 1]);
+
+
+        $players = DB::table('players')
+            ->select('id','name', 'country')
+            ->get()
+            ->groupBy('country');
+
         $games = DB::table('games')
             ->join('posters', 'games.poster_id', '=', 'posters.id')
             ->join('openings', 'games.opening_id', '=', 'openings.id')
@@ -53,11 +64,11 @@ class GameController extends Controller
                 'black_player.name AS black_name',
                 'black_player.country AS black_country',
             )
-            //->where('white_player.country', '=', 'Sweden')
             ->orderBy($order[0], $order[1])
+            ->where($params)
             ->paginate(2);
 
-        return inertia('GameCollection', compact('games'));
+        return inertia('GameCollection', compact('games', 'players'));
     }
 
     public function show()
