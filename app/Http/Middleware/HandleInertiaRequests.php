@@ -86,6 +86,7 @@ class HandleInertiaRequests extends Middleware
             
             'route' => [
                 'params' => $request->route()->parameters(),
+                'query' => $request->input(),
             ],
         ]);
     }
