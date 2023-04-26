@@ -12,13 +12,16 @@
                         <option value="recent-asc">Least recent</option>
                         <option value="date-desc">Date played, newest to oldest</option>
                         <option value="date-asc">Date played, oldest to newest</option>
-                        <Icon name="sort"></Icon>
                     </select>
+                </div>
 
-                    <div class="field__wrp">
-                        <label for="wccc" class="field__label">Show only World Championship Games</label>
-                        <input v-model="query.wcc" id="wcc" class="field" name="wcc" type="checkbox" />
-                    </div>
+                <div class="field__wrp">
+                    <label for="wcc" class="field__label">Filter by World Championship Games</label>
+                    <select v-model="query.wcc" id="wcc" class="field" name="wcc">
+                        <option :value="null">No preference</option>
+                        <option :value="1">Is a WCC game</option>
+                        <option :value="0">Is not a WCC game</option>
+                    </select>
                 </div>
             </div>
             <ul class="game__collection">
@@ -111,10 +114,10 @@ export default {
                 openings: null,
                 countries: null,
                 result: null,
-                wcc: this.$page.props.route.query.wcc,
+                wcc: this.$page.props.route.query.wcc || null,
                 dateFrom: null,
                 dateTo: null,
-                sort: this.$page.props.route.query.sort || 'date-desc',
+                sort: typeof this.$page.props.route.query.sort === 'string' ? this.$page.props.route.query.sort : 'date-desc',
                 page: this.$page.props.games.current_page,
             },
         }
@@ -145,7 +148,8 @@ export default {
                 let params = {};
 
                 for (var key in this.$data.query) {
-                    if (this.$data.query.hasOwnProperty(key) && this.$data.query[key]) {
+
+                    if (this.$data.query.hasOwnProperty(key) && this.$data.query[key] !== null) {
                         params[key] = this.$data.query[key];
                     }
                 }
