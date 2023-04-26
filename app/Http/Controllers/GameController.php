@@ -19,8 +19,9 @@ class GameController extends Controller
 
         $params = []; 
 
-        if($request->input('wcc')) array_push($params, ['games.world_championship_game', '=', 1]);
+        if($request->input('wcc') !== null) array_push($params, ['games.world_championship_game', '=', $request->input('wcc')]);
 
+        /* dd($request->input('wcc'), $params); */
 
         $players = DB::table('players')
             ->select('id','name', 'country')
