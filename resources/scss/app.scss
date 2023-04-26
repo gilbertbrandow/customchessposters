@@ -1333,6 +1333,15 @@ ul.saved__posters {
 /**********************
 ****** Game collection styles
 ***********************/
+.filter {
+    #sortBy {
+        background-image: url('../../public/images/icons/sort.svg');
+        background-size: 1em;
+        background-position: right 1em center;
+        background-repeat: no-repeat;
+    }
+}
+
 ul.game__collection {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1576,6 +1585,10 @@ select:-webkit-autofill:focus {
 select {
     -webkit-appearance: none;
     appearance: none;
+    background-image: url('../../public/images/icons/dropdown.svg');
+    background-size: 0.75em;
+    background-position: right 1em center;
+    background-repeat: no-repeat;
 }
 
 select.field {
