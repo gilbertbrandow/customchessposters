@@ -111,10 +111,10 @@ export default {
                 openings: null,
                 countries: null,
                 result: null,
-                wcc: false,
+                wcc: this.$page.props.route.query.wcc,
                 dateFrom: null,
                 dateTo: null,
-                sort: 'date-desc',
+                sort: this.$page.props.route.query.sort || 'date-desc',
                 page: this.$page.props.games.current_page,
             },
         }
@@ -165,6 +165,7 @@ export default {
 
     mounted() {
         console.log(this.$page.props.games);
+        console.log(this.$page.props.route.query);
     }
 }
 </script>
