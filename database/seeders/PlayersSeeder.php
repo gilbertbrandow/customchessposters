@@ -44,9 +44,10 @@ class PlayersSeeder extends Seeder
                 'country' => 'Russia',
             ],
 
+
             [
-                'name' => 'Byrne, Donald',
-                'country' => 'USA',
+                'name' => 'Tal, Mikhail',
+                'country' => 'USSR',
             ],
 
             [
@@ -55,8 +56,8 @@ class PlayersSeeder extends Seeder
             ],
 
             [
-                'name' => 'Tal, Mikhail',
-                'country' => 'USSR',
+                'name' => 'Byrne, Donald',
+                'country' => 'USA',
             ],
 
             [
