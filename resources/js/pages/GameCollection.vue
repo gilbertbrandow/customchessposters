@@ -15,6 +15,10 @@
                         <Icon name="sort"></Icon>
                     </select>
 
+                    <div class="field__wrp">
+                        <label for="wccc" class="field__label">Show only World Championship Games</label>
+                        <input v-model="query.wcc" id="wcc" class="field" name="wcc" type="checkbox" />
+                    </div>
                 </div>
             </div>
             <ul class="game__collection">
@@ -107,7 +111,7 @@ export default {
                 openings: null,
                 countries: null,
                 result: null,
-                championshipGame: null,
+                wcc: false,
                 dateFrom: null,
                 dateTo: null,
                 sort: 'date-desc',
@@ -134,7 +138,9 @@ export default {
     watch: {
 
         query: {
-            handler(newValue, oldValue) {
+            handler() {
+
+                if(this.$data.query.page == this.$page.props.games.current_page) this.$data.query.page = 1; 
 
                 let params = {};
 
@@ -144,7 +150,8 @@ export default {
                     }
                 }
 
-                router.reload({
+                router.visit('/game-collection', {
+                    method: 'get',
                     only: ['games'],
                     data: params,
                     preserveScroll: true,
