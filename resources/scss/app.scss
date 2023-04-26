@@ -1334,8 +1334,11 @@ ul.saved__posters {
 ****** Game collection styles
 ***********************/
 .filter {
+    display: flex;
+    column-gap: 1em;
+
     #sortBy {
-        background-image: url('../../public/images/icons/sort.svg');
+        background-image: url("../../public/images/icons/sort.svg");
         background-size: 1em;
         background-position: right 1em center;
         background-repeat: no-repeat;
@@ -1472,40 +1475,66 @@ ul.game__collection {
     margin-top: 2em;
     padding: 1em 1.5em 1em 1.5em;
 
-    .links {
+    .navigation {
         display: flex;
         align-items: center;
+        column-gap: 0.75em;
 
-        a, div {
-            text-decoration: none;
+        .arrow {
+            cursor: pointer;
+            transition: opacity 400ms ease;
             display: flex;
             align-items: center;
-            justify-content: center;
-            margin-left: 0.25em;
-            margin-right: 0.25em;
-            width: 2em;
-            height: 1.85em;
-            border-radius: 2em;
+
+            svg {
+                width: 1.25em;
+            }
+        }
+
+        .arrow:first-child {
+            svg {
+                transform: rotate(180deg);
+            }
+        }
+
+        .arrow.inactive {
+            opacity: 0.4;
+        }
+
+        .pages {
+            display: flex;
+            border-radius: 1em;
+            height: 2em;
             border: solid 0.06em rgba(0, 0, 0, 0.1);
-            line-height: 1;
-            padding-top: 0.15em;
-        }
+            column-gap: 0.25em;
 
-        a:hover {
-            border-color: #000;
-        }
+            div {
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 2em;
+                border-radius: 2em;
+                line-height: 1;
+                padding-top: 0.15em;
+                border: solid 0.06em transparent;
+                margin: -0.06em;
 
-        *:last-child, *:first-child {
-            width: auto;
-            height: auto;
-            border-radius: 0;
-            border: none;
-        }
+                transition: border-color 400ms ease;
+                transition: background-color 400ms ease;
+                transition: color 400ms ease;
+            }
 
-        .active {
-            background-color: #000;
-            color: #fff;
-            border-color: #000;
+            div:hover {
+                border-color: #000;
+            }
+
+            .active {
+                background-color: #000;
+                color: #fff;
+                border-color: #000;
+            }
+
         }
     }
 }
@@ -1585,7 +1614,7 @@ select:-webkit-autofill:focus {
 select {
     -webkit-appearance: none;
     appearance: none;
-    background-image: url('../../public/images/icons/dropdown.svg');
+    background-image: url("../../public/images/icons/dropdown.svg");
     background-size: 0.75em;
     background-position: right 1em center;
     background-repeat: no-repeat;
