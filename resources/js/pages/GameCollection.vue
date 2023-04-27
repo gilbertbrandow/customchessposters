@@ -79,6 +79,19 @@
                     </select>
                 </div>
 
+                <div class="field__wrp">
+                    <label for="titles" class="field__label">Filter by titles</label>
+                    <select v-model="query.titles" id="titles" :class="[query.titles !== null ? 'field active': 'field']" name="titles">
+                        <option value="null">No preference</option>
+                        <option value="GMs">Both players were Grandmasters</option>
+                        <option value="GM">At least one player was Grandmaster</option>
+                        <option value="masters">Both players were masters</option>
+                        <option value="master">At least one player was master</option>
+                        <option value="none">None of the players were masters</option>
+                        <option value="not">At least one player was not master</option>
+                    </select>
+                </div>
+
                 </div>
                 <div v-if="this.queryDesc" class="is--margin-top is--margin-left">
                   {{ this.queryDesc }}
@@ -95,12 +108,12 @@
 
                         <div class="player">
                                 <div class="flag" @mouseover="removeClass($event)"><Flags :country="game.white_country"/><div :class="[this.query.search && game.white_country.toLowerCase().includes(this.query.search.toLowerCase()) ? 'info show' : 'info']"><div></div><span>{{game.white_country }}</span></div></div>
-                                <div class="name">{{ game.white_name }} ({{ game.white_rating ? game.white_rating : 'NA' }})</div>
+                                <div class="name">{{ game.white_name }} ({{ game.white_rating ? game.white_rating : 'N/A' }})</div>
                         </div>
                         
                         <div class="player">
                             <div class="flag" @mouseover="removeClass($event)"><Flags :country="game.black_country"/><div :class="[this.query.search && game.black_country.toLowerCase().includes(this.query.search.toLowerCase()) ? 'info show' : 'info']"><div></div><span>{{game.black_country }}</span></div></div>
-                            <div class="name">{{ game.black_name }} ({{ game.black_rating ? game.black_rating : 'NA' }})</div>
+                            <div class="name">{{ game.black_name }} ({{ game.black_rating ? game.black_rating : 'N/A' }})</div>
                         </div>
 
                         <div class="banner">
@@ -184,6 +197,7 @@ export default {
                 country: this.$page.props.route.query.country || null,
                 result: this.$page.props.route.query.result || null,
                 wcc: this.$page.props.route.query.wcc || null,
+                titles: this.$page.props.route.query.titles || 'null',
                 dateFrom: null,
                 dateTo: null,
                 sort: typeof this.$page.props.route.query.sort === 'string' ? this.$page.props.route.query.sort : 'recent-desc',
@@ -242,6 +256,7 @@ export default {
                 country: null,
                 result: null,
                 wcc: null,
+                titles: null,
                 dateFrom: null,
                 dateTo: null,
                 sort: this.$data.query.sort,
@@ -287,6 +302,33 @@ export default {
                     if(element.id == this.$data.query.opening) params.push('started as "' + element.name + '"');
                 })
             } 
+            if(this.query.titles !== 'null') {
+                switch (this.query.titles) {
+                    case 'GMs':
+                        params.push('features two GMs');
+                        break;
+                    
+                    case 'GM':
+                        params.push('have at least one GM');
+                        break;
+                    
+                    case 'masters':
+                        params.push('features two masters');
+                        break;    
+                               
+                    case 'master':
+                        params.push('have at least one master');
+                        break;
+                    
+                    case 'not':
+                        params.push('have at least one player who was not master');
+                        break;
+                        
+                    case 'none':
+                        params.push('have no player who was master');
+                        break;
+                }
+            } 
 
             if( params.length) return 'Showing games that ' + params.join(', ').replace(/,([^,]*)$/, ' and' + '$1');
             else return false;
@@ -308,7 +350,7 @@ export default {
 
                 for (var key in this.$data.query) {
 
-                    if (this.$data.query.hasOwnProperty(key) && this.$data.query[key] !== null) {
+                    if (this.$data.query.hasOwnProperty(key) && this.$data.query[key] !== null && this.$data.query[key] !== 'null') {
                         params[key] = this.$data.query[key];
                     }
                 }
