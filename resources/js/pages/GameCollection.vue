@@ -73,6 +73,9 @@
                 </div>
 
                 </div>
+                <div v-if="this.$data.search.length" class="is--margin-top is--margin-left">
+                    Showing results <span v-if="this.$data.query.search.length"> for "{{ this.$data.search }}"</span>
+                </div>
             </div>
             <ul class="game__collection">
                 <li v-for="game in this.$page.props.games.data">
