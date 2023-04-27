@@ -1361,6 +1361,13 @@ ul.saved__posters {
         background-repeat: no-repeat;
     }
 
+    #search:not(:placeholder-shown) {
+        outline-style: solid;
+        outline-width: 2px;
+        outline-color: #000;
+        border-color: transparent;
+    }
+
     #sortBy {
         background-image: url("../../public/images/icons/sort.svg");
         background-size: 1em;
