@@ -97,7 +97,7 @@ class PostersSeeder extends Seeder
 
                 [
                     'theme' => 1,
-                    'orientation' => 1,
+                    'orientation' => 0,
                     'starting_position' => 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
                     'pgn' => '1. Nf3 Nf6 2. c4 g6 3. Nc3 Bg7 4. d4 O-O 5. Bf4 d5 6. Qb3 dxc4 7. Qxc4 c6 8. e4 Nbd7 9. Rd1 Nb6 10. Qc5 Bg4 11. Bg5 Na4 12. Qa3 Nxc3 13. bxc3 Nxe4 14. Bxe7 Qb6 15. Bc4 Nxc3 16. Bc5 Rfe8+ 17. Kf1 Be6 18. Bxb6 Bxc4+ 19. Kg1 Ne2+ 20. Kf1 Nxd4+ 21. Kg1 Ne2+ 22. Kf1 Nc3+ 23. Kg1 axb6 24. Qb4 Ra4 25. Qxb6 Nxd1 26. h3 Rxa2 27. Kh2 Nxf2 28. Re1 Rxe1 29. Qd8+ Bf8 30. Nxe1 Bd5 31. Nf3 Ne4 32. Qb8 b5 33. h4 h5 34. Ne5 Kg7 35. Kg1 Bc5+ 36. Kf1 Ng3+ 37. Ke1 Bb4+ 38. Kd1 Bb3+ 39. Kc1 Ne2+ 40. Kb1 Nc3+ 41. Kc1 Rc2#',
                     'diagram_position' => 34,
@@ -134,7 +134,7 @@ class PostersSeeder extends Seeder
 
                 [
                     'theme' => 1,
-                    'orientation' => 1,
+                    'orientation' => 0,
                     'starting_position' => 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
                     'pgn' => '1. e4 d5 2. exd5 Nf6 3. d4 Nxd5 4. Nf3 Bg4 5. Be2 Nc6 6. O-O e6 7. c4 Nb6 8. Be3 Bxf3 9. Bxf3 Nxc4 10. Qb3 Nb6 11. d5 exd5 12. Bxb6 axb6 13. Bxd5 Qf6 14. Nc3 Be7 15. Ne4 Qg6 16. f4 O-O-O 17. f5 Qg4 18. Bxc6 bxc6 19. Qa4 Kb8 20. Qxc6 Bd6 21. Rac1 Be5 22. Rf3 Rhe8 23. Nf2 Qh5 24. Rh3 Qg5 25. Ra3 Qxc1+ 26. Qxc1 Bxb2 27. Ra8+ Kxa8 28. Qc6+ Kb8 29. Ne4 Bd4+ 30. Kh1 Re5 31. g4 Rde8 32. Ng3 Bc5 33. a4 Bd6 34. Qd7 R8e7 35. Qc6 Rc5 36. Qf3 Rc4 37. Kg2 Rxa4 38. Nh5 Ra2+ 39. Kf1 Bb4',
                     'diagram_position' => 50,
@@ -179,7 +179,7 @@ class PostersSeeder extends Seeder
                     'move_comment' => 'The first of many attempts by Nakamura to give away his most precious piece',
                     'fen' => 'r1bq1bk1/1pP2r2/1p3n2/P3p2p/2N1Pp2/2N2Pp1/4B2P/R2Qn1BK w - - 0 25',
                     'result' => '0-1',
-                    'title' => "Why Won't You Bite?",
+                    'title' => "I'm Afraid I Must Insist",
                     'white_player' => 'Boris Gelfand',
                     'black_player' => 'Hikaru Nakamura',
                     'white_rating' => 2761,
