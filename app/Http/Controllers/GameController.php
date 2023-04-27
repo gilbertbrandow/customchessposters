@@ -80,7 +80,12 @@ class GameController extends Controller
             ->when($request->wcc !== null, function ($query) use ($request) {
                 $query->where('games.world_championship_game', '=', $request->wcc);
             })
-            ->orderBy($order[0], $order[1])
+            ->when(str_contains($request->input('sort'), 'rating'),  function ($query) use ($request) {
+                $query->orderByRaw('(`posters`.`white_rating` + `posters`.`black_rating`) ' . explode('-', $request->input('sort'))[1]);
+            })
+            ->when(!str_contains($request->input('sort'), 'rating'),  function ($query) use ($order) {
+                $query->orderBy($order[0], $order[1]);
+            })
             ->paginate(2);
 
         return inertia('GameCollection', compact('games', 'players'));
