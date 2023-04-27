@@ -249,6 +249,12 @@ button {
     border-color: transparent;
 }
 
+.button.is--outline.is--active {
+    outline-style: solid;
+    outline-width: 2px;
+    outline-color: #000;
+    border-color: transparent;
+}
 
 .button.is--only-icon {
     width: 2.5em;
@@ -1409,7 +1415,7 @@ ul.saved__posters {
         }
 
         .field__wrp:last-child {
-            max-width: 17em;
+            width: calc(25% - 0.75em)
         }
 
     }
@@ -1504,22 +1510,30 @@ ul.game__collection {
                     }
 
                     .info {
+                        background-color: whitesmoke;
+                        border-color: rgba(0, 0, 0, 0.75);
+                        color: #000;
                         z-index: 2;
                         top: 1em;
                         margin-top: -0.25em;
+
+                        div {
+                            background-color: whitesmoke;
+                            border-color: rgba(0, 0, 0, 0.75);
+                        }
                     }
                 }
 
                 .flag:hover {
                     .info {
                         opacity: 1;
-                        margin-top: 0.25em;
+                        margin-top: 0em;
                     }
                 }
 
                 .info.show {
                     opacity: 1;
-                    margin-top: 0.25em;
+                    margin-top: 0em;
                 }
             }
 
@@ -1708,6 +1722,7 @@ select {
 select.field {
     padding-left: 1em;
     padding-top: 1em;
+    padding-right: 2.5em;
     height: 100%;
 }
 
