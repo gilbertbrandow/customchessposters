@@ -104,10 +104,38 @@ class GameController extends Controller
                         ->orWhere('games.black_player', '=', $request->player);
                 });
             })
-            ->when(str_contains($request->input('sort'), 'rating'),  function ($query) use ($request) {
+            ->when($request->titles, function ($query) use ($request) {
+                $query->when(str_contains($request->titles, 'GM'), function ($query) use ($request) {
+                    $query->where(function ($query) {
+                        $query->where('posters.white_title', '=', 'GM')
+                            ->orWhere('posters.black_title', '=', 'GM');
+                    });
+                })->when(str_contains($request->titles, 'masters'), function ($query) {
+                    $query->where(function ($query) {
+                        $query->whereNotNull('posters.white_title')
+                            ->whereNotNull('posters.black_title');
+                    });
+                })->when(str_contains($request->titles, 'master'), function ($query) {
+                    $query->where(function ($query) {
+                        $query->whereNotNull('posters.white_title')
+                            ->orWhereNotNull('posters.black_title');
+                    });
+                })->when(str_contains($request->titles, 'non'), function ($query) {
+                    $query->where(function ($query) {
+                        $query->whereNull('posters.white_title')
+                            ->whereNotNull('posters.black_title');
+                    });
+                })->when(str_contains($request->titles, 'not'), function ($query) {
+                    $query->where(function ($query) {
+                        $query->whereNull('posters.white_title')
+                            ->orWhereNull('posters.black_title');
+                    });
+                });
+            })
+            ->when(str_contains($request->sort, 'rating'),  function ($query) use ($request) {
                 $query->orderByRaw('(`posters`.`white_rating` + `posters`.`black_rating`) ' . explode('-', $request->input('sort'))[1]);
             })
-            ->when(!str_contains($request->input('sort'), 'rating'),  function ($query) use ($order) {
+            ->when(!str_contains($request->sort, 'rating'),  function ($query) use ($order) {
                 $query->orderBy($order[0], $order[1]);
             })
             ->paginate(2);
