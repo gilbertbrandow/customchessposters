@@ -234,6 +234,18 @@ button {
     }
 }
 
+.button.is--outline {
+    background-color: transparent;
+}
+
+.button.is--outline:hover {
+    outline-style: solid;
+    outline-width: 2px;
+    outline-color: #000;
+    border-color: transparent;
+}
+
+
 .button.is--only-icon {
     width: 2.5em;
     height: 2.5em;
@@ -1356,7 +1368,7 @@ ul.saved__posters {
 
     #search {
         background-image: url("../../public/images/icons/search.svg");
-        background-size: 1em;
+        background-size: 1.25em;
         background-position: right 1em center;
         background-repeat: no-repeat;
     }
@@ -1366,6 +1378,11 @@ ul.saved__posters {
         outline-width: 2px;
         outline-color: #000;
         border-color: transparent;
+    }
+
+    .button {
+        border-radius: 0.5em;
+        column-gap: 1em;
     }
 
     #sortBy {
@@ -1378,9 +1395,16 @@ ul.saved__posters {
         align-items: flex-end;
         justify-content: space-between;
 
-        .field__wrp {
+        .button-wrp {
             width: calc(50% - 0.5em);
+            display: flex;
+            column-gap: 0.5em;
         }
+
+        .field__wrp:last-child {
+            max-width: 17em;
+        }
+
     }
 
     .advanced {

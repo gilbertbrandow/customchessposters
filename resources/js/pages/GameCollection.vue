@@ -5,20 +5,31 @@
             <p>Here is our collection of amazing games.</p>
             <div class="filter">
                 <div class="simple">
-                <div class="field__wrp" style="grid-template-columns: span 3;">
-                    <label for="search" class="field__label">Search</label>
-                    <input 
-                    v-model="search" 
-                    class="field"
-                    name="search"
-                    id="search"
-                    placeholder="Player, country opening..." />
-                </div>
+                <div class="button-wrp">
+                    <div class="field__wrp">
+                        <label for="search" class="field__label">Search</label>
+                        <input 
+                        v-model="search" 
+                        class="field"
+                        name="search"
+                        id="search"
+                        placeholder="Player, country, opening..." />
+                    </div>
 
-                <button @click="this.filterAdvanced = !this.filterAdvanced" class="button">
-                    Filter 
-                    <Icon name="filter"></Icon>
-                </button>
+                    <button @click="this.filterAdvanced = !this.filterAdvanced" class="button is--outline">
+                        Filter 
+                        <Icon name="filter"></Icon>
+                    </button>
+                </div>
+                <div class="field__wrp">
+                    <label for="sortBy" class="field__label">Sort by</label>
+                    <select v-model="query.sort" id="sortBy" class="field" name="sortBy">
+                        <option value="recent-desc">Most recent</option>
+                        <option value="recent-asc">Least recent</option>
+                        <option value="date-desc">Date played, newest to oldest</option>
+                        <option value="date-asc">Date played, oldest to newest</option>
+                    </select>
+                </div>
                 </div>
                 <div v-if="this.filterAdvanced" class="advanced">
 
@@ -28,16 +39,6 @@
                         <option selected :value="null">No preference</option>
                         <option :value="1">Is a WCC game</option>
                         <option :value="0">Is not a WCC game</option>
-                    </select>
-                </div>
-
-                <div class="field__wrp">
-                    <label for="sortBy" class="field__label">Sort by</label>
-                    <select v-model="query.sort" id="sortBy" class="field" name="sortBy">
-                        <option value="recent-desc">Most recent</option>
-                        <option value="recent-asc">Least recent</option>
-                        <option value="date-desc">Date played, newest to oldest</option>
-                        <option value="date-asc">Date played, oldest to newest</option>
                     </select>
                 </div>
 
