@@ -199,26 +199,19 @@ export default {
 
             const regex = new RegExp(this.query.search, 'gi');
 
-            let textElements = document.querySelectorAll('li p, li .name, li strong, li h2, li .banner span:last-child, li .flag .info span');
+            const textElements = document.querySelectorAll('li p, li .name, li strong, li h2, li .banner span:last-child, li .flag .info span');
 
             textElements.forEach((element) => {
 
                 let text = element.innerHTML;
                 text = text.replace(/(<mark class="highlight">|<\/mark>)/gim, '');
 
-                const newText = text.replace(regex, '<mark class="highlight">$&</mark>');
+                let newText = text.replace(regex, '<mark class="highlight">$&</mark>');
                 element.innerHTML = newText;
 
             });
 
             return; 
-
-            //Select all text that should be highlited and push into array
-
-            text = text.replace(/(<mark class="highlight">|<\/mark>)/gim, '');
-
-            const newText = text.replace(regex, '<mark class="highlight">$&</mark>');
-            document.querySelector('li p').innerHTML = newText;
         },
 
     },
@@ -227,7 +220,6 @@ export default {
 
         search: throttle(function (value) {
             this.$data.query.search = this.$data.search;
-
         }, 500),
 
         query: {
