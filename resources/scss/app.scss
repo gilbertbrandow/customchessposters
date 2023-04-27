@@ -1334,9 +1334,13 @@ ul.saved__posters {
 ****** Game collection styles
 ***********************/
 .filter {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    column-gap: 1em;
+
+    margin-top: 2em;
+    margin-bottom: 2em;
+
+    .field__wrp {
+        margin-top: 0em;
+    }
 
     input {
         padding-top: 1em;
@@ -1356,12 +1360,28 @@ ul.saved__posters {
         background-position: right 1em center;
         background-repeat: no-repeat;
     }
-    
+
     #sortBy {
         background-image: url("../../public/images/icons/sort.svg");
         background-size: 1em;
-        background-position: right 1em center;
-        background-repeat: no-repeat;
+    }
+
+    .simple {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+
+        .field__wrp {
+            width: calc(50% - 0.5em);
+        }
+    }
+
+    .advanced {
+        margin-top: 1.5em;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        column-gap: 1em;
+        row-gap: 1.5em;
     }
 }
 
@@ -1371,9 +1391,12 @@ ul.game__collection {
     column-gap: 1em;
     row-gap: 1em;
 
+    .highlight {
+        background-color: #EEF43B;
+    }
+
     li {
         display: flex;
-        overflow: hidden;
         border-radius: 1em;
         background-color: #fff;
 
@@ -1455,6 +1478,11 @@ ul.game__collection {
                         margin-top: 0.25em;
                     }
                 }
+
+                .info.show {
+                    opacity: 1;
+                    margin-top: 0.25em;
+                }
             }
 
             strong {
@@ -1492,7 +1520,7 @@ ul.game__collection {
 }
 
 .pagination {
-    margin-top: 1em;
+    margin-top: 2em;
     padding: 0 0.5em 0 0.5em;
 
     .navigation {
@@ -1635,7 +1663,7 @@ select {
     appearance: none;
     background-image: url("../../public/images/icons/dropdown.svg");
     background-size: 0.75em;
-    background-position: right 1em center;
+    background-position: right .75em top 55%;
     background-repeat: no-repeat;
 }
 
