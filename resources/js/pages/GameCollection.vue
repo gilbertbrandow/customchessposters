@@ -3,17 +3,24 @@
         <div class="container">
             <h1>Game Collection</h1>
             <p>Here is our collection of amazing games.</p>
-
             <div class="filter">
-                <div class="field__wrp">
+                <div class="simple">
+                <div class="field__wrp" style="grid-template-columns: span 3;">
                     <label for="search" class="field__label">Search</label>
                     <input 
                     v-model="search" 
                     class="field"
                     name="search"
                     id="search"
-                    placeholder="Search..." />
+                    placeholder="Player, country opening..." />
                 </div>
+
+                <button @click="this.filterAdvanced = !this.filterAdvanced" class="button">
+                    Filter 
+                    <Icon name="filter"></Icon>
+                </button>
+                </div>
+                <div v-if="this.filterAdvanced" class="advanced">
 
                 <div class="field__wrp">
                     <label for="wcc" class="field__label">Filter by World Championship Game</label>
@@ -61,6 +68,8 @@
                         <option :value="0">Is not a WCC game</option>
                     </select>
                 </div>
+
+                </div>
             </div>
             <ul class="game__collection">
                 <li v-for="game in this.$page.props.games.data">
@@ -68,18 +77,18 @@
                         <h2 v-text="game.name"></h2>
 
                         <div class="player">
-                                <div class="flag"><Flags :country="game.white_country"/><div class="info"><div></div>{{game.white_country }} </div></div>
-                                {{ game.white_name }}
+                                <div class="flag" @mouseover="removeClass($event)"><Flags :country="game.white_country"/><div :class="[this.query.search && game.white_country.toLowerCase().includes(this.query.search.toLowerCase()) ? 'info show' : 'info']"><div></div><span>{{game.white_country }}</span></div></div>
+                                <div class="name">{{ game.white_name }}</div>
                         </div>
                         
                         <div class="player">
-                            <div class="flag"><Flags :country="game.black_country"/><div class="info"><div></div>{{game.black_country }} </div></div>
-                            {{ game.black_name }}
+                            <div class="flag" @mouseover="removeClass($event)"><Flags :country="game.black_country"/><div :class="[this.query.search && game.black_country.toLowerCase().includes(this.query.search.toLowerCase()) ? 'info show' : 'info']"><div></div><span>{{game.black_country }}</span></div></div>
+                            <div class="name">{{ game.black_name }}</div>
                         </div>
 
                         <div class="banner">
                             <Icon v-if="game.world_championship_game" name="king" />
-                           <span v-text="(game.world_championship_game) ? 'World Championship' : 'Played'"></span>{{ game.date + ' in ' + game.where}}
+                           <span v-text="(game.world_championship_game) ? 'World Championship' : 'Played'"></span><span>{{ game.date + ' in ' + game.where}}</span>
                         </div>
 
                         <strong class="is--small">{{ game.opening_eco + ': ' + game.opening_name }}</strong>
@@ -147,6 +156,8 @@ export default {
     data() {
         return {
 
+            filterAdvanced: false, 
+
             search: this.$page.props.route.query.search || null,
 
             query: {
@@ -176,8 +187,38 @@ export default {
             return; 
         }, 
 
+        removeClass(event) {
+            event.target.closest('.player').querySelector('.info').classList.remove('show');
+        },
+
         activate() {
             setTimeout(() => this.typing = false, 500);
+        },
+
+        highlightText() {
+
+            const regex = new RegExp(this.query.search, 'gi');
+
+            let textElements = document.querySelectorAll('li p, li .name, li strong, li h2, li .banner span:last-child, li .flag .info span');
+
+            textElements.forEach((element) => {
+
+                let text = element.innerHTML;
+                text = text.replace(/(<mark class="highlight">|<\/mark>)/gim, '');
+
+                const newText = text.replace(regex, '<mark class="highlight">$&</mark>');
+                element.innerHTML = newText;
+
+            });
+
+            return; 
+
+            //Select all text that should be highlited and push into array
+
+            text = text.replace(/(<mark class="highlight">|<\/mark>)/gim, '');
+
+            const newText = text.replace(regex, '<mark class="highlight">$&</mark>');
+            document.querySelector('li p').innerHTML = newText;
         },
 
     },
@@ -186,6 +227,7 @@ export default {
 
         search: throttle(function (value) {
             this.$data.query.search = this.$data.search;
+
         }, 500),
 
         query: {
@@ -208,6 +250,9 @@ export default {
                     data: params,
                     preserveScroll: true,
                     preserveState: true,
+                    onFinish: visit => {
+                        this.highlightText();
+                    },
                 })
             },
 
@@ -216,8 +261,7 @@ export default {
     }, 
 
     mounted() {
-        console.log(this.$page.props.games);
-        console.log(this.$page.props.route.query);
+        this.highlightText();
     }
 }
 </script>
