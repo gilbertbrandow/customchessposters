@@ -6,6 +6,24 @@
 
             <div class="filter">
                 <div class="field__wrp">
+                    <label for="search" class="field__label">Search</label>
+                    <input 
+                    v-model="search" 
+                    class="field"
+                    name="search"
+                    placeholder="Search..." />
+                </div>
+
+                <div class="field__wrp">
+                    <label for="wcc" class="field__label">Filter by World Championship Game</label>
+                    <select v-model="query.wcc" id="wcc" :class="[query.wcc !== null ? 'field active': 'field']" name="wcc">
+                        <option selected :value="null">No preference</option>
+                        <option :value="1">Is a WCC game</option>
+                        <option :value="0">Is not a WCC game</option>
+                    </select>
+                </div>
+
+                <div class="field__wrp">
                     <label for="sortBy" class="field__label">Sort by</label>
                     <select v-model="query.sort" id="sortBy" class="field" name="sortBy">
                         <option value="recent-desc">Most recent</option>
@@ -16,8 +34,27 @@
                 </div>
 
                 <div class="field__wrp">
-                    <label for="wcc" class="field__label">Filter by World Championship Games</label>
-                    <select v-model="query.wcc" id="wcc" class="field" name="wcc">
+                    <label for="result" class="field__label">Filter games by result</label>
+                    <select v-model="query.result" id="result" :class="[query.result !== null ? 'field active': 'field']" name="result">
+                        <option selected :value="null">No preference</option>
+                        <option value="1-0">White won</option>
+                        <option value="0-1">Black won</option>
+                        <option value="1/2-1/2">Draw</option>
+                    </select>
+                </div>
+
+                <div class="field__wrp">
+                    <label for="wcc" class="field__label">Filter by players</label>
+                    <select v-model="query.players" id="wcc" class="field" name="wcc">
+                        <option :value="null">No preference</option>
+                        <option :value="1">Is a WCC game</option>
+                        <option :value="0">Is not a WCC game</option>
+                    </select>
+                </div>
+
+                <div class="field__wrp">
+                    <label for="wcc" class="field__label">Filter by players country origin</label>
+                    <select v-model="query.countries" id="wcc" class="field" name="wcc">
                         <option :value="null">No preference</option>
                         <option :value="1">Is a WCC game</option>
                         <option :value="0">Is not a WCC game</option>
@@ -64,20 +101,20 @@
             </ul>
             <aside class="pagination is--flex is--space-between">
                 <span>Showing {{ this.$page.props.games.from }} - {{ this.$page.props.games.to }} of {{ this.$page.props.games.total }} results </span>
-                <div class="links">
+                <div class="navigation">
 
-                    <template  v-for="(link, index) in this.$page.props.games.links">
 
-                        <div v-if="index > 0 && index < this.$page.props.games.links.length - 1"
-                             @click="this.$data.query.page = index" 
-                             :class="[link.active ? 'page-link active' : 'page-link' ]"
-                             v-text="link.label"
-                             ></div>
-
-                        <div v-else v-text="link.label"  
-                            @click="pageChange(index)">
-                        </div>
-                    </template>
+                    <div class="arrow" :class="[this.$page.props.games.current_page == 1 ? 'inactive' : '']" @click="pageChange(false)"><Icon name="arrow-right"></Icon></div>
+                    <div class="pages">
+                        <template  v-for="(link, index) in this.$page.props.games.links">
+                            <div v-if="index > 0 && index < this.$page.props.games.links.length - 1"
+                                @click="this.$data.query.page = index" 
+                                :class="[link.active ? 'page-link active' : 'page-link' ]"
+                                v-text="link.label"
+                                ></div>
+                        </template>
+                    </div>
+                    <div class="arrow" :class="[this.$page.props.games.current_page ==  this.$page.props.games.last_page ? 'inactive' : '']" @click="pageChange(true)"><Icon name="arrow-right"></Icon></div>
                 </div>
             </aside>
         </div>
@@ -89,7 +126,8 @@ import AppLayout from "../Layouts/App.vue";
 import Poster from "./Components/Poster.vue"
 import Flags from "../Icons/Flags.vue"
 import { Link } from "@inertiajs/vue3";
-import { router } from '@inertiajs/vue3'
+import { router } from '@inertiajs/vue3';
+import { throttle } from 'lodash/throttle'
 
 export default {
 
@@ -108,37 +146,50 @@ export default {
     data() {
         return {
 
+            search: '',
+
             query: {
                 search: null,
                 players: null,
                 openings: null,
                 countries: null,
-                result: null,
+                result: this.$page.props.route.query.result || null,
                 wcc: this.$page.props.route.query.wcc || null,
                 dateFrom: null,
                 dateTo: null,
-                sort: typeof this.$page.props.route.query.sort === 'string' ? this.$page.props.route.query.sort : 'date-desc',
+                sort: typeof this.$page.props.route.query.sort === 'string' ? this.$page.props.route.query.sort : 'recent-desc',
                 page: this.$page.props.games.current_page,
             },
         }
     },
 
     methods: {
-        pageChange(index) {
+        pageChange(direction) {
 
-            if(!index) console.log(this.$data.query.page != 1);
-
-            if(index && this.$data.query.page != this.$page.props.games.last_page){
+            if(direction && this.$data.query.page != this.$page.props.games.last_page){
                 this.$data.query.page++
-            } else if(!index &&  this.$data.query.page != 1 ) {
+            } else if(!direction &&  this.$data.query.page != 1 ) {
                 this.$data.query.page--
             }
 
             return; 
-        }
+        }, 
+
+        activate() {
+            setTimeout(() => this.typing = false, 500);
+        },
+
     },
 
     watch: {
+
+        search () {
+            console.log(this.search); 
+
+            throttle(function () {
+                console.log("Snälla")
+            }, 500);
+        },
 
         query: {
             handler() {

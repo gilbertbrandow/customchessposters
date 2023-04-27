@@ -1334,8 +1334,21 @@ ul.saved__posters {
 ****** Game collection styles
 ***********************/
 .filter {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     column-gap: 1em;
+
+    input {
+        padding-top: 1em;
+    }
+
+   select:not(#sortBy) {
+        color: rgba(0, 0, 0, 0.333);
+    }
+
+    select:not(#sortBy).active {
+        color: #000;
+    }
 
     #sortBy {
         background-image: url("../../public/images/icons/sort.svg");
@@ -1348,8 +1361,8 @@ ul.saved__posters {
 ul.game__collection {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    column-gap: 2em;
-    row-gap: 2em;
+    column-gap: 1em;
+    row-gap: 1em;
 
     li {
         display: flex;
@@ -1472,8 +1485,8 @@ ul.game__collection {
 }
 
 .pagination {
-    margin-top: 2em;
-    padding: 1em 1.5em 1em 1.5em;
+    margin-top: 1em;
+    padding: 0 0.5em 0 0.5em;
 
     .navigation {
         display: flex;
@@ -1534,7 +1547,6 @@ ul.game__collection {
                 color: #fff;
                 border-color: #000;
             }
-
         }
     }
 }
@@ -1623,6 +1635,7 @@ select {
 select.field {
     padding-left: 1em;
     padding-top: 1em;
+    height: 100%;
 }
 
 select.field:focus {
