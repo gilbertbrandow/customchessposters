@@ -11,6 +11,7 @@
                     v-model="search" 
                     class="field"
                     name="search"
+                    id="search"
                     placeholder="Search..." />
                 </div>
 
