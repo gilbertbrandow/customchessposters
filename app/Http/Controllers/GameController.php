@@ -18,8 +18,14 @@ class GameController extends Controller
 
         $players = DB::table('players')
             ->select('id','name', 'country')
+            ->orderBy('country', 'asc')
             ->get()
             ->groupBy('country');
+
+        $openings = DB::table('openings')
+        ->select('id', 'eco', 'name')
+        ->orderBy('eco', 'asc')
+        ->get();
 
         $games = DB::table('games')
             ->join('posters', 'games.poster_id', '=', 'posters.id')
@@ -33,6 +39,9 @@ class GameController extends Controller
                 'games.world_championship_game',
                 'games.created_at',
                 'games.updated_at as recent',
+                'games.opening_id',
+                'games.white_player',
+                'games.white_player',
                 'posters.id',
                 'posters.theme',
                 'posters.orientation',
@@ -80,6 +89,21 @@ class GameController extends Controller
             ->when($request->wcc !== null, function ($query) use ($request) {
                 $query->where('games.world_championship_game', '=', $request->wcc);
             })
+            ->when($request->opening !== null, function ($query) use ($request) {
+                $query->where('games.opening_id', '=', $request->opening);
+            })
+            ->when($request->country, function ($query) use ($request) {
+                $query->where(function ($query) use ($request) {
+                    $query->where('white_player.country', '=', $request->country)
+                        ->orWhere('black_player.country', '=', $request->country);
+                });
+            })
+            ->when($request->player, function ($query) use ($request) {
+                $query->where(function ($query) use ($request) {
+                    $query->where('games.white_player', '=', $request->player)
+                        ->orWhere('games.black_player', '=', $request->player);
+                });
+            })
             ->when(str_contains($request->input('sort'), 'rating'),  function ($query) use ($request) {
                 $query->orderByRaw('(`posters`.`white_rating` + `posters`.`black_rating`) ' . explode('-', $request->input('sort'))[1]);
             })
@@ -88,7 +112,7 @@ class GameController extends Controller
             })
             ->paginate(2);
 
-        return inertia('GameCollection', compact('games', 'players'));
+        return inertia('GameCollection', compact('games', 'players', 'openings'));
     }
 
     public function show()
