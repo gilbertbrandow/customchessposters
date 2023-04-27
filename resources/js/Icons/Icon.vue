@@ -25,7 +25,8 @@
         </g>
     </svg>
 
-    <svg v-else-if="name === 'bookmark-small'"  xmlns="http://www.w3.org/2000/svg" width="433.466" height="561.998" viewBox="0 0 433.466 561.998">
+    <svg v-else-if="name === 'bookmark-small'" xmlns="http://www.w3.org/2000/svg" width="433.466" height="561.998"
+        viewBox="0 0 433.466 561.998">
         <path id="Path_1094" data-name="Path 1094"
             d="M400.579,0h-289.2A47.129,47.129,0,0,0,64.246,47.133v427.63c.075,33.733,41.277,49.561,64.7,25.882l110.235-110.2c8.834-9.216,24.76-9.216,33.594,0l110.235,110.2c23.434,23.688,64.631,7.836,64.7-25.882V47.133A47.129,47.129,0,0,0,400.579,0Z"
             transform="translate(-39.246 25)" fill="none" stroke="#000" stroke-width="50" />
@@ -242,13 +243,21 @@
     </svg>
 
 
-    <svg v-else-if="name=='sort'" id="line" height="512" viewBox="0 0 24 24" width="512" xmlns="http://www.w3.org/2000/svg">
+    <svg v-else-if="name == 'sort'" id="line" height="512" viewBox="0 0 24 24" width="512" xmlns="http://www.w3.org/2000/svg">
         <g fill="rgb(0,0,0)">
             <path
                 d="m10.293 16.293-2.293 2.2929v-15.5859a1 1 0 0 0 -2 0v15.5859l-2.293-2.2929a1 1 0 0 0 -1.414 1.414l4 4a1.0013 1.0013 0 0 0 1.4141 0l4-4a1 1 0 0 0 -1.4141-1.414z" />
             <path d="m11 6h10a1 1 0 0 0 0-2h-10a1 1 0 0 0 0 2z" />
             <path d="m21 8h-10a1 1 0 0 0 0 2h10a1 1 0 0 0 0-2z" />
             <path d="m18 12h-7a1 1 0 0 0 0 2h7a1 1 0 0 0 0-2z" />
+        </g>
+    </svg>
+
+
+    <svg v-else-if="name == 'filter'" height="512" viewBox="0 0 24 24" width="512" xmlns="http://www.w3.org/2000/svg">
+        <g id="Glyph">
+            <path
+                d="m17 5a3 3 0 1 1 3 3 3 3 0 0 1 -3-3zm-15 1h12a1 1 0 0 0 0-2h-12a1 1 0 0 0 0 2zm6 3a3 3 0 0 0 -2.82 2h-3.18a1 1 0 0 0 0 2h3.18a3 3 0 1 0 2.82-4zm14 2h-8a1 1 0 0 0 0 2h8a1 1 0 0 0 0-2zm-12 7h-8a1 1 0 0 0 0 2h8a1 1 0 0 0 0-2zm12 0h-3.18a3 3 0 1 0 0 2h3.18a1 1 0 0 0 0-2z" />
         </g>
     </svg>
 </template>
