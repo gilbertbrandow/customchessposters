@@ -43,7 +43,7 @@ class GamesSeeder extends Seeder
             [
                 'poster_id' => 3,
                 'name' => 'Ding Liren manages to win with his back against the wall',
-                'description' => 'The legend of Game six in the WCC has seen grueling long wins, brilliant novelties and splashes of creativity. This game checked all the boxes.',
+                'description' => 'The legendary of Game 6 in the WCC has seen grueling long wins, brilliant novelties and mind-blowing creativity. This game did live up to this rich history.',
                 'date' => '2023-04-16',
                 'white_player' => 5,
                 'black_player' => 6,

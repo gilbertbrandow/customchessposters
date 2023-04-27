@@ -183,6 +183,10 @@ section {
     margin-top: 1em;
 }
 
+.is--margin-left {
+    margin-left: 0.5em;
+}
+
 .is--flex {
     display: flex;
     align-items: center;
@@ -1684,7 +1688,7 @@ select:-webkit-autofill:focus {
     font-size: 1em;
     height: auto;
     width: 100%;
-    padding: 1.25em 1.25em 0.75em 1.25em;
+    padding: 1.25em 1.25em 0.75em 1.1em;
     border-style: solid;
     border-width: 0.06em;
     border-color: rgba(0, 0, 0, 0.14);
