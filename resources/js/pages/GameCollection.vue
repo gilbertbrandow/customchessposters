@@ -73,8 +73,12 @@
                 </div>
 
                 </div>
-                <div v-if="this.$data.search.length" class="is--margin-top is--margin-left">
-                    Showing results <span v-if="this.$data.query.search.length"> for "{{ this.$data.search }}"</span>
+                <div v-if="this.$data.search || this.$data.query.wcc" class="is--margin-top is--margin-left">
+                    Showing games that<span v-if="this.$data.query.search.length"> matches "{{ this.$data.search }}"</span> {{ this.$data.query.search.length && this.$data.query.wcc ? 'and' : '' }}<span v-if="this.$data.query.wcc"> were {{ !this.$data.query.wcc ? 'not ' : '' }}part of the WCC </span> 
+                    <button class="link-arrow is--low-op is--margin-left" @click="resetQuery()">
+                           Remove all filters
+                            <Icon name="filter-remove" />
+                    </button>
                 </div>
             </div>
             <ul class="game__collection">
@@ -219,6 +223,25 @@ export default {
 
             return; 
         },
+
+        resetQuery() {
+
+            this.search = '';
+
+            this.$data.query = {
+                search: null,
+                players: null,
+                openings: null,
+                countries: null,
+                result: null,
+                wcc: null,
+                dateFrom: null,
+                dateTo: null,
+                sort: 'recent-desc',
+                page: 1,
+            };
+
+        }
 
     },
 
