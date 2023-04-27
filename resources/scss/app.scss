@@ -1381,8 +1381,11 @@ ul.saved__posters {
     }
 
     .button {
+        font-size: 1.1em;
+        line-height: 0.8;
+        padding-top: 0.7em;
         border-radius: 0.5em;
-        column-gap: 1em;
+        column-gap: 0.75em;
     }
 
     #sortBy {
