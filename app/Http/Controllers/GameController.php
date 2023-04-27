@@ -14,14 +14,7 @@ class GameController extends Controller
     public function index(Request $request)
     {
         
-        $order = explode('-', $request->input('sort') ?? 'date-desc');
-
-
-        $params = []; 
-
-        if($request->input('wcc') !== null) array_push($params, ['games.world_championship_game', '=', $request->input('wcc')]);
-
-        /* dd($request->input('wcc'), $params); */
+        $order = explode('-', $request->input('sort') ?? 'recent-desc');
 
         $players = DB::table('players')
             ->select('id','name', 'country')
@@ -65,8 +58,29 @@ class GameController extends Controller
                 'black_player.name AS black_name',
                 'black_player.country AS black_country',
             )
+            ->when($request->search !== null, function ($query) use ($request) {
+                $query->where(function ($query) use ($request) {
+                    $query->where('games.name', 'LIKE', '%' . $request->search . '%')
+                        ->orWhere('games.description', 'LIKE', '%' . $request->search . '%')
+                        ->orWhere('games.date', 'LIKE', '%' . $request->search . '%')
+                        ->orWhere('posters.title', 'LIKE', '%' . $request->search . '%')
+                        ->orWhere('posters.when', 'LIKE', '%' . $request->search . '%')
+                        ->orWhere('posters.where', 'LIKE', '%' . $request->search . '%')
+                        ->orWhere('openings.name', 'LIKE', '%' . $request->search . '%')
+                        ->orWhere('openings.eco', 'LIKE', '%' . $request->search . '%')
+                        ->orWhere('white_player.name', 'LIKE', '%' . $request->search . '%')
+                        ->orWhere('black_player.name', 'LIKE', '%' . $request->search . '%') 
+                        ->orWhere('white_player.country', 'LIKE', '%' . $request->search . '%')
+                        ->orWhere('black_player.country', 'LIKE', '%' . $request->search . '%');
+                });
+            })
+            ->when($request->result !== null, function ($query) use ($request) {
+                $query->where('posters.result', '=', $request->result);
+            })
+            ->when($request->wcc !== null, function ($query) use ($request) {
+                $query->where('games.world_championship_game', '=', $request->wcc);
+            })
             ->orderBy($order[0], $order[1])
-            ->where($params)
             ->paginate(2);
 
         return inertia('GameCollection', compact('games', 'players'));
