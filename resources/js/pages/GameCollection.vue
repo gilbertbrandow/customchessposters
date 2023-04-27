@@ -2,7 +2,6 @@
     <section>
         <div class="container">
             <h1>Game Collection</h1>
-            <p>Here is our collection of amazing games.</p>
             <div class="filter">
                 <div class="simple">
                 <div class="button-wrp">
@@ -16,7 +15,7 @@
                         placeholder="Player, country, opening..." />
                     </div>
 
-                    <button @click="this.filterAdvanced = !this.filterAdvanced" class="button is--outline">
+                    <button @click="this.filterAdvanced = !this.filterAdvanced" class="button is--outline" :class="[filterAdvanced ? 'is--active': '']">
                         Filter 
                         <Icon name="filter"></Icon>
                     </button>
@@ -45,7 +44,7 @@
                 </div>
 
                 <div class="field__wrp">
-                    <label for="result" class="field__label">Filter games by result</label>
+                    <label for="result" class="field__label">Filter by result</label>
                     <select v-model="query.result" id="result" :class="[query.result !== null ? 'field active': 'field']" name="result">
                         <option selected :value="null">No preference</option>
                         <option value="1-0">White won</option>
@@ -55,28 +54,36 @@
                 </div>
 
                 <div class="field__wrp">
-                    <label for="wcc" class="field__label">Filter by players</label>
-                    <select v-model="query.players" id="wcc" class="field" name="wcc">
+                    <label for="player" class="field__label">Filter by player</label>
+                    <select v-model="query.player" id="player" :class="[query.player !== null ? 'field active': 'field']" name="player">
                         <option :value="null">No preference</option>
-                        <option :value="1">Is a WCC game</option>
-                        <option :value="0">Is not a WCC game</option>
+                        <template v-for="(country, key) in this.$page.props.players">
+                            <option v-for="player in country" :value="player.id">{{ player.name }}</option>
+                        </template>
                     </select>
                 </div>
 
                 <div class="field__wrp">
-                    <label for="wcc" class="field__label">Filter by players country origin</label>
-                    <select v-model="query.countries" id="wcc" class="field" name="wcc">
+                    <label for="country" class="field__label">Filter by player country</label>
+                    <select v-model="query.country" id="country" :class="[query.country !== null ? 'field active': 'field']" name="wcc">
                         <option :value="null">No preference</option>
-                        <option :value="1">Is a WCC game</option>
-                        <option :value="0">Is not a WCC game</option>
+                        <option v-for="(country, key) in this.$page.props.players" :value="key">{{ key }}</option>
+                    </select>
+                </div>
+
+                <div class="field__wrp">
+                    <label for="wcc" class="field__label">Filter by opening</label>
+                    <select v-model="query.opening" id="wcc" :class="[query.opening !== null ? 'field active': 'field']" name="wcc">
+                        <option :value="null">No preference</option>
+                        <option v-for="opening in this.$page.props.openings" :value="opening.id">{{ opening.eco + ': ' + opening.name }}</option>
                     </select>
                 </div>
 
                 </div>
-                <div v-if="this.$data.search || this.$data.query.wcc" class="is--margin-top is--margin-left">
-                    Showing games that<span v-if="this.$data.query.search.length"> matches "{{ this.$data.search }}"</span> {{ this.$data.query.search.length && this.$data.query.wcc ? 'and' : '' }}<span v-if="this.$data.query.wcc"> were {{ !this.$data.query.wcc ? 'not ' : '' }}part of the WCC </span> 
+                <div v-if="this.queryDesc" class="is--margin-top is--margin-left">
+                  {{ this.queryDesc }}
                     <button class="link-arrow is--low-op is--margin-left" @click="resetQuery()">
-                           Remove all filters
+                           Remove filters
                             <Icon name="filter-remove" />
                     </button>
                 </div>
@@ -172,9 +179,9 @@ export default {
 
             query: {
                 search: this.$page.props.route.query.search || null,
-                players: null,
-                openings: null,
-                countries: null,
+                player: this.$page.props.route.query.player || null,
+                opening: this.$page.props.route.query.opening || null,
+                country: this.$page.props.route.query.country || null,
                 result: this.$page.props.route.query.result || null,
                 wcc: this.$page.props.route.query.wcc || null,
                 dateFrom: null,
@@ -226,23 +233,64 @@ export default {
 
         resetQuery() {
 
-            this.search = '';
+            this.search = null;
 
             this.$data.query = {
                 search: null,
-                players: null,
-                openings: null,
-                countries: null,
+                player: null,
+                opening: null,
+                country: null,
                 result: null,
                 wcc: null,
                 dateFrom: null,
                 dateTo: null,
-                sort: 'recent-desc',
+                sort: this.$data.query.sort,
                 page: 1,
             };
 
         }
 
+    },
+
+    computed: {
+        queryDesc() {
+            let params = [];
+
+            if(this.$data.search) params.push('matches "' + this.$data.search + '"');
+            if(this.query.wcc !== null) params.push(this.query.wcc ? 'were part of the WCC' : 'were not part of the WCC');
+            if(this.query.country ) params.push('had at least one player who competed for ' + this.$data.query.country);
+            if(this.query.player) {
+
+                let obj = this.$page.props.players;
+                let id = this.$data.query.player
+
+                Object.keys(obj).forEach(function(key) {
+                    obj[key].forEach(player => {
+                        if(player.id == id) {
+                            let name = player.name.split(', ')
+                            params.push(name[1] + ' ' + name[0] + ' played');
+                        }
+                    })
+                });
+            } 
+            if(this.query.result !== null) {
+                if(this.query.result == '1-0') {
+                    params.push('White won');
+                } else if(this.query.result == '0-1') {
+                    params.push('Black won');
+                } else {
+                    params.push('was a draw');
+                }
+            }
+            if(this.query.opening !== null) {
+                this.$page.props.openings.forEach(element => {
+                    if(element.id == this.$data.query.opening) params.push('started as "' + element.name + '"');
+                })
+            } 
+
+            if( params.length) return 'Showing games that ' + params.join(', ').replace(/,([^,]*)$/, ' and' + '$1');
+            else return false;
+        },
     },
 
     watch: {
@@ -256,7 +304,7 @@ export default {
 
                 if(this.$data.query.page == this.$page.props.games.current_page) this.$data.query.page = 1; 
 
-                let params = {};
+                let params = {}; 
 
                 for (var key in this.$data.query) {
 
@@ -283,6 +331,7 @@ export default {
 
     mounted() {
         this.highlightText();
+        //console.log(this.$page.props.players)
     }
 }
 </script>
