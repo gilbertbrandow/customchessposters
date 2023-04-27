@@ -15,7 +15,7 @@ class PostersSeeder extends Seeder
     public function run()
     {
 
-        Poster::factory()->count(8)
+        Poster::factory()->count(9)
             ->sequence(
                 [
                     'theme' => 1,
@@ -168,6 +168,26 @@ class PostersSeeder extends Seeder
                     'black_title' => 'GM',
                     'when' => 'Interpolis 15th, 1991.10.21 Round 4',
                     'where' => 'Tilburg, Netherlands',
+                ],
+
+                [
+                    'theme' => 1,
+                    'orientation' => 0,
+                    'starting_position' => 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                    'pgn' => '1. d4 Nf6 2. c4 g6 3. Nc3 Bg7 4. e4 d6 5. Nf3 O-O 6. Be2 e5 7. O-O Nc6 8. d5 Ne7 9. Nd2 Ne8 10. b4 f5 11. c5 Nf6 12. f3 f4 13. Nc4 g5 14. a4 Ng6 15. Ba3 Rf7 16. b5 dxc5 17. Bxc5 h5 18. a5 g4 19. b6 g3 20. Kh1 Bf8 21. d6 axb6 22. Bg1 Nh4 23. Re1 Nxg2 24. dxc7 Nxe1 25. Qxe1 g2+ 26. Kxg2 Rg7+ 27. Kh1 Bh3 28. Bf1 Qd3 29. Nxe5 Bxf1 30. Qxf1 Qxc3 31. Rc1 Qxe5 32. c8=Q Rxc8 33. Rxc8 Qe6',
+                    'diagram_position' => 48,
+                    'move_comment' => 'The first of many attempts by Nakamura to give away his most precious piece',
+                    'fen' => 'r1bq1bk1/1pP2r2/1p3n2/P3p2p/2N1Pp2/2N2Pp1/4B2P/R2Qn1BK w - - 0 25',
+                    'result' => '0-1',
+                    'title' => "Why Won't You Bite?",
+                    'white_player' => 'Boris Gelfand',
+                    'black_player' => 'Hikaru Nakamura',
+                    'white_rating' => 2761,
+                    'black_rating' => 2708,
+                    'white_title' => 'GM',
+                    'black_title' => 'GM',
+                    'when' => 'World Team Championship, 2010.01.09 Round 5',
+                    'where' => 'Bursa, Turkey',
                 ],
 
             )

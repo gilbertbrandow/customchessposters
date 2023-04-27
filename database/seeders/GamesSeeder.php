@@ -106,6 +106,17 @@ class GamesSeeder extends Seeder
                 'opening_id' => 9,
             ],
 
+            [
+                'poster_id' => 9,
+                'name' => 'Nakamura insist on a Botez Gambit',
+                'description' => "In creative ways and on five different occasions, Hikaru offers Gelfand his Queen. Even though Boris never obliges, it did become what many believe to be Nakamura's Immortal Game.",
+                'date' => '2010-01-05',
+                'white_player' => 16,
+                'black_player' => 17,
+                'world_championship_game' => 0,
+                'opening_id' => 10,
+            ],
+
         ];
 
         foreach ($games as $game) {
