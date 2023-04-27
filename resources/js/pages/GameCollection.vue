@@ -11,6 +11,7 @@
                     v-model="search" 
                     class="field"
                     name="search"
+                    @change="myDebouncedFunc()"
                     placeholder="Search..." />
                 </div>
 
@@ -124,10 +125,9 @@
 <script>
 import AppLayout from "../Layouts/App.vue";
 import Poster from "./Components/Poster.vue"
-import Flags from "../Icons/Flags.vue"
+import Flags from "../Icons/Flags.vue";
 import { Link } from "@inertiajs/vue3";
 import { router } from '@inertiajs/vue3';
-import { throttle } from 'lodash/throttle'
 
 export default {
 
@@ -183,12 +183,9 @@ export default {
 
     watch: {
 
-        search () {
-            console.log(this.search); 
-
-            throttle(function () {
-                console.log("Snälla")
-            }, 500);
+        search() { 
+            //TODO: Use throttle or debounce to lower the amount of requests
+            this.$data.query.search = this.$data.search;
         },
 
         query: {
