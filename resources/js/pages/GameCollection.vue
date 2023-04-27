@@ -24,6 +24,8 @@
                 <div class="field__wrp">
                     <label for="sortBy" class="field__label">Sort by</label>
                     <select v-model="query.sort" id="sortBy" class="field" name="sortBy">
+                        <option value="rating-desc">Rating, highest to lowest</option>
+                        <option value="rating-asc">Rating, lowest to highest</option>
                         <option value="recent-desc">Most recent</option>
                         <option value="recent-asc">Least recent</option>
                         <option value="date-desc">Date played, newest to oldest</option>
@@ -79,12 +81,12 @@
 
                         <div class="player">
                                 <div class="flag" @mouseover="removeClass($event)"><Flags :country="game.white_country"/><div :class="[this.query.search && game.white_country.toLowerCase().includes(this.query.search.toLowerCase()) ? 'info show' : 'info']"><div></div><span>{{game.white_country }}</span></div></div>
-                                <div class="name">{{ game.white_name }}</div>
+                                <div class="name">{{ game.white_name }} ({{ game.white_rating ? game.white_rating : 'NA' }})</div>
                         </div>
                         
                         <div class="player">
                             <div class="flag" @mouseover="removeClass($event)"><Flags :country="game.black_country"/><div :class="[this.query.search && game.black_country.toLowerCase().includes(this.query.search.toLowerCase()) ? 'info show' : 'info']"><div></div><span>{{game.black_country }}</span></div></div>
-                            <div class="name">{{ game.black_name }}</div>
+                            <div class="name">{{ game.black_name }} ({{ game.black_rating ? game.black_rating : 'NA' }})</div>
                         </div>
 
                         <div class="banner">
