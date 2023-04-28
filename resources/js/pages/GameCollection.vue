@@ -34,6 +34,26 @@
                 </div>
                 <div v-if="this.filterAdvanced" class="advanced">
 
+                    <div class="field__wrp">
+                    <label for="after" class="field__label">Played after</label>
+                    <input 
+                    v-model="query.dateFrom" 
+                    class="field"
+                    name="after"
+                    id="after"
+                    type="date"/>
+                </div>
+
+                <div class="field__wrp">
+                    <label for="before" class="field__label">Played before</label>
+                    <input 
+                    v-model="query.dateTo" 
+                    class="field"
+                    name="before"
+                    id="before"
+                    type="date"/>
+                </div>
+
                 <div class="field__wrp">
                     <label for="wcc" class="field__label">Filter by World Championship Game</label>
                     <select v-model="query.wcc" id="wcc" :class="[query.wcc !== null ? 'field active': 'field']" name="wcc">
@@ -198,8 +218,8 @@ export default {
                 result: this.$page.props.route.query.result || null,
                 wcc: this.$page.props.route.query.wcc || null,
                 titles: this.$page.props.route.query.titles || 'null',
-                dateFrom: null,
-                dateTo: null,
+                dateFrom: this.$page.props.route.query.dateFrom || null,
+                dateTo: this.$page.props.route.query.dateTo || null,
                 sort: typeof this.$page.props.route.query.sort === 'string' ? this.$page.props.route.query.sort : 'recent-desc',
                 page: this.$page.props.games.current_page,
             },
@@ -272,6 +292,8 @@ export default {
             let params = [];
 
             if(this.$data.search) params.push('matches "' + this.$data.search + '"');
+            if(this.query.dateFrom ) params.push('was played after ' + this.$data.query.dateFrom);
+            if(this.query.dateTo ) params.push('was played before ' + this.$data.query.dateTo);
             if(this.query.wcc !== null) params.push(this.query.wcc ? 'were part of the WCC' : 'were not part of the WCC');
             if(this.query.country ) params.push('had at least one player who competed for ' + this.$data.query.country);
             if(this.query.player) {
@@ -309,7 +331,7 @@ export default {
                         break;
                     
                     case 'GM':
-                        params.push('have at least one GM');
+                        params.push('had at least one GM');
                         break;
                     
                     case 'masters':
@@ -317,15 +339,15 @@ export default {
                         break;    
                                
                     case 'master':
-                        params.push('have at least one master');
+                        params.push('had at least one master');
                         break;
                     
                     case 'not':
-                        params.push('have at least one player who was not master');
+                        params.push('had at least one player who was not master');
                         break;
                         
                     case 'none':
-                        params.push('have no player who was master');
+                        params.push('had no player who was master');
                         break;
                 }
             } 
