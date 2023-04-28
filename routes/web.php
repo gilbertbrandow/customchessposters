@@ -30,6 +30,9 @@ Route::get('/contact', [HomeController::class, 'contact'])
 Route::get('/game-collection', [GameController::class, 'index'])
     ->name('game.index');
 
+Route::get('/game/{id}', [GameController::class, 'single'])
+    ->name('game.show');
+
 Route::post('/newsletter', [NewsletterController::class, 'subscribe'])
     ->name('newsletter.register');
 
