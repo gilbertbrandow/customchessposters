@@ -23,6 +23,7 @@
                     <Flag :country="this.$page.props.game.white_player.country"></Flag>
                     {{ this.$page.props.game.white_player.name }}
                 </div>
+                     - 
                 <div>
                     <Flag :country="this.$page.props.game.black_player.country"></Flag>
                     {{ this.$page.props.game.black_player.name }}
