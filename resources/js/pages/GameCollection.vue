@@ -114,7 +114,7 @@
 
                 </div>
                 <div v-if="this.queryDesc" class="is--margin-top is--margin-left">
-                  {{ this.queryDesc }}
+                  {{this.$page.props.games.data.length ? 'Showing games that' : 'Found no results that'}} {{ this.queryDesc }}
                     <button class="link-arrow is--low-op is--margin-left" @click="resetQuery()">
                            Remove filters
                             <Icon name="filter-remove" />
@@ -159,7 +159,7 @@
                         :controls="{ 'small': true, 'save': true }"></Poster>
                 </li>
             </ul>
-            <aside class="pagination is--flex is--space-between">
+            <aside v-if="this.$page.props.games.data.length" class="pagination is--flex is--space-between">
                 <span>Showing {{ this.$page.props.games.from }} - {{ this.$page.props.games.to }} of {{ this.$page.props.games.total }} results </span>
                 <div class="navigation">
 
@@ -291,7 +291,7 @@ export default {
         queryDesc() {
             let params = [];
 
-            if(this.$data.search) params.push('matches "' + this.$data.search + '"');
+            if(this.$data.search) params.push('match "' + this.$data.search + '"');
             if(this.query.dateFrom ) params.push('was played after ' + this.$data.query.dateFrom);
             if(this.query.dateTo ) params.push('was played before ' + this.$data.query.dateTo);
             if(this.query.wcc !== null) params.push(this.query.wcc ? 'were part of the WCC' : 'were not part of the WCC');
@@ -352,7 +352,7 @@ export default {
                 }
             } 
 
-            if( params.length) return 'Showing games that ' + params.join(', ').replace(/,([^,]*)$/, ' and' + '$1');
+            if( params.length) return params.join(', ').replace(/,([^,]*)$/, ' and' + '$1');
             else return false;
         },
     },
