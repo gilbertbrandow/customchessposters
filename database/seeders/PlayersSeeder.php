@@ -111,14 +111,15 @@ class PlayersSeeder extends Seeder
                     'country' => 'USA',
                 ],
 
-                [
-                    'name' => 'Carlsen, Magnus',
-                    'country' => 'Norway',
-                ],
 
                 [
                     'name' => 'Aronian, Levon',
                     'country' => 'Armenia',
+                ],
+
+                [
+                    'name' => 'Carlsen, Magnus',
+                    'country' => 'Norway',
                 ],
             )
             ->create();
