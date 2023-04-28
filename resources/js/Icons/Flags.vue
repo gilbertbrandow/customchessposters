@@ -160,8 +160,9 @@
         <rect y="312.888" style="fill:#0052B4;" width="512" height="113.775" />
     </svg>
 
-    <svg v-else-if="country == 'Israel'" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-        y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+    <svg v-else-if="country == 'Israel'" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
+        style="enable-background:new 0 0 512 512;" xml:space="preserve">
         <rect y="85.331" style="fill:#F0F0F0;" width="512" height="341.337" />
         <g>
             <path style="fill:#2E52B2;" d="M320,219.045h-42.667L256,182.094l-21.333,36.95H192l21.335,36.951L192,292.944h42.667L256,329.895
@@ -172,6 +173,20 @@
             <rect y="106.657" style="fill:#2E52B2;" width="512" height="42.663" />
             <rect y="362.657" style="fill:#2E52B2;" width="512" height="42.663" />
         </g>
+    </svg>
+
+    <svg v-else-if="country == 'Cuba'" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+        y="0px" viewBox="0 0 511.999 511.999" style="enable-background:new 0 0 511.999 511.999;" xml:space="preserve">
+        <polygon style="fill:#FF9811;" points="0.001,44.522 0,44.522 0,467.477 0.001,467.477 0.001,256.001 " />
+        <rect x="0" y="85.337" style="fill:#F0F0F0;" width="511.999" height="341.325" />
+        <g>
+            <rect x="0" y="85.337" style="fill:#0052B4;" width="511.999" height="68.263" />
+            <rect x="0" y="221.874" style="fill:#0052B4;" width="511.999" height="68.263" />
+            <rect x="0" y="358.399" style="fill:#0052B4;" width="511.999" height="68.263" />
+        </g>
+        <polygon style="fill:#D80027;" points="256.001,256.005 0.001,426.668 0.001,85.332 " />
+        <polygon style="fill:#F0F0F0;" points="83.478,211.479 94.528,245.489 130.291,245.489 101.36,266.51 112.409,300.521 
+	83.478,279.501 54.547,300.521 65.598,266.51 36.667,245.489 72.428,245.489 " />
     </svg>
 </template>
 

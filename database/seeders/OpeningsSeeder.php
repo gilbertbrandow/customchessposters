@@ -16,7 +16,7 @@ class OpeningsSeeder extends Seeder
     public function run()
     {
 
-        Opening::factory()->count(10)
+        Opening::factory()->count(11)
         ->sequence(
             [
                 'eco' => 'C80',
@@ -70,6 +70,11 @@ class OpeningsSeeder extends Seeder
             [
                 'eco' => 'E97',
                 'name' => "King's Indian Defense: Orthodox Variation. Modern System",
+            ],
+
+            [
+                'eco' => 'C89',
+                'name' => "Spanish Game: Marshall Attack. Original Marshall Attack",
             ],
 
         )

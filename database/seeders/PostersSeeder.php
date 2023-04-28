@@ -15,7 +15,7 @@ class PostersSeeder extends Seeder
     public function run()
     {
 
-        Poster::factory()->count(9)
+        Poster::factory()->count(10)
             ->sequence(
                 [
                     'theme' => 1,
@@ -189,6 +189,25 @@ class PostersSeeder extends Seeder
                     'when' => 'World Team Championship, 2010.01.09 Round 5',
                     'where' => 'Bursa, Turkey',
                 ],
+
+                [
+                    'theme' => 1,
+                    'orientation' => 1,
+                    'starting_position' => 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                    'pgn' => '1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O Be7 6. Re1 b5 7. Bb3 O-O 8. c3 d5 9. exd5 Nxd5 10. Nxe5 Nxe5 11. Rxe5 Nf6 12. Re1 Bd6 13. h3 Ng4 14. Qf3 Qh4 15. d4 Nxf2 16. Re2 Bg4 17. hxg4 Bh2+ 18. Kf1 Bg3 19. Rxf2 Qh1+ 20. Ke2 Bxf2 21. Bd2 Bh4 22. Qh3 Rae8+ 23. Kd3 Qf1+ 24. Kc2 Bf2 25. Qf3 Qg1 26. Bd5 c5 27. dxc5 Bxc5 28. b4 Bd6 29. a4 a5 30. axb5 axb4 31. Ra6 bxc3 32. Nxc3 Bb4 33. b6 Bxc3 34. Bxc3 h6 35. b7 Re3 36. Bxf7+',
+                    'diagram_position' => 15,
+                    'move_comment' => 'Then it was a novelty, now it is the Marshall Attack',
+                    'fen' => 'r1bq1rk1/2ppbppp/p1n2n2/1p2p3/4P3/1BP2N2/PP1P1PPP/RNBQR1K1 b - - 0 8',
+                    'result' => '1-0',
+                    'title' => 'A Deadly Weapon Saved for eight years',
+                    'white_player' => 'Jose Raul Capablanca',
+                    'black_player' => 'Frank James Marshall',
+                    'white_title' => 'GM',
+                    'black_title' => 'GM',
+                    'when' => '1918.10.23, Round 1',
+                    'where' => 'New York, NY USA',
+                ],
+                    
 
             )
             ->create();

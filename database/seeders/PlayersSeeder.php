@@ -15,7 +15,7 @@ class PlayersSeeder extends Seeder
     public function run()
     {
 
-        Player::factory()->count(17)
+        Player::factory()->count(19)
             ->sequence(
                 [
                     'name' => 'Fischer, Robert James',
@@ -98,6 +98,16 @@ class PlayersSeeder extends Seeder
 
                 [
                     'name' => 'Nakamura, Hikaru',
+                    'country' => 'USA',
+                ],
+
+                [
+                    'name' => 'Capablanca, Jose R',
+                    'country' => 'Cuba',
+                ],
+
+                [
+                    'name' => 'Marhsall, Frank J',
                     'country' => 'USA',
                 ],
             )

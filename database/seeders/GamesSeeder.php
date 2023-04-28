@@ -117,6 +117,17 @@ class GamesSeeder extends Seeder
                 'opening_id' => 10,
             ],
 
+            [
+                'poster_id' => 10,
+                'name' => 'Uncorking preparation kept for years against a worthy opponent',
+                'description' => 'Famously, James Frank Marshall had quietly been studying a new variation in the Ruy Lopez, waiting for the ripe opportunity to spring his trap. A line now widely known and played at the highest level, known simply as the "Marshall Attack".',
+                'date' => '1918-10-23',
+                'white_player' => 18,
+                'black_player' => 19,
+                'world_championship_game' => 0,
+                'opening_id' => 11,
+            ],
+
         ];
 
         foreach ($games as $game) {
