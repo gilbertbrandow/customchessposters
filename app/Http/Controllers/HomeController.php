@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Faq;
+use App\Models\Game;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,7 +14,10 @@ class HomeController extends Controller
     public function home()
     {
         $faqs = Faq::All();
-        return inertia('Home', compact('faqs')); 
+    
+        $game = Game::where('id', '=', random_int(1, Game::count()))->with(['poster', 'whitePlayer', 'blackPlayer'])->first();
+
+        return inertia('Home', compact('faqs', 'game')); 
     }
 
     public function contact ()
