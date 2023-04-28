@@ -128,6 +128,17 @@ class GamesSeeder extends Seeder
                 'opening_id' => 11,
             ],
 
+            [
+                'poster_id' => 11,
+                'name' => 'Levon Aronian manages to take down King Magnus',
+                'description' => 'Carlse, a comfortable contender in any Chess GOAT debate and the reigning World Champion is close to an impossible challenge, even for the talented Aronian. Nevertheless, Levon proved even Kings can be toppled.',
+                'date' => '2014-02-04',
+                'white_player' => 20,
+                'black_player' => 21,
+                'world_championship_game' => 0,
+                'opening_id' => 12,
+            ],
+
         ];
 
         foreach ($games as $game) {

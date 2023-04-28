@@ -175,8 +175,9 @@
         </g>
     </svg>
 
-    <svg v-else-if="country == 'Cuba'" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-        y="0px" viewBox="0 0 511.999 511.999" style="enable-background:new 0 0 511.999 511.999;" xml:space="preserve">
+    <svg v-else-if="country == 'Cuba'" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 511.999 511.999"
+        style="enable-background:new 0 0 511.999 511.999;" xml:space="preserve">
         <polygon style="fill:#FF9811;" points="0.001,44.522 0,44.522 0,467.477 0.001,467.477 0.001,256.001 " />
         <rect x="0" y="85.337" style="fill:#F0F0F0;" width="511.999" height="341.325" />
         <g>
@@ -187,6 +188,24 @@
         <polygon style="fill:#D80027;" points="256.001,256.005 0.001,426.668 0.001,85.332 " />
         <polygon style="fill:#F0F0F0;" points="83.478,211.479 94.528,245.489 130.291,245.489 101.36,266.51 112.409,300.521 
 	83.478,279.501 54.547,300.521 65.598,266.51 36.667,245.489 72.428,245.489 " />
+    </svg>
+
+    <svg v-else-if="country == 'Norway'" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
+        style="enable-background:new 0 0 512 512;" xml:space="preserve">
+        <rect y="85.334" style="fill:#D80027;" width="512" height="341.337" />
+        <polygon style="fill:#F0F0F0;" points="512,295.883 202.195,295.883 202.195,426.666 183.652,426.666 140.978,426.666 
+	122.435,426.666 122.435,295.883 0,295.883 0,277.329 0,234.666 0,216.111 122.435,216.111 122.435,85.329 140.978,85.329 
+	183.652,85.329 202.195,85.329 202.195,216.111 512,216.111 512,234.666 512,277.329 " />
+        <polygon style="fill:#2E52B2;" points="512,234.666 512,277.329 183.652,277.329 183.652,426.666 140.978,426.666 140.978,277.329 
+	0,277.329 0,234.666 140.978,234.666 140.978,85.329 183.652,85.329 183.652,234.666 " />
+    </svg>
+
+    <svg v-else-if="country == 'Armenia'"  version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+        y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+        <rect y="85.337" style="fill:#0052B4;" width="512" height="341.326" />
+        <rect y="85.337" style="fill:#D80027;" width="512" height="113.775" />
+        <rect y="312.888" style="fill:#FF9811;" width="512" height="113.775" />
     </svg>
 </template>
 

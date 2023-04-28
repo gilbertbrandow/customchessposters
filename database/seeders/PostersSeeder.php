@@ -15,7 +15,7 @@ class PostersSeeder extends Seeder
     public function run()
     {
 
-        Poster::factory()->count(10)
+        Poster::factory()->count(11)
             ->sequence(
                 [
                     'theme' => 1,
@@ -66,7 +66,7 @@ class PostersSeeder extends Seeder
                     'move_comment' => 'Unassuming, but devastating',
                     'fen' => '5r1k/R3N1p1/5p1p/3P3P/8/p1P3Q1/5PPK/1bq5 b - - 0 41',
                     'result' => '1-0',
-                    'title' => 'Casting a Deep Mating Net',
+                    'title' => 'Weaving a Mating Net',
                     'white_player' => 'Liren, Ding',
                     'black_player' => 'Nepomniachtchi, Ian',
                     'white_rating' => 2788,
@@ -207,8 +207,27 @@ class PostersSeeder extends Seeder
                     'when' => '1918.10.23, Round 1',
                     'where' => 'New York, NY USA',
                 ],
-                    
 
+                [
+                    'theme' => 1,
+                    'orientation' => 1,
+                    'starting_position' => 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                    'pgn' => '1. Nf3 Nf6 2. c4 e6 3. g3 d5 4. Bg2 Be7 5. d4 O-O 6. Qc2 c5 7. O-O cxd4 8. Nxd4 e5 9. Nf5 d4 10. Nxe7+ Qxe7 11. Bg5 h6 12. Bxf6 Qxf6 13. Nd2 Bf5 14. Qb3 Nd7 15. Qa3 Qb6 16. Rfc1 Rfc8 17. b4 a5 18. c5 Qa6 19. Nc4 Be6 20. Nd6 axb4 21. Qxa6 bxa6 22. Nxc8 Rxc8 23. c6 Nb6 24. Rab1 a5 25. a3 b3 26. c7 Bc4 27. Bb7 Rxc7 28. Rxb3 Rxb7 29. Rxc4 Nxc4 30. Rxb7 Nxa3 31. Kg2 Nc4 32. g4 Nd6 33. Ra7 f6 34. Rxa5 Ne4 35. h4 h5 36. gxh5 Kh7 37. Ra8 Nd6 38. Kf3 Nf5 39. Kg4 Nh6+ 40. Kh3 Nf5 41. Rd8 Nh6 42. f4 exf4 43. Rxd4 Nf7 44. Rxf4 Kh6 45. Rf5 Nd6 46. Rd5 Nc4 47. Kg3 Ne3 48. Rc5 Nf1+ 49. Kf4 Nd2 50. e3 Nb3 51. Rc3 Na5 52. Rc8 Kh7 53. Kf5',
+                    'diagram_position' => 39,
+                    'move_comment' => 'An Octopus Knight',
+                    'fen' => 'r1r3k1/1p1n1pp1/q2Nb2p/p1P1p3/1P1p4/Q5P1/P3PPBP/R1R3K1 b - - 4 20',
+                    'result' => '1-0',
+                    'title' => 'Kingslayer',
+                    'white_player' => 'Aronian, Levon',
+                    'black_player' => 'Carlsen, Magnus',
+                    'white_rating' => 2826,
+                    'black_rating' => 2872,
+                    'white_title' => 'GM',
+                    'black_title' => 'GM',
+                    'when' => 'Zurich CC Rapid 2014, 2014.02.04 Round 2.3',
+                    'where' => 'Zurich, Switzerland',
+                 ],
+                    
             )
             ->create();
     }
