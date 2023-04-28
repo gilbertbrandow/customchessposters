@@ -296,6 +296,13 @@ button {
     }
 }
 
+.button.is--larger-icon {
+    svg {
+        width: 1.5em;
+        margin: -0.1em -0.5em 0 0.25em;
+    }
+}
+
 .confirm {
     white-space: nowrap;
     margin-top: 1.25em;
@@ -373,7 +380,8 @@ section.section__hero {
     align-items: center;
 
     .poster {
-        width: 50%;
+        flex: inherit;
+        width: 54%;
     }
 }
 
@@ -412,8 +420,8 @@ section.is--pt {
     grid-template-rows: auto;
 }
 
-.container.is--grid-4.is--no-pt {
-    padding-top: 0em;
+.container.is--grid-4.is--no-pb {
+    padding-bottom: 0em;
 }
 
 .container.is--flex {
@@ -950,6 +958,67 @@ h4 {
     flex: 1;
     width: auto;
     overflow: hidden;
+
+    .game__info {
+        position: absolute;
+        width: calc(100% - 4em);
+        padding: 2em;
+        bottom: 0em;
+        display: flex;
+        column-gap: 2em;
+        font-size: 0.8em;
+        align-items: center;
+
+        .players {
+            text-decoration: none;
+            column-gap: 0.5em;
+            display: flex;
+            background-color: #fff;
+            border: solid 0.065em #ebebeb;
+            border-radius: 1em;
+            padding: 0.5em 1em;
+
+            div {
+                display: flex;
+                column-gap: 0.25em;
+                align-items: center;
+                font-size: 1.2em;
+
+                svg {
+                    margin-top: -0.15em;
+                    height: 1.25em;
+                    width: 1.5em;
+                }
+            }
+        }
+
+        .players:hover {
+            outline-style: solid;
+            outline-width: 2px;
+            outline-color: #000;
+            border-color: transparent;
+        }
+
+        .progress-bar {
+            flex: 1;
+            height: 0.25em;
+            background-color: rgba(255, 255, 255, 0.308);
+            border-radius: 0.5em;
+            overflow: hidden;
+
+            div {
+                transition: width 100ms linear;
+                height: 100%;
+                background-color: #fff;
+            }
+        }
+
+        button {
+            padding: 0;
+            width: 2.1em;
+            height: 2.1em;
+        }
+    }
 }
 
 .poster__buttons-wrp {
@@ -1356,7 +1425,6 @@ ul.saved__posters {
 ****** Game collection styles
 ***********************/
 .filter {
-
     margin-top: 2em;
     margin-bottom: 2em;
 
@@ -1368,7 +1436,7 @@ ul.saved__posters {
         padding-top: 1em;
     }
 
-   select:not(#sortBy) {
+    select:not(#sortBy) {
         color: rgba(0, 0, 0, 0.333);
     }
 
@@ -1415,9 +1483,8 @@ ul.saved__posters {
         }
 
         .field__wrp:last-child {
-            width: calc(25% - 0.75em)
+            width: calc(25% - 0.75em);
         }
-
     }
 
     .advanced {
@@ -1569,6 +1636,44 @@ ul.game__collection {
             }
         }
     }
+
+    li.single {
+        grid-column: span 2;
+
+        .content {
+            padding: 2em 6em 2em 3em;
+        }
+
+        h1 {
+            font-size: 3em;
+        }
+
+        .player {
+            font-size: 1.6em;
+        }
+
+        .banner,
+        strong {
+            font-size: 1.2em;
+        }
+
+        strong {
+            flex: 1;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-end;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin-bottom: 4em;
+            flex: 0;
+        }
+
+        .button-wrp {
+            font-size: inherit;
+        }
+    }
 }
 
 .pagination {
@@ -1715,7 +1820,7 @@ select {
     appearance: none;
     background-image: url("../../public/images/icons/dropdown.svg");
     background-size: 0.75em;
-    background-position: right .75em top 55%;
+    background-position: right 0.75em top 55%;
     background-repeat: no-repeat;
 }
 
@@ -1910,6 +2015,10 @@ label {
     -webkit-align-items: flex-start;
     -ms-flex-align: start;
     align-items: flex-start;
+
+    h2 {
+        font-size: 2em;
+    }
 }
 
 /**********************
