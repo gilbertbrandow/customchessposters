@@ -1,10 +1,9 @@
 <template>
     <section>
-        <div class="container"><h2>Our Benefits</h2></div>
-        <div class="container is--grid-4 is--no-pt">
+        <div class="container is--grid-4 is--no-pb">
             <div v-for="feature in features" :key="feature.id" class="feature">
                 <div class="feature__icn"><Icon :name="feature.icon" /></div>
-                <h3 v-text="feature.title"></h3>
+                <h2 v-text="feature.title"></h2>
                 <p v-text="feature.text"></p>
             </div>
         </div>
