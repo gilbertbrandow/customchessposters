@@ -83,6 +83,12 @@ class GameController extends Controller
                         ->orWhere('black_player.country', 'LIKE', '%' . $request->search . '%');
                 });
             })
+            ->when($request->dateFrom !== null, function ($query) use ($request) {
+                $query->where('games.date', '>=', $request->dateFrom);
+            })
+            ->when($request->dateTo !== null, function ($query) use ($request) {
+                $query->where('games.date', '<=', $request->dateTo);
+            })
             ->when($request->result !== null, function ($query) use ($request) {
                 $query->where('posters.result', '=', $request->result);
             })
