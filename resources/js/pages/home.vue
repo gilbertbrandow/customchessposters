@@ -11,9 +11,13 @@
                 </Link>
             </div>
         </div>
-        <div class="poster">
-            <div class="poster__svg-wrp">
-                <Poster :poster="this.$page.props.game.poster" />
+        <div class="poster-wrp">
+            <div class="poster">
+                <div class="poster__svg-wrp">
+                    <Poster :poster="this.$page.props.game.poster" />
+                </div>
+
+                <img class="poster__environment" src="/images/environments/warm.jpg" />
             </div>
 
             <div class="game__info">
@@ -48,8 +52,6 @@
 
                 </div>
             </div>
-
-            <img class="poster__environment" src="/images/environments/warm.jpg" />
         </div>
     </section>
 

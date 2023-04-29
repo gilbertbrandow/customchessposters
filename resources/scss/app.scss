@@ -379,9 +379,13 @@ section.section__hero {
     padding-right: 1em;
     align-items: center;
 
-    .poster {
+    .poster-wrp {
+        position: relative;
         flex: inherit;
-        width: 54%;
+        max-width: 54%;
+        height: calc(100vh - 2em);  
+        overflow: hidden;
+        border-radius: 1em;
     }
 }
 
@@ -954,11 +958,7 @@ h4 {
 ****** Poster Styles
 ***********************/
 
-.poster {
-    flex: 1;
-    width: auto;
-    overflow: hidden;
-
+.poster-wrp {
     .game__info {
         position: absolute;
         width: calc(100% - 4em);
@@ -1031,10 +1031,15 @@ h4 {
                 height: 0.8em;
                 width: 0.8em;
                 margin-right: -0.2em;
-                margin-bottom: -0.1em;
             }
         }
     }
+}
+
+.poster {
+    flex: 1;
+    width: auto;
+    overflow: hidden;
 }
 
 .poster__buttons-wrp {
