@@ -382,10 +382,15 @@ section.section__hero {
     .poster-wrp {
         position: relative;
         flex: inherit;
-        max-width: 54%;
-        height: calc(100vh - 2em);  
+        width: 55%;
+        max-height: calc(100vh - 2em);
+        min-height: 50em;
         overflow: hidden;
         border-radius: 1em;
+
+        .poster {
+            position: absolute;
+        }
     }
 }
 
