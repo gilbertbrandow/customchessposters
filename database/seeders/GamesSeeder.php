@@ -139,6 +139,17 @@ class GamesSeeder extends Seeder
                 'opening_id' => 12,
             ],
 
+            [
+                'poster_id' => 12,
+                'name' => 'Koneru, World no. 2, Shows The Power of The Sniping Bishops',
+                'description' => 'In her game to reach the incredible milestone of 2600 FIDE rating, Humpy faced of against a formidable opponent. By making use of the longest diagonals on the board, she secured the impressive W.',
+                'date' => '2007-08-12',
+                'white_player' => 22,
+                'black_player' => 23,
+                'world_championship_game' => 0,
+                'opening_id' => 13,
+            ],
+
         ];
 
         foreach ($games as $game) {

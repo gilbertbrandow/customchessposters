@@ -15,7 +15,7 @@ class PostersSeeder extends Seeder
     public function run()
     {
 
-        Poster::factory()->count(11)
+        Poster::factory()->count(12)
             ->sequence(
                 [
                     'theme' => 1,
@@ -227,6 +227,28 @@ class PostersSeeder extends Seeder
                     'when' => 'Zurich CC Rapid 2014, 2014.02.04 Round 2.3',
                     'where' => 'Zurich, Switzerland',
                  ],
+
+                 [
+                    'theme' => 1,
+                    'orientation' => 1,
+                    'starting_position' => 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                    'pgn' => '1. d4 Nf6 2. Nf3 g6 3. c4 Bg7 4. g3 O-O 5. Bg2 c6 6. Nc3 d6 7. O-O Qa5 8. h3 Qa6 9. Nd2 Nbd7 10. b3 Rb8 11. Bb2 b5 12. e4 e5 13. cxb5 cxb5 14. a4 bxa4 15. Nc4 Qb7 16. Nxd6 Qxb3 17. Nxa4 exd4 18. Bxd4 Qe6 19. Bxa7 Ra8 20. Nc3 Ne8 21. Nxe8 Rxe8 22. e5 Qxe5 23. Bxa8 Qxc3 24. Qa4 Qe5 25. Rac1 Nf6 26. Bc6 Rf8 27. Bc5 Bxh3 28. Bxf8 Bxf8 29. Rfe1 Qg5 30. Bg2 Be6 31. Rb1 Bc5 32. Rxe6 fxe6 33. Rb7 Qc1+ 34. Kh2 Bf8 35. Bh3 Qd2 36. Bxe6+ Kh8 37. Kg2 Qd6 38. Qc4 h5 39. Qc8',
+                    'diagram_position' => 43,
+                    'move_comment' => 'Unleashing the second Bishop',
+                    'fen' => 'r1b1r1k1/B2n1pbp/4q1p1/4P3/8/2N3PP/5PB1/R2Q1RK1 b - - 0 22',
+                    'result' => '1-0',
+                    'title' => 'Clearing the Gun Range',
+                    'white_player' => 'Koneru, Humpy',
+                    'black_player' => 'Miroshnichenko, Evgenij',
+                    'white_rating' => 2572,
+                    'black_rating' => 2671,
+                    'white_title' => 'GM',
+                    'black_title' => 'GM',
+                    'when' => 'Abu Dhabi op 17th, 2007.08.20 Round 9',
+                    'where' => 'Abu Dhabi',
+                
+                ],
+                    
                     
             )
             ->create();
