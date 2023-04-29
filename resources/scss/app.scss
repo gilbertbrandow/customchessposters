@@ -1015,8 +1015,24 @@ h4 {
 
         button {
             padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             width: 2.1em;
             height: 2.1em;
+
+            svg {
+                margin-left: 0em;
+            }
+        }
+
+        button.is--play {
+            svg {
+                height: 0.8em;
+                width: 0.8em;
+                margin-right: -0.2em;
+                margin-bottom: -0.1em;
+            }
         }
     }
 }
