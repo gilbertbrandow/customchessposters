@@ -47,9 +47,9 @@ class HandleInertiaRequests extends Middleware
             ],
             'auth' => Auth::check() || $request->session()->get('name') ? [
                 'user' => [
-                    'name' => $request->session()->get('name') ? $request->session()->get('name') : Auth::user()->name,
+                    'name' => $request->session()->get('name') ?? Auth::user()->name,
                     'admin' => Auth::user()->admin, 
-                    'saved' => User::find(Auth::id())->posters->pluck('id'),
+                    'saved' => Auth::user()->posters->pluck('id'),
                 ], 
             ] : false,
 
