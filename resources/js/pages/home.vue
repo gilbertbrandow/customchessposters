@@ -69,9 +69,10 @@ import Faq from "./Components/Faq.vue";
 import Features from "./Components/Features.vue"
 import Poster from "./Components/Poster/PosterSVG.vue"
 import Flag from "../Icons/Flags.vue"
+import { Chess } from 'chess.js'
 import { router } from '@inertiajs/vue3'
 
-const INTERVAL = 10000;
+const INTERVAL = 20000;
 
 export default {
     components: {
@@ -88,6 +89,9 @@ export default {
             status: null,
             timerId: null,
             timer: 0,
+            chessGame: new Chess(),
+            moves: [],
+            currMove: 0,
             observer: null,
             isScrolled: false,
             options: {
@@ -105,18 +109,44 @@ export default {
                 preserveState: true,
                 preserveScroll: true,
                 onFinish: visit => {
+                    this.getNineteenMoves();
                     this.start(true);
                 },
             })
         },
 
+        getNineteenMoves() {
+            this.moves = [];
+            this.currMove = 0; 
+            this.chessGame.fen(this.$page.props.game.poster.starting_position);
+            this.chessGame.loadPgn(this.$page.props.game.poster.pgn);
+            let history = this.chessGame.history({ verbose: true });
+            let move = this.$page.props.game.poster.diagram_position;
+            if(move - 8 < 1) move = 8; 
+            else if(move + 8 > history.length) move = history.length - 13; 
+
+            for(let i = -7; i < 12;  i++) {
+                this.moves.push([move + i, (move + i == this.$page.props.game.poster.diagram_position) ? this.$page.props.game.poster.move_comment : '', history[move + i].fen]);
+            }
+
+            console.log(this.moves);
+        },
+
+        updateMove() {
+            this.$page.props.game.poster.diagram_position = this.moves[this.currMove][0];
+            this.$page.props.game.poster.move_comment = this.moves[this.currMove][1];
+            this.$page.props.game.poster.fen = this.moves[this.currMove][2];
+
+            this.currMove++
+        },
+
         start(restart) {
             clearInterval(this.timerId);
             this.status = true;
-            this.timer = this.timer > 0 && !restart ? this.timer : INTERVAL / 100;
+            this.timer = this.timer > 0 && !restart ? this.timer : INTERVAL / 200;
             this.timerId = setInterval(() => {
                 this.timer -= 1;
-            }, 100);
+            }, 200);
         },
 
         pause() {
@@ -142,7 +172,9 @@ export default {
 
     watch: {
         timer(newTime) {
-            if (newTime === -1) {
+
+            if(newTime % 5 == 0) this.updateMove();
+            else if (newTime === -1) {
                 this.updateGame();
                 this.start();
             }
@@ -150,6 +182,7 @@ export default {
     },
 
     mounted() {
+        this.getNineteenMoves();
         this.start();
 
         this.observer = new IntersectionObserver(
