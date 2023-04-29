@@ -40,6 +40,14 @@
 
                 <div class="button-wrp">
 
+                    <button class="button is--flipped" @click="this.getPreviousGame()">
+                        <Icon name="arrow-right"></Icon>
+                    </button>
+
+                    <button class="button" @click="this.resetCurrGame()">
+                        <Icon name="undo"></Icon>
+                    </button>
+
                     <button v-if="this.status" class="button" @click="this.pause()">
                         <Icon name="pause"></Icon>
                     </button>
@@ -90,6 +98,8 @@ export default {
             timerId: null,
             timer: 0,
             chessGame: new Chess(),
+            previousGameIds: [],
+            currGame: 0,
             moves: [],
             currMove: 0,
             observer: null,
@@ -103,14 +113,19 @@ export default {
     },
 
     methods: {
-        updateGame() {
+        updateGame(id) {
             router.reload({
+                data: {
+                    gameId: this.currGame != this.previousGameIds.length - 1 ? this.currGame : null,
+                },
                 only: ['game'],
                 preserveState: true,
                 preserveScroll: true,
                 onFinish: visit => {
                     this.getTwentyMoves();
                     this.start(true);
+                    this.previousGameIds.push(this.$page.props.game.id);
+                    this.currGame = this.previousGameIds.indexOf(this.$page.props.game.id);
                 },
             })
         },
@@ -139,6 +154,18 @@ export default {
             this.$page.props.game.poster.fen = this.moves[this.currMove][2];
 
             this.currMove++
+        },
+
+        resetCurrGame() {
+            this.currMove = 0;
+            this.start(true);
+        },
+
+        getPreviousGame() {
+            if(this.currGame) {
+                this.currGame--;
+                this.updateGame();
+            } else this.resetCurrGame();
         },
 
         start(restart) {
@@ -176,13 +203,13 @@ export default {
 
             if(newTime > 5 && newTime % 5 == 0) this.updateMove();
             else if (newTime === -1) {
-                this.pause();
                 this.updateGame();
             }
         },
     },
 
     mounted() {
+        this.previousGameIds.push(this.$page.props.game.id);
         this.getTwentyMoves();
         this.start();
 
