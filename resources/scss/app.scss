@@ -15,6 +15,13 @@ body {
     margin: 0;
 }
 
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 a {
     color: #000;
 }
@@ -34,6 +41,7 @@ nav {
     align-items: center;
     z-index: 9999;
     transition-duration: 300ms;
+    justify-content: center;
 }
 
 nav.is--scrolled {
@@ -42,16 +50,23 @@ nav.is--scrolled {
     background-color: rgba(255, 255, 255);
     border-bottom: rgba(0, 0, 0, 0.1) solid 0.06em;
 
+    .container {
+        padding-right: 6em;
+    }
+
+
     .flash-message {
         margin-top: 0.5em;
     }
 }
 
 nav .container {
-    padding: 0em 6em 0em 6em;
+    padding: 0em 3em 0em 6em;
+    transition: padding 400ms ease;
     display: flex;
     align-items: center;
     width: 100%;
+    max-width: 1920px;
 }
 
 nav .nav__wrp {
@@ -199,6 +214,10 @@ section {
 
 .is--small {
     font-size: 0.8em;
+}
+
+.is--flipped {
+    transform: rotateZ(180deg);
 }
 
 button {
@@ -377,14 +396,20 @@ section.section__hero {
     display: flex;
     padding-top: 1em;
     padding-right: 1em;
+    padding-left: 6em;
     align-items: center;
+    max-width: calc(1920px + 4em);
+
+    .container {
+        padding-left: 0em;
+    }
 
     .poster-wrp {
         position: relative;
         flex: inherit;
-        width: 55%;
-        max-height: calc(100vh - 2em);
-        min-height: 50em;
+        width: 55em;
+        height: calc(100vh - 2em);
+        max-height: 57em;
         overflow: hidden;
         border-radius: 1em;
 
@@ -404,6 +429,7 @@ section.is--pt {
 
 .container {
     padding: 4em 6em 4em 6em;
+    max-width: 1920px;
 }
 
 .card {
@@ -2133,5 +2159,16 @@ label {
     p:last-child {
         color: #bebebe;
         font-size: 0.8em;
+    }
+}
+
+
+/**********************
+****** Responsive styles
+***********************/
+
+@media screen and (min-width: 1920px) {
+    body {
+      font-size: 19.2px;
     }
 }
