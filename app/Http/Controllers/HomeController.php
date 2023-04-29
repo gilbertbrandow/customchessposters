@@ -4,20 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Faq;
 use App\Models\Game;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-
-//An action is a controller method bound to a route
 
 class HomeController extends Controller
 {
-    public function home()
+    public function index()
     {
-        $faqs = Faq::All();
-    
-        $game = Game::where('id', '=', random_int(1, Game::count()))->with(['poster', 'whitePlayer', 'blackPlayer'])->first();
-
-        return inertia('Home', compact('faqs', 'game')); 
+        return inertia('Home', [
+            'faqs' => fn () => Faq::All(),
+            'game' => Game::where('id', '=', random_int(1, Game::count()))->with(['poster', 'whitePlayer', 'blackPlayer'])->first()
+        ]); 
     }
 
     public function contact ()
