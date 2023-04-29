@@ -109,30 +109,31 @@ export default {
                 preserveState: true,
                 preserveScroll: true,
                 onFinish: visit => {
-                    this.getNineteenMoves();
+                    this.getTwentyMoves();
                     this.start(true);
                 },
             })
         },
 
-        getNineteenMoves() {
+        getTwentyMoves() {
             this.moves = [];
             this.currMove = 0; 
             this.chessGame.fen(this.$page.props.game.poster.starting_position);
             this.chessGame.loadPgn(this.$page.props.game.poster.pgn);
             let history = this.chessGame.history({ verbose: true });
             let move = this.$page.props.game.poster.diagram_position;
-            if(move - 8 < 1) move = 8; 
-            else if(move + 8 > history.length) move = history.length - 13; 
+            if(move - 6 < 1) move = 6; 
+            else if(move + 8 > history.length) move = history.length - 16; 
 
-            for(let i = -7; i < 12;  i++) {
+            for(let i = -5; i < 15;  i++) {
                 this.moves.push([move + i, (move + i == this.$page.props.game.poster.diagram_position) ? this.$page.props.game.poster.move_comment : '', history[move + i].fen]);
             }
 
-            console.log(this.moves);
         },
 
         updateMove() {
+
+            if(this.currMove == 19) console.log(this.moves[this.currMove]);
             this.$page.props.game.poster.diagram_position = this.moves[this.currMove][0];
             this.$page.props.game.poster.move_comment = this.moves[this.currMove][1];
             this.$page.props.game.poster.fen = this.moves[this.currMove][2];
@@ -173,16 +174,16 @@ export default {
     watch: {
         timer(newTime) {
 
-            if(newTime % 5 == 0) this.updateMove();
+            if(newTime > 5 && newTime % 5 == 0) this.updateMove();
             else if (newTime === -1) {
+                this.pause();
                 this.updateGame();
-                this.start();
             }
         },
     },
 
     mounted() {
-        this.getNineteenMoves();
+        this.getTwentyMoves();
         this.start();
 
         this.observer = new IntersectionObserver(
