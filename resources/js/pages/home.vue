@@ -76,7 +76,7 @@ import Flag from "../Icons/Flags.vue"
 import { Chess } from 'chess.js'
 import { router } from '@inertiajs/vue3'
 
-const INTERVAL = 20000;
+const INTERVAL = 21000;
 
 export default {
     components: {
@@ -128,11 +128,13 @@ export default {
             let move = this.$page.props.game.poster.diagram_position;
             
             if(move - 6 < 0) move = 3; 
-            else if(move + 13 > history.length) move = history.length - 12 > 0 ? history.length - 12 : 6; 
+            else if(move + 16 > history.length) move = history.length - 16 > 0 ? history.length - 16 : 6; 
 
             for(let i = -3; i < 17;  i++) {
                 if(history[move + i]) this.moves.push([move + i, (move + i == this.$page.props.game.poster.diagram_position) ? this.$page.props.game.poster.move_comment : '', history[move + i].fen]);
+                else if (history[move + i - 1]) this.moves.push([move + i, (move + i == this.$page.props.game.poster.diagram_position) ? this.$page.props.game.poster.move_comment : '', this.chessGame.fen()]);
             }
+
 
         },
 

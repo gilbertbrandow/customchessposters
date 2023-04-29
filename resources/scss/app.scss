@@ -191,6 +191,7 @@ footer .container {
 }
 
 section {
+    width: 100%;
     padding: 0;
 }
 
@@ -393,6 +394,7 @@ section:first-child {
 }
 
 section.section__hero {
+    width: auto;
     display: flex;
     padding-top: 1em;
     padding-right: 1em;
