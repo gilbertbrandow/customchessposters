@@ -16,17 +16,6 @@ class GameController extends Controller
         
         $order = explode('-', $request->input('sort') ?? 'recent-desc');
 
-        $players = DB::table('players')
-            ->select('id','name', 'country')
-            ->orderBy('country', 'asc')
-            ->get()
-            ->groupBy('country');
-
-        $openings = DB::table('openings')
-        ->select('id', 'eco', 'name')
-        ->orderBy('eco', 'asc')
-        ->get();
-
         $games = DB::table('games')
             ->join('posters', 'games.poster_id', '=', 'posters.id')
             ->join('openings', 'games.opening_id', '=', 'openings.id')
@@ -146,7 +135,20 @@ class GameController extends Controller
             })
             ->paginate(2);
 
-        return inertia('GameCollection', compact('games', 'players', 'openings'));
+        return inertia('GameCollection', [
+            'games' => $games,
+
+            'players' => fn () => DB::table('players')
+            ->select('id','name', 'country')
+            ->orderBy('country', 'asc')
+            ->get()
+            ->groupBy('country'),
+
+            'openings' => fn () => DB::table('openings')
+            ->select('id', 'eco', 'name')
+            ->orderBy('eco', 'asc')
+            ->get(),
+        ]);
     }
 
     public function show()
