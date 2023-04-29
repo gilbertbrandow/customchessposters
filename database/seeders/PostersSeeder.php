@@ -73,7 +73,7 @@ class PostersSeeder extends Seeder
                     'black_rating' => 2795,
                     'white_title' => 'GM',
                     'black_title' => 'GM',
-                    'when' => 'FIDE World Championship 2023, Round 6',
+                    'when' => 'World Championship 2023, Round 6',
                     'where' => 'Astana, Kazakhstan',
                 ],
 
