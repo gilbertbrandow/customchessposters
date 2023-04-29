@@ -40,10 +40,6 @@
 
                 <div class="button-wrp">
 
-                    <button class="button is--flipped" @click="this.getPreviousGame()">
-                        <Icon name="arrow-right"></Icon>
-                    </button>
-
                     <button class="button" @click="this.resetCurrGame()">
                         <Icon name="undo"></Icon>
                     </button>
@@ -98,8 +94,6 @@ export default {
             timerId: null,
             timer: 0,
             chessGame: new Chess(),
-            previousGameIds: [],
-            currGame: 0,
             moves: [],
             currMove: 0,
             observer: null,
@@ -113,19 +107,14 @@ export default {
     },
 
     methods: {
-        updateGame(id) {
+        updateGame() {
             router.reload({
-                data: {
-                    gameId: this.currGame != this.previousGameIds.length - 1 ? this.currGame : null,
-                },
                 only: ['game'],
                 preserveState: true,
                 preserveScroll: true,
                 onFinish: visit => {
                     this.getTwentyMoves();
                     this.start(true);
-                    this.previousGameIds.push(this.$page.props.game.id);
-                    this.currGame = this.previousGameIds.indexOf(this.$page.props.game.id);
                 },
             })
         },
@@ -137,18 +126,18 @@ export default {
             this.chessGame.loadPgn(this.$page.props.game.poster.pgn);
             let history = this.chessGame.history({ verbose: true });
             let move = this.$page.props.game.poster.diagram_position;
-            if(move - 6 < 1) move = 6; 
-            else if(move + 8 > history.length) move = history.length - 16; 
+            
+            if(move - 6 < 0) move = 3; 
+            else if(move + 13 > history.length) move = history.length - 12 > 0 ? history.length - 12 : 6; 
 
-            for(let i = -5; i < 15;  i++) {
-                this.moves.push([move + i, (move + i == this.$page.props.game.poster.diagram_position) ? this.$page.props.game.poster.move_comment : '', history[move + i].fen]);
+            for(let i = -3; i < 17;  i++) {
+                if(history[move + i]) this.moves.push([move + i, (move + i == this.$page.props.game.poster.diagram_position) ? this.$page.props.game.poster.move_comment : '', history[move + i].fen]);
             }
 
         },
 
         updateMove() {
-
-            if(this.currMove == 19) console.log(this.moves[this.currMove]);
+            if(this.currMove == this.moves.length) return;
             this.$page.props.game.poster.diagram_position = this.moves[this.currMove][0];
             this.$page.props.game.poster.move_comment = this.moves[this.currMove][1];
             this.$page.props.game.poster.fen = this.moves[this.currMove][2];
@@ -159,13 +148,6 @@ export default {
         resetCurrGame() {
             this.currMove = 0;
             this.start(true);
-        },
-
-        getPreviousGame() {
-            if(this.currGame) {
-                this.currGame--;
-                this.updateGame();
-            } else this.resetCurrGame();
         },
 
         start(restart) {
@@ -209,7 +191,6 @@ export default {
     },
 
     mounted() {
-        this.previousGameIds.push(this.$page.props.game.id);
         this.getTwentyMoves();
         this.start();
 
