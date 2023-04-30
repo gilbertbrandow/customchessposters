@@ -202,6 +202,17 @@
         </g>
     </svg>
 
+
+    <svg v-else-if="name === 'edit-small'" id="Layer_1" enable-background="new 0 0 100 100" height="512" viewBox="0 0 100 100" width="512"
+        xmlns="http://www.w3.org/2000/svg">
+        <g>
+            <path
+                d="m18 84.2c1 0 1.2-.1 2.1-.3l18-3.6c1.9-.5 3.8-1.4 5.3-2.9l43.6-43.6c6.7-6.7 6.7-18.2 0-24.9l-3.7-3.9c-6.7-6.7-18.3-6.7-25 0l-43.6 43.7c-1.4 1.4-2.4 3.4-2.9 5.3l-3.8 18.2c-.5 3.4.5 6.7 2.9 9.1 1.9 1.9 4.7 2.9 7.1 2.9zm3.4-28.3 43.6-43.7c2.9-2.9 8.2-2.9 11 0l3.8 3.8c3.4 3.4 3.4 8.2 0 11.5l-43.5 43.7-18.5 3.1z" />
+            <path
+                d="m86.6 90.4h-73.8c-2.9 0-4.8 1.9-4.8 4.8s2.4 4.8 4.8 4.8h73.4c2.9 0 5.3-1.9 5.3-4.8-.1-2.9-2.5-4.8-4.9-4.8z" />
+        </g>
+    </svg>
+
     <svg v-else-if="name === 'delete'" xmlns="http://www.w3.org/2000/svg" id="Layer_2" data-name="Layer 2" width="512"
         height="512" viewBox="0 0 24 24">
         <path
@@ -282,8 +293,9 @@
             fill="rgb(0,0,0)" fill-rule="evenodd" />
     </svg>
 
-    <svg  v-else-if="name == 'play'" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-        y="0px" viewBox="0 0 30.065 30.065" style="enable-background:new 0 0 30.065 30.065;" xml:space="preserve">
+    <svg v-else-if="name == 'play'" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 30.065 30.065"
+        style="enable-background:new 0 0 30.065 30.065;" xml:space="preserve">
         <g>
             <path style="fill:#010002;" d="M26.511,12.004L6.233,0.463c-2.151-1.228-4.344,0.115-4.344,2.53v24.093
 		c0,2.046,1.332,2.979,2.57,2.979c0.583,0,1.177-0.184,1.767-0.543l20.369-12.468c1.024-0.629,1.599-1.56,1.581-2.555
