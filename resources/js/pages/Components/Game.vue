@@ -1,5 +1,5 @@
 <template>
-        <li v-for="game in this.$page.props.games.data" :class="[game.poster_search ? 'is--highlighted-poster' : '']">
+        <li :class="[game.poster_search ? 'is--highlighted-poster' : '']">
                     <div class="content">
                         <h2 v-text="game.name"></h2>
 
