@@ -12,7 +12,9 @@
                         class="field"
                         name="search"
                         id="search"
+                        ref="search"
                         placeholder="Player, country, opening..." />
+                        <span v-text="getOS"></span>
                     </div>
 
                     <button @click="this.filterAdvanced = !this.filterAdvanced" class="button is--outline" :class="[filterAdvanced ? 'is--active': '']">
@@ -242,10 +244,6 @@ export default {
             event.target.closest('.player').querySelector('.info').classList.remove('show');
         },
 
-        activate() {
-            setTimeout(() => this.typing = false, 500);
-        },
-
         highlightText() {
 
             const regex = new RegExp(this.query.search, 'gi');
@@ -282,6 +280,10 @@ export default {
                 page: 1,
             };
 
+        }, 
+
+        onKeydown(e) {
+            if(e.code == "KeyK" && e.metaKey) this.$refs.search.focus();
         }
 
     },
@@ -354,6 +356,11 @@ export default {
             if( params.length) return params.join(', ').replace(/,([^,]*)$/, ' and' + '$1');
             else return false;
         },
+
+        getOS() {
+            if(navigator.userAgent.toUpperCase().indexOf('MAC') != -1) return '⌘ + K'
+            else return '⊞ Win + K'
+        }
     },
 
     watch: {
@@ -394,6 +401,11 @@ export default {
 
     mounted() {
         this.highlightText();
+        window.addEventListener('keydown', this.onKeydown)
+    }, 
+
+    beforeDestroy() {
+        window.removeEventListener('keydown', this.onKeydown)
     }
 }
 </script>

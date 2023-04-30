@@ -1482,6 +1482,20 @@ ul.saved__posters {
     margin-top: 2em;
     margin-bottom: 2em;
 
+    .field__wrp:first-child {
+
+        span {
+            position: absolute;
+            opacity: 0.5;
+            bottom: 0.85em;
+            right: 3em;
+        }
+
+        input:focus + span {
+            display: none;
+        }
+    }
+
     .field__wrp {
         margin-top: 0em;
     }
