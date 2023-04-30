@@ -414,6 +414,7 @@ section.section__hero {
     padding-top: 1em;
     padding-right: 1em;
     padding-left: 6em;
+    padding-bottom: 4em;
     align-items: center;
     max-width: calc(1920px + 4em);
 
@@ -486,7 +487,7 @@ section.is--pt {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        width: 48%;
+        width: 46%;
         padding-right: 4em;
     }
 }
@@ -513,7 +514,7 @@ h2 {
 }
 
 h3 {
-    font-size: 2em;
+    font-size: 1.9em;
     font-weight: 600;
     margin-top: 0.1em;
     margin-bottom: 0.25em;
