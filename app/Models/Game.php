@@ -91,16 +91,15 @@ class Game extends Model
             )
             ->when($request->search !== null, function ($query) use ($request) {
 
-                $query->addSelect(DB::raw(
+                $query->selectRaw(
                     '(CASE 
-                        WHEN posters.title LIKE "%' . $request->search . '%" THEN 1 
-                        WHEN posters.where LIKE "%' . $request->search . '%" THEN 1 
-                        WHEN posters.when LIKE "%' . $request->search . '%" THEN 1 
-                        WHEN posters.white_player LIKE "%' . $request->search . '%" THEN 1 
-                        WHEN posters.black_player LIKE "%' . $request->search . '%" THEN 1 
-                        WHEN posters.move_comment LIKE "%' . $request->search . '%" THEN 1 
-                        ELSE 0 END) AS poster_search'
-                ));
+                        WHEN posters.title LIKE ? THEN 1
+                        WHEN posters.move_comment LIKE ? THEN 1
+                        WHEN posters.when LIKE ? THEN 1 
+                        WHEN posters.white_player LIKE ? THEN 1 
+                        WHEN posters.black_player LIKE ? THEN 1 
+                        WHEN posters.move_comment LIKE ? THEN 1 
+                        ELSE 0 END) AS poster_search', array_fill(0, 6, "%{$request->search}%"));
 
                 $query->where(function ($query) use ($request) {
                     $query->where('games.name', 'LIKE', '%' . $request->search . '%')
