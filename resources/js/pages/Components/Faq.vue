@@ -18,7 +18,7 @@
 
                     </div>
                     <div class="answer">
-                        <p v-text="faq.answer"></p>
+                        <p v-html="faq.answer"></p>
                         <p>Last updated at {{formatDate(faq.updated_at)}}</p>
                     </div>
                 </div>
