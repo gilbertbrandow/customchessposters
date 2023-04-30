@@ -4,14 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Faq;
 use App\Models\Game;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         return inertia('Home', [
             'faqs' => fn () => Faq::All(),
-            'game' => Game::where('id', '=', random_int(1, Game::count()))->with(['poster', 'whitePlayer', 'blackPlayer'])->first()
+            'game' =>  fn () => Game::where('id', '=', random_int(1, Game::count()))->with(['poster', 'whitePlayer', 'blackPlayer'])->first(),
+            'games' => fn() => Game::getAll($request, 2),
         ]); 
     }
 

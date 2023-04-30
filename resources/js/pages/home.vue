@@ -63,6 +63,16 @@
 
     <BuildPoster />
 
+    <section>
+        <div class="container">
+            <h2>Games from our collection</h2>
+            <ul class="game__collection">
+                <Game v-for="game in this.$page.props.games.data" :game="game" :search="null"/>
+            </ul>
+
+        </div>
+    </section>
+
     <Faq :faqs="$page.props.faqs" />
 </template>
 
@@ -73,8 +83,10 @@ import Faq from "./Components/Faq.vue";
 import Features from "./Components/Features.vue"
 import Poster from "./Components/Poster/PosterSVG.vue"
 import Flag from "../Icons/Flags.vue"
+import Game from "./Components/Game.vue"
 import { Chess } from 'chess.js'
 import { router } from '@inertiajs/vue3'
+import throttle from 'lodash/throttle'
 
 const INTERVAL = 21000;
 
@@ -85,6 +97,7 @@ export default {
         Features,
         Poster,
         Flag,
+        Game,
     },
     layout: AppLayout,
 
@@ -121,17 +134,17 @@ export default {
 
         getTwentyMoves() {
             this.moves = [];
-            this.currMove = 0; 
+            this.currMove = 0;
             this.chessGame.fen(this.$page.props.game.poster.starting_position);
             this.chessGame.loadPgn(this.$page.props.game.poster.pgn);
             let history = this.chessGame.history({ verbose: true });
             let move = this.$page.props.game.poster.diagram_position;
-            
-            if(move - 6 < 0) move = 3; 
-            else if(move + 16 > history.length) move = history.length - 16 > 0 ? history.length - 16 : 6; 
 
-            for(let i = -3; i < 17;  i++) {
-                if(history[move + i]) this.moves.push([move + i, (move + i == this.$page.props.game.poster.diagram_position) ? this.$page.props.game.poster.move_comment : '', history[move + i].fen]);
+            if (move - 6 < 0) move = 3;
+            else if (move + 16 > history.length) move = history.length - 16 > 0 ? history.length - 16 : 6;
+
+            for (let i = -3; i < 17; i++) {
+                if (history[move + i]) this.moves.push([move + i, (move + i == this.$page.props.game.poster.diagram_position) ? this.$page.props.game.poster.move_comment : '', history[move + i].fen]);
                 else if (history[move + i - 1]) this.moves.push([move + i, (move + i == this.$page.props.game.poster.diagram_position) ? this.$page.props.game.poster.move_comment : '', this.chessGame.fen()]);
             }
 
@@ -139,7 +152,7 @@ export default {
         },
 
         updateMove() {
-            if(this.currMove == this.moves.length) return;
+            if (this.currMove == this.moves.length) return;
             this.$page.props.game.poster.diagram_position = this.moves[this.currMove][0];
             this.$page.props.game.poster.move_comment = this.moves[this.currMove][1];
             this.$page.props.game.poster.fen = this.moves[this.currMove][2];
@@ -179,17 +192,39 @@ export default {
                     document.querySelector('nav').classList.add('is--scrolled');
                 }
             });
-        }
+        },
+
+        getGames() {
+            router.visit('/game-collection', {
+                method: 'get',
+                only: ['openings'],
+                preserveScroll: true,
+                preserveState: true,
+            })
+        },
     },
 
     watch: {
         timer(newTime) {
 
-            if(newTime > 5 && newTime % 5 == 0) this.updateMove();
+            if (newTime > 5 && newTime % 5 == 0) this.updateMove();
             else if (newTime === -1) {
                 this.updateGame();
             }
         },
+
+        search: throttle(function (value) {
+            router.visit('/', {
+                method: 'get',
+                only: ['games'],
+                data: params,
+                preserveScroll: true,
+                preserveState: true,
+                onFinish: visit => {
+                    this.highlightText();
+                },
+            })
+        }, 500),
     },
 
     mounted() {
