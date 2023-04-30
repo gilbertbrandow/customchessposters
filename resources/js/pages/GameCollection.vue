@@ -151,14 +151,14 @@
                                 <Icon name="cart" />
                             </button>
 
-                            <a class="button" :href="route('poster.edit', { 'id': game.id })">
-                                Edit poster
-                                <Icon name="edit" />
+                            <a class="button" :href="route('game.show', { 'id': game.id })">
+                                Go to game
+                                <Icon name="arrow-up" />
                             </a>
                         </div>
                     </div>
                     <Poster :poster="game" environment="/images/environments/builder-mockup.jpeg"
-                        :controls="{ 'small': true, 'save': true }"></Poster>
+                        :controls="{ 'small': true, 'save': true, 'edit': true, }"></Poster>
                 </li>
             </ul>
             <aside v-if="this.$page.props.games.data" class="pagination is--flex is--space-between">

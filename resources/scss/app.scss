@@ -245,6 +245,22 @@ button {
     font-size: 1.2em;
     font-weight: 500;
     text-decoration: none;
+    transition: border 400ms ease;
+
+    .info {
+        margin-top: 0.25em;
+        top: 100%;
+    }
+
+}
+
+.button:hover {
+    border-color: #000;
+
+    .info {
+        opacity: 1;
+        margin-top: 0.5em;
+    }
 }
 
 .button.is--black {
@@ -1689,6 +1705,7 @@ ul.game__collection {
 
         .poster {
             margin-bottom: -1px;
+            overflow: revert;
 
             .poster__buttons-wrp.small {
                 justify-content: end;
@@ -1699,6 +1716,10 @@ ul.game__collection {
                 top: 14%;
                 right: 19.5%;
                 width: 61%;
+            }
+
+            .poster__environment {
+                border-radius: 1em;
             }
         }
     }
