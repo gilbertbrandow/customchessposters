@@ -16,7 +16,7 @@ class OpeningsSeeder extends Seeder
     public function run()
     {
 
-        Opening::factory()->count(13)
+        Opening::factory()->count(14)
         ->sequence(
             [
                 'eco' => 'C80',
@@ -89,6 +89,10 @@ class OpeningsSeeder extends Seeder
                 'name' => "King's Indian Defense: Fianchetto Variation, Kavalek Defense",
             ],
 
+            [
+                'eco' => 'B06',
+                'name' => " Pirc Defense: General",
+            ],
         )
         ->create();
     }

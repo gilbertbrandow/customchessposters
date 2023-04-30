@@ -150,6 +150,17 @@ class GamesSeeder extends Seeder
                 'opening_id' => 13,
             ],
 
+            [
+                'poster_id' => 13,
+                'name' => 'Garry displays a superhuman level of calculating',
+                'description' => 'Out of nowhere Kasparov plays an eyebrow-raising sacrifice, which after being accepted by Veselin, also spelled doom for the latter.',
+                'date' => '1999-01-20',
+                'white_player' => 24,
+                'black_player' => 25,
+                'world_championship_game' => 0,
+                'opening_id' => 14,
+            ],
+
         ];
 
         foreach ($games as $game) {
