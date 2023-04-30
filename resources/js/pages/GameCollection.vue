@@ -124,42 +124,7 @@
                 </div>
             </div>
             <ul class="game__collection">
-                <li v-for="game in this.$page.props.games.data" :class="[game.poster_search ? 'is--highlighted-poster' : '']">
-                    <div class="content">
-                        <h2 v-text="game.name"></h2>
-
-                        <div class="player">
-                                <div class="flag" @mouseover="removeClass($event)"><Flags :country="game.white_country"/><div :class="[this.query.search && game.white_country.toLowerCase().includes(this.query.search.toLowerCase()) ? 'info show' : 'info']"><div></div><span>{{game.white_country }}</span></div></div>
-                                <div class="name">{{ game.white_name }} ({{ game.white_rating ? game.white_rating : 'N/A' }})</div>
-                        </div>
-                        
-                        <div class="player">
-                            <div class="flag" @mouseover="removeClass($event)"><Flags :country="game.black_country"/><div :class="[this.query.search && game.black_country.toLowerCase().includes(this.query.search.toLowerCase()) ? 'info show' : 'info']"><div></div><span>{{game.black_country }}</span></div></div>
-                            <div class="name">{{ game.black_name }} ({{ game.black_rating ? game.black_rating : 'N/A' }})</div>
-                        </div>
-
-                        <div class="banner">
-                            <Icon v-if="game.world_championship_game" name="king" />
-                           <span v-text="(game.world_championship_game) ? 'World Championship' : 'Played'"></span><span>{{ game.date + ' in ' + game.where}}</span>
-                        </div>
-
-                        <strong class="is--small">{{ game.opening_eco + ': ' + game.opening_name }}</strong>
-                    
-                        <p>{{ game.description }}</p>
-                        <div class="button-wrp">
-                            <button class="button is--black"> Add to cart
-                                <Icon name="cart" />
-                            </button>
-
-                            <a class="button" :href="route('game.show', { 'id': game.id })">
-                                Go to game
-                                <Icon name="arrow-up" />
-                            </a>
-                        </div>
-                    </div>
-                    <Poster :poster="game" environment="/images/environments/builder-mockup.jpeg"
-                        :controls="{ 'small': true, 'save': true, 'edit': true, }"></Poster>
-                </li>
+                <Game v-for="game in this.$page.props.games.data" :game="game"></Game>
             </ul>
             <aside v-if="this.$page.props.games.data" class="pagination is--flex is--space-between">
                 <span>Showing {{ this.$page.props.games.from }} - {{ this.$page.props.games.to }} of {{ this.$page.props.games.total }} results </span>
@@ -185,20 +150,16 @@
 
 <script>
 import AppLayout from "../Layouts/App.vue";
-import Poster from "./Components/Poster.vue"
-import Flags from "../Icons/Flags.vue";
-import { Link } from "@inertiajs/vue3";
 import { router } from '@inertiajs/vue3';
-import throttle from 'lodash/throttle'
+import throttle from 'lodash/throttle';
+import Game from './Components/Game.vue';
 
 export default {
 
     layout: AppLayout,
 
     components: {
-        Poster,
-        Flags,
-        Link,
+        Game,
     },
 
     props: {
