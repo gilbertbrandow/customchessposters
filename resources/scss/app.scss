@@ -1691,6 +1691,16 @@ ul.game__collection {
         }
     }
 
+    li.is--highlighted-poster {
+
+        .poster {
+            outline-style: solid;
+            outline-width: 2px;
+            outline-color: #f8ff34;
+            border-color: transparent;
+        }
+    }
+
     li.single {
         grid-column: span 2;
 
