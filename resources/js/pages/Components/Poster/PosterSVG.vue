@@ -3,13 +3,13 @@
         font-family="EB Garamond, serif" style="background-color: #f8f5f1">
 
         <!-- The Title -->
-        <text font-size="150" text-anchor="middle" font-weight="400">
+        <text id="title" font-size="150" text-anchor="middle" font-weight="400">
             <tspan x="1000" y="300">{{ title[0] }}</tspan>
             <tspan v-if="title[1]" x="1000" y="500">{{ title[1] }}</tspan>
         </text>
 
         <!-- Players name, title and ranking -->
-        <text font-size="70" text-anchor="middle" x="1000" font-weight="400" :y="title[1] ? 700 : 500">
+        <text id="players" font-size="70" text-anchor="middle" x="1000" font-weight="400" :y="title[1] ? 700 : 500">
             <tspan v-if="poster.white_title"> {{ poster.white_title + ' ' }}
             </tspan>
             <tspan v-if="poster.white_player"> {{ poster.white_player + ' ' }} </tspan>
@@ -22,7 +22,7 @@
         </text>
 
         <!-- Where and when -->
-        <text font-size="40" text-anchor="middle" x="1000" :y="title[1] ? 800 : 600">
+        <text id="meta" font-size="40" text-anchor="middle" x="1000" :y="title[1] ? 800 : 600">
             <tspan>{{ poster.where }}</tspan>
             <tspan v-if="poster.where && poster.when"> | </tspan>
             <tspan>{{ poster.when }}</tspan>
@@ -54,7 +54,7 @@
             <Game ref="Game" :fen="this.$props.poster.fen" />
 
             <!-- Diagram comment -->
-            <text v-if="this.poster.pgn" y="1690" x="815" text-anchor="middle" font-size="32"
+            <text id="comment" v-if="this.poster.pgn" y="1690" x="815" text-anchor="middle" font-size="32"
                 v-text="this.$props.poster.move_comment ? diagram_info + ', ' + this.$props.poster.move_comment: diagram_info"></text>
 
         </svg>
