@@ -122,7 +122,7 @@
                 </div>
             </div>
             <ul class="game__collection">
-                <li v-for="game in this.$page.props.games.data">
+                <li v-for="game in this.$page.props.games.data" :class="[game.poster_search ? 'is--highlighted-poster' : '']">
                     <div class="content">
                         <h2 v-text="game.name"></h2>
 
@@ -159,7 +159,7 @@
                         :controls="{ 'small': true, 'save': true }"></Poster>
                 </li>
             </ul>
-            <aside v-if="this.$page.props.games.data.length" class="pagination is--flex is--space-between">
+            <aside v-if="this.$page.props.games.data" class="pagination is--flex is--space-between">
                 <span>Showing {{ this.$page.props.games.from }} - {{ this.$page.props.games.to }} of {{ this.$page.props.games.total }} results </span>
                 <div class="navigation">
 
@@ -257,8 +257,7 @@ export default {
                 let text = element.innerHTML;
                 text = text.replace(/(<mark class="highlight">|<\/mark>)/gim, '');
 
-                let newText = text.replace(regex, '<mark class="highlight">$&</mark>');
-                element.innerHTML = newText;
+                element.innerHTML =  text.replace(regex, '<mark class="highlight">$&</mark>');
 
             });
 
@@ -395,7 +394,6 @@ export default {
 
     mounted() {
         this.highlightText();
-        //console.log(this.$page.props.players)
     }
 }
 </script>
