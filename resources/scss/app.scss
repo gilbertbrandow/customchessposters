@@ -54,7 +54,6 @@ nav.is--scrolled {
         padding-right: 6em;
     }
 
-
     .flash-message {
         margin-top: 0.5em;
     }
@@ -1483,7 +1482,6 @@ ul.saved__posters {
     margin-bottom: 2em;
 
     .field__wrp:first-child {
-
         span {
             position: absolute;
             opacity: 0.5;
@@ -1706,7 +1704,6 @@ ul.game__collection {
     }
 
     li.is--highlighted-poster {
-
         .poster {
             outline-style: solid;
             outline-width: 2px;
@@ -1727,7 +1724,7 @@ ul.game__collection {
         }
 
         .player {
-            font-size: 1.6em;
+            font-size: 1.4em;
         }
 
         .banner,
@@ -1818,6 +1815,38 @@ ul.game__collection {
                 border-color: #000;
             }
         }
+    }
+}
+
+/**********************
+****** Single Game styles
+***********************/
+.move__navigation {
+    display: flex;
+    column-gap: 0em;
+    align-items: center;
+    margin-top: 2em;
+
+    button {
+        border: none;
+        width: 2em;
+        height: 2em;
+        padding: 0;
+    }
+
+    button:first-child {
+        transform: rotateZ(180deg);
+    }
+
+    div {
+        display: flex;
+        align-items: center;
+        border-radius: 1em;
+        height: 2em;
+        border: solid 0.06em rgba(0, 0, 0, 0.1);
+        column-gap: 0.25em;
+        padding-left: 1em;
+        padding-right: 1em;
     }
 }
 
@@ -2188,13 +2217,12 @@ label {
     }
 }
 
-
 /**********************
 ****** Responsive styles
 ***********************/
 
 @media screen and (min-width: 1920px) {
     body {
-      font-size: 19.2px;
+        font-size: 19.2px;
     }
 }
