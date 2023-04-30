@@ -107,7 +107,7 @@ class PlayersSeeder extends Seeder
                 ],
 
                 [
-                    'name' => 'Marhsall, Frank J',
+                    'name' => 'Marshall, Frank J',
                     'country' => 'USA',
                 ],
 
