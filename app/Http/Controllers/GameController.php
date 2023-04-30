@@ -63,6 +63,8 @@ class GameController extends Controller
                         WHEN posters.title LIKE "%' . $request->search . '%" THEN 1 
                         WHEN posters.where LIKE "%' . $request->search . '%" THEN 1 
                         WHEN posters.when LIKE "%' . $request->search . '%" THEN 1 
+                        WHEN posters.white_player LIKE "%' . $request->search . '%" THEN 1 
+                        WHEN posters.black_player LIKE "%' . $request->search . '%" THEN 1 
                         WHEN posters.move_comment LIKE "%' . $request->search . '%" THEN 1 
                         ELSE 0 END) AS poster_search'
                 ));
