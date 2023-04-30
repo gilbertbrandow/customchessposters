@@ -57,11 +57,22 @@ class GameController extends Controller
                 'black_player.country AS black_country',
             )
             ->when($request->search !== null, function ($query) use ($request) {
+
+                $query->addSelect(DB::raw(
+                    '(CASE 
+                        WHEN posters.title LIKE "%' . $request->search . '%" THEN 1 
+                        WHEN posters.where LIKE "%' . $request->search . '%" THEN 1 
+                        WHEN posters.when LIKE "%' . $request->search . '%" THEN 1 
+                        WHEN posters.move_comment LIKE "%' . $request->search . '%" THEN 1 
+                        ELSE 0 END) AS poster_search'
+                ));
+
                 $query->where(function ($query) use ($request) {
                     $query->where('games.name', 'LIKE', '%' . $request->search . '%')
                         ->orWhere('games.description', 'LIKE', '%' . $request->search . '%')
                         ->orWhere('games.date', 'LIKE', '%' . $request->search . '%')
                         ->orWhere('posters.title', 'LIKE', '%' . $request->search . '%')
+                        ->orWhere('posters.move_comment', 'LIKE', '%' . $request->search . '%')
                         ->orWhere('posters.when', 'LIKE', '%' . $request->search . '%')
                         ->orWhere('posters.where', 'LIKE', '%' . $request->search . '%')
                         ->orWhere('openings.name', 'LIKE', '%' . $request->search . '%')
