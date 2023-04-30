@@ -116,7 +116,7 @@
 
                 </div>
                 <div v-if="this.queryDesc" class="is--margin-top is--margin-left">
-                  {{this.$page.props.games.data.length ? 'Showing games that' : 'Found no results that'}} {{ this.queryDesc }}
+                  {{this.$page.props.games.data.length ? 'Showing games that' : 'Found no games that'}} {{ this.queryDesc }}
                     <button class="link-arrow is--low-op is--margin-left" @click="resetQuery()">
                            Remove filters
                             <Icon name="filter-remove" />
