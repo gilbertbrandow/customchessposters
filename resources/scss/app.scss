@@ -1364,6 +1364,7 @@ h4 {
 ***********************/
 
 .container.account {
+    width: calc(100% - 12em);
     padding-top: 8em;
     display: flex;
     align-items: flex-start;
