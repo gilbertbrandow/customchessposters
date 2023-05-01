@@ -73,6 +73,13 @@
         </div>
     </section>
 
+    <section>
+        <div class="container">
+            <h2>Reviews</h2>
+            <p>Currently no reviews.</p>
+        </div>
+    </section>
+
     <Faq :faqs="$page.props.faqs" />
 </template>
 
@@ -88,7 +95,7 @@ import { Chess } from 'chess.js'
 import { router } from '@inertiajs/vue3'
 import throttle from 'lodash/throttle'
 
-const INTERVAL = 21000;
+const INTERVAL = 20000;
 
 export default {
     components: {
@@ -139,7 +146,6 @@ export default {
             this.chessGame.loadPgn(this.$page.props.game.poster.pgn);
             let history = this.chessGame.history({ verbose: true });
             let move = this.$page.props.game.poster.diagram_position;
-
             if (move - 6 < 0) move = 3;
             else if (move + 16 > history.length) move = history.length - 16 > 0 ? history.length - 16 : 6;
 
@@ -147,8 +153,6 @@ export default {
                 if (history[move + i]) this.moves.push([move + i, (move + i == this.$page.props.game.poster.diagram_position) ? this.$page.props.game.poster.move_comment : '', history[move + i].fen]);
                 else if (history[move + i - 1]) this.moves.push([move + i, (move + i == this.$page.props.game.poster.diagram_position) ? this.$page.props.game.poster.move_comment : '', this.chessGame.fen()]);
             }
-
-
         },
 
         updateMove() {
@@ -171,7 +175,7 @@ export default {
             this.timer = this.timer > 0 && !restart ? this.timer : INTERVAL / 200;
             this.timerId = setInterval(() => {
                 this.timer -= 1;
-            }, 200);
+            }, INTERVAL / 100);
         },
 
         pause() {
@@ -207,7 +211,7 @@ export default {
     watch: {
         timer(newTime) {
 
-            if (newTime > 5 && newTime % 5 == 0) this.updateMove();
+            if (newTime % (INTERVAL / 4000) == 0) this.updateMove();
             else if (newTime === -1) {
                 this.updateGame();
             }
