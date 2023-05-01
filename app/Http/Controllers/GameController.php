@@ -14,7 +14,7 @@ class GameController extends Controller
     public function index(Request $request)
     {
         return inertia('GameCollection', [
-            'games' => fn () => Game::getAll($request, 2),
+            'games' => fn () => Game::getAll($request)->paginate(2),
 
             'players' => fn () => DB::table('players')
             ->select('id','name', 'country')

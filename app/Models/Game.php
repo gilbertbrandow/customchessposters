@@ -45,7 +45,7 @@ class Game extends Model
         return $this->belongsTo(Player::class, 'black_player', 'id');
     }
 
-    public static function getAll(Request $request, $items) {
+    public static function getAll(Request $request) {
 
         $orderBy = explode('-', $request->input('sort') ?? 'recent-desc');
 
@@ -177,7 +177,6 @@ class Game extends Model
             })
             ->when(!str_contains($request->sort, 'rating'),  function ($query) use ($orderBy) {
                 $query->orderBy($orderBy[0], $orderBy[1]);
-            })
-            ->paginate($items);
+            });
     }
 }
