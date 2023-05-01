@@ -67,9 +67,12 @@
         <div class="container">
             <h2>Games from our collection</h2>
             <ul class="game__collection">
-                <Game v-for="game in this.$page.props.games.data" :game="game" :search="null"/>
-            </ul>
+                <div v-for="game in this.games">
+                    <Game :game="game"></Game>
+                </div>
 
+            </ul>
+            <button @click="getGames()" class="button">Test</button>
         </div>
     </section>
 
@@ -122,7 +125,8 @@ export default {
                 root: null,
                 threshold: 1,
                 rootMargin: "20% 0px 100% 0px",
-            }
+            }, 
+            games: [],
         }
     },
 
@@ -199,11 +203,17 @@ export default {
         },
 
         getGames() {
-            router.visit('/game-collection', {
+            router.visit('/', {
                 method: 'get',
-                only: ['openings'],
+                data: {
+                    offset: this.games.length,
+                },
+                only: ['games'],
                 preserveScroll: true,
                 preserveState: true,
+                onFinish: visit => {
+                    this.games.push(this.$page.props.games[0]);
+                },
             })
         },
     },
@@ -234,6 +244,7 @@ export default {
     mounted() {
         this.getTwentyMoves();
         this.start();
+        this.games.push(this.$page.props.games[0], this.$page.props.games[1], this.$page.props.games[2]);
 
         this.observer = new IntersectionObserver(
             this.onElementObserved, this.options);
