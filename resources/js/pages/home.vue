@@ -59,11 +59,11 @@
         </div>
     </section>
 
-    <Slider :games="this.$page.props.games"/>
-
     <Features />
 
     <BuildPoster />
+
+    <Slider :games="this.$page.props.games"/>
 
     <section>
         <div class="container">
