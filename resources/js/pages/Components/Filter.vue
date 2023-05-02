@@ -19,7 +19,7 @@
                     <Icon name="arrow-up"></Icon>
                 </Link>
             </div>
-            <div class="field__wrp">
+            <div v-if="this.advanced !== false" class="field__wrp">
                 <label for="sortBy" class="field__label">Sort by</label>
                 <select v-model="query.sort" id="sortBy" class="field" name="sortBy">
                     <option value="rating-desc">Rating, highest to lowest</option>
