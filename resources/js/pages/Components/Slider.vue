@@ -1,11 +1,19 @@
 <template>
     <section>
         <div class="container">
-            <h2>Games from our collection</h2>
-            <Filter :results="this.games.length" :advanced="false"></Filter>
-            <ul class="game__collection">
+            <h2>Some Recent Games From Our Collection</h2>
+
+            <div class="slider__header">
+                <Filter :results="this.games.length" :advanced="false"></Filter>
+
+                <div class="slider__navigation">
+                    <button class="button is--only-icon is--black is--flipped"><Icon name="arrow-right"></Icon></button>
+                    <button class="button is--only-icon is--black"><Icon name="arrow-right"></Icon></button>
+                </div>
+            </div>
+            <ul class="game__collection is--slider">
                 <template v-for="(game, index) in this.games" :key="index">
-                    <Game :game="game"></Game>
+                    <Game :game="game" :small="true" :showPlayersInPoster="true"></Game>
                 </template>
             </ul>
         </div>
@@ -26,10 +34,6 @@ export default {
     props: {
         games: {},
     },
-
-    mounted() {
-        console.log(this.games);
-    }
 
 }
 </script>
