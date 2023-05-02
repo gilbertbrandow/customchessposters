@@ -45,7 +45,8 @@ class Game extends Model
         return $this->belongsTo(Player::class, 'black_player', 'id');
     }
 
-    public static function getAll(Request $request) {
+    public static function getAll(Request $request)
+    {
 
         $orderBy = explode('-', $request->input('sort') ?? 'recent-desc');
 
@@ -99,7 +100,23 @@ class Game extends Model
                         WHEN posters.white_player LIKE ? THEN 1 
                         WHEN posters.black_player LIKE ? THEN 1 
                         WHEN posters.move_comment LIKE ? THEN 1 
-                        ELSE 0 END) AS poster_search', array_fill(0, 6, "%{$request->search}%"));
+                        ELSE 0 END) AS poster_highlight',
+                    array_fill(0, 6, "%{$request->search}%")
+                );
+
+                $query->selectRaw(
+                    '(CASE 
+                                WHEN white_player.country LIKE ? THEN 1
+                                ELSE 0 END) AS white_country_highlight',
+                    ["%{$request->search}%"]
+                );
+
+                $query->selectRaw(
+                    '(CASE 
+                                WHEN black_player.country LIKE ? THEN 1
+                                ELSE 0 END) AS black_country_highlight',
+                    ["%{$request->search}%"]
+                );
 
                 $query->where(function ($query) use ($request) {
                     $query->where('games.name', 'LIKE', '%' . $request->search . '%')
@@ -112,7 +129,7 @@ class Game extends Model
                         ->orWhere('openings.name', 'LIKE', '%' . $request->search . '%')
                         ->orWhere('openings.eco', 'LIKE', '%' . $request->search . '%')
                         ->orWhere('white_player.name', 'LIKE', '%' . $request->search . '%')
-                        ->orWhere('black_player.name', 'LIKE', '%' . $request->search . '%') 
+                        ->orWhere('black_player.name', 'LIKE', '%' . $request->search . '%')
                         ->orWhere('white_player.country', 'LIKE', '%' . $request->search . '%')
                         ->orWhere('black_player.country', 'LIKE', '%' . $request->search . '%');
                 });
