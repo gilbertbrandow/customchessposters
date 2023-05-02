@@ -15,7 +15,7 @@ class PostersSeeder extends Seeder
     public function run()
     {
 
-        Poster::factory()->count(13)
+        Poster::factory()->count(14)
             ->sequence(
                 [
                     'theme' => 1,
@@ -267,6 +267,26 @@ class PostersSeeder extends Seeder
                     'black_title' => 'GM',
                     'when' => 'Hoogovens Group A, 1999.01.20 Round 4',
                     'where' => 'Wijk aan Zee, Netherlands',
+                ],
+
+                [
+                    'theme' => 1,
+                    'orientation' => 1,
+                    'starting_position' => 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                    'pgn' => '1. e4 c5 2. Nf3 d6 3. Bb5+ Nd7 4. d4 Nf6 5. O-O cxd4 6. Qxd4 a6 7. Bxd7+ Bxd7 8. Bg5 h6 9. Bxf6 gxf6 10. c4 e6 11. Nc3 Rc8 12. Kh1 h5 13. a4 h4 14. h3 Be7 15. b4 a5 16. b5 Qc7 17. Nd2 Qc5 18. Qd3 Rg8 19. Rae1 Qg5 20. Rg1 Qf4 21. Ref1 b6 22. Ne2 Qh6 23. c5 Rxc5 24. Nc4 Kf8 25. Nxb6 Be8 26. f4 f5 27. exf5 Rxf5 28. Rc1 Kg7 29. g4 Rc5 30. Rxc5 dxc5 31. Nc8 Bf8 32. Qd8 Qg6 33. f5 Qh6 34. g5 Qh5 35. Rg4 exf5 36. Nf4 Qh8 37. Qf6+ Kh7 38. Rxh4+',
+                    'diagram_position' => 45,
+                    'move_comment' => 'Clearing an outpost square for the Knight',
+                    'fen' => '2r1k1r1/3bbp2/1p1ppp1q/pPP5/P3P2p/3Q3P/3NNPP1/5RRK b - - 0 23',
+                    'result' => '1-0',
+                    'title' => 'Bishop Pair Advantage? Never heard of it.',
+                    'white_player' => 'Vassily Ivanchuk',
+                    'black_player' => 'Garry Kasparov',
+                    'white_rating' => 2735,
+                    'black_rating' => 2800,
+                    'white_title' => 'GM',
+                    'black_title' => 'GM',
+                    'when' => 'Linares, 1991.02.23 Round 1',
+                    'where' => 'Linares, Spain',
                 ],
                           
             )

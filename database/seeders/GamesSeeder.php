@@ -131,7 +131,7 @@ class GamesSeeder extends Seeder
             [
                 'poster_id' => 11,
                 'name' => 'Levon Aronian manages to take down King Magnus',
-                'description' => 'Carlse, a comfortable contender in any Chess GOAT debate and the reigning World Champion is close to an impossible challenge, even for the talented Aronian. Nevertheless, Levon proved even Kings can be toppled.',
+                'description' => 'Carlsen, a comfortable contender in any Chess GOAT debate and the reigning World Champion is close to an impossible challenge, even for the talented Aronian. Nevertheless, Levon proved even Kings can be toppled.',
                 'date' => '2014-02-04',
                 'white_player' => 20,
                 'black_player' => 21,
@@ -159,6 +159,17 @@ class GamesSeeder extends Seeder
                 'black_player' => 25,
                 'world_championship_game' => 0,
                 'opening_id' => 14,
+            ],
+
+            [
+                'poster_id' => 14,
+                'name' => 'Ivanchuks Immortal Game, proving knights can be more than tricky',
+                'description' => 'As a chess player, you are at some point going to learn that retaining both bishops can often lead to an advantage. To some, this advantage is significant and inevitable. Vasyl proves that there are always exceptions to any chess principle.',
+                'date' => '1991-02-23',
+                'white_player' => 26,
+                'black_player' => 24,
+                'world_championship_game' => 0,
+                'opening_id' => 15,
             ],
 
         ];

@@ -16,7 +16,7 @@ class OpeningsSeeder extends Seeder
     public function run()
     {
 
-        Opening::factory()->count(14)
+        Opening::factory()->count(15)
         ->sequence(
             [
                 'eco' => 'C80',
@@ -92,6 +92,11 @@ class OpeningsSeeder extends Seeder
             [
                 'eco' => 'B06',
                 'name' => " Pirc Defense: General",
+            ],
+
+            [
+                'eco' => 'B51',
+                'name' => " Sicilian Defense: Canal Attack",
             ],
         )
         ->create();
