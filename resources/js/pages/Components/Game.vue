@@ -1,14 +1,15 @@
 <template>
-        <li :class="[this.game.poster_highlight ? 'is--highlighted-poster' : '']">
+        <li :class="[this.game.poster_highlight ? 'is--highlighted-poster' : '', this.small ? 'is--standing' : '']">
                     <div class="content">
-                        <h2 v-text="this.game.name"></h2>
+                        <h2  v-if="this.small !== true" v-text="this.game.name"></h2>
+                        <h3  v-else v-text="this.game.name"></h3>
 
-                        <div class="player">
+                        <div v-if="this.small !== true" class="player">
                                 <div class="flag" @mouseover="removeClass($event)"><Flags :country="this.game.white_country"/><div :class="[this.game.white_country_highlight ? 'info show' : 'info']"><div></div><span>{{this.game.white_country }}</span></div></div>
                                 <div class="name">{{ this.game.white_name }} ({{ this.game.white_rating ? this.game.white_rating : 'N/A' }})</div>
                         </div>
                         
-                        <div class="player">
+                        <div v-if="this.small !== true" class="player">
                             <div class="flag" @mouseover="removeClass($event)"><Flags :country="this.game.black_country"/><div :class="[this.game.black_country_highlight ? 'info show' : 'info']"><div></div><span>{{this.game.black_country }}</span></div></div>
                             <div class="name">{{ this.game.black_name }} ({{ this.game.black_rating ? this.game.black_rating : 'N/A' }})</div>
                         </div>
@@ -32,7 +33,7 @@
                             </a>
                         </div>
                     </div>
-                    <Poster :poster="game" environment="/images/environments/builder-mockup.jpeg"
+                    <Poster :poster="game" :showPlayers="showPlayersInPoster" environment="/images/environments/builder-mockup.jpeg"
                         :controls="{ 'small': true, 'save': true, 'edit': true, }"></Poster>
                 </li>
 </template>
@@ -53,6 +54,8 @@ export default {
     props: {
         search: '',
         game: {},
+        showPlayersInPoster: false,
+        small: false,
     },
 
     methods: {

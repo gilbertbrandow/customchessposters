@@ -21,6 +21,19 @@
                 </button>
             </form>
         </div>
+
+        <div v-if="showPlayers === true" class="players">
+            <div>
+                    <Flag :country="this.poster.white_country"></Flag>
+                    {{ this.poster.white_name }}
+                </div>
+                -
+                <div>
+                    <Flag :country="this.poster.black_country"></Flag>
+                    {{ this.poster.black_name }}
+                </div>
+        </div>
+
         <div class="poster__svg-wrp">
             <Poster :poster="this.poster" />
         </div>
@@ -31,6 +44,7 @@
 <script setup>
 
 import Poster from './Poster/PosterSVG.vue';
+import Flag from '../../Icons/Flags.vue'
 import { useForm } from '@inertiajs/vue3';
 import { Link } from "@inertiajs/vue3";
 
@@ -49,11 +63,14 @@ function submitForm(poster) {
 export default {
 
     components: {
+        Poster,
         Link,
+        Flag,
     },
 
     props: {
         poster: {},
+        showPlayers: false,
         environment: "",
         controls: true,
     },
