@@ -9,11 +9,15 @@
                     <span v-text="getOS"></span>
                 </div>
 
-                <button @click="this.filterAdvanced = !this.filterAdvanced" class="button is--outline"
-                    :class="[filterAdvanced ? 'is--active' : '']">
+                <button v-if="this.advanced !== false" @click="this.advancedShow = !this.advancedShow" class="button is--outline"
+                    :class="[advancedShow ? 'is--active' : '']">
                     Filter
                     <Icon name="filter"></Icon>
                 </button>
+                <Link v-else :href="route('game.index')" class="button is--outline">
+                    See all games
+                    <Icon name="arrow-up"></Icon>
+                </Link>
             </div>
             <div class="field__wrp">
                 <label for="sortBy" class="field__label">Sort by</label>
@@ -27,7 +31,7 @@
                 </select>
             </div>
         </div>
-        <div v-if="this.filterAdvanced" class="advanced">
+        <div v-if="this.advanced !== false && this.advancedShow" class="advanced">
 
             <div class="field__wrp">
                 <label for="after" class="field__label">Played after</label>
@@ -105,7 +109,7 @@
 
         </div>
         <div v-if="this.queryDesc" class="is--margin-top is--margin-left">
-            {{ this.$page.props.games.data.length ? 'Showing games that' : 'Found no games that' }} {{ this.queryDesc }}
+            {{ this.results ? 'Showing games that' : 'Found no games that' }} {{ this.queryDesc }}
             <button class="link-arrow is--low-op is--margin-left" @click="resetQuery()">
                 Remove filters
                 <Icon name="filter-remove" />
@@ -122,13 +126,14 @@ import throttle from 'lodash/throttle';
 export default {
 
     props: {
+        advanced: true,
         results: false,
     },
 
     data() {
         return {
 
-            filterAdvanced: false,
+            advancedShow: false,
 
             search: this.$page.props.route.query.search || null,
 
@@ -172,6 +177,8 @@ export default {
 
             router.visit(window.location.href.split('?')[0], {
                 only: ['games'],
+                preserveScroll: true,
+                preserveState: true,
 
                 onFinish: visit => {
                     this.search = null;
