@@ -1,15 +1,15 @@
 <template>
-        <li :class="[this.game.poster_search ? 'is--highlighted-poster' : '']">
+        <li :class="[this.game.poster_highlight ? 'is--highlighted-poster' : '']">
                     <div class="content">
                         <h2 v-text="this.game.name"></h2>
 
                         <div class="player">
-                                <div class="flag" @mouseover="removeClass($event)"><Flags :country="this.game.white_country"/><div :class="[this.search && this.game.white_country.toLowerCase().includes(this.search.toLowerCase()) ? 'info show' : 'info']"><div></div><span>{{this.game.white_country }}</span></div></div>
+                                <div class="flag" @mouseover="removeClass($event)"><Flags :country="this.game.white_country"/><div :class="[this.game.white_country_highlight ? 'info show' : 'info']"><div></div><span>{{this.game.white_country }}</span></div></div>
                                 <div class="name">{{ this.game.white_name }} ({{ this.game.white_rating ? this.game.white_rating : 'N/A' }})</div>
                         </div>
                         
                         <div class="player">
-                            <div class="flag" @mouseover="removeClass($event)"><Flags :country="this.game.black_country"/><div :class="[this.search && this.game.black_country.toLowerCase().includes(this.search.toLowerCase()) ? 'info show' : 'info']"><div></div><span>{{this.game.black_country }}</span></div></div>
+                            <div class="flag" @mouseover="removeClass($event)"><Flags :country="this.game.black_country"/><div :class="[this.game.black_country_highlight ? 'info show' : 'info']"><div></div><span>{{this.game.black_country }}</span></div></div>
                             <div class="name">{{ this.game.black_name }} ({{ this.game.black_rating ? this.game.black_rating : 'N/A' }})</div>
                         </div>
 
