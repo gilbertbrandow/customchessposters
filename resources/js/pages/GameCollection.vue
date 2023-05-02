@@ -225,22 +225,29 @@ export default {
 
         resetQuery() {
 
-            this.search = null;
+            router.visit(window.location.href.split('?')[0], {
+                only: ['games'],
 
-            this.$data.query = {
-                search: null,
-                player: null,
-                opening: null,
-                country: null,
-                result: null,
-                wcc: null,
-                titles: null,
-                dateFrom: null,
-                dateTo: null,
-                sort: this.$data.query.sort,
-                page: 1,
-            };
+                onFinish: visit => {
+                    this.search = null;
 
+                    this.$data.query = {
+                        search: null,
+                        player: null,
+                        opening: null,
+                        country: null,
+                        result: null,
+                        wcc: null,
+                        titles: null,
+                        dateFrom: null,
+                        dateTo: null,
+                        sort: this.$data.query.sort,
+                        page: 1,
+                    };
+                },
+            });
+
+            return;
         }, 
 
         onKeydown(e) {
@@ -344,7 +351,7 @@ export default {
                     }
                 }
 
-                router.visit('/game-collection', {
+                router.reload({
                     method: 'get',
                     only: ['games'],
                     data: params,
