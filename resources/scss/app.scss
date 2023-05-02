@@ -1021,29 +1021,6 @@ h4 {
         font-size: 0.8em;
         align-items: center;
 
-        .players {
-            text-decoration: none;
-            column-gap: 0.5em;
-            display: flex;
-            background-color: #fff;
-            border: solid 0.065em #ebebeb;
-            border-radius: 1em;
-            padding: 0.5em 1em;
-
-            div {
-                display: flex;
-                column-gap: 0.25em;
-                align-items: center;
-                font-size: 1.2em;
-
-                svg {
-                    margin-top: -0.15em;
-                    height: 1.5em;
-                    width: 1.5em;
-                }
-            }
-        }
-
         .players:hover {
             outline-style: solid;
             outline-width: 2px;
@@ -1092,6 +1069,16 @@ h4 {
     flex: 1;
     width: auto;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+
+    .players {
+        z-index: 2;
+        font-size: 0.6em;
+        justify-content: center;
+        position: absolute;
+        bottom: 1em;
+    }
 }
 
 .poster__buttons-wrp {
@@ -1140,6 +1127,29 @@ h4 {
                 height: 0.85em;
                 width: 0.85em;
             }
+        }
+    }
+}
+
+.players {
+    text-decoration: none;
+    column-gap: 0.5em;
+    display: flex;
+    background-color: #fff;
+    border: solid 0.065em #ebebeb;
+    border-radius: 1em;
+    padding: 0.5em 1em;
+
+    div {
+        display: flex;
+        column-gap: 0.25em;
+        align-items: center;
+        font-size: 1.2em;
+
+        svg {
+            margin-top: -0.15em;
+            height: 1.5em;
+            width: 1.5em;
         }
     }
 }
@@ -1504,6 +1514,7 @@ ul.saved__posters {
     margin-bottom: 2em;
 
     .field__wrp:first-child {
+        flex: 1;
         span {
             position: absolute;
             opacity: 0.5;
@@ -1537,13 +1548,6 @@ ul.saved__posters {
         background-size: 1.25em;
         background-position: right 1em center;
         background-repeat: no-repeat;
-    }
-
-    #search:not(:placeholder-shown) {
-        outline-style: solid;
-        outline-width: 2px;
-        outline-color: #000;
-        border-color: transparent;
     }
 
     .button {
@@ -1583,6 +1587,10 @@ ul.saved__posters {
         row-gap: 1.5em;
     }
 }
+
+/**********************
+****** Game card styles
+***********************/
 
 ul.game__collection {
     display: grid;
@@ -1739,6 +1747,33 @@ ul.game__collection {
         }
     }
 
+    li.is--standing {
+        flex-direction: column-reverse;
+
+        .content {
+            margin-right: 0em;
+            margin-top: -2em;
+            padding-right: 2em;
+            padding-top: 3em;
+
+            h3 {
+                font-size: 1.2em;
+                line-height: 1.4;
+                margin-bottom: 0.5em;
+            }
+
+            .banner {
+                margin-top: 0;
+                font-size: 0.6em;
+            }
+        }
+
+        .poster__environment {
+            margin-bottom: 0;
+        }
+
+    }
+
     li.single {
         grid-column: span 2;
 
@@ -1777,6 +1812,41 @@ ul.game__collection {
         }
     }
 }
+
+ul.is--slider {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+/**********************
+****** Slider 
+***********************/
+
+.slider__header {
+    margin-top: 2em;
+    display: flex;
+    justify-content: space-between;
+
+    .filter {
+        margin-top: 0em;
+        margin-bottom: 0em;
+        width: calc(50% - 0.5em);
+
+        .simple {
+            .button-wrp:first-child {
+                width: 100%
+            }
+        }
+    }
+
+    .slider__navigation {
+        display: flex;
+        column-gap: 0.5em;
+    }
+}
+
+/**********************
+****** Pagination
+***********************/
 
 .pagination {
     margin-top: 2em;
@@ -1846,7 +1916,7 @@ ul.game__collection {
 }
 
 /**********************
-****** Single Game styles
+****** Single Game
 ***********************/
 .move__navigation {
     display: flex;
@@ -1878,7 +1948,7 @@ ul.game__collection {
 }
 
 /**********************
-****** Form styles
+****** Forms
 ***********************/
 
 fieldset {
