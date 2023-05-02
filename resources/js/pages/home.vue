@@ -59,22 +59,11 @@
         </div>
     </section>
 
+    <Slider :games="this.$page.props.games"/>
+
     <Features />
 
     <BuildPoster />
-
-    <section>
-        <div class="container">
-            <h2>Games from our collection</h2>
-            <ul class="game__collection">
-                <div v-for="game in this.games">
-                    <Game :game="game"></Game>
-                </div>
-
-            </ul>
-            <button @click="getGames()" class="button">Test</button>
-        </div>
-    </section>
 
     <section>
         <div class="container">
@@ -93,7 +82,7 @@ import Faq from "./Components/Faq.vue";
 import Features from "./Components/Features.vue"
 import Poster from "./Components/Poster/PosterSVG.vue"
 import Flag from "../Icons/Flags.vue"
-import Game from "./Components/Game.vue"
+import Slider from "./Components/Slider.vue"
 import { Chess } from 'chess.js'
 import { router } from '@inertiajs/vue3'
 import throttle from 'lodash/throttle'
@@ -107,7 +96,7 @@ export default {
         Features,
         Poster,
         Flag,
-        Game,
+        Slider,
     },
     layout: AppLayout,
 
@@ -125,7 +114,7 @@ export default {
                 root: null,
                 threshold: 1,
                 rootMargin: "20% 0px 100% 0px",
-            }, 
+            },
             games: [],
         }
     },
