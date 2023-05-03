@@ -1887,9 +1887,14 @@ ul.is--slider {
     .filter {
         margin-top: 0em;
         margin-bottom: 0em;
-        width: calc(50% - 0.5em);
+        display: flex;
+        flex: 1;
+        column-gap: 1em;
 
         .simple {
+            
+            width: calc(50% + 2.75em);
+
             .button-wrp:first-child {
                 width: 100%
             }
