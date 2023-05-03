@@ -275,6 +275,7 @@ button {
 
 .button.is--outline {
     background-color: transparent;
+    border-color: rgba(0, 0, 0, 0.14);
 }
 
 .button.is--outline:hover {
@@ -1069,15 +1070,15 @@ h4 {
     flex: 1;
     width: auto;
     overflow: hidden;
-    display: flex;
-    justify-content: center;
 
     .players {
         z-index: 2;
         font-size: 0.6em;
         justify-content: center;
         position: absolute;
-        bottom: 1em;
+        bottom: 1.5em;
+        left: 1em;
+
     }
 }
 
@@ -1753,11 +1754,10 @@ ul.game__collection {
         .content {
             margin-right: 0em;
             margin-top: -2em;
-            padding-right: 2em;
-            padding-top: 3em;
+            padding: 2.5em 1em 1em 1em;
 
             h3 {
-                font-size: 1.2em;
+                font-size: 1.15em;
                 line-height: 1.4;
                 margin-bottom: 0.5em;
             }
@@ -1766,6 +1766,42 @@ ul.game__collection {
                 margin-top: 0;
                 font-size: 0.6em;
             }
+
+            strong {
+                display: none;
+            }
+
+            .excerpt {
+                display: flex;
+                align-items: center;
+                margin-top: 0.5em;
+                margin-bottom: 0.5em;
+
+                p {
+                    margin-top: 0em;
+                    margin-bottom: 0em;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    display: inline-block;
+                    width: 15em;
+                }
+    
+                a {
+                    font-size: 0.8em;
+                }
+
+            }
+
+            .button-wrp {
+                flex: 1;
+                align-items: flex-end;
+            }
+            
+        }
+
+        .players {
+            padding-left: 0.75em;
         }
 
         .poster__environment {
@@ -1814,12 +1850,28 @@ ul.game__collection {
 }
 
 ul.is--slider {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    display: flex;
+    transition: margin 400ms ease;
+
+    li {
+        width: 21.25em;
+    }
 }
 
 /**********************
 ****** Slider 
 ***********************/
+
+.slider {
+    overflow: hidden;
+    margin-left: -6em;
+    margin-right: -6em;
+    padding-left: 6em;
+}
+
+ul.is--slider {
+    width: min-content;
+}
 
 .slider__header {
     margin-top: 2em;

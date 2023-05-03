@@ -21,16 +21,19 @@
 
                         <strong class="is--small">{{ this.game.opening_eco + ': ' + this.game.opening_name }}</strong>
                     
-                        <p>{{ this.game.description }}</p>
+                        <div class="excerpt" v-if="this.small === true"><p>{{ this.game.description }}</p><Link :href="route('game.show', { 'id': this.game.id })" class="text__link">See the whole game</Link></div>
+
+                        <p v-else>{{ this.game.description }}</p>
+            
                         <div class="button-wrp">
                             <button class="button is--black"> Add to cart
                                 <Icon name="cart" />
                             </button>
 
-                            <a class="button" :href="route('game.show', { 'id': this.game.id })">
+                            <Link v-if="this.small !== true" class="button" :href="route('game.show', { 'id': this.game.id })">
                                 Go to game
                                 <Icon name="arrow-up" />
-                            </a>
+                            </Link>
                         </div>
                     </div>
                     <Poster :poster="game" :showPlayers="showPlayersInPoster" environment="/images/environments/builder-mockup.jpeg"
