@@ -15,7 +15,7 @@ class PostersSeeder extends Seeder
     public function run()
     {
 
-        Poster::factory()->count(14)
+        Poster::factory()->count(16)
             ->sequence(
                 [
                     'theme' => 1,
@@ -288,7 +288,27 @@ class PostersSeeder extends Seeder
                     'when' => 'Linares, 1991.02.23 Round 1',
                     'where' => 'Linares, Spain',
                 ],
-                          
+
+                [
+                    'theme' => 1,
+                    'orientation' => 1,
+                    'starting_position' => 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                    'pgn' => '1. e4 c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 6. Be3 e6 7. g4 e5 8. Nf5 g6 9. g5 gxf5 10. exf5 d5 11. Qf3 d4 12. O-O-O Nbd7 13. Bd2 dxc3 14. Bxc3 Bg7 15. Rg1 O-O 16. gxf6 Qxf6 17. Qe3 Kh8 18. f4 Qb6 19. Qg3 Qh6 20. Rd6 f6 21. Bd2 e4 22. Bc4 b5 23. Be6 Ra7 24. Rc6 a5 25. Be3 Rb7 26. Bd5 Rb8 27. Rc7 b4 28. b3 Rb5 29. Bc6 Rxf5 30. Rxc8 Rxc8 31. Bxd7 Rcc5 32. Bxf5 Rxf5 33. Rd1 Kg8 34. Qg2',
+                    'diagram_position' => 27,
+                    'move_comment' => 'Quality of Pieces > Quantity',
+                    'fen' => 'r1bqkb1r/1p1n1p1p/p4n2/4pPP1/8/2B2Q2/PPP2P1P/2KR1B1R b kq - 0 14',
+                    'result' => '1-0',
+                    'title' => 'Quick Day At The Office',
+                    'white_player' => 'Judit Polgar',
+                    'black_player' => 'Viswanathan Anand',
+                    'white_rating' => 2677,
+                    'black_rating' => 2781,
+                    'white_title' => 'GM',
+                    'black_title' => 'GM',
+                    'when' => 'Dos Hermanas, 1999.04.06 Round 1',
+                    'where' => 'Dos Hermanas, Spain',
+                ],
+                        
             )
             ->create();
     }

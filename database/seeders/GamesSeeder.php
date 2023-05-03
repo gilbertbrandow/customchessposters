@@ -172,6 +172,18 @@ class GamesSeeder extends Seeder
                 'opening_id' => 15,
             ],
 
+            [
+                'poster_id' => 16,
+                'name' => 'Polgar do to Anand what she does best, attack',
+                'description' => 'In a "Novel Novelty" Judit puts on an attacking showcase against current world no 2, future world champion and forever chess legend; Viswanathan Anand.',
+                'date' => '1999-04-06',
+                'white_player' => 3,
+                'black_player' => 27,
+                'world_championship_game' => 0,
+                'opening_id' => 16,
+            ],
+
+
         ];
 
         foreach ($games as $game) {

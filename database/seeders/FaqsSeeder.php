@@ -23,7 +23,7 @@ class FaqsSeeder extends Seeder
 
             [
                 'question' => "I can't load my game from Lichess.org?",
-                'answer' => 'Make sure you are using a URL to an actual game. Such a URL needs to contain the ID of the game, which is slug of 7 seemingly random character looking something like this: "/hkbzzjQc". If you are looking for a master game on lichess, you might try going to the <a href="https://lichess.org/analysis">analysis board</a>, input the first moves and then select the game from the opening explorer.',
+                'answer' => 'Make sure you are using a URL to an actual game. Such a URL needs to contain the ID of the game, which is slug of 7 seemingly random characters looking something like this: "/hkbzzjQc". If you are looking for a master game on lichess, you might try going to the <a href="https://lichess.org/analysis">analysis board</a>, input the first moves and then select the game from the opening explorer.',
             ],
         ]; 
 
