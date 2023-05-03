@@ -15,7 +15,7 @@ class PostersSeeder extends Seeder
     public function run()
     {
 
-        Poster::factory()->count(16)
+        Poster::factory()->count(15)
             ->sequence(
                 [
                     'theme' => 1,

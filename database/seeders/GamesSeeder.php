@@ -173,7 +173,7 @@ class GamesSeeder extends Seeder
             ],
 
             [
-                'poster_id' => 16,
+                'poster_id' => 15,
                 'name' => 'Polgar do to Anand what she does best, attack',
                 'description' => 'In a "Novel Novelty" Judit puts on an attacking showcase against current world no 2, future world champion and forever chess legend; Viswanathan Anand.',
                 'date' => '1999-04-06',
