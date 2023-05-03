@@ -159,9 +159,11 @@ export default {
 
             const regex = new RegExp(this.query.search, 'gi');
 
-            const textElements = document.querySelectorAll('li p, li .name, li strong, li h2, li .banner span:last-child, li .flag .info span');
+            const textElements = document.querySelectorAll('li p, li .name, li .players span, li strong, li h2, li h3, li .banner span:last-child, li .flag .info span');
 
             textElements.forEach((element) => {
+
+                if(element.closest('.last-slide')) return;
 
                 let text = element.innerHTML;
                 text = text.replace(/(<mark class="highlight">|<\/mark>)/gim, '');

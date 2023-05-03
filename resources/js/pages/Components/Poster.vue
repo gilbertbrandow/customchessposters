@@ -25,12 +25,12 @@
         <div v-if="showPlayers === true" class="players">
             <div>
                     <Flag :country="this.poster.white_country"></Flag>
-                    {{ this.poster.white_name }}
+                    <span>{{ this.poster.white_name }}</span>
                 </div>
                 -
                 <div>
                     <Flag :country="this.poster.black_country"></Flag>
-                    {{ this.poster.black_name }}
+                    <span>{{ this.poster.black_name }}</span>
                 </div>
         </div>
 
