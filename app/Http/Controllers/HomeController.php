@@ -13,7 +13,7 @@ class HomeController extends Controller
         return inertia('Home', [
             'faqs' => fn () => Faq::All(),
             'game' =>  fn () => Game::where('id', '=', random_int(1, Game::count()))->with(['poster', 'whitePlayer', 'blackPlayer'])->first(),
-            'games' => fn() => Game::getAll($request)->take(4)->get(),
+            'games' => fn() => Game::getAll($request)->take(7)->get(),
         ]); 
     }
 

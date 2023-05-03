@@ -1076,7 +1076,7 @@ h4 {
         font-size: 0.6em;
         justify-content: center;
         position: absolute;
-        bottom: 1.5em;
+        bottom: 1em;
         left: 1em;
 
     }
@@ -1804,10 +1804,6 @@ ul.game__collection {
             padding-left: 0.75em;
         }
 
-        .poster__environment {
-            margin-bottom: 0;
-        }
-
     }
 
     li.single {
@@ -1855,6 +1851,16 @@ ul.is--slider {
 
     li {
         width: 21.25em;
+    }
+
+    li.last-slide {
+        width: 17.25em;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2em;
+        background-color: transparent;
+        border: 0.06em solid rgba(0, 0, 0, 0.14)
     }
 }
 

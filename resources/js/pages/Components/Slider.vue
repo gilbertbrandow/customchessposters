@@ -16,8 +16,20 @@
                 </div>
             </div>
             <div class="slider">
+                <!-- TODO: Make slider responsive -->
                 <ul class="game__collection is--slider" :style="{ 'margin-left': (-22.25 * this.currSlide) + 'em' }">
-                        <Game v-for="(game, index) in this.games" :game="game" :small="true" :showPlayersInPoster="true"></Game>
+                    <Game v-for="(game, index) in this.games" :game="game" :small="true" :showPlayersInPoster="true"></Game>
+
+                    <li class="last-slide" v-if="this.games.length > 3">
+                        <h3>Do you want to see more games like this?</h3>
+                        <p>We are constantly adding new games to our
+                            <Link class="text__link" :href="route('game.index')">Game Collection</Link> and you will likely
+                            find a game there that will pique your interest. If you cant find the game you are looking for, you
+                            can always
+                            <Link class="text__link" :href="route('poster.show')">create the poster yourself!</Link>
+                        </p>
+                    </li>
+
                 </ul>
             </div>
         </div>
@@ -27,7 +39,6 @@
 <script>
 import Game from "./Game.vue"
 import Filter from "./Filter.vue"
-
 export default {
 
     components: {
@@ -47,10 +58,16 @@ export default {
 
     methods: {
         changeSlide(direction) {
-            if(direction) this.currSlide < this.games.length - 1 ? this.currSlide++ : this.currSlide = 0
-            else if(!direction) this.currSlide > 0 ? this.currSlide-- : this.currSlide = this.games.length - 1
+            if (direction) this.currSlide < this.games.length - 1 ? this.currSlide++ : this.currSlide = 0
+            else if (!direction && this.currSlide > 0) this.currSlide--
         },
-    }
+    },
+
+    watch: {
+        games() {
+            this.currSlide = 0; 
+        },
+    },
 
 }
 </script>
