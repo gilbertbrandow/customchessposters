@@ -147,7 +147,7 @@ export default {
                 titles: this.$page.props.route.query.titles || 'null',
                 dateFrom: this.$page.props.route.query.dateFrom || null,
                 dateTo: this.$page.props.route.query.dateTo || null,
-                sort: typeof this.$page.props.route.query.sort === 'string' ? this.$page.props.route.query.sort : 'recent-desc',
+                sort: typeof this.$page.props.route.query.sort === 'string' ? this.$page.props.route.query.sort : (this.advanced ? 'recent-desc' : null),
                 page: this.$page.props.games.current_page || null,
             },
         }
