@@ -48,6 +48,8 @@ class Game extends Model
     public static function getAll(Request $request)
     {
 
+        //TODO: Take a parameter, maybe $full or $simple and adapt query. For example search highlighting and which fields are selected
+
         $orderBy = explode('-', $request->input('sort') ?? 'recent-desc');
 
         return DB::table('games')
@@ -102,6 +104,14 @@ class Game extends Model
                         WHEN posters.move_comment LIKE ? THEN 1 
                         ELSE 0 END) AS poster_highlight',
                     array_fill(0, 6, "%{$request->search}%")
+                );
+
+                $query->selectRaw(
+                    '(CASE 
+                        WHEN openings.name LIKE ? THEN 1
+                        WHEN games.description LIKE ? THEN 1
+                        ELSE 0 END) AS read_more_highlight',
+                    array_fill(0, 2, "%{$request->search}%")
                 );
 
                 $query->selectRaw(

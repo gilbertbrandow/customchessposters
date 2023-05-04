@@ -21,7 +21,7 @@
 
                         <strong class="is--small">{{ this.game.opening_eco + ': ' + this.game.opening_name }}</strong>
                     
-                        <div class="excerpt" v-if="this.small === true"><p>{{ this.game.description }}</p><Link :href="route('game.show', { 'id': this.game.id })" class="text__link">See the whole game</Link></div>
+                        <div class="excerpt" v-if="this.small === true"><p>{{ this.game.description }}</p><Link :href="route('game.show', { 'id': this.game.id })" class="text__link" :class="[this.game.read_more_highlight ? 'highlight' : '']">See the whole game</Link></div>
 
                         <p v-else>{{ this.game.description }}</p>
             
