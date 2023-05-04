@@ -2,7 +2,7 @@
     <section>
         <div class="container">
             <h1>Game Collection</h1>
-           <Filter :results="this.$page.props.games.data.length"></Filter>
+           <Filter :results="this.$page.props.games.data.length" :advanced="true"></Filter>
             <ul class="game__collection">
                 <Game v-for="game in this.$page.props.games.data" :game="game"></Game>
             </ul>
