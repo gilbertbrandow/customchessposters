@@ -1,7 +1,7 @@
 <template>
     <section>
         <div class="container">
-            <h2>Some Recent Games From Our Collection</h2>
+            <h2>The Most Recent Games From Our Collection</h2>
 
             <div class="slider__header">
                 <Filter :results="this.games.length" :advanced="false"></Filter>
@@ -27,6 +27,15 @@
                             find a game there that will pique your interest. If you cant find the game you are looking for, you
                             can always
                             <Link class="text__link" :href="route('poster.show')">create the poster yourself!</Link>
+                        </p>
+                    </li>
+
+                    <li class="last-slide" v-if="!this.games.length">
+                        <h3>Could you not find the game you were looking for?</h3>
+                        <p>You might have better luck finding it by using our advanced filter options in the
+                            <Link class="text__link" :href="route('game.index')">Game Collection</Link>. If you still can not find your game, you
+                            can always
+                            <Link class="text__link" :href="route('poster.show')">create any poster yourself!</Link>
                         </p>
                     </li>
 

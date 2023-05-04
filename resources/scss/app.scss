@@ -1855,6 +1855,7 @@ ul.is--slider {
 
     li.last-slide {
         width: 17.25em;
+        min-height: 32.5em;
         flex-direction: column;
         align-items: center;
         justify-content: center;
@@ -1892,7 +1893,7 @@ ul.is--slider {
         column-gap: 1em;
 
         .simple {
-            
+
             width: calc(50% + 2.75em);
 
             .button-wrp:first-child {
