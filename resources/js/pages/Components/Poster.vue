@@ -23,13 +23,15 @@
         </div>
 
         <div v-if="showPlayers === true" class="players">
-            <div>
+            <div class="player">
                     <Flag :country="this.poster.white_country"></Flag>
+                    <div :class="[this.poster.white_country_highlight ? 'info show' : 'info']"><div></div><span>{{this.poster.white_country }}</span></div>
                     <span>{{ this.poster.white_name }}</span>
                 </div>
                 -
-                <div>
+                <div class="player">
                     <Flag :country="this.poster.black_country"></Flag>
+                    <div :class="[this.poster.black_country_highlight ? 'info show' : 'info']"><div></div><span>{{this.poster.black_country }}</span></div>
                     <span>{{ this.poster.black_name }}</span>
                 </div>
         </div>

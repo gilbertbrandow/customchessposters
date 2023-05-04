@@ -1802,6 +1802,35 @@ ul.game__collection {
 
         .players {
             padding-left: 0.75em;
+            overflow: visible;
+
+            .player {
+                position: relative;
+                .info {
+                    top: 2.5em;
+                    left: -0.9em;
+                    transition: opacity 400ms ease;
+                    background-color: whitesmoke;
+                    border-color: rgba(0, 0, 0, 0.75);
+                    color: #000;
+
+                    div {
+                        background-color: whitesmoke;
+                        border-color: rgba(0, 0, 0, 0.75);
+                        border-width: 0.05em;
+                    }
+                }
+
+                .info.show {
+                    opacity: 1;
+                }
+            }
+
+            .player:hover {
+                .info {
+                    opacity: 1;
+                }
+            }
         }
 
     }
