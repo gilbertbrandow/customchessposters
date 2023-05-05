@@ -386,7 +386,7 @@
                     </div>
                 </div>
 
-                <Poster :poster=" poster " :environment=" this.$data.posterBuilder.currEnvironment " :controls=" controls ">
+                <Poster :poster=" poster " :environment=" this.$data.posterBuilder.currEnvironment " :controls="controls">
                 </Poster>
 
             </div>
