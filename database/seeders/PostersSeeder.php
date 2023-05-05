@@ -15,7 +15,7 @@ class PostersSeeder extends Seeder
     public function run()
     {
 
-        Poster::factory()->count(15)
+        Poster::factory()->count(17)
             ->sequence(
                 [
                     'theme' => 1,
@@ -298,7 +298,7 @@ class PostersSeeder extends Seeder
                     'move_comment' => 'Quality of Pieces > Quantity',
                     'fen' => 'r1bqkb1r/1p1n1p1p/p4n2/4pPP1/8/2B2Q2/PPP2P1P/2KR1B1R b kq - 0 14',
                     'result' => '1-0',
-                    'title' => 'Quick Day At The Office',
+                    'title' => 'King safety is the no. 1 priority',
                     'white_player' => 'Judit Polgar',
                     'black_player' => 'Viswanathan Anand',
                     'white_rating' => 2677,
@@ -307,6 +307,39 @@ class PostersSeeder extends Seeder
                     'black_title' => 'GM',
                     'when' => 'Dos Hermanas, 1999.04.06 Round 1',
                     'where' => 'Dos Hermanas, Spain',
+                ],
+
+                [
+                    'theme' => 1,
+                    'orientation' => 0,
+                    'starting_position' => 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                    'pgn' => '1. d4 f5 2. c4 Nf6 3. Nc3 e6 4. Nf3 d5 5. e3 c6 6. Bd3 Bd6 7. O-O O-O 8. Ne2 Nbd7 9. Ng5 Bxh2+ 10. Kh1 Ng4 11. f4 Qe8 12. g3 Qh5 13. Kg2 Bg1 14. Nxg1 Qh2+ 15. Kf3 e5 16. dxe5 Ndxe5+ 17. fxe5 Nxe5+ 18. Kf4 Ng6+ 19. Kf3 f4 20. exf4 Bg4+ 21. Kxg4 Ne5+ 22. fxe5 h5#',
+                    'diagram_position' => 42,
+                    'move_comment' => 'The fourth sacrifice of a minor piece',
+                    'fen' => 'r4rk1/pp4pp/2p5/3pn1N1/2P2PK1/3B2P1/PP5q/R1BQ1RN1 w - - 1 22',
+                    'result' => '0-1',
+                    'title' => 'In For a Penny, In For a Dime',
+                    'white_player' => 'Glucksberg',
+                    'black_player' => 'Miguel Najdorf',
+                    'black_title' => 'GM',
+                    'when' => 'Warsaw, 1929',
+                    'where' => 'Warsaw POL',
+                ],
+                    
+                [
+                    'theme' => 1,
+                    'orientation' => 1,
+                    'starting_position' => 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                    'pgn' => '1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. b4 Bxb4 5. c3 Ba5 6. d4 exd4 7. O-O d3 8. Qb3 Qf6 9. e5 Qg6 10. Re1 Nge7 11. Ba3 b5 12. Qxb5 Rb8 13. Qa4 Bb6 14. Nbd2 Bb7 15. Ne4 Qf5 16. Bxd3 Qh5 17. Nf6+ gxf6 18. exf6 Rg8 19. Rad1 Qxf3 20. Rxe7+ Nxe7 21. Qxd7+ Kxd7 22. Bf5+ Ke8 23. Bd7+ Kf8 24. Bxe7#',
+                    'diagram_position' => 41,
+                    'move_comment' => 'Springing the trap',
+                    'fen' => '1r2k1r1/pbpQnp1p/1b3P2/8/8/B1PB1q2/P4PPP/3R2K1 b - - 0 21',
+                    'result' => '1-0',
+                    'title' => 'The Evergreen Game',
+                    'white_player' => 'Adolf Anderssen',
+                    'black_player' => 'Jean Dufresne',
+                    'when' => 'Berlin, 1852',
+                    'where' => 'Berlin, Germany',
                 ],
                         
             )

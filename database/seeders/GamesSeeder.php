@@ -163,7 +163,7 @@ class GamesSeeder extends Seeder
 
             [
                 'poster_id' => 14,
-                'name' => 'Ivanchuks Immortal Game, proving knights can be more than tricky',
+                'name' => 'Ivanchuks Immortal Game, proving knights are for more than tricks',
                 'description' => 'As a chess player, you are at some point going to learn that retaining both bishops can often lead to an advantage. To some, this advantage is significant and inevitable. Vasyl proves that there are always exceptions to any chess principle.',
                 'date' => '1991-02-23',
                 'white_player' => 26,
@@ -183,6 +183,27 @@ class GamesSeeder extends Seeder
                 'opening_id' => 16,
             ],
 
+            [
+                'poster_id' => 16,
+                'name' => 'The Polish Immortal Game',
+                'description' => 'The Polish-Argentinian Miguel Najdorf, after whom the widely popular Sicilian Najdorf variation is named after, is the author of this masterpiece. A game which is widely known for the fact that all four of blacks minor pieces were sacrificed.',
+                'date' => '1929-01-01',
+                'white_player' => 28,
+                'black_player' => 29,
+                'world_championship_game' => 0,
+                'opening_id' => 17,
+            ],
+
+            [
+                'poster_id' => 17,
+                'name' => 'A Game Every Chess Player Must Be Familiar With',
+                'description' => 'A relic from the past, authored by none other than Adolf Anderssen. From an era in chess when it was considered rude to not accept sacrifices and opening theory was "Control the center and take initiative".',
+                'date' => '1852-01-01',
+                'white_player' => 30,
+                'black_player' => 31,
+                'world_championship_game' => 0,
+                'opening_id' => 18,
+            ],
 
         ];
 
