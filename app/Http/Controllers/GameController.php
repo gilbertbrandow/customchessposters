@@ -17,7 +17,12 @@ class GameController extends Controller
             'games' => fn () => Game::getAll($request)->paginate(2),
 
             'players' => fn () => DB::table('players')
-            ->select('id','name', 'country')
+            ->select('id','name')
+            ->orderBy('name', 'asc')
+            ->get(),
+
+            'countries' => fn () => DB::table('players')
+            ->select('country')
             ->orderBy('country', 'asc')
             ->get()
             ->groupBy('country'),

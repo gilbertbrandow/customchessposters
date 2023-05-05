@@ -9,14 +9,14 @@
                     <span v-text="getOS"></span>
                 </div>
 
-                <button v-if="this.advanced !== false" @click="this.advancedShow = !this.advancedShow" class="button is--outline"
-                    :class="[advancedShow ? 'is--active' : '']">
+                <button v-if="this.advanced !== false" @click="this.advancedShow = !this.advancedShow"
+                    class="button is--outline" :class="[advancedShow ? 'is--active' : '']">
                     Filter
                     <Icon name="filter"></Icon>
                 </button>
                 <Link v-else :href="route('game.index')" class="button is--outline">
-                    See all games
-                    <Icon name="arrow-up"></Icon>
+                See all games
+                <Icon name="arrow-up"></Icon>
                 </Link>
             </div>
             <div v-if="this.advanced !== false" class="field__wrp">
@@ -68,9 +68,7 @@
                 <select v-model="query.player" id="player" :class="[query.player !== null ? 'field active' : 'field']"
                     name="player">
                     <option :value="null">No preference</option>
-                    <template v-for="(country, key) in this.$page.props.players">
-                        <option v-for="player in country" :value="player.id">{{ player.name }}</option>
-                    </template>
+                    <option v-for="player in this.$page.props.players" :value="player.id">{{ player.name }}</option>
                 </select>
             </div>
 
@@ -79,7 +77,7 @@
                 <select v-model="query.country" id="country" :class="[query.country !== null ? 'field active' : 'field']"
                     name="wcc">
                     <option :value="null">No preference</option>
-                    <option v-for="(country, key) in this.$page.props.players" :value="key">{{ key }}</option>
+                    <option v-for="country in this.$page.props.countries" :value="country">{{ Country }}</option>
                 </select>
             </div>
 
@@ -163,7 +161,7 @@ export default {
 
             textElements.forEach((element) => {
 
-                if(element.closest('.last-slide')) return;
+                if (element.closest('.last-slide')) return;
 
                 let text = element.innerHTML;
                 text = text.replace(/(<mark class="highlight">|<\/mark>)/gim, '');
@@ -292,7 +290,7 @@ export default {
         query: {
             handler() {
 
-                if(this.$page.props.games.current_page) this.$data.query.page = 1; 
+                if (this.$page.props.games.current_page) this.$data.query.page = 1;
 
                 let params = {};
 
