@@ -34,13 +34,14 @@ import moment from 'moment'
 export default {
 
     props: {
-        faqs: Array
+        faqs: [],
     },
+
     methods: {
         toggleAnswer(id) {
-
             this.$refs['question' + id][0].classList.toggle("is--active");
         },
+        
         formatDate(value) {
             return moment(String(value)).format('DD/MM - YYYY');
         }
