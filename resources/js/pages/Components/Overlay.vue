@@ -139,6 +139,8 @@ let submit = ($form) => {
     if ($form == 'login') {
         login.post('/login', {
 
+            preserveScroll: true,
+
             onError: function () {
                 usePage().props.overlay.visible = true;
                 usePage().props.overlay.login = true;
@@ -153,6 +155,8 @@ let submit = ($form) => {
 
         register.post('/register', {
 
+            preserveScroll: true,
+
             onError: function () {
                 usePage().props.overlay.visible = true;
                 usePage().props.overlay.register = true;
@@ -166,6 +170,10 @@ let submit = ($form) => {
 
     } else if ($form == 'forgot') {
         forgot.post('/forgot-password', {
+
+            preserveScroll: true,
+            preserveState: true,
+
             onError: function () {
                 usePage().props.overlay.visible = true;
                 usePage().props.overlay.forgot = true;
