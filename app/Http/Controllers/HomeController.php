@@ -17,19 +17,9 @@ class HomeController extends Controller
         ]); 
     }
 
-    public function contact ()
-    {
-        return inertia('Contact');
-    }  
-    
-    public function thankYou () 
-    {
-        return inertia('Thank-you');
-    }
-
     /*
     |--------------------------------------------------------------------------
-    | Policy actions
+    | Policy custom actions
     |--------------------------------------------------------------------------
     */
 
