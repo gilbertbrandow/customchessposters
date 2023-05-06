@@ -7,7 +7,20 @@ use Illuminate\Http\Request;
 
 class MailController extends Controller
 {
-    public function sendContactEmail (Request $request) {
+
+
+    public function index ()
+    {
+        return inertia('Contact');
+    }  
+    
+    public function show () 
+    {
+        return inertia('Thank-you');
+    }
+
+
+    public function create (Request $request) {
 
         $request->validate([
             'name' => ['required', 'min:5', 'max:25'],
@@ -25,6 +38,6 @@ class MailController extends Controller
 
         $name = explode(' ',$data['name'])[0];
 
-        return redirect()->route('home.thankYou')->with('name', $name);
+        return redirect()->route('contact.show')->with('name', $name);
     }
 }
