@@ -14,7 +14,7 @@ class FaqController extends Controller
         return inertia('FAQ', compact('faqs'));
     }
 
-    public function show()
+    public function edit()
     {
         $faqs = Faq::All();
         return inertia('Auth/Faq', compact('faqs'));

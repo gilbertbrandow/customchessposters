@@ -10,7 +10,7 @@ use Spatie\Newsletter\Facades\Newsletter;
 class NewsletterController extends Controller
 {
 
-    public function subscribe(Request $request)
+    public function create(Request $request)
     {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
@@ -25,10 +25,5 @@ class NewsletterController extends Controller
             Newsletter::subscribe($credentials['email']);
             return redirect()->back()->with('newsletterSuccess', 'Welcome as a new subscriber!');
         }
-    }
-
-    public function signup()
-    {
-        return inertia('Home');
     }
 }

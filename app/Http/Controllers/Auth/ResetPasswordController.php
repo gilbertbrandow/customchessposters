@@ -13,12 +13,12 @@ use Illuminate\Support\Str;
 
 class ResetPasswordController extends Controller
 {
-    public function showForgot()
+    public function index()
     {
         return redirect()->back()->with('authenticateForgot', true);
     }
 
-    public function sendLink(Request $request)
+    public function create(Request $request)
     {
         $email = $request->validate(['email' => 'required|email']);
 
@@ -30,13 +30,12 @@ class ResetPasswordController extends Controller
         : back()->with('authenticateForgot', true)->withErrors(['all' => 'We cant find any account that match that email'])->onlyInput('all');
     }
 
-
-    public function showReset()
+    public function show()
     {
         return inertia('Auth/ResetPassword'); 
     }
 
-    public function passwordUpdate (Request $request) {
+    public function update (Request $request) {
         $request->validate([
             'token' => 'required',
             'email' => 'required|email',

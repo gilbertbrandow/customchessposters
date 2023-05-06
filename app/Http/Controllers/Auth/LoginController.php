@@ -11,12 +11,12 @@ use Illuminate\Support\Facades\Auth;
 class LoginController extends Controller
 {
 
-    public function show()
+    public function index()
     {
         return redirect()->back()->with('authenticateLogin', true);
     }
 
-    public function authenticate(Request $request)
+    public function create(Request $request)
     {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
@@ -51,7 +51,7 @@ class LoginController extends Controller
         }
     }
 
-    public function logout()
+    public function destroy()
     {
         Auth::logout();
         return redirect()->route('home.index');

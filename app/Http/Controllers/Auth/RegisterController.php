@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 
 class RegisterController extends Controller
 {
-    static public function show()
+    static public function index()
     {
         $url = url()->previous();
 
@@ -24,7 +24,7 @@ class RegisterController extends Controller
         else return redirect()->back()->with('authenticateRegister', true);
     }
 
-    public function register(Request $request, LoginController $login)
+    public function create(Request $request, LoginController $login)
     {
         $credentials = $request->validate([
             'name' => ['required', 'min:5', 'max:25'],

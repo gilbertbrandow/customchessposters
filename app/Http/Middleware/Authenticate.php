@@ -21,7 +21,7 @@ class Authenticate extends Middleware
         }
 
         if (! $request->expectsJson()) {
-            return route('auth.registration');
+            return route('register.index');
         }
     }
 }
