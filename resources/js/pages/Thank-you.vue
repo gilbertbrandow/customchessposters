@@ -1,7 +1,7 @@
 <template>
     <section class="is--pt">
         <div class="container">
-            <h1>Thank you {{ $page.props.profile.auth.user.name }} for your message!</h1>
+            <h1>Thank you {{ this.$page.props.auth.user.name }} for your message!</h1>
             <p>We have recieved it and we will be in touch as soon as we can.</p>
         </div>
     </section>

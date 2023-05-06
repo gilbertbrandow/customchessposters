@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\Contact; 
 use Illuminate\Http\Request;
 
-class MailController extends Controller
+class ContactController extends Controller
 {
 
 

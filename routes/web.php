@@ -5,7 +5,7 @@ use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ResetPasswordController;
-use App\Http\Controllers\MailController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PosterController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\FaqController;
