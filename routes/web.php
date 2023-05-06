@@ -12,11 +12,12 @@ use App\Http\Controllers\FaqController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\OpeningController;
 use App\Http\Controllers\PlayerController;
+use App\Http\Controllers\SavedPostersController;
 use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Pages
 |--------------------------------------------------------------------------
 |
 */
@@ -24,24 +25,32 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])
     ->name('home.index');
 
-Route::get('/contact', [HomeController::class, 'contact'])
-    ->name('home.contact');
+Route::get('/contact', [ContactController::class, 'index'])
+    ->name('contact.index');
+
+Route::post('/contact', [ContactController::class, 'create'])
+    ->name('contact.create');
+
+Route::get('/thank-you', [ContactController::class, 'show'])
+    ->name('contact.show');
+
+Route::get('/faq', [FaqController::class, 'index'])
+    ->name('faq.index');
+
+
+/*
+|--------------------------------------------------------------------------
+| Games
+|--------------------------------------------------------------------------
+|
+*/
 
 Route::get('/game-collection', [GameController::class, 'index'])
     ->name('game.index');
 
-Route::get('/game/{id}', [GameController::class, 'single'])
+Route::get('/game/{id}', [GameController::class, 'show'])
     ->name('game.show');
 
-Route::post('/newsletter', [NewsletterController::class, 'subscribe'])
-    ->name('newsletter.register');
-
-Route::post('/contact', [MailController::class, 'sendContactEmail'])->name('mail.sendEmail');
-
-Route::get('/thank-you', [HomeController::class, 'thankYou'])->name('home.thankYou');
-
-Route::get('/faq', [FaqController::class, 'index'])
-    ->name('faq.index');
 
 
 /*
@@ -51,8 +60,8 @@ Route::get('/faq', [FaqController::class, 'index'])
 |
 */
 
-Route::get('/newsletter', [NewsletterController::class, 'signup'])
-    ->name('newsletter.signup');
+Route::post('/newsletter', [NewsletterController::class, 'create'])
+    ->name('newsletter.create');
 
 
 
@@ -63,54 +72,61 @@ Route::get('/newsletter', [NewsletterController::class, 'signup'])
 */
 
 Route::get('/shipping', [HomeController::class, 'shipping'])
-    ->name('policy.shipping');
+    ->name('home.shipping');
 
 Route::get('/return', [HomeController::class, 'return'])
-    ->name('policy.return');
+    ->name('home.return');
 
 Route::get('/privacy', [HomeController::class, 'privacy'])
-    ->name('policy.privacy');
+    ->name('home.privacy');
 
 
 /*
 |--------------------------------------------------------------------------
-| Auth routes
+| Login and registration routes
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/register', [RegisterController::class, 'index'])
+    ->name('register.index');
+
+Route::post('/register', [RegisterController::class, 'create'])
+    ->name('register.create');
+
+Route::get('/login', [LoginController::class, 'index'])
+    ->name('login.index');
+
+Route::post('/login', [LoginController::class, 'create'])
+    ->name('login.create');
+
+Route::get('/forgot-password', [ResetPasswordController::class, 'index'])
+    ->name('resetPassword.index');
+
+Route::post('/forgot-password', [ResetPasswordController::class, 'create'])
+    ->name('resetPassword.create');
+
+Route::get('/reset-password/{token}', [ResetPasswordController::class, 'show'])
+    ->name('resetPassword.show');
+
+Route::post('/reset-password', [ResetPasswordController::class, 'update'])
+    ->name('resetPassword.update');
+
+
+/*
+|--------------------------------------------------------------------------
+| Account routes
 |--------------------------------------------------------------------------
 */
 
 Route::middleware('auth')->group(function () {
-    Route::get('/account', [UserController::class, 'account'])
-        ->name('auth.account');
+    Route::get('/account', [UserController::class, 'index'])
+        ->name('user.index');
 
-    Route::get('/saved-designs', [UserController::class, 'savedPosters'])
-        ->name('auth.saved');
+    Route::post('/logout', [LoginController::class, 'destroy'])->name('login.destroy');
 
-    Route::post('/logout', [LoginController::class, 'logout'])->name('auth.logout');
-
-    Route::post('/save-poster', [PosterController::class, 'save'])->name('poster.save');
+    Route::get('/saved-posters', [SavedPostersController::class, 'index'])
+        ->name('savedPosters.index');
 });
-
-Route::get('/register', [RegisterController::class, 'show'])
-    ->name('auth.registration');
-
-Route::post('/register', [RegisterController::class, 'register'])
-    ->name('auth.create');
-
-Route::get('/login', [LoginController::class, 'show'])
-    ->name('auth.login');
-
-Route::post('/login', [LoginController::class, 'authenticate'])
-    ->name('auth.authenticate');
-
-Route::get('/forgot-password', [ResetPasswordController::class, 'showForgot'])
-    ->name('auth.forgotPassword');
-
-Route::post('/forgot-password', [ResetPasswordController::class, 'sendLink']);
-
-Route::get('/reset-password/{token}', [ResetPasswordController::class, 'showReset'])->name('password.reset');
-
-Route::post('/reset-password', [ResetPasswordController::class, 'passwordUpdate'])->name('password.update');
-
 
 
 
@@ -120,16 +136,19 @@ Route::post('/reset-password', [ResetPasswordController::class, 'passwordUpdate'
 |--------------------------------------------------------------------------
 */
 
+Route::get('/build-poster', [PosterController::class, 'index'])
+    ->name('poster.index');
 
-Route::get('/build-poster', [PosterController::class, 'show'])
+Route::get('/edit-poster/{id}', [PosterController::class, 'show'])
     ->name('poster.show');
 
-Route::get('/edit-poster/{id}', [PosterController::class, 'edit'])
-    ->name('poster.edit');
+Route::middleware('auth')->group(function () {
+    Route::post('/save-poster', [SavedPostersController::class, 'create'])
+    ->name('savedPosters.create');
 
-Route::post('/remove-poster', [UserController::class, 'removeSavedPoster'])
-    ->name('poster.remove');
-
+    Route::post('/remove-poster', [SavedPostersController::class, 'destroy'])
+        ->name('savedPoster.destroy');
+});
 
 
 /*
@@ -143,8 +162,8 @@ Route::middleware('admin')->group(function () {
     Route::get('/poster-data', [UserController::class, 'postersData'])
         ->name('poster.data');
 
-    Route::get('/faq-edit', [FaqController::class, 'show'])
-        ->name('faq.show');
+    Route::get('/faq-edit', [FaqController::class, 'edit'])
+        ->name('faq.edit');
 
     Route::post('/faq-create', [FaqController::class, 'create'])
         ->name('faq.create');
@@ -152,10 +171,10 @@ Route::middleware('admin')->group(function () {
     Route::post('/faq-update', [FaqController::class, 'update'])
         ->name('faq.update');
 
-    Route::post('/faq-delete', [FaqController::class, 'destroy'])
-        ->name('faq.delete');
+    Route::post('/faq-destroy', [FaqController::class, 'destroy'])
+        ->name('faq.destory');
 
-    Route::get('/game-edit', [GameController::class, 'show'])
+    Route::get('/game-edit', [GameController::class, 'edit'])
         ->name('game.edit');
 
     Route::post('/game-create', [GameController::class, 'create'])
