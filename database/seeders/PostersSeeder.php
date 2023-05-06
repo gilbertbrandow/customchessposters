@@ -298,7 +298,7 @@ class PostersSeeder extends Seeder
                     'move_comment' => 'Quality of Pieces > Quantity',
                     'fen' => 'r1bqkb1r/1p1n1p1p/p4n2/4pPP1/8/2B2Q2/PPP2P1P/2KR1B1R b kq - 0 14',
                     'result' => '1-0',
-                    'title' => 'King safety is the no. 1 priority',
+                    'title' => 'King Safety Is The no. 1 Priority',
                     'white_player' => 'Judit Polgar',
                     'black_player' => 'Viswanathan Anand',
                     'white_rating' => 2677,

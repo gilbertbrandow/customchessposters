@@ -34,7 +34,7 @@ import moment from 'moment'
 export default {
 
     props: {
-        faqs: [],
+        faqs: Array,
     },
 
     methods: {
