@@ -7,7 +7,7 @@
                     tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero
                     vitae
                     erat.</p>
-                <Link class="link-arrow" :href="route('home.contact')">Still have questions? Contact us <Icon name="arrow-up"/></Link>
+                <Link class="link-arrow" :href="route('contact.index')">Still have questions? Contact us <Icon name="arrow-up"/></Link>
             </div>
             <div class="questions">
                 <div v-for="faq in faqs" :key="faq.id" class="question-wrp" :ref="'question' + faq.id">

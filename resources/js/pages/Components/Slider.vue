@@ -26,7 +26,7 @@
                             <Link class="text__link" :href="route('game.index')">Game Collection</Link> and you will likely
                             find a game there that will pique your interest. If you cant find the game you are looking for, you
                             can always
-                            <Link class="text__link" :href="route('poster.show')">create the poster yourself!</Link>
+                            <Link class="text__link" :href="route('poster.index')">create the poster yourself!</Link>
                         </p>
                     </li>
 
@@ -35,7 +35,7 @@
                         <p>You might have better luck finding it by using our advanced filter options in the
                             <Link class="text__link" :href="route('game.index')">Game Collection</Link>. If you still can not find your game, you
                             can always
-                            <Link class="text__link" :href="route('poster.show')">create any poster yourself!</Link>
+                            <Link class="text__link" :href="route('poster.index')">create any poster yourself!</Link>
                         </p>
                     </li>
 

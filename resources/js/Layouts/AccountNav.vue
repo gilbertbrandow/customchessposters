@@ -6,14 +6,14 @@
                 <h3 v-text="this.$page.props.auth.user.name"></h3>
             </li>
             <li :class="{ 'is--active': $page.url === '/account' }">
-                <Link :href="route('auth.account')">
+                <Link :href="route('user.index')">
                 <div>
                     <Icon name="user"></Icon>
                 </div>Account
                 </Link>
             </li>
-            <li :class="{ 'is--active': $page.url === '/saved-designs' }">
-                <Link :href="route('auth.saved')">
+            <li :class="{ 'is--active': $page.url === '/saved-posters' }">
+                <Link :href="route('savedPosters.index')">
                 <div>
                     <Icon name="bookmark"></Icon>
                 </div>Saved Posters
@@ -27,7 +27,7 @@
                 </Link>
             </li>
             <li v-if="this.$page.props.auth.user.admin" :class="{ 'is--active': $page.url === '/faq-edit' }">
-                <Link :href="route('faq.show')">
+                <Link :href="route('faq.edit')">
                 <div>
                     <Icon name="edit"></Icon>
                 </div>FAQs
@@ -55,7 +55,7 @@
                 </Link>
             </li>
             <li>
-                <Link :href="route('auth.logout')" method="post" as="button">
+                <Link :href="route('login.destroy')" method="post" as="button">
                 <div>
                     <Icon name="logout"></Icon>
                 </div>Log out

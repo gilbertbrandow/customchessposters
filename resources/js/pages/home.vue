@@ -5,7 +5,7 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum
                 tristique. </p>
             <div class="button-wrp">
-                <Link :href="route('poster.show')" class="button is--black">Create your own custom poster</Link>
+                <Link :href="route('poster.index')" class="button is--black">Create your own custom poster</Link>
                 <Link :href="route('game.index')" class="button">See all games
                 <Icon name="arrow-up" />
                 </Link>

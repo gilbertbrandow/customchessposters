@@ -31,13 +31,13 @@
                 <div class="form__bottom">
                     <div class="field__checkbox"><input v-model="login.remember" type="checkbox" id="remember"
                             name="remember" /><label for="remember">Remember me</label></div>
-                    <Link class="link-arrow" :href="route('auth.forgotPassword')" preserve-scroll>Forgot your
+                    <Link class="link-arrow" :href="route('resetPassword.index')" preserve-scroll>Forgot your
                     password?</Link>
                 </div>
                 <div class="field__wrp">
                     <button class="button is--black" :disabled="login.processing">
                         Sign in </button>
-                    <Link class="link-arrow" :href="route('auth.registration')" preserve-scroll>Dont have an
+                    <Link class="link-arrow" :href="route('register.index')" preserve-scroll>Dont have an
                     account? Register
                     here
                     <Icon name="arrow-up" />
@@ -78,7 +78,7 @@
                 <div class="field__wrp">
                     <button class="button is--black" :disabled="register.processing">
                         Register </button>
-                    <Link class="link-arrow" :href="route('auth.login')" preserve-scroll>Already have an
+                    <Link class="link-arrow" :href="route('login.index')" preserve-scroll>Already have an
                     account? Sign in here
                     <Icon name="arrow-up" />
                     </Link>
@@ -97,7 +97,7 @@
                 <div class="field__wrp">
                     <button class="button is--black" :disabled="forgot.processing">
                         Send me my link! </button>
-                    <Link class="link-arrow" :href="route('auth.registration')" preserve-scroll>Dont have an
+                    <Link class="link-arrow" :href="route('register.index')" preserve-scroll>Dont have an
                     account? Register
                     here
                     <Icon name="arrow-up" />

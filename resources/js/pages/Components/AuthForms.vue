@@ -33,7 +33,7 @@
             <div class="field__wrp">
                 <button class="button is--black" :disabled="login.processing">
                     Sign in </button>
-                <Link class="link-arrow" :href="route('auth.registration')" preserve-scroll>Dont have an
+                <Link class="link-arrow" :href="route('register.index')" preserve-scroll>Dont have an
                 account? Register
                 here
                 <Icon name="arrow-up" />
@@ -93,7 +93,7 @@
             <div class="field__wrp">
                 <button class="button is--black" :disabled="forgot.processing">
                     Send me my link! </button>
-                <Link class="link-arrow" :href="route('auth.registration')" preserve-scroll>Dont have an
+                <Link class="link-arrow" :href="route('register.index')" preserve-scroll>Dont have an
                 account? Register
                 here
                 <Icon name="arrow-up" />

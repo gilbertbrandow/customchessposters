@@ -7,7 +7,7 @@
                 <Icon name="fullScreen" />
                 <div v-if="controls.small" class="info"><div></div>Fullscreen</div>
             </button>
-            <Link v-if="controls.edit" :href="route('poster.edit', { 'id': poster.id })" class="button">
+            <Link v-if="controls.edit" :href="route('poster.show', { 'id': poster.id })" class="button">
                 <span v-if="!controls.small">Edit Poster</span>
                 <Icon :name="controls.small ? 'edit-small' : 'edit'" />
 
@@ -58,8 +58,28 @@ let form = useForm({
 });
 
 function submitForm(poster) {
-    form.posterData = poster;
-    form.post('/save-poster', { preserveScroll: true });
+    form.posterData = {
+        id: poster.id, 
+        theme: poster.theme, 
+        orientation: poster.orientation, 
+        starting_position: poster.starting_position, 
+        pgn: poster.pgn, 
+        diagram_position: poster.diagram_position, 
+        move_comment: poster.move_comment, 
+        fen: poster.fen, 
+        result: poster.result, 
+        title: poster.title, 
+        white_player: poster.white_player, 
+        black_player: poster.black_player, 
+        white_rating: poster.white_rating, 
+        black_rating: poster.black_rating, 
+        white_title: poster.white_title, 
+        black_title: poster.black_title, 
+        where: poster.where, 
+        where: poster.where, 
+    };
+    
+    form.post('/save-poster', { preserveScroll: true, preserveState: true, });
 }
 
 </script>

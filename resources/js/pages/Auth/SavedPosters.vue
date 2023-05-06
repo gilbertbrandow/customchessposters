@@ -11,7 +11,7 @@
                             <Icon name="cart" />
                         </button>
 
-                        <a class="button" :href="route('poster.edit', { 'id': poster.id })">
+                        <a class="button" :href="route('poster.show', { 'id': poster.id })">
                             Edit
                             <Icon name="edit" />
                         </a>

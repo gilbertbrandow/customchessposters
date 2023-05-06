@@ -56,7 +56,7 @@
                                 <Icon name="cart" />
                             </button>
 
-                            <a class="button" :href="route('poster.edit', { 'id': this.$data.game.id })">
+                            <a class="button" :href="route('poster.show', { 'id': this.$data.game.id })">
                                 Edit poster
                                 <Icon name="edit" />
                             </a>
