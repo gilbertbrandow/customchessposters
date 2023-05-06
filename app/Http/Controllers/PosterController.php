@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\SavePosterAction;
 use App\Models\Poster;
-use App\Models\User;
 use App\Services\PosterService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,24 +13,12 @@ class PosterController extends Controller
 
     public $endpoint = 'https://api.printful.com/';
 
-    public function show()
+    public function index()
     {
         return inertia('CreatePoster');
     }
 
-    public function save(Request $request, PosterService $service)
-    {
-        //Call service class method
-        $poster = $service->savePoster($request->posterData, User::find(Auth::id()));
-
-        if ($poster) {
-            return redirect()->back()->with('savedSuccess', 'Poster saved!');
-        } else {
-            return redirect()->back()->with('savedError', 'Something went wrong, please try again later.');
-        }
-    }
-
-    public function edit ($id)
+    public function show($id)
     {
         $editPoster = Poster::find($id);
 
