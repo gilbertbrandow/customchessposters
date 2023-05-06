@@ -284,7 +284,7 @@ export default {
     watch: {
 
         search: throttle(function (value) {
-            this.$data.query.search = this.$data.search;
+            this.$data.query.search = this.$data.search != "" ? this.$data.search : null;
         }, 500),
 
         query: {
@@ -301,7 +301,7 @@ export default {
                     }
                 }
 
-                router.reload({
+                router.visit(window.location.href.split('?')[0], {
                     method: 'get',
                     only: ['games'],
                     data: params,
