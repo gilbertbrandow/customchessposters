@@ -72,8 +72,8 @@ export default {
         },
     },
 
-    watch: {
-        games() {
+     watch: {
+        'games.length'() {
             this.currSlide = 0; 
         },
     },
