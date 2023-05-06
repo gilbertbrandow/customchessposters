@@ -205,6 +205,17 @@ class GamesSeeder extends Seeder
                 'opening_id' => 18,
             ],
 
+            [
+                'poster_id' => 18,
+                'name' => "Yifan's Knight makes a long journey to secure the victory",
+                'description' => 'It is sometimes mentioned that the hardest move to find for a chess player is with the knight going backwards. Even in a position where time seem to be of the essence, Hou puts her knight on the first row.',
+                'date' => '2016-01-19',
+                'white_player' => 32,
+                'black_player' => 33,
+                'world_championship_game' => 0,
+                'opening_id' => 19,
+            ],
+
         ];
 
         foreach ($games as $game) {

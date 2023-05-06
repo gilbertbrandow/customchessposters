@@ -15,165 +15,177 @@ class PlayersSeeder extends Seeder
     public function run()
     {
 
-        Player::factory()->count(31)
-            ->sequence(
-                [
-                    'name' => 'Fischer, Robert James',
-                    'country' => 'USA',
-                ],
-                [
-                    'name' => 'Spassky, Boris V',
-                    'country' => 'USSR',
-                ],
-                [
-                    'name' => 'Polgar, Judit',
-                    'country' => 'Hungary',
-                ],
-                [
-                    'name' => 'Mamedyarov, Shakhriyar',
-                    'country' => 'Azerbaijan',
-                ],
+        $players = [
+            [
+                'name' => 'Fischer, Robert James',
+                'country' => 'USA',
+            ],
+            [
+                'name' => 'Spassky, Boris V',
+                'country' => 'USSR',
+            ],
+            [
+                'name' => 'Polgar, Judit',
+                'country' => 'Hungary',
+            ],
+            [
+                'name' => 'Mamedyarov, Shakhriyar',
+                'country' => 'Azerbaijan',
+            ],
 
-                [
-                    'name' => 'Liren, Ding',
-                    'country' => 'China',
-                ],
+            [
+                'name' => 'Liren, Ding',
+                'country' => 'China',
+            ],
 
-                [
-                    'name' => 'Nepomniachtchi, Ian',
-                    'country' => 'Russia',
-                ],
+            [
+                'name' => 'Nepomniachtchi, Ian',
+                'country' => 'Russia',
+            ],
 
-                [
-                    'name' => 'Botvinnik, Mikhail',
-                    'country' => 'USSR',
-                ],
+            [
+                'name' => 'Botvinnik, Mikhail',
+                'country' => 'USSR',
+            ],
 
-                [
-                    'name' => 'Tal, Mikhail',
-                    'country' => 'USSR',
-                ],
+            [
+                'name' => 'Tal, Mikhail',
+                'country' => 'USSR',
+            ],
 
-                [
-                    'name' => 'Byrne, Donald',
-                    'country' => 'USA',
-                ],
+            [
+                'name' => 'Byrne, Donald',
+                'country' => 'USA',
+            ],
 
-                [
-                    'name' => 'Cramling, Pia',
-                    'country' => 'Sweden',
-                ],
+            [
+                'name' => 'Cramling, Pia',
+                'country' => 'Sweden',
+            ],
 
-                [
-                    'name' => 'Galliamova, Alia',
-                    'country' => 'Russia',
-                ],
-
-
-                [
-                    'name' => 'Sznapik, Aleksander',
-                    'country' => 'Poland',
-                ],
-
-                [
-                    'name' => 'Gaprindashvili, Nona',
-                    'country' => 'Georgia',
-                ],
-
-                [
-                    'name' => 'Short, Nigel',
-                    'country' => 'England',
-                ],
+            [
+                'name' => 'Galliamova, Alia',
+                'country' => 'Russia',
+            ],
 
 
-                [
-                    'name' => 'Timman, Jan',
-                    'country' => 'Netherlands',
-                ],
+            [
+                'name' => 'Sznapik, Aleksander',
+                'country' => 'Poland',
+            ],
 
-                [
-                    'name' => 'Gelfand, Boris',
-                    'country' => 'Israel',
-                ],
+            [
+                'name' => 'Gaprindashvili, Nona',
+                'country' => 'Georgia',
+            ],
 
-                [
-                    'name' => 'Nakamura, Hikaru',
-                    'country' => 'USA',
-                ],
-
-                [
-                    'name' => 'Capablanca, Jose R',
-                    'country' => 'Cuba',
-                ],
-
-                [
-                    'name' => 'Marshall, Frank J',
-                    'country' => 'USA',
-                ],
+            [
+                'name' => 'Short, Nigel',
+                'country' => 'England',
+            ],
 
 
-                [
-                    'name' => 'Aronian, Levon',
-                    'country' => 'Armenia',
-                ],
+            [
+                'name' => 'Timman, Jan',
+                'country' => 'Netherlands',
+            ],
 
-                [
-                    'name' => 'Carlsen, Magnus',
-                    'country' => 'Norway',
-                ],
+            [
+                'name' => 'Gelfand, Boris',
+                'country' => 'Israel',
+            ],
+
+            [
+                'name' => 'Nakamura, Hikaru',
+                'country' => 'USA',
+            ],
+
+            [
+                'name' => 'Capablanca, Jose R',
+                'country' => 'Cuba',
+            ],
+
+            [
+                'name' => 'Marshall, Frank J',
+                'country' => 'USA',
+            ],
 
 
-                [
-                    'name' => 'Koneru, Humpy',
-                    'country' => 'India',
-                ],
+            [
+                'name' => 'Aronian, Levon',
+                'country' => 'Armenia',
+            ],
 
-                [
-                    'name' => 'Miroshnichenko, Evgenij',
-                    'country' => 'Ukraine',
-                ],
+            [
+                'name' => 'Carlsen, Magnus',
+                'country' => 'Norway',
+            ],
 
 
-                [
-                    'name' => 'Kasparov, Garry',
-                    'country' => 'Russia',
-                ],
+            [
+                'name' => 'Koneru, Humpy',
+                'country' => 'India',
+            ],
 
-                [
-                    'name' => 'Topalov, Veselin',
-                    'country' => 'Bulgaria',
-                ],
+            [
+                'name' => 'Miroshnichenko, Evgenij',
+                'country' => 'Ukraine',
+            ],
 
-                [
-                    'name' => 'Ivanchuk, Vasyl',
-                    'country' => 'Ukraine',
-                ],
 
-                [
-                    'name' => 'Viswanathan, Anand',
-                    'country' => 'India',
-                ],
+            [
+                'name' => 'Kasparov, Garry',
+                'country' => 'Russia',
+            ],
 
-                [
-                    'name' => 'Glucksberg',
-                    'country' => 'Poland',
-                ],
+            [
+                'name' => 'Topalov, Veselin',
+                'country' => 'Bulgaria',
+            ],
 
-                [
-                    'name' => 'Najdorf, Miguel',
-                    'country' => 'Poland',
-                ],
+            [
+                'name' => 'Ivanchuk, Vasyl',
+                'country' => 'Ukraine',
+            ],
 
-                [
-                    'name' => 'Anderssen, Adolf',
-                    'country' => 'Germany',
-                ],
+            [
+                'name' => 'Viswanathan, Anand',
+                'country' => 'India',
+            ],
 
-                [
-                    'name' => 'Dufresne, Jean',
-                    'country' => 'France',
-                ],
-            )
-            ->create();
+            [
+                'name' => 'Glucksberg',
+                'country' => 'Poland',
+            ],
+
+            [
+                'name' => 'Najdorf, Miguel',
+                'country' => 'Poland',
+            ],
+
+            [
+                'name' => 'Anderssen, Adolf',
+                'country' => 'Germany',
+            ],
+
+            [
+                'name' => 'Dufresne, Jean',
+                'country' => 'France',
+            ],
+
+            [
+                'name' => 'Yifan, Hou',
+                'country' => 'China',
+            ],
+
+            [
+                'name' => 'Navara, David',
+                'country' => 'Czech Republic',
+            ],
+        ]; 
+
+        foreach($players as $player) {
+            Player::create($player); 
+        }
     }
 }

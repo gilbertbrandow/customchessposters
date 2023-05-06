@@ -16,8 +16,7 @@ class OpeningsSeeder extends Seeder
     public function run()
     {
 
-        Opening::factory()->count(18)
-        ->sequence(
+        $openings = [
             [
                 'eco' => 'C80',
                 'name' => 'Ruy Lopez: Open, Karpov Gambit',
@@ -113,7 +112,16 @@ class OpeningsSeeder extends Seeder
                 'eco' => 'C52',
                 'name' => "Italian Game: Evans Gambit. Pierce Defense",
             ],
-        )
-        ->create();
+
+            [
+                'eco' => 'B12',
+                'name' => "Caro-Kann Defense: Advance. Short Variation",
+            ],
+
+        ];
+
+        foreach($openings as $opening) {
+            Opening::create($opening); 
+        }
     }
 }
