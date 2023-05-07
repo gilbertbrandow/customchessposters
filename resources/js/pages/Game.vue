@@ -51,16 +51,8 @@
                             this.$data.game.opening_name }}</strong>
 
                         <p>{{ this.$data.game.description }}</p>
-                        <div class="button-wrp">
-                            <button class="button is--black"> Add to cart
-                                <Icon name="cart" />
-                            </button>
-
-                            <a class="button" :href="route('poster.show', { 'id': this.$data.game.id })">
-                                Edit poster
-                                <Icon name="edit" />
-                            </a>
-                        </div>
+                        
+                        <PosterAddToCart :poster="this.$data.game.poster_id"/>
                     </div>
                     <Poster :poster="this.$data.game" environment="/images/environments/builder-mockup.jpeg"
                         :controls="{ 'save': true }"></Poster>
@@ -72,9 +64,10 @@
 
 <script>
 import AppLayout from "../Layouts/App.vue";
-import Poster from "./Components/Poster.vue"
+import Poster from "./Components/Poster.vue";
 import Flags from "../Icons/Flags.vue";
-import { Chess } from 'chess.js'
+import PosterAddToCart from "./Components/PosterAddToCart.vue";
+import { Chess } from 'chess.js';
 import { Link } from "@inertiajs/vue3";
 
 export default {
@@ -85,6 +78,7 @@ export default {
         Poster,
         Flags,
         Link,
+        PosterAddToCart,
     },
 
     data() {
@@ -153,7 +147,7 @@ export default {
         'game.diagram_position'() {
             const history = this.chessGame.history({ verbose: true });
 
-            if( this.game.diagram_position != this.moveComment[0]) this.game.move_comment = '';
+            if (this.game.diagram_position != this.moveComment[0]) this.game.move_comment = '';
             else this.game.move_comment = this.moveComment[1];
 
             if (history.length == this.game.diagram_position) {

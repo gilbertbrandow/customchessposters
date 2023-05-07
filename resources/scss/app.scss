@@ -2319,6 +2319,24 @@ label {
 }
 
 /**********************
+****** Cart styles 
+***********************/
+.sizes {
+    display: flex;
+    column-gap: 0.5em;
+    align-items: center;
+
+    li {
+        border: 0.06em solid #ebebeb;
+        border-radius: 0.5em;
+        padding: 0.5em 0.75em 0.5em 0.75em;
+        cursor: pointer;
+    }
+}
+
+
+
+/**********************
 ****** Faq Styles
 ***********************/
 
