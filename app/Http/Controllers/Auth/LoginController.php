@@ -51,9 +51,10 @@ class LoginController extends Controller
         }
     }
 
-    public function destroy()
+    public function destroy(Request $request)
     {
         Auth::logout();
+        $request->session()->flush();
         return redirect()->route('home.index');
     }
 }
