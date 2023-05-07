@@ -1,8 +1,8 @@
 <template>
-    <aside class="overlay" v-if="this.$page.props.overlay.visible">
+    <aside class="overlay" v-if="(!this.$page.props.user || !Object.keys(this.$page.props.overlay.lightbox).length) && this.$page.props.overlay.visible">
         <Lightbox></Lightbox>
         <div class="content slide-out"
-            v-if="(this.$page.props.overlay.login || this.$page.props.overlay.register || this.$page.props.overlay.forgot) && (!Object.keys(this.$page.props.overlay.lightbox).length)">
+            v-if="!this.$page.props.user && (this.$page.props.overlay.login || this.$page.props.overlay.register || this.$page.props.overlay.forgot) && (!Object.keys(this.$page.props.overlay.lightbox).length)">
             <button class="button__rnd-icn" @click="this.$page.props.overlay.visible = false">
                 <Icon name="close" />
             </button>
