@@ -13,6 +13,7 @@ use App\Http\Controllers\GameController;
 use App\Http\Controllers\OpeningController;
 use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\SavedPostersController;
 use Illuminate\Support\Facades\Route;
 
@@ -156,6 +157,10 @@ Route::middleware('auth')->group(function () {
 | Ecommerce routes
 |--------------------------------------------------------------------------
 */
+
+Route::get('/cart', [CartController::class, 'index'])
+    ->name('cart.index');
+
 Route::post('/add-to-cart', [CartController::class, 'update'])
     ->name('cart.update');
 
