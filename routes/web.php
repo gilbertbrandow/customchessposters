@@ -12,6 +12,7 @@ use App\Http\Controllers\FaqController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\OpeningController;
 use App\Http\Controllers\PlayerController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SavedPostersController;
 use Illuminate\Support\Facades\Route;
 
@@ -144,11 +145,24 @@ Route::get('/edit-poster/{id}', [PosterController::class, 'show'])
 
 Route::middleware('auth')->group(function () {
     Route::post('/save-poster', [SavedPostersController::class, 'create'])
-    ->name('savedPosters.create');
+        ->name('savedPosters.create');
 
     Route::post('/remove-poster', [SavedPostersController::class, 'destroy'])
         ->name('savedPoster.destroy');
 });
+
+/*
+|--------------------------------------------------------------------------
+| Ecommerce routes
+|--------------------------------------------------------------------------
+*/
+Route::post('/add-to-cart', [CartController::class, 'update'])
+    ->name('cart.update');
+
+Route::post('/product', [ProductController::class, 'create'])
+    ->name('product.create');
+
+
 
 
 /*
