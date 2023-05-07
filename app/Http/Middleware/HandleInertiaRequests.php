@@ -73,7 +73,7 @@ class HandleInertiaRequests extends Middleware
                     ],
 
                     'cart' => [
-                        'success' => $request->session()->get('cart'),
+                        'success' => $request->session()->get('cartSuccess'),
                         'error' => $request->session()->get('cartError'),
                     ],
 
@@ -83,10 +83,11 @@ class HandleInertiaRequests extends Middleware
 
             'overlay' => [
                 'visible' =>  $request->session()->get('authenticateLogin') || $request->session()->get('authenticateRegister') || $request->session()->get('authenticateForgot'),
-                'lightbox' =>  '',
+                'lightbox' =>  false,
                 'login' => $request->session()->get('authenticateLogin'),
                 'register' => $request->session()->get('authenticateRegister'),
                 'forgot' => $request->session()->get('authenticateForgot'),
+                'cart' => false,
             ],
             
             'route' => [

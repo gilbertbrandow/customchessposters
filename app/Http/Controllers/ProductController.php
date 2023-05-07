@@ -38,6 +38,6 @@ class ProductController extends Controller
 
         $cartItem->increment('quantity');
 
-        return redirect()->back()->with('cart', 'New item added');
+        return redirect()->back()->with('cartSuccess', 'New item added');
     }
 }
