@@ -72,6 +72,11 @@ class HandleInertiaRequests extends Middleware
                         'error' => $request->session()->get('savedError'),
                     ],
 
+                    'cart' => [
+                        'success' => $request->session()->get('cart'),
+                        'error' => $request->session()->get('cartError'),
+                    ],
+
                     'success' => $request->session()->get('success'),
                     'error' => $request->session()->get('error'),
             ], 

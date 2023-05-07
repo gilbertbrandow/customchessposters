@@ -27,9 +27,9 @@
         </div>
         <Icon name="bookmark" />
         </Link>
-        <Link @mouseover="resetFlash()" :href="route('home.index')" class="nav__button">
-        <div class="info">
-          <div></div>Cart
+        <Link @mouseover="resetFlash()" :href="route('cart.index')" class="nav__button">
+        <div class="info" :class="{ active: $page.props.flash.cart.success }">
+          <div></div> {{ $page.props.flash.cart.success ? $page.props.flash.cart.success : 'Your cart' }}
         </div>
         <Icon name="cart" />
         </Link>
