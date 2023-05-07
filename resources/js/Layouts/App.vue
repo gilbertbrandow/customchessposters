@@ -15,24 +15,24 @@
         </div>
         <Icon name="user" />
         </Link>
-        <Link @mouseover="resetFlash()" :href="route('login.index')" v-else class="nav__button" preserve-scroll>
+        <Link @mouseover="resetFlash()" :href="route('login.index')" v-else class="nav__button" preserve-scroll preserve-state>
         <div class="info">
           <div></div>Sign in
         </div>
         <Icon name="user" />
         </Link>
-        <Link @mouseover="resetFlash()" :href="route('savedPosters.index')" class="nav__button">
+        <Link @mouseover="resetFlash()" :href="route('savedPosters.index')" class="nav__button" preserve-scroll preserve-state>
         <div class="info" :class="{ active: $page.props.flash.saved.success }">
           <div></div> {{ $page.props.flash.saved.success ? $page.props.flash.saved.success : 'Your saved designs' }}
         </div>
         <Icon name="bookmark" />
         </Link>
-        <Link @mouseover="resetFlash()" :href="route('cart.index')" class="nav__button">
-        <div class="info" :class="{ active: $page.props.flash.cart.success }">
-          <div></div> {{ $page.props.flash.cart.success ? $page.props.flash.cart.success : 'Your cart' }}
-        </div>
-        <Icon name="cart" />
-        </Link>
+        <button class="nav__button" @mouseover="resetFlash()" @click="fetchCart()">
+          <div class="info" :class="{ active: $page.props.flash.cart.success }">
+            <div></div> {{ $page.props.flash.cart.success ? $page.props.flash.cart.success : 'Your cart' }}
+          </div>
+          <Icon name="cart" />
+        </button>
       </div>
     </div>
   </nav>
@@ -60,6 +60,7 @@
 import { Link } from "@inertiajs/vue3";
 import Newsletter from "../Pages/Components/Newsletter.vue"
 import Overlay from "../Pages/Components/Overlay.vue"
+import axios from 'axios'
 
 export default {
   components: {
@@ -72,7 +73,20 @@ export default {
     resetFlash() {
       this.$page.props.flash.account.success = '';
       this.$page.props.flash.saved.success = '';
-    }
+    },
+
+    fetchCart() {
+      axios
+        .get('/cart')
+        .then(response => (
+          this.$page.props.overlay.visible = true,
+          this.$page.props.overlay.cart = true, 
+          this.$page.props.cart = response.data
+        ))
+        .catch(() => (
+          console.log(error)
+        ))
+    },
   }
 }
 </script>
