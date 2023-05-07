@@ -1,9 +1,10 @@
 <template>
-    <aside class="overlay" v-if="(!this.$page.props.user || !Object.keys(this.$page.props.overlay.lightbox).length) && this.$page.props.overlay.visible">
+    <aside class="overlay" v-if="this.$page.props.overlay.visible">
         <Lightbox></Lightbox>
+        <Cart />
         <div class="content slide-out"
             v-if="!this.$page.props.user && (this.$page.props.overlay.login || this.$page.props.overlay.register || this.$page.props.overlay.forgot) && (!Object.keys(this.$page.props.overlay.lightbox).length)">
-            <button class="button__rnd-icn" @click="this.$page.props.overlay.visible = false">
+            <button class="button__rnd-icn" @click="this.$page.props.overlay.visible = false, this.$page.props.overlay.login = false, this.$page.props.overlay.register = false, this.$page.props.overlay.forgot = false">
                 <Icon name="close" />
             </button>
 
@@ -187,6 +188,7 @@ let submit = ($form) => {
 
 import Lightbox from './Lightbox.vue';
 import AuthForms from './AuthForms.vue'
+import Cart from './Cart.vue'
 
 export default {
 
