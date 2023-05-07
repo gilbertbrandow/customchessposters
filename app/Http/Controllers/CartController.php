@@ -12,6 +12,6 @@ class CartController extends Controller
 
         $cart = Cart::where('session_token', $request->session()->get('_token'))->orWhere('user_id', Auth::id(),)->first(); 
         
-        return $cart ? $cart->cartItems : false;
+        return $cart ? $cart->products : false;
     }
 }
