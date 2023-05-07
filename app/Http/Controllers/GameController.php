@@ -42,6 +42,7 @@ class GameController extends Controller
         ->join('players as white_player', 'games.white_player', '=', 'white_player.id')
         ->join('players as black_player', 'games.black_player', '=', 'black_player.id')
         ->select(
+            'games.id as game_id',
             'games.name',
             'games.description',
             'games.date',
@@ -51,7 +52,7 @@ class GameController extends Controller
             'games.opening_id',
             'games.white_player',
             'games.white_player',
-            'posters.id as poster_id',
+            'posters.id',
             'posters.theme',
             'posters.orientation',
             'posters.starting_position',

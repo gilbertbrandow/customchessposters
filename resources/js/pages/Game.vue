@@ -52,10 +52,10 @@
 
                         <p>{{ this.$data.game.description }}</p>
                         
-                        <PosterAddToCart :poster="this.$data.game.poster_id"/>
+                        <PosterAddToCart :poster="this.$data.game.id"/>
                     </div>
                     <Poster :poster="this.$data.game" environment="/images/environments/builder-mockup.jpeg"
-                        :controls="{ 'save': true }"></Poster>
+                        :controls="{ 'save': true, 'edit': true, }"></Poster>
                 </li>
             </ul>
         </div>
@@ -162,6 +162,7 @@ export default {
         this.chessGame.fen(this.$data.game.starting_position)
         this.chessGame.loadPgn(this.$data.game.pgn)
         window.addEventListener('keydown', this.onKeydown)
+        console.log(this.$data.game);
     },
 
     beforeDestroy() {
