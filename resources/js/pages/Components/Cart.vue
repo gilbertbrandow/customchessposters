@@ -4,7 +4,11 @@
             <Icon name="close" />
         </button>
         <h2>Cart</h2>
-        {{ this.$page.props.cart }}
+        <ul>
+            <li v-for="item in this.$page.props.cart">
+                {{ item.name + ' | Size: ' + item.size + ' | Qantity: ' + item.quantity}}
+            </li>
+        </ul>
     </div>
 </template>
 
@@ -21,7 +25,10 @@ export default {
     },
 
     methods: {
+    }, 
 
+    mounted() {
+        console.log(this.$page.props.cart); 
     }
 }
 </script>
