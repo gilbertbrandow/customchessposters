@@ -20,8 +20,8 @@ class RegisterController extends Controller
              return $route->matches(request()->create($url));
         });
 
-        if(in_array('auth', $route->gatherMiddleware())) return redirect('/')->with('authenticateRegister', true);
-        else return redirect()->back()->with('authenticateRegister', true);
+        if(in_array('auth', $route->gatherMiddleware())) return redirect('/')->with('overlay', 'register');
+        else return redirect()->back()->with('overlay', 'register');
     }
 
     public function create(Request $request, LoginController $login)

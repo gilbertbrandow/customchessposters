@@ -15,7 +15,7 @@ class ResetPasswordController extends Controller
 {
     public function index()
     {
-        return redirect()->back()->with('authenticateForgot', true);
+        return redirect()->back()->with('overlay', 'forgot');
     }
 
     public function create(Request $request)

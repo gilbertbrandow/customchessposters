@@ -13,7 +13,7 @@ class LoginController extends Controller
 
     public function index()
     {
-        return redirect()->back()->with('authenticateLogin', true);
+        return redirect()->back()->with('overlay', 'login');
     }
 
     public function create(Request $request)
