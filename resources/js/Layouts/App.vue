@@ -73,6 +73,7 @@ export default {
     resetFlash() {
       this.$page.props.flash.account.success = '';
       this.$page.props.flash.saved.success = '';
+      this.$page.props.flash.cart.success = '';
     },
 
     fetchCart() {
