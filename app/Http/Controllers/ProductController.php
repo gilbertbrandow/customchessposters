@@ -19,12 +19,19 @@ class ProductController extends Controller
 
     public function create(Request $request)
     {
+        $poster = $request->poster_data;
+
+        $poster['pgn'] = $poster['pgn'] ?? ''; 
+
+        array_shift($poster);
+
+        $poster = Poster::firstOrCreate($poster); 
 
         $product = Product::firstOrCreate([
             'price' => Size::find($request->size)->price,
-            'name' => Poster::find($request->poster_id)->title,
+            'name' => $poster->title,
             'type' => 'Poster',
-            'poster_id' => $request->poster_id,
+            'poster_id' => $poster->id,
             'size_id' => $request->size,
         ]);
 
