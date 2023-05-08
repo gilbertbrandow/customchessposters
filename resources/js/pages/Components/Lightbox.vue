@@ -1,9 +1,9 @@
 <template>
-    <div class="content lightbox" v-if="Object.keys(this.$page.props.overlay.lightbox).length">
+    <div class="content lightbox" v-if="Object.keys(this.$page.props.lightbox).length">
         <div class="lightbox__mask" @click="[this.updateZoom(), this.mouseMove($event)]">
             <div class="poster" :class="[zoom ? 'is--zoomed' : '']">
                 <div class="poster__svg-wrp" :class="this.slides[`${this.currSlide}`].class">
-                   <Poster ref="PosterSVG" :poster="this.$page.props.overlay.lightbox" />
+                    <Poster ref="PosterSVG" :poster="this.$page.props.lightbox" />
                 </div>
                 <img v-if="this.slides[`${this.currSlide}`].size == 's'" class="poster__environment"
                     src="/images/environments/environment-small.jpg" />
@@ -30,14 +30,13 @@
                     <button @click="this.nextSlide()">
                         <Icon name="small-arrow" />
                     </button>
-                    <button @click="this.$page.props.overlay.visible = false">
+                    <button @click="this.$page.props.overlay = false">
                         <Icon name="close" />
                     </button>
                 </div>
             </div>
         </div>
     </div>
-
 </template>
 
 <script>
@@ -87,16 +86,14 @@ export default {
         },
 
         onKeydown(e) {
-            if (this.$page.props.overlay.lightbox.visible) {
-                switch (e.key) {
-                    case 'ArrowRight':
-                        this.nextSlide();
-                        break;
+            switch (e.key) {
+                case 'ArrowRight':
+                    this.nextSlide();
+                    break;
 
-                    case 'ArrowLeft':
-                        this.prevSlide();
-                        break;
-                }
+                case 'ArrowLeft':
+                    this.prevSlide();
+                    break;
             }
         },
 
@@ -128,12 +125,6 @@ export default {
         },
     },
 
-    computed: {
-        visible() {
-            return this.$page.props.overlay.lightbox.visible;
-        },
-    },
-
     watch: {
         zoom() {
             if (this.zoom) document.querySelector('.lightbox__mask').addEventListener('mousemove', this.mouseMove);
@@ -145,14 +136,14 @@ export default {
 
             return;
         },
-
-        visible() {
-            if (this.$page.props.overlay.lightbox.visible) {
-                window.addEventListener('keydown', this.onKeydown)
-            } else {
-                window.removeEventListener('keydown', this.onKeydown)
-            }
-        },
     },
+
+    mounted() {
+        window.addEventListener('keydown', this.onKeydown); 
+    }, 
+
+    beforeUnmount() {
+        window.removeEventListener('keydown', this.onKeydown);
+    }
 }
 </script>
