@@ -10,7 +10,7 @@ class PosterService
 
     public function savePoster($posterData, $user): Poster
     {
-        $posterData["pgn"] = $posterData["pgn"] ? $posterData["pgn"] : "";
+        $posterData['pgn'] = $posterData['pgn'] ?? ''; 
         $id = array_shift($posterData);
 
 
