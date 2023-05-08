@@ -1,22 +1,22 @@
 <template>
-    <aside class="overlay" v-if="this.$page.props.overlay.visible">
+    <aside class="overlay" v-if="this.$page.props.overlay">
         <Lightbox></Lightbox>
         <Cart />
         <div class="content slide-out"
-            v-if="!this.$page.props.user && (this.$page.props.overlay.login || this.$page.props.overlay.register || this.$page.props.overlay.forgot) && (!Object.keys(this.$page.props.overlay.lightbox).length)">
-            <button class="button__rnd-icn" @click="this.$page.props.overlay.visible = false, this.$page.props.overlay.login = false, this.$page.props.overlay.register = false, this.$page.props.overlay.forgot = false">
+            v-if="!this.$page.props.user && (this.$page.props.overlay == 'login' || this.$page.props.overlay == 'register' || this.$page.props.overlay == 'forgot')">
+            <button class="button__rnd-icn" @click="this.$page.props.overlay = false">
                 <Icon name="close" />
             </button>
 
             <h2 v-text="title"></h2>
-            <div v-if="this.$page.props.poster && !this.$page.props.overlay.forgot" class="currentPoster">
+            <div v-if="this.$page.props.poster && !this.$page.props.overlay !== 'forgot'" class="currentPoster">
                 <div>
                     <Icon name="bookmark" />
                 </div><strong>Authenticate to save: </strong>"{{ this.$page.props.poster.title }}"
             </div>
             <p v-text="text"></p>
 
-            <form v-if="this.$page.props.overlay.login" @submit.prevent="submit('login')" class="form">
+            <form v-if="this.$page.props.overlay == 'login'" @submit.prevent="submit('login')" class="form">
                 <div class="field__wrp">
                     <label for="email" class="field__label">Email address</label>
                     <div v-if="login.errors.email" v-text="login.errors.email" class="field__error"></div>
@@ -32,13 +32,13 @@
                 <div class="form__bottom">
                     <div class="field__checkbox"><input v-model="login.remember" type="checkbox" id="remember"
                             name="remember" /><label for="remember">Remember me</label></div>
-                    <Link class="link-arrow" :href="route('resetPassword.index')" preserve-scroll>Forgot your
+                    <Link class="link-arrow" :href="route('resetPassword.index')" preserve-scroll preserve-state>Forgot your
                     password?</Link>
                 </div>
                 <div class="field__wrp">
                     <button class="button is--black" :disabled="login.processing">
                         Sign in </button>
-                    <Link class="link-arrow" :href="route('register.index')" preserve-scroll>Dont have an
+                    <Link class="link-arrow" :href="route('register.index')" preserve-scroll preserve-state>Dont have an
                     account? Register
                     here
                     <Icon name="arrow-up" />
@@ -48,7 +48,7 @@
                 </div>
             </form>
 
-            <form v-else-if="this.$page.props.overlay.register" @submit.prevent="submit('register')" class="form">
+            <form v-else-if="this.$page.props.overlay == 'register'" @submit.prevent="submit('register')" class="form">
                 <div class="field__wrp">
                     <label for="name" class="field__label">Name</label>
                     <div v-if="register.errors.name" v-text="register.errors.name" class="field__error"></div>
@@ -79,7 +79,7 @@
                 <div class="field__wrp">
                     <button class="button is--black" :disabled="register.processing">
                         Register </button>
-                    <Link class="link-arrow" :href="route('login.index')" preserve-scroll>Already have an
+                    <Link class="link-arrow" :href="route('login.index')" preserve-scroll preserve-state>Already have an
                     account? Sign in here
                     <Icon name="arrow-up" />
                     </Link>
@@ -87,7 +87,7 @@
                 </div>
             </form>
 
-            <form v-else-if="this.$page.props.overlay.forgot" v-if="!$page.props.flash.success"
+            <form v-else-if="this.$page.props.overlay == 'forgot'" v-if="!$page.props.flash.success"
                 @submit.prevent="submit('forgot')" class="form">
                 <div class="field__wrp">
                     <label for="email" class="field__label">Email address</label>
@@ -98,9 +98,8 @@
                 <div class="field__wrp">
                     <button class="button is--black" :disabled="forgot.processing">
                         Send me my link! </button>
-                    <Link class="link-arrow" :href="route('register.index')" preserve-scroll>Dont have an
-                    account? Register
-                    here
+                    <Link class="link-arrow" :href="route('register.index')" preserve-scroll preserve-state>
+                    Dont have an account? Register here
                     <Icon name="arrow-up" />
                     </Link>
                     <div v-if="forgot.errors.all" v-text="forgot.errors.all" class="field__error is--submit">
@@ -198,32 +197,33 @@ export default {
     },
 
     computed: {
+
         visible() {
-            return this.$page.props.overlay.visible;
+            return this.$page.props.overlay;
         },
 
         title() {
-            if (this.$page.props.overlay.login) return this.$page.props.poster ? 'You need an account to save poster' : 'Log in';
-            else if (this.$page.props.overlay.register) return this.$page.props.poster ? 'You need an account to save poster' : 'Register';
-            else if (this.$page.props.overlay.forgot) return 'Forgot password?';
+            if (this.$page.props.overlay == 'login') return this.$page.props.poster ? 'You need an account to save poster' : 'Log in';
+            else if (this.$page.props.overlay == 'register') return this.$page.props.poster ? 'You need an account to save poster' : 'Register';
+            else if (this.$page.props.overlay == 'forgot') return 'Forgot password?';
         },
 
         text() {
-            if (this.$page.props.overlay.login) return 'Trying to log in';
-            else if (this.$page.props.overlay.register) return 'Trying to register';
-            else if (this.$page.props.overlay.forgot) return 'Trying to forget';
+            if (this.$page.props.overlay == 'login') return 'Trying to log in';
+            else if (this.$page.props.overlay == 'register') return 'Trying to register';
+            else if (this.$page.props.overlay == 'forgot') return 'Trying to forget';
 
         }
     },
 
     methods: {
         clickToClose(e) {
-            if (e.target.closest('.overlay') && !e.target.closest('.content')) this.$page.props.overlay.visible = false;
+            if (e.target.closest('.overlay') && !e.target.closest('.content')) this.$page.props.overlay = false;
             return
         },
 
         pressToClose(e) {
-            if (this.$page.props.overlay.visible && e.key == 'Escape') this.$page.props.overlay.visible = false;
+            if (this.$page.props.overlay && e.key == 'Escape') this.$page.props.overlay = false;
             return
         },
     },
@@ -231,7 +231,7 @@ export default {
     watch: {
 
         visible() {
-            if (this.$page.props.overlay.visible) {
+            if (this.$page.props.overlay) {
                 window.addEventListener('keydown', this.pressToClose)
                 window.addEventListener('click', this.clickToClose)
             } else {
