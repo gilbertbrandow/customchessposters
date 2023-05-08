@@ -203,8 +203,8 @@
     </svg>
 
 
-    <svg v-else-if="name === 'edit-small'" id="Layer_1" enable-background="new 0 0 100 100" height="512" viewBox="0 0 100 100" width="512"
-        xmlns="http://www.w3.org/2000/svg">
+    <svg v-else-if="name === 'edit-small'" id="Layer_1" enable-background="new 0 0 100 100" height="512"
+        viewBox="0 0 100 100" width="512" xmlns="http://www.w3.org/2000/svg">
         <g>
             <path
                 d="m18 84.2c1 0 1.2-.1 2.1-.3l18-3.6c1.9-.5 3.8-1.4 5.3-2.9l43.6-43.6c6.7-6.7 6.7-18.2 0-24.9l-3.7-3.9c-6.7-6.7-18.3-6.7-25 0l-43.6 43.7c-1.4 1.4-2.4 3.4-2.9 5.3l-3.8 18.2c-.5 3.4.5 6.7 2.9 9.1 1.9 1.9 4.7 2.9 7.1 2.9zm3.4-28.3 43.6-43.7c2.9-2.9 8.2-2.9 11 0l3.8 3.8c3.4 3.4 3.4 8.2 0 11.5l-43.5 43.7-18.5 3.1z" />
