@@ -252,7 +252,6 @@ button {
         margin-top: 0.25em;
         top: 100%;
     }
-
 }
 
 .button:hover {
@@ -272,6 +271,20 @@ button {
     svg {
         fill: #fff;
     }
+}
+
+.button.is--black.is--less-border-radius, .button.is--grey.is--less-border-radius {
+    border-radius: 0.5em;
+}
+
+.button.is--cart {
+    cursor: auto;
+    border-style: none;
+    background-color: transparent;
+    border: solid 0.06em rgba(0, 0, 0, 0.1);
+    border-radius: 0.5em;
+    color: #000;
+    margin-bottom: 0.5em;
 }
 
 .button.is--outline {
@@ -1079,7 +1092,6 @@ h4 {
         position: absolute;
         bottom: 1em;
         left: 1em;
-
     }
 }
 
@@ -1308,10 +1320,10 @@ h4 {
     position: relative;
     width: 40em;
     height: 100%;
-    background-color: #fff;
+    background-color: $base-color;
     display: flex;
     flex-direction: column;
-    padding: 6em 4em 4em 4em;
+    padding: 2em 4em 4em 4em;
     border-left: rgba(0, 0, 0, 0.1) solid 0.06em;
 
     .currentPoster {
@@ -1350,11 +1362,7 @@ h4 {
     .button__rnd-icn {
         position: absolute;
         top: 2em;
-        right: 2em;
-    }
-
-    .field__label {
-        background-color: #fff;
+        right: 4em;
     }
 
     input:-webkit-autofill,
@@ -1787,18 +1795,16 @@ ul.game__collection {
                     display: inline-block;
                     width: 15em;
                 }
-    
+
                 a {
                     font-size: 0.8em;
                 }
-
             }
 
             .button-wrp {
                 flex: 1;
                 align-items: flex-end;
             }
-            
         }
 
         .players {
@@ -1833,7 +1839,6 @@ ul.game__collection {
                 }
             }
         }
-
     }
 
     li.single {
@@ -1891,7 +1896,7 @@ ul.is--slider {
         justify-content: center;
         padding: 2em;
         background-color: transparent;
-        border: 0.06em solid rgba(0, 0, 0, 0.14)
+        border: 0.06em solid rgba(0, 0, 0, 0.14);
     }
 }
 
@@ -1923,11 +1928,10 @@ ul.is--slider {
         column-gap: 1em;
 
         .simple {
-
             width: calc(50% + 2.75em);
 
             .button-wrp:first-child {
-                width: 100%
+                width: 100%;
             }
         }
     }
@@ -2320,8 +2324,12 @@ label {
 }
 
 /**********************
-****** Cart styles 
+****** Ecommerce styles 
 ***********************/
+.cart-wrp {
+    padding-top: 2em;
+}
+
 .sizes {
     display: flex;
     column-gap: 0.5em;
@@ -2332,6 +2340,48 @@ label {
         border-radius: 0.5em;
         padding: 0.5em 0.75em 0.5em 0.75em;
         cursor: pointer;
+    }
+}
+
+.cart-items {
+    height: calc(100vh - 16em);
+    overflow: auto;
+
+    li {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1em;
+        width: 100%;
+
+        .poster {
+            border-radius: 0.5em;
+            flex: inherit;
+            height: 12em;
+            width: 10em;
+
+            .poster__svg-wrp {
+                top: 15.1%;
+                right: 20%;
+                width: 60.5%;
+            }
+        }
+
+        .content {
+            background-color: white;
+            align-self: stretch;
+            padding: 1em 1em 1em 2em;
+            margin-left: -1em;
+            border-radius: 0.5em;
+            flex: auto;
+            border: solid 0.06em rgba(0, 0, 0, 0.1);
+        }
+
+        h3 {
+            font-size: 1.25em;
+            font-weight: 700;
+            margin-top: 0.1em;
+            line-height: 1.1;
+        }
     }
 }
 
