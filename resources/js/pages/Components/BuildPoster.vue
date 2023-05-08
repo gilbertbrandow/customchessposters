@@ -129,7 +129,7 @@
                                             posterBuilder.manualMove.valid ? 'Do' : 'Did'
                                         }} you mean
                                             <span
-                                                v-for="(suggestion, index) in      posterBuilder.manualMove.suggestions     ">
+                                                v-for="(suggestion, index) in posterBuilder.manualMove.suggestions      ">
                                                 <span role="button"
                                                     @click="posterBuilder.manualMove.pgn = suggestion; makeMove(true)"
                                                     v-text="suggestion" class="suggestion"></span>
@@ -143,7 +143,7 @@
                                         <strong>Previous moves: </strong>
                                         <div style="display: flex; column-gap: 0.5em;">
                                             <div v-if=" pgnArray.length >= 5 " style="margin-right: -0.25em;">...</div>
-                                            <template v-for="(     move, index     ) in      pgnArray     " :key="index">
+                                            <template v-for="(move, index) in pgnArray" :key="index">
                                                 <div v-if=" pgnArray.length < 5 || pgnArray.length - index < 5 ">
                                                     <span v-if=" index % 2 == 0 " v-text=" (index / 2 + 1) + '. ' "></span>
                                                     <span class="move" v-text=" move "></span>
@@ -210,7 +210,7 @@
                             <p>Choose which position of the game you will share with the world</p>
                             <div class="poster__moves">
                                 <span v-if=" pgnArray.length > 140 && poster.diagram_position >= 70 ">...</span>
-                                <div v-for="(     move, index     ) in      pgnArray     " :key=" index ">
+                                <div v-for="(move, index) in       pgnArray      " :key=" index ">
 
                                     <div
                                         v-if=" pgnArray.length < 140 || (index < poster.diagram_position + 70 + Math.max(0, (70 - poster.diagram_position)) && index > poster.diagram_position - (70 + Math.max(0, (70 - (pgnArray.length - poster.diagram_position))))) ">
@@ -354,9 +354,8 @@
                                 @click=" changeStep(this.$data.posterBuilder.currStep + 1) ">Next Step
                                 <Icon name="arrow-right" />
                             </button>
-                            <button v-if=" this.$data.posterBuilder.currStep == 4 " class="button is--black">Add to cart
-                                <Icon name="cart" />
-                            </button>
+
+                            <PosterAddToCart v-if=" this.$data.posterBuilder.currStep == 4 " :poster=" this.$data.poster " />
 
                         </div>
                         <div class="module__progress-wrp">
@@ -386,7 +385,7 @@
                     </div>
                 </div>
 
-                <Poster :poster=" poster " :environment=" this.$data.posterBuilder.currEnvironment " :controls="controls">
+                <Poster :poster=" poster " :environment=" this.$data.posterBuilder.currEnvironment " :controls=" controls ">
                 </Poster>
 
             </div>
@@ -398,9 +397,16 @@
 import { Chess } from 'chess.js'
 import axios from 'axios'
 import Poster from './Poster.vue'
+import PosterAddToCart from "./PosterAddToCart.vue";
 
 
 export default {
+
+    components: {
+        Poster,
+        PosterAddToCart,
+    },
+
     data() {
         return {
 
@@ -857,8 +863,8 @@ export default {
         },
 
         resetChanges() {
-            if(this.$data.originalPoster) {
-                this.$data.poster = JSON.parse(this.$data.originalPoster); 
+            if (this.$data.originalPoster) {
+                this.$data.poster = JSON.parse(this.$data.originalPoster);
                 this.updateStartingFen();
                 this.$data.chessGame.loadPgn(this.$data.poster.pgn);
             }
@@ -870,12 +876,12 @@ export default {
         poster: {
             handler(newValue, oldValue) {
 
-                if(!this.$page.props.editPoster) return;
+                if (!this.$page.props.editPoster) return;
 
                 if (JSON.stringify(this.$data.poster) != this.$data.originalPoster) {
                     this.$data.controls.update = true;
                 } else {
-                    this.$data.controls.update = false; 
+                    this.$data.controls.update = false;
                 }
             },
             deep: true
@@ -924,10 +930,6 @@ export default {
 
             return;
         }
-    },
-
-    components: {
-        Poster,
     },
 
     mounted() {
