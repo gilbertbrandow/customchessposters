@@ -81,14 +81,9 @@ class HandleInertiaRequests extends Middleware
                     'error' => $request->session()->get('error'),
             ], 
 
-            'overlay' => [
-                'visible' =>  $request->session()->get('authenticateLogin') || $request->session()->get('authenticateRegister') || $request->session()->get('authenticateForgot'),
-                'lightbox' =>  false,
-                'login' => $request->session()->get('authenticateLogin'),
-                'register' => $request->session()->get('authenticateRegister'),
-                'forgot' => $request->session()->get('authenticateForgot'),
-                'cart' => false,
-            ],
+            'overlay' => $request->session()->get('overlay'),
+
+            'lightbox' => [],
             
             'route' => [
                 'params' => $request->route()->parameters(),
