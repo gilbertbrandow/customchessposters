@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\PosterController;
+use App\Models\Cart;
 use App\Services\PosterService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -41,6 +42,22 @@ class LoginController extends Controller
             if ($request->session()->exists('poster')) {
 
                 (new PosterService())->savePoster($request->session()->get('poster'), Auth::user());
+            }
+
+            //Either update cart if exists
+            $cart = Cart::where('session_token', $request->session()->get('_token'))->first(); 
+
+            if($cart) {
+
+                if($userCart = Cart::where('user_id', Auth::id())->first())
+                {
+                    //What to do if user also has cart?
+
+                } else {
+                    $cart->user_id = Auth::id();
+                    $cart->save();
+                }
+
             }
 
             $request->session()->regenerate();
