@@ -2,7 +2,7 @@
     <div class="poster">
         <div v-if="controls" class="poster__buttons-wrp"  :class="[ (controls.small) ? 'small' : '']">
             <button class="button"
-                @click="this.$page.props.overlay.lightbox = this.poster, this.$page.props.overlay.visible = true;">
+                @click="this.$page.props.lightbox = this.poster, this.$page.props.overlay = 'lightbox';">
                 <span v-if="!controls.small">Fullscreen</span>
                 <Icon name="fullScreen" />
                 <div v-if="controls.small" class="info"><div></div>Fullscreen</div>

@@ -79,8 +79,7 @@ export default {
       axios
         .get('/cart')
         .then(response => (
-          this.$page.props.overlay.visible = true,
-          this.$page.props.overlay.cart = true, 
+          this.$page.props.overlay = 'cart',
           this.$page.props.cart = response.data
         ))
         .catch(() => (
