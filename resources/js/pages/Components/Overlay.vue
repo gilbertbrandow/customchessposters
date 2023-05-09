@@ -142,8 +142,7 @@ let submit = ($form) => {
             preserveScroll: true,
 
             onError: function () {
-                usePage().props.overlay.visible = true;
-                usePage().props.overlay.login = true;
+                usePage().props.overlay = 'login';
                 login.reset("password");
             },
 
@@ -158,8 +157,7 @@ let submit = ($form) => {
             preserveScroll: true,
 
             onError: function () {
-                usePage().props.overlay.visible = true;
-                usePage().props.overlay.register = true;
+                usePage().props.overlay = 'register';
                 register.reset("password", "password_confirmation");
             },
 
@@ -175,8 +173,7 @@ let submit = ($form) => {
             preserveState: true,
 
             onError: function () {
-                usePage().props.overlay.visible = true;
-                usePage().props.overlay.forgot = true;
+                usePage().props.overlay = 'forgot';
             },
         });
     }
