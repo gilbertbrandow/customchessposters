@@ -41,4 +41,14 @@ class Cart extends Model
             ->join('posters', 'posters.id', '=', 'products.poster_id');
     }
 
+    public static function hasPosterNotUser($posterId, $user) {
+
+        return DB::table('carts')
+            ->join('cart_items', 'carts.id', '=', 'cart_items.cart_id')
+            ->join('products', 'products.id', '=', 'cart_items.product_id')
+            ->where('carts.user_id', '!=', $user[0])
+            ->where('carts.session_token', '!=', $user[1])
+            ->where('products.poster_id', '=', $posterId);
+    }
+
 }
