@@ -147,7 +147,7 @@ export default {
 
         pgnRows() {
 
-            var pgn = this.$props.poster.pgn;
+            var pgn = this.$props.poster.pgn ?? '';
             var rows = [];
             let rowsIndex = 0;
 
