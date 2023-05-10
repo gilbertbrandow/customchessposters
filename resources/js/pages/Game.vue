@@ -181,7 +181,6 @@ export default {
         this.chessGame.fen(this.$data.game.starting_position)
         this.chessGame.loadPgn(this.$data.game.pgn)
         window.addEventListener('keydown', this.onKeydown)
-        console.log(this.$data.game);
     },
 
     beforeDestroy() {

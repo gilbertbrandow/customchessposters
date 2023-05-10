@@ -67,9 +67,5 @@ export default {
 
     methods: {
     },
-
-    mounted() {
-        console.log(this.$page.props.cart);
-    }
 }
 </script>
