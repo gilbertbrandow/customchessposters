@@ -182,6 +182,16 @@ class PlayersSeeder extends Seeder
                 'name' => 'Navara, David',
                 'country' => 'Czech Republic',
             ],
+
+            [
+                'name' => 'Dubov, Daniil',
+                'country' => 'Russia',
+            ],
+
+            [
+                'name' => 'Svane, Rasmus',
+                'country' => 'Denmark',
+            ],
         ]; 
 
         foreach($players as $player) {

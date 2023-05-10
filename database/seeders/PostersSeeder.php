@@ -362,6 +362,26 @@ class PostersSeeder extends Seeder
                 'where' => 'Wijk aan Zee, Netherlands',
             ],
 
+            [
+                'theme' => 1,
+                'orientation' => 1,
+                'starting_position' => 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                'pgn' => '1. c4 e6 2. Nc3 d5 3. d4 Nf6 4. Nf3 Be7 5. Bf4 O-O 6. e3 b6 7. Qc2 Ba6 8. O-O-O dxc4 9. Ng5 Nc6 10. a3 g6 11. h4 Bd6 12. g3 Qe7 13. h5 e5 14. hxg6 hxg6 15. Bg2 exf4 16. Bxc6 fxg3 17. Kb1 Rad8 18. f4 Bc8 19. Rde1 Kg7 20. Nd5 Nxd5 21. Rh7+ Kg8 22. Rxf7 Rxf7 23. Qxg6+ Kf8 24. Qh6+ Rg7 25. Bxd5 Ke8 26. Qh5+ Kd7 27. Qh3+ Ke8 28. Qh5+ Kd7 29. Be6+ Kc6 30. Qf3+ Kb5 31. Bxc4+ Ka5 32. Qd5+ Bc5 33. b4+ Ka4 34. Qg2 Bxb4 35. Qc6+ Kxa3 36. Bb3 Bd7 37. Qc1+ Kxb3 38. Qc2+ Ka3 39. Qa2#',
+                'diagram_position' => 58,
+                'move_comment' => 'Fortune favors the bold. Sometimes.',
+                'fen' => '2br4/p1p1q1r1/1pkbB3/6NQ/2pP1P2/P3P1p1/1P6/1K2R3 w - - 9 30',
+                'result' => '1-0',
+                'title' => 'Mate in 13',
+                'white_player' => 'Daniil Dubov',
+                'black_player' => 'Rasmus Svane',
+                'white_rating' => 2699,
+                'black_rating' => 2592,
+                'white_title' => 'GM',
+                'black_title' => 'GM',
+                'when' => 'European Team Championship (2019)',
+                'where' => 'Batumi, Georgia',
+            ],
+
         ];
 
         foreach($posters as $poster) {

@@ -216,6 +216,17 @@ class GamesSeeder extends Seeder
                 'opening_id' => 19,
             ],
 
+            [
+                'poster_id' => 19,
+                'name' => 'Every Brilliancy Is Allowed By A Mistake',
+                'description' => 'Daniil Dubov, often hailed as one of the most creative players of his generation, shows us why no masterpiece is created without taking risks.',
+                'date' => '2019-01-31',
+                'white_player' => 34,
+                'black_player' => 35,
+                'world_championship_game' => 0,
+                'opening_id' => 20,
+            ],
+
         ];
 
         foreach ($games as $game) {

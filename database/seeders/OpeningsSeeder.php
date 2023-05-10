@@ -118,6 +118,12 @@ class OpeningsSeeder extends Seeder
                 'name' => "Caro-Kann Defense: Advance. Short Variation",
             ],
 
+
+            [
+                'eco' => 'D37',
+                'name' => "Queen's Gambit Declined: Harrwitz Attack. Fianchetto Defense",
+            ],
+
         ];
 
         foreach($openings as $opening) {
