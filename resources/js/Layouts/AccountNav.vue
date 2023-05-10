@@ -13,7 +13,7 @@
                 </Link>
             </li>
             <li :class="{ 'is--active': $page.url === '/saved-posters' }">
-                <Link :href="route('savedPosters.index')">
+                <Link :href="route('savedPoster.index')">
                 <div>
                     <Icon name="bookmark"></Icon>
                 </div>Saved Posters
