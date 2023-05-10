@@ -76,7 +76,7 @@ function submitForm(poster) {
         white_title: poster.white_title, 
         black_title: poster.black_title, 
         where: poster.where, 
-        where: poster.where, 
+        when: poster.when, 
     };
     
     form.post('/save-poster', { preserveScroll: true, preserveState: true, });
