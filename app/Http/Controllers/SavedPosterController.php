@@ -9,10 +9,11 @@ use App\Services\PosterService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class SavedPostersController extends Controller
+class SavedPosterController extends Controller
 
 {
-    public function index () {
+    public function index()
+    {
         $user = User::find(Auth::id());
         $posters = $user->posters;
         return inertia('Auth/SavedPosters', compact('posters'));
@@ -20,15 +21,13 @@ class SavedPostersController extends Controller
 
     public function create(Request $request, PosterService $service)
     {
-        
-        //Call service class method
-        $poster = $service->savePoster($request->posterData, User::find(Auth::id()));
+        $poster = $request->posterData['id'] ?
+            (new PosterService())->update($request->posterData, Auth::id(), $request->session->get('_token'))
+            : (new PosterService())->create($request->posterData);
 
-        if ($poster) {
-            return redirect()->back()->with('savedSuccess', 'Poster saved!');
-        } else {
-            return redirect()->back()->with('savedError', 'Something went wrong, please try again later.');
-        }
+        User::find(Auth::id())->attach($poster->id);
+
+        return redirect()->back()->with('savedSuccess', 'Poster saved!');
     }
 
     public function destroy(Request $request)

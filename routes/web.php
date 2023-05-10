@@ -14,7 +14,7 @@ use App\Http\Controllers\OpeningController;
 use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
-use App\Http\Controllers\SavedPostersController;
+use App\Http\Controllers\SavedPosterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,7 +38,6 @@ Route::get('/thank-you', [ContactController::class, 'show'])
 
 Route::get('/faq', [FaqController::class, 'index'])
     ->name('faq.index');
-
 
 /*
 |--------------------------------------------------------------------------
@@ -126,8 +125,8 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/logout', [LoginController::class, 'destroy'])->name('login.destroy');
 
-    Route::get('/saved-posters', [SavedPostersController::class, 'index'])
-        ->name('savedPosters.index');
+    Route::get('/saved-posters', [SavedPosterController::class, 'index'])
+        ->name('savedPoster.index');
 });
 
 
@@ -145,10 +144,10 @@ Route::get('/edit-poster/{id}', [PosterController::class, 'show'])
     ->name('poster.show');
 
 Route::middleware('auth')->group(function () {
-    Route::post('/save-poster', [SavedPostersController::class, 'create'])
-        ->name('savedPosters.create');
+    Route::post('/save-poster', [SavedPosterController::class, 'create'])
+        ->name('savedPoster.create');
 
-    Route::post('/remove-poster', [SavedPostersController::class, 'destroy'])
+    Route::post('/remove-poster', [SavedPosterController::class, 'destroy'])
         ->name('savedPoster.destroy');
 });
 
