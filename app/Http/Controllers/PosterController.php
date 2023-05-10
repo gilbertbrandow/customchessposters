@@ -36,7 +36,9 @@ class PosterController extends Controller
 
     public function update(Request $request) {
 
-        return (new PosterService())->update($request->posterData, Auth::id(), $request->session->get('_token'));
+        $poster = (new PosterService())->update($request->posterData, Auth::id(), $request->session()->get('_token'));
+
+        return redirect('/edit-poster/' . $poster->id)->with('savedSuccess', 'Poster updated successfully!');
     }
 
     public function placeOrder(Request $request, PosterService $service)
