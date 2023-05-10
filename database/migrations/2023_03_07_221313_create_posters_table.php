@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedTinyInteger('theme');
             $table->boolean('orientation');
             $table->string('starting_position', 100);
-            $table->text('pgn');
+            $table->text('pgn')->nullable();
             $table->unsignedTinyInteger('diagram_position');
             $table->string('move_comment', 100)->nullable();
             $table->string('fen', 100);
