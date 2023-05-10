@@ -16,7 +16,7 @@
                         <span>{{ 'Size: ' + item.width + ' x ' + item.height + ' cm' }}</span>
 
                         <div><strong v-text="'$' + item.price / 100"></strong> x {{ 'Quantity: ' + item.quantity }}</div>
-                        <Link class="text_link" :href="route('poster.show', { 'id': item.id })">Edit poster</Link>
+                        <Link class="text_link" :href="route('poster.show', { 'id': item.id })">See poster</Link>
                     </div>
                 </template>
             </li>
