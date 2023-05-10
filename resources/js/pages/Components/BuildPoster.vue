@@ -529,7 +529,7 @@ export default {
 
         pgnArray() {
 
-            let string = this.$data.poster.pgn;
+            let string = this.$data.poster.pgn ?? '';
             const gameArray = [];
 
             for (let i = 0; i < string.length; i++) {
@@ -940,7 +940,7 @@ export default {
 
         this.setTheme(this.$data.poster.theme);
         this.chessGame.load(this.$data.poster.starting_position);
-        this.chessGame.loadPgn(this.$data.poster.pgn);
+        if(this.$data.poster.pgn) this.chessGame.loadPgn(this.$data.poster.pgn);
     }
 }
 </script>
