@@ -149,6 +149,9 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/remove-poster', [SavedPosterController::class, 'destroy'])
         ->name('savedPoster.destroy');
+
+    Route::post('/update-poster', [PosterController::class, 'update'])
+        ->name('poster.update');
 });
 
 /*
