@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Game;
 use App\Models\Poster;
+use App\Models\PosterUser;
 use App\Models\User;
 use App\Services\PosterService;
 use Illuminate\Http\Request;
@@ -19,13 +20,13 @@ class SavedPosterController extends Controller
         return inertia('Auth/SavedPosters', compact('posters'));
     }
 
-    public function create(Request $request, PosterService $service)
+    public function create(Request $request)
     {
         $poster = $request->posterData['id'] ?
-            (new PosterService())->update($request->posterData, Auth::id(), $request->session->get('_token'))
+            (new PosterService())->update($request->posterData, Auth::id(), $request->session()->get('_token'))
             : (new PosterService())->create($request->posterData);
 
-        User::find(Auth::id())->attach($poster->id);
+        User::find(Auth::id())->posters()->attach($poster->id);
 
         return redirect()->back()->with('savedSuccess', 'Poster saved!');
     }
