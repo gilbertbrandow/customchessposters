@@ -13,7 +13,7 @@
 
                 <div v-if="controls.small" class="info"><div></div>Edit poster</div>
             </Link>
-            <form v-if="controls.save || controls.update" @submit.prevent="submitForm(this.poster)">
+            <form v-if="controls.save || controls.update" @submit.prevent="submitForm(this.poster, controls.update)">
                 <button class="button" type="submit" :class="[(this.$page.props.auth.user && this.$page.props.auth.user.saved.includes(this.poster.id) && !controls.update) ? 'saved' : '']" :disabled="this.$page.props.auth.user && this.$page.props.auth.user.saved.includes(this.poster.id) && !controls.update"> 
                     
                     <span v-if="!controls.small" v-text="(controls.update && this.$page.props.auth.user && this.$page.props.auth.user.saved.includes(this.poster.id)) ? 'Update poster' : (this.$page.props.auth.user && this.$page.props.auth.user.saved.includes(this.poster.id)) ? 'Poster saved' : 'Save this design' "></span>
@@ -57,7 +57,8 @@ let form = useForm({
     posterData: {},
 });
 
-function submitForm(poster) {
+function submitForm(poster, update) {
+
     form.posterData = {
         id: poster.id, 
         theme: poster.theme, 
@@ -79,7 +80,7 @@ function submitForm(poster) {
         when: poster.when, 
     };
     
-    form.post('/save-poster', { preserveScroll: true, preserveState: true, });
+    form.post(update ? '/update-poster' : '/save-poster', { preserveScroll: true, preserveState: true, });
 }
 
 </script>
