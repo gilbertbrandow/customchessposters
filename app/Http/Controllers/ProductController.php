@@ -21,8 +21,6 @@ class ProductController extends Controller
     {
         $poster = $request->poster_data;
 
-        $poster['pgn'] = $poster['pgn'] ?? ''; 
-
         array_shift($poster);
 
         $poster = Poster::firstOrCreate($poster); 
