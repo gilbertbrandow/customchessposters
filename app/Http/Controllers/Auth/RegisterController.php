@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Welcome;
 use App\Models\User;
+use App\Services\LoginService;
 use Illuminate\Support\Facades\Route;
 
 class RegisterController extends Controller
@@ -24,7 +24,7 @@ class RegisterController extends Controller
         else return redirect()->back()->with('overlay', 'register');
     }
 
-    public function create(Request $request, LoginController $login)
+    public function create(Request $request)
     {
         $credentials = $request->validate([
             'name' => ['required', 'min:5', 'max:25'],
@@ -34,7 +34,7 @@ class RegisterController extends Controller
 
         $user = User::create($credentials);
 
-        $login->login($credentials, false, $request);
+        (new LoginService())->create($credentials, true, $request);
 
         $firstname = explode(' ', $user->name)[0];
 
