@@ -623,12 +623,12 @@ h4 {
     height: auto;
     position: relative;
     border-radius: 1em;
-    overflow: hidden;
 }
 
 .poster__environment {
     width: 100%;
     margin-bottom: -5px;
+    border-radius: 1em;
 }
 
 .poster__svg-wrp {
@@ -1083,7 +1083,6 @@ h4 {
 .poster {
     flex: 1;
     width: auto;
-    overflow: hidden;
 
     .players {
         z-index: 2;
@@ -1467,7 +1466,6 @@ ul.saved__posters {
     li {
         display: flex;
         flex-direction: column;
-        overflow: hidden;
         border-radius: 1em;
         background-color: #fff;
 
