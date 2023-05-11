@@ -6,7 +6,6 @@ use App\Models\Cart;
 use App\Models\Game;
 use App\Models\Poster;
 use App\Models\PosterUser;
-use App\Models\Product;
 use App\Models\User;
 
 class PosterService
