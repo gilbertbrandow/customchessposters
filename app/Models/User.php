@@ -49,7 +49,7 @@ class User extends Authenticatable
 
     public function posters()
     {
-        return $this->belongsToMany(Poster::class);
+        return $this->belongsToMany(Poster::class)->withTimestamps();
     }
 
 
