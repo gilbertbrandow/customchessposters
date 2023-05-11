@@ -227,6 +227,18 @@ class GamesSeeder extends Seeder
                 'opening_id' => 20,
             ],
 
+            [
+                'poster_id' => 20,
+                'name' => 'The Greatest Finish To A Championship Match Ever',
+                'description' => 'Magnus Carlsen went into the WCC 2016 as a clear favorite over the challenger Sergey Karjakin. After the Russian drew first blood in Magnus came back and evened the score. He then concluded the tiebreaks with this game, retaining his title.',
+                'date' => '2016-11-21',
+                'white_player' => 21,
+                'black_player' => 36,
+                'world_championship_game' => 1,
+                'opening_id' => 21,
+            ],
+
+
         ];
 
         foreach ($games as $game) {

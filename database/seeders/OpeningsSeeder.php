@@ -124,6 +124,12 @@ class OpeningsSeeder extends Seeder
                 'name' => "Queen's Gambit Declined: Harrwitz Attack. Fianchetto Defense",
             ],
 
+            [
+                'eco' => 'D05',
+                'name' => "Rubinstein Opening",
+            ],
+
+
         ];
 
         foreach($openings as $opening) {
