@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\PosterController;
 use App\Models\Cart;
 use App\Models\CartItem;
+use App\Models\User;
 use App\Services\PosterService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -42,7 +43,13 @@ class LoginController extends Controller
             //Save poster if exists as saved in session
             if ($request->session()->exists('poster')) {
 
-                (new PosterService())->savePoster($request->session()->get('poster'), Auth::user());
+                $poster = $request->session()->get('poster')['id'] ?
+                (new PosterService())->update($request->session()->get('poster'), Auth::id(), $request->session()->get('_token'))
+                : (new PosterService())->create($request->session()->get('poster'));
+
+                User::find(Auth::id())->posters()->attach($poster->id);
+
+                session()->flash('savedSuccess', 'A poster was saved!');
             }
 
             //Either update cart if exists
