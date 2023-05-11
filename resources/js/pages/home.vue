@@ -1,7 +1,7 @@
 <template>
     <section class="section__hero" ref="hero">
         <div class="container">
-            <h1>Create your own personal & unique chess poster</h1>
+            <h1>Create Your Own Personal & Unique Chess Poster</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum
                 tristique. </p>
             <div class="button-wrp">
