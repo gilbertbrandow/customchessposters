@@ -1323,7 +1323,7 @@ h4 {
     background-color: $base-color;
     display: flex;
     flex-direction: column;
-    padding: 2em 4em 4em 4em;
+    padding: 6em 4em 4em 4em;
     border-left: rgba(0, 0, 0, 0.1) solid 0.06em;
 
     .currentPoster {
@@ -1331,10 +1331,10 @@ h4 {
         align-items: center;
         padding: 0.5em;
         padding-right: 1em;
-        border: 0.06em solid #ebebeb;
+        border: solid 0.06em rgba(0, 0, 0, 0.1);
         column-gap: 0.5em;
         border-radius: 0.5em;
-        background-color: whitesmoke;
+        background-color: #fff;
 
         div {
             padding: 0.5em;
@@ -1363,19 +1363,6 @@ h4 {
         position: absolute;
         top: 2em;
         right: 4em;
-    }
-
-    input:-webkit-autofill,
-    input:-webkit-autofill:hover,
-    input:-webkit-autofill:focus,
-    textarea:-webkit-autofill,
-    textarea:-webkit-autofill:hover,
-    textarea:-webkit-autofill:focus,
-    select:-webkit-autofill,
-    select:-webkit-autofill:hover,
-    select:-webkit-autofill:focus {
-        -webkit-box-shadow: 0 0 0px 1000px #fff inset;
-        box-shadow: 0 0 0px 1000px #fff inset;
     }
 }
 
