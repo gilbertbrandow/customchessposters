@@ -238,6 +238,16 @@ class GamesSeeder extends Seeder
                 'opening_id' => 21,
             ],
 
+            [
+                'poster_id' => 21,
+                'name' => 'The Most Famous Chess Game Ever Played',
+                'description' => "Often called the 'Opera Game', Paul Morphy's informal masterpiece played against the Duke of Brunswick and Count Isouard is the first complete game shown to many beginning and intermediate players.",
+                'date' => '1892-01-01',
+                'white_player' => 37,
+                'black_player' => 38,
+                'world_championship_game' => 0,
+                'opening_id' => 22,
+            ],
 
         ];
 

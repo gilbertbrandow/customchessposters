@@ -21,7 +21,7 @@ class OpeningsSeeder extends Seeder
                 'eco' => 'C80',
                 'name' => 'Ruy Lopez: Open, Karpov Gambit',
             ],
-            
+
             [
                 'eco' => 'B97',
                 'name' => 'Sicilian Defense: Najdorf Variation, Poisoned Pawn Variation',
@@ -130,10 +130,15 @@ class OpeningsSeeder extends Seeder
             ],
 
 
+            [
+                'eco' => 'C41',
+                'name' => "Philidor Defense: General",
+            ],
+
         ];
 
-        foreach($openings as $opening) {
-            Opening::create($opening); 
+        foreach ($openings as $opening) {
+            Opening::create($opening);
         }
     }
 }

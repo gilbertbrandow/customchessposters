@@ -197,6 +197,16 @@ class PlayersSeeder extends Seeder
                 'name' => 'Karjakin, Sergey',
                 'country' => 'Russia',
             ],
+
+            [
+                'name' => 'Morphy, Paul',
+                'country' => 'USA',
+            ],
+
+            [
+                'name' => 'Duke Karl / Count Isouard',
+                'country' => 'France',
+            ],
         ]; 
 
         foreach($players as $player) {

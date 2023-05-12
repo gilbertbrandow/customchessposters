@@ -402,6 +402,22 @@ class PostersSeeder extends Seeder
                 'where' => 'New York, NY USA',
             ],
 
+            [
+                'theme' => 1,
+                'orientation' => 1,
+                'starting_position' => 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                'pgn' => '1. e4 e5 2. Nf3 d6 3. d4 Bg4 4. dxe5 Bxf3 5. Qxf3 dxe5 6. Bc4 Nf6 7. Qb3 Qe7 8. Nc3 c6 9. Bg5 b5 10. Nxb5 cxb5 11. Bxb5+ Nbd7 12. O-O-O Rd8 13. Rxd7 Rxd7 14. Rd1 Qe6 15. Bxd7+ Nxd7 16. Qb8+ Nxb8 17. Rd8#',
+                'diagram_position' => 31,
+                'move_comment' => 'Continuing the relentless assault',
+                'fen' => '1Q2kb1r/p2n1ppp/4q3/4p1B1/4P3/8/PPP2PPP/2KR4 b k - 1 16',
+                'result' => '1-0',
+                'title' => 'Opera Game',
+                'white_player' => 'Paul Morphy',
+                'black_player' => 'Duke Karl / Count Isouard',
+                'when' => 'Paris, 1858',
+                'where' => 'Paris, France',
+            ],                
+
         ];
 
         foreach ($posters as $poster) {
