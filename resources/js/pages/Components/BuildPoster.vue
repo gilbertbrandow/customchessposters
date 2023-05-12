@@ -456,8 +456,8 @@ export default {
                 title: "Lorem ipsum dolor sit amet, consectetur adi",
                 white_player: "Magnus Carlsen",
                 black_player: "Fabiano Caruana",
-                white_rating: 2881,
-                black_rating: 2815,
+                white_rating: null,
+                black_rating: null,
                 white_title: "GM",
                 black_title: "GM",
                 when: "Tata Steel Chess, January 2014. Round 3",
@@ -775,7 +775,7 @@ export default {
             if (!headers) return;
 
             if (headers.White) this.poster.white_player = headers.White;
-            if (headers.WhiteElo && typeof headers.WhiteElo) {
+            if (headers.WhiteElo && /^\d+$/.test(headers.WhiteElo)) {
                 this.poster.white_rating = headers.WhiteElo
                 this.poster.white_title = (headers.WhiteElo > 2500) ? "GM" : "";
             } else {
@@ -784,7 +784,7 @@ export default {
 
             if (headers.Black) this.poster.black_player = headers.Black;
 
-            if (headers.BlackElo && typeof headers.BlackElo) {
+            if (headers.BlackElo && /^\d+$/.test(headers.BlackElo)) {
                 this.poster.black_rating = headers.BlackElo
                 this.poster.black_title = (headers.BlackElo > 2500) ? "GM" : "";
             } else {
