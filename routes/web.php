@@ -14,6 +14,7 @@ use App\Http\Controllers\OpeningController;
 use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CartItemController;
 use App\Http\Controllers\SavedPosterController;
 use Illuminate\Support\Facades\Route;
 
@@ -168,6 +169,9 @@ Route::post('/add-to-cart', [CartController::class, 'update'])
 
 Route::post('/product', [ProductController::class, 'create'])
     ->name('product.create');
+
+Route::post('/cart-item/{id}/destroy', [CartItemController::class, 'destroy'])
+    ->name('cartItem.destroy');
 
 
 
