@@ -5,24 +5,27 @@
         </button>
         <h2>Cart</h2>
         <ul class="cart-items">
-            <li v-if="!this.$page.props.cart.length">
+            <li v-if="!this.$page.props.cart || !this.$page.props.cart.length">
                 No items in your cart
             </li>
-            <li v-for="item in this.$page.props.cart">
+            <li v-else v-for="item in this.$page.props.cart">
                 <template v-if="item.type == 'Poster'">
                     <Poster :poster="item" environment="/images/environments/builder-mockup.jpeg" />
                     <div class="content">
                         <h3 v-text="item.name"></h3>
-                        <span>{{ 'Size: ' + item.width + ' x ' + item.height + ' cm' }}</span>
+                        <span>{{ 'Size: ' + item.width + ' x ' + item.height + ' cm, ' }}
+                            <Link class="text__link" :href="route('poster.show', { 'id': item.id })">see poster</Link>
+                        </span>
 
                         <div><strong v-text="'$' + item.price / 100"></strong> x {{ 'Quantity: ' + item.quantity }}</div>
-                        <Link class="text_link" :href="route('poster.show', { 'id': item.id })">See poster</Link>
+                        <button class="text__link" type="submit"
+                            @click="this.updateCart(item.itemId, item.quantity, true)">remove item from cart</button>
                     </div>
                 </template>
             </li>
         </ul>
         <div class="button is--cart is--flex is--space-between">Total: <span>${{ total / 100 }}</span></div>
-        <button v-if="this.$page.props.cart.length"
+        <button v-if="this.$page.props.cart && this.$page.props.cart.length"
             class="button is--black is--less-border-radius is--flex is--space-between">Checkout
             <Icon name="arrow-right" />
         </button>
@@ -33,6 +36,9 @@
 import Icon from '../../Icons/Icon.vue'
 import Poster from '../Components/Poster.vue'
 import { Link } from "@inertiajs/vue3";
+import { useForm } from '@inertiajs/vue3'
+import { router } from '@inertiajs/vue3'
+import axios from 'axios'
 
 export default {
 
@@ -47,12 +53,18 @@ export default {
 
     data() {
         return {
-
+            form: useForm({
+                id: null,
+                quantity: null,
+                remove: null,
+            })
         }
     },
 
     computed: {
         total() {
+
+            if(!this.$page.props.cart) return;
 
             let total = 0;
 
@@ -66,6 +78,33 @@ export default {
     },
 
     methods: {
+        updateCart(id, quantity, remove) {
+            console.log(id)
+            console.log(quantity)
+            console.log(remove)
+
+            router.visit('/cart-item/' + id + '/' + (remove ? 'destroy' : 'update'), {
+                method: 'post',
+                data: {
+                    quantity: quantity,
+                },
+                preserveScroll: true,
+
+                onFinish: visit => {
+                    axios
+                        .get('/cart')
+                        .then(response => (
+                            this.$page.props.overlay = 'cart',
+                            this.$page.props.cart = response.data
+                        ))
+                        .catch(() => (
+                            console.log(error)
+                        ))
+                },
+            })
+
+
+        },
     },
 }
 </script>
