@@ -17,9 +17,12 @@
                             <Link class="text__link" :href="route('poster.show', { 'id': item.id })">see poster</Link>
                         </span>
 
-                        <div><strong v-text="'$' + item.price / 100"></strong> x {{ 'Quantity: ' + item.quantity }}</div>
-                        <button class="text__link" type="submit"
-                            @click="this.updateCart(item.itemId, item.quantity, true)">remove item from cart</button>
+                        <div>
+                            <strong v-text="'$' + item.price / 100"></strong> x Quantity: 
+                            <input type="number" :value="item.quantity" @change="this.updateCart(item.itemId, false, $event)"/>
+                            <button class="text__link" type="submit" @click="this.updateCart(item.itemId, true)">remove item from cart</button>
+                        </div>
+
                     </div>
                 </template>
             </li>
@@ -64,7 +67,7 @@ export default {
     computed: {
         total() {
 
-            if(!this.$page.props.cart) return;
+            if (!this.$page.props.cart) return;
 
             let total = 0;
 
@@ -78,15 +81,12 @@ export default {
     },
 
     methods: {
-        updateCart(id, quantity, remove) {
-            console.log(id)
-            console.log(quantity)
-            console.log(remove)
+        updateCart(id, remove, event) {
 
-            router.visit('/cart-item/' + id + '/' + (remove ? 'destroy' : 'update'), {
+            router.visit('/cart-item/' + (remove ? 'destroy/' : 'update/') + id, {
                 method: 'post',
                 data: {
-                    quantity: quantity,
+                    quantity: !remove ? event.target.value : null,
                 },
                 preserveScroll: true,
 
