@@ -1,8 +1,7 @@
 <?php
 
 namespace App\Http\Middleware;
-
-use App\Models\Cart;
+use App\Models\CartItem;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -54,7 +53,7 @@ class HandleInertiaRequests extends Middleware
                 ], 
             ] : false,
 
-            'cart' => Cart::where('user_id', Auth::id())->orWhere('session_token', $request->session()->get('_token'))->first()->cartItems()->count(),
+            'cartCount' => CartItem::belongsToUser(Auth::id(), $request->session()->get('_token'))->count(),
 
             'poster'=> $request->session()->get('poster'),
 
