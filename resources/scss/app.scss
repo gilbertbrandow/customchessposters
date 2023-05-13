@@ -93,6 +93,21 @@ nav .nav__wrp {
     border-radius: 5em;
     border: solid 0.06em #000;
     transition: all 500ms;
+
+    .notification {
+        background-color: #fa3e3e;
+        color: white;
+        border-radius: 1em;
+        height: 1.5em;
+        width: 1.5em;
+        font-size: 0.6em;
+        position: absolute;
+        top: -0.25em;
+        right: -0.25em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }
 
 .info {
