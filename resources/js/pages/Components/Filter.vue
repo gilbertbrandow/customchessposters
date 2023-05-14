@@ -276,7 +276,8 @@ export default {
         },
 
         getOS() {
-            if (navigator.userAgent.toUpperCase().indexOf('MAC') != -1) return '⌘ + K'
+            if(navigator.userAgentData.mobile) return '';
+            else if (navigator.userAgentData.platform.toUpperCase().indexOf('MAC') != -1) return '⌘ + K'
             else return '⊞ Win + K'
         }
     },
