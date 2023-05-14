@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
-
+use Inertia\Inertia;
 
 class ResetPasswordController extends Controller
 {
@@ -32,7 +32,7 @@ class ResetPasswordController extends Controller
 
     public function show()
     {
-        return inertia('Auth/ResetPassword'); 
+        return Inertia::render('Auth/ResetPassword'); 
     }
 
     public function update (Request $request) {

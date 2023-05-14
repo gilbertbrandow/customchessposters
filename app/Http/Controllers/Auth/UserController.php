@@ -3,17 +3,15 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\Game;
-use App\Models\Poster;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class UserController extends Controller
 {
     public function index()
     {
-        return inertia('Auth/Account');
+        return Inertia::render('Auth/Account');
     }
 
     public function postersData()
@@ -21,6 +19,6 @@ class UserController extends Controller
         $user = User::find(Auth::id());
         $posters = $user->posters;
 
-        return inertia('Auth/PosterData', compact('posters'));
+        return Inertia::render('Auth/PosterData', compact('posters'));
     }
 }

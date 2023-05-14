@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Faq;
 use App\Models\Game;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class HomeController extends Controller
 {
     public function index(Request $request)
     {
-        return inertia('Home', [
+        return Inertia::render('Home', [
             'faqs' => fn () => Faq::All(),
             'game' =>  fn () => Game::where('id', '=', random_int(1, Game::count()))->with(['poster', 'whitePlayer', 'blackPlayer'])->first(),
             'games' => fn() => Game::getAll($request)->take(7)->get(),
@@ -25,21 +26,21 @@ class HomeController extends Controller
 
     public function shipping () 
     {
-        return inertia('Policy/Shipping');
+        return Inertia::render('Policy/Shipping');
     }
 
     public function return () 
     {
-        return inertia('Policy/Return');
+        return Inertia::render('Policy/Return');
     }
 
     public function privacy () 
     {
-        return inertia('Policy/Privacy');
+        return Inertia::render('Policy/Privacy');
     }
 
     public function lightbox () 
     {
-        return inertia('Components/Lightbox');
+        return Inertia::render('Components/Lightbox');
     }
 }

@@ -7,13 +7,14 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Inertia\Inertia;
 
 class GameController extends Controller
 {
 
     public function index(Request $request)
     {
-        return inertia('GameCollection', [
+        return Inertia::render('GameCollection', [
             'games' => fn () => Game::getAll($request)->paginate(2),
 
             'players' => fn () => DB::table('players')
@@ -80,7 +81,7 @@ class GameController extends Controller
         ->where('games.id', '=', $id)
         ->first(); 
 
-        return inertia('Game', compact('game'));
+        return Inertia::render('Game', compact('game'));
 
     }
 
@@ -101,7 +102,7 @@ class GameController extends Controller
             ->orderBy('name', 'asc')
             ->get();
 
-        return inertia('Auth/Game', compact('games', 'posters', 'openings', 'players'));
+        return Inertia::render('Auth/Game', compact('games', 'posters', 'openings', 'players'));
     }
 
     public function create(Request $request)
@@ -147,6 +148,6 @@ class GameController extends Controller
     {
         $games = Game::All();
 
-        return inertia('Auth/GamesData', compact('games'));
+        return Inertia::render('Auth/GamesData', compact('games'));
     }
 }

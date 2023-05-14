@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Faq;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class FaqController extends Controller
 {
@@ -11,13 +12,13 @@ class FaqController extends Controller
     public function index()
     {
         $faqs = Faq::All();
-        return inertia('FAQ', compact('faqs'));
+        return Inertia::render('FAQ', compact('faqs'));
     }
 
     public function edit()
     {
         $faqs = Faq::All();
-        return inertia('Auth/Faq', compact('faqs'));
+        return Inertia::render('Auth/Faq', compact('faqs'));
     }
 
 

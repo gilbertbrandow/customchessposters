@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Services\PosterService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
 
 class SavedPosterController extends Controller
 
@@ -17,7 +18,7 @@ class SavedPosterController extends Controller
     {
         $user = User::find(Auth::id());
         $posters = $user->posters;
-        return inertia('Auth/SavedPosters', compact('posters'));
+        return Inertia::render('Auth/SavedPosters', compact('posters'));
     }
 
     public function create(Request $request)

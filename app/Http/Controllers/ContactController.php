@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Contact; 
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class ContactController extends Controller
 {
@@ -11,12 +12,12 @@ class ContactController extends Controller
 
     public function index ()
     {
-        return inertia('Contact');
+        return Inertia::render('Contact');
     }  
     
     public function show () 
     {
-        return inertia('Thank-you');
+        return Inertia::render('Thank-you');
     }
 
 

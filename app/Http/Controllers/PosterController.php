@@ -11,6 +11,7 @@ use App\Services\PosterService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use Inertia\Inertia;
 
 class PosterController extends Controller
 {
@@ -19,14 +20,14 @@ class PosterController extends Controller
 
     public function index()
     {
-        return inertia('CreatePoster');
+        return Inertia::render('CreatePoster');
     }
 
     public function show($id)
     {
         $editPoster = Poster::find($id);
 
-        return inertia('CreatePoster', compact('editPoster'));
+        return Inertia::render('CreatePoster', compact('editPoster'));
     }
 
     public function create(Request $request) {
