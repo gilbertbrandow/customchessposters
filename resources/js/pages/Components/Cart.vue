@@ -17,10 +17,10 @@
                             <Link class="text__link" :href="route('poster.show', { 'id': item.id })">see poster</Link>
                         </span>
 
-                        <div>
-                            <strong v-text="'$' + item.price / 100"></strong> x Quantity: 
+                        <div class="is--flex">
+                            <strong v-text="'$' + item.price / 100"></strong> x
                             <input type="number" :value="item.quantity" @change="this.updateCart(item.itemId, false, $event.target.value)"/>
-                            <button class="text__link" type="submit" @click="this.updateCart(item.itemId, true)">remove item from cart</button>
+                            <button class="text__link" type="submit" @click="this.updateCart(item.itemId, true)">Remove item</button>
                         </div>
 
                     </div>

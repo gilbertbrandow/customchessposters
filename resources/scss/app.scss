@@ -2356,7 +2356,7 @@ label {
         .poster {
             border-radius: 0.5em;
             flex: inherit;
-            width: 27em;
+            width: 16em;
 
             .poster__svg-wrp {
                 top: 14.31%;
@@ -2383,6 +2383,21 @@ label {
 
             button {
                 display: inline-block;
+            }
+
+            .is--flex {
+                column-gap: 0.5em;
+            }
+
+            input {
+                border: none;
+                font-weight: 600;
+                border-radius: 0.5em;
+                max-width: 2em;
+                padding-left: 1em;
+                padding-right: 1em;
+                padding: 0.25em 0.5em;
+                background-color: whitesmoke;
             }
         }
 
