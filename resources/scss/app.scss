@@ -166,8 +166,13 @@ nav .nav__wrp {
     background-color: #000;
 }
 
-footer .container {
-    padding-bottom: 2em;
+footer {
+    display: flex;
+    justify-content: center;
+    
+    .container {
+        padding-bottom: 2em;
+    }
 }
 
 .footer__bottom {
@@ -205,6 +210,9 @@ footer .container {
 }
 
 section {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
     width: 100%;
     padding: 0;
 }
@@ -288,7 +296,8 @@ button {
     }
 }
 
-.button.is--black.is--less-border-radius, .button.is--grey.is--less-border-radius {
+.button.is--black.is--less-border-radius,
+.button.is--grey.is--less-border-radius {
     border-radius: 0.5em;
 }
 
@@ -479,6 +488,7 @@ section.is--pt {
 .container {
     padding: 4em 6em 4em 6em;
     max-width: 1920px;
+    width: 100%;
 }
 
 .card {
@@ -1905,7 +1915,6 @@ ul.is--slider {
 ***********************/
 
 .slider {
-    overflow: hidden;
     margin-left: -6em;
     margin-right: -6em;
     padding-left: 6em;
@@ -2409,8 +2418,6 @@ label {
         }
     }
 }
-
-
 
 /**********************
 ****** Faq Styles
