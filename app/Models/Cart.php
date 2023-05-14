@@ -30,6 +30,18 @@ class Cart extends Model
         return $this->belongsToMany(Product::class, 'cart_items');
     }
 
+    public static function getTotalAmount ($token, $id) {
+
+        //Find all cart items, find the product prices and multiply the prices with quantity and add together
+        return DB::table('carts')->where('carts.session_token', $token)
+        ->when($id !== null, function ($query) use ($id) { 
+            $query->orWhere('carts.user_id', $id);
+        })->join('cart_items', 'carts.id', '=', 'cart_items.cart_id')
+            ->join('products', 'products.id', '=', 'cart_items.product_id')
+            ->selectRaw('SUM(products.price * cart_items.quantity) AS total');
+    }
+
+
     public static function getFullCart($token, $id) {
 
         return DB::table('carts')->where('session_token', $token)
