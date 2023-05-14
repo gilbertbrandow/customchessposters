@@ -15,6 +15,7 @@ use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CartItemController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\SavedPosterController;
 use Illuminate\Support\Facades\Route;
 
@@ -175,6 +176,9 @@ Route::post('/cart-item/destroy/{id}', [CartItemController::class, 'destroy'])
 
 Route::post('/cart-item/update/{id}', [CartItemController::class, 'update'])
     ->name('cartItem.update');
+
+Route::get('/checkout', [CheckoutController::class, 'index'])
+    ->name('checkout.index');
 
 
 
