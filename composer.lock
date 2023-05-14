@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6da9d6c626e3d787c1fe9f1370fa514b",
+    "content-hash": "742908c64c78b1c256255697c1851d84",
     "packages": [
         {
             "name": "brick/math",
@@ -2447,6 +2447,48 @@
                 }
             ],
             "time": "2023-02-25T19:38:58+00:00"
+        },
+        {
+            "name": "printful/php-api-sdk",
+            "version": "v2.2.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/printful/php-api-sdk.git",
+                "reference": "117fff7ef6efec7ec1330b50004be70d759bb924"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/printful/php-api-sdk/zipball/117fff7ef6efec7ec1330b50004be70d759bb924",
+                "reference": "117fff7ef6efec7ec1330b50004be70d759bb924",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Printful\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Printful",
+                    "email": "dev@theprintful.com"
+                }
+            ],
+            "description": "Printful API wrapper",
+            "support": {
+                "issues": "https://github.com/printful/php-api-sdk/issues",
+                "source": "https://github.com/printful/php-api-sdk/tree/v2.2.11"
+            },
+            "time": "2022-06-29T10:20:02+00:00"
         },
         {
             "name": "psr/container",
