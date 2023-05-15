@@ -177,6 +177,9 @@ Route::post('/cart-item/destroy/{id}', [CartItemController::class, 'destroy'])
 Route::post('/cart-item/update/{id}', [CartItemController::class, 'update'])
     ->name('cartItem.update');
 
+Route::post('/shipping/create', [ShippingController::class, 'create'])
+    ->name('shipping.create');
+
 Route::get('/checkout', [CheckoutController::class, 'index'])
     ->name('checkout.index');
 
