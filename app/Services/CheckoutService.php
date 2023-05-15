@@ -2,18 +2,19 @@
 
 namespace App\Services;
 
+use Printful\Exceptions\PrintfulApiException;
+use Printful\Exceptions\PrintfulException;
 use Printful\PrintfulApiClient;
 
 class CheckoutService
-{ 
-    
+{
 
-    public function createOrder() {
+    public function createOrder($shippingAddress, $poster)
+    {
 
-        $printful = new PrintfulApiClient(env('PRINTFUL_SK'));
+        $client = PrintfulApiClient::createOauthClient(env('PRINTFUL_SK'));
 
-
-        $order = $printful->post('orders', [
+        $order = $client->post('orders', [
             'recipient' => [
                 'name' => 'John Doe',
                 'address1' => '172 W Street Ave #105',
@@ -40,4 +41,28 @@ class CheckoutService
         return var_export($order);
     }
 
+    public function calculateShipping()
+    {
+        $pf = PrintfulApiClient::createOauthClient(env('PRINTFUL_SK'));
+
+        try {
+
+            $rates = $pf->post('shipping/rates', [
+                'recipient' => [
+                    'country_code' => 'US',
+                    'state_code' => 'CA',
+                ],
+                'items' => [
+                    ['variant_id' => 1, 'quantity' => 1], // Small poster
+                ],
+            ]);
+
+            return var_export($rates);
+        } catch (PrintfulApiException $e) {
+            echo 'Printful API Exception: ' . $e->getCode() . ' ' . $e->getMessage();
+        } catch (PrintfulException $e) { 
+            echo 'Printful Exception: ' . $e->getMessage();
+            var_export($pf->getLastResponseRaw());
+        }
+    }
 }
