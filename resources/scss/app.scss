@@ -488,7 +488,7 @@ section.is--pt {
 .container {
     padding: 4em 6em 4em 6em;
     max-width: 1920px;
-    width: 100%;
+    width: calc(100% - 12em);
 }
 
 .card {
