@@ -58,6 +58,7 @@ class Game extends Model
             ->join('players as white_player', 'games.white_player', '=', 'white_player.id')
             ->join('players as black_player', 'games.black_player', '=', 'black_player.id')
             ->select(
+                'games.id as game_id',
                 'games.name',
                 'games.description',
                 'games.date',

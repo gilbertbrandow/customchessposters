@@ -30,7 +30,7 @@
                                 <Icon name="cart" />
                             </button>
 
-                            <Link v-if="this.small !== true" class="button" :href="route('game.show', { 'id': this.game.id })">
+                            <Link v-if="this.small !== true" class="button" :href="route('game.show', { 'id': this.game.game_id })">
                                 Go to game
                                 <Icon name="arrow-up" />
                             </Link>
