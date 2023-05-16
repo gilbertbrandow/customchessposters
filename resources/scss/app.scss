@@ -211,6 +211,7 @@ footer {
 
 section {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     overflow: hidden;
     width: 100%;
@@ -450,6 +451,7 @@ section:first-child {
 section.section__hero {
     width: auto;
     display: flex;
+    flex-direction: initial;
     padding-top: 1em;
     padding-right: 1em;
     padding-left: 6em;
@@ -1476,6 +1478,11 @@ h4 {
         li:last-child svg {
             margin-right: -0.25em;
         }
+    }
+
+    section {
+        overflow: visible;
+        display: block;
     }
 }
 
