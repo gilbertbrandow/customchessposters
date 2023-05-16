@@ -249,6 +249,17 @@ class GamesSeeder extends Seeder
                 'opening_id' => 22,
             ],
 
+            [
+                'poster_id' => 22,
+                'name' => "Anand's Immortal Game",
+                'description' => "Played in advance of his coming 2013 world championship match against Magnus Carlsen, Anand showed in this game the attacking skill that makes him such a beloved player; particularly 16...Nde5!!",
+                'date' => '2013-01-15',
+                'white_player' => 20,
+                'black_player' => 27,
+                'world_championship_game' => 0,
+                'opening_id' => 23,
+            ],
+
         ];
 
         foreach ($games as $game) {

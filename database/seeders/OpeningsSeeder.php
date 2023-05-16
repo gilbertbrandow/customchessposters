@@ -135,6 +135,11 @@ class OpeningsSeeder extends Seeder
                 'name' => "Philidor Defense: General",
             ],
 
+            [
+                'eco' => 'D47',
+                'name' => "Semi-Slav Defense: Meran Variation",
+            ],
+
         ];
 
         foreach ($openings as $opening) {

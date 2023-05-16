@@ -416,7 +416,28 @@ class PostersSeeder extends Seeder
                 'black_player' => 'Duke Karl / Count Isouard',
                 'when' => 'Paris, 1858',
                 'where' => 'Paris, France',
-            ],                
+            ],
+
+            [
+                'theme' => 1,
+                'orientation' => 1,
+                'starting_position' => 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                'pgn' => '1. d4 d5 2. c4 c6 3. Nf3 Nf6 4. Nc3 e6 5. e3 Nbd7 6. Bd3 dxc4 7. Bxc4 b5 8. Bd3 Bd6 9. O-O O-O 10. Qc2 Bb7 11. a3 Rc8 12. Ng5 c5 13. Nxh7 Ng4 14. f4 cxd4 15. exd4 Bc5 16. Be2 Nde5 17. Bxg4 Bxd4+ 18. Kh1 Nxg4 19. Nxf8 f5 20. Ng6 Qf6 21. h3 Qxg6 22. Qe2 Qh5 23. Qd3 Be3',
+                'diagram_position' => 32,
+                'move_comment' => 'A devastating counterblow',
+                'fen' => '2rq1rk1/pb3ppN/4p3/1pb1n3/3P1Pn1/P1N5/1PQ1B1PP/R1B2RK1 w - - 3 17',
+                'result' => '0-1',
+                'title' => "Nerve's of Steele",
+                'white_player' => 'Levon Aronian',
+                'black_player' => 'Viswanathan Anand',
+                'white_rating' => 2802,
+                'black_rating' => 2772,
+                'white_title' => 'GM',
+                'black_title' => 'GM',
+                'when' => 'Tata Steel Group A, 2013.01.15 Round 4',
+                'where' => 'Wijk aan Zee NED',
+            ],
+                                
 
         ];
 
