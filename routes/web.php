@@ -75,7 +75,7 @@ Route::post('/newsletter', [NewsletterController::class, 'create'])
 |--------------------------------------------------------------------------
 */
 
-Route::get('/shipping', [HomeController::class, 'shipping'])
+Route::get('/shipping-policy', [HomeController::class, 'shipping'])
     ->name('home.shipping');
 
 Route::get('/return', [HomeController::class, 'return'])
