@@ -17,6 +17,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CartItemController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\SavedPosterController;
+use App\Http\Controllers\ShippingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -180,8 +181,8 @@ Route::post('/cart-item/update/{id}', [CartItemController::class, 'update'])
 Route::post('/shipping/create', [ShippingController::class, 'create'])
     ->name('shipping.create');
 
-Route::get('/checkout', [CheckoutController::class, 'index'])
-    ->name('checkout.index');
+Route::get('/shipping', [ShippingController::class, 'index'])
+    ->name('shipping.index');
 
 
 
