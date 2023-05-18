@@ -7,7 +7,7 @@
             <svg width="200" height="200" fill="none" viewbox="0 0 200 200"
                 :x="this.$parent.poster.orientation ? piece[1] * 200 : (7 - piece[1]) * 200"
                 :y="this.$parent.poster.orientation ? piece[2] * 200 : (7 - piece[2]) * 200">
-                <Pieces :piece="piece[0]" />
+                <Pieces :piece="piece[0]" :theme="this.theme" />
             </svg>
         </template>
 
