@@ -51,7 +51,7 @@
             <Frame />
 
             <!-- The board itself with pieces -->
-            <Game ref="Game" :fen="this.$props.poster.fen" />
+            <Game ref="Game" :theme="this.$props.poster.theme" :fen="this.$props.poster.fen" />
 
             <!-- Diagram comment -->
             <text id="comment" v-if="this.poster.pgn" y="1690" x="815" text-anchor="middle" font-size="32"
