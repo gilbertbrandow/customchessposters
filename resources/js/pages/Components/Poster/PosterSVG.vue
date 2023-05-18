@@ -1,6 +1,6 @@
 <template>
     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 2000 3000"
-        font-family="EB Garamond, serif" style="background-color: #f8f5f1">
+        font-family="EB Garamond, serif" :style="{ 'background-color': (this.poster.theme == 0) ? '#FBF6EE' : '#f8f5f1' }">
 
         <!-- The Title -->
         <text id="title" font-size="150" text-anchor="middle" font-weight="400">
@@ -48,7 +48,7 @@
             </text>
 
             <!-- Frame of the board -->
-            <Frame />
+            <Frame :theme="this.poster.theme"/>
 
             <!-- The board itself with pieces -->
             <Game ref="Game" :theme="this.$props.poster.theme" :fen="this.$props.poster.fen" />
@@ -89,7 +89,7 @@
 <script>
 
 import Game from './Game.vue';
-import Frame from '../../../Themes/Old Knowledge/Frame.vue';
+import Frame from '../../../Themes/Frame.vue';
 
 export default {
 
