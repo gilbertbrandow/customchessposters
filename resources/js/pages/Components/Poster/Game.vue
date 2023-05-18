@@ -1,7 +1,7 @@
 <template>
     <svg x="0" y="27" view-box="0 0 1600 1600">
 
-        <Board />
+        <Board :theme="theme"/>
 
         <template v-for="piece in pieces" :key="piece">
             <svg width="200" height="200" fill="none" viewbox="0 0 200 200"
@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import Board from '../../../Themes/Old Knowledge/Board.vue';
-import Pieces from '../../../Themes/Old Knowledge/Pieces.vue';
+import Board from '../../../Themes/Board.vue';
+import Pieces from '../../../Themes/Pieces.vue';
 
 export default {
 
@@ -27,6 +27,7 @@ export default {
 
     props: {
         fen: "",
+        theme: "",
     },
 
     data() {
