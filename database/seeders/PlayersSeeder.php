@@ -207,6 +207,12 @@ class PlayersSeeder extends Seeder
                 'name' => 'Duke Karl / Count Isouard',
                 'country' => 'France',
             ],
+
+
+            [
+                'name' => 'Larsen, Jørgen Bent',
+                'country' => 'Denmark',
+            ],
         ]; 
 
         foreach($players as $player) {

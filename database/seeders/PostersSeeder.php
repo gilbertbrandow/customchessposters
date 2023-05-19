@@ -37,7 +37,7 @@ class PostersSeeder extends Seeder
             ],
 
             [
-                'theme' => 1,
+                'theme' => 0,
                 'orientation' => 1,
                 'starting_position' => 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
                 'pgn' => '1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O Nxe4 6. d4 b5 7. Bb3 d5 8. dxe5 Be6 9. Nbd2 Nc5 10. c3 d4 11. Ng5 Bd5 12. Nxf7 Kxf7 13. Qf3+ Ke6 14. Qg4+ Kf7 15. Qf5+ Ke7 16. e6 Bxe6 17. Re1 Qd6 18. Bxe6 Nxe6 19. Ne4 Qe5 20. Bg5+ Kd7 21. Nc5+ Bxc5 22. Qf7+ Kd6 23. Be7+ Kd5',
@@ -57,7 +57,7 @@ class PostersSeeder extends Seeder
             ],
 
             [
-                'theme' => 1,
+                'theme' => 0,
                 'orientation' => 1,
                 'starting_position' => 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
                 'pgn' => '1. d4 Nf6 2. Nf3 d5 3. Bf4 c5 4. e3 Nc6 5. Nbd2 cxd4 6. exd4 Bf5 7. c3 e6 8. Bb5 Bd6 9. Bxd6 Qxd6 10. O-O O-O 11. Re1 h6 12. Ne5 Ne7 13. a4 a6 14. Bf1 Nd7 15. Nxd7 Qxd7 16. a5 Qc7 17. Qf3 Rfc8 18. Ra3 Bg6 19. Nb3 Nc6 20. Qg3 Qe7 21. h4 Re8 22. Nc5 e5 23. Rb3 Nxa5 24. Rxe5 Qf6 25. Ra3 Nc4 26. Bxc4 dxc4 27. h5 Bc2 28. Nxb7 Qb6 29. Nd6 Rxe5 30. Qxe5 Qxb2 31. Ra5 Kh7 32. Rc5 Qc1+ 33. Kh2 f6 34. Qg3 a5 35. Nxc4 a4 36. Ne3 Bb1 37. Rc7 Rg8 38. Nd5 Kh8 39. Ra7 a3 40. Ne7 Rf8 41. d5 a2 42. Qc7 Kh7 43. Ng6 Rg8 44. Qf7',
@@ -112,7 +112,7 @@ class PostersSeeder extends Seeder
             ],
 
             [
-                'theme' => 1,
+                'theme' => 0,
                 'orientation' => 1,
                 'starting_position' => 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
                 'pgn' => '1. d4 d5 2. c4 c6 3. Nc3 Nf6 4. Nf3 e6 5. Bg5 dxc4 6. e4 b5 7. a4 Bb7 8. axb5 cxb5 9. Nxb5 Qb6 10. Qa4 Nc6 11. Bxf6 gxf6 12. Bxc4 a6 13. Nc3 Qxb2 14. O-O Qxc3 15. d5 Qb4 16. dxc6 Bc8 17. Qa2 Bh6 18. Qe2 a5 19. Rfb1 Qc3 20. Ra4 O-O 21. h3 Bf4 22. g3 Rb8 23. Rxb8 Bxb8 24. Qd3 Qc1+ 25. Kg2 Bc7 26. Qd2 Qxd2 27. Nxd2 e5 28. Nb3 Be6 29. Nc5 Bxc4 30. Rxc4 Ra8 31. Kf3 Kf8 32. Kg4 Ke7 33. Kf5 Bb6 34. Nd7 Bxf2 35. Nxf6 Bxg3 36. Nd5+ Kd6 37. Nb6 Rg8 38. c7 Bh4 39. c8=N+',
@@ -170,7 +170,7 @@ class PostersSeeder extends Seeder
             ],
 
             [
-                'theme' => 1,
+                'theme' => 0,
                 'orientation' => 0,
                 'starting_position' => 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
                 'pgn' => '1. d4 Nf6 2. c4 g6 3. Nc3 Bg7 4. e4 d6 5. Nf3 O-O 6. Be2 e5 7. O-O Nc6 8. d5 Ne7 9. Nd2 Ne8 10. b4 f5 11. c5 Nf6 12. f3 f4 13. Nc4 g5 14. a4 Ng6 15. Ba3 Rf7 16. b5 dxc5 17. Bxc5 h5 18. a5 g4 19. b6 g3 20. Kh1 Bf8 21. d6 axb6 22. Bg1 Nh4 23. Re1 Nxg2 24. dxc7 Nxe1 25. Qxe1 g2+ 26. Kxg2 Rg7+ 27. Kh1 Bh3 28. Bf1 Qd3 29. Nxe5 Bxf1 30. Qxf1 Qxc3 31. Rc1 Qxe5 32. c8=Q Rxc8 33. Rxc8 Qe6',
@@ -228,7 +228,7 @@ class PostersSeeder extends Seeder
             ],
 
             [
-                'theme' => 1,
+                'theme' => 0,
                 'orientation' => 1,
                 'starting_position' => 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
                 'pgn' => '1. d4 Nf6 2. Nf3 g6 3. c4 Bg7 4. g3 O-O 5. Bg2 c6 6. Nc3 d6 7. O-O Qa5 8. h3 Qa6 9. Nd2 Nbd7 10. b3 Rb8 11. Bb2 b5 12. e4 e5 13. cxb5 cxb5 14. a4 bxa4 15. Nc4 Qb7 16. Nxd6 Qxb3 17. Nxa4 exd4 18. Bxd4 Qe6 19. Bxa7 Ra8 20. Nc3 Ne8 21. Nxe8 Rxe8 22. e5 Qxe5 23. Bxa8 Qxc3 24. Qa4 Qe5 25. Rac1 Nf6 26. Bc6 Rf8 27. Bc5 Bxh3 28. Bxf8 Bxf8 29. Rfe1 Qg5 30. Bg2 Be6 31. Rb1 Bc5 32. Rxe6 fxe6 33. Rb7 Qc1+ 34. Kh2 Bf8 35. Bh3 Qd2 36. Bxe6+ Kh8 37. Kg2 Qd6 38. Qc4 h5 39. Qc8',
@@ -289,7 +289,7 @@ class PostersSeeder extends Seeder
             ],
 
             [
-                'theme' => 1,
+                'theme' => 0,
                 'orientation' => 1,
                 'starting_position' => 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
                 'pgn' => '1. e4 c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 6. Be3 e6 7. g4 e5 8. Nf5 g6 9. g5 gxf5 10. exf5 d5 11. Qf3 d4 12. O-O-O Nbd7 13. Bd2 dxc3 14. Bxc3 Bg7 15. Rg1 O-O 16. gxf6 Qxf6 17. Qe3 Kh8 18. f4 Qb6 19. Qg3 Qh6 20. Rd6 f6 21. Bd2 e4 22. Bc4 b5 23. Be6 Ra7 24. Rc6 a5 25. Be3 Rb7 26. Bd5 Rb8 27. Rc7 b4 28. b3 Rb5 29. Bc6 Rxf5 30. Rxc8 Rxc8 31. Bxd7 Rcc5 32. Bxf5 Rxf5 33. Rd1 Kg8 34. Qg2',
@@ -343,7 +343,7 @@ class PostersSeeder extends Seeder
 
 
             [
-                'theme' => 1,
+                'theme' => 0,
                 'orientation' => 1,
                 'starting_position' => 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
                 'pgn' => '1. e4 c6 2. d4 d5 3. e5 Bf5 4. Nf3 e6 5. Be2 Nd7 6. O-O Bg6 7. Nbd2 Nh6 8. Nb3 Nf5 9. Bd2 Be7 10. g4 Nh4 11. Nxh4 Bxh4 12. f4 f5 13. c4 a5 14. a4 O-O 15. g5 h6 16. gxh6 gxh6 17. Kh1 Kh7 18. cxd5 cxd5 19. Rc1 b6 20. Rc6 Rc8 21. Rxe6 Bf7 22. Rd6 Be7 23. Bd3 Bxd6 24. Bxf5+ Kh8 25. Qg4 Rc7 26. Qh3 h5 27. exd6 Ra7 28. Be6 Nf6 29. f5 Qxd6 30. Bf4 Qd8 31. Be5 Bg8 32. Qxh5+ Rh7 33. Qg5 Qe7 34. Nc1 Qg7 35. Qxg7+ Rxg7 36. Nd3 Rg4 37. Nf4 Kh7 38. h3 Rg3 39. Ng6 Rxh3+ 40. Kg2',
@@ -363,7 +363,7 @@ class PostersSeeder extends Seeder
             ],
 
             [
-                'theme' => 1,
+                'theme' => 0,
                 'orientation' => 1,
                 'starting_position' => 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
                 'pgn' => '1. c4 e6 2. Nc3 d5 3. d4 Nf6 4. Nf3 Be7 5. Bf4 O-O 6. e3 b6 7. Qc2 Ba6 8. O-O-O dxc4 9. Ng5 Nc6 10. a3 g6 11. h4 Bd6 12. g3 Qe7 13. h5 e5 14. hxg6 hxg6 15. Bg2 exf4 16. Bxc6 fxg3 17. Kb1 Rad8 18. f4 Bc8 19. Rde1 Kg7 20. Nd5 Nxd5 21. Rh7+ Kg8 22. Rxf7 Rxf7 23. Qxg6+ Kf8 24. Qh6+ Rg7 25. Bxd5 Ke8 26. Qh5+ Kd7 27. Qh3+ Ke8 28. Qh5+ Kd7 29. Be6+ Kc6 30. Qf3+ Kb5 31. Bxc4+ Ka5 32. Qd5+ Bc5 33. b4+ Ka4 34. Qg2 Bxb4 35. Qc6+ Kxa3 36. Bb3 Bd7 37. Qc1+ Kxb3 38. Qc2+ Ka3 39. Qa2#',
@@ -383,7 +383,7 @@ class PostersSeeder extends Seeder
             ],
 
             [
-                'theme' => 1,
+                'theme' => 0,
                 'orientation' => 1,
                 'starting_position' => 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
                 'pgn' => '1. e4 c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. f3 e5 6. Nb3 Be7 7. c4 a5 8. Be3 a4 9. Nc1 O-O 10. Nc3 Qa5 11. Qd2 Na6 12. Be2 Nc5 13. O-O Bd7 14. Rb1 Rfc8 15. b4 axb3 16. axb3 Qd8 17. Nd3 Ne6 18. Nb4 Bc6 19. Rfd1 h5 20. Bf1 h4 21. Qf2 Nd7 22. g3 Ra3 23. Bh3 Rca8 24. Nc2 R3a6 25. Nb4 Ra5 26. Nc2 b6 27. Rd2 Qc7 28. Rbd1 Bf8 29. gxh4 Nf4 30. Bxf4 exf4 31. Bxd7 Qxd7 32. Nb4 Ra3 33. Nxc6 Qxc6 34. Nb5 Rxb3 35. Nd4 Qxc4 36. Nxb3 Qxb3 37. Qe2 Be7 38. Kg2 Qe6 39. h5 Ra3 40. Rd3 Ra2 41. R3d2 Ra3 42. Rd3 Ra7 43. Rd5 Rc7 44. Qd2 Qf6 45. Rf5 Qh4 46. Rc1 Ra7 47. Qxf4 Ra2+ 48. Kh1 Qf2 49. Rc8+ Kh7 50. Qh6+',
@@ -419,7 +419,7 @@ class PostersSeeder extends Seeder
             ],
 
             [
-                'theme' => 1,
+                'theme' => 0,
                 'orientation' => 1,
                 'starting_position' => 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
                 'pgn' => '1. d4 d5 2. c4 c6 3. Nf3 Nf6 4. Nc3 e6 5. e3 Nbd7 6. Bd3 dxc4 7. Bxc4 b5 8. Bd3 Bd6 9. O-O O-O 10. Qc2 Bb7 11. a3 Rc8 12. Ng5 c5 13. Nxh7 Ng4 14. f4 cxd4 15. exd4 Bc5 16. Be2 Nde5 17. Bxg4 Bxd4+ 18. Kh1 Nxg4 19. Nxf8 f5 20. Ng6 Qf6 21. h3 Qxg6 22. Qe2 Qh5 23. Qd3 Be3',
@@ -437,7 +437,26 @@ class PostersSeeder extends Seeder
                 'when' => 'Tata Steel Group A, 2013.01.15 Round 4',
                 'where' => 'Wijk aan Zee NED',
             ],
-                                
+
+            [
+                'theme' => 1,
+                'orientation' => 1,
+                'starting_position' => 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                'pgn' => '1. b3 e5 2. Bb2 Nc6 3. c4 Nf6 4. Nf3 e4 5. Nd4 Bc5 6. Nxc6 dxc6 7. e3 Bf5 8. Qc2 Qe7 9. Be2 O-O-O 10. f4 Ng4 11. g3 h5 12. h3 h4 13. hxg4 hxg3 14. Rg1 Rh1 15. Rxh1 g2 16. Rf1 Qh4+ 17. Kd1 gxf1=Q+',
+                'diagram_position' => 24,
+                'move_comment' => 'The threat of a passed pawn',
+                'fen' => '2kr3r/ppp1qpp1/2p5/2b2b2/2P1pPnp/1P2P1PP/PBQPB3/RN2K2R w KQ - 0 13',
+                'result' => '0-1',
+                'title' => 'When Pawns Attack',
+                'white_player' => 'Bent Larsen',
+                'black_player' => 'Boris Spassky',
+                'white_rating' => 2600,
+                'black_rating' => 2650,
+                'white_title' => 'GM',
+                'black_title' => 'GM',
+                'when' => 'USSR vs. Rest of the World, 1970.03.31 Round 2.1',
+                'where' => 'Belgrade SRB',
+            ],
 
         ];
 

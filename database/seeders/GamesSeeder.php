@@ -260,6 +260,17 @@ class GamesSeeder extends Seeder
                 'opening_id' => 23,
             ],
 
+            [
+                'poster_id' => 24,
+                'name' => "Spassky Dismantles The Dane's Unorthodox Opening",
+                'description' => 'Bent Larsen, arguably the greatest ever chess player from Denmark, was known for his unusual openings. With which he achieved great success against the strongest in the world. This time however, Boris pick him apart.',
+                'date' => '1970-03-31',
+                'white_player' => 39,
+                'black_player' => 2,
+                'world_championship_game' => 0,
+                'opening_id' => 24,
+            ],
+
         ];
 
         foreach ($games as $game) {
