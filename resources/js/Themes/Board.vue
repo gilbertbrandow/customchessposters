@@ -1,6 +1,6 @@
 <template>
 
-  <g v-if="this.theme == 0" id="Group_103" data-name="Group 103" transform="translate(1839.503 -94.7) rotate(90)">
+  <g v-if="this.theme == 0" id="Group_103" data-name="Group 103" transform="translate(1841.518 -93.491) rotate(90)">
     <g id="Group_71" data-name="Group 71" transform="translate(1493.944 1638.746)">
       <path id="Path_3502" data-name="Path 3502" d="M444.419,586.5H442v3.225a11.127,11.127,0,0,0,2.419-3.225Z" transform="translate(-441.194 -585.694)" fill="#c87b53"/>
       <path id="Path_3503" data-name="Path 3503" d="M450.062,590.934c.806-1.613,1.612-2.822,2.419-4.434h-3.628a10.113,10.113,0,0,1-1.612,2.822A25.768,25.768,0,0,1,442,595.369V599.4A23.282,23.282,0,0,0,450.062,590.934Z" transform="translate(-441.194 -585.694)" fill="#c87b53"/>
@@ -833,8 +833,9 @@
       <path id="Path_4268" data-name="Path 4268" d="M151.775,290.725V287.5a43.71,43.71,0,0,0-9.675,5.644h5.644A35.464,35.464,0,0,1,151.775,290.725Z" transform="translate(48.981 -92.388)" fill="#d1a282"/>
       <path id="Path_4269" data-name="Path 4269" d="M128.456,355.434c2.419-7.659,11.691-25.4,44.747-28.622,10.481-1.209,18.947-6.047,24.591-14.916,7.256-10.884,7.659-23.381,6.45-27.815-.806-2.419-1.209-9.272,2.016-16.528V260.7c-5.644,8.869-6.047,19.35-4.837,24.188,1.209,4.031.4,15.722-6.047,24.994-5.241,8.062-12.9,12.5-22.575,13.3-34.669,3.628-44.747,22.575-47.569,30.637-2.419,7.659-.4,14.109,1.612,19.35h3.225c0-.4-.4-.806-.4-1.209C128.456,367.931,126.441,362.287,128.456,355.434Z" transform="translate(-5.503 -173.625)" fill="#c87b53"/>
     </g>
-    <rect id="Rectangle_8" data-name="Rectangle 8" width="1596.775" height="1596.775" transform="translate(96.716 241.519)" fill="none" stroke="#714337" stroke-width="0.449"/>
+    <rect id="Rectangle_8" data-name="Rectangle 8" width="1596.775" height="1596.775" transform="translate(96.716 241.519)" fill="none" stroke="#714337" stroke-width="6.45"/>
   </g>
+
 
 
     <g v-else-if="this.theme == 1" id="Board">
