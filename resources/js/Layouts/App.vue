@@ -1,10 +1,7 @@
 <template>
   <nav class="is--scrolled">
     <div class="container">
-      <Link class="logo" :href="route('home.index')">
-      <img src="../../../public/images/ccp-icn.svg" alt="">
-      <div>{{ $page.props.site.title }}</div>
-      </Link>
+      <Logotype/>
       <div class="nav__wrp">
         <div class="dropdown"><img src="" /> USA / USD $</div>
         <Link @mouseover="resetFlash()" :href="route('user.index')" v-if="$page.props.auth" class="nav__button">
@@ -61,6 +58,7 @@
 import { Link } from "@inertiajs/vue3";
 import Newsletter from "../Pages/Components/Newsletter.vue"
 import Overlay from "../Pages/Components/Overlay.vue"
+import Logotype from "../Pages/Components/Logotype.vue"
 import axios from 'axios'
 
 export default {
@@ -68,6 +66,7 @@ export default {
     Link,
     Newsletter,
     Overlay,
+    Logotype
   },
 
   methods: {

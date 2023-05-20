@@ -200,13 +200,16 @@ footer {
 .logo {
     display: flex;
     align-items: center;
+    column-gap: 0.25em;
     font-size: 2em;
     font-weight: 600;
     color: #000;
-}
 
-.logo img {
-    height: 1.75em;
+    svg {
+        margin-top: -0.15em;
+        width: 1em;
+        height: 1em;
+    }
 }
 
 section {
@@ -235,6 +238,10 @@ section {
 
 .is--space-between {
     justify-content: space-between;
+}
+
+.is--center {
+    justify-content: center;
 }
 
 .is--small {
