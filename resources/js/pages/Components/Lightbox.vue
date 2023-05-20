@@ -30,7 +30,7 @@
                     <button @click="this.nextSlide()">
                         <Icon name="small-arrow" />
                     </button>
-                    <button @click="this.$page.props.overlay = false">
+                    <button @click="this.$page.props.overlay = false, this.$page.props.lightbox = false;">
                         <Icon name="close" />
                     </button>
                 </div>

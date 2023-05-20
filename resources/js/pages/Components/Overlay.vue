@@ -215,12 +215,12 @@ export default {
 
     methods: {
         clickToClose(e) {
-            if (e.target.closest('.overlay') && !e.target.closest('.content')) this.$page.props.overlay = false;
+            if (e.target.closest('.overlay') && !e.target.closest('.content')) this.$page.props.overlay = false, this.$page.props.lightbox = false;
             return
         },
 
         pressToClose(e) {
-            if (this.$page.props.overlay && e.key == 'Escape') this.$page.props.overlay = false;
+            if (this.$page.props.overlay && e.key == 'Escape') this.$page.props.overlay = false, this.$page.props.lightbox = false;
             return
         },
     },
