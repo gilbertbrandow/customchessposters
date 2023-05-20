@@ -10,7 +10,7 @@
             </li>
             <li v-else v-for="item in this.cart">
                 <template v-if="item.type == 'Poster'">
-                    <Poster :poster="item" environment="/images/environments/builder-mockup.jpeg" />
+                    <Poster :poster="item" :controls="{'small': true}" environment="/images/environments/builder-mockup.jpeg" />
                     <div class="content">
                         <h3 v-text="item.name"></h3>
                         <span>{{ 'Size: ' + item.width + ' x ' + item.height + ' cm, ' }}
@@ -19,7 +19,7 @@
 
                         <div class="is--flex">
                             <strong v-text="'$' + item.price / 100"></strong> x
-                            <input type="number" :value="item.quantity" @change="this.updateCart(item.itemId, false, $event.target.value)"/>
+                            <input type="number" min="1" :value="item.quantity" @change="this.updateCart(item.itemId, false, $event.target.value)"/>
                             <button class="text__link" type="submit" @click="this.updateCart(item.itemId, true)">Remove item</button>
                         </div>
 
@@ -28,7 +28,7 @@
             </li>
         </ul>
         <div class="button is--cart is--flex is--space-between">Total: <span>${{ total / 100 }}</span></div>
-        <Link :href="route('checkout.index')" v-if="this.cart && this.cart.length"
+        <Link :href="route('shipping.index')" v-if="this.cart && this.cart.length"
             class="button is--black is--less-border-radius is--flex is--space-between">Checkout
             <Icon name="arrow-right" />
         </Link>
