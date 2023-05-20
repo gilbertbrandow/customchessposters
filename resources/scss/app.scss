@@ -45,8 +45,8 @@ nav {
 }
 
 nav.is--scrolled {
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
+    padding-top: 0.75em;
+    padding-bottom: 0.75em;
     background-color: rgba(255, 255, 255);
     border-bottom: rgba(0, 0, 0, 0.1) solid 0.06em;
 
@@ -198,6 +198,7 @@ footer {
 }
 
 .logo {
+    text-decoration: none;
     display: flex;
     align-items: center;
     column-gap: 0.25em;
@@ -456,6 +457,10 @@ section:first-child {
     padding-top: 4em;
 }
 
+section:first-child.is--no-pt {
+    padding-top: 0em;
+}
+
 section.section__hero {
     width: auto;
     display: flex;
@@ -499,6 +504,10 @@ section.is--pt {
     padding: 4em 6em 4em 6em;
     max-width: 1920px;
     width: calc(100% - 12em);
+}
+
+.container.is--less-padding {
+    padding: 2em 6em; 
 }
 
 .card {
