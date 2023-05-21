@@ -37,14 +37,14 @@
                     </ul>
                     <ul>
                         <li class="is--flex is--space-between is--border-bottom">
-                            <h4>Subtotal</h4><span>$ 100.00</span>
+                            <h4>Subtotal</h4><span>$ {{ subtotal }}</span>
                         </li>
-                        <li class="is--flex is--space-between is--border-bottom">
+                        <li v-if="this.$page.props.shipping" class="is--flex is--space-between is--border-bottom">
                             <h4>Shipping</h4><span>$ 100.00</span>
                         </li>
                         <li class="is--flex is--no-column-gap is--border-bottom">
                             <h4>Total </h4><span class="is--small" style="flex: 1; margin-left: 1em">Including $ 20.00 in
-                                taxes</span><span>$ 100.00</span>
+                                taxes</span><span>$ {{ total }}</span>
                         </li>
                     </ul>
                 </div>
@@ -64,6 +64,28 @@ export default {
         Logotype,
         Poster
     },
+
+    computed: {
+        subtotal() {
+
+            if (!this.$page.props.cart) return 0;
+
+            let subtotal = 0;
+
+            this.$page.props.cart.forEach(element =>
+
+            subtotal += element.price * element.quantity
+            );
+
+            return (subtotal / 100).toFixed(2);
+        },
+
+        total() {
+
+            return this.$page.props.shipping ? this.subtotal + shipping : this.subtotal;
+        }
+    },
+
     mounted() {
         console.log(this.$page.props.cart);
     }
