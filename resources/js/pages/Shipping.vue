@@ -1,12 +1,12 @@
 <template>
     <div class="content card">
         <h2>Information</h2>
-        <form @submit.prevent style="align-self: stretch;">
+        <form @submit.prevent="submit()" style="align-self: stretch;">
             <div class="field__wrp">
                 <label for="email" class="field__label">Email address</label>
                 <div v-if="form.errors.email" v-text="form.errors.email" class="field__error"></div>
                 <input v-model="form.email" class="field" :class="{ 'is--error': form.errors.email }" name="email"
-                    placeholder="example@email.com" required />
+                    placeholder="example@email.com" />
             </div>
             <h3 class="is--margin-top">Shipping</h3>
             <div class="field__wrp">
@@ -25,15 +25,21 @@
 
                 <div class="field__wrp">
                     <label for="lastName" class="field__label">Last name</label>
-                    <input v-model="form.lastName" class="field" name="lastName" id="lastName" type="text" maxlength="4"
+                    <input v-model="form.lastName" class="field" name="lastName" id="lastName" type="text"
                         placeholder="Doe" />
                 </div>
             </div>
             <div class="field__wrp">
-                <label for="address" class="field__label">Address</label>
-                <div v-if="form.errors.email" v-text="form.errors.email" class="field__error"></div>
-                <input v-model="form.email" class="field" :class="{ 'is--error': form.errors.email }" name="email"
-                    placeholder="example@email.com" required />
+                <label for="address" class="field__label">Street Address</label>
+                <div v-if="form.errors.address" v-text="form.errors.address" class="field__error"></div>
+                <input type="address" v-model="form.address" class="field" :class="{ 'is--error': form.errors.address }"
+                    name="address" placeholder="19749 Dearborn St" />
+            </div>
+            <div class="field__wrp">
+                <label for="address" class="field__label">Address line 2 (Optional)</label>
+                <div v-if="form.errors.address2" v-text="form.errors.address2" class="field__error"></div>
+                <input type="address" v-model="form.address2" class="field" :class="{ 'is--error': form.errors.address2 }"
+                    name="address2" placeholder="Apt, Suite, Bldg." />
             </div>
             <div class="row">
                 <div class="field__wrp">
@@ -43,8 +49,7 @@
 
                 <div class="field__wrp">
                     <label for="city" class="field__label">City</label>
-                    <input v-model="form.city" class="field" name="city" id="city" type="text" maxlength="4"
-                        placeholder="New York" />
+                    <input v-model="form.city" class="field" name="city" id="city" type="text" placeholder="New York" />
                 </div>
             </div>
             <div class="field__wrp">
@@ -62,6 +67,7 @@
 <script>
 import Checkout from "../Layouts/Checkout.vue";
 import { useForm } from '@inertiajs/vue3'
+import axios from 'axios'
 
 export default {
     layout: Checkout,
@@ -308,10 +314,11 @@ export default {
             form: useForm({
                 email: '',
                 country: null,
-                firstName: '', 
-                lastName: '', 
-                address: '', 
-                zipCode: '', 
+                firstName: '',
+                lastName: '',
+                address: '',
+                address2: '',
+                zipCode: '',
                 city: '',
             })
         }
@@ -320,11 +327,19 @@ export default {
     methods: {
 
         submit() {
-            this.form.post('/shipping/create', {
-                preserveState: true,
-                preserveScroll: true,
-                onSuccess: () => '',
-            });
+
+            this.form.processing = true; 
+            
+            axios
+                .post('/shipping')
+                .then(response => (
+                    console.log(response),
+                    this.form.processing = false 
+                ))
+                .catch(() => (
+                    console.log(error),
+                    this.form.processing = false 
+                ))
         }
     }
 }
