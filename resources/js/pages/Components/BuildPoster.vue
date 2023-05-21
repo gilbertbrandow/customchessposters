@@ -128,25 +128,24 @@
                                         <div v-if="posterBuilder.manualMove.suggestions.length" class="text__link">{{
                                             posterBuilder.manualMove.valid ? 'Do' : 'Did'
                                         }} you mean
-                                            <span
-                                                v-for="(suggestion, index) in posterBuilder.manualMove.suggestions      ">
+                                            <span v-for="(suggestion, index) in posterBuilder.manualMove.suggestions      ">
                                                 <span role="button"
                                                     @click="posterBuilder.manualMove.pgn = suggestion; makeMove(true)"
                                                     v-text="suggestion" class="suggestion"></span>
-                                                <span v-if=" index + 1 != posterBuilder.manualMove.suggestions.length "
-                                                    v-text=" (index + 2 == posterBuilder.manualMove.suggestions.length) ? ' or ' : ', ' "></span>
+                                                <span v-if="index + 1 != posterBuilder.manualMove.suggestions.length"
+                                                    v-text="(index + 2 == posterBuilder.manualMove.suggestions.length) ? ' or ' : ', '"></span>
                                             </span>?
                                         </div>
                                     </div>
 
-                                    <div v-if=" pgnArray.length != 0 ">
+                                    <div v-if="pgnArray.length != 0">
                                         <strong>Previous moves: </strong>
                                         <div style="display: flex; column-gap: 0.5em;">
-                                            <div v-if=" pgnArray.length >= 5 " style="margin-right: -0.25em;">...</div>
+                                            <div v-if="pgnArray.length >= 5" style="margin-right: -0.25em;">...</div>
                                             <template v-for="(move, index) in pgnArray" :key="index">
-                                                <div v-if=" pgnArray.length < 5 || pgnArray.length - index < 5 ">
-                                                    <span v-if=" index % 2 == 0 " v-text=" (index / 2 + 1) + '. ' "></span>
-                                                    <span class="move" v-text=" move "></span>
+                                                <div v-if="pgnArray.length < 5 || pgnArray.length - index < 5">
+                                                    <span v-if="index % 2 == 0" v-text="(index / 2 + 1) + '. '"></span>
+                                                    <span class="move" v-text="move"></span>
                                                 </div>
                                             </template>
                                         </div>
@@ -154,42 +153,42 @@
 
                                 </div>
 
-                                <div class="tab" v-if=" posterBuilder.currTab == 1 ">
+                                <div class="tab" v-if="posterBuilder.currTab == 1">
 
                                     <div class="field__wrp">
                                         <label for="pastePgn" class="field__label">Paste your PGN below</label>
-                                        <textarea v-model=" posterBuilder.pastePgn.moves " class="field"
-                                            :class=" { 'is--error': !posterBuilder.pastePgn.valid, 'is--success': posterBuilder.pastePgn.success } "
+                                        <textarea v-model="posterBuilder.pastePgn.moves" class="field"
+                                            :class="{ 'is--error': !posterBuilder.pastePgn.valid, 'is--success': posterBuilder.pastePgn.success }"
                                             name="password" placeholder="1.e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. b4..."
                                             id="pastePgn"
-                                            @input=" posterBuilder.pastePgn.success = false, posterBuilder.pastePgn.valid = true ">
+                                            @input=" posterBuilder.pastePgn.success = false, posterBuilder.pastePgn.valid = true">
                                                                         </textarea>
-                                        <div v-if=" !posterBuilder.pastePgn.valid " class="field__error">Invalid PGN</div>
-                                        <div v-if=" posterBuilder.pastePgn.success " class="field__error is--success">PGN
+                                        <div v-if="!posterBuilder.pastePgn.valid" class="field__error">Invalid PGN</div>
+                                        <div v-if="posterBuilder.pastePgn.success" class="field__error is--success">PGN
                                             loaded successfully!</div>
                                     </div>
-                                    <div class="button is--black" @click=" pastePgn(posterBuilder.pastePgn.moves); ">
+                                    <div class="button is--black" @click=" pastePgn(posterBuilder.pastePgn.moves);">
                                         Upload </div>
                                 </div>
 
-                                <div class="tab" v-if=" posterBuilder.currTab == 2 ">
+                                <div class="tab" v-if="posterBuilder.currTab == 2">
                                     <div class="field__wrp">
                                         <label for="gameUrl" class="field__label">Game URL</label>
-                                        <div v-if=" !posterBuilder.uploadLichess.valid " class="field__error"> URL is not
+                                        <div v-if="!posterBuilder.uploadLichess.valid" class="field__error"> URL is not
                                             valid</div>
-                                        <div v-if=" posterBuilder.uploadLichess.success " class="field__error is--success">
+                                        <div v-if="posterBuilder.uploadLichess.success" class="field__error is--success">
                                             Game uploaded successfully!</div>
-                                        <input v-model=" posterBuilder.gameUrl " class="field"
-                                            :class=" { 'is--error': !posterBuilder.uploadLichess.valid, 'is--success': posterBuilder.uploadLichess.success } "
+                                        <input v-model="posterBuilder.gameUrl" class="field"
+                                            :class="{ 'is--error': !posterBuilder.uploadLichess.valid, 'is--success': posterBuilder.uploadLichess.success }"
                                             name="gameUrl" id="gameUrl" placeholder="https://lichess.org/SwuG1qFK"
-                                            @input=" posterBuilder.uploadLichess.success = false, posterBuilder.uploadLichess.valid = true " />
+                                            @input=" posterBuilder.uploadLichess.success = false, posterBuilder.uploadLichess.valid = true" />
                                     </div>
                                     <div class="button is--black"
-                                        @click=" uploadGameFromLichess(posterBuilder.gameUrl), posterBuilder.gameUrl = '' ">
+                                        @click=" uploadGameFromLichess(posterBuilder.gameUrl), posterBuilder.gameUrl = ''">
                                         Load </div>
 
-                                    <div v-if=" posterBuilder.gameDesc " class="message is--margin-top">
-                                        <div @click=" posterBuilder.gameDesc = false ">
+                                    <div v-if="posterBuilder.gameDesc" class="message is--margin-top">
+                                        <div @click=" posterBuilder.gameDesc = false">
                                             <Icon name="close" />
                                         </div>
                                         <h4>How it works</h4>
@@ -205,24 +204,24 @@
 
 
                         </div>
-                        <div :class=" [posterBuilder.currStep == 2 ? 'is--active' : ''] " class="module__step">
+                        <div :class="[posterBuilder.currStep == 2 ? 'is--active' : '']" class="module__step">
                             <h3>3. The Position</h3>
                             <p>Choose which position of the game you will share with the world</p>
                             <div class="poster__moves">
-                                <span v-if=" pgnArray.length > 140 && poster.diagram_position >= 70 ">...</span>
-                                <div v-for="(move, index) in       pgnArray      " :key=" index ">
+                                <span v-if="pgnArray.length > 140 && poster.diagram_position >= 70">...</span>
+                                <div v-for="(move, index) in       pgnArray      " :key="index">
 
                                     <div
-                                        v-if=" pgnArray.length < 140 || (index < poster.diagram_position + 70 + Math.max(0, (70 - poster.diagram_position)) && index > poster.diagram_position - (70 + Math.max(0, (70 - (pgnArray.length - poster.diagram_position))))) ">
-                                        <span v-if=" index % 2 == 0 " v-text=" (index / 2 + 1) + '. ' "></span>
-                                        <span class="move" :class=" { 'is--active': index + 1 == poster.diagram_position } "
-                                            v-text=" move " @click=" poster.diagram_position = index + 1 "></span>
+                                        v-if="pgnArray.length < 140 || (index < poster.diagram_position + 70 + Math.max(0, (70 - poster.diagram_position)) && index > poster.diagram_position - (70 + Math.max(0, (70 - (pgnArray.length - poster.diagram_position)))))">
+                                        <span v-if="index % 2 == 0" v-text="(index / 2 + 1) + '. '"></span>
+                                        <span class="move" :class="{ 'is--active': index + 1 == poster.diagram_position }"
+                                            v-text="move" @click=" poster.diagram_position = index + 1"></span>
                                     </div>
                                 </div>
                                 <span
-                                    v-if=" pgnArray.length > 140 && poster.diagram_position < pgnArray.length - 70 ">...</span>
+                                    v-if="pgnArray.length > 140 && poster.diagram_position < pgnArray.length - 70">...</span>
                             </div>
-                            <div v-if=" !pgnArray.length " class="message">
+                            <div v-if="!pgnArray.length" class="message">
 
                                 <h4>You need to make some moves!</h4>
                                 <p>In order to be able to choose a position for your poster, you need to insert some
@@ -234,26 +233,26 @@
 
                             <div v-else class="field__wrp is--margin-top">
                                 <label for="moveComment" class="field__label">Move comment (optional)</label>
-                                <input v-model=" poster.move_comment " class="field" name="moveComment" maxlength="92"
+                                <input v-model="poster.move_comment" class="field" name="moveComment" maxlength="92"
                                     id="moveComment" placeholder="Lorem ipsum dolor set ami" />
                             </div>
                         </div>
-                        <div :class=" [posterBuilder.currStep == 3 ? 'is--active' : ''] " class="module__step">
+                        <div :class="[posterBuilder.currStep == 3 ? 'is--active' : '']" class="module__step">
                             <h3>4. The Game</h3>
                             <p>Other interesting information to give your poster some context.</p>
 
                             <div class="row is--title-result">
                                 <div class="field__wrp">
                                     <label for="gameTitle" class="field__label">Title</label>
-                                    <div v-if=" !posterBuilder.titleValid " class="field__error">Title is too long</div>
-                                    <input v-model=" poster.title " class="field"
-                                        :class=" { 'is--error': !posterBuilder.titleValid } " name="gameTitle"
+                                    <div v-if="!posterBuilder.titleValid" class="field__error">Title is too long</div>
+                                    <input v-model="poster.title" class="field"
+                                        :class="{ 'is--error': !posterBuilder.titleValid }" name="gameTitle"
                                         id="gameTitle" placeholder="Lorem ipsum dolor set ami" />
                                 </div>
 
                                 <div class="field__wrp">
                                     <label for="result" class="field__label">Result</label>
-                                    <select v-model=" poster.result " id="result" class="field" name="result">
+                                    <select v-model="poster.result" id="result" class="field" name="result">
                                         <option value="">Result</option>
                                         <option value="1-0">White won</option>
                                         <option value="0-1">Black won</option>
@@ -266,21 +265,21 @@
                             <div class="row is--player-input is--margin-top">
                                 <div class="field__wrp">
                                     <label for="whitePlayer" class="field__label">White player</label>
-                                    <input maxlength="45" v-model=" poster.white_player " class="field" name="whitePlayer"
+                                    <input maxlength="45" v-model="poster.white_player" class="field" name="whitePlayer"
                                         id="whitePlayer" placeholder="Carlsen, Magnus" />
                                 </div>
 
                                 <div class="field__wrp">
                                     <label for="whiteRating" class="field__label">Rating</label>
-                                    <input v-model=" poster.white_rating " maxlength="4" class="field" name="whiteRating"
-                                        id="whiteRating" type="tel" placeholder="2126" />
+                                    <input v-model="poster.white_rating" class="field" name="whiteRating" id="whiteRating"
+                                        type="number" max="9999" placeholder="2126" @input="this.ratingFormat()" />
                                 </div>
 
                                 <div class="field__wrp">
 
                                     <label for="whiteTitle" class="field__label">Title</label>
 
-                                    <select v-model=" poster.white_title " id="whiteTitle" class="field" name="whiteTitle">
+                                    <select v-model="poster.white_title" id="whiteTitle" class="field" name="whiteTitle">
                                         <option value="">None</option>
                                         <option value="GM">GM</option>
                                         <option value="WGM">WGM</option>
@@ -297,21 +296,21 @@
                             <div class="row is--player-input is--margin-top">
                                 <div class="field__wrp">
                                     <label for="blackPlayer" class="field__label">Black player</label>
-                                    <input maxlength="45" v-model=" poster.black_player " class="field" name="blackPlayer"
+                                    <input maxlength="45" v-model="poster.black_player" class="field" name="blackPlayer"
                                         id="blackPlayer" placeholder="Abdusattorov, Nodirbek" />
                                 </div>
 
                                 <div class="field__wrp">
                                     <label for="blackRating" class="field__label">Rating</label>
-                                    <input v-model=" poster.black_rating " class="field" name="blackRating" id="blackRating"
-                                        type="tel" maxlength="4" placeholder="2126" />
+                                    <input v-model="poster.black_rating" class="field" name="blackRating" id="blackRating"
+                                        type="number" max="9999" placeholder="2126" @input="this.ratingFormat()" />
                                 </div>
 
                                 <div class="field__wrp">
 
                                     <label for="blackTitle" class="field__label">Title</label>
 
-                                    <select v-model=" poster.black_title " id="blackTitle" class="field" name="blackTitle">
+                                    <select v-model="poster.black_title" id="blackTitle" class="field" name="blackTitle">
                                         <option value="">None</option>
                                         <option value="GM">GM</option>
                                         <option value="WGM">WGM</option>
@@ -328,64 +327,65 @@
                             <div class="row is--margin-top">
                                 <div class="field__wrp">
                                     <label for="gameWhere" class="field__label">Where</label>
-                                    <input maxlength="40" v-model=" poster.where " class="field" name="gameTitle"
+                                    <input maxlength="40" v-model="poster.where" class="field" name="gameTitle"
                                         id="gameWhere" placeholder="Wijk aan Zee, Netherlands" />
                                 </div>
                                 <div class="field__wrp">
                                     <label for="gameWhen" class="field__label">When</label>
-                                    <input maxlength="40" v-model=" poster.when " class="field" name="gameTitle"
+                                    <input maxlength="40" v-model="poster.when" class="field" name="gameTitle"
                                         id="gameWhen" placeholder="Tata Steel, January 2023. Round 3" />
                                 </div>
                             </div>
                         </div>
-                        <div :class=" [posterBuilder.currStep == 4 ? 'is--active' : ''] " class="module__step">
+                        <div :class="[posterBuilder.currStep == 4 ? 'is--active' : '']" class="module__step">
                             <h3>5. The Poster</h3>
                             <p>How big would you like your poster?</p>
                         </div>
                     </div>
                     <div class="module__navigation">
                         <div ref="buttonWrapper" class="module__buttons">
-                            <button v-if=" this.$data.posterBuilder.currStep != 0 " class="link-arrow is--low-op"
-                                @click=" changeStep(this.$data.posterBuilder.currStep - 1) ">Go back
+                            <button v-if="this.$data.posterBuilder.currStep != 0" class="link-arrow is--low-op"
+                                @click=" changeStep(this.$data.posterBuilder.currStep - 1)">Go back
                                 <Icon name="arrow-back" />
                             </button>
 
-                            <button v-if=" this.$data.posterBuilder.currStep != 4 " class="button is--black"
-                                @click=" changeStep(this.$data.posterBuilder.currStep + 1) ">Next Step
+                            <button v-if="this.$data.posterBuilder.currStep != 4" class="button is--black"
+                                @click=" changeStep(this.$data.posterBuilder.currStep + 1)">Next Step
                                 <Icon name="arrow-right" />
                             </button>
 
-                            <PosterAddToCart v-if=" this.$data.posterBuilder.currStep == 4 " :poster=" this.$data.poster " />
+                            <PosterAddToCart v-if="this.$data.posterBuilder.currStep == 4"
+                                :poster="this.$data.poster" />
 
                         </div>
                         <div class="module__progress-wrp">
                             <div class="module__progress">
                                 <div class="progress__bar">
-                                    <div :style=" { width: (posterBuilder.currStep / 4 * 100) + '%' } "
+                                    <div :style="{ width: (posterBuilder.currStep / 4 * 100) + '%' }"
                                         class="progress__bar-indicator">
                                     </div>
                                 </div>
-                                <div :class=" [posterBuilder.currStep == 0 ? 'is--active' : '', posterBuilder.currStep > 0 ? 'is--passed' : ''] "
-                                    class="progress__step" @click=" changeStep(0) ">1 <div>Your design</div>
+                                <div :class="[posterBuilder.currStep == 0 ? 'is--active' : '', posterBuilder.currStep > 0 ? 'is--passed' : '']"
+                                    class="progress__step" @click=" changeStep(0)">1 <div>Your design</div>
                                 </div>
-                                <div :class=" [posterBuilder.currStep == 1 ? 'is--active' : '', posterBuilder.currStep > 1 ? 'is--passed' : ''] "
-                                    class="progress__step" @click=" changeStep(1) ">2 <div>The Moves</div>
+                                <div :class="[posterBuilder.currStep == 1 ? 'is--active' : '', posterBuilder.currStep > 1 ? 'is--passed' : '']"
+                                    class="progress__step" @click=" changeStep(1)">2 <div>The Moves</div>
                                 </div>
-                                <div :class=" [posterBuilder.currStep == 2 ? 'is--active' : '', posterBuilder.currStep > 2 ? 'is--passed' : ''] "
-                                    class="progress__step" @click=" changeStep(2) ">3 <div>The Position</div>
+                                <div :class="[posterBuilder.currStep == 2 ? 'is--active' : '', posterBuilder.currStep > 2 ? 'is--passed' : '']"
+                                    class="progress__step" @click=" changeStep(2)">3 <div>The Position</div>
                                 </div>
-                                <div :class=" [posterBuilder.currStep == 3 ? 'is--active' : '', posterBuilder.currStep > 2 ? 'is--passed' : ''] "
-                                    class="progress__step" @click=" changeStep(3) ">4 <div>The Game</div>
+                                <div :class="[posterBuilder.currStep == 3 ? 'is--active' : '', posterBuilder.currStep > 2 ? 'is--passed' : '']"
+                                    class="progress__step" @click=" changeStep(3)">4 <div>The Game</div>
                                 </div>
-                                <div :class=" [posterBuilder.currStep == 4 ? 'is--active' : ''] " class="progress__step"
-                                    @click=" changeStep(4) ">5 <div>The Poster</div>
+                                <div :class="[posterBuilder.currStep == 4 ? 'is--active' : '']" class="progress__step"
+                                    @click=" changeStep(4)">5 <div>The Poster</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <Poster :poster=" poster " :environment=" this.$data.posterBuilder.currEnvironment " :controls=" controls ">
+                <Poster :poster="poster" :environment="this.$data.posterBuilder.currEnvironment" :controls="controls">
                 </Poster>
 
             </div>
@@ -552,6 +552,12 @@ export default {
         }
     },
     methods: {
+
+        ratingFormat() {
+
+            if (this.poster.white_rating > 9999) this.poster.white_rating = Math.floor(this.poster.white_rating / 10);
+            if (this.poster.black_rating > 9999) this.poster.black_rating = Math.floor(this.poster.black_rating / 10);
+        },
 
         setTheme(id) {
             this.$data.poster.theme = id;
@@ -940,7 +946,7 @@ export default {
 
         this.setTheme(this.$data.poster.theme);
         this.chessGame.load(this.$data.poster.starting_position);
-        if(this.$data.poster.pgn) this.chessGame.loadPgn(this.$data.poster.pgn);
+        if (this.$data.poster.pgn) this.chessGame.loadPgn(this.$data.poster.pgn);
     }
 }
 </script>
