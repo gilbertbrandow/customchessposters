@@ -13,11 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('carts', function (Blueprint $table) {
+        Schema::create('shipping_adresses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->constrained();
-            $table->foreignId('shipping_adresses_id')->nullable()->constrained();
-            $table->string('session_token');
+            $table->string('email');
+            $table->string('country');
+            $table->string('firstname');
+            $table->string('lastname');
+            $table->string('address1');
+            $table->string('address2');
+            $table->string('state');
+            $table->string('zipcode');
+            $table->string('city');
             $table->timestamps();
         });
     }
@@ -29,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('carts');
+        Schema::dropIfExists('shipping');
     }
 };
