@@ -49,8 +49,8 @@ class CheckoutService
 
             $rates = $pf->post('shipping/rates', [
                 'recipient' => [
-                    'country_code' => 'US',
-                    'state_code' => 'CA',
+                    'country_code' => 'BE',
+                    'state_code' => '',
                 ],
                 'items' => [
                     ['variant_id' => 1, 'quantity' => 1], // Small poster

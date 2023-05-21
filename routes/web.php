@@ -181,6 +181,9 @@ Route::post('/cart-item/update/{id}', [CartItemController::class, 'update'])
 Route::post('/shipping/create', [ShippingController::class, 'create'])
     ->name('shipping.create');
 
+Route::get('/shipping/create', [ShippingController::class, 'create'])
+    ->name('shipping.create');
+
 Route::get('/shipping', [ShippingController::class, 'index'])
     ->name('shipping.index');
 

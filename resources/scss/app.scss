@@ -169,7 +169,7 @@ nav .nav__wrp {
 footer {
     display: flex;
     justify-content: center;
-    
+
     .container {
         padding-bottom: 2em;
     }
@@ -241,6 +241,10 @@ section {
     justify-content: space-between;
 }
 
+.is--no-column-gap {
+    column-gap: 0em;
+}
+
 .is--center {
     justify-content: center;
 }
@@ -251,6 +255,10 @@ section {
 
 .is--flipped {
     transform: rotateZ(180deg);
+}
+
+.is--border-bottom {
+    border-bottom: 0.06em #ebebeb solid;
 }
 
 button {
@@ -507,7 +515,7 @@ section.is--pt {
 }
 
 .container.is--less-padding {
-    padding: 2em 6em; 
+    padding: 2em 6em;
 }
 
 .card {
@@ -2440,6 +2448,30 @@ label {
             margin-top: 0.1em;
             line-height: 1.1;
         }
+    }
+}
+
+.checkout-total {
+    flex: 1;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+
+    .cart-items {
+        li {
+            .poster {
+                width: 10em;
+            }
+
+            .content {
+                align-self: stretch;
+            }
+        }
+    }
+
+    ul {
+        margin-block-start: 0em;
+        margin-block-end: 0em;
     }
 }
 
