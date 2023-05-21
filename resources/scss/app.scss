@@ -424,6 +424,19 @@ button {
     cursor: pointer;
 }
 
+.text__link:has(svg) {
+    display: flex;
+    align-items: center;
+    column-gap: 0.5em;
+    text-decoration: none;
+    border-bottom: 0.06em rgba(0, 0, 0, 0.6) solid;
+
+    svg {
+        width: 0.75em;
+        height: 0.75em;
+    }
+}
+
 .text__link:hover {
     opacity: 0.6;
 }
@@ -2457,15 +2470,17 @@ label {
     display: flex;
     flex-direction: column;
 
-    .cart-items {
-        li {
-            .poster {
-                width: 10em;
-            }
+    li {
+        margin-top: 1em;
+    }
 
-            .content {
-                align-self: stretch;
-            }
+    .cart-items {
+        flex: 1;
+        li {
+            border-radius: 0.5em;
+            border: solid 0.06em rgba(0, 0, 0, 0.1);
+            padding: 1em;
+            display: block;
         }
     }
 
