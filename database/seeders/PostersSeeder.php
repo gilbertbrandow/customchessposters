@@ -427,7 +427,7 @@ class PostersSeeder extends Seeder
                 'move_comment' => 'A devastating counterblow',
                 'fen' => '2rq1rk1/pb3ppN/4p3/1pb1n3/3P1Pn1/P1N5/1PQ1B1PP/R1B2RK1 w - - 3 17',
                 'result' => '0-1',
-                'title' => "Nerve's of Steele",
+                'title' => "Nerve's of Steel",
                 'white_player' => 'Levon Aronian',
                 'black_player' => 'Viswanathan Anand',
                 'white_rating' => 2802,
