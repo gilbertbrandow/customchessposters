@@ -41,7 +41,7 @@ class CheckoutService
         return var_export($order);
     }
 
-    public function calculateShipping()
+    public function calculateShipping($request)
     {
         $pf = PrintfulApiClient::createOauthClient(env('PRINTFUL_SK'));
 
@@ -49,8 +49,8 @@ class CheckoutService
 
             $rates = $pf->post('shipping/rates', [
                 'recipient' => [
-                    'country_code' => 'BE',
-                    'state_code' => '',
+                    'country_code' => 'USA',
+                    'state_code' => 'CA',
                 ],
                 'items' => [
                     ['variant_id' => 1, 'quantity' => 1], // Small poster
@@ -59,9 +59,9 @@ class CheckoutService
 
             return var_export($rates);
         } catch (PrintfulApiException $e) {
-            echo 'Printful API Exception: ' . $e->getCode() . ' ' . $e->getMessage();
+            return $e->getMessage();
         } catch (PrintfulException $e) { 
-            echo 'Printful Exception: ' . $e->getMessage();
+            return  $e->getMessage();
             var_export($pf->getLastResponseRaw());
         }
     }

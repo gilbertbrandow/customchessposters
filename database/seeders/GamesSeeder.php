@@ -271,6 +271,17 @@ class GamesSeeder extends Seeder
                 'opening_id' => 24,
             ],
 
+            [
+                'poster_id' => 24,
+                'name' => 'The Argentinian Legend Puts On A Show',
+                'description' => 'Panno was the first top world chess player born in South America. He peaked at 18th in the world in 1955 and appeared again as number 19th overall on the top lists in 1973. In this game he puts his foot on the gas on move 43 and does not ease up.',
+                'date' => '1957-04-06',
+                'white_player' => 40,
+                'black_player' => 41,
+                'world_championship_game' => 0,
+                'opening_id' => 25,
+            ],
+
         ];
 
         foreach ($games as $game) {

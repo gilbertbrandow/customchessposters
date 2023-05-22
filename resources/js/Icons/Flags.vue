@@ -260,11 +260,37 @@
         <polygon style="fill:#F0F0F0;" points="512,85.337 512,256 215.185,256 0,85.337 " />
     </svg>
 
-    <svg v-else-if="country == 'Denmark'" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-        y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+    <svg v-else-if="country == 'Denmark'" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
+        style="enable-background:new 0 0 512 512;" xml:space="preserve">
         <rect y="85.333" style="fill:#D80027;" width="512" height="341.337" />
         <polygon style="fill:#F0F0F0;" points="192,85.33 128,85.33 128,223.996 0,223.996 0,287.996 128,287.996 128,426.662 192,426.662 
 	192,287.996 512,287.996 512,223.996 192,223.996 " />
+    </svg>
+
+    <svg v-else-if="country == 'Austria'" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
+        style="enable-background:new 0 0 512 512;" xml:space="preserve">
+        <rect y="85.337" style="fill:#F0F0F0;" width="512" height="341.326" />
+        <g>
+            <rect y="85.337" style="fill:#D80027;" width="512" height="113.775" />
+            <rect y="312.888" style="fill:#D80027;" width="512" height="113.775" />
+        </g>
+    </svg>
+
+    <svg v-else-if="country == 'Argentina'" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
+        style="enable-background:new 0 0 512 512;" xml:space="preserve">
+        <rect y="85.337" style="fill:#F0F0F0;" width="512" height="341.326" />
+        <g>
+            <rect y="85.337" style="fill:#338AF3;" width="512" height="113.775" />
+            <rect y="312.888" style="fill:#338AF3;" width="512" height="113.775" />
+        </g>
+        <polygon style="fill:#FFDA44;" points="296.809,256 280.133,263.844 289.013,279.993 270.906,276.529 268.612,294.82 256,281.367 
+	243.388,294.82 241.094,276.529 222.987,279.992 231.866,263.842 215.191,256 231.867,248.156 222.987,232.008 241.093,235.471 
+	243.388,217.18 256,230.633 268.612,217.18 270.906,235.471 289.013,232.008 280.134,248.157 " />
+        <g>
+        </g>
     </svg>
 </template>
 

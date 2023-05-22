@@ -458,6 +458,26 @@ class PostersSeeder extends Seeder
                 'where' => 'Belgrade SRB',
             ],
 
+            [
+                'theme' => 1,
+                'orientation' => 1,
+                'starting_position' => 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                'pgn' => '1. e4 e6 2. d3 d5 3. Nd2 Nf6 4. g3 Be7 5. Bg2 O-O 6. Ngf3 c6 7. O-O b5 8. Re1 Bb7 9. e5 Nfd7 10. Nf1 Re8 11. h4 Nf8 12. N1h2 c5 13. Ng4 Nc6 14. h5 Rc8 15. h6 g6 16. a4 b4 17. Be3 Nd7 18. Qc1 Ba6 19. Qd2 Na5 20. Bg5 c4 21. Bxe7 Qxe7 22. Nd4 Rb8 23. dxc4 Nxc4 24. Qf4 Bb7 25. b3 Na5 26. Bf1 a6 27. Bd3 Rec8 28. Re3 Nc6 29. Nf3 Rc7 30. Ng5 Rbc8 31. Rae1 Nd8 32. R3e2 Rc3 33. Kh2 R8c7 34. Kg1 Bc8 35. Rd2 R3c6 36. Nf3 Rb6 37. Qe3 Rb8 38. Bf1 Rc3 39. Bd3 Nc6 40. Qf4 Bb7 41. Ng5 Bc8 42. Bf1 Ra8 43. Rxd5 exd5 44. e6 fxe6 45. Rxe6 Qf8 46. Qxf8+ Kxf8 47. Nxh7+ Kg8 48. Ng5 Bb7 49. Rxg6+ Kf8 50. h7',
+                'diagram_position' => 85,
+                'move_comment' => 'Opening the floodgates',
+                'fen' => 'r1b3k1/3nqp1p/p1n1p1pP/3RP1N1/Pp3QN1/1Pr3P1/2P2P2/4RBK1 b - - 0 43',
+                'result' => '1-0',
+                'title' => 'Simply Clearing The Path',
+                'white_player' => 'Oscar Panno',
+                'black_player' => 'Erich Eliskases',
+                'white_rating' => 2540,
+                'black_rating' => 2520,
+                'white_title' => 'GM',
+                'black_title' => 'GM',
+                'when' => 'Mar del Plata, 1957.04.06 Round 16',
+                'where' => 'Mar del Plata, Argentina',
+            ],
+
         ];
 
         foreach ($posters as $poster) {
