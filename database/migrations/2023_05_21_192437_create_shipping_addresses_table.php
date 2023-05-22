@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('shipping_adresses', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->nullable()->constrained();
+            $table->string('session_token')->nullable();
             $table->string('email');
             $table->string('country');
             $table->string('firstname');
@@ -35,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shipping');
+        Schema::dropIfExists('shipping_addresses');
     }
 };
