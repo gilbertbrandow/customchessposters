@@ -36,7 +36,8 @@ nav {
     position: fixed;
     top: 0px;
     width: 100%;
-    padding: 2.5em 0em;
+    padding-top: 2em;
+    padding-bottom: 2em;
     align-items: center;
     z-index: 9999;
     transition-duration: 300ms;
@@ -1106,7 +1107,7 @@ h4 {
     .game__info {
         position: absolute;
         width: calc(100% - 5em);
-        padding: 2em 2.5em;
+        padding: 2em;
         bottom: 0em;
         display: flex;
         column-gap: 2em;
@@ -1230,16 +1231,24 @@ h4 {
     border-radius: 1em;
     padding: 0.5em 1em;
 
-    div {
+    .player {
         display: flex;
         column-gap: 0.25em;
         align-items: center;
         font-size: 1.2em;
 
-        svg {
-            margin-top: -0.15em;
-            height: 1.5em;
-            width: 1.5em;
+        .flag {
+
+            svg {
+                margin-top: -0.15em;
+                height: 1.5em;
+                width: 1.5em;
+            }
+
+            display: flex;
+            position: relative;
+            justify-content: center;
+
         }
     }
 }
@@ -1882,7 +1891,6 @@ ul.game__collection {
                 position: relative;
                 .info {
                     top: 2.5em;
-                    left: -1.85em;
                     transition: opacity 400ms ease;
                     background-color: whitesmoke;
                     border-color: rgba(0, 0, 0, 0.75);

@@ -1,42 +1,60 @@
 <template>
     <div class="poster">
-        <div v-if="controls" class="poster__buttons-wrp"  :class="[ (controls.small) ? 'small' : '']">
-            <button class="button"
-                @click="this.$page.props.lightbox = this.poster, this.$page.props.overlay = 'lightbox';">
+        <div v-if="controls" class="poster__buttons-wrp" :class="[(controls.small) ? 'small' : '']">
+            <button class="button" @click="this.$page.props.lightbox = this.poster, this.$page.props.overlay = 'lightbox';">
                 <span v-if="!controls.small">Fullscreen</span>
                 <Icon name="fullScreen" />
-                <div v-if="controls.small" class="info"><div></div>Fullscreen</div>
+                <div v-if="controls.small" class="info">
+                    <div></div>Fullscreen
+                </div>
             </button>
             <Link v-if="controls.edit" :href="route('poster.show', { 'id': poster.id })" class="button">
-                <span v-if="!controls.small">Edit Poster</span>
-                <Icon :name="controls.small ? 'edit-small' : 'edit'" />
+            <span v-if="!controls.small">Edit Poster</span>
+            <Icon :name="controls.small ? 'edit-small' : 'edit'" />
 
-                <div v-if="controls.small" class="info"><div></div>Edit poster</div>
+            <div v-if="controls.small" class="info">
+                <div></div>Edit poster
+            </div>
             </Link>
             <form v-if="controls.save || controls.update" @submit.prevent="submitForm(this.poster, controls.update)">
-                <button class="button" type="submit" :class="[(this.$page.props.auth.user && this.$page.props.auth.user.saved.includes(this.poster.id) && !controls.update) ? 'saved' : '']" :disabled="this.$page.props.auth.user && this.$page.props.auth.user.saved.includes(this.poster.id) && !controls.update"> 
-                    
-                    <span v-if="!controls.small" v-text="(controls.update && this.$page.props.auth.user && this.$page.props.auth.user.saved.includes(this.poster.id)) ? 'Update poster' : (this.$page.props.auth.user && this.$page.props.auth.user.saved.includes(this.poster.id)) ? 'Poster saved' : 'Save this design' "></span>
-                    
-                    <Icon :name="(controls.update && this.$page.props.auth.user && this.$page.props.auth.user.saved.includes(this.poster.id)) ? 'update' : (controls.small) ? 'bookmark-small' : 'bookmark'" />
-                    
-                    <div v-if="controls.small && (!this.$page.props.auth.user || !this.$page.props.auth.user.saved.includes(this.poster.id))" class="info"><div></div>Save poster</div>
+                <button class="button" type="submit"
+                    :class="[(this.$page.props.auth.user && this.$page.props.auth.user.saved.includes(this.poster.id) && !controls.update) ? 'saved' : '']"
+                    :disabled="this.$page.props.auth.user && this.$page.props.auth.user.saved.includes(this.poster.id) && !controls.update">
+
+                    <span v-if="!controls.small"
+                        v-text="(controls.update && this.$page.props.auth.user && this.$page.props.auth.user.saved.includes(this.poster.id)) ? 'Update poster' : (this.$page.props.auth.user && this.$page.props.auth.user.saved.includes(this.poster.id)) ? 'Poster saved' : 'Save this design'"></span>
+
+                    <Icon
+                        :name="(controls.update && this.$page.props.auth.user && this.$page.props.auth.user.saved.includes(this.poster.id)) ? 'update' : (controls.small) ? 'bookmark-small' : 'bookmark'" />
+
+                    <div v-if="controls.small && (!this.$page.props.auth.user || !this.$page.props.auth.user.saved.includes(this.poster.id))"
+                        class="info">
+                        <div></div>Save poster
+                    </div>
                 </button>
             </form>
         </div>
 
         <div v-if="showPlayers === true" class="players">
             <div class="player">
+                <div class="flag">
                     <Flag :country="this.poster.white_country"></Flag>
-                    <div :class="[this.poster.white_country_highlight ? 'info show' : 'info']"><div></div><span>{{this.poster.white_country }}</span></div>
-                    <span>{{ this.poster.white_name }}</span>
+                    <div :class="[this.poster.white_country_highlight ? 'info show' : 'info']">
+                        <div></div><span>{{ this.poster.white_country }}</span>
+                    </div>
                 </div>
-                -
-                <div class="player">
+                <span>{{ this.poster.white_name }}</span>
+            </div>
+            -
+            <div class="player">
+                <div class="flag">
                     <Flag :country="this.poster.black_country"></Flag>
-                    <div :class="[this.poster.black_country_highlight ? 'info show' : 'info']"><div></div><span>{{this.poster.black_country }}</span></div>
-                    <span>{{ this.poster.black_name }}</span>
+                    <div :class="[this.poster.black_country_highlight ? 'info show' : 'info']">
+                        <div></div><span>{{ this.poster.black_country }}</span>
+                    </div>
                 </div>
+                <span>{{ this.poster.black_name }}</span>
+            </div>
         </div>
 
         <div class="poster__svg-wrp">
@@ -60,26 +78,26 @@ let form = useForm({
 function submitForm(poster, update) {
 
     form.posterData = {
-        id: poster.id, 
-        theme: poster.theme, 
-        orientation: poster.orientation, 
-        starting_position: poster.starting_position, 
-        pgn: poster.pgn, 
-        diagram_position: poster.diagram_position, 
-        move_comment: poster.move_comment, 
-        fen: poster.fen, 
-        result: poster.result, 
-        title: poster.title, 
-        white_player: poster.white_player, 
-        black_player: poster.black_player, 
-        white_rating: poster.white_rating, 
-        black_rating: poster.black_rating, 
-        white_title: poster.white_title, 
-        black_title: poster.black_title, 
-        where: poster.where, 
-        when: poster.when, 
+        id: poster.id,
+        theme: poster.theme,
+        orientation: poster.orientation,
+        starting_position: poster.starting_position,
+        pgn: poster.pgn,
+        diagram_position: poster.diagram_position,
+        move_comment: poster.move_comment,
+        fen: poster.fen,
+        result: poster.result,
+        title: poster.title,
+        white_player: poster.white_player,
+        black_player: poster.black_player,
+        white_rating: poster.white_rating,
+        black_rating: poster.black_rating,
+        white_title: poster.white_title,
+        black_title: poster.black_title,
+        where: poster.where,
+        when: poster.when,
     };
-    
+
     form.post(update ? '/update-poster' : '/save-poster', { preserveScroll: true, preserveState: true, });
 }
 
