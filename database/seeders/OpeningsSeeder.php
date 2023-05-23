@@ -150,6 +150,11 @@ class OpeningsSeeder extends Seeder
                 'name' => "Formation: King's Indian Attack",
             ],
 
+            [
+                'eco' => 'B47',
+                'name' => "Sicilian, Kan",
+            ],
+
         ];
 
         foreach ($openings as $opening) {
