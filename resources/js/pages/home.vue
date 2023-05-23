@@ -23,12 +23,12 @@
             <div class="game__info">
 
                 <Link :href="route('game.show', this.$page.props.game.id)" class="players">
-                <div>
+                <div class="player">
                     <Flag :country="this.$page.props.game.white_player.country"></Flag>
                     {{ this.$page.props.game.white_player.name }}
                 </div>
                 -
-                <div>
+                <div class="player">
                     <Flag :country="this.$page.props.game.black_player.country"></Flag>
                     {{ this.$page.props.game.black_player.name }}
                 </div>
