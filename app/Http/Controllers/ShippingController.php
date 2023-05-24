@@ -17,6 +17,7 @@ class ShippingController extends Controller
     }
 
     public function create(Request $request) {
-        return (new CheckoutService())->calculateShipping($request);
+        
+        return (new CheckoutService())->calculateShipping($request->country, null);
     }
 }

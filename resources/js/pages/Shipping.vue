@@ -4,8 +4,8 @@
         <form @submit.prevent="submit()" style="align-self: stretch;">
             <div class="field__wrp">
                 <label for="email" class="field__label">Email address</label>
-                <div v-if="form.errors.email" v-text="form.errors.email" class="field__error"></div>
-                <input v-model="form.email" class="field" :class="{ 'is--error': form.errors.email }" name="email"
+                
+                <input v-model="form.email" class="field" name="email"
                     placeholder="example@email.com" />
             </div>
             <h3 class="is--margin-top">Shipping</h3>
@@ -13,9 +13,8 @@
                 <label for="country" class="field__label">Country</label>
                 <select v-model="form.country" id="country" class="field" name="country">
                     <option :value="null">Country</option>
-                    <option v-for="(country, key) in this.countries" :val="key">{{ country }}</option>
+                    <option v-for="(country, key) in this.countries" :value="key">{{ country }}</option>
                 </select>
-
             </div>
             <div class="row">
                 <div class="field__wrp">
@@ -31,14 +30,14 @@
             </div>
             <div class="field__wrp">
                 <label for="address" class="field__label">Street Address</label>
-                <div v-if="form.errors.address" v-text="form.errors.address" class="field__error"></div>
-                <input type="address" v-model="form.address" class="field" :class="{ 'is--error': form.errors.address }"
+                
+                <input type="address" v-model="form.address" class="field"
                     name="address" placeholder="19749 Dearborn St" />
             </div>
             <div class="field__wrp">
                 <label for="address" class="field__label">Address line 2 (Optional)</label>
-                <div v-if="form.errors.address2" v-text="form.errors.address2" class="field__error"></div>
-                <input type="address" v-model="form.address2" class="field" :class="{ 'is--error': form.errors.address2 }"
+                
+                <input type="address" v-model="form.address2" class="field"
                     name="address2" placeholder="Apt, Suite, Bldg." />
             </div>
             <div class="row">
@@ -58,7 +57,7 @@
                     Proceeed To Shipping Alternatives
                     <Icon name="arrow-right" />
                 </button>
-                <div v-if="form.errors.all" v-text="form.errors.all" class="field__error is--submit"></div>
+                <div v-if="false" v-text="'Test'" class="field__error is--submit"></div>
             </div>
         </form>
     </div>
@@ -311,16 +310,17 @@ export default {
                 'ZW': 'Zimbabwe'
             },
             cart: this.$page.props.cart,
-            form: useForm({
+            form: {
                 email: '',
-                country: null,
+                country: '',
+                state: '',
                 firstName: '',
                 lastName: '',
                 address: '',
                 address2: '',
                 zipCode: '',
                 city: '',
-            })
+            }
         }
     },
 
@@ -331,13 +331,13 @@ export default {
             this.form.processing = true; 
             
             axios
-                .post('/shipping')
+                .post('/shipping', this.form)
                 .then(response => (
-                    console.log(response),
+                    console.log(response.data),
                     this.form.processing = false 
                 ))
-                .catch(() => (
-                    console.log(error),
+                .catch((error) => (
+                    console.log(error.response.data.errors),
                     this.form.processing = false 
                 ))
         }
