@@ -65,7 +65,6 @@
 
 <script>
 import Checkout from "../Layouts/Checkout.vue";
-import { useForm } from '@inertiajs/vue3'
 import axios from 'axios'
 
 export default {
@@ -312,14 +311,15 @@ export default {
             cart: this.$page.props.cart,
             form: {
                 email: '',
-                country: '',
-                state: '',
+                country: null,
+                state: null,
                 firstName: '',
                 lastName: '',
                 address: '',
                 address2: '',
                 zipCode: '',
                 city: '',
+                errors: {},
             }
         }
     },
@@ -337,7 +337,8 @@ export default {
                     this.form.processing = false 
                 ))
                 .catch((error) => (
-                    console.log(error.response.data.errors),
+                    console.log(error.response.data),
+                    this.form.errors = error.response.data.errors,
                     this.form.processing = false 
                 ))
         }
