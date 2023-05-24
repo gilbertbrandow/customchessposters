@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Exception;
 use Printful\Exceptions\PrintfulApiException;
 use Printful\Exceptions\PrintfulException;
 use Printful\PrintfulApiClient;
@@ -57,19 +58,15 @@ class CheckoutService
                 ],
             ]);
 
-            return response()->json([
-                $rates,
-            ], 200);
+            return $rates;
 
         } catch (PrintfulApiException $e) {
-            return  response()->json([
-                'errors' => $e->getMessage()
-            ], 422);
+
+            throw new Exception($e->getMessage());
 
         } catch (PrintfulException $e) {
-            return  response()->json([
-                'errors' => $e->getMessage()
-            ], 422);
+
+            throw new Exception($e->getMessage());
         }
     }
 }
