@@ -7,31 +7,40 @@ use App\Services\CheckoutService;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Inertia\Inertia;
 
 class ShippingController extends Controller
 {
     public function index(Request $request)
     {
+        $countries = Http::get('https://api.printful.com/countries')->json()['result'];
+        $keys = array_column($countries, 'name');
+        array_multisort($keys, SORT_ASC, $countries);
+
+        
         return Inertia::render('Shipping', [
             'cart' => fn () => Cart::getFullCart($request->session()->get('_token'), Auth::id())->get(),
+            'countries' => $countries,
         ]);
     }
 
     public function create(Request $request)
     {
-
-        //Basic validation of form data
         $request->validate([
             'email' => ['required', 'email'],
+            'country' => ['required'],
+            'firstName' => ['required'],
+            'lastName' => ['required'],
+            'address' => ['required'],
+            'zipCode' => ['required'],
+            'city' => ['required'],
         ]);
 
         try {
-            //Check if can deliver
-            $rates = (new CheckoutService())->calculateShipping($request->country, null);
-
+            $rates = (new CheckoutService())->calculateShipping($request->country, $request->state);
         } catch (Exception $e) {
-            // an error occurred
+
             return response()->json($e->getMessage(), 422);
         }
 
