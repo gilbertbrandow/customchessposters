@@ -11,17 +11,17 @@
             <div class="field__wrp">
                 <label for="country" class="field__label">Country</label>
                 <div v-if="form.errors.country" v-text="form.errors.country" class="field__error"></div>
-                <select v-model="form.country" id="country" class="field" name="country" :class="{ 'is--error': form.errors.country }">
+                <select v-model="form.country" @change="setStates($event.target.value)" id="country" class="field" name="country" :class="{ 'is--error': form.errors.country }">
                     <option :value="null">Country</option>
-                    <option v-for="country in this.$page.props.countries" :value="country.code">{{ country.name }}</option>
+                    <option v-for="(country, index) in this.$page.props.countries" v-bind:data-index="index" :value="country.code">{{ country.name }}</option>
                 </select>
             </div>
-            <div class="field__wrp">
+            <div class="field__wrp" v-if="this.states">
                 <label for="country" class="field__label">State</label>
                 <div v-if="form.errors.state" v-text="form.errors.state" class="field__error"></div>
                 <select v-model="form.state" id="country" class="field" name="state" :class="{ 'is--error': form.errors.state }">
                     <option :value="null">State</option>
-                    <option value="CA">California</option>
+                    <option v-for="state in this.states" :value="state.code">{{ state.name }}</option>
                 </select>
             </div>
             <div class="row">
@@ -99,12 +99,25 @@ export default {
                 city: '',
                 errors: {},
             }, 
-
+            states: null,
             rates: {},
         }
     },
 
     methods: {
+
+        setStates(countryCode) {
+
+            this.states = null;
+
+            this.$page.props.countries.forEach(element => {
+                if(element.code == countryCode) {
+                    this.states = element.states;
+
+                    return
+                }
+            });
+        },
 
         submit() {
 

@@ -18,7 +18,6 @@ class ShippingController extends Controller
         $keys = array_column($countries, 'name');
         array_multisort($keys, SORT_ASC, $countries);
 
-        
         return Inertia::render('Shipping', [
             'cart' => fn () => Cart::getFullCart($request->session()->get('_token'), Auth::id())->get(),
             'countries' => $countries,
@@ -27,7 +26,7 @@ class ShippingController extends Controller
 
     public function create(Request $request)
     {
-        $request->validate([
+         $request->validate([
             'email' => ['required', 'email'],
             'country' => ['required'],
             'firstName' => ['required'],
