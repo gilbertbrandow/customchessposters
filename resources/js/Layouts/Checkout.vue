@@ -4,9 +4,9 @@
         <div class="container is--less-padding is--flex is--space-between">
             <Logotype />
             <div class="navigation">
-                Information -
                 Shipping -
-                Payment
+                Payment - 
+                Confirmation
             </div>
         </div>
     </header>
