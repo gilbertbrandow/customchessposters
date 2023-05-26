@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->boolean('completed');
-            $table->foreignId('shipping_adresses_id')->nullable()->constrained();
+            $table->foreignId('shipping_addresses_id')->nullable()->constrained();
             $table->foreignId('freights_id')->nullable()->constrained();
             $table->timestamps();
         });

@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('shipping_adresses', function (Blueprint $table) {
+        Schema::create('shipping_addresses', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained();
             $table->string('session_token')->nullable();
@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('state_code')->nullable();
             $table->string('name');
             $table->string('address1');
-            $table->string('address2');
+            $table->string('address2')->nullable();
             $table->string('zip');
             $table->string('city');
             $table->timestamps();
