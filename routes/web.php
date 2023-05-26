@@ -17,7 +17,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CartItemController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\SavedPosterController;
-use App\Http\Controllers\ShippingController;
+use App\Http\Controllers\ShippingAddressController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -178,13 +178,13 @@ Route::post('/cart-item/destroy/{id}', [CartItemController::class, 'destroy'])
 Route::post('/cart-item/update/{id}', [CartItemController::class, 'update'])
     ->name('cartItem.update');
 
-Route::post('/shipping', [ShippingController::class, 'create'])
+Route::post('/shipping', [ShippingAddressController::class, 'create'])
     ->name('shipping.create');
 
-Route::get('/shipping/create', [ShippingController::class, 'create'])
+Route::get('/shipping/create', [ShippingAddressController::class, 'create'])
     ->name('shipping.create');
 
-Route::get('/shipping', [ShippingController::class, 'index'])
+Route::get('/checkout/shipping', [ShippingAddressController::class, 'index'])
     ->name('shipping.index');
 
 

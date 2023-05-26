@@ -43,7 +43,7 @@
                             <h4>Shipping</h4><span>$ 100.00</span>
                         </li>
                         <li class="is--flex is--no-column-gap is--border-bottom">
-                            <h4>Total </h4><span class="is--small" style="flex: 1; margin-left: 1em">Including $ 20.00 in
+                            <h4>Total </h4><span class="is--small" style="flex: 1; margin-left: 1em">Including $ {{ (total / 5).toFixed(2) }} in
                                 taxes</span><span>$ {{ total }}</span>
                         </li>
                     </ul>
@@ -73,8 +73,7 @@ export default {
             let subtotal = 0;
 
             this.$page.props.cart.forEach(element =>
-
-            subtotal += element.price * element.quantity
+                subtotal += element.price * element.quantity
             );
 
             return (subtotal / 100).toFixed(2);
