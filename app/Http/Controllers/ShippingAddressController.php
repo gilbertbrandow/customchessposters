@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Order;
+use App\Models\ShippingAddress;
 use App\Services\CheckoutService;
 use Exception;
 use Illuminate\Http\Request;
@@ -10,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Inertia\Inertia;
 
-class ShippingController extends Controller
+class ShippingAddressController extends Controller
 {
     public function index(Request $request)
     {
@@ -39,12 +41,22 @@ class ShippingController extends Controller
             $rates = (new CheckoutService())->calculateShipping($request->country_code, $request->state_code);
         } catch (Exception $e) {
 
-            return response()->json($e->getMessage(), 422);
+            return redirect()->back()->withErrors(['delivery' => $e->getMessage()]); //response()->json($e->getMessage(), 422);
         }
 
-        //Create shipping address record in db
+        $array = $request->all();
 
-        //Maybe render new inertia view with rates data?
-        return response()->json($rates, 200);
+        //Add current order id to it
+        array_push($array, Order::where('user_id', Auth::id())->orWhere('session_token', $request->session()->get('_token'))->firstOrFail()->pluck('id'));
+
+        ShippingAddress::create($array);
+
+        //Add delivery options to table and put them to current order
+/*         foreach($rates as $rate){
+            DeliveryOption::create($rate);
+        } */
+
+        //Redirect to delivery options
+        return redirect('/delivery');
     }
 }
