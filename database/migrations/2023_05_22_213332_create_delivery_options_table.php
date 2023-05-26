@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('delivery_options', function (Blueprint $table) {
             $table->id();
-            $table->string('identifier');
             $table->foreignId('order_id')->constrained();
             $table->string('name');
             $table->string('desc');

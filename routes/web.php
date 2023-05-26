@@ -193,9 +193,11 @@ Route::middleware('checkout')->group(function () {
     Route::get('/checkout/{orderId}/shipping', [ShippingAddressController::class, 'index'])
         ->name('shipping.index');
 
-
-    Route::post('checkout/{id}/shipping', [ShippingAddressController::class, 'create'])
+    Route::post('checkout/{orderId}/shipping', [ShippingAddressController::class, 'create'])
         ->name('shipping.create');
+
+    Route::get('/checkout/{orderId}/delivery', [HomeController::class, 'index'])
+        ->name('delivery.index');
 });
 
 
