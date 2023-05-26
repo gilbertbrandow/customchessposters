@@ -13,10 +13,10 @@ class OrderController extends Controller
 
         $cart = Cart::where('session_token', $request->session()->get('_token'))->when(Auth::id() !== null, function ($query) {
             $query->orWhere('user_id', Auth::id());
-        })->first()->pluck('id');
+        })->firstOrFail()->pluck('id');
 
         $order = Order::firstOrCreate(['cart_id' => $cart[0], 'user_id' => Auth::id(), 'session_token' => $request->session()->get('_token')]);
         
-        return $order ? redirect()->route('shipping.index', ['orderId' => $request->route('orderId')]) : redirect()->back();
+        return $order ? redirect()->route('shipping.index', ['orderId' => $order->id]) : redirect()->back();
     }
 }

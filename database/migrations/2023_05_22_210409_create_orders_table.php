@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('user_id')->nullable()->constrained();
             $table->string('session_token')->nullable();
             $table->foreignId('cart_id')->nullable()->constrained();
-            $table->foreignId('shipping_addresses_id')->nullable()->constrained();
+            $table->foreignId('recipient_id')->nullable()->constrained();
             $table->string('shipping')->nullable();
             $table->integer('shipping_cost')->default(0);
             $table->timestamps();

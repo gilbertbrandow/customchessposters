@@ -14,14 +14,14 @@ class Order extends Model
         'user_id', 
         'session_token',
         'cart_id', 
-        'shipping_addresses_id',
+        'recipient_id',
         'shipping',
         'shipping_cost',
     ]; 
 
     public function shippingAddress() {
 
-       return $this->belongsTo(ShippingAddress::class, 'shipping_addresses_id');
+       return $this->belongsTo(Recipient::class, 'recipient_id');
 
     }
 }

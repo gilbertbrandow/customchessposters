@@ -18,7 +18,7 @@ use App\Http\Controllers\CartItemController;
 use App\Http\Controllers\DeliveryOptionController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SavedPosterController;
-use App\Http\Controllers\ShippingAddressController;
+use App\Http\Controllers\RecipientController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -191,10 +191,10 @@ Route::get('/checkout', [OrderController::class, 'index'])
 
 Route::middleware('checkout')->group(function () {
 
-    Route::get('/checkout/{orderId}/information', [ShippingAddressController::class, 'index'])
+    Route::get('/checkout/{orderId}/information', [RecipientController::class, 'index'])
         ->name('shipping.index');
 
-    Route::post('checkout/{orderId}/shipping', [ShippingAddressController::class, 'create'])
+    Route::post('checkout/{orderId}/shipping', [RecipientController::class, 'create'])
         ->name('shipping.create');
 
     Route::get('/checkout/{orderId}/delivery-options', [DeliveryOptionController::class, 'index'])
