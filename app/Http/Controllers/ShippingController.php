@@ -26,18 +26,17 @@ class ShippingController extends Controller
 
     public function create(Request $request)
     {
-         $request->validate([
+        $request->validate([
             'email' => ['required', 'email'],
-            'country' => ['required'],
-            'firstName' => ['required'],
-            'lastName' => ['required'],
-            'address' => ['required'],
-            'zipCode' => ['required'],
+            'country_code' => ['required'],
+            'name' => ['required'],
+            'address1' => ['required'],
+            'zip' => ['required'],
             'city' => ['required'],
         ]);
 
         try {
-            $rates = (new CheckoutService())->calculateShipping($request->country, $request->state);
+            $rates = (new CheckoutService())->calculateShipping($request->country_code, $request->state_code);
         } catch (Exception $e) {
 
             return response()->json($e->getMessage(), 422);
