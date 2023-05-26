@@ -18,13 +18,12 @@ return new class extends Migration
             $table->foreignId('user_id')->nullable()->constrained();
             $table->string('session_token')->nullable();
             $table->string('email');
-            $table->string('country');
-            $table->string('firstname');
-            $table->string('lastname');
+            $table->string('country_code');
+            $table->string('state_code')->nullable();
+            $table->string('name');
             $table->string('address1');
             $table->string('address2');
-            $table->string('state');
-            $table->string('zipcode');
+            $table->string('zip');
             $table->string('city');
             $table->timestamps();
         });
