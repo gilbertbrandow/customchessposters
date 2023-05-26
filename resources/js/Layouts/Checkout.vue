@@ -4,14 +4,17 @@
         <div class="container is--less-padding is--flex is--space-between">
             <Logotype />
             <div class="checkout__navigation">
-                <Link :href="route('shipping.index', { orderId: this.$page.props.route.params.orderId })" :class="{'is--active' : $page.url.includes('information')}">
-                    <Icon v-if="!$page.url.includes('information') && this.$page.props.address" name="checked" />
-                    <span v-else>1. </span>
-                    Information
+                <Link :href="route('shipping.index', { orderId: this.$page.props.route.params.orderId })"
+                    :class="{ 'is--active': $page.url.includes('information') }">
+                <Icon v-if="!$page.url.includes('information') && this.$page.props.address" name="checked" />
+                <span v-else>1. </span>
+                Information
                 </Link>
-                <Link :href="route('shippingMethod.index', { orderId: this.$page.props.route.params.orderId })" :class="{'is--active' : $page.url.includes('shipping-methods')}">
-                    <Icon v-if="!$page.url.includes('shipping-method') && this.$page.props.shippingMethods" name="checked" />
-                    2. Shipping Methods
+                <Link :href="route('shippingMethod.index', { orderId: this.$page.props.route.params.orderId })"
+                    :class="{ 'is--active': $page.url.includes('shipping-methods') }">
+                <Icon v-if="!$page.url.includes('shipping-method') && this.$page.props.shippingMethod" name="checked" />
+                <span v-else>2. </span>
+                 Shipping Methods
                 </Link>
                 <Link :href="route('home.index')">3. Payment</Link>
 
@@ -64,15 +67,17 @@
                     </ul>
                     <ul>
                         <li class="is--flex is--space-between is--border-bottom">
-                            <h4>Subtotal</h4><span>$ {{ subtotal }}</span>
+                            <h4>Subtotal</h4><span>$ {{ (subtotal / 100).toFixed(2) }}</span>
                         </li>
-                        <li v-if="this.$page.props.shipping" class="is--flex is--space-between is--border-bottom">
-                            <h4>Shipping</h4><span>$ 100.00</span>
+                        <li v-if="this.$page.props.shippingMethod" class="is--flex is--no-column-gap is--border-bottom">
+                            <h4>Shipping </h4><span class="is--small" style="flex: 1; margin-left: 1em; text-transform: capitalize;">{{
+                                this.$page.props.shippingMethod.shipping.toLowerCase().replace(/_/g, ' ') }}</span><span>$ {{
+        (this.$page.props.shippingMethod.shipping_cost / 100).toFixed(2)}}</span>
                         </li>
                         <li class="is--flex is--no-column-gap is--border-bottom">
                             <h4>Total </h4><span class="is--small" style="flex: 1; margin-left: 1em">Including $ {{ (total /
-                                5).toFixed(2) }} in
-                                taxes</span><span>$ {{ total }}</span>
+                                500).toFixed(2) }} in
+                                taxes</span><span>$ {{ (total / 100).toFixed(2) }}</span>
                         </li>
                     </ul>
                 </div>
@@ -106,17 +111,16 @@ export default {
                 subtotal += element.price * element.quantity
             );
 
-            return (subtotal / 100).toFixed(2);
+            return subtotal;
         },
 
         total() {
 
-            return this.$page.props.shipping ? this.subtotal + shipping : this.subtotal;
+            return this.$page.props.shippingMethod ? this.subtotal + this.$page.props.shippingMethod.shipping_cost : this.subtotal;
         }
     },
 
     mounted() {
-
     }
 }
 </script>

@@ -16,6 +16,7 @@ class ShippingMethodController extends Controller
         return Inertia::render('Checkout/Shipping-methods', [
             'cart' => fn () => Cart::getFullCart($request->session()->get('_token'), Auth::id())->get(),
             'shippingMethods' => fn () => ShippingMethod::where('order_id', $request->route('orderId'))->get(),
+            'shippingMethod' => Order::find($request->route('orderId'))->get(['shipping','shipping_cost'])[0],
             'address' => fn() => Order::find($request->route('orderId'))->shippingAddress,
         ]); 
     }
