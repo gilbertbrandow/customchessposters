@@ -15,7 +15,7 @@ use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CartItemController;
-use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SavedPosterController;
 use App\Http\Controllers\ShippingAddressController;
 use Illuminate\Support\Facades\Route;
@@ -178,14 +178,26 @@ Route::post('/cart-item/destroy/{id}', [CartItemController::class, 'destroy'])
 Route::post('/cart-item/update/{id}', [CartItemController::class, 'update'])
     ->name('cartItem.update');
 
-Route::post('/shipping', [ShippingAddressController::class, 'create'])
-    ->name('shipping.create');
+Route::get('/checkout', [OrderController::class, 'index'])
+    ->name('checkout.index');
 
-Route::get('/shipping/create', [ShippingAddressController::class, 'create'])
-    ->name('shipping.create');
 
-Route::get('/checkout/shipping', [ShippingAddressController::class, 'index'])
-    ->name('shipping.index');
+/*
+|--------------------------------------------------------------------------
+| Checkout routes
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware('checkout')->group(function () {
+
+    Route::get('/checkout/{orderId}/shipping', [ShippingAddressController::class, 'index'])
+        ->name('shipping.index');
+
+
+    Route::post('checkout/{id}/shipping', [ShippingAddressController::class, 'create'])
+        ->name('shipping.create');
+});
+
 
 
 
