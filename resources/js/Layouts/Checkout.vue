@@ -3,21 +3,49 @@
     <header>
         <div class="container is--less-padding is--flex is--space-between">
             <Logotype />
-            <div class="navigation">
-                Information -
-                Delivery - 
-                Payment
+            <div class="checkout__navigation">
+                <Link :href="route('shipping.index', { orderId: this.$page.props.route.params.orderId })" :class="{'is--active' : $page.url.includes('information')}">
+                    <Icon v-if="!$page.url.includes('information') && this.$page.props.address" name="checked" />
+                    <span v-else>1. </span>
+                    Information
+                </Link>
+                <Link :href="route('delivery.index', { orderId: this.$page.props.route.params.orderId })" :class="{'is--active' : $page.url.includes('delivery')}">
+                    <Icon v-if="!$page.url.includes('delivery') && this.$page.props.delivery" name="checked" />
+                    2. Delivery options
+                </Link>
+                <Link :href="route('home.index')">3. Payment</Link>
+
             </div>
         </div>
     </header>
     <main>
         <section class="is--no-pt">
             <div class="container is--flex is--less-padding">
-                <slot>
-                </slot>
-
-                <div class="checkout-total">
+                <div class="content card">
+                    <slot>
+                    </slot>
+                </div>
+                <div class="order__summary">
                     <h3>Your order</h3>
+                    <div class="order__recipient" v-if="this.$page.props.address">
+                        <div class="is--flex is--space-between">
+                            <span><strong>Contact: </strong> {{ this.$page.props.address.email }}</span>
+                            <Link class="text__link"
+                                :href="route('shipping.index', { orderId: this.$page.props.route.params.orderId })">Edit
+                            </Link>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="is--flex is--space-between">
+                            <span><strong>Send to:</strong> {{ this.$page.props.address.country_code + ', ' +
+                                this.$page.props.address.address1 + ', ' + this.$page.props.address.zip + ' ' +
+                                this.$page.props.address.city }}</span>
+                            <Link class="text__link"
+                                :href="route('shipping.index', { orderId: this.$page.props.route.params.orderId })">Edit
+                            </Link>
+                        </div>
+                    </div>
+
+                    <h4 v-if="this.$page.props.address" class="is--margin-top">Products:</h4>
                     <ul class="cart-items" style="height: auto; overflow: visible;">
                         <li v-for="item in this.$page.props.cart">
                             <template v-if="item.type == 'Poster'">
@@ -28,7 +56,7 @@
                                     <span><strong v-text="'$' + item.price / 100"></strong> x {{ item.quantity }}</span>
                                     <button class="text__link"
                                         @click="this.$page.props.lightbox = item, this.$page.props.overlay = 'lightbox';">
-                                        <span>See Poster</span>
+                                        <span>See Poster Design</span>
                                         <Icon name="fullScreen" />
                                     </button>
                                 </div>
@@ -43,7 +71,8 @@
                             <h4>Shipping</h4><span>$ 100.00</span>
                         </li>
                         <li class="is--flex is--no-column-gap is--border-bottom">
-                            <h4>Total </h4><span class="is--small" style="flex: 1; margin-left: 1em">Including $ {{ (total / 5).toFixed(2) }} in
+                            <h4>Total </h4><span class="is--small" style="flex: 1; margin-left: 1em">Including $ {{ (total /
+                                5).toFixed(2) }} in
                                 taxes</span><span>$ {{ total }}</span>
                         </li>
                     </ul>
@@ -57,12 +86,14 @@
 import Logotype from '../Pages/Components/Logotype.vue'
 import Poster from '../Pages/Components/Poster.vue'
 import Overlay from "../Pages/Components/Overlay.vue"
+import Icon from "../Icons/Icon.vue"
 
 export default {
     components: {
         Overlay,
         Logotype,
-        Poster
+        Poster,
+        Icon,
     },
 
     computed: {
@@ -86,7 +117,7 @@ export default {
     },
 
     mounted() {
-        
+
     }
 }
 </script>

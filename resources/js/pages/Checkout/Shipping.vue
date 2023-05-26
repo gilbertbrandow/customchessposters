@@ -63,7 +63,7 @@
 
         <div class="field__wrp">
             <button :disabled="form.processing" class="button is--black is--less-border-radius is--flex is--space-between">
-                Proceeed To Shipping Alternatives
+                {{ this.$page.props.address ? 'Update And ' : '' }}Proceeed To Shipping Alternatives
                 <Icon name="arrow-right" />
             </button>
             <div v-if="false" v-text="'Test'" class="field__error is--submit"></div>
