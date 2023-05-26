@@ -28,7 +28,7 @@
             </li>
         </ul>
         <div class="button is--cart is--flex is--space-between">Total: <span>${{ total / 100 }}</span></div>
-        <Link :href="route('shipping.index')" v-if="this.cart && this.cart.length"
+        <Link :href="route('checkout.index')" v-if="this.cart && this.cart.length"
             class="button is--black is--less-border-radius is--flex is--space-between">Checkout
             <Icon name="arrow-right" />
         </Link>

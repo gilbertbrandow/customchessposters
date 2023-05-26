@@ -1,6 +1,6 @@
 <template>
     <div class="content card">
-        <h2>Shipping</h2>
+        <h2>Information</h2>
         <form v-if="!this.rates.length" @submit.prevent="submit()" style="align-self: stretch;">
             <div class="field__wrp">
                 <label for="email" class="field__label">Email address</label>
@@ -8,6 +8,8 @@
                 <input v-model="form.email" class="field" name="email" placeholder="example@email.com"
                     :class="{ 'is--error': form.errors.email }" />
             </div>
+
+            <h3 class="is--margin-top">Shipping address</h3>
             <div class="field__wrp">
                 <label for="country" class="field__label">Country</label>
                 <div v-if="form.errors.country_code" v-text="form.errors.country_code" class="field__error"></div>
