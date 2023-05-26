@@ -9,9 +9,9 @@
                     <span v-else>1. </span>
                     Information
                 </Link>
-                <Link :href="route('delivery.index', { orderId: this.$page.props.route.params.orderId })" :class="{'is--active' : $page.url.includes('delivery')}">
-                    <Icon v-if="!$page.url.includes('delivery') && this.$page.props.delivery" name="checked" />
-                    2. Delivery options
+                <Link :href="route('shippingMethod.index', { orderId: this.$page.props.route.params.orderId })" :class="{'is--active' : $page.url.includes('shipping-methods')}">
+                    <Icon v-if="!$page.url.includes('shipping-method') && this.$page.props.shippingMethods" name="checked" />
+                    2. Shipping Methods
                 </Link>
                 <Link :href="route('home.index')">3. Payment</Link>
 
@@ -45,7 +45,6 @@
                         </div>
                     </div>
 
-                    <h4 v-if="this.$page.props.address" class="is--margin-top">Products:</h4>
                     <ul class="cart-items" style="height: auto; overflow: visible;">
                         <li v-for="item in this.$page.props.cart">
                             <template v-if="item.type == 'Poster'">

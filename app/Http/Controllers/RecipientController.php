@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
-use App\Models\DeliveryOption;
+use App\Models\ShippingMethod;
 use App\Models\Order;
 use App\Models\Recipient;
 use App\Services\CheckoutService;
@@ -43,17 +43,17 @@ class RecipientController extends Controller
             $rates = (new CheckoutService())->calculateShipping($request->country_code, $request->state_code);
         } catch (Exception $e) {
 
-            return redirect()->back()->withErrors(['delivery' => $e->getMessage()]);
+            return redirect()->back()->withErrors(['shippingMethod' => $e->getMessage()]);
         }
 
         $recpient = Recipient::firstOrCreate($request->all());
 
         Order::find($request->route('orderId'))->update(['recipient_id' => $recpient->id]);
 
-        DeliveryOption::where('order_id', $request->route('orderId'))->delete();
+        ShippingMethod::where('order_id', $request->route('orderId'))->delete();
 
         foreach($rates as $rate) {
-            DeliveryOption::create([
+            ShippingMethod::create([
                 'order_id' => $request->route('orderId'),
                 'name' => $rate['id'],
                 'desc' => $rate['name'],
@@ -61,6 +61,6 @@ class RecipientController extends Controller
             ]);
         }
 
-        return redirect()->route('delivery.index', ['orderId' => $request->route('orderId')]);
+        return redirect()->route('shippingMethod.index', ['orderId' => $request->route('orderId')]);
     }
 }

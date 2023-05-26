@@ -120,7 +120,7 @@ export default {
             this.form.post('/checkout/' + this.$page.props.route.params.orderId + '/shipping', {
                 preserveScroll: true,
                 preserveState: true,
-                onError: () => this.$page.props.errors.delivery ? this.setErrors(this.$page.props.errors.delivery) : '',
+                onError: () => this.$page.props.errors.shippingMethod ? this.setErrors(this.$page.props.errors.shippingMethod) : '',
             });
         },
 

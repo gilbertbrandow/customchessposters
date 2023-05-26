@@ -2197,6 +2197,19 @@ input[type="radio"]+label {
     padding: 1em;
     border-radius: 0.5em;
     border: 0.06em rgba(0, 0, 0, 0.14) solid;
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5em;
+    width: 100%;
+
+    span:first-child {
+        text-transform:capitalize;
+        font-size: 1.2em;
+    }
+
+    span:last-child{
+        color: rgba(0, 0, 0, 0.4);
+    }
 }
 
 input[type="radio"]:checked+label {
@@ -2326,8 +2339,7 @@ label {
         cursor: pointer;
     }
 
-    button:disabled,
-    button[disabled] {
+    button[disabled=disabled], button:disabled {
         background-color: rgba(0, 0, 0, 0.5);
     }
 }
@@ -2569,7 +2581,6 @@ label {
         row-gap: 1em;
 
         li {
-            margin-top: 0em;
             width: auto;
             border-radius: 0.5em;
             border: solid 0.06em rgba(0, 0, 0, 0.1);

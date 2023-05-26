@@ -15,7 +15,7 @@ use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CartItemController;
-use App\Http\Controllers\DeliveryOptionController;
+use App\Http\Controllers\ShippingMethodController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SavedPosterController;
 use App\Http\Controllers\RecipientController;
@@ -197,8 +197,11 @@ Route::middleware('checkout')->group(function () {
     Route::post('checkout/{orderId}/shipping', [RecipientController::class, 'create'])
         ->name('shipping.create');
 
-    Route::get('/checkout/{orderId}/delivery-options', [DeliveryOptionController::class, 'index'])
-        ->name('delivery.index');
+    Route::get('/checkout/{orderId}/shipping-methods', [ShippingMethodController::class, 'index'])
+        ->name('shippingMethod.index');
+
+    Route::post('/checkout/{orderId}/shipping-method', [ShippingMethodController::class, 'create'])
+        ->name('shippingMethod.create');
 });
 
 
