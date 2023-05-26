@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->boolean('completed');
+            $table->foreignId('user_id')->nullable()->constrained();
+            $table->string('session_token')->nullable();
             $table->foreignId('shipping_addresses_id')->nullable()->constrained();
             $table->foreignId('freights_id')->nullable()->constrained();
             $table->timestamps();

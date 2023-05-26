@@ -13,9 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('freights', function (Blueprint $table) {
+        Schema::create('delivery_options', function (Blueprint $table) {
             $table->id();
+            $table->string('identifier');
+            $table->foreignId('order_id')->constrained();
             $table->string('name');
+            $table->string('desc');
             $table->integer('cost');
             $table->timestamps();
         });
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('freights');
+        Schema::dropIfExists('delivery_options');
     }
 };
