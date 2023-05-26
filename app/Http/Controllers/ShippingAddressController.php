@@ -58,6 +58,6 @@ class ShippingAddressController extends Controller
             ]);
         }
 
-        return redirect('/checkout/' . $request->route('orderId') . '/delivery');
+        return redirect()->route('delivery.index', ['orderId' => $request->route('orderId')]);
     }
 }

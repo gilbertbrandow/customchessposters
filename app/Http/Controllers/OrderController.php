@@ -17,6 +17,6 @@ class OrderController extends Controller
 
         $order = Order::firstOrCreate(['cart_id' => $cart[0], 'user_id' => Auth::id(), 'session_token' => $request->session()->get('_token')]);
         
-        return $order ? redirect('/checkout/' . $order->id . '/shipping') : redirect()->back();
+        return $order ? redirect()->route('shipping.index', ['orderId' => $request->route('orderId')]) : redirect()->back();
     }
 }
