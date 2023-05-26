@@ -14,12 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->id();
-            $table->boolean('completed');
+            $table->id()->startingValue(1200);
+            $table->enum('status', ['pending', 'processing', 'completed', 'declined'])->default('pending');
             $table->foreignId('user_id')->nullable()->constrained();
             $table->string('session_token')->nullable();
+            $table->foreignId('cart_id')->nullable()->constrained();
             $table->foreignId('shipping_addresses_id')->nullable()->constrained();
-            $table->foreignId('freights_id')->nullable()->constrained();
+            $table->string('shipping')->nullable();
+            $table->integer('shipping_cost')->default(0);
             $table->timestamps();
         });
     }
