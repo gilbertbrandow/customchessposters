@@ -21,8 +21,9 @@ class ShippingAddressController extends Controller
         $keys = array_column($countries, 'name');
         array_multisort($keys, SORT_ASC, $countries);
 
-        return Inertia::render('Shipping', [
+        return Inertia::render('Checkout/Shipping', [
             'cart' => fn () => Cart::getFullCart($request->session()->get('_token'), Auth::id())->get(),
+            'address' => fn() => Order::find($request->route('orderId'))->shippingAddress,
             'countries' => $countries,
         ]);
     }
@@ -42,7 +43,7 @@ class ShippingAddressController extends Controller
             $rates = (new CheckoutService())->calculateShipping($request->country_code, $request->state_code);
         } catch (Exception $e) {
 
-            return redirect()->back()->withErrors(['delivery' => $e->getMessage()]); //response()->json($e->getMessage(), 422);
+            return redirect()->back()->withErrors(['delivery' => $e->getMessage()]);
         }
 
         $recpient = ShippingAddress::firstOrCreate($request->all());
@@ -57,7 +58,6 @@ class ShippingAddressController extends Controller
             ]);
         }
 
-        //Redirect to delivery options
         return redirect('/checkout/' . $request->route('orderId') . '/delivery');
     }
 }

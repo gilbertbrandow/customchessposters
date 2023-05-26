@@ -72,19 +72,11 @@
                 <div v-if="false" v-text="'Test'" class="field__error is--submit"></div>
             </div>
         </form>
-        <form v-else @submit.prevent="submitRate()">
-            <div v-for="(rate, index) in this.rates" class="field__wrp radio">
-                {{ rate }}
-                <input type="radio" :id="index" name="rates" :value="rate.id">
-                <label :for="index" v-text="rate.name"></label>
-            </div>
-        </form>
     </div>
 </template>
 
 <script>
-import Checkout from "../Layouts/Checkout.vue";
-import axios from 'axios';
+import Checkout from "../../Layouts/Checkout.vue";
 import { useForm } from "@inertiajs/vue3";
 
 export default {
@@ -95,14 +87,14 @@ export default {
 
             cart: this.$page.props.cart,
             form: useForm({
-                email: '',
-                country_code: null,
-                state_code: null,
-                name: '',
-                address1: '',
-                address2: '',
-                zip: '',
-                city: '',
+                email: this.$page.props.address.email ?? '',
+                country_code: this.$page.props.address.country_code ?? null,
+                state_code:  this.$page.props.address.state_code ?? null,
+                name:this.$page.props.address.name ??  '',
+                address1: this.$page.props.address.address1 ??  '',
+                address2: this.$page.props.address.address2 ??  '',
+                zip: this.$page.props.address.zip ??  '',
+                city: this.$page.props.address.city ??  '',
             }),
             states: null,
             rates: {},
@@ -143,7 +135,6 @@ export default {
     },
 
     mounted() {
-        //console.log(this.$page.props.countries);
     }
 }
 </script>
