@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\DeliveryOption;
 use App\Models\Order;
 use App\Models\ShippingAddress;
 use App\Services\CheckoutService;
@@ -44,19 +45,19 @@ class ShippingAddressController extends Controller
             return redirect()->back()->withErrors(['delivery' => $e->getMessage()]); //response()->json($e->getMessage(), 422);
         }
 
-        $array = $request->all();
+        $recpient = ShippingAddress::firstOrCreate($request->all());
+        Order::find($request->route('orderId'))->update(['shipping_addresses_id' => $recpient->id]);
 
-        //Add current order id to it
-        array_push($array, Order::where('user_id', Auth::id())->orWhere('session_token', $request->session()->get('_token'))->firstOrFail()->pluck('id'));
-
-        ShippingAddress::create($array);
-
-        //Add delivery options to table and put them to current order
-/*         foreach($rates as $rate){
-            DeliveryOption::create($rate);
-        } */
+        foreach($rates as $rate) {
+            DeliveryOption::firstOrCreate([
+                'order_id' => $request->route('orderId'),
+                'name' => $rate['id'],
+                'desc' => $rate['name'],
+                'cost' => $rate['rate'] * 100, 
+            ]);
+        }
 
         //Redirect to delivery options
-        return redirect('/delivery');
+        return redirect('/checkout/' . $request->route('orderId') . '/delivery');
     }
 }
