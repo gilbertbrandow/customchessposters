@@ -12,11 +12,11 @@
         <div class="field__wrp">
             <label for="country" class="field__label">Country</label>
             <div v-if="form.errors.country_code" v-text="form.errors.country_code" class="field__error"></div>
-            <select v-model="form.country_code" @change="setStates($event.target.value)" id="country" class="field"
+            <select @change="updateCountry($event.target.value)" id="country" class="field"
                 name="country" :class="{ 'is--error': form.errors.country_code }">
                 <option :value="null">Country</option>
                 <option v-for="(country, index) in this.$page.props.countries" v-bind:data-index="index"
-                    :value="country.code">{{ country.name }}</option>
+                    :value="country.code + ', ' + country.name">{{ country.name }}</option>
             </select>
         </div>
         <div class="field__wrp" v-if="this.states">
@@ -85,6 +85,7 @@ export default {
             form: useForm({
                 email: this.$page.props.address ? this.$page.props.address.email : '',
                 country_code: this.$page.props.address ? this.$page.props.address.country_code : null,
+                country: this.$page.props.address ? this.$page.props.address.country : null,
                 state_code: this.$page.props.address ? this.$page.props.address.state_code : null,
                 name: this.$page.props.address ? this.$page.props.address.name : '',
                 address1: this.$page.props.address ? this.$page.props.address.address1 : '',
@@ -99,12 +100,17 @@ export default {
 
     methods: {
 
-        setStates(countryCode) {
+        updateCountry(country) {
 
             this.states = null;
 
+            let countryArray = country.split(', ');
+
+            this.form.country_code = countryArray[0];
+            this.form.country = countryArray[1];
+
             this.$page.props.countries.forEach(element => {
-                if (element.code == countryCode) {
+                if (element.code == countryArray[0]) {
                     this.states = element.states;
 
                     return

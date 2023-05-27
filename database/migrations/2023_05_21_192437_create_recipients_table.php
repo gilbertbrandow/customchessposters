@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('session_token')->nullable();
             $table->string('email');
             $table->string('country_code');
+            $table->string('country');
             $table->string('state_code')->nullable();
             $table->string('name');
             $table->string('address1');

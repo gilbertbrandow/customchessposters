@@ -14,6 +14,7 @@ class Recipient extends Model
         'user_id', 
         'session_token',
         'country_code',
+        'country',
         'state_code',
         'name',
         'address1',
