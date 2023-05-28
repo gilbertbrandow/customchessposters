@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('type');
             $table->foreignId('poster_id')->constrained()->nullable();
-            $table->foreignId('size_id')->constrained()->nullable();
+            $table->foreignId('poster_variant_id')->constrained()->nullable();
             $table->timestamps();
         });
     }

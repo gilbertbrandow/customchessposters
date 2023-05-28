@@ -83,7 +83,7 @@ export default {
           this.$page.props.overlay = 'cart',
           this.$page.props.cart = response.data
         ))
-        .catch(() => (
+        .catch((error) => (
           console.log(error)
         ))
     },

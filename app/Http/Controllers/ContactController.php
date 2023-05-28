@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\Contact; 
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Printful\PrintfulApiClient;
 
 class ContactController extends Controller
 {
@@ -12,7 +13,13 @@ class ContactController extends Controller
 
     public function index ()
     {
-        return Inertia::render('Contact');
+
+
+        $pf = PrintfulApiClient::createOauthClient(env('PRINTFUL_SK'));
+
+        return Inertia::render('Contact', [
+            'products' => $pf->get('products/268'),
+        ]);
     }  
     
     public function show () 

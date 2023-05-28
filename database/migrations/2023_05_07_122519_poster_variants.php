@@ -13,12 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('sizes', function (Blueprint $table) {
+        Schema::create('poster_variants', function (Blueprint $table) {
             $table->id();
             $table->string('description');
             $table->integer('width');
             $table->integer('height');
             $table->integer('price');
+            $table->integer('variant_id');
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sizes');
+        Schema::dropIfExists('poster_variants');
     }
 };

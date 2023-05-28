@@ -54,7 +54,7 @@ class Cart extends Model
                 $query->orWhere('user_id', $id);
             })->join('cart_items', 'carts.id', '=', 'cart_items.cart_id')
             ->join('products', 'products.id', '=', 'cart_items.product_id')
-            ->join('sizes', 'sizes.id', '=', 'products.size_id')
+            ->join('poster_variants', 'poster_variants.id', '=', 'products.poster_variant_id')
             ->join('posters', 'posters.id', '=', 'products.poster_id')
             ->select(
                 'carts.id as cartId',
@@ -63,9 +63,9 @@ class Cart extends Model
                 'products.price',
                 'products.name',
                 'products.type',
-                'sizes.height',
-                'sizes.width',
-                'sizes.description',
+                'poster_variants.height',
+                'poster_variants.width',
+                'poster_variants.description',
                 'posters.id',
                 'posters.theme',
                 'posters.orientation',

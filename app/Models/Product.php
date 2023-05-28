@@ -16,7 +16,7 @@ class Product extends Model
         'name',
         'type',
         'poster_id',
-        'size_id',
+        'poster_variant_id',
     ];
 
     public function poster()
@@ -24,9 +24,9 @@ class Product extends Model
         return $this->belongsTo(Poster::class);
     }
 
-    public function size()
+    public function variant()
     {
-        return $this->belongsTo(Size::class);
+        return $this->belongsTo(PosterVariant::class);
     }
 
 

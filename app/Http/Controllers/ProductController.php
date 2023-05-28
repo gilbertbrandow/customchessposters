@@ -6,7 +6,7 @@ use App\Models\Cart;
 use App\Models\CartItem;
 use App\Models\Poster;
 use App\Models\Product;
-use App\Models\Size;
+use App\Models\PosterVariant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,11 +26,11 @@ class ProductController extends Controller
         $poster = Poster::firstOrCreate($poster); 
 
         $product = Product::firstOrCreate([
-            'price' => Size::find($request->size)->price,
+            'price' => PosterVariant::find($request->variant)->price,
             'name' => $poster->title,
             'type' => 'Poster',
             'poster_id' => $poster->id,
-            'size_id' => $request->size,
+            'poster_variant_id' => $request->variant,
         ]);
 
         $cart = Cart::firstOrCreate(
