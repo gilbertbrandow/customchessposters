@@ -24,7 +24,7 @@ class RecipientController extends Controller
         return Inertia::render('Checkout/Shipping', [
             'cart' => fn () => Cart::getFullCart($request->session()->get('_token'), Auth::id())->get(),
             'address' => fn() => Order::find($request->route('orderId'))->shippingAddress,
-            'shippingMethod' => Order::find($request->route('orderId'))->get(['shipping','shipping_cost'])[0],
+            'shippingMethod' => Order::where('id', $request->route('orderId'))->first(['shipping','shipping_cost']),
             'countries' => $countries,
         ]);
     }

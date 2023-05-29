@@ -11,7 +11,7 @@
                     class="field__error is--success"></div>
                 <input v-model="form.email" class="field"
                     :class="{ 'is--error': form.errors.email || $page.props.flash.newsletter.error, 'is--success': $page.props.flash.newsletter.success }"
-                    name="email" placeholder="example@email.com" required />
+                    id="email" name="email" placeholder="example@email.com" required autocomplete="on"/>
             </div>
 
             <button class="button is--black" :disabled="form.processing"> Sign up </button>

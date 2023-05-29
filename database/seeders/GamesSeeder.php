@@ -284,7 +284,7 @@ class GamesSeeder extends Seeder
 
             [
                 'poster_id' => 25,
-                'name' => 'The Egyptian Grandmaster Warrants Comparison To The Magician From Riga',
+                'name' => 'The Egyptian GM Warrants Comparison To The Magician From Riga',
                 'description' => 'Adham Fawzy (born 2000) was awarded the title Grandmaster by FIDE in 2019. As of May 2023, he is the third-highest rated active Egyptian player, and fourth-highest in the African continent. He garners international fame for this true beauty.',
                 'date' => '2022-08-07',
                 'white_player' => 42,
