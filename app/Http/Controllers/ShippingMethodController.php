@@ -8,13 +8,10 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
-use Printful\PrintfulApiClient;
 
 class ShippingMethodController extends Controller
 {
     public function index(Request $request) {
-
-        $pf = PrintfulApiClient::createOauthClient(env('PRINTFUL_SK'));
         
         return Inertia::render('Checkout/Shipping-methods', [
             'cart' => fn () => Cart::getFullCart($request->session()->get('_token'), Auth::id())->get(),
@@ -35,7 +32,6 @@ class ShippingMethodController extends Controller
             'shipping_cost' => $method->cost,
         ]);
 
-        
-    
+        return redirect()->route('payment.index', ['orderId' => $request->route('orderId')]);
     }
 }

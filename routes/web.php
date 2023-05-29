@@ -19,6 +19,7 @@ use App\Http\Controllers\ShippingMethodController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SavedPosterController;
 use App\Http\Controllers\RecipientController;
+use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -202,6 +203,9 @@ Route::middleware('checkout')->group(function () {
 
     Route::post('/checkout/{orderId}/shipping-method', [ShippingMethodController::class, 'create'])
         ->name('shippingMethod.create');
+
+    Route::get('/checkout/{orderId}/payment', [PaymentController::class, 'index'])
+        ->name('payment.index');
 });
 
 
