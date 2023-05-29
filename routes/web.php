@@ -208,6 +208,9 @@ Route::middleware('checkout')->group(function () {
         ->name('payment.index');
 });
 
+Route::post('/checkout/payment', [PaymentController::class, 'create'])
+    ->name('payment.create');
+
 
 
 
