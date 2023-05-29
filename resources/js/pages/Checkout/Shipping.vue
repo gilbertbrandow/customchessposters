@@ -4,16 +4,16 @@
         <div class="field__wrp">
             <label for="email" class="field__label">Email address</label>
             <div v-if="form.errors.email" v-text="form.errors.email" class="field__error"></div>
-            <input v-model="form.email" class="field" name="email" placeholder="example@email.com"
-                :class="{ 'is--error': form.errors.email }" />
+            <input v-model="form.email" class="field" name="email" id="email" placeholder="example@email.com"
+                :class="{ 'is--error': form.errors.email }" autocomplete="on"/>
         </div>
 
         <h3 class="is--margin-top">Shipping address</h3>
         <div class="field__wrp">
             <label for="country" class="field__label">Country</label>
             <div v-if="form.errors.country_code" v-text="form.errors.country_code" class="field__error"></div>
-            <select @change="updateCountry($event.target.value)" id="country" class="field"
-                name="country" :class="{ 'is--error': form.errors.country_code }">
+            <select v-model="this.country" @change="updateCountry($event.target.value)" id="country" class="field"
+                name="country" :class="{ 'is--error': form.errors.country_code }" autocomplete="on">
                 <option :value="null">Country</option>
                 <option v-for="(country, index) in this.$page.props.countries" v-bind:data-index="index"
                     :value="country.code + ', ' + country.name">{{ country.name }}</option>
@@ -32,18 +32,18 @@
             <label for="name" class="field__label">Full name</label>
             <div v-if="form.errors.name" v-text="form.errors.name" class="field__error"></div>
             <input v-model="form.name" class="field" name="name" id="name" placeholder="Jane Doe"
-                :class="{ 'is--error': form.errors.name }" />
+                :class="{ 'is--error': form.errors.name }" autocomplete="on" />
         </div>
         <div class="field__wrp">
             <label for="address1" class="field__label">Street Address</label>
             <div v-if="form.errors.address1" v-text="form.errors.address1" class="field__error"></div>
-            <input type="address" v-model="form.address1" class="field" name="address" placeholder="19749 Dearborn St"
-                :class="{ 'is--error': form.errors.address1 }" />
+            <input type="address" v-model="form.address1" class="field" id="address1" name="address1" placeholder="19749 Dearborn St"
+                :class="{ 'is--error': form.errors.address1 }" autocomplete="on"/>
         </div>
         <div class="field__wrp">
-            <label for="address" class="field__label">Address line 2 (Optional)</label>
+            <label for="address2" class="field__label">Address line 2 (Optional)</label>
 
-            <input type="address" v-model="form.address2" class="field" name="address2" placeholder="Apt, Suite, Bldg." />
+            <input type="address" v-model="form.address2" class="field" id="address2" name="address2" placeholder="Apt, Suite, Bldg." />
         </div>
         <div class="row">
             <div class="field__wrp">
@@ -82,9 +82,10 @@ export default {
         return {
 
             cart: this.$page.props.cart,
+            country: this.$page.props.address ? this.$page.props.address.country_code + ', ' + this.$page.props.address.country : null,
             form: useForm({
                 email: this.$page.props.address ? this.$page.props.address.email : '',
-                country_code: this.$page.props.address ? this.$page.props.address.country_code : null,
+                country_code: this.$page.props.address ? this.$page.props.address.country_code + ', ' + this.$page.props.address.country : null,
                 country: this.$page.props.address ? this.$page.props.address.country : null,
                 state_code: this.$page.props.address ? this.$page.props.address.state_code : null,
                 name: this.$page.props.address ? this.$page.props.address.name : '',
@@ -100,11 +101,11 @@ export default {
 
     methods: {
 
-        updateCountry(country) {
+        updateCountry() {
 
             this.states = null;
 
-            let countryArray = country.split(', ');
+            let countryArray = this.country.split(', ');
 
             this.form.country_code = countryArray[0];
             this.form.country = countryArray[1];
@@ -136,7 +137,14 @@ export default {
         }
     },
 
+    watch: {
+        country() {
+            this.updateCountry();
+        }
+    },
+
     mounted() {
+        this.updateCountry();
     }
 }
 </script>

@@ -223,12 +223,20 @@ section {
     padding: 0;
 }
 
+.is--larger {
+    font-size: 1.2em;
+}
+
 .is--margin-top {
     margin-top: 1em;
 }
 
 .is--margin-left {
     margin-left: 0.5em;
+}
+
+.is--margin-bottom {
+    margin-bottom: 1em;
 }
 
 .is--flex {

@@ -51,8 +51,8 @@
                     <ul class="cart-items" style="height: auto; overflow: visible;">
                         <li v-for="item in this.$page.props.cart">
                             <template v-if="item.type == 'Poster'">
-                                <h4 v-text="item.name"></h4>
-                                <div class="is--flex">
+                                <strong class="is--larger" v-text="item.name"></strong>
+                                <div class="is--flex is--margin-top">
                                     <span>{{ 'Size: ' + item.width + ' x ' + item.height + ' cm, ' }}
                                     </span>
                                     <span><strong v-text="'$' + item.price / 100"></strong> x {{ item.quantity }}</span>
