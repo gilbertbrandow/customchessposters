@@ -41,15 +41,15 @@ class RecipientController extends Controller
         ]);
 
         try {
-            $rates = (new CheckoutService())->calculateShipping($request->country_code, $request->state_code);
+
+            $rates = (new CheckoutService())->calculateShipping($request->country_code, $request->state_code, Cart::getVariants($request->session()->get('_token'), Auth::id())->get());
+        
         } catch (Exception $e) {
 
             return redirect()->back()->withErrors(['shippingMethod' => $e->getMessage()]);
         }
 
-        $recpient = Recipient::firstOrCreate($request->all());
-
-        Order::find($request->route('orderId'))->update(['recipient_id' => $recpient->id]);
+        Order::find($request->route('orderId'))->update(['recipient_id' => Recipient::firstOrCreate($request->all())->id]);
 
         ShippingMethod::where('order_id', $request->route('orderId'))->delete();
 

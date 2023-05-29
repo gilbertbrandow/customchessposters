@@ -42,7 +42,7 @@ class CheckoutService
         return var_export($order);
     }
 
-    public function calculateShipping($country, $state = null)
+    public function calculateShipping($country, $state = null, $items)
     {
         $pf = PrintfulApiClient::createOauthClient(env('PRINTFUL_SK'));
 
@@ -53,9 +53,7 @@ class CheckoutService
                     'country_code' => $country,
                     'state_code' => $state,
                 ],
-                'items' => [
-                    ['variant_id' => 1, 'quantity' => 1], // Small poster
-                ],
+                'items' => $items,
             ]);
 
             return $rates;
