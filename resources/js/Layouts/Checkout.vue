@@ -69,7 +69,7 @@
                         <li class="is--flex is--space-between is--border-bottom">
                             <h4>Subtotal</h4><span>$ {{ (subtotal / 100).toFixed(2) }}</span>
                         </li>
-                        <li v-if="this.$page.props.shippingMethod" class="is--flex is--no-column-gap is--border-bottom">
+                        <li v-if="this.$page.props.shippingMethod.shipping" class="is--flex is--no-column-gap is--border-bottom">
                             <h4>Shipping </h4>
                             <span class="is--small"
                                 style="flex: 1; margin-left: 1em; text-transform: capitalize;">{{

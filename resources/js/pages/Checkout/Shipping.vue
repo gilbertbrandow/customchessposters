@@ -105,6 +105,8 @@ export default {
 
             this.states = null;
 
+            if(!this.country) return; 
+
             let countryArray = this.country.split(', ');
 
             this.form.country_code = countryArray[0];
