@@ -20,23 +20,19 @@ import Checkout from "../../Layouts/Checkout.vue";
 export default {
     layout: Checkout,
 
-    mounted() {
-        const stripe = Stripe("pk_test_51MMadbE1I2SLYKPNXR2Hl7kXtba7Yl0DVHPq9LHGeCtWmR5sVNJQpimdm3LSfrHNC0u8XAyPI46vs1uGezp1KdVH00u7FqjZ8C");
+    data() {
+        return {
+            stripe: Stripe("pk_test_51MMadbE1I2SLYKPNXR2Hl7kXtba7Yl0DVHPq9LHGeCtWmR5sVNJQpimdm3LSfrHNC0u8XAyPI46vs1uGezp1KdVH00u7FqjZ8C"),
+            elements: null,
+        }
+    },
 
-        let elements;
+    methods: {
+        initialize(clientSecret) {
 
-        initialize(this.$page.props.clientSecretKey);
-        checkStatus();
-
-        document
-            .querySelector("#payment-form")
-            .addEventListener("submit", handleSubmit);
-
-        // Fetches a payment intent and captures the client secret
-        function initialize(clientSecret) {
-
-            elements = stripe.elements({
-                clientSecret, appearance: {
+            this.elements = this.stripe.elements({
+                clientSecret,
+                appearance: {
                     theme: 'stripe',
                     variables: {
                         colorPrimary: '#000',
@@ -55,16 +51,26 @@ export default {
                 }],
             });
 
-            const paymentElement = elements.create("payment", {
+            this.elements.create("payment", {
                 layout: {
                     type: 'accordion',
                     defaultCollapsed: false,
                     radios: true,
                     spacedAccordionItems: false
                 }
-            });
-            paymentElement.mount("#payment-element");
-        }
+            }).mount("#payment-element");
+
+        },
+    },
+
+    mounted() {
+
+        this.initialize(this.$page.props.clientSecretKey);
+        checkStatus();
+
+        document
+            .querySelector("#payment-form")
+            .addEventListener("submit", handleSubmit);
 
         async function handleSubmit(e) {
             e.preventDefault();
@@ -86,7 +92,6 @@ export default {
             setLoading(false);
         }
 
-        // Fetches the payment intent status after payment submission
         async function checkStatus() {
             const clientSecret = new URLSearchParams(window.location.search).get(
                 "payment_intent_client_secret"
@@ -114,8 +119,6 @@ export default {
             }
         }
 
-        // ------- UI helpers -------
-
         function showMessage(messageText) {
             const messageContainer = document.querySelector("#payment-message");
 
@@ -128,7 +131,6 @@ export default {
             }, 4000);
         }
 
-        // Show a spinner on payment submission
         function setLoading(isLoading) {
             if (isLoading) {
                 // Disable the button and show a spinner
