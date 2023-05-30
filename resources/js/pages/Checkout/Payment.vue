@@ -7,9 +7,8 @@
         <div id="payment-element">
             <!--Stripe.js injects the Payment Element-->
         </div>
-        <button id="submit">
-            <div class="spinner hidden" id="spinner"></div>
-            <span id="button-text">Pay now</span>
+        <button id="submit" class="button is--black is--less-border-radius is--flex is--space-between is--margin-top">
+            Pay now
         </button>
         <div id="payment-message" class="hidden"></div>
     </form>
@@ -33,21 +32,37 @@ export default {
             .querySelector("#payment-form")
             .addEventListener("submit", handleSubmit);
 
-        let emailAddress = '';
-
         // Fetches a payment intent and captures the client secret
         function initialize(clientSecret) {
 
-            elements = stripe.elements({ clientSecret });
+            elements = stripe.elements({
+                clientSecret, appearance: {
+                    theme: 'stripe',
+                    variables: {
+                        colorPrimary: '#000',
+                        colorBackground: '#ffffff',
+                        colorText: '#000',
+                        colorDanger: '#df1b41',
+                        fontFamily: 'Ideal Sans, system-ui, sans-serif',
+                        spacingUnit: '4px',
+                        borderRadius: '4px',
+                    }
+                },
+                fonts: [{
+                    family: 'CabinetGrotesk',
+                    src: 'url(https://localhost/resources/fonts/CabinetGrotesk-Variable.woff2")',
+                    weight: '500',
+                }],
+            });
 
-            const linkAuthenticationElement = elements.create("linkAuthentication");
-            linkAuthenticationElement.mount("#link-authentication-element");
-
-            const paymentElementOptions = {
-                layout: "tabs",
-            };
-
-            const paymentElement = elements.create("payment", paymentElementOptions);
+            const paymentElement = elements.create("payment", {
+                layout: {
+                    type: 'accordion',
+                    defaultCollapsed: false,
+                    radios: true,
+                    spacedAccordionItems: false
+                }
+            });
             paymentElement.mount("#payment-element");
         }
 
@@ -58,9 +73,7 @@ export default {
             const { error } = await stripe.confirmPayment({
                 elements,
                 confirmParams: {
-                    // Make sure to change this to your payment completion page
                     return_url: "http://localhost/",
-                    receipt_email: emailAddress,
                 },
             });
 

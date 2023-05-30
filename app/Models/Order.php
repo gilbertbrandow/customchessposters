@@ -24,4 +24,14 @@ class Order extends Model
        return $this->belongsTo(Recipient::class, 'recipient_id');
 
     }
+
+    public static function totalAmount($id) {
+
+        return DB::table('orders')
+        ->join('carts', 'carts.id', 'orders.cart_id')
+        ->join('cart_items', 'carts.id', '=', 'cart_items.cart_id')
+        ->join('products', 'products.id', '=', 'cart_items.product_id')
+        ->selectRaw('SUM(cart_items.quantity * products.price) + shipping_cost AS total')
+        ->where('orders.id', $id)->groupBy('orders.id');
+     }
 }
