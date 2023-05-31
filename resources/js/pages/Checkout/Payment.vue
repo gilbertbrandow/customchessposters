@@ -1,11 +1,9 @@
 <template>
     <h1>Payment</h1>
-    <form id="payment-form" style="width: 100%;">
+    <form @submit.prevent="this.submit()" style="width: 100%;">
         <div id="link-authentication-element">
-            <!--Stripe.js injects the Link Authentication Element-->
         </div>
         <div id="payment-element">
-            <!--Stripe.js injects the Payment Element-->
         </div>
         <button id="submit" class="button is--black is--less-border-radius is--flex is--space-between is--margin-top">
             Pay now
@@ -61,36 +59,31 @@ export default {
             }).mount("#payment-element");
 
         },
+
+        async submit() {
+
+            let elements = this.elements; 
+
+            const { error } = await this.stripe.confirmPayment({
+                elements,
+                confirmParams: {
+                    return_url: "http://localhost/checkout/" + this.$page.props.route.params.orderId + '/confirmed',
+                },
+            });
+
+            if (error.type === "card_error" || error.type === "validation_error") {
+                console.log(error.message);
+            } else {
+                console.log("An unexpected error occurred.");
+            }
+
+        },
     },
 
     mounted() {
 
         this.initialize(this.$page.props.clientSecretKey);
         checkStatus();
-
-        document
-            .querySelector("#payment-form")
-            .addEventListener("submit", handleSubmit);
-
-        async function handleSubmit(e) {
-            e.preventDefault();
-            setLoading(true);
-
-            const { error } = await stripe.confirmPayment({
-                elements,
-                confirmParams: {
-                    return_url: "http://localhost/",
-                },
-            });
-
-            if (error.type === "card_error" || error.type === "validation_error") {
-                showMessage(error.message);
-            } else {
-                showMessage("An unexpected error occurred.");
-            }
-
-            setLoading(false);
-        }
 
         async function checkStatus() {
             const clientSecret = new URLSearchParams(window.location.search).get(
@@ -129,19 +122,6 @@ export default {
                 messageContainer.classList.add("hidden");
                 messageText.textContent = "";
             }, 4000);
-        }
-
-        function setLoading(isLoading) {
-            if (isLoading) {
-                // Disable the button and show a spinner
-                document.querySelector("#submit").disabled = true;
-                document.querySelector("#spinner").classList.remove("hidden");
-                document.querySelector("#button-text").classList.add("hidden");
-            } else {
-                document.querySelector("#submit").disabled = false;
-                document.querySelector("#spinner").classList.add("hidden");
-                document.querySelector("#button-text").classList.remove("hidden");
-            }
         }
     }
 }
