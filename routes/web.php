@@ -206,10 +206,10 @@ Route::middleware('checkout')->group(function () {
 
     Route::get('/checkout/{orderId}/payment', [PaymentController::class, 'index'])
         ->name('payment.index');
-});
 
-Route::post('/checkout/payment', [PaymentController::class, 'create'])
-    ->name('payment.create');
+    Route::get('/checkout/{orderId}/confirmed', [OrderController::class, 'create'])
+        ->name('payment.index');
+});
 
 
 
