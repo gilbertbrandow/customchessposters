@@ -302,8 +302,9 @@
 	C312.303,252.29,320,245.127,320,236.29z" />
     </svg>
 
-    <svg v-else-if="country == 'Kosovo'" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-        y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+    <svg v-else-if="country == 'Kosovo'" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
+        style="enable-background:new 0 0 512 512;" xml:space="preserve">
         <rect y="85.331" style="fill:#0052B4;" width="512" height="341.337" />
         <g>
             <polygon style="fill:#F0F0F0;" points="160.299,189.212 163.984,200.549 175.903,200.549 166.26,207.556 169.944,218.892 
@@ -322,6 +323,31 @@
         <path style="fill:#FFDA44;" d="M285.682,263.414L256,226.312l-14.84,7.421v14.84l-22.261,14.84h-14.84v19.172
 	c21.751,8.808,37.101,30.12,37.101,55.03l0,0H256v-14.84l14.84-14.84l14.84,14.84l14.841-14.839v-14.84l14.84-22.261
 	L285.682,263.414z" />
+    </svg>
+
+    <svg v-else-if="country == 'North Macedonia'" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
+        style="enable-background:new 0 0 512 512;" xml:space="preserve">
+        <rect y="85.333" style="fill:#FFDA44;" width="512" height="341.337" />
+        <g>
+            <polygon style="fill:#D80027;" points="383.875,426.662 256,252.286 282.827,426.662 	" />
+            <polygon style="fill:#D80027;" points="133.565,85.33 256,252.286 230.314,85.33 	" />
+            <polygon style="fill:#D80027;" points="229.171,426.662 256,252.286 128.124,426.662 	" />
+            <polygon style="fill:#D80027;" points="0,85.33 0,212.9 256,252.286 28.333,85.33 	" />
+            <polygon style="fill:#D80027;" points="0,426.662 18.212,426.662 256,252.286 0,291.67 	" />
+            <polygon style="fill:#D80027;" points="256,252.286 512,212.9 512,85.33 483.669,85.33 	" />
+            <polygon style="fill:#D80027;" points="281.686,85.33 256,252.286 378.434,85.33 	" />
+            <polygon style="fill:#D80027;" points="512,426.662 512,291.671 256,252.286 493.787,426.662 	" />
+            <circle style="fill:#D80027;" cx="256" cy="252.29" r="59.359" />
+        </g>
+        <circle style="fill:#FFDA44;" cx="256" cy="252.29" r="44.522" />
+    </svg>
+
+    <svg  v-else-if="country == 'Romania'" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+        y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+        <rect y="85.331" style="fill:#FFDA44;" width="512" height="341.326" />
+        <rect y="85.331" style="fill:#0052B4;" width="170.663" height="341.337" />
+        <rect x="341.337" y="85.331" style="fill:#D80027;" width="170.663" height="341.337" />
     </svg>
 </template>
 

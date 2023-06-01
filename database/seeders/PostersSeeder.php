@@ -498,6 +498,26 @@ class PostersSeeder extends Seeder
                 'where' => '44th Olympiad Chennai 2022',
             ],
 
+            [
+                'theme' => 1,
+                'orientation' => 1,
+                'starting_position' => 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                'pgn' => '1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Ng3 Bg6 6. h4 h6 7. Nf3 Nd7 8. h5 Bh7 9. Bd3 Bxd3 10. Qxd3 e6 11. Bf4 Qa5+ 12. Bd2 Qc7 13. O-O-O Ngf6 14. Ne4 O-O-O 15. g3 Nc5 16. Nxc5 Bxc5 17. Qe2 Bd6 18. c4 c5 19. Bc3 cxd4 20. Nxd4 a6 21. Kb1 Kb8 22. Nf3 Ka8 23. Ne5 Bc5 24. g4 Rd6 25. Rxd6 Bxd6 26. Rd1 Rd8 27. f3 Bxe5 28. Rxd8+ Qxd8 29. Bxe5 Ne8 30. b3 f6 31. Bc3 e5 32. Kc2 Nc7 33. Qd3 Qe7 34. a4 Ne6 35. Qd5 Nd4+ 36. Kb2 Nc6 37. a5 Kb8 38. Bd2 Qd8 39. Qxd8+ Nxd8 40. Be3 Kc8 41. Kc3 Kd7 42. b4 Kc6 43. Kd3 Nf7 44. Kc3 Nd8 45. Kc2 Kd7 46. Kd3 Nc6 47. Bc5 Ke6 48. Ke4 Nd8 49. b5 Nf7 50. Bf8 Ng5+ 51. Ke3 Kf7 52. Bb4 Ne6 53. Ke4 Ke8 54. Bd2 Nc7 55. bxa6 bxa6 56. f4 exf4 57. Bxf4 Ne6 58. Bd6 Kd7 59. Kd5 Nd8 60. c5 Nc6 61. Bf8 Ne5 62. g5 hxg5 63. Bxg7 g4 64. Bxf6 Nf7 65. Bh4 Nh6 66. c6+ Kc8 67. Bg3 Nf5 68. Ke5 Nh6 69. Ke4',
+                'diagram_position' => 135,
+                'move_comment' => 'Helpless against a passed pawn',
+                'fen' => '2k5/8/p1P5/P3Kn1P/6p1/6B1/8/8 b - - 4 68',
+                'result' => '1-0',
+                'title' => 'Outside Passed Pawn - A Knights Worst Nightmare',
+                'white_player' => 'Kiril Dimitrov Georgiev',
+                'black_player' => 'Liviu Dieter Nisipeanu',
+                'white_rating' => 2661,
+                'black_rating' => 2592,
+                'white_title' => 'GM',
+                'black_title' => 'GM',
+                'when' => 'FIDE World Championship Knockout Prelim, 2000.12.02 Round 2.6',
+                'where' => 'New Delhi IND',
+            ],
+
         ];
 
         foreach ($posters as $poster) {

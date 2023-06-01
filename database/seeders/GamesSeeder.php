@@ -293,6 +293,17 @@ class GamesSeeder extends Seeder
                 'opening_id' => 26,
             ],
 
+            [
+                'poster_id' => 26,
+                'name' => 'Bishop Supremacy In Textbook Endgame',
+                'description' => 'Knights are with a lot of pieces still on the board, often able to out-maneuver their bishop counterparts and with the threat of mighty forks or reaching outposts, grant an advantage. However, as the material starts to come off, the long range of the bishop proves to be a great asset.',
+                'date' => '2000-12-02',
+                'white_player' => 44,
+                'black_player' => 45,
+                'world_championship_game' => 0,
+                'opening_id' => 27,
+            ],
+
 
         ];
 

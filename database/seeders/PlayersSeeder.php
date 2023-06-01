@@ -233,6 +233,18 @@ class PlayersSeeder extends Seeder
                 'name' => 'Makolli, Perparim',
                 'country' => 'Kosovo',
             ],
+
+            [
+                'name' => 'Georgiev, Kiril',
+                'country' => 'North Macedonia',
+            ],
+
+            [
+                'name' => 'Nisipeanu, Liviu-Dieter',
+                'country' => 'Romania',
+            ],
+
+
         ]; 
 
         foreach($players as $player) {

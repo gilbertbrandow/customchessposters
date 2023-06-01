@@ -155,6 +155,12 @@ class OpeningsSeeder extends Seeder
                 'name' => "Sicilian, Kan",
             ],
 
+
+            [
+                'eco' => 'B18',
+                'name' => "Caro-Kann Defense: Classical Variation. Main lines",
+            ],
+
         ];
 
         foreach ($openings as $opening) {
