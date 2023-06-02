@@ -62,7 +62,7 @@ export default {
 
         async submit() {
 
-            let elements = this.elements; 
+            const elements = this.elements; 
 
             const { error } = await this.stripe.confirmPayment({
                 elements,

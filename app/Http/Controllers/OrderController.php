@@ -24,7 +24,6 @@ class OrderController extends Controller
     public function create(Request $request) {
 
         return Inertia::render('Checkout/Confirmed', [
-            'cart' => fn () => Cart::getFullCart($request->session()->get('_token'), Auth::id())->get(),
         ]); 
     }
 }
