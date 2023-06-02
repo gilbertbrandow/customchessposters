@@ -20,6 +20,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SavedPosterController;
 use App\Http\Controllers\RecipientController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\WebhookController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -210,6 +211,16 @@ Route::middleware('checkout')->group(function () {
     Route::get('/checkout/{orderId}/confirmed', [OrderController::class, 'create'])
         ->name('payment.index');
 });
+
+
+/*
+|--------------------------------------------------------------------------
+| Webhook routes
+|--------------------------------------------------------------------------
+*/
+
+Route::post('/webhooks/stripe', [WebhookController::class, 'index'])
+->name('webhooks.struåe');
 
 
 
