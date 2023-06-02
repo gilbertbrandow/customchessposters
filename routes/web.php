@@ -208,8 +208,8 @@ Route::middleware('checkout')->group(function () {
     Route::get('/checkout/{orderId}/payment', [PaymentController::class, 'index'])
         ->name('payment.index');
 
-    Route::get('/checkout/{orderId}/confirmed', [OrderController::class, 'create'])
-        ->name('payment.index');
+    Route::get('/checkout/{orderId}/confirmed', [OrderController::class, 'show'])
+        ->name('payment.show');
 });
 
 

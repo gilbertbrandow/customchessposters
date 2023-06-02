@@ -21,7 +21,7 @@ class OrderController extends Controller
         return redirect()->route('shipping.index', ['orderId' => $order->id]);
     }
 
-    public function create(Request $request) {
+    public function show(Request $request) {
 
         return Inertia::render('Checkout/Confirmed', [
         ]); 
