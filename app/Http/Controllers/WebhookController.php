@@ -36,7 +36,6 @@ class WebhookController extends Controller
             exit();
         }
 
-        // Handle the event
         switch ($event->type) {
             case 'payment_intent.succeeded':
                 $paymentIntent = $event->data->object;  

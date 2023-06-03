@@ -22,10 +22,10 @@ class RecipientController extends Controller
         array_multisort($keys, SORT_ASC, $countries);
         
         return Inertia::render('Checkout/Shipping', [
-            'cart' => fn () => Cart::getFullCart($request->session()->get('_token'), Auth::id())->get(),
+            'cart' => fn () => Order::getCartItems($request->route('orderId'))->get(),
             'address' => fn() => Order::find($request->route('orderId'))->shippingAddress,
-            'shippingMethod' => Order::where('id', $request->route('orderId'))->first(['shipping','shipping_cost']),
-            'countries' => $countries,
+            'shippingMethod'=> fn() => Order::where('id', $request->route('orderId'))->first(['shipping','shipping_cost']),
+            'countries' => fn() => $countries,
         ]);
     }
 

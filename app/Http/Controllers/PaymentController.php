@@ -34,7 +34,7 @@ class PaymentController extends Controller
             Order::where('id', $request->route('orderId'))->update(array('payment_intent' => $paymentIntent->id));
 
             return Inertia::render('Checkout/Payment', [
-                'cart' => fn () => Cart::getFullCart($request->session()->get('_token'), Auth::id())->get(),
+                'cart' => fn () => Order::getCartItems($request->route('orderId'))->get(),
                 'shippingMethod' => fn () => Order::find($request->route('orderId'))->get(['shipping', 'shipping_cost'])[0],
                 'address' => fn () => Order::find($request->route('orderId'))->shippingAddress,
                 'clientSecretKey' => $paymentIntent->client_secret,
