@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cart;
 use App\Models\Order;
 use Error;
 use Illuminate\Http\Request;
@@ -30,7 +29,7 @@ class PaymentController extends Controller
                 ],
             ]);
 
-            //Save pahyment intent on order
+            //Save payment intent on order
             Order::where('id', $request->route('orderId'))->update(array('payment_intent' => $paymentIntent->id));
 
             return Inertia::render('Checkout/Payment', [

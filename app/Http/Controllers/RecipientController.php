@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cart;
 use App\Models\ShippingMethod;
 use App\Models\Order;
 use App\Models\Recipient;
 use App\Services\CheckoutService;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Inertia\Inertia;
 
@@ -42,7 +40,7 @@ class RecipientController extends Controller
 
         try {
 
-            $rates = (new CheckoutService())->calculateShipping( Cart::getVariants($request->session()->get('_token'), Auth::id())->get(), $request->country_code, $request->state_code);
+            $rates = (new CheckoutService())->calculateShipping( Order::getVariants($request->route('orderId'))->get(), $request->country_code, $request->state_code);
         
         } catch (Exception $e) {
 

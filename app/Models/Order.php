@@ -27,7 +27,7 @@ class Order extends Model
 
     public static function getCartItems($orderId) {
         return DB::table('orders')->where('orders.id', $orderId)
-        ->join('carts', 'orders.cart_id', '=', 'orders.cart_id')
+        ->join('carts', 'orders.cart_id', '=', 'carts.id')
         ->join('cart_items', 'carts.id', '=', 'cart_items.cart_id')
         ->join('products', 'products.id', '=', 'cart_items.product_id')
         ->join('poster_variants', 'poster_variants.id', '=', 'products.poster_variant_id')
@@ -60,6 +60,19 @@ class Order extends Model
             'posters.black_title',
             'posters.when',
             'posters.where',
+        );
+    }
+
+    public static function getVariants($id) {
+
+        return DB::table('orders')->where('orders.id', $id)
+        ->join('carts', 'cart_id', '=', 'carts.id')
+        ->join('cart_items', 'carts.id', '=', 'cart_items.cart_id')
+        ->join('products', 'products.id', '=', 'cart_items.product_id')
+        ->join('poster_variants', 'poster_variants.id', '=', 'products.poster_variant_id')
+        ->select(
+            'poster_variants.variant_id as variant_id',
+            'cart_items.quantity as quantity',
         );
     }
 

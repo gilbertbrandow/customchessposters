@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cart;
 use App\Models\ShippingMethod;
 use App\Models\Order;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class ShippingMethodController extends Controller
