@@ -16,22 +16,15 @@ class WebhookController extends Controller
         //Use secret key
         Stripe::setApiKey(env('STRIPE_SK'));
 
-        // This is Stripe CLI webhook secret for testing endpoint locally for now.
-        $endpoint_secret = 'whsec_599f3ceba8954b5887803997a91c3e3490a792a4d0f3c34edf897afdec7d260e';
-
         $payload = @file_get_contents('php://input');
-        $sig_header = $_SERVER['HTTP_STRIPE_SIGNATURE'];
-        $event = null;
-
-        $payload = @file_get_contents('php://input');
-        $sig_header = $_SERVER['HTTP_STRIPE_SIGNATURE'];
+        $signature_header = $_SERVER['HTTP_STRIPE_SIGNATURE'];
         $event = null;
 
         try {
             $event = Webhook::constructEvent(
                 $payload,
-                $sig_header,
-                $endpoint_secret
+                $signature_header,
+                env('STRIPE_WEBHOOK_SK'),
             );
         } catch (UnexpectedValueException $e) {
             // Invalid payload
