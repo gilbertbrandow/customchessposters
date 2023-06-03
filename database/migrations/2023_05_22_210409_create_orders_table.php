@@ -22,6 +22,7 @@ return new class extends Migration
             $table->foreignId('recipient_id')->nullable()->constrained();
             $table->string('shipping')->nullable();
             $table->integer('shipping_cost')->default(0);
+            $table->string('payment_intent')->nullable();
             $table->timestamps();
         });
     }

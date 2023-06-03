@@ -30,6 +30,9 @@ class PaymentController extends Controller
                 ],
             ]);
 
+            //Save pahyment intent on order
+            Order::where('id', $request->route('orderId'))->update(array('payment_intent' => $paymentIntent->id));
+
             return Inertia::render('Checkout/Payment', [
                 'cart' => fn () => Cart::getFullCart($request->session()->get('_token'), Auth::id())->get(),
                 'shippingMethod' => fn () => Order::find($request->route('orderId'))->get(['shipping', 'shipping_cost'])[0],
