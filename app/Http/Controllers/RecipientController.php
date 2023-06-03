@@ -42,7 +42,7 @@ class RecipientController extends Controller
 
         try {
 
-            $rates = (new CheckoutService())->calculateShipping($request->country_code, $request->state_code, Cart::getVariants($request->session()->get('_token'), Auth::id())->get());
+            $rates = (new CheckoutService())->calculateShipping( Cart::getVariants($request->session()->get('_token'), Auth::id())->get(), $request->country_code, $request->state_code);
         
         } catch (Exception $e) {
 
