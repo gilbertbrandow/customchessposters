@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\ProcessOrder;
 use App\Models\Order;
 use Stripe\Exception\SignatureVerificationException;
 use Stripe\Stripe;
@@ -38,12 +39,17 @@ class WebhookController extends Controller
 
         switch ($event->type) {
             case 'payment_intent.succeeded':
+
                 $paymentIntent = $event->data->object;  
 
-                Order::where('payment_intent', $paymentIntent->id)->update(array('status' => 'processing'));
+                $order = Order::where('payment_intent', $paymentIntent->id)->first(); 
+                $order->status = 'processing';
+                $order->save();
+                
+                ProcessOrder::dispatch($order);
 
-                return response(json_encode($paymentIntent), 200)
-                    ->header('Content-Type', 'application/json');
+                return response("Order #" . $order->id . ": Payment confirmed. Order processing job dispatched.", 200)
+                    ->header('Content-Type', 'text/plain');
             default:
                 echo 'Received unknown event type ' . $event->type;
         }
