@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Models\Order;
+use App\Services\OrderService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -32,7 +33,8 @@ class ProcessOrder implements ShouldQueue
      */
     public function handle()
     {
-        $this->order->status = 'completed'; 
+        //Update order status to 'processing'
+        $this->order->status = 'fulfilling'; 
         $this->order->save();
     }
 }

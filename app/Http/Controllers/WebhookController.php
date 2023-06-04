@@ -8,6 +8,7 @@ use Stripe\Exception\SignatureVerificationException;
 use Stripe\Stripe;
 use Stripe\Webhook;
 use UnexpectedValueException;
+use App\Services\OrderService;
 
 class WebhookController extends Controller
 {
@@ -43,6 +44,10 @@ class WebhookController extends Controller
                 $paymentIntent = $event->data->object;  
 
                 $order = Order::where('payment_intent', $paymentIntent->id)->first(); 
+
+                //Move cart items to order items and delete cart
+                (new OrderService())->createOrderItems($order); 
+
                 $order->status = 'processing';
                 $order->save();
                 
