@@ -25,6 +25,13 @@ class Order extends Model
 
     }
 
+    public function cart() {
+
+        return $this->belongsTo(Cart::class, 'cart_id');
+ 
+     }
+ 
+
     public static function getCartItems($orderId) {
         return DB::table('orders')->where('orders.id', $orderId)
         ->join('carts', 'orders.cart_id', '=', 'carts.id')
