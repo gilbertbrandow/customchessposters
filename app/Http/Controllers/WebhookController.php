@@ -15,7 +15,6 @@ class WebhookController extends Controller
     public function index()
     {
 
-        //Use secret key
         Stripe::setApiKey(env('STRIPE_SK'));
 
         $payload = @file_get_contents('php://input');
@@ -45,10 +44,9 @@ class WebhookController extends Controller
 
                 $order = Order::where('payment_intent', $paymentIntent->id)->first(); 
 
-                //Move cart items to order items and delete cart
                 (new OrderService())->createOrderItems($order); 
 
-                $order->status = 'processing';
+                $order->status = 'recieved';
                 $order->save();
                 
                 ProcessOrder::dispatch($order);
@@ -56,9 +54,8 @@ class WebhookController extends Controller
                 return response("Order #" . $order->id . ": Payment confirmed. Order processing job dispatched.", 200)
                     ->header('Content-Type', 'text/plain');
             default:
-                echo 'Received unknown event type ' . $event->type;
+                return response('Received unactionable event type: ' . $event->type, 200)
+                ->header('Content-Type', 'text/plain');
         }
-
-        http_response_code(200);
     }
 }
