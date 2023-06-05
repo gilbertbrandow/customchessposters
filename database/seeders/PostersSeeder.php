@@ -518,6 +518,26 @@ class PostersSeeder extends Seeder
                 'where' => 'New Delhi IND',
             ],
 
+            [
+                'theme' => 0,
+                'orientation' => 1,
+                'starting_position' => 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                'pgn' => '1. e4 d5 2. exd5 Qxd5 3. Nf3 Bg4 4. Be2 Nc6 5. Nc3 Qd7 6. h3 Bxf3 7. Bxf3 O-O-O 8. O-O Nd4 9. a4 Kb8 10. Nb5 Nxf3+ 11. Qxf3 a6 12. c4 e5 13. d4 exd4 14. Bf4 axb5 15. axb5 Bd6 16. Ra2 Qf5 17. Rfa1 Kc8 18. Qc6',
+                'diagram_position' => 35,
+                'move_comment' => 'Making sure to control d7',
+                'fen' => '2kr2nr/1pp2ppp/2Qb4/1P3q2/2Pp1B2/7P/RP3PP1/R5K1 b - - 6 18',
+                'result' => '1-0',
+                'title' => 'Blocking The Exit for The World Champion',
+                'white_player' => 'Luis Supi',
+                'black_player' => 'Magnus Carlsen',
+                'white_rating' => 2606,
+                'black_rating' => 2862,
+                'white_title' => 'GM',
+                'black_title' => 'GM',
+                'when' => 'Blitz, 2020.05.26',
+                'where' => 'Online',
+            ],
+
         ];
 
         foreach ($posters as $poster) {

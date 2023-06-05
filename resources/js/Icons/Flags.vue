@@ -343,11 +343,26 @@
         <circle style="fill:#FFDA44;" cx="256" cy="252.29" r="44.522" />
     </svg>
 
-    <svg  v-else-if="country == 'Romania'" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-        y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+    <svg v-else-if="country == 'Romania'" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
+        style="enable-background:new 0 0 512 512;" xml:space="preserve">
         <rect y="85.331" style="fill:#FFDA44;" width="512" height="341.326" />
         <rect y="85.331" style="fill:#0052B4;" width="170.663" height="341.337" />
         <rect x="341.337" y="85.331" style="fill:#D80027;" width="170.663" height="341.337" />
+    </svg>
+
+    <svg v-else-if="country == 'Brazil'" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+        y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+        <rect y="85.331" style="fill:#6DA544;" width="512" height="341.337" />
+        <polygon style="fill:#FFDA44;" points="256,161.678 384,255.994 256,350.31 128,255.994 " />
+        <circle style="fill:#F0F0F0;" cx="256" cy="255.994" r="53.894" />
+        <g>
+            <path style="fill:#0052B4;" d="M229.052,252.626c-9.372,0-18.416,1.426-26.93,4.07c0.377,29.44,24.348,53.193,53.877,53.193
+		c18.259,0,34.386-9.089,44.134-22.981C283.457,266.029,257.792,252.626,229.052,252.626z" />
+            <path style="fill:#0052B4;"
+                d="M308.895,266.32c0.649-3.344,1-6.793,1-10.326c0-29.765-24.13-53.895-53.895-53.895
+		c-22.21,0-41.275,13.438-49.527,32.623c7.293-1.51,14.845-2.307,22.579-2.307C260.356,232.416,288.674,245.427,308.895,266.32z" />
+        </g>
     </svg>
 </template>
 

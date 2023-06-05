@@ -244,6 +244,11 @@ class PlayersSeeder extends Seeder
                 'country' => 'Romania',
             ],
 
+            [
+                'name' => 'Supi, Luis Paulo',
+                'country' => 'Brazil',
+            ],
+
 
         ]; 
 
