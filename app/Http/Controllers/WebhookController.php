@@ -44,7 +44,7 @@ class WebhookController extends Controller
 
                 $order = Order::where('payment_intent', $paymentIntent->id)->first(); 
 
-                (new OrderService())->createOrderItems($order); 
+                (new OrderService($order))->createOrderItems(); 
 
                 $order->status = 'recieved';
                 $order->save();

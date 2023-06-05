@@ -54,9 +54,9 @@ class PosterService
         return $poster;
     }
 
-    public function createPng(Poster $poster)
+    public function generatePNG()
     {
-        //Create and return path to png?
+        
         $path = "";
 
         return $path;

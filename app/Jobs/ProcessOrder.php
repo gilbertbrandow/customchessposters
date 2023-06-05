@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Models\Order;
 use App\Services\OrderService;
+use App\Services\PosterService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -33,8 +34,24 @@ class ProcessOrder implements ShouldQueue
      */
     public function handle()
     {
+        //Fetch all order items and their product, if product has type poster generate png of poster
+        foreach($this->order->orderItems as $item) {
+            
+            if($item->product->type == 'poster') {
+
+                //Create and add PNG file to orderItem if poster
+                $item->file = (new PosterService($item->product->poster))->generatePNG(); 
+                $item->save(); 
+            }
+            
+        }; 
+
+        (new OrderService($this->order))->sendOrderToPrintful();
+
         //Update order status to 'processing'
         $this->order->status = 'fulfilling'; 
         $this->order->save();
+
+        return; 
     }
 }

@@ -9,20 +9,27 @@ use Printful\PrintfulApiClient;
 class OrderService
 {
 
-    public function createOrderItems(Order $order)
+    public function __construct(
+        public Order $order
+    )
     {
-        $cart = $order->cart; 
+        $this->order = $order;
+    }
+
+    public function createOrderItems()
+    {
+        $cart = $this->order->cart; 
 
         foreach($cart->cartItems as $item) {
            OrderItem::create([
-            'order_id' => $order->id, 
+            'order_id' => $this->order->id, 
             'product_id' => $item->product_id, 
             'quantity' => $item->quantity, 
            ]);
         }; 
 
-        $order->cart_id = null; 
-        $order->save();
+        $this->order->cart_id = null; 
+        $this->order->save();
         $cart->delete();
 
         return; 
@@ -33,7 +40,9 @@ class OrderService
 
         $client = PrintfulApiClient::createOauthClient(env('PRINTFUL_SK'));
 
-        $order = $client->post('orders', [
+        return $this->order->shippingAddress; 
+
+        $client->post('orders', [
             'recipient' => [
                 'name' => 'John Doe',
                 'address1' => '172 W Street Ave #105',
@@ -45,7 +54,7 @@ class OrderService
             'items' => [
                 [
                     'variant_id' => 1,
-                    'name' => 'Custom Chess Poster',
+                    'name' => 'Custom Chess Poster: ',
                     'retail_price' => '20.00',
                     'quantity' => 1,
                     'files' => [
@@ -58,6 +67,10 @@ class OrderService
         ]);
 
         return;
+    }
+
+    public function test() {
+        return $this->order->shippingAddress;
     }
 
 }

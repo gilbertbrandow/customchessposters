@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Order;
+use App\Services\OrderService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
@@ -25,5 +26,20 @@ class OrderController extends Controller
 
         return Inertia::render('Checkout/Confirmed', [
         ]); 
+    }
+
+    public function test() {
+/*         $order = Order::first(); 
+        dd($order->orderItems);  */
+
+        dd((new OrderService(Order::first()))->test()); 
+
+        //Try to get order items with products and variants ids?
+
+        $orderItems = Order::first()->orderItems;
+        
+        foreach($orderItems as $item) {
+            dd($item->products); 
+        }
     }
 }
