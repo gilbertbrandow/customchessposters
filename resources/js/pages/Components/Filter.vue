@@ -220,13 +220,11 @@ export default {
                 let obj = this.$page.props.players;
                 let id = this.$data.query.player
 
-                Object.keys(obj).forEach(function (key) {
-                    obj[key].forEach(player => {
-                        if (player.id == id) {
-                            let name = player.name.split(', ')
-                            params.push(name[1] + ' ' + name[0] + ' played');
-                        }
-                    })
+                this.$page.props.players.forEach(function (player) {
+                    if (player.id == id) {
+                        let name = player.name.split(', ')
+                        params.push(name[1] + ' ' + name[0] + ' played');
+                    }
                 });
             }
             if (this.query.result !== null) {
@@ -276,7 +274,7 @@ export default {
         },
 
         getOS() {
-            if(navigator.userAgentData.mobile) return '';
+            if (navigator.userAgentData.mobile) return '';
             else if (navigator.userAgentData.platform.toUpperCase().indexOf('MAC') != -1) return '⌘ + K'
             else return '⊞ Win + K'
         }
@@ -321,7 +319,7 @@ export default {
     mounted() {
         this.highlightText();
         window.addEventListener('keydown', this.onKeydown)
-        console.log(this.$page.props.countries);
+        console.log(this.$page.props.players);
     },
 
     beforeDestroy() {
