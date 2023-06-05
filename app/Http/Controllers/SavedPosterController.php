@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Game;
 use App\Models\Poster;
-use App\Models\PosterUser;
 use App\Models\User;
 use App\Services\PosterService;
 use Illuminate\Http\Request;

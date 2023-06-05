@@ -3,12 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\PosterController;
-use App\Models\Cart;
-use App\Models\CartItem;
-use App\Models\User;
 use App\Services\LoginService;
-use App\Services\PosterService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 

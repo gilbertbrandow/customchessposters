@@ -2,11 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cart;
-use App\Models\Game;
 use App\Models\Poster;
-use App\Models\PosterUser;
-use App\Models\Product;
 use App\Services\PosterService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
