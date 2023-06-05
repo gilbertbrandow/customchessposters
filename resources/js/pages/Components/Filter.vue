@@ -77,7 +77,7 @@
                 <select v-model="query.country" id="country" :class="[query.country !== null ? 'field active' : 'field']"
                     name="wcc">
                     <option :value="null">No preference</option>
-                    <option v-for="country in this.$page.props.countries" :value="country">{{ Country }}</option>
+                    <option v-for="(country, name) in this.$page.props.countries" :value="name">{{ name }}</option>
                 </select>
             </div>
 
@@ -321,6 +321,7 @@ export default {
     mounted() {
         this.highlightText();
         window.addEventListener('keydown', this.onKeydown)
+        console.log(this.$page.props.countries);
     },
 
     beforeDestroy() {
