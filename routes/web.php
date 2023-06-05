@@ -212,6 +212,8 @@ Route::middleware('checkout')->group(function () {
         ->name('payment.show');
 });
 
+Route::get('/checkout/test', [OrderController::class, 'test']); 
+
 
 /*
 |--------------------------------------------------------------------------
