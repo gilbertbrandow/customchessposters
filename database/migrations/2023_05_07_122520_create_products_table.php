@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('price');
             $table->string('name');
-            $table->string('type');
+            $table->enum('type', ['poster']);
             $table->foreignId('poster_id')->constrained()->nullable();
             $table->foreignId('poster_variant_id')->constrained()->nullable();
             $table->timestamps();
