@@ -319,7 +319,6 @@ export default {
     mounted() {
         this.highlightText();
         window.addEventListener('keydown', this.onKeydown)
-        console.log(this.$page.props.players);
     },
 
     beforeDestroy() {

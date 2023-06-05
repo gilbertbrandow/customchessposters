@@ -50,7 +50,7 @@
 
                     <ul class="cart-items" style="height: auto; overflow: visible;">
                         <li v-for="item in this.$page.props.cart">
-                            <template v-if="item.type == 'Poster'">
+                            <template v-if="item.type == 'poster'">
                                 <strong class="is--larger" v-text="item.name"></strong>
                                 <div class="is--flex is--margin-top">
                                     <span>{{ 'Size: ' + item.width + ' x ' + item.height + ' cm, ' }}

@@ -175,6 +175,60 @@
             fill="rgb(0,0,0)" />
     </svg>
 
+    <svg v-else-if="name === 'sustainable-shipping'"  xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" version="1.1" id="svg2061"
+        width="682.66669" height="682.66669" viewBox="0 0 682.66669 682.66669">
+        <defs id="defs2065">
+            <clipPath clipPathUnits="userSpaceOnUse" id="clipPath2075">
+                <path d="M 0,512 H 512 V 0 H 0 Z" id="path2073" />
+            </clipPath>
+            <clipPath clipPathUnits="userSpaceOnUse" id="clipPath2095">
+                <path d="M 0,512 H 512 V 0 H 0 Z" id="path2093" />
+            </clipPath>
+        </defs>
+        <mask id="custom">
+            <rect id="bg" x="0" y="0" width="100%" height="100%" fill="white" />
+            <g transform="matrix(1.3333333,0,0,-1.3333333,0,682.66667)" />
+        </mask>
+        <g mask="url(#custom)">
+            <g id="g2067" transform="matrix(1.3333333,0,0,-1.3333333,0,682.66667)">
+                <g id="g2069">
+                    <g id="g2071" clip-path="url(#clipPath2075)">
+                        <g id="g2077" transform="translate(256.1255,347)">
+                            <path d="M 0,0 V -332"
+                                style="fill:none;stroke:#000000;stroke-width:30;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+                                id="path2079" />
+                        </g>
+                        <g id="g2081" transform="translate(256.1255,226)">
+                            <path d="m 0,0 -75.125,75 h -144 l 75.083,-75 v -211 h 288 V 0 l 74.917,75 h -144 L 0,0"
+                                style="fill:none;stroke:#000000;stroke-width:30;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+                                id="path2083" />
+                        </g>
+                    </g>
+                </g>
+                <g id="g2085" transform="translate(112.1255,226)">
+                    <path d="M 0,0 H 288"
+                        style="fill:none;stroke:#000000;stroke-width:30;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+                        id="path2087" />
+                </g>
+                <g id="g2089">
+                    <g id="g2091" clip-path="url(#clipPath2095)">
+                        <g id="g2097" transform="translate(256.1255,347)">
+                            <path
+                                d="M 0,0 C 0,82.843 67.157,150 150,150 150,67.157 82.843,0 0,0 -82.843,0 -150,67.157 -150,150 -67.157,150 0,82.843 0,0"
+                                style="fill:none;stroke:#000000;stroke-width:30;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+                                id="path2099" />
+                        </g>
+                        <g id="g2101" transform="translate(112.0419,165)">
+                            <path d="M 0,0 H 84.084 V -90 H 0"
+                                style="fill:none;stroke:#000000;stroke-width:30;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+                                id="path2103" />
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </svg>
+
 
     <svg v-else-if="name === 'logout'" height="512" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg">
         <g id="ARROW_48" data-name="ARROW 48">
@@ -305,8 +359,9 @@
         </g>
     </svg>
 
-    <svg v-else-if="name == 'checked'" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-        y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+    <svg v-else-if="name == 'checked'" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
+        style="enable-background:new 0 0 512 512;" xml:space="preserve">
         <g>
             <g>
                 <path d="M497.36,69.995c-7.532-7.545-19.753-7.558-27.285-0.032L238.582,300.845l-83.522-90.713
@@ -315,16 +370,15 @@
 			C504.873,89.761,504.886,77.54,497.36,69.995z" />
             </g>
         </g>
+    <g>
         <g>
-            <g>
-                <path d="M492.703,236.703c-10.658,0-19.296,8.638-19.296,19.297c0,119.883-97.524,217.407-217.407,217.407
+            <path d="M492.703,236.703c-10.658,0-19.296,8.638-19.296,19.297c0,119.883-97.524,217.407-217.407,217.407
 			c-119.876,0-217.407-97.524-217.407-217.407c0-119.876,97.531-217.407,217.407-217.407c10.658,0,19.297-8.638,19.297-19.296
 			C275.297,8.638,266.658,0,256,0C114.84,0,0,114.84,0,256c0,141.154,114.84,256,256,256c141.154,0,256-114.846,256-256
 			C512,245.342,503.362,236.703,492.703,236.703z" />
-            </g>
         </g>
-    </svg>
-</template>
+    </g>
+</svg></template>
 
 <script>
 export default {

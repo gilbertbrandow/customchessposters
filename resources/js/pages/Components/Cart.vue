@@ -9,7 +9,7 @@
                 No items in your cart
             </li>
             <li v-else v-for="item in this.cart">
-                <template v-if="item.type == 'Poster'">
+                <template v-if="item.type == 'poster'">
                     <Poster :poster="item" :controls="{'small': true}" environment="/images/environments/builder-mockup.jpeg" />
                     <div class="content">
                         <h3 v-text="item.name"></h3>
@@ -22,7 +22,6 @@
                             <input type="number" min="1" :value="item.quantity" @change="this.updateCart(item.itemId, false, $event.target.value)"/>
                             <button class="text__link" type="submit" @click="this.updateCart(item.itemId, true)">Remove item</button>
                         </div>
-
                     </div>
                 </template>
             </li>
