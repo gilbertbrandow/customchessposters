@@ -20,7 +20,6 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SavedPosterController;
 use App\Http\Controllers\RecipientController;
 use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\WebhookController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -212,7 +211,17 @@ Route::middleware('checkout')->group(function () {
         ->name('payment.show');
 });
 
-Route::get('/checkout/test', [OrderController::class, 'test']); 
+Route::get('/checkout/test', [OrderController::class, 'test']);
+
+Route::get('/image-test', function () {
+
+    $im = (new \Imagick('https://bredablickgruppen.se/wp-content/themes/bredablickgruppen2022/images/bredablickgruppen-logo.svg')); 
+    $im->setImageFormat("png");
+    $im->resizeImage(200, 200, 1, 0);
+    header("Content-Type: image/jpeg");
+
+    return '<img src="data:image/jpg;base64,'.base64_encode($im->getImageBlob()).'" alt="" />'; 
+});
 
 
 /*
