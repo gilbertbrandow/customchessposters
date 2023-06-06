@@ -215,12 +215,15 @@ Route::get('/checkout/test', [OrderController::class, 'test']);
 
 Route::get('/image-test', function () {
 
-    $im = (new \Imagick('https://bredablickgruppen.se/wp-content/themes/bredablickgruppen2022/images/bredablickgruppen-logo.svg')); 
+    $im = new \Imagick(); 
+    $im->setResolution(1000,1000); 
+    $im->setSize(1000, 1000);
+    $im->setCompressionQuality(100);
+    $im->readImage('images/ccp-icn-brown.svg');
     $im->setImageFormat("png");
-    $im->resizeImage(200, 200, 1, 0);
-    header("Content-Type: image/jpeg");
+    $im->writeImage ("uploads/posters/poster.png");
 
-    return '<img src="data:image/jpg;base64,'.base64_encode($im->getImageBlob()).'" alt="" />'; 
+    return /* $im->getSize(); */'<img src="/uploads/posters/poster.png" alt="" />'; 
 });
 
 

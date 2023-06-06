@@ -8,6 +8,7 @@ use App\Models\Poster;
 use App\Models\PosterUser;
 use App\Models\User;
 
+
 class PosterService
 {
 
@@ -31,14 +32,13 @@ class PosterService
         if (!$poster) {
 
             //Check if admin or the id of the poster has any relationship with either a cart, saved poster or game of another user
-            if (User::find($userId, 'admin')->admin || (
-                !Game::where('poster_id', '=', $id)->first()
-                && !PosterUser::where('poster_id', '=', $id)->where('user_id', '!=', $userId)->first()
-                && !Cart::hasPosterNotUser($id, [$userId, $sessionToken])->get())
+            if (
+                User::find($userId, 'admin')->admin || (!Game::where('poster_id', '=', $id)->first()
+                    && !PosterUser::where('poster_id', '=', $id)->where('user_id', '!=', $userId)->first()
+                    && !Cart::hasPosterNotUser($id, [$userId, $sessionToken])->get())
             ) {
                 //Either user is admin or no relationship found to any game, user or cart except for current
                 $poster = Poster::find($id)->update($posterData);
-
             } else {
                 $poster = Poster::create($posterData);
             }
@@ -54,11 +54,21 @@ class PosterService
         return $poster;
     }
 
-    public function generatePNG()
+    public function generatePNG(Poster $poster, $svg_string = null)
     {
-        
-        $path = "";
+        //Make a call to another service to generate svg
+        $svg = $svg_string ?? $this->generateSVG($poster);
 
-        return $path;
+        //Convert svg to png
+        $image = new \Imagick(); 
+        
+
+        //Upload PNG to laravel
+
+        //Return path to that png
+
+        $path = "/test/path/" . $poster->id;
+
+        return $svg;
     }
 }
