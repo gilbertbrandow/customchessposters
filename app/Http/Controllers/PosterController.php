@@ -42,7 +42,7 @@ class PosterController extends Controller
     {
 
         //Call service class method to create png
-        $poster = $service->createPng($request->posterData, $request->savedName, Auth::id());
+        $poster = $service->generatePNG($request->posterData, $request->savedName, Auth::id());
 
         //Call serivce class method to place order at printful
         $response = Http::withHeaders(['Authorization' => 'Bearer ' . env('PRINTFUL_SK')])->get($this->endpoint . 'stores');
@@ -50,5 +50,11 @@ class PosterController extends Controller
         $content = json_decode($response->body())->result[0];
 
         dd($content->name);
+    }
+
+    public function single($id) {
+
+        $poster = Poster::find($id); 
+        return Inertia::render('Components/Poster', compact('poster'));
     }
 }

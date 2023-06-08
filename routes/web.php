@@ -211,19 +211,29 @@ Route::middleware('checkout')->group(function () {
         ->name('payment.show');
 });
 
+
+/*
+|--------------------------------------------------------------------------
+| Testing routes
+|--------------------------------------------------------------------------
+*/
+
+
+Route::get('/poster-single/{id}', [PosterController::class, 'single']); 
+
 Route::get('/checkout/test', [OrderController::class, 'test']);
 
 Route::get('/image-test', function () {
 
-    $im = new \Imagick(); 
-    $im->setResolution(1000,1000); 
+    $im = new \Imagick();
+    $im->setResolution(1000, 1000);
     $im->setSize(1000, 1000);
     $im->setCompressionQuality(100);
     $im->readImage('images/ccp-icn-brown.svg');
     $im->setImageFormat("png");
-    $im->writeImage ("uploads/posters/poster.png");
+    $im->writeImage(public_path("uploads/posters/poster.png"));
 
-    return /* $im->getSize(); */'<img src="/uploads/posters/poster.png" alt="" />'; 
+    return /* $im->getSize(); */ '<img src="/uploads/posters/poster.png" alt="" />';
 });
 
 

@@ -54,21 +54,30 @@ class PosterService
         return $poster;
     }
 
-    public function generatePNG(Poster $poster, $svg_string = null)
+    public function generatePNG(Poster $poster, $pathSVG = null)
     {
-        //Make a call to another service to generate svg
-        $svg = $svg_string ?? $this->generateSVG($poster);
+
+        //Generate svg file if not exists
+        $pathSVG = $pathSVG ?? $this->generateSVG($poster); 
+        $pathPNG = 'uploads/posters/' + $poster->id; 
 
         //Convert svg to png
-        $image = new \Imagick(); 
-        
+        $im = new \Imagick(); 
+        $im->readImage($pathSVG); 
+        $im->setCompressionQuality(100); 
+        $im->setImageFormat('png32');
 
-        //Upload PNG to laravel
+        //Upload image to path
+        $im->writeImage(public_path($pathPNG));
 
-        //Return path to that png
+        return $pathPNG; 
+    }
 
-        $path = "/test/path/" . $poster->id;
+    public function generateSVG(Poster $poster) {
 
-        return $svg;
+        //generate svg file and write to temp file
+        $path = ''; 
+
+        return $path; 
     }
 }
