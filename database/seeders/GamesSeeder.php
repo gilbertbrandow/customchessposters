@@ -315,6 +315,18 @@ class GamesSeeder extends Seeder
                 'opening_id' => 28,
             ],
 
+            [
+                'poster_id' => 28,
+                'name' => 'Max Euwe proves The Power Of Connected Passed Pawns',
+                'description' => 'In thrilling match that saw Alexander Alekhine eventually be dethroned by Euwe, this game 26 played a pivotal role in tipping the scales. Max Euwe put the power of passed pawns on full display, which he gained in exchange for a piece.',
+                'date' => '1935-12-03',
+                'white_player' => 47,
+                'black_player' => 48,
+                'world_championship_game' => 1,
+                'opening_id' => 29,
+            ],
+
+
 
         ];
 

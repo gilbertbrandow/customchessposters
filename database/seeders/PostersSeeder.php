@@ -538,6 +538,24 @@ class PostersSeeder extends Seeder
                 'where' => 'Online',
             ],
 
+
+            [
+                'theme' => 1,
+                'orientation' => 1,
+                'starting_position' => 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                'pgn' => '1. d4 e6 2. c4 f5 3. g3 Bb4+ 4. Bd2 Be7 5. Bg2 Nf6 6. Nc3 O-O 7. Nf3 Ne4 8. O-O b6 9. Qc2 Bb7 10. Ne5 Nxc3 11. Bxc3 Bxg2 12. Kxg2 Qc8 13. d5 d6 14. Nd3 e5 15. Kh1 c6 16. Qb3 Kh8 17. f4 e4 18. Nb4 c5 19. Nc2 Nd7 20. Ne3 Bf6 21. Nxf5 Bxc3 22. Nxd6 Qb8 23. Nxe4 Bf6 24. Nd2 g5 25. e4 gxf4 26. gxf4 Bd4 27. e5 Qe8 28. e6 Rg8 29. Nf3 Qg6 30. Rg1 Bxg1 31. Rxg1 Qf6 32. Ng5 Rg7 33. exd7 Rxd7 34. Qe3 Re7 35. Ne6 Rf8 36. Qe5 Qxe5 37. fxe5 Rf5 38. Re1 h6 39. Nd8 Rf2 40. e6 Rd2 41. Nc6 Re8 42. e7 b5 43. Nd8 Kg7 44. Nb7 Kf6 45. Re6+ Kg5 46. Nd6 Rxe7 47. Ne4+',
+                'diagram_position' => 41,
+                'fen' => 'r1q2r1k/p2n2pp/1p1p1b2/2pP1N2/2P1pP2/1QB3P1/PP2P2P/R4R1K b - - 0 21',
+                'result' => '1-0',
+                'title' => 'The Pearl of Zandvoort',
+                'white_player' => 'Max Euwe',
+                'black_player' => 'Alexander Alekhine',
+                'white_title' => 'GM',
+                'black_title' => 'GM',
+                'when' => 'World Championship Match, 1935.12.03 Round 26',
+                'where' => 'Netherlands',
+            ],
+
         ];
 
         foreach ($posters as $poster) {

@@ -249,6 +249,17 @@ class PlayersSeeder extends Seeder
                 'country' => 'Brazil',
             ],
 
+            [
+                'name' => 'Euwe, Max',
+                'country' => 'Netherlands',
+            ],
+
+            [
+                'name' => 'Alekhine, Alexander',
+                'country' => 'France',
+            ],
+
+
 
         ]; 
 
