@@ -173,6 +173,11 @@ class OpeningsSeeder extends Seeder
                 'name' => "Dutch Defense: Nimzo-Dutch. Alekhine Variation",
             ],
 
+            [
+                'eco' => 'B22',
+                'name' => "Sicilian Defense: Alapin Variation. Barmen Defense Modern Line",
+            ],
+
         ];
 
         foreach ($openings as $opening) {

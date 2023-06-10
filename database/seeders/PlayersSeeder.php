@@ -259,7 +259,11 @@ class PlayersSeeder extends Seeder
                 'country' => 'France',
             ],
 
-
+            [
+                'name' => 'Deep Blue',
+                'country' => 'USA',
+                'computer' => true, 
+            ],
 
         ]; 
 
