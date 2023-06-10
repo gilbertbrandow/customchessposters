@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 75); 
             $table->string('country', 25);
+            $table->boolean('computer')->nullable();
             $table->timestamps();
         });
     }

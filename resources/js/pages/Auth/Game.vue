@@ -121,6 +121,9 @@
                 <label v-text="'Country of birth'" for="playerCountry" class="field__label"></label>
                 <input v-model="player.country" class="field" id="playerCountry" placeholder="Vatican State" />
             </div>
+
+            <div class="is--margin-top"><input v-model="player.computer" type="checkbox" id="computer"> <label
+                    for="computer">Is the player a computer?</label></div>
             <button type="submit" class="button is--black is--margin-top">Create player</button>
         </form>
     </section>
@@ -151,6 +154,7 @@ let opening = useForm({
 let player = useForm({
     name: '',
     country: '',
+    computer: false, 
 });
 
 let submitGame = () => {

@@ -16,7 +16,7 @@ class PlayerController extends Controller
 
     public function create (Request $request) {
 
-        Player::create(['name' => $request->name, 'country' => $request->country]);
+        Player::create(['name' => $request->name, 'country' => $request->country, 'computer' => $request->computer]);
         return redirect()->back()->with('success', 'Player created');
     }
 
