@@ -538,7 +538,6 @@ class PostersSeeder extends Seeder
                 'where' => 'Online',
             ],
 
-
             [
                 'theme' => 1,
                 'orientation' => 1,
@@ -556,7 +555,6 @@ class PostersSeeder extends Seeder
                 'where' => 'Netherlands',
             ],
 
-
             [
                 'theme' => 0,
                 'orientation' => 1,
@@ -567,7 +565,7 @@ class PostersSeeder extends Seeder
                 'fen' => '6rk/1N3p1p/5q2/3Qn3/3p4/PP3p1P/5PP1/2R3K1 w - - 0 31',
                 'result' => '1-0',
                 'title' => 'A New Sheriff In Town',
-                'white_player' => 'Deep Blue (Computer)',
+                'white_player' => 'Deep Blue',
                 'black_player' => 'Garry Kasparov',
                 'black_rating' => 2775,
                 'black_title' => 'GM',

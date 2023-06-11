@@ -264,7 +264,6 @@ class PlayersSeeder extends Seeder
                 'country' => 'USA',
                 'computer' => true, 
             ],
-
         ]; 
 
         foreach($players as $player) {

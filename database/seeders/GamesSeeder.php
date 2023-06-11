@@ -331,7 +331,7 @@ class GamesSeeder extends Seeder
                 'name' => 'A Sign Of What Was To Come',
                 'description' => 'This was the first game to be won by a chess-playing computer against a reigning world champion under normal chess tournament conditions, and in particular, classical time controls.',
                 'date' => '1996-02-10',
-                'white_player' => 53,
+                'white_player' => 49,
                 'black_player' => 24,
                 'world_championship_game' => 0,
                 'opening_id' => 30,
