@@ -175,8 +175,9 @@
             fill="rgb(0,0,0)" />
     </svg>
 
-    <svg v-else-if="name === 'sustainable-shipping'"  xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" version="1.1" id="svg2061"
-        width="682.66669" height="682.66669" viewBox="0 0 682.66669 682.66669">
+    <svg v-else-if="name === 'sustainable-shipping'" xmlns="http://www.w3.org/2000/svg"
+        xmlns:svg="http://www.w3.org/2000/svg" version="1.1" id="svg2061" width="682.66669" height="682.66669"
+        viewBox="0 0 682.66669 682.66669">
         <defs id="defs2065">
             <clipPath clipPathUnits="userSpaceOnUse" id="clipPath2075">
                 <path d="M 0,512 H 512 V 0 H 0 Z" id="path2073" />
@@ -370,15 +371,50 @@
 			C504.873,89.761,504.886,77.54,497.36,69.995z" />
             </g>
         </g>
-    <g>
         <g>
-            <path d="M492.703,236.703c-10.658,0-19.296,8.638-19.296,19.297c0,119.883-97.524,217.407-217.407,217.407
+            <g>
+                <path d="M492.703,236.703c-10.658,0-19.296,8.638-19.296,19.297c0,119.883-97.524,217.407-217.407,217.407
 			c-119.876,0-217.407-97.524-217.407-217.407c0-119.876,97.531-217.407,217.407-217.407c10.658,0,19.297-8.638,19.297-19.296
 			C275.297,8.638,266.658,0,256,0C114.84,0,0,114.84,0,256c0,141.154,114.84,256,256,256c141.154,0,256-114.846,256-256
 			C512,245.342,503.362,236.703,492.703,236.703z" />
+            </g>
         </g>
-    </g>
-</svg></template>
+    </svg>
+
+    <svg v-else-if="name == 'computer'" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"
+        xml:space="preserve" width="512" height="512">
+        <g>
+            <g>
+                <path
+                    style="fill:none;stroke:#000000;stroke-width:40;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;"
+                    d="&#10;&#9;&#9;&#9;M409.232,357.896c40.802-36.429,62.511-86.38,61.805-141.387c-1.401-109.101-92.474-197.352-202.593-196.503&#10;&#9;&#9;&#9;c-1.566,0.012-3.128,0.036-4.685,0.072C151.831,22.68,66.786,120.827,79.61,230.774c0.595,5.102,0.967,8.702,0.967,9.719&#10;&#9;&#9;&#9;c0,0.19,0.007,0.379,0.007,0.569l-37.995,68.144c-4.401,7.894,0.477,17.717,9.474,19.079l26.222,4.421l7.994,79.435&#10;&#9;&#9;&#9;c5.637,23.133,28.811,37.654,52.313,32.743c21.133-4.416,64.15-8.817,74.463-9.005v26.061c0,16.601,13.457,30.058,30.058,30.058&#10;&#9;&#9;&#9;h44.136c16.601,0,30.058-13.457,30.058-30.058v-54.549" />
+            </g>
+            <g>
+                <g>
+
+                    <line
+                        style="fill:none;stroke:#000000;stroke-width:40;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;"
+                        x1="353.529" y1="44.192" x2="353.529" y2="171.409" />
+
+                    <ellipse
+                        style="fill:none;stroke:#000000;stroke-width:40;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;"
+                        cx="353.529" cy="209.408" rx="35.443" ry="35.461" />
+                </g>
+                <g>
+
+                    <ellipse
+                        style="fill:none;stroke:#000000;stroke-width:40;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;"
+                        cx="186.817" cy="209.408" rx="35.443" ry="35.461" />
+
+                    <polyline
+                        style="fill:none;stroke:#000000;stroke-width:40;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;"
+                        points="&#10;&#9;&#9;&#9;&#9;260.27,23.677 260.27,168.508 218.664,191.249 &#9;&#9;&#9;" />
+                </g>
+            </g>
+        </g>
+    </svg>
+</template>
 
 <script>
 export default {
