@@ -44,6 +44,13 @@
                     </div>
                 </div>
                 <span>{{ this.poster.white_name }}</span>
+
+                <div v-if="this.poster.white_computer" class="computer">
+                    <Icon name="computer"></Icon>
+                    <div class="info">
+                        <div></div><span>Player is not human</span>
+                    </div>
+                </div>
             </div>
             -
             <div class="player">
@@ -54,6 +61,12 @@
                     </div>
                 </div>
                 <span>{{ this.poster.black_name }}</span>
+                <div v-if="this.poster.black_computer" class="computer">
+                    <Icon name="computer"></Icon>
+                    <div class="info">
+                        <div></div><span>Player is not human</span>
+                    </div>
+                </div>
             </div>
         </div>
 

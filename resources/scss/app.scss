@@ -1269,6 +1269,22 @@ h4 {
             position: relative;
             justify-content: center;
         }
+
+        .computer {
+            width: 1.5em;
+            height: 1.5em;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #ebebeb;
+            border-radius: 1.5em;
+
+            svg {
+                width: 1em;
+                height: 1em;
+            }
+        }
     }
 }
 
@@ -1792,7 +1808,44 @@ ul.game__collection {
                     }
                 }
 
+                .computer {
+                    width: 1.5em;
+                    height: 1.5em;
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background-color: #ebebeb;
+                    border-radius: 1.5em;
+
+                    svg {
+                        width: 1em;
+                        height: 1em;
+                    }
+
+                    .info {
+                        background-color: whitesmoke;
+                        border-color: rgba(0, 0, 0, 0.75);
+                        color: #000;
+                        z-index: 2;
+                        top: 1.5em;
+                        margin-top: -0.25em;
+
+                        div {
+                            background-color: whitesmoke;
+                            border-color: rgba(0, 0, 0, 0.75);
+                        }
+                    }
+                }
+
                 .flag:hover {
+                    .info {
+                        opacity: 1;
+                        margin-top: 0em;
+                    }
+                }
+
+                .computer:hover {
                     .info {
                         opacity: 1;
                         margin-top: 0em;
@@ -1927,7 +1980,13 @@ ul.game__collection {
                 }
             }
 
-            .player:hover {
+            .flag:hover {
+                .info {
+                    opacity: 1;
+                }
+            }
+
+            .computer:hover {
                 .info {
                     opacity: 1;
                 }
@@ -2218,7 +2277,6 @@ input[type="radio"] + label {
     }
 
     .is--flex {
-
         flex-direction: column;
         align-items: flex-start;
         row-gap: 0em;
