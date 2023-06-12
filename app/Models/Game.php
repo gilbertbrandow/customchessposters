@@ -90,8 +90,10 @@ class Game extends Model
                 'openings.eco as opening_eco',
                 'white_player.name AS white_name',
                 'white_player.country AS white_country',
+                'white_player.computer AS white_computer', 
                 'black_player.name AS black_name',
                 'black_player.country AS black_country',
+                'black_player.computer AS black_computer', 
             )
             ->when($request->search !== null, function ($query) use ($request) {
 
