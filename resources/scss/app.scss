@@ -170,6 +170,10 @@ footer {
     display: flex;
     justify-content: center;
 
+    .card {
+        margin-bottom: 2em;
+    }
+
     .container {
         padding-bottom: 2em;
     }
@@ -2465,7 +2469,6 @@ label {
     display: flex;
     column-gap: 8em;
     align-items: center;
-    margin-bottom: 2em;
 
     h2 {
         margin-bottom: 0em;

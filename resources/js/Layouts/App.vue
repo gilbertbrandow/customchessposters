@@ -1,7 +1,7 @@
 <template>
   <nav class="is--scrolled">
     <div class="container">
-      <Logotype/>
+      <Logotype />
       <div class="nav__wrp">
         <div class="dropdown"><img src="" /> USA / USD $</div>
         <Link @mouseover="resetFlash()" :href="route('user.index')" v-if="$page.props.auth" class="nav__button">
@@ -12,13 +12,15 @@
         </div>
         <Icon name="user" />
         </Link>
-        <Link @mouseover="resetFlash()" :href="route('login.index')" v-else class="nav__button" preserve-scroll preserve-state>
+        <Link @mouseover="resetFlash()" :href="route('login.index')" v-else class="nav__button" preserve-scroll
+          preserve-state>
         <div class="info">
           <div></div>Sign in
         </div>
         <Icon name="user" />
         </Link>
-        <Link @mouseover="resetFlash()" :href="route('savedPoster.index')" class="nav__button" preserve-scroll preserve-state>
+        <Link @mouseover="resetFlash()" :href="route('savedPoster.index')" class="nav__button" preserve-scroll
+          preserve-state>
         <div class="info" :class="{ active: $page.props.flash.saved.success }">
           <div></div> {{ $page.props.flash.saved.success ? $page.props.flash.saved.success : 'Your saved designs' }}
         </div>
@@ -42,7 +44,10 @@
   </main>
   <footer>
     <div class="container">
-      <Newsletter />
+
+      <div class="card">
+        <Newsletter />
+      </div>
       <div class="footer__bottom">
         <div>All rättigheter reserverade © {{ new Date().getFullYear() }} Custom Chess Poster. Powered by <a
             href="https://0100.se">0100</a></div>
