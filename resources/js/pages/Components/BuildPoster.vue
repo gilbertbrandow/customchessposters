@@ -246,8 +246,8 @@
                                     <label for="gameTitle" class="field__label">Title</label>
                                     <div v-if="!posterBuilder.titleValid" class="field__error">Title is too long</div>
                                     <input v-model="poster.title" class="field"
-                                        :class="{ 'is--error': !posterBuilder.titleValid }" name="gameTitle"
-                                        id="gameTitle" placeholder="Lorem ipsum dolor set ami" />
+                                        :class="{ 'is--error': !posterBuilder.titleValid }" name="gameTitle" id="gameTitle"
+                                        placeholder="Lorem ipsum dolor set ami" />
                                 </div>
 
                                 <div class="field__wrp">
@@ -332,14 +332,21 @@
                                 </div>
                                 <div class="field__wrp">
                                     <label for="gameWhen" class="field__label">When</label>
-                                    <input maxlength="40" v-model="poster.when" class="field" name="gameTitle"
-                                        id="gameWhen" placeholder="Tata Steel, January 2023. Round 3" />
+                                    <input maxlength="40" v-model="poster.when" class="field" name="gameTitle" id="gameWhen"
+                                        placeholder="Tata Steel, January 2023. Round 3" />
                                 </div>
                             </div>
                         </div>
                         <div :class="[posterBuilder.currStep == 4 ? 'is--active' : '']" class="module__step">
                             <h3>5. The Poster</h3>
                             <p>How big would you like your poster?</p>
+
+                            <ul class="sizes">
+                                <li :class="this.form.variant == 1 ? 'is--active' : ''"><button @click="this.form.variant = 1">21 x 30cm</button></li>
+                                <li :class="this.form.variant == 2 ? 'is--active' : ''"><button @click="this.form.variant = 2">50 x 70</button></li>
+                                <li :class="this.form.variant == 3 ? 'is--active' : ''"><button @click="this.form.variant = 3">61 x 91cm</button></li>
+                                <li :class="this.form.variant == 4 ? 'is--active' : ''"><button @click="this.form.variant = 4">70 x 100cm</button></li>
+                            </ul>
                         </div>
                     </div>
                     <div class="module__navigation">
@@ -354,8 +361,10 @@
                                 <Icon name="arrow-right" />
                             </button>
 
-                            <PosterAddToCart v-if="this.$data.posterBuilder.currStep == 4"
-                                :poster="this.$data.poster" />
+                            <button v-if="this.$data.posterBuilder.currStep == 4" class="button is--black" :disabled="!this.form.variant" @click="this.addToCart()">
+                                {{ !this.form.variant ? 'Add to Cart (You need to choose a size)' : 'Add to cart' }}
+                                <Icon :name="!this.form.variant ? '' : 'cart'" />
+                            </button>
 
                         </div>
                         <div class="module__progress-wrp">
@@ -397,14 +406,13 @@
 import { Chess } from 'chess.js'
 import axios from 'axios'
 import Poster from './Poster.vue'
-import PosterAddToCart from "./PosterAddToCart.vue";
+import { useForm } from '@inertiajs/vue3'
 
 
 export default {
 
     components: {
         Poster,
-        PosterAddToCart,
     },
 
     data() {
@@ -463,6 +471,11 @@ export default {
                 when: "Tata Steel Chess, January 2014. Round 3",
                 where: "Wijk aan Zee, Netherlands",
             },
+
+            form: useForm({
+                poster_data: null,
+                variant: null,
+            }),
 
             originalPoster: {},
 
@@ -875,6 +888,17 @@ export default {
                 this.$data.chessGame.loadPgn(this.$data.poster.pgn);
             }
         },
+
+        addToCart() {
+
+            this.form.poster_data = this.poster; 
+
+            this.form.post('/product', {
+                preserveState: true, 
+                preserveScroll: true, 
+                onSuccess: () => this.form.variant = false,
+            });
+        }
 
     },
 
