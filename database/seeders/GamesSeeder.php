@@ -337,6 +337,18 @@ class GamesSeeder extends Seeder
                 'opening_id' => 30,
             ],
 
+            [
+                'poster_id' => 30,
+                'name' => 'Firouzja Puts On A Clinic',
+                'description' => 'In a explosive chess game, the young up and coming talent puts on a show from start to finish.',
+                'date' => '2020-03-22',
+                'white_player' => 50,
+                'black_player' => 51,
+                'world_championship_game' => 0,
+                'opening_id' => 31,
+            ],
+
+
         ];
 
         foreach ($games as $game) {

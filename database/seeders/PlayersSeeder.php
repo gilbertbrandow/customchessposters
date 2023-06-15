@@ -262,12 +262,22 @@ class PlayersSeeder extends Seeder
             [
                 'name' => 'Deep Blue',
                 'country' => 'USA',
-                'computer' => true, 
+                'computer' => true,
             ],
-        ]; 
 
-        foreach($players as $player) {
-            Player::create($player); 
+            [
+                'name' => 'Firouzja, Alireza',
+                'country' => 'Iran',
+            ],
+
+            [
+                'name' => 'Zarkovic, Mila',
+                'country' => 'Serbia',
+            ],
+        ];
+
+        foreach ($players as $player) {
+            Player::create($player);
         }
     }
 }

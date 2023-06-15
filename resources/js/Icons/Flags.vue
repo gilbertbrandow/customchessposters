@@ -351,8 +351,9 @@
         <rect x="341.337" y="85.331" style="fill:#D80027;" width="170.663" height="341.337" />
     </svg>
 
-    <svg v-else-if="country == 'Brazil'" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-        y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+    <svg v-else-if="country == 'Brazil'" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
+        style="enable-background:new 0 0 512 512;" xml:space="preserve">
         <rect y="85.331" style="fill:#6DA544;" width="512" height="341.337" />
         <polygon style="fill:#FFDA44;" points="256,161.678 384,255.994 256,350.31 128,255.994 " />
         <circle style="fill:#F0F0F0;" cx="256" cy="255.994" r="53.894" />
@@ -363,6 +364,69 @@
                 d="M308.895,266.32c0.649-3.344,1-6.793,1-10.326c0-29.765-24.13-53.895-53.895-53.895
 		c-22.21,0-41.275,13.438-49.527,32.623c7.293-1.51,14.845-2.307,22.579-2.307C260.356,232.416,288.674,245.427,308.895,266.32z" />
         </g>
+    </svg>
+
+
+    <svg v-else-if="country == 'Iran'" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
+        style="enable-background:new 0 0 512 512;" xml:space="preserve">
+        <rect y="85.337" style="fill:#F0F0F0;" width="512" height="341.326" />
+        <rect y="85.337" style="fill:#6DA544;" width="512" height="113.775" />
+        <g>
+            <rect y="312.888" style="fill:#D80027;" width="512" height="113.775" />
+            <path style="fill:#D80027;"
+                d="M300.345,220.383h-17.863c0.148,1.963,0.232,3.944,0.232,5.936c0,13.207-3.301,26.01-9.057,35.122
+		c-1.775,2.812-4.759,6.78-8.753,9.456v-50.514h-17.809v50.514c-3.994-2.677-6.977-6.646-8.753-9.456
+		c-5.756-9.113-9.056-21.915-9.056-35.122c0-1.992,0.085-3.974,0.232-5.936h-17.863c-0.115,1.953-0.177,3.932-0.177,5.936
+		c0.001,36.617,19.557,65.299,44.523,65.299s44.522-28.682,44.522-65.299C300.522,224.315,300.459,222.336,300.345,220.383z" />
+        </g>
+        <g>
+            <rect x="44.522" y="184.275" style="fill:#F0F0F0;" width="22.261" height="24.421" />
+            <rect y="184.275" style="fill:#F0F0F0;" width="22.261" height="24.421" />
+            <rect x="89.043" y="184.275" style="fill:#F0F0F0;" width="22.261" height="24.421" />
+            <rect x="133.565" y="184.275" style="fill:#F0F0F0;" width="22.261" height="24.421" />
+            <rect x="178.087" y="184.275" style="fill:#F0F0F0;" width="22.261" height="24.421" />
+            <rect x="222.609" y="184.275" style="fill:#F0F0F0;" width="22.261" height="24.421" />
+            <rect x="267.13" y="184.275" style="fill:#F0F0F0;" width="22.261" height="24.421" />
+            <rect x="311.652" y="184.275" style="fill:#F0F0F0;" width="22.261" height="24.421" />
+            <rect x="356.174" y="184.275" style="fill:#F0F0F0;" width="22.261" height="24.421" />
+            <rect x="400.696" y="184.275" style="fill:#F0F0F0;" width="22.261" height="24.421" />
+            <rect x="445.217" y="184.275" style="fill:#F0F0F0;" width="22.261" height="24.421" />
+            <rect x="489.739" y="184.275" style="fill:#F0F0F0;" width="22.261" height="24.421" />
+            <rect x="44.522" y="302.191" style="fill:#F0F0F0;" width="22.261" height="25.534" />
+            <rect y="302.191" style="fill:#F0F0F0;" width="22.261" height="25.534" />
+            <rect x="89.043" y="302.191" style="fill:#F0F0F0;" width="22.261" height="25.534" />
+            <rect x="133.565" y="302.191" style="fill:#F0F0F0;" width="22.261" height="25.534" />
+            <rect x="178.087" y="302.191" style="fill:#F0F0F0;" width="22.261" height="25.534" />
+            <rect x="222.609" y="302.191" style="fill:#F0F0F0;" width="22.261" height="25.534" />
+            <rect x="267.13" y="302.191" style="fill:#F0F0F0;" width="22.261" height="25.534" />
+            <rect x="311.652" y="302.191" style="fill:#F0F0F0;" width="22.261" height="25.534" />
+            <rect x="356.174" y="302.191" style="fill:#F0F0F0;" width="22.261" height="25.534" />
+            <rect x="400.696" y="302.191" style="fill:#F0F0F0;" width="22.261" height="25.534" />
+            <rect x="445.217" y="302.191" style="fill:#F0F0F0;" width="22.261" height="25.534" />
+            <rect x="489.739" y="302.191" style="fill:#F0F0F0;" width="22.261" height="25.534" />
+        </g>
+    </svg>
+
+    <svg v-else-if="country == 'Serbia'" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+        y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+        <rect y="85.331" style="fill:#0052B4;" width="512" height="341.337" />
+        <rect y="85.331" style="fill:#D80027;" width="512" height="113.775" />
+        <rect y="312.882" style="fill:#F0F0F0;" width="512" height="113.775" />
+        <path style="fill:#D80027;" d="M129.468,181.793v85.136c0,48.429,63.267,63.267,63.267,63.267S256,315.356,256,266.929v-85.136
+	H129.468z" />
+        <g>
+            <polygon style="fill:#FFDA44;" points="155.634,196.634 229.835,196.634 229.835,166.953 214.994,174.373 192.733,152.113 
+		170.474,174.373 155.634,166.953 	" />
+            <polygon style="fill:#FFDA44;" points="241.16,278.782 192.929,230.551 144.698,278.782 160.439,294.522 192.929,262.032 
+		225.419,294.522 	" />
+        </g>
+        <path style="fill:#F0F0F0;" d="M241.16,233.734h-22.504c1.266-2.184,2.001-4.713,2.001-7.418c0-8.196-6.645-14.84-14.84-14.84
+	c-5.663,0-10.581,3.172-13.083,7.836c-2.502-4.663-7.421-7.836-13.083-7.836c-8.195,0-14.84,6.644-14.84,14.84
+	c0,2.706,0.736,5.235,2.001,7.418h-22.114c0,8.196,7.139,14.84,15.334,14.84h-0.494c0,8.196,6.644,14.84,14.84,14.84
+	c0,7.257,5.211,13.286,12.094,14.576l-11.694,26.401c5.603,2.278,11.727,3.544,18.149,3.544c6.422,0,12.545-1.266,18.149-3.544
+	l-11.694-26.401c6.883-1.29,12.094-7.319,12.094-14.576c8.196,0,14.84-6.644,14.84-14.84h-0.494
+	C234.021,248.574,241.16,241.93,241.16,233.734z" />
     </svg>
 </template>
 

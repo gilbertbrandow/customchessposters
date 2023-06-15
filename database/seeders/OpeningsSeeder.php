@@ -178,6 +178,12 @@ class OpeningsSeeder extends Seeder
                 'name' => "Sicilian Defense: Alapin Variation. Barmen Defense Modern Line",
             ],
 
+
+            [
+                'eco' => 'B50',
+                'name' => "Sicilian Defense: Modern Variations",
+            ],
+
         ];
 
         foreach ($openings as $opening) {
