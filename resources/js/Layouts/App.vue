@@ -44,11 +44,8 @@
   </main>
   <footer>
     <div class="container">
-
-      <div class="card">
-        <Newsletter />
-      </div>
-      <div class="footer__bottom">
+      <Newsletter />
+      <div class="footer__bottom is--margin-top-2">
         <div>All rättigheter reserverade © {{ new Date().getFullYear() }} Custom Chess Poster. Powered by <a
             href="https://0100.se">0100</a></div>
         <Link :href="route('home.shipping')">Shipping information</Link>
