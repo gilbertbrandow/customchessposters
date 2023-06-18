@@ -7,11 +7,10 @@ createInertiaApp({
     if(name.includes('/'))
     {
 
-      let split = name.split('/');
-      let subdir = split[0];
-      let file = split[1];
-      
-      return import(`./Pages/${subdir}/${file}.vue`);
+      let path = name.split('/');
+
+      if(path.length == 2) return import(`./Pages/${path[0]}/${path[1]}.vue`);
+      if(path.length == 3) return import(`./Pages/${path[0]}/${path[1]}/${path[2]}.vue`);
 
     } else {
       return import(`./Pages/${name}.vue`);
