@@ -55,6 +55,6 @@ class PosterController extends Controller
     public function single($id) {
 
         $poster = Poster::find($id); 
-        return Inertia::render('Components/Poster', compact('poster'));
+        return Inertia::render('Components/Poster/PosterSVG', compact('poster'));
     }
 }
