@@ -132,6 +132,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/saved-posters', [SavedPosterController::class, 'index'])
         ->name('savedPoster.index');
+
+    Route::get('/orders', [OrderController::class, 'show'])
+        ->name('order.show');
 });
 
 
@@ -219,7 +222,7 @@ Route::middleware('checkout')->group(function () {
 */
 
 
-Route::get('/poster-single/{id}', [PosterController::class, 'single']); 
+Route::get('/poster-single/{id}', [PosterController::class, 'single']);
 
 Route::get('/checkout/test', [OrderController::class, 'test']);
 

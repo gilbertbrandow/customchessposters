@@ -25,8 +25,7 @@ class OrderController extends Controller
 
     public function show(Request $request) {
 
-        return Inertia::render('Checkout/Confirmed', [
-        ]); 
+        return Inertia::render('Auth/Orders'); 
     }
 
     public function test() {

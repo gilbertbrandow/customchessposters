@@ -20,9 +20,9 @@
                 </Link>
             </li>
             <li :class="{ 'is--active': $page.url === '/orders' }">
-                <Link :href="route('home.index')">
+                <Link :href="route('order.show')">
                 <div>
-                    <Icon name="bookmark"></Icon>
+                    <Icon name="order"></Icon>
                 </div>Orders
                 </Link>
             </li>
