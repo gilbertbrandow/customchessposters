@@ -58,26 +58,44 @@ class PosterService
     {
 
         //Generate svg file if not exists
-        $pathSVG = $pathSVG ?? $this->generateSVG($poster); 
-        $pathPNG = 'uploads/posters/' + $poster->id; 
+        $pathSVG = $pathSVG ?? $this->generateSVG($poster);
+        $pathPNG = 'newfile.png';
 
         //Convert svg to png
-        $im = new \Imagick(); 
-        $im->readImage($pathSVG); 
-        $im->setCompressionQuality(100); 
+        $im = new \Imagick();
+        $im->readImage($pathSVG);
+        $im->setCompressionQuality(100);
         $im->setImageFormat('png32');
 
         //Upload image to path
         $im->writeImage(public_path($pathPNG));
 
-        return $pathPNG; 
+        return $pathPNG;
     }
 
-    public function generateSVG(Poster $poster) {
+    public function generateSVG(Poster $poster)
+    {
 
         //generate svg file and write to temp file
-        $path = ''; 
+        $path = 'images/poster.svg';
+        $bgcolor = '#FBF6EE';
+        $color = '#41251D';
+        $font = 'Custom Serif By Ayaka Ito';
 
-        return $path; 
+        $svg = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 2000 3000" style="background-color: ' . $bgcolor . ';  fill: ' . $color . '; font-family: ' . $font . ';">';
+
+        $svg .= '<text id="title" font-size="150" text-anchor="middle" font-weight="400">
+                    <tspan x="1000" y="300">Testing row 1</tspan>
+                    <tspan x="1000" y="500">Testing row 2</tspan>
+                    </text>';
+
+        $svg .= '</svg>';
+
+        //Write to file
+        $myfile = fopen($path, "w") or die("Unable to open file!");
+        fwrite($myfile, $svg);
+        fclose($myfile);
+
+        return $path;
     }
 }
