@@ -60,12 +60,19 @@ class PosterService
         //Generate svg file if not exists
         $pathSVG = $pathSVG ?? $this->generateSVG($poster);
         $pathPNG = 'newfile.png';
+        $fontPath = public_path('Custom-Serif.ttf');
 
         //Convert svg to png
         $im = new \Imagick();
+
+         // Set the background color
+        $backgroundColor = new \ImagickPixel('white');
+        $im->setBackgroundColor($backgroundColor);
+
         $im->readImage($pathSVG);
+        $im->setFont($fontPath);
         $im->setCompressionQuality(100);
-        $im->setImageFormat('png32');
+        $im->setImageFormat('png');
 
         //Upload image to path
         $im->writeImage(public_path($pathPNG));
@@ -78,16 +85,23 @@ class PosterService
 
         //generate svg file and write to temp file
         $path = 'images/poster.svg';
-        $bgcolor = '#FBF6EE';
-        $color = '#41251D';
+        $bgcolor = 'rgb(0, 0, 0)';
+        $color = '#000000';
         $font = 'Custom Serif By Ayaka Ito';
 
         $svg = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 2000 3000" style="background-color: ' . $bgcolor . ';  fill: ' . $color . '; font-family: ' . $font . ';">';
 
         $svg .= '<text id="title" font-size="150" text-anchor="middle" font-weight="400">
-                    <tspan x="1000" y="300">Testing row 1</tspan>
+                    <tspan x="1000" y="300">Testing row</tspan>
                     <tspan x="1000" y="500">Testing row 2</tspan>
                     </text>';
+
+        $svg .= "<style>
+         @font-face {
+           font-family: 'Custom Serif By Ayaka Ito';
+           src: local('Custom Serif By Ayaka Ito'), url(data:font/ttf;base64)
+         }
+         </style>";
 
         $svg .= '</svg>';
 
