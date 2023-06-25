@@ -84,6 +84,13 @@
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap');
+
+@font-face {
+    font-family: Custom Serif By Ayaka Ito;
+    src: url("../../../../fonts/Custom-Serif-By-Ayaka-Ito-Italic.ttf")
+        format("truetype-variations");
+    font-weight: 1 999;
+}
 </style>
 
 <script>
