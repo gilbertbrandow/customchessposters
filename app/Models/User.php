@@ -52,5 +52,10 @@ class User extends Authenticatable
         return $this->belongsToMany(Poster::class)->withTimestamps();
     }
 
+    public function recipients()
+    {
+        return $this->belongsToMany(Recipient::class)->withTimestamps();
+    }
+
 
 }

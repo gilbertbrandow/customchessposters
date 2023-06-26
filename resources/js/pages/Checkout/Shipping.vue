@@ -5,7 +5,7 @@
             <label for="email" class="field__label">Email address</label>
             <div v-if="form.errors.email" v-text="form.errors.email" class="field__error"></div>
             <input v-model="form.email" class="field" name="email" id="email" placeholder="example@email.com"
-                :class="{ 'is--error': form.errors.email }" autocomplete="on"/>
+                :class="{ 'is--error': form.errors.email }" autocomplete="on" />
         </div>
 
         <h3 class="is--margin-top">Shipping address</h3>
@@ -37,13 +37,14 @@
         <div class="field__wrp">
             <label for="address1" class="field__label">Street Address</label>
             <div v-if="form.errors.address1" v-text="form.errors.address1" class="field__error"></div>
-            <input type="address" v-model="form.address1" class="field" id="address1" name="address1" placeholder="19749 Dearborn St"
-                :class="{ 'is--error': form.errors.address1 }" autocomplete="on"/>
+            <input type="address" v-model="form.address1" class="field" id="address1" name="address1"
+                placeholder="19749 Dearborn St" :class="{ 'is--error': form.errors.address1 }" autocomplete="on" />
         </div>
         <div class="field__wrp">
             <label for="address2" class="field__label">Address line 2 (Optional)</label>
 
-            <input type="address" v-model="form.address2" class="field" id="address2" name="address2" placeholder="Apt, Suite, Bldg." />
+            <input type="address" v-model="form.address2" class="field" id="address2" name="address2"
+                placeholder="Apt, Suite, Bldg." />
         </div>
         <div class="row">
             <div class="field__wrp">
@@ -60,6 +61,8 @@
                     :class="{ 'is--error': form.errors.city }" />
             </div>
         </div>
+
+        <div v-if="$page.props.auth" class="is--margin-top"><input v-model="form.save" type="checkbox" id="save"> <label for="save">Do you want to save this address for future purchases?</label></div>
 
         <div class="field__wrp">
             <button :disabled="form.processing" class="button is--black is--less-border-radius is--flex is--space-between">
@@ -93,6 +96,7 @@ export default {
                 address2: this.$page.props.address ? this.$page.props.address.address2 : '',
                 zip: this.$page.props.address ? this.$page.props.address.zip : '',
                 city: this.$page.props.address ? this.$page.props.address.city : '',
+                save: false, 
             }),
             states: null,
             rates: {},
@@ -105,7 +109,7 @@ export default {
 
             this.states = null;
 
-            if(!this.country) return; 
+            if (!this.country) return;
 
             let countryArray = this.country.split(', ');
 

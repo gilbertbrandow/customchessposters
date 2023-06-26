@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\ShippingMethod;
 use App\Models\Order;
 use App\Models\Recipient;
+use App\Models\User;
 use App\Services\CheckoutService;
+use Auth;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -47,7 +49,15 @@ class RecipientController extends Controller
             return redirect()->back()->withErrors(['shippingMethod' => $e->getMessage()]);
         }
 
-        Order::find($request->route('orderId'))->update(['recipient_id' => Recipient::firstOrCreate($request->all())->id]);
+        //Create recipient
+        $recipient = Recipient::create($request->all()); 
+
+        //Save recipient to user
+        if(Auth::check() && $request->save) {
+            User::find(Auth::id())->recipients()->attach($recipient->id);
+        }
+
+        Order::find($request->route('orderId'))->update(['recipient_id' => $recipient->id]);
 
         ShippingMethod::where('order_id', $request->route('orderId'))->delete();
 
