@@ -54,7 +54,7 @@ class PosterService
         return $poster;
     }
 
-    public function generatePNG(Poster $poster, $pathSVG = null)
+    public function generatePNG(Poster $poster)
     {
 
         $path = 'image.png'; 
@@ -62,7 +62,7 @@ class PosterService
         //Generate svg file if not exists
         $im = Image::make(public_path('/uploads/posters/svg/poster2.svg'));
 
-        $im->text('A Queen in Pursuit', 1000, 300, function($font) {
+        $im->text($poster->title, 1000, 300, function($font) {
             $font->file(public_path('/Custom-Serif-By-Ayaka-Ito-regular.ttf'));
             $font->size(150);
             $font->align('center');
@@ -85,6 +85,22 @@ class PosterService
             $font->valign('middle');
             $font->color('rgb(65, 37, 29)');
         });
+
+        //Generate columns and rows indication
+        for($x = 0; $x < 8; $x++) {
+
+            $im->text(chr($poster->orientation ? 97 + $x : 104 - $x), (190 + 200 * $x), 930, function($font) {
+                $font->file(public_path('/Custom-Serif-By-Ayaka-Ito-regular.ttf'));
+                $font->size(40);
+                $font->color('rgb(65, 37, 29)');
+            });
+
+            $im->text($poster->orientation ? 8 - $x : $x + 1  . '.', 1815, (980 + 200 * $x), function($font) {
+                $font->file(public_path('/Custom-Serif-By-Ayaka-Ito-regular.ttf'));
+                $font->size(40);
+                $font->color('rgb(65, 37, 29)');
+            });
+        }
 
         $im->text("Position after White's move 12. Nxf7, Inviting the King for a walk", 1000, 2600, function($font) {
             $font->file(public_path('/Custom-Serif-By-Ayaka-Ito-regular.ttf'));
