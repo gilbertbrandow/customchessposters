@@ -26,12 +26,14 @@ class PosterController extends Controller
         return Inertia::render('CreatePoster', compact('editPoster'));
     }
 
-    public function create(Request $request) {
+    public function create(Request $request)
+    {
 
         return (new PosterService())->create($request->posterData);
     }
 
-    public function update(Request $request) {
+    public function update(Request $request)
+    {
 
         $poster = (new PosterService())->update($request->posterData, Auth::id(), $request->session()->get('_token'));
 
@@ -52,11 +54,12 @@ class PosterController extends Controller
         dd($content->name);
     }
 
-    public function single($id) {
+    public function single($id)
+    {
 
-        $poster = Poster::find($id); 
+        $poster = Poster::find($id);
 
-        return (new PosterService())->generatePNG($poster);
+        return (new PosterService())->generatePNG($poster, public_path('/uploads/posters/svg/poster4.svg'));
 
         return Inertia::render('Components/Poster/PosterSVG', compact('poster'));
     }

@@ -7,7 +7,7 @@ use App\Models\Game;
 use App\Models\Poster;
 use App\Models\PosterUser;
 use App\Models\User;
-
+use Image;
 
 class PosterService
 {
@@ -57,27 +57,47 @@ class PosterService
     public function generatePNG(Poster $poster, $pathSVG = null)
     {
 
+        $path = 'image.png'; 
+
         //Generate svg file if not exists
-        $pathSVG = $pathSVG ?? $this->generateSVG($poster);
-        $pathPNG = 'newfile.png';
-        $fontPath = public_path('Custom-Serif.ttf');
+        $im = Image::make(public_path('/uploads/posters/svg/poster2.svg'));
 
-        //Convert svg to png
-        $im = new \Imagick();
+        $im->text('A Queen in Pursuit', 1000, 300, function($font) {
+            $font->file(public_path('/Custom-Serif-By-Ayaka-Ito-regular.ttf'));
+            $font->size(150);
+            $font->align('center');
+            $font->valign('middle');
+            $font->color('rgb(65, 37, 29)');
+        });
 
-         // Set the background color
-        $backgroundColor = new \ImagickPixel('white');
-        $im->setBackgroundColor($backgroundColor);
+        $im->text('GM Polgar, Judit - GM Mamedyarov, Shakhriyar', 1000, 500, function($font) {
+            $font->file(public_path('/Custom-Serif-By-Ayaka-Ito-regular.ttf'));
+            $font->size(70);
+            $font->align('center');
+            $font->valign('middle');
+            $font->color('rgb(65, 37, 29)');
+        });
 
-        $im->readImage($pathSVG);
-        $im->setFont($fontPath);
-        $im->setCompressionQuality(100);
-        $im->setImageFormat('png');
+        $im->text('Slovenia, Bled | Bled ol (Men), 2002.10.29 Round 4.2', 1000, 600, function($font) {
+            $font->file(public_path('/Custom-Serif-By-Ayaka-Ito-regular.ttf'));
+            $font->size(40);
+            $font->align('center');
+            $font->valign('middle');
+            $font->color('rgb(65, 37, 29)');
+        });
 
-        //Upload image to path
-        $im->writeImage(public_path($pathPNG));
+        $im->text("Position after White's move 12. Nxf7, Inviting the King for a walk", 1000, 2600, function($font) {
+            $font->file(public_path('/Custom-Serif-By-Ayaka-Ito-regular.ttf'));
+            $font->size(32);
+            $font->align('center');
+            $font->valign('middle');
+            $font->color('rgb(65, 37, 29)');
+        });
 
-        return $pathPNG;
+
+        $im->save($path);
+
+        return $path;
     }
 
     public function generateSVG(Poster $poster)
@@ -111,5 +131,6 @@ class PosterService
         fclose($myfile);
 
         return $path;
+    
     }
 }
