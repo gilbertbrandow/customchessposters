@@ -8,6 +8,7 @@ use App\Models\Poster;
 use App\Models\PosterUser;
 use App\Models\User;
 use Image;
+use function App\formatPGN;
 
 class PosterService
 {
@@ -57,29 +58,41 @@ class PosterService
     public function generatePNG(Poster $poster)
     {
 
-        $path = 'image.png'; 
+        $path = 'image.png';
+        $fontPath = public_path('../resources/fonts/Custom-Serif-By-Ayaka-Ito-regular.ttf'); 
+        $title = explode("\n", wordwrap($poster->title, 26));
+
+        $pgn = formatPGN($poster->pgn); 
+
+        dd($pgn); 
 
         //Generate svg file if not exists
-        $im = Image::make(public_path('/uploads/posters/svg/poster2.svg'));
+        $im =  Image::canvas(2000, 3000, 'rgb(251, 246, 238)');
 
-        $im->text($poster->title, 1000, 300, function($font) {
-            $font->file(public_path('/Custom-Serif-By-Ayaka-Ito-regular.ttf'));
-            $font->size(150);
-            $font->align('center');
-            $font->valign('middle');
-            $font->color('rgb(65, 37, 29)');
-        });
+        $im->insert(public_path('/uploads/posters/svg/poster15.svg')); 
 
-        $im->text('GM Polgar, Judit - GM Mamedyarov, Shakhriyar', 1000, 500, function($font) {
-            $font->file(public_path('/Custom-Serif-By-Ayaka-Ito-regular.ttf'));
+
+        for ($i = 0; $i < count($title); $i++) {
+
+            $im->text($title[$i], 1000, 300 + $i * 200, function ($font) use ($fontPath) {
+                $font->file($fontPath);
+                $font->size(150);
+                $font->align('center');
+                $font->valign('middle');
+                $font->color('rgb(65, 37, 29)');
+            });
+        }
+
+        $im->text($poster->white_title . ' ' . $poster->white_player . ' - ' . $poster->black_title . ' ' . $poster->black_player, 1000, 500 + 200 * (count($title) - 1), function ($font) use ($fontPath) {
+            $font->file($fontPath);
             $font->size(70);
             $font->align('center');
             $font->valign('middle');
             $font->color('rgb(65, 37, 29)');
         });
 
-        $im->text('Slovenia, Bled | Bled ol (Men), 2002.10.29 Round 4.2', 1000, 600, function($font) {
-            $font->file(public_path('/Custom-Serif-By-Ayaka-Ito-regular.ttf'));
+        $im->text($poster->where . ($poster->where && $poster->when ? ' | ' : '') . $poster->when, 1000, 600 + 200 * (count($title) - 1), function ($font) use ($fontPath) {
+            $font->file($fontPath);
             $font->size(40);
             $font->align('center');
             $font->valign('middle');
@@ -87,23 +100,23 @@ class PosterService
         });
 
         //Generate columns and rows indication
-        for($x = 0; $x < 8; $x++) {
+        for ($x = 0; $x < 8; $x++) {
 
-            $im->text(chr($poster->orientation ? 97 + $x : 104 - $x), (190 + 200 * $x), 930, function($font) {
-                $font->file(public_path('/Custom-Serif-By-Ayaka-Ito-regular.ttf'));
+            $im->text(chr($poster->orientation ? 97 + $x : 104 - $x), (190 + 200 * $x), 930, function ($font) use ($fontPath) {
+                $font->file($fontPath);
                 $font->size(40);
                 $font->color('rgb(65, 37, 29)');
             });
 
-            $im->text($poster->orientation ? 8 - $x : $x + 1  . '.', 1815, (980 + 200 * $x), function($font) {
-                $font->file(public_path('/Custom-Serif-By-Ayaka-Ito-regular.ttf'));
+            $im->text($poster->orientation ? 8 - $x : $x + 1  . '.', 1815, (980 + 200 * $x), function ($font) use ($fontPath) {
+                $font->file($fontPath);
                 $font->size(40);
                 $font->color('rgb(65, 37, 29)');
             });
         }
 
-        $im->text("Position after White's move 12. Nxf7, Inviting the King for a walk", 1000, 2600, function($font) {
-            $font->file(public_path('/Custom-Serif-By-Ayaka-Ito-regular.ttf'));
+        $im->text("Position after White's move 12. Nxf7, Inviting the King for a walk", 1000, 2600, function ($font) use ($fontPath) {
+            $font->file($fontPath);
             $font->size(32);
             $font->align('center');
             $font->valign('middle');
@@ -147,6 +160,5 @@ class PosterService
         fclose($myfile);
 
         return $path;
-    
     }
 }
