@@ -44,13 +44,56 @@
   </main>
   <footer>
     <div class="container">
-      <Newsletter />
-      <div class="footer__bottom is--margin-top-2">
-        <div>All rättigheter reserverade © {{ new Date().getFullYear() }} Custom Chess Poster. Powered by <a
-            href="https://0100.se">0100</a></div>
-        <Link :href="route('home.shipping')">Shipping information</Link>
-        <Link :href="route('home.return')">Return policy</Link>
-        <Link :href="route('home.privacy')">Privacy policy</Link>
+      <div class="footer__top">
+        <div class="footer__info">
+          <Logotype />
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.
+            Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.
+          </p>
+          <PaymentMethods/>
+        </div>
+        <div>
+          <h4>Links</h4>
+          <ul>
+            <li>
+              <Link :href="route('faq.index')">Frequently Asked Questions</Link>
+            </li>
+            <li>
+              <Link :href="route('home.shipping')">Create your own poster</Link>
+            </li>
+            <li>
+              <Link :href="route('game.index')">Game collection</Link>
+            </li>
+            <li>
+              <Link :href="route('user.index')">My Account</Link>
+            </li>
+            <li>
+              <Link :href="route('contact.index')">Contact</Link>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h4>Terms & Conditions</h4>
+          <ul>
+            <li>
+              <Link :href="route('home.shipping')">Shipping information</Link>
+            </li>
+            <li>
+              <Link :href="route('home.return')">Return policy</Link>
+            </li>
+            <li>
+              <Link :href="route('home.privacy')">Privacy policy</Link>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h4>Social</h4>
+          <a href="mailto:info@customchessposters.com">info@customchessposters.com</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>All rättigheter reserverade © {{ new Date().getFullYear() }} Custom Chess Poster. </span>
+        <span>Powered by <a href="https://0100.se">0100</a></span>
       </div>
     </div>
   </footer>
@@ -61,6 +104,7 @@ import { Link } from "@inertiajs/vue3";
 import Newsletter from "../Pages/Components/Newsletter.vue"
 import Overlay from "../Pages/Components/Overlay.vue"
 import Logotype from "../Pages/Components/Logotype.vue"
+import PaymentMethods from "../Pages/Components/PaymentMethods.vue"
 import axios from 'axios'
 
 export default {
@@ -68,7 +112,8 @@ export default {
     Link,
     Newsletter,
     Overlay,
-    Logotype
+    Logotype, 
+    PaymentMethods
   },
 
   methods: {
