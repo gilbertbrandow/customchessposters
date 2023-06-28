@@ -179,16 +179,67 @@ footer {
     }
 }
 
+.footer__top {
+    margin-bottom: 2em;
+    display: flex;
+    column-gap: 4em;
+
+    .footer__info {
+        flex: 1;
+
+        .newsletter-wrp {
+            font-size: 0.8em;
+            margin-top: 2em;
+            max-width: 35em;
+        }
+        
+        p {
+            font-size: 0.8em;
+            max-width: 30em;
+        }
+    }
+
+    ul {
+        margin-top: 0px;
+        display: flex;
+        flex-direction: column;
+        row-gap: 0.5em;
+    }
+}
+
+.payment-methods {
+
+    display: flex;
+    align-items: center;
+    column-gap: 0.5em;
+
+    div {
+        height: 1.5em;
+
+        svg {
+            height: 100%;
+        }
+    }
+
+    .is--badge {
+        background-color: #fff;
+        border-radius: 0.25em;
+        padding: 0.25em;
+        height: 1em; 
+    }
+
+}
+
 .footer__bottom {
     height: 4em;
     background-color: #000;
     color: #fff;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     border-radius: 1em;
     padding-left: 2em;
     padding-right: 2em;
-    display: flex;
     column-gap: 0.75em;
 }
 
