@@ -66,6 +66,7 @@ class PosterService
         |--------------------------------------------------------------------------
         |
         */
+        
         if(file_exists($path = public_path('uploads/poster' . $poster->id . '.png'))
         && filemtime($path) > strtotime($poster->updated_at)) return $path;
 
