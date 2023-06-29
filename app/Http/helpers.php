@@ -2,7 +2,7 @@
 
 namespace App;
 
-function formatPGN(string $pgn)
+function formatPGN(string $pgn): array
 {
 
     $rows = []; 
@@ -36,4 +36,29 @@ function formatPGN(string $pgn)
     }
 
     return $rows;
+}
+
+function diagramInfo(string $pgn, string $moveComment, int $diagramPosition): string
+{
+
+    if(!$diagramPosition) return '';
+
+    //Loop through the array until finding correct move number and set starting index of that move
+    $indexOfMove = strpos($pgn, (round($diagramPosition / 2)) . '.') + strlen(strval(round($diagramPosition / 2))) + 2;
+
+    //Get index of next space
+    $spaceIndex = strpos($pgn, ' ', $indexOfMove);
+
+    if($spaceIndex == -1) $spaceIndex = strlen($pgn); 
+
+    //Depending on if half move or not, look until next ' ', or from next ' ' to the one after that
+    if ($diagramPosition % 2 != 0) {
+        //White move
+        return "Position after White's move " . round($diagramPosition / 2) . '. ' . substr($pgn, $indexOfMove, $spaceIndex - $indexOfMove). ', ' . $moveComment;
+    } else {
+        //Black move
+        $nextSpaceIndex = (strpos($pgn, ' ', $spaceIndex + 1) > 0) ? strpos($pgn, ' ', $spaceIndex + 1) : $spaceIndex;
+        
+        return "Position after Black's move " . round($diagramPosition / 2) . '. ... ' . substr($pgn, $spaceIndex + 1, $nextSpaceIndex - $spaceIndex) . ', ' . $moveComment;
+    } 
 }
