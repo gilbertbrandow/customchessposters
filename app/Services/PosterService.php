@@ -186,7 +186,6 @@ class PosterService
             } else if(preg_match('~[0-9]+~', $poster->fen[$i])) {
                 $column += (int)$poster->fen[$i];
             } else {
-                
                 $im->insert(public_path('/themes/New Waves/'. (ctype_lower($poster->fen[$i]) ? 'Black' : 'White') .'/'. strtolower($poster->fen[$i]) .'.svg'), 'top-left', 200 * ($column + 1), 27 + 200 * $row  + $boardY = ((min(2900 - (40 * (count($pgn))), 2860) - (isset($title[1]) ? 800 : 600)) / 2) - (isset($title[1]) ? 0 : 200));
                 $column++;
             
@@ -208,7 +207,7 @@ class PosterService
             $font->color('rgb(65, 37, 29)');
         });
 
-        $im->save($path = 'poster' . $poster->id . '.png');
+        $im->save($path = 'uploads/poster' . $poster->id . '.png');
 
         return $path;
     }
