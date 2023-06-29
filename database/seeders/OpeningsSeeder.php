@@ -184,6 +184,11 @@ class OpeningsSeeder extends Seeder
                 'name' => "Sicilian Defense: Modern Variations",
             ],
 
+            [
+                'eco' => 'E44',
+                'name' => "Nimzo-Indian Defense: Fischer Variation",
+            ],
+
         ];
 
         foreach ($openings as $opening) {

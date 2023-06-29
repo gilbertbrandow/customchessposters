@@ -274,6 +274,16 @@ class PlayersSeeder extends Seeder
                 'name' => 'Zarkovic, Mila',
                 'country' => 'Serbia',
             ],
+
+            [
+                'name' => 'Simutowe, Amon',
+                'country' => 'Zambia',
+            ],
+
+            [
+                'name' => 'Crouch, Colin',
+                'country' => 'England',
+            ],
         ];
 
         foreach ($players as $player) {

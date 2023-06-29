@@ -592,6 +592,27 @@ class PostersSeeder extends Seeder
                 'where' => 'Sharjah UAE',
             ],
 
+            [
+                'theme' => 0,
+                'orientation' => 1,
+                'starting_position' => 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                'pgn' => '1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. e3 b6 5. Ne2 Ne4 6. Qc2 f5 7. a3 Bxc3+ 8. Nxc3 Bb7 9. Nxe4 Bxe4 10. Qc3 O-O 11. f3 Bb7 12. Be2 Qh4+ 13. g3 Qh5 14. O-O d6 15. b4 Nc6 16. Rf2 Ne7 17. Bb2 Rf7 18. Raf1 Re8 19. a4 Qg6 20. Ra1 h5 21. Rg2 h4 22. Kf2 Qh5 23. a5 b5 24. a6 Ba8 25. d5 exd5 26. cxb5 h3 27. Rgg1 f4 28. exf4 Nf5 29. Qd2 d4 30. g4 Qh4+ 31. Rg3 Nxg3 32. hxg3 Qe7 33. Bxd4 Qe6 34. Rh1 Qd5 35. Bd1 Qxb5 36. Rxh3 Qc4 37. f5 Bc6 38. f6 Bb5 39. Rh1 c5 40. Bc3 cxb4 41. fxg7 Rfe7 42. Rh8+ Kf7 43. Bb3 Re2+ 44. Qxe2 Rxe2+ 45. Kg1',
+                'diagram_position' => 63,
+                'move_comment' => 'Pawn cube in exchange for an exchange',
+                'fen' => 'b3r1k1/p1p2rp1/P2p4/1P6/1P1p1PPq/5PPp/1B1QBK2/R7 b - - 0 32',
+                'result' => '1-0',
+                'title' => 'Pawn Cube For The Win',
+                'white_player' => 'Amon Simutowe',
+                'black_player' => 'Colin S Crouch',
+                'white_rating' => 2322,
+                'black_rating' => 2448,
+                'white_title' => 'GM',
+                'black_title' => 'IM',
+                'when' => 'MSO Ron Banwell (8.6)',
+                'where' => 'London, England',
+            ],
+
+
         ];
 
         foreach ($posters as $poster) {

@@ -348,6 +348,17 @@ class GamesSeeder extends Seeder
                 'opening_id' => 31,
             ],
 
+            [
+                'poster_id' => 31,
+                'name' => 'The First Zambian GM Takes On A Unique Pawn Structure',
+                'description' => 'Simutowe is the first GM from sub-saharan Africa. In this game from the British championships Amon finished with 6½/11, but also produced this gem of a game.',
+                'date' => '2000-01-01',
+                'white_player' => 52,
+                'black_player' => 53,
+                'world_championship_game' => 0,
+                'opening_id' => 32,
+            ],
+
 
         ];
 

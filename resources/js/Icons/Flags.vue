@@ -408,8 +408,9 @@
         </g>
     </svg>
 
-    <svg v-else-if="country == 'Serbia'" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-        y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+    <svg v-else-if="country == 'Serbia'" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
+        style="enable-background:new 0 0 512 512;" xml:space="preserve">
         <rect y="85.331" style="fill:#0052B4;" width="512" height="341.337" />
         <rect y="85.331" style="fill:#D80027;" width="512" height="113.775" />
         <rect y="312.882" style="fill:#F0F0F0;" width="512" height="113.775" />
@@ -427,6 +428,18 @@
 	c0,7.257,5.211,13.286,12.094,14.576l-11.694,26.401c5.603,2.278,11.727,3.544,18.149,3.544c6.422,0,12.545-1.266,18.149-3.544
 	l-11.694-26.401c6.883-1.29,12.094-7.319,12.094-14.576c8.196,0,14.84-6.644,14.84-14.84h-0.494
 	C234.021,248.574,241.16,241.93,241.16,233.734z" />
+    </svg>
+
+    <svg v-else-if="country == 'Zambia'" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
+        style="enable-background:new 0 0 512 512;" xml:space="preserve">
+        <rect y="85.331" style="fill:#496E2D;" width="512" height="341.337" />
+        <path style="fill:#FF9811;" d="M490.668,195.476h-48c0-8.836-7.164-16-16-16s-16,7.164-16,16h-48c0,8.836,7.697,16,16.533,16h-0.533
+	c0,8.836,7.162,16,16,16c0,8.836,7.162,16,16,16h32c8.836,0,16-7.164,16-16c8.836,0,16-7.164,16-16h-0.533
+	C482.972,211.476,490.668,204.312,490.668,195.476z" />
+        <rect x="341.337" y="255.994" style="fill:#D80027;" width="56.888" height="170.663" />
+        <rect x="455.112" y="255.994" style="fill:#FF9811;" width="56.888" height="170.663" />
+        <rect x="398.225" y="255.994" width="56.888" height="170.663" />
     </svg>
 </template>
 
