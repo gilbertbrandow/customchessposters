@@ -66,15 +66,6 @@ class PosterService
 
         /*
         |--------------------------------------------------------------------------
-        | Insert board and pieces
-        |--------------------------------------------------------------------------
-        |
-        */
-
-        $im->insert(public_path('/uploads/posters/svg/poster2.svg'));
-
-        /*
-        |--------------------------------------------------------------------------
         | Print the title
         |--------------------------------------------------------------------------
         |
@@ -146,6 +137,15 @@ class PosterService
 
         /*
         |--------------------------------------------------------------------------
+        | Insert board
+        |--------------------------------------------------------------------------
+        |
+        */
+
+        $im->insert(public_path('/themes/New Waves/board.svg'), 'top-left', 200, 27 + $boardY = ((min(2900 - (40 * (count($pgn))), 2860) - (isset($title[1]) ? 800 : 600)) / 2) - (isset($title[1]) ? 0 : 200));
+
+        /*
+        |--------------------------------------------------------------------------
         | Print the rows and columns indication
         |--------------------------------------------------------------------------
         |
@@ -153,18 +153,46 @@ class PosterService
 
         for ($x = 0; $x < 8; $x++) {
 
-            $im->text(chr($poster->orientation ? 97 + $x : 104 - $x), (190 + 200 * $x), 10 + $boardY = ((min(2900 - (40 * (count($pgn))), 2860) - (isset($title[1]) ? 800 : 600)) / 2) - (isset($title[1]) ? 0 : 200), function ($font) use ($italicFontPath) {
+            $im->text(chr($poster->orientation ? 97 + $x : 104 - $x), 5 + 200 * ($x + 1), 10 + $boardY, function ($font) use ($italicFontPath) {
                 $font->file($italicFontPath);
                 $font->size(40);
                 $font->color('rgb(65, 37, 29)');
             });
 
-            $im->text($poster->orientation ? 8 - $x : $x + 1  . '.', 1815, ($boardY + 70 + 200 * $x), function ($font) use ($italicFontPath) {
+            $im->text($poster->orientation ? 8 - $x : $x + 1  . '.', 1825, ($boardY + 70 + 200 * $x), function ($font) use ($italicFontPath) {
                 $font->file($italicFontPath);
                 $font->size(40);
                 $font->color('rgb(65, 37, 29)');
             });
         }
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | Insert pieces
+        |--------------------------------------------------------------------------
+        |
+        */
+
+        for($i = 0, $row = 0, $column = 0; $i < strlen($poster->fen); $i++) {
+
+            if($poster->fen[$i] == " ") {
+                break; 
+            } else if ($poster->fen[$i] == "/") {
+
+                $row++;
+                $column = 0;
+
+            } else if(preg_match('~[0-9]+~', $poster->fen[$i])) {
+                $column += (int)$poster->fen[$i];
+            } else {
+                
+                $im->insert(public_path('/themes/New Waves/'. (ctype_lower($poster->fen[$i]) ? 'Black' : 'White') .'/'. strtolower($poster->fen[$i]) .'.svg'), 'top-left', 200 * ($column + 1), 27 + 200 * $row  + $boardY = ((min(2900 - (40 * (count($pgn))), 2860) - (isset($title[1]) ? 800 : 600)) / 2) - (isset($title[1]) ? 0 : 200));
+                $column++;
+            
+            } 
+        }
+
 
         /*
         |--------------------------------------------------------------------------
