@@ -59,8 +59,9 @@ class PosterService
 
     public function generatePNG(Poster $poster): string
     {
-        $fontPath = public_path('../resources/fonts/Custom-Serif-By-Ayaka-Ito-Regular.ttf');
-        $italicFontPath = public_path('../resources/fonts/Custom-Serif-By-Ayaka-Ito-Italic.ttf');
+
+        $fonts['regular'] = public_path('../resources/fonts/Custom-Serif-By-Ayaka-Ito-Regular.ttf');
+        $fonts['italic'] = public_path('../resources/fonts/Custom-Serif-By-Ayaka-Ito-Italic.ttf');
 
         $im =  Image::canvas(2000, 3000, 'rgb(251, 246, 238)');
 
@@ -73,8 +74,8 @@ class PosterService
 
         for ($i = 0; $i < count($title = explode("\n", wordwrap($poster->title, 26))); $i++) {
 
-            $im->text($title[$i], 1000, 300 + $i * 200, function ($font) use ($fontPath) {
-                $font->file($fontPath);
+            $im->text($title[$i], 1000, 300 + $i * 200, function ($font) use ($fonts) {
+                $font->file($fonts['regular']);
                 $font->size(150);
                 $font->align('center');
                 $font->valign('middle');
@@ -91,8 +92,8 @@ class PosterService
 
         for ($i = 0; $i < count($pgn = formatPGN($poster->pgn)); $i++) {
 
-            $im->text($pgn[$i], 1000, 2900 - (40 * (count($pgn) - 1 - $i)), function ($font) use ($fontPath) {
-                $font->file($fontPath);
+            $im->text($pgn[$i], 1000, 2900 - (40 * (count($pgn) - 1 - $i)), function ($font) use ($fonts) {
+                $font->file($fonts['regular']);
                 $font->size(18);
                 $font->align('center');
                 $font->color('rgb(65, 37, 29)');
@@ -106,8 +107,8 @@ class PosterService
         |
         */
 
-        $im->text('| 1-0', 1000 + 3.7 * strlen($pgn[count($pgn) - 1]), 2900, function ($font) use ($fontPath) {
-            $font->file($fontPath);
+        $im->text('| 1-0', 1000 + 3.7 * strlen($pgn[count($pgn) - 1]), 2900, function ($font) use ($fonts) {
+            $font->file($fonts['regular']);
             $font->size(18);
             $font->align('left');
             $font->color('rgb(65, 37, 29)');
@@ -119,16 +120,16 @@ class PosterService
         |--------------------------------------------------------------------------
         |
         */
-        $im->text($poster->white_title . ' ' . $poster->white_player . ' - ' . $poster->black_title . ' ' . $poster->black_player, 1000, 500 + 200 * (count($title) - 1), function ($font) use ($fontPath) {
-            $font->file($fontPath);
+        $im->text($poster->white_title . ' ' . $poster->white_player . ' - ' . $poster->black_title . ' ' . $poster->black_player, 1000, 500 + 200 * (count($title) - 1), function ($font) use ($fonts) {
+            $font->file($fonts['regular']);
             $font->size(70);
             $font->align('center');
             $font->valign('middle');
             $font->color('rgb(65, 37, 29)');
         });
 
-        $im->text($poster->where . ($poster->where && $poster->when ? ' | ' : '') . $poster->when, 1000, 600 + 200 * (count($title) - 1), function ($font) use ($italicFontPath) {
-            $font->file($italicFontPath);
+        $im->text($poster->where . ($poster->where && $poster->when ? ' | ' : '') . $poster->when, 1000, 600 + 200 * (count($title) - 1), function ($font) use ($fonts) {
+            $font->file($fonts['italic']);
             $font->size(40);
             $font->align('center');
             $font->valign('middle');
@@ -153,14 +154,14 @@ class PosterService
 
         for ($x = 0; $x < 8; $x++) {
 
-            $im->text(chr($poster->orientation ? 97 + $x : 104 - $x), 5 + 200 * ($x + 1), 10 + $boardY, function ($font) use ($italicFontPath) {
-                $font->file($italicFontPath);
+            $im->text(chr($poster->orientation ? 97 + $x : 104 - $x), 5 + 200 * ($x + 1), 10 + $boardY, function ($font) use ($fonts) {
+                $font->file($fonts['regular']);
                 $font->size(40);
                 $font->color('rgb(65, 37, 29)');
             });
 
-            $im->text($poster->orientation ? 8 - $x : $x + 1  . '.', 1825, ($boardY + 70 + 200 * $x), function ($font) use ($italicFontPath) {
-                $font->file($italicFontPath);
+            $im->text($poster->orientation ? 8 - $x : $x + 1  . '.', 1825, ($boardY + 70 + 200 * $x), function ($font) use ($fonts) {
+                $font->file($fonts['regular']);
                 $font->size(40);
                 $font->color('rgb(65, 37, 29)');
             });
@@ -200,8 +201,8 @@ class PosterService
         |
         */
 
-        $im->text(diagramInfo($poster->pgn, $poster->move_comment, $poster->diagram_position), 1000, $boardY + 1690, function ($font) use ($fontPath) {
-            $font->file($fontPath);
+        $im->text(diagramInfo($poster->pgn, $poster->move_comment, $poster->diagram_position), 1000, $boardY + 1690, function ($font) use ($fonts) {
+            $font->file($fonts['italic']);
             $font->size(32);
             $font->align('center');
             $font->color('rgb(65, 37, 29)');

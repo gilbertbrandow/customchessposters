@@ -21,7 +21,7 @@
         </text>
 
         <!-- Where and when -->
-        <text id="meta" font-size="40" text-anchor="middle" x="1000" :y="title[1] ? 800 : 600">
+        <text id="meta" font-size="40" text-anchor="middle" x="1000" :y="title[1] ? 800 : 600" :style="{ 'font-family': (this.poster.theme == 0) ? 'Custom Serif By Ayaka Ito Italic' : '' }">
             <tspan>{{ poster.where }}</tspan>
             <tspan v-if="poster.where && poster.when"> | </tspan>
             <tspan>{{ poster.when }}</tspan>
@@ -53,7 +53,7 @@
             <Game ref="Game" :theme="this.$props.poster.theme" :fen="this.$props.poster.fen" />
 
             <!-- Diagram comment -->
-            <text id="comment" v-if="this.poster.pgn" y="1690" x="815" text-anchor="middle" font-size="32"
+            <text id="comment" v-if="this.poster.pgn" y="1690" x="815" text-anchor="middle" font-size="32" :style="{ 'font-family': (this.poster.theme == 0) ? 'Custom Serif By Ayaka Ito Italic' : '' }"
                 v-text="this.$props.poster.move_comment ? diagram_info + ', ' + this.$props.poster.move_comment: diagram_info"></text>
 
         </svg>
@@ -86,8 +86,15 @@
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap');
 
 @font-face {
-    font-family: Custom Serif By Ayaka Ito;
+    font-family: Custom Serif By Ayaka Ito Italic;
     src: url("../../../../fonts/Custom-Serif-By-Ayaka-Ito-Italic.ttf")
+        format("truetype-variations");
+    font-weight: 1 999;
+}
+
+@font-face {
+    font-family: Custom Serif By Ayaka Ito Regular;
+    src: url("../../../../fonts/Custom-Serif-By-Ayaka-Ito-Regular.ttf")
         format("truetype-variations");
     font-weight: 1 999;
 }
