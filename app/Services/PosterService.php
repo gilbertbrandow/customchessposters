@@ -60,6 +60,22 @@ class PosterService
     public function generatePNG(Poster $poster): string
     {
 
+        /*
+        |--------------------------------------------------------------------------
+        | Check if file exists and is up to date
+        |--------------------------------------------------------------------------
+        |
+        */
+        if(file_exists($path = public_path('uploads/poster' . $poster->id . '.png'))
+        && filemtime($path) > strtotime($poster->updated_at)) return $path;
+
+        /*
+        |--------------------------------------------------------------------------
+        | Start building image
+        |--------------------------------------------------------------------------
+        |
+        */
+
         $fonts['regular'] = public_path('../resources/fonts/Custom-Serif-By-Ayaka-Ito-Regular.ttf');
         $fonts['italic'] = public_path('../resources/fonts/Custom-Serif-By-Ayaka-Ito-Italic.ttf');
 
@@ -208,7 +224,7 @@ class PosterService
             $font->color('rgb(65, 37, 29)');
         });
 
-        $im->save($path = 'uploads/poster' . $poster->id . '.png');
+        $im->save($path);
 
         return $path;
     }

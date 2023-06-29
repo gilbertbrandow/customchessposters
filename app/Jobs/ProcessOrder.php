@@ -40,13 +40,13 @@ class ProcessOrder implements ShouldQueue
             if($item->product->type == 'poster') {
 
                 //Create and add PNG file to orderItem if poster
-                $item->file = (new PosterService($item->product->poster))->generatePNG(); 
+                $item->file = (new PosterService())->generatePNG($item->product->poster); 
                 $item->save(); 
             }
             
         }; 
 
-        (new OrderService($this->order))->sendOrderToPrintful();
+        //(new OrderService($this->order))->sendOrderToPrintful();
 
         //Update order status to 'processing'
         $this->order->status = 'fulfilling'; 
