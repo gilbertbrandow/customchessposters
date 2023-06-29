@@ -62,7 +62,7 @@ class OrderService
                         'quantity' => 1,
                         'files' => [
                             [
-                                'url' => 'http://example.com/files/posters/poster_1.jpg',
+                                'url' => 'https://ibb.co/YBymvdf',
                             ],
                         ],
                     ],

@@ -46,7 +46,7 @@ class ProcessOrder implements ShouldQueue
             
         }; 
 
-        //(new OrderService($this->order))->sendOrderToPrintful();
+        (new OrderService($this->order))->sendOrderToPrintful();
 
         //Update order status to 'processing'
         $this->order->status = 'fulfilling'; 
