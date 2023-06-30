@@ -66,9 +66,11 @@ class PosterService
         |--------------------------------------------------------------------------
         |
         */
-        
-        if(file_exists($path = public_path('uploads/poster' . $poster->id . '.png'))
-        && filemtime($path) > strtotime($poster->updated_at)) return $path;
+
+        if (
+            file_exists($path = public_path('uploads/poster' . $poster->id . '.png'))
+            && filemtime($path) > strtotime($poster->updated_at)
+        ) return $path;
 
         /*
         |--------------------------------------------------------------------------
@@ -107,7 +109,7 @@ class PosterService
         |
         */
 
-        for ($i = 0; $i < count($pgn = formatPGN($poster->pgn)); $i++) {
+        for ($i = 0; $i < count($pgn = ($poster->pgn ? formatPGN($poster->pgn) : [])); $i++) {
 
             $im->text($pgn[$i], 1000, 2900 - (40 * (count($pgn) - 1 - $i)), function ($font) use ($fonts) {
                 $font->file($fonts['regular']);
@@ -124,12 +126,14 @@ class PosterService
         |
         */
 
-        $im->text('| 1-0', 1000 + 3.7 * strlen($pgn[count($pgn) - 1]), 2900, function ($font) use ($fonts) {
-            $font->file($fonts['regular']);
-            $font->size(18);
-            $font->align('left');
-            $font->color('rgb(65, 37, 29)');
-        });
+        if ($poster->result) {
+            $im->text('| ' . $poster->result, 1000 + 3.7 * strlen($pgn[count($pgn) - 1]), 2900, function ($font) use ($fonts) {
+                $font->file($fonts['regular']);
+                $font->size(18);
+                $font->align('left');
+                $font->color('rgb(65, 37, 29)');
+            });
+        }
 
         /*
         |--------------------------------------------------------------------------
@@ -192,22 +196,20 @@ class PosterService
         |
         */
 
-        for($i = 0, $row = 0, $column = 0; $i < strlen($poster->fen); $i++) {
+        for ($i = 0, $row = 0, $column = 0; $i < strlen($poster->fen); $i++) {
 
-            if($poster->fen[$i] == " ") {
-                break; 
+            if ($poster->fen[$i] == " ") {
+                break;
             } else if ($poster->fen[$i] == "/") {
 
                 $row++;
                 $column = 0;
-
-            } else if(preg_match('~[0-9]+~', $poster->fen[$i])) {
+            } else if (preg_match('~[0-9]+~', $poster->fen[$i])) {
                 $column += (int)$poster->fen[$i];
             } else {
-                $im->insert(public_path('/themes/New Waves/'. (ctype_lower($poster->fen[$i]) ? 'Black' : 'White') .'/'. strtolower($poster->fen[$i]) .'.svg'), 'top-left', 200 * ($column + 1), 27 + 200 * $row  + $boardY = ((min(2900 - (40 * (count($pgn))), 2860) - (isset($title[1]) ? 800 : 600)) / 2) - (isset($title[1]) ? 0 : 200));
+                $im->insert(public_path('/themes/New Waves/' . (ctype_lower($poster->fen[$i]) ? 'Black' : 'White') . '/' . strtolower($poster->fen[$i]) . '.svg'), 'top-left', 200 * ($column + 1), 27 + 200 * $row  + $boardY = ((min(2900 - (40 * (count($pgn))), 2860) - (isset($title[1]) ? 800 : 600)) / 2) - (isset($title[1]) ? 0 : 200));
                 $column++;
-            
-            } 
+            }
         }
 
 
@@ -218,12 +220,14 @@ class PosterService
         |
         */
 
-        $im->text(diagramInfo($poster->pgn, $poster->move_comment, $poster->diagram_position), 1000, $boardY + 1690, function ($font) use ($fonts) {
-            $font->file($fonts['italic']);
-            $font->size(32);
-            $font->align('center');
-            $font->color('rgb(65, 37, 29)');
-        });
+        if($poster->pgn) {
+            $im->text(diagramInfo($poster->pgn, $poster->move_comment, $poster->diagram_position), 1000, $boardY + 1690, function ($font) use ($fonts) {
+                $font->file($fonts['italic']);
+                $font->size(32);
+                $font->align('center');
+                $font->color('rgb(65, 37, 29)');
+            });
+        }
 
         $im->save($path);
 
