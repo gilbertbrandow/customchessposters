@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\Poster;
+use App\Services\OrderService;
 use App\Services\PosterService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,8 +14,6 @@ use Inertia\Inertia;
 class PosterController extends Controller
 {
 
-    public $endpoint = 'https://api.printful.com/';
-
     public function index()
     {
         return Inertia::render('CreatePoster');
@@ -21,9 +21,9 @@ class PosterController extends Controller
 
     public function show($id)
     {
-        $editPoster = Poster::find($id);
+        $poster = Poster::find($id);
 
-        return Inertia::render('CreatePoster', compact('editPoster'));
+        return Inertia::render('CreatePoster', compact('poster'));
     }
 
     public function create(Request $request)
@@ -40,20 +40,6 @@ class PosterController extends Controller
         return redirect('/edit-poster/' . $poster->id)->with('savedSuccess', 'Poster updated successfully!');
     }
 
-    public function placeOrder(Request $request, PosterService $service)
-    {
-
-        //Call service class method to create png
-        $poster = $service->generatePNG($request->posterData, $request->savedName, Auth::id());
-
-        //Call serivce class method to place order at printful
-        $response = Http::withHeaders(['Authorization' => 'Bearer ' . env('PRINTFUL_SK')])->get($this->endpoint . 'stores');
-
-        $content = json_decode($response->body())->result[0];
-
-        dd($content->name);
-    }
-
     public function single($id)
     {
 
@@ -61,6 +47,6 @@ class PosterController extends Controller
 
         return (new PosterService())->generatePNG($poster);
 
-        return Inertia::render('Components/Poster/PosterSVG', compact('poster'));
+        return (new OrderService(Order::first()))->sendOrderToPrintful();
     }
 }
