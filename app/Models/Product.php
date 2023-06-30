@@ -26,9 +26,8 @@ class Product extends Model
 
     public function variant()
     {
-        return $this->belongsTo(PosterVariant::class);
+        return $this->belongsTo(PosterVariant::class, 'poster_variant_id', 'id');
     }
-
 
     public function cart()
     {
