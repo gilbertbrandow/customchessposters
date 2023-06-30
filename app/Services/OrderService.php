@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Models\Order;
 use App\Models\OrderItem;
-use Error;
 use Printful\Exceptions\PrintfulApiException;
 use Printful\Exceptions\PrintfulException;
 use Printful\PrintfulApiClient;
@@ -44,7 +43,7 @@ class OrderService
 
         foreach ($this->order->orderItems as $orderItem) {
             array_push($items, [
-                'variant_id' => 1,
+                'variant_id' => $orderItem->product->variant->variant_id,
                 'name' => 'Custom Chess Poster: ' . $orderItem->product->name,
                 'quantity' => $orderItem->quantity,
                 'retail_price' => $orderItem->product->price * $orderItem->quantity / 100,
