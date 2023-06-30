@@ -45,13 +45,16 @@ class HandleInertiaRequests extends Middleware
             'site' => [
                 'title' => 'Custom Chess Posters'
             ],
-            'auth' => Auth::check() || $request->session()->get('name') ? [
+            'auth' => Auth::check() ? [
                 'user' => [
-                    'name' => $request->session()->get('name') ?? Auth::user()->name,
-                    'admin' => Auth::check() ? Auth::user()->admin : null, 
-                    'saved' => Auth::check() ? Auth::user()->posters->pluck('id') : null,
+                    'name' => Auth::user()->name,
+                    'authenticated' => Auth::check(), 
+                    'admin' => Auth::user()->admin, 
+                    'saved' => Auth::user()->posters->pluck('id'), 
                 ], 
             ] : false,
+
+            'name' => $request->session()->get('name'),
 
             'cartCount' => CartItem::belongsToUser(Auth::id(), $request->session()->get('_token'))->count(),
 
