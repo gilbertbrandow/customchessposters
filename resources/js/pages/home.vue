@@ -26,11 +26,17 @@
                 <div class="player">
                     <Flag :country="this.$page.props.game.white_player.country"></Flag>
                     {{ this.$page.props.game.white_player.name }}
+                    <div v-if="this.$page.props.game.white_player.computer" class="computer">
+                        <Icon name="computer"></Icon>
+                    </div>
                 </div>
                 -
                 <div class="player">
                     <Flag :country="this.$page.props.game.black_player.country"></Flag>
                     {{ this.$page.props.game.black_player.name }}
+                    <div v-if="this.$page.props.game.black_player.computer" class="computer">
+                        <Icon name="computer"></Icon>
+                    </div>
                 </div>
                 </Link>
 
@@ -63,7 +69,7 @@
 
     <BuildPoster />
 
-    <Slider :games="this.$page.props.games"/>
+    <Slider :games="this.$page.props.games" />
 
     <section>
         <div class="container">
