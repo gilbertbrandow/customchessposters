@@ -90,7 +90,7 @@ class Order extends Model
             );
     }
 
-    public static function totalAmount($id)
+    public static function totalCartAmount($id)
     {
 
         return DB::table('orders')
@@ -99,5 +99,15 @@ class Order extends Model
             ->join('products', 'products.id', '=', 'cart_items.product_id')
             ->selectRaw('SUM(cart_items.quantity * products.price) + shipping_cost AS total')
             ->where('orders.id', $id)->groupBy('orders.id');
+    }
+
+    public static function totalOrderAmount($id)
+    {
+
+        return DB::table('orders')
+            ->join('order_items', 'orders.id', '=', 'order_items.order_id')
+            ->join('products', 'products.id', '=', 'order_items.product_id')
+            ->selectRaw('SUM(order_items.quantity * products.price) + orders.shipping_cost AS total')
+            ->where('orders.id', $id)->groupBy('orders.id')->get()[0]->total;
     }
 }

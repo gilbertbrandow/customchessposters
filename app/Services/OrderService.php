@@ -40,12 +40,31 @@ class OrderService
     public function sendOrderToPrintful()
     {
 
+        $items = [];
+
+        foreach ($this->order->orderItems as $orderItem) {
+            array_push($items, [
+                'variant_id' => 1,
+                'name' => 'Custom Chess Poster: ' . $orderItem->product->name,
+                'quantity' => $orderItem->quantity,
+                'retail_price' => $orderItem->product->price * $orderItem->quantity / 100,
+                'files' => ($orderItem->product->type == 'poster' ? [
+                    [
+                        'url' => $orderItem->file ?? 'https://i.ibb.co/tpxgy2Y/poster25.png'
+
+                    ],
+                ] : null),
+            ]);
+        };
+
         $pf = PrintfulApiClient::createOauthClient(env('PRINTFUL_SK'));
 
         $recipient =  $this->order->shippingAddress;
 
         try {
             $pf->post('orders', [
+                'shipping' => $this->order->shipping,
+                'retail_price' => Order::totalOrderAmount($this->order->id),
                 'recipient' => [
                     'name' => $recipient->name,
                     'address1' =>  $recipient->address1,
@@ -54,24 +73,11 @@ class OrderService
                     'country_code' =>  $recipient->country_code,
                     'zip' =>  $recipient->zip,
                 ],
-                'items' => [
-                    [
-                        'variant_id' => 1,
-                        'name' => 'Custom Chess Poster: ',
-                        'retail_price' => '20.00',
-                        'quantity' => 1,
-                        'files' => [
-                            [
-                                'url' => 'https://i.ibb.co/tpxgy2Y/poster25.png',
-                            ],
-                        ],
-                    ],
-                ],
+                'items' => $items, 
             ]);
         } catch (PrintfulApiException $e) {
             // API response status code was not successful
             return 'Printful API Exception: ' . $e->getCode() . ' ' . $e->getMessage();
-
         } catch (PrintfulException $e) {
             // API call failed
             return 'Printful Exception: ' . $e->getMessage();
