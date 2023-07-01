@@ -39,6 +39,10 @@ class OrderService
     public function sendOrderToPrintful()
     {
 
+        $pf = PrintfulApiClient::createOauthClient(env('PRINTFUL_SK'));
+
+        $recipient =  $this->order->shippingAddress;
+
         $items = [];
 
         foreach ($this->order->orderItems as $orderItem) {
@@ -49,21 +53,16 @@ class OrderService
                 'retail_price' => $orderItem->product->price * $orderItem->quantity / 100,
                 'files' => ($orderItem->product->type == 'poster' ? [
                     [
-                        'url' => $orderItem->file ?? 'https://i.ibb.co/tpxgy2Y/poster25.png'
-
+                        'url' => $orderItem->file ?? 'https://i.ibb.co/tpxgy2Y/poster25.png',
                     ],
                 ] : null),
             ]);
         };
 
-        $pf = PrintfulApiClient::createOauthClient(env('PRINTFUL_SK'));
-
-        $recipient =  $this->order->shippingAddress;
-
         try {
             $pf->post('orders', [
                 'shipping' => $this->order->shipping,
-                'retail_price' => Order::totalOrderAmount($this->order->id),
+                'retail_price' => $this->order->totalAmount(),
                 'recipient' => [
                     'name' => $recipient->name,
                     'address1' =>  $recipient->address1,

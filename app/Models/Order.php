@@ -101,13 +101,13 @@ class Order extends Model
             ->where('orders.id', $id)->groupBy('orders.id');
     }
 
-    public static function totalOrderAmount($id)
+    public function totalAmount() : int
     {
 
         return DB::table('orders')
             ->join('order_items', 'orders.id', '=', 'order_items.order_id')
             ->join('products', 'products.id', '=', 'order_items.product_id')
             ->selectRaw('SUM(order_items.quantity * products.price) + orders.shipping_cost AS total')
-            ->where('orders.id', $id)->groupBy('orders.id')->get()[0]->total;
+            ->where('orders.id', $this->id)->groupBy('orders.id')->get()[0]->total;
     }
 }
