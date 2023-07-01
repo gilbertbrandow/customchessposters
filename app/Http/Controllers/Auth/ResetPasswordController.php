@@ -26,7 +26,7 @@ class ResetPasswordController extends Controller
 
 
         return $status === Password::RESET_LINK_SENT
-        ? back()->with(['success' => 'Check your inbox to find instructions on how to reset your password', 'authenticateForgot' => true])
+        ? back()->with(['success' => 'Check your inbox to find instructions on how to reset your password','overlay' => 'forgot'])
         : back()->with('authenticateForgot', true)->withErrors(['all' => 'We cant find any account that match that email'])->onlyInput('all');
     }
 
@@ -54,9 +54,12 @@ class ResetPasswordController extends Controller
                 event(new PasswordReset($user));
             }
         );
-     
-        return $status === Password::PASSWORD_RESET
-                    ? redirect('/login')->with('success', 'You Successfully updated your password')
-                    : back()->withErrors(['all' => 'Something went wrong, please try again later']);
+
+        if($status === Password::PASSWORD_RESET && Auth::attempt($request->only('email', 'password'))) {
+            $request->session()->regenerate();
+            return redirect('/account')->with('accountSuccess', 'Reset password & logged in');    
+        } else {
+            return back()->withErrors(['all' => 'Something went wrong, please try again later']);
+        }
     }
 }

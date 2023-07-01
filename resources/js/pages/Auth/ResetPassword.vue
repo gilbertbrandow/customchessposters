@@ -1,5 +1,5 @@
 <template>
-    <section class="section__hero">
+    <section class="is--pt">
         <div class="container">
             <h1>Reset Password</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum
@@ -12,7 +12,7 @@
                         placeholder="example@email.com" required />
                 </div>
                 <div class="field__wrp">
-                    <label for="password" class="field__label">Password</label>
+                    <label for="password" class="field__label">New Password</label>
                     <input v-model="form.password" type="password" class="field"
                         :class="{ 'is--error': form.errors.password }" name="password" placeholder="••••••••"
                         required>
@@ -32,12 +32,6 @@
                     <div v-if="form.errors.all" v-text="form.errors.all" class="field__error is--submit"></div>
                 </div>
             </form>
-        </div>
-        <div class="poster">
-            <img src="/images/environments/warm.webp" alt="" class="poster__environment">
-            <div class="poster__svg-wrp">
-                <img src="/images/posters/poster-test.svg" alt="" class="poster__img">
-            </div>
         </div>
     </section>
 </template>

@@ -175,6 +175,10 @@ let submit = ($form) => {
             onError: function () {
                 usePage().props.overlay = 'forgot';
             },
+
+            onSuccess: () => function () {
+                fotgot.reset(); 
+            },
         });
     }
 };
