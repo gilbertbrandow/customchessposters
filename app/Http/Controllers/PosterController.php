@@ -8,7 +8,6 @@ use App\Services\OrderService;
 use App\Services\PosterService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Http;
 use Inertia\Inertia;
 
 class PosterController extends Controller

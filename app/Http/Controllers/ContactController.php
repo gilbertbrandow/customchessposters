@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\Contact; 
+use App\Mail\Contact;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Printful\PrintfulApiClient;
@@ -42,7 +43,9 @@ class ContactController extends Controller
         'content' => $request->message
         ];
 
-        Mail::to('simon@0100.se')->send(new Contact($data));
+        foreach (User::where('admin', true)->get() as $user) {
+            Mail::to($user->email)->send(new Contact($data));
+        }
 
         $name = explode(' ',$data['name'])[0];
 
