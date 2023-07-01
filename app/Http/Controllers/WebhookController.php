@@ -45,11 +45,11 @@ class WebhookController extends Controller
                 $order = Order::where('payment_intent', $paymentIntent->id)->first(); 
 
                 (new OrderService($order))->createOrderItems(); 
+                
+                ProcessOrder::dispatch($order);
 
                 $order->status = 'recieved';
                 $order->save();
-                
-                ProcessOrder::dispatch($order);
 
                 return response("Order #" . $order->id . ": Payment confirmed. Order processing job dispatched.", 200)
                     ->header('Content-Type', 'text/plain');
