@@ -8,6 +8,7 @@ use App\Models\Poster;
 use App\Models\PosterUser;
 use App\Models\User;
 use Image;
+use Storage;
 
 use function App\diagramInfo;
 use function App\formatPGN;
@@ -229,7 +230,18 @@ class PosterService
             });
         }
 
-        $im->save($path);
+
+        /*
+        |--------------------------------------------------------------------------
+        | Save the image and return
+        |--------------------------------------------------------------------------
+        |
+        */
+
+        $im->save($path, 100, 'png');
+
+        Storage::disk('s3')->put('test1.txt', 'hello from service'); 
+        /* Storage::disk('s3')->put($path, file_get_contents($path));  */
 
         return $path;
     }
