@@ -16,8 +16,8 @@ class OrderObserver
             foreach (User::where('admin', true)->get() as $user) {
                 Mail::to($user->email)->send(new OrderReceived($order));
             }
-        }
 
-        Mail::to($order->recipient->email)->send(new OrderConfirmed($order));
+            Mail::to($order->recipient->email)->send(new OrderConfirmed($order));
+        }
     }
 }
