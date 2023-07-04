@@ -612,6 +612,27 @@ class PostersSeeder extends Seeder
                 'where' => 'London, England',
             ],
 
+            [
+                'theme' => 1,
+                'orientation' => 0,
+                'starting_position' => 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                'pgn' => '1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. f3 d5 5. a3 Bxc3+ 6. bxc3 c5 7. cxd5 Nxd5 8. dxc5 f5 9. Nh3 Qa5 10. Bd2 Qxc5 11. c4 Ne3 12. Qc1 Nxf1 13. Kxf1 Nc6 14. Nf4 O-O 15. Rb1 Rd8 16. Nd3 Qd6 17. c5 Qc7 18. Bc3 e5 19. Qe3 f4 20. Qe4 Qf7 21. Nxe5 Nxe5 22. Qxe5 Rd5',
+                'diagram_position' => 44,
+                'move_comment' => 'For a million dollars: Find a good square for the white Queen',
+                'fen' => 'r1b3k1/pp3qpp/8/2PrQ3/5p2/P1B2P2/4P1PP/1R3K1R w - - 1 23',
+                'result' => '0-1',
+                'title' => 'Trapped In The Middle Of The Board',
+                'white_player' => 'Ori Kobo',
+                'black_player' => 'Ju Wenjun',
+                'white_rating' => 2501,
+                'black_rating' => 2594,
+                'white_title' => 'GM',
+                'black_title' => 'GM',
+                'when' => 'Tradewise Gibraltar, 2017.01.26 Round 3.18',
+                'where' => 'La Caleta GIB',
+            ],
+
+
 
         ];
 

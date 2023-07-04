@@ -284,6 +284,17 @@ class PlayersSeeder extends Seeder
                 'name' => 'Crouch, Colin',
                 'country' => 'England',
             ],
+
+
+            [
+                'name' => 'Kobo, Ori',
+                'country' => 'Israel',
+            ],
+
+            [
+                'name' => 'Wenjun, Ju',
+                'country' => 'China',
+            ],
         ];
 
         foreach ($players as $player) {

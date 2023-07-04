@@ -359,6 +359,16 @@ class GamesSeeder extends Seeder
                 'opening_id' => 32,
             ],
 
+            [
+                'poster_id' => 32,
+                'name' => 'Ju Traps The Israeli GM in the middle of the board',
+                'description' => "In March 2017, Ju Wenjun became the sixth (and most recent) woman to achieve a rating above 2600. She is a three-time Women's World Chess Champion having won the title in May 2018, November 2018 and 2020. She is defending it once more July 2023.",
+                'date' => '2017-01-26',
+                'white_player' => 54,
+                'black_player' => 55,
+                'world_championship_game' => 0,
+                'opening_id' => 33,
+            ],
 
         ];
 
