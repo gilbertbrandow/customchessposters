@@ -63,15 +63,16 @@ class PosterService
 
         /*
         |--------------------------------------------------------------------------
-        | Check if file exists and is up to date
+        | Connect to filesystem and check if up-to-date file exists
         |--------------------------------------------------------------------------
         |
         */
+        $filesystem = Storage::disk('s3');
 
         if (
-            file_exists($path = public_path('uploads/poster' . $poster->id . '.png'))
-            && filemtime($path) > strtotime($poster->updated_at)
-        ) return $path;
+            $filesystem->exists($path = 'poster' . $poster->id . '.png')
+            && $filesystem->lastModified($path) > strtotime($poster->updated_at)
+        ) return $filesystem->publicUrl($path);
 
         /*
         |--------------------------------------------------------------------------
@@ -238,11 +239,9 @@ class PosterService
         |
         */
 
-        $im->save($path, 100, 'png');
+        $im->encode('png'); 
+        $filesystem->put($path, $im->getEncoded());
 
-        Storage::disk('s3')->put('test1.txt', 'hello from service'); 
-        /* Storage::disk('s3')->put($path, file_get_contents($path));  */
-
-        return $path;
+        return $filesystem->url($path);
     }
 }

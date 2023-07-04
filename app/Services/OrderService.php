@@ -53,7 +53,7 @@ class OrderService
                 'retail_price' => $orderItem->product->price * $orderItem->quantity / 100,
                 'files' => ($orderItem->product->type == 'poster' ? [
                     [
-                        'url' => $orderItem->file ?? 'https://i.ibb.co/tpxgy2Y/poster25.png',
+                        'url' => $orderItem->file,
                     ],
                 ] : null),
             ]);
