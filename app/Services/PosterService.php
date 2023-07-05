@@ -58,7 +58,7 @@ class PosterService
         return $poster;
     }
 
-    public function generatePNG(Poster $poster): string
+    public function generatePNG(Poster $poster, $width = 2000, $height = 3000): string
     {
 
         /*
@@ -68,7 +68,7 @@ class PosterService
         |
         */
         $filesystem = Storage::disk('s3');
-
+ 
         if (
             $filesystem->exists($path = 'poster' . $poster->id . '.png')
             && $filesystem->lastModified($path) > strtotime($poster->updated_at)
@@ -84,7 +84,7 @@ class PosterService
         $fonts['regular'] = public_path('../resources/fonts/Custom-Serif-By-Ayaka-Ito-Regular.ttf');
         $fonts['italic'] = public_path('../resources/fonts/Custom-Serif-By-Ayaka-Ito-Italic.ttf');
 
-        $im =  Image::canvas(2000, 3000, 'rgb(251, 246, 238)');
+        $im =  Image::canvas($width, $height, 'rgb(251, 246, 238)');
 
         /*
         |--------------------------------------------------------------------------
