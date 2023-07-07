@@ -95,9 +95,9 @@ class PosterService
 
         for ($i = 0; $i < count($title = explode("\n", wordwrap($poster->title, 26))); $i++) {
 
-            $im->text($title[$i], 1000, 300 + $i * 200, function ($font) use ($fonts) {
+            $im->text($title[$i], $width / 2, $height / 10 + $i * 200, function ($font) use ($fonts, $height) {
                 $font->file($fonts['regular']);
-                $font->size(150);
+                $font->size($height / 20);
                 $font->align('center');
                 $font->valign('middle');
                 $font->color('rgb(65, 37, 29)');
