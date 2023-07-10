@@ -71,13 +71,6 @@
 
     <Slider :games="this.$page.props.games" />
 
-    <section>
-        <div class="container">
-            <h2>Reviews</h2>
-            <p>Currently no reviews.</p>
-        </div>
-    </section>
-
     <Faq :faqs="$page.props.faqs" />
 </template>
 

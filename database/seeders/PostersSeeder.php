@@ -556,7 +556,7 @@ class PostersSeeder extends Seeder
             ],
 
             [
-                'theme' => 0,
+                'theme' => 1,
                 'orientation' => 1,
                 'starting_position' => 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
                 'pgn' => '1. e4 c5 2. c3 d5 3. exd5 Qxd5 4. d4 Nf6 5. Nf3 Bg4 6. Be2 e6 7. h3 Bh5 8. O-O Nc6 9. Be3 cxd4 10. cxd4 Bb4 11. a3 Ba5 12. Nc3 Qd6 13. Nb5 Qe7 14. Ne5 Bxe2 15. Qxe2 O-O 16. Rac1 Rac8 17. Bg5 Bb6 18. Bxf6 gxf6 19. Nc4 Rfd8 20. Nxb6 axb6 21. Rfd1 f5 22. Qe3 Qf6 23. d5 Rxd5 24. Rxd5 exd5 25. b3 Kh8 26. Qxb6 Rg8 27. Qc5 d4 28. Nd6 f4 29. Nxb7 Ne5 30. Qd5 f3 31. g3 Nd3 32. Rc7 Re8 33. Nd6 Re1+ 34. Kh2 Nxf2 35. Nxf7+ Kg7 36. Ng5+ Kh6 37. Rxh7+',
@@ -613,8 +613,8 @@ class PostersSeeder extends Seeder
             ],
 
             [
-                'theme' => 1,
-                'orientation' => 0,
+                'theme' => 0,
+                'orientation' => 1,
                 'starting_position' => 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
                 'pgn' => '1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. f3 d5 5. a3 Bxc3+ 6. bxc3 c5 7. cxd5 Nxd5 8. dxc5 f5 9. Nh3 Qa5 10. Bd2 Qxc5 11. c4 Ne3 12. Qc1 Nxf1 13. Kxf1 Nc6 14. Nf4 O-O 15. Rb1 Rd8 16. Nd3 Qd6 17. c5 Qc7 18. Bc3 e5 19. Qe3 f4 20. Qe4 Qf7 21. Nxe5 Nxe5 22. Qxe5 Rd5',
                 'diagram_position' => 44,

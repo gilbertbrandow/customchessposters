@@ -59,7 +59,7 @@
               <Link :href="route('faq.index')">Frequently Asked Questions</Link>
             </li>
             <li>
-              <Link :href="route('home.shipping')">Create your own poster</Link>
+              <Link :href="route('poster.index')">Create your own poster</Link>
             </li>
             <li>
               <Link :href="route('game.index')">Game collection</Link>
