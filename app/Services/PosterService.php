@@ -113,9 +113,9 @@ class PosterService
 
         for ($i = 0; $i < count($pgn = ($poster->pgn ? formatPGN($poster->pgn) : [])); $i++) {
 
-            $im->text($pgn[$i], 1000, 2900 - (40 * (count($pgn) - 1 - $i)), function ($font) use ($fonts) {
+            $im->text($pgn[$i], $width / 2, $height - ($height * 0.00125 * (count($pgn) - 1 - $i)), function ($font) use ($fonts, $height) {
                 $font->file($fonts['regular']);
-                $font->size(18);
+                $font->size($height * 0.006);
                 $font->align('center');
                 $font->color('rgb(65, 37, 29)');
             });
