@@ -57,7 +57,7 @@ function diagramInfo(string $pgn, string $moveComment, int $diagramPosition): st
         return "Position after White's move " . round($diagramPosition / 2) . '. ' . substr($pgn, $indexOfMove, $spaceIndex - $indexOfMove). ', ' . $moveComment;
     } else {
         //Black move
-        $nextSpaceIndex = (strpos($pgn, ' ', $spaceIndex + 1) > 0) ? strpos($pgn, ' ', $spaceIndex + 1) : $spaceIndex;
+        $nextSpaceIndex = (strpos($pgn, ' ', $spaceIndex + 1) > 0) ? strpos($pgn, ' ', $spaceIndex + 1) : strlen($pgn);
         
         return "Position after Black's move " . round($diagramPosition / 2) . '. ... ' . substr($pgn, $spaceIndex + 1, $nextSpaceIndex - $spaceIndex) . ', ' . $moveComment;
     } 
