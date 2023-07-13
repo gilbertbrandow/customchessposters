@@ -65,7 +65,7 @@
               <Link :href="route('game.index')">Game collection</Link>
             </li>
             <li>
-              <Link :href="route('user.index')">My Account</Link>
+              <Link :href="route('user.index')" preserve-scroll>My Account</Link>
             </li>
             <li>
               <Link :href="route('contact.index')">Contact</Link>

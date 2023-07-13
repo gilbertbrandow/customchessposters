@@ -345,7 +345,6 @@
                                 <li :class="this.form.variant == 1 ? 'is--active' : ''"><button @click="this.form.variant = 1">21 x 30cm</button></li>
                                 <li :class="this.form.variant == 2 ? 'is--active' : ''"><button @click="this.form.variant = 2">50 x 70cm</button></li>
                                 <li :class="this.form.variant == 3 ? 'is--active' : ''"><button @click="this.form.variant = 3">61 x 91cm</button></li>
-                                <li :class="this.form.variant == 4 ? 'is--active' : ''"><button @click="this.form.variant = 4">70 x 100cm</button></li>
                             </ul>
                         </div>
                     </div>

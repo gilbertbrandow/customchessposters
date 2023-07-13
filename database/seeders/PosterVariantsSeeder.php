@@ -17,19 +17,11 @@ class PosterVariantsSeeder extends Seeder
 
         $variants = [
             [
-                'description' => 'Extra small',
+                'description' => 'Small',
                 'width' => 21,
                 'height' => 30,
                 'price' => 2000,
                 'variant_id' => 8947,
-            ],
-
-            [
-                'description' => 'Small',
-                'width' => 30,
-                'height' => 40,
-                'price' => 2500,
-                'variant_id' => 8948,
             ],
 
             [
@@ -46,14 +38,6 @@ class PosterVariantsSeeder extends Seeder
                 'height' => 91,
                 'price' => 4000,
                 'variant_id' => 8953,
-            ],
-
-            [
-                'description' => 'Extra Large',
-                'width' => 70,
-                'height' => 100,
-                'price' => 5000,
-                'variant_id' => 8954,
             ],
         ]; 
 
