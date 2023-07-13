@@ -44,7 +44,7 @@ class PosterController extends Controller
 
         $poster = Poster::find($id);
 
-        return (new PosterService())->generatePNG($poster, 4000, 5700);
+        return (new PosterService())->generatePNG($poster, 6000, 8550);
 
         return (new OrderService(Order::first()))->sendOrderToPrintful();
     }
