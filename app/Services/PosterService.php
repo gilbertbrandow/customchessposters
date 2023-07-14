@@ -58,15 +58,15 @@ class PosterService
         return $poster;
     }
 
-    public function generatePNG(Poster $poster, $width = 2000, $height = 3000): string
+    public function generatePNG(Poster $poster, $width = 6000, $height = 8550): string
     {
-
         /*
         |--------------------------------------------------------------------------
         | Connect to filesystem and check if up-to-date file exists
         |--------------------------------------------------------------------------
         |
         */
+
         $filesystem = Storage::disk('s3');
  
         if (
@@ -235,7 +235,14 @@ class PosterService
             } else if (preg_match('~[0-9]+~', $poster->fen[$i])) {
                 $column += (int)$poster->fen[$i];
             } else {
-                //$im->insert(public_path('/themes/New Waves/' . (ctype_lower($poster->fen[$i]) ? 'Black' : 'White') . '/' . strtolower($poster->fen[$i]) . '.svg'), 'top-left', 200 * ($column + 1), 27 + 200 * $row  + $boardY);
+
+                $im->insert(
+                    public_path('/themes/New Waves/' . (ctype_lower($poster->fen[$i]) ? 'Black' : 'White') . '/' . strtolower($poster->fen[$i]) . '.svg'),
+                    'top-left', 
+                    ($width - 4560) / 2 + 570 * $column, 
+                    $boardY + 25 + 570 * $row
+                );
+
                 $column++;
             }
         }
