@@ -81,13 +81,7 @@ class PosterService
         |
         */
 
-        $theme['regular'] = resource_path('/fonts/Custom-Serif-By-Ayaka-Ito-Regular.ttf');
-        $theme['italic'] = resource_path('/fonts/Custom-Serif-By-Ayaka-Ito-Italic.ttf');
-        $theme['background'] = 'rgb(251, 246, 238)';
-        $theme['color'] = 'rgb(65, 37, 29)'; 
-        $theme['path'] = 'New Waves';
-
-        $im =  Image::canvas($width, $height, $theme['background']);
+        $im =  Image::canvas($width, $height, $poster->theme->background);
 
         /*
         |--------------------------------------------------------------------------
@@ -103,12 +97,12 @@ class PosterService
                 $width / 2, 
                 $height / 10 + $i * $height / 15, 
                 
-                function ($font) use ($theme, $height) {
-                    $font->file($theme['regular']);
+                function ($font) use ($poster, $height) {
+                    $font->file(resource_path($poster->theme->font_regular));
                     $font->size($height / 20);
                     $font->align('center');
                     $font->valign('middle');
-                    $font->color($theme['color']);
+                    $font->color($poster->theme->color);
                 }
             );
         }
@@ -127,11 +121,11 @@ class PosterService
                 $width / 2, 
                 $height / 30 * 29 - ($height * 0.0125 * (count($pgn) - 1 - $i)), 
                 
-                function ($font) use ($theme, $height) {
-                    $font->file($theme['regular']);
+                function ($font) use ($poster, $height) {
+                    $font->file(resource_path($poster->theme->font_regular));
                     $font->size($height * 0.006);
                     $font->align('center');
-                    $font->color($theme['color']);
+                    $font->color($poster->theme->color);
                 }
             );
         }
@@ -147,12 +141,12 @@ class PosterService
             $width / 2, 
             $height / 6 + $height / 15 * (count($title) - 1), 
             
-            function ($font) use ($theme, $height) {
-                $font->file($theme['regular']);
+            function ($font) use ($poster, $height) {
+                $font->file(resource_path($poster->theme->font_regular));
                 $font->size($height / 300 * 7);
                 $font->align('center');
                 $font->valign('middle');
-                $font->color($theme['color']);
+                $font->color($poster->theme->color);
             }
         );
 
@@ -161,12 +155,12 @@ class PosterService
             $width / 2, 
             $height / 5 + $height / 15 * (count($title) - 1), 
 
-            function ($font) use ($theme, $height) {
-                $font->file($theme['italic']);
+            function ($font) use ($poster, $height) {
+                $font->file(resource_path($poster->theme->font_italic));
                 $font->size($height / 300 * 4);
                 $font->align('center');
                 $font->valign('middle');
-                $font->color($theme['color']);
+                $font->color($poster->theme->color);
             }
         );
 
@@ -179,7 +173,7 @@ class PosterService
 
 
         $im->insert(public_path(
-            '/themes/'. $theme['path'] . '/board.svg'), 
+            '/themes/'. $poster->theme->path . '/board.svg'), 
             'top-center', 
             $width / 2, 
             27 + $boardY = round(((min($height / 30 * 29 - ($height / 75 * (count($pgn))), $height / 3000 * 2860) - (isset($title[1]) ? $height / 3.75 : $height / 5)) / 2) - (isset($title[1]) ? 0 : $height / 15))
@@ -199,10 +193,10 @@ class PosterService
                 $height / 50 + $height / 15 * ($x + 1), 
                 $boardY - $height / 250, 
 
-                function ($font) use ($theme, $height) {
-                    $font->file($theme['regular']);
+                function ($font) use ($poster, $height) {
+                    $font->file(resource_path($poster->theme->font_regular));
                     $font->size($height / 75);
-                    $font->color($theme['color']);
+                    $font->color($poster->theme->color);
                 }
             );
 
@@ -211,10 +205,10 @@ class PosterService
                 $height / 3000 * 1875, 
                 $boardY + $height / 300 * 5 + $height / 15 * $x, 
                 
-                function ($font) use ($theme, $height) {
-                $font->file($theme['regular']);
+                function ($font) use ($poster, $height) {
+                $font->file(resource_path($poster->theme->font_regular));
                 $font->size($height / 75);
-                $font->color($theme['color']);
+                $font->color($poster->theme->color);
                 }
             );
         }
@@ -240,7 +234,7 @@ class PosterService
             } else {
 
                 $im->insert(
-                    public_path('/themes/'. $theme['path'] . '/' . (ctype_lower($poster->fen[$i]) ? 'Black' : 'White') . '/' . strtolower($poster->fen[$i]) . '.svg'),
+                    public_path('/themes/'. $poster->theme->path . '/' . (ctype_lower($poster->fen[$i]) ? 'Black' : 'White') . '/' . strtolower($poster->fen[$i]) . '.svg'),
                     'top-left', 
                     ($width - 4560) / 2 + 570 * $column, 
                     $boardY + 25 + 570 * $row
@@ -264,11 +258,11 @@ class PosterService
                 $poster->diagram_position), 
                 $width / 2, $boardY + $height / 3000 * 1690, 
 
-                function ($font) use ($theme, $height) {
-                $font->file($theme['italic']);
+                function ($font) use ($poster, $height) {
+                $font->file(resource_path($poster->theme->font_italic));
                 $font->size($height / 3000 * 32);
                 $font->align('center');
-                $font->color($theme['color']);
+                $font->color($poster->theme->color);
                 }
             );
         }
