@@ -7,7 +7,7 @@
                 <Filter :results="this.games.length" :advanced="false"></Filter>
 
                 <div class="slider__navigation">
-                    <button @click="this.changeSlide(false)" class="button is--only-icon is--outline is--flipped">
+                    <button @click="this.changeSlide(false)" class="button is--only-icon is--outline is--flipped" :class="this.$data.currSlide == 0 ? 'is--low-opacity' : ''">
                         <Icon name="arrow-right"></Icon>
                     </button>
                     <button @click="this.changeSlide(true)" class="button is--only-icon is--outline">

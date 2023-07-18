@@ -452,6 +452,21 @@ button {
     }
 }
 
+.button.is--low-opacity {
+    background-color: transparent;
+    border-color: rgba(0, 0, 0, 0.05);
+    cursor: default;
+
+    svg {
+        fill:rgba(0, 0, 0, 0.5)
+    }
+}
+
+.button.is--low-opacity:hover {
+    outline-style: none;
+    border: 0.06em solid rgba(0, 0, 0, 0.14);
+}
+
 .button__rnd-icn {
     width: 2.5em;
     height: 2.5em;
