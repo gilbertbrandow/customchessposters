@@ -12,7 +12,7 @@ class Poster extends Model
     protected $table = 'posters';
 
     protected $fillable = [
-        'theme',
+        'theme_id',
         'orientation',
         'starting_position',
         'pgn',

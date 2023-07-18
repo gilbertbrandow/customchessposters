@@ -1,13 +1,13 @@
 <template>
     <svg x="0" y="27" view-box="0 0 1600 1600">
 
-        <Board :theme="theme"/>
+        <Board :theme="theme_id"/>
 
         <template v-for="piece in pieces" :key="piece">
             <svg width="200" height="200" fill="none" viewbox="0 0 200 200"
                 :x="this.$parent.poster.orientation ? piece[1] * 200 : (7 - piece[1]) * 200"
                 :y="this.$parent.poster.orientation ? piece[2] * 200 : (7 - piece[2]) * 200">
-                <Pieces :piece="piece[0]" :theme="this.theme" />
+                <Pieces :piece="piece[0]" :theme="this.theme_id" />
             </svg>
         </template>
 
@@ -27,7 +27,7 @@ export default {
 
     props: {
         fen: "",
-        theme: "",
+        theme_id: "",
     },
 
     data() {

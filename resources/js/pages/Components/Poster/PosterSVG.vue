@@ -50,7 +50,7 @@
             <Frame :theme="this.poster.theme_id"/>
 
             <!-- The board itself with pieces -->
-            <Game ref="Game" :theme="this.$props.poster.theme_id" :fen="this.$props.poster.fen" />
+            <Game ref="Game" :theme_id="this.$props.poster.theme_id" :fen="this.$props.poster.fen" />
 
             <!-- Diagram comment -->
             <text id="comment" v-if="this.poster.pgn" y="1690" x="815" text-anchor="middle" font-size="32" :style="{ 'font-family': (this.poster.theme_id == 1) ? 'Custom Serif By Ayaka Ito Italic' : '' }"

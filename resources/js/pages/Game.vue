@@ -54,7 +54,7 @@
                         
                         <PosterAddToCart :poster="{
                             'id': this.$data.game.id, 
-                            'theme': this.$data.game.theme, 
+                            'theme_id': this.$data.game.theme_id, 
                             'orientation': this.$data.game.orientation, 
                             'starting_position': this.$data.game.starting_position, 
                             'pgn': this.$data.game.pgn, 

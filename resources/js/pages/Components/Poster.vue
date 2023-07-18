@@ -92,7 +92,7 @@ function submitForm(poster, update) {
 
     form.posterData = {
         id: poster.id,
-        theme: poster.theme,
+        theme_id: poster.theme_id,
         orientation: poster.orientation,
         starting_position: poster.starting_position,
         pgn: poster.pgn,
