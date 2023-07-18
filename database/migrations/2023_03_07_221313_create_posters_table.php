@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('posters', function (Blueprint $table) {
             $table->id();
-            $table->unsignedTinyInteger('theme');
+            $table->foreignId('theme_id')->constrained();
             $table->boolean('orientation');
             $table->string('starting_position', 100);
             $table->text('pgn')->nullable();

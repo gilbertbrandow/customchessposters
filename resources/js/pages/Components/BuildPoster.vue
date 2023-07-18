@@ -484,7 +484,7 @@ export default {
 
             themes: [
                 {
-                    id: 0,
+                    id: 1,
                     price: 19,
                     title: 'New Waves',
                     desc: 'Warm & Modern',
@@ -495,7 +495,7 @@ export default {
                 },
 
                 {
-                    id: 1,
+                    id: 2,
                     price: 32,
                     title: 'Old Knowledge',
                     desc: 'Vintage & Nostalgic',
