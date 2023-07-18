@@ -14,11 +14,12 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(PosterVariantsSeeder::class);
-        $this->call(FaqsSeeder::class);
+        $this->call(ThemesSeeder::class);
         $this->call(PostersSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(OpeningsSeeder::class);
         $this->call(PlayersSeeder::class);
         $this->call(GamesSeeder::class);
+        $this->call(FaqsSeeder::class);
     }
 }
