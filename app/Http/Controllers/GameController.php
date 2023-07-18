@@ -54,7 +54,7 @@ class GameController extends Controller
             'games.white_player',
             'games.white_player',
             'posters.id',
-            'posters.theme',
+            'posters.theme_id',
             'posters.orientation',
             'posters.starting_position',
             'posters.pgn',

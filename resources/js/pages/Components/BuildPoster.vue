@@ -18,7 +18,7 @@
                             <ul class="themes" ref="themes">
 
                                 <li v-for="theme in themes" :key="theme.id" @click="setTheme(theme.id)"
-                                    :class="[poster.theme == theme.id ? 'is--active' : '']" class="theme">
+                                    :class="[poster.theme_id == theme.id ? 'is--active' : '']" class="theme">
                                     <div class="theme__colour-wrp">
                                         <div class="theme__colour">
                                             <div><img style="height: 100%" :src="`/images/posters/themes${theme.texture}`"
@@ -452,7 +452,7 @@ export default {
 
             poster: this.$page.props.editPoster || {
                 id: null,
-                theme: 1,
+                theme_id: 1,
                 orientation: 1,
                 starting_position: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
                 pgn: "",
@@ -572,8 +572,7 @@ export default {
         },
 
         setTheme(id) {
-            this.$data.poster.theme = id;
-            this.$data.posterBuilder.currEnvironment = this.$data.themes[id].environment;
+            this.$data.posterBuilder.currEnvironment = this.$data.themes[this.$data.poster.theme_id].environment;
         },
 
         changeStep(index) {
@@ -967,7 +966,7 @@ export default {
             this.$data.originalPoster = JSON.stringify(Object.assign({}, this.$page.props.editPoster));
         }
 
-        this.setTheme(this.$data.poster.theme);
+        this.setTheme(this.$data.poster.theme_id);
         this.chessGame.load(this.$data.poster.starting_position);
         if (this.$data.poster.pgn) this.chessGame.loadPgn(this.$data.poster.pgn);
     }

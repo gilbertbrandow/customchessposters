@@ -1,5 +1,5 @@
 <template>
-    <template v-if="this.theme == 0">
+    <template v-if="this.theme == 1">
 
         <g v-if="piece == 'k'" id="Group_106" data-name="Group 106" transform="translate(-705 -1030)">
             <g id="KING" transform="translate(719.433 1045.612)">
@@ -281,7 +281,7 @@
 
     </template>
 
-    <template v-else-if="this.theme == 1">
+    <template v-else-if="this.theme == 2">
         <g v-if="piece == 'K'" id="whiteKing" transform="translate(-1101 -1402)">
             <g id="White_King" data-name="White King" transform="translate(1118.11 1421.762)" fill="#000">
                 <path id="Path_955" data-name="Path 955"

@@ -1,5 +1,5 @@
 <template>
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 2000 3000" :style="{ 'background-color': (this.poster.theme == 0) ? '#FBF6EE' : '#f8f5f1', 'fill': (this.poster.theme == 0) ? '#41251D' : '#000000', 'font-family': (this.poster.theme == 0) ? 'Custom Serif By Ayaka Ito' : 'EB Garamond, serif', }">
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 2000 3000" :style="{ 'background-color': (this.poster.theme_id == 1) ? '#FBF6EE' : '#f8f5f1', 'fill': (this.poster.theme_id == 1) ? '#41251D' : '#000000', 'font-family': (this.poster.theme_id == 1) ? 'Custom Serif By Ayaka Ito Regular' : 'EB Garamond, serif', }">
 
         <!-- The Title -->
         <text id="title" font-size="150" text-anchor="middle" font-weight="400">
@@ -21,7 +21,7 @@
         </text>
 
         <!-- Where and when -->
-        <text id="meta" font-size="40" text-anchor="middle" x="1000" :y="title[1] ? 800 : 600" :style="{ 'font-family': (this.poster.theme == 0) ? 'Custom Serif By Ayaka Ito Italic' : '' }">
+        <text id="meta" font-size="40" text-anchor="middle" x="1000" :y="title[1] ? 800 : 600" :style="{ 'font-family': (this.poster.theme_id == 1) ? 'Custom Serif By Ayaka Ito Italic' : '' }">
             <tspan>{{ poster.where }}</tspan>
             <tspan v-if="poster.where && poster.when"> | </tspan>
             <tspan>{{ poster.when }}</tspan>
@@ -47,13 +47,13 @@
             </text>
 
             <!-- Frame of the board -->
-            <Frame :theme="this.poster.theme"/>
+            <Frame :theme="this.poster.theme_id"/>
 
             <!-- The board itself with pieces -->
-            <Game ref="Game" :theme="this.$props.poster.theme" :fen="this.$props.poster.fen" />
+            <Game ref="Game" :theme="this.$props.poster.theme_id" :fen="this.$props.poster.fen" />
 
             <!-- Diagram comment -->
-            <text id="comment" v-if="this.poster.pgn" y="1690" x="815" text-anchor="middle" font-size="32" :style="{ 'font-family': (this.poster.theme == 0) ? 'Custom Serif By Ayaka Ito Italic' : '' }"
+            <text id="comment" v-if="this.poster.pgn" y="1690" x="815" text-anchor="middle" font-size="32" :style="{ 'font-family': (this.poster.theme_id == 1) ? 'Custom Serif By Ayaka Ito Italic' : '' }"
                 v-text="this.$props.poster.move_comment ? diagram_info + ', ' + this.$props.poster.move_comment: diagram_info"></text>
 
         </svg>

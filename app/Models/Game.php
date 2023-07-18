@@ -47,7 +47,7 @@ class Game extends Model
 
     public static function getAll(Request $request)
     {
-
+        
         //TODO: Take a parameter, maybe $full or $simple and adapt query. For example search highlighting and which fields are selected
 
         $orderBy = explode('-', $request->input('sort') ?? 'recent-desc');
@@ -69,7 +69,7 @@ class Game extends Model
                 'games.white_player',
                 'games.white_player',
                 'posters.id',
-                'posters.theme',
+                'posters.theme_id',
                 'posters.orientation',
                 'posters.starting_position',
                 'posters.pgn',

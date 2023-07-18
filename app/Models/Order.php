@@ -57,7 +57,7 @@ class Order extends Model
                 'poster_variants.width',
                 'poster_variants.description',
                 'posters.id',
-                'posters.theme',
+                'posters.theme_id',
                 'posters.orientation',
                 'posters.starting_position',
                 'posters.pgn',
