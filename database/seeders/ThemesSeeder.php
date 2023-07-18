@@ -28,8 +28,8 @@ class ThemesSeeder extends Seeder
                 [
                     'id' => 2, 
                     'path' => 'Old Knowledge',
-                    'font_regular' => '/fonts/Custom-Serif-By-Ayaka-Ito-Regular.ttf',
-                    'font_italic' => '/fonts/Custom-Serif-By-Ayaka-Ito-Italic.ttf',
+                    'font_regular' => '/fonts/EBGaramond-Regular.ttf',
+                    'font_italic' => '/fonts/EBGaramond-Italic.ttf',
                     'background' => '#f8f5f1', 
                     'color' => 'rgb(0, 0, 0)',
                 ],
