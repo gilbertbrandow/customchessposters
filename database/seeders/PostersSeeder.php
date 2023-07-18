@@ -22,7 +22,7 @@ class PostersSeeder extends Seeder
                 'starting_position' => 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
                 'pgn' => '1. c4 e6 2. Nf3 d5 3. d4 Nf6 4. Nc3 Be7 5. Bg5 O-O 6. e3 h6 7. Bh4 b6 8. cxd5 Nxd5 9. Bxe7 Qxe7 10. Nxd5 exd5 11. Rc1 Be6 12. Qa4 c5 13. Qa3 Rc8 14. Bb5 a6 15. dxc5 bxc5 16. O-O Ra7 17. Be2 Nd7 18. Nd4 Qf8 19. Nxe6 fxe6 20. e4 d4 21. f4 Qe7 22. e5 Rb8 23. Bc4 Kh8 24. Qh3 Nf8 25. b3 a5 26. f5 exf5 27. Rxf5 Nh7 28. Rcf1 Qd8 29. Qg3 Re7 30. h4 Rbb7 31. e6 Rbc7 32. Qe5 Qe8 33. a4 Qd8 34. R1f2 Qe8 35. R2f3 Qd8 36. Bd3 Qe8 37. Qe4 Nf6 38. Rxf6 gxf6 39. Rxf6 Kg8 40. Bc4 Kh8 41. Qf4',
                 'diagram_position' => 1,
-                'move_comment' => 'Shockingly, Fischer opted out of his long term choice 1. e4',
+                'move_comment' => 'Shockingly, Fischer opted out of his all time favorite 1. e4',
                 'fen' => 'rnbqkbnr/pppppppp/8/8/2P5/8/PP1PPPPP/RNBQKBNR b KQkq - 0 1',
                 'result' => '1-0',
                 'title' => 'The Applause',
@@ -632,7 +632,24 @@ class PostersSeeder extends Seeder
                 'where' => 'La Caleta GIB',
             ],
 
-
+            [
+                'theme_id' => 1,
+                'orientation' => 0,
+                'starting_position' => 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                'pgn' => '1. d4 Nf6 2. Bf4 g6 3. e3 Bg7 4. Nf3 O-O 5. Nbd2 d6 6. h3 b6 7. Bd3 Bb7 8. O-O c5 9. Bh2 Nbd7 10. c3 a6 11. Re1 b5 12. a4 Qb6 13. e4 Rfd8 14. Qe2 c4 15. Bc2 Nf8 16. d5 N8d7 17. Bf4 Nc5 18. Be3 Qc7 19. Nd4 Qd7 20. Red1 Qe8 21. Bg5 h6 22. Bh4 Nh5 23. Qf3 Nd7 24. g4 Nhf6 25. Bg3 Nc5 26. Qe2 e6 27. axb5 axb5 28. Rxa8 Bxa8 29. dxe6 Nxe6 30. N2f3 Nc5 31. e5 Nfe4 32. exd6 Qd7 33. Be5 Re8 34. Bxg7 Kxg7 35. Re1 Nxd6 36. Qd1 Be4 37. Bxe4 Ndxe4 38. Nd2 Ng5 39. Rxe8 Qxe8 40. Qf1 Nd3 41. b3 Nf4 42. h4 Ngh3+ 43. Kh2 Qc8 44. Kg3 h5 45. f3 Qb8 46. Kh2 Ne2+ 47. f4 Nexf4 48. bxc4 Ne2+ 49. Kxh3 Qg3#',
+                'diagram_position' => 96,
+                'fen' => '1q6/5pk1/6p1/1p5p/2PN2PP/2P4n/3Nn2K/5Q2 w - - 1 49',
+                'result' => '0-1',
+                'title' => 'Horsing Around',
+                'white_player' => 'Le Quang Liem',
+                'black_player' => 'Eric Hansen',
+                'white_rating' => 2737,
+                'black_rating' => 2629,
+                'white_title' => 'GM',
+                'black_title' => 'GM',
+                'when' => 'Pro Chess League, 2018.03.07 Round 9',
+                'where' => 'chess.com INT',
+            ],
 
         ];
 

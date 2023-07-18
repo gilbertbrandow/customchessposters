@@ -193,6 +193,12 @@ class OpeningsSeeder extends Seeder
                 'eco' => 'E25',
                 'name' => "Nimzo-Indian Defense: Saemisch. Keres Variation",
             ],
+
+
+            [
+                'eco' => 'A45',
+                'name' => "Indian Game: General",
+            ],
         ];
 
         foreach ($openings as $opening) {

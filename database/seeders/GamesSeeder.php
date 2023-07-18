@@ -369,6 +369,17 @@ class GamesSeeder extends Seeder
                 'opening_id' => 33,
             ],
 
+            [
+                'poster_id' => 33,
+                'name' => 'A Chessbrah proves knights are tricky even for GMs',
+                'description' => 'Eric Hansen (born May 24, 1992) is a Canadian chess grandmaster and Twitch streamer. FIDE awarded him the grandmaster title in 2013.',
+                'date' => '2018-03-07',
+                'white_player' => 56,
+                'black_player' => 57,
+                'world_championship_game' => 0,
+                'opening_id' => 34,
+            ],
+
         ];
 
         foreach ($games as $game) {
