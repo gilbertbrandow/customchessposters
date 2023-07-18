@@ -36,4 +36,8 @@ class Poster extends Model
     {
         return $this->belongsToMany(User::class)->withTimestamps();
     }
+
+    public function theme() {
+        return $this->belongsTo(Theme::class); 
+    }
 }

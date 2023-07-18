@@ -16,4 +16,8 @@ class Theme extends Model
         'background', 
         'color', 
     ];
+
+    public function poster() {
+        return $this->hasMany(Poster::class); 
+    }
 }
