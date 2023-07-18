@@ -572,7 +572,8 @@ export default {
         },
 
         setTheme(id) {
-            this.$data.posterBuilder.currEnvironment = this.$data.themes[this.$data.poster.theme_id].environment;
+            this.$data.poster.theme_id = id; 
+            this.$data.posterBuilder.currEnvironment = this.$data.themes[id - 1].environment;
         },
 
         changeStep(index) {
