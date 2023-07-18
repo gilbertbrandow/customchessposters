@@ -17,6 +17,7 @@ class ThemesSeeder extends Seeder
     {
         $themes = [
                 [
+                    'id' => 1, 
                     'path' => 'New Waves',
                     'font_regular' => '/fonts/Custom-Serif-By-Ayaka-Ito-Regular.ttf',
                     'font_italic' => '/fonts/Custom-Serif-By-Ayaka-Ito-Italic.ttf',
@@ -25,17 +26,22 @@ class ThemesSeeder extends Seeder
                 ],
 
                 [
+                    'id' => 2, 
                     'path' => 'Old Knowledge',
                     'font_regular' => '/fonts/Custom-Serif-By-Ayaka-Ito-Regular.ttf',
                     'font_italic' => '/fonts/Custom-Serif-By-Ayaka-Ito-Italic.ttf',
-                    'background' => 'rgb(251, 246, 238)', 
-                    'color' => 'rgb(65, 37, 29)',
+                    'background' => '#f8f5f1', 
+                    'color' => 'rgb(0, 0, 0)',
                 ],
         ];
 
 
         foreach ($themes as $theme) {
-            Theme::create($theme);
+
+            Theme::updateOrCreate(
+                ['id' =>  $theme['id']],
+                $theme, 
+            );
         }
     }
 }
