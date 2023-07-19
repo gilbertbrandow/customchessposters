@@ -132,7 +132,7 @@ nav .nav__wrp {
     transition: opacity 400ms;
     transition: margin 200ms;
     border-radius: 0.5em;
-    font-family: 'CabinetGrotesk';
+    font-family: "CabinetGrotesk";
 
     div {
         position: absolute;
@@ -193,7 +193,7 @@ footer {
             margin-top: 2em;
             max-width: 35em;
         }
-        
+
         p {
             font-size: 0.8em;
             max-width: 30em;
@@ -209,7 +209,6 @@ footer {
 }
 
 .payment-methods {
-
     display: flex;
     align-items: center;
     column-gap: 0.5em;
@@ -225,7 +224,7 @@ footer {
     .is--badge {
         background-color: #fff;
         border-radius: 0.25em;
-        height: 0.75em; 
+        height: 0.75em;
         padding: 0.25em;
         display: flex;
         align-items: center;
@@ -235,7 +234,6 @@ footer {
             height: 100%;
         }
     }
-
 }
 
 .footer__bottom {
@@ -399,7 +397,7 @@ button {
     }
 }
 
-.button.is--black[disabled]{
+.button.is--black[disabled] {
     background-color: rgba(0, 0, 0, 0.75);
 }
 
@@ -460,7 +458,7 @@ button {
     cursor: default;
 
     svg {
-        fill:rgba(0, 0, 0, 0.5)
+        fill: rgba(0, 0, 0, 0.5);
     }
 }
 
@@ -579,7 +577,6 @@ button {
 }
 
 .switcher-wrp {
-
     display: flex;
     align-items: center;
     column-gap: 0.5em;
@@ -600,7 +597,7 @@ button {
         border-radius: 1.5em;
         background: whitesmoke;
         outline: 0.12em solid #ebebeb;
-    
+
         div {
             width: 1.5em;
             height: 1.5em;
@@ -1235,6 +1232,10 @@ h4 {
 .overlay:has(.lightbox) {
     align-items: center;
     justify-content: center;
+}
+
+.overlay:has(.sizes-overlay) {
+    align-items: flex-end;
 }
 
 .overlay:has(.slide-out) {
@@ -2658,10 +2659,23 @@ label {
     padding-top: 2em;
 }
 
+.sizes-overlay {
+    position: relative;
+    width: 100%;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+
+    h2 {
+        font-size: 2em;
+    }
+}
+
 .sizes {
     display: flex;
     column-gap: 0.5em;
     align-items: center;
+    font-size: 1.25em;
 
     li {
         border: 0.06em solid #ebebeb;

@@ -53,7 +53,6 @@
                         <p>{{ this.$data.game.description }}</p>
                         
                         <PosterAddToCart :poster="{
-                            'id': this.$data.game.id, 
                             'theme_id': this.$data.game.theme_id, 
                             'orientation': this.$data.game.orientation, 
                             'starting_position': this.$data.game.starting_position, 

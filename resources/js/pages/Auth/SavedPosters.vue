@@ -7,9 +7,25 @@
                     :controls="{ 'small': true, 'save': false }"></Poster>
                 <div class="content">
                     <div class="button-wrp">
-                        <button class="button is--black"> Add to cart
-                            <Icon name="cart" />
-                        </button>
+                        <PosterAddToCart :poster="{
+                            'theme_id': poster.theme_id, 
+                            'orientation': poster.orientation, 
+                            'starting_position': poster.starting_position, 
+                            'pgn': poster.pgn, 
+                            'diagram_position': poster.diagram_position, 
+                            'move_comment': poster.move_comment, 
+                            'fen': poster.fen, 
+                            'result': poster.result, 
+                            'title': poster.title, 
+                            'white_player': poster.white_player, 
+                            'black_player': poster.black_player,
+                            'white_rating': poster.white_rating, 
+                            'black_rating': poster.black_rating, 
+                            'white_title': poster.white_title, 
+                            'black_title': poster.black_title,  
+                            'when': poster.when, 
+                            'where': poster.where,  
+                            }" />
 
                         <a class="button" :href="route('poster.show', { 'id': poster.id })">
                             Edit
@@ -48,6 +64,7 @@ function submitForm(id) {
 import App from "../../Layouts/App.vue";
 import AccountNav from "../../Layouts/AccountNav.vue";
 import Poster from "../Components/Poster.vue"
+import PosterAddToCart from '../Components/PosterAddToCart.vue';
 
 export default {
     layout: (h, page) => {

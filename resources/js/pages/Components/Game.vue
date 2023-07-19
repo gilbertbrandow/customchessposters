@@ -55,9 +55,25 @@
             <p v-else>{{ this.game.description }}</p>
 
             <div class="button-wrp">
-                <button class="button is--black"> Add to cart
-                    <Icon name="cart" />
-                </button>
+                <AddToCart :poster="{
+                    'theme_id': this.game.theme_id,
+                    'orientation': this.game.orientation,
+                    'starting_position': this.game.starting_position,
+                    'pgn': this.game.pgn,
+                    'diagram_position': this.game.diagram_position,
+                    'move_comment': this.game.move_comment,
+                    'fen': this.game.fen,
+                    'result': this.game.result,
+                    'title': this.game.title,
+                    'white_player': this.game.white_player,
+                    'black_player': this.game.black_player,
+                    'white_rating': this.game.white_rating,
+                    'black_rating': this.game.black_rating,
+                    'white_title': this.game.white_title,
+                    'black_title': this.game.black_title,
+                    'when': this.game.when,
+                    'where': this.game.where,
+                }" />
 
                 <Link v-if="this.small !== true" class="button" :href="route('game.show', { 'id': this.game.game_id })">
                 Go to game
@@ -72,6 +88,7 @@
 
 <script>
 import Poster from "./Poster.vue"
+import AddToCart from "./PosterAddToCart.vue"
 import Flags from "../../Icons/Flags.vue";
 import { Link } from "@inertiajs/vue3";
 
@@ -81,6 +98,7 @@ export default {
         Poster,
         Flags,
         Link,
+        AddToCart,
     },
 
     props: {

@@ -2,6 +2,7 @@
     <aside class="overlay" v-if="this.$page.props.overlay">
         <Lightbox></Lightbox>
         <Cart />
+        <Sizes/>
         <div class="content slide-out"
             v-if="!this.$page.props.user && (this.$page.props.overlay == 'login' || this.$page.props.overlay == 'register' || this.$page.props.overlay == 'forgot')">
             <button class="button__rnd-icn" @click="this.$page.props.overlay = false">
@@ -189,12 +190,14 @@ let submit = ($form) => {
 import Lightbox from './Lightbox.vue';
 import AuthForms from './AuthForms.vue'
 import Cart from './Cart.vue'
+import Sizes from './Sizes.vue'
 
 export default {
 
     components: {
         Lightbox,
         AuthForms,
+        Sizes, 
     },
 
     computed: {
@@ -219,12 +222,12 @@ export default {
 
     methods: {
         clickToClose(e) {
-            if (e.target.closest('.overlay') && !e.target.closest('.content')) this.$page.props.overlay = false, this.$page.props.lightbox = false;
+            if (e.target.closest('.overlay') && !e.target.closest('.content')) this.$page.props.overlay = false, this.$page.props.lightbox = false, this.$page.props.addToCart = false;
             return
         },
 
         pressToClose(e) {
-            if (this.$page.props.overlay && e.key == 'Escape') this.$page.props.overlay = false, this.$page.props.lightbox = false;
+            if (this.$page.props.overlay && e.key == 'Escape') this.$page.props.overlay = false, this.$page.props.lightbox = false, this.$page.props.addToCart = false;
             return
         },
     },

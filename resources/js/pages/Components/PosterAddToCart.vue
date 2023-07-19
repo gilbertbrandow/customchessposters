@@ -1,23 +1,12 @@
 <template>
-    <div class="button-wrp">
-        <button class="button is--black" @click="showSizes()">
-            {{ this.sizes ? 'Choose a size' : 'Add to cart' }}
-            <Icon :name="this.sizes ? 'arrow-right' : 'cart'" />
-        </button>
-
-        <form @submit.prevent>
-            <ul v-if="this.sizes" class="sizes">
-                <li><button type="submit" @click="this.form.variant = 1">21 x 30cm</button></li>
-                <li><button type="submit" @click="this.form.variant = 2">50 x 70</button></li>
-                <li><button type="submit" @click="this.form.variant = 3">61 x 91cm</button></li>
-                <li><button type="submit" @click="this.form.variant = 4">70 x 100cm</button></li>
-            </ul>
-        </form>
-    </div>
+    <button class="button is--black"
+        @click="this.$page.props.addToCart = this.poster, this.$page.props.overlay = 'addToCart';">
+        Add To Cart
+        <Icon name="cart" />
+    </button>
 </template>
 
 <script>
-import { useForm } from '@inertiajs/vue3'
 
 export default {
     props: {
@@ -27,27 +16,8 @@ export default {
     data() {
         return {
             sizes: false,
-            form: useForm({
-                poster_data: this.poster,
-                variant: null,
-            })
+            unit: true,
         }
     },
-
-    methods: {
-        showSizes() {
-            this.sizes = true;
-        },
-    },
-
-    watch: {
-        'form.variant'() {
-            this.form.post('/product', {
-                preserveState: true, 
-                preserveScroll: true, 
-                onSuccess: () => this.sizes = false,
-            });
-        }
-    }
 }
 </script>

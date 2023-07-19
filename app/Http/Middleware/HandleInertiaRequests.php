@@ -89,6 +89,8 @@ class HandleInertiaRequests extends Middleware
             'overlay' => $request->session()->get('overlay'),
 
             'lightbox' => [],
+
+            'addToCart' => [],
             
             'route' => [
                 'params' => $request->route()->parameters(),
