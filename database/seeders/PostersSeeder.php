@@ -651,6 +651,27 @@ class PostersSeeder extends Seeder
                 'where' => 'chess.com INT',
             ],
 
+            [
+                'theme_id' => 2,
+                'orientation' => 0,
+                'starting_position' => 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                'pgn' => '1. d4 c5 2. d5 g6 3. c4 d6 4. Nc3 Bg7 5. Nf3 Nf6 6. g3 O-O 7. Bg2 e6 8. dxe6 Bxe6 9. Ng5 Bxc4 10. Bxb7 Nbd7 11. Bxa8 Qxa8 12. O-O d5 13. Qc2 Re8 14. f3 Ba6 15. a4 Qc6 16. Rf2 h6 17. Nh3 Bb7 18. Nf4 g5 19. Ng2 d4 20. Nb5 Ne5 21. b4 a6 22. Na7 Qd7 23. Bb2 d3 24. Qxc5 dxe2 25. Bxe5 Ne4 26. fxe4 Bxe5 27. Re1 Bd4 28. Qc2 Rxe4 29. Rxe2 Rxe2 30. Qxe2 Bxa7 31. b5 axb5 32. axb5 Qd5 33. Qf1 Qf3',
+                'diagram_position' => 66,
+                'move_comment' => 'Bishop pair from hell',
+                'fen' => '6k1/bb3p2/7p/1P4p1/8/5qP1/5RNP/5QK1 w - - 3 34',
+                'result' => '0-1',
+                'title' => 'Zugzwang',
+                'white_player' => 'Leif Ogaard',
+                'black_player' => 'Eugenio Torre',
+                'white_rating' => 2450,
+                'black_rating' => 2505,
+                'white_title' => 'GM',
+                'black_title' => 'GM',
+                'when' => 'Olympiad, 1976.10.28 Round 4',
+                'where' => 'Haifa ISR',
+            ],
+
+
         ];
 
         foreach ($posters as $poster) {

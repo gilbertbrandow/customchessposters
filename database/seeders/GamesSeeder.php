@@ -380,6 +380,17 @@ class GamesSeeder extends Seeder
                 'opening_id' => 34,
             ],
 
+            [
+                'poster_id' => 34,
+                'name' => 'From Madness To Bishop Pair From Hell',
+                'description' => 'Eugenio "Eugene" Torre is a Filipino chess player. In 1974, at 22 years old, he became the first Filipino and Asian to qualify for the title Grandmaster. Torre did this by winning the silver medal in the 21st Chess Olympiad in Nice, France. He is considered the strongest chess player the Philippines produced during the 1980s and 1990s,',
+                'date' => '1976-10-28',
+                'white_player' => 58,
+                'black_player' => 59,
+                'world_championship_game' => 0,
+                'opening_id' => 35,
+            ],
+
         ];
 
         foreach ($games as $game) {
