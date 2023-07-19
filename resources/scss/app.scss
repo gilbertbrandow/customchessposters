@@ -960,10 +960,6 @@ h4 {
 
 .module__step {
     display: none;
-
-    ul {
-        margin-bottom: 3em;
-    }
 }
 
 .module__step.is--active {
@@ -972,6 +968,7 @@ h4 {
 
 .themes {
     margin-top: 2em;
+    margin-bottom: 3em;
     display: flex;
     column-gap: 2em;
     p {

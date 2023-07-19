@@ -343,22 +343,36 @@
 
                             <div class="switcher-wrp">
                                 <span :class="this.$data.posterBuilder.unit ? 'is--active' : ''">Centimeters (cm)</span>
-                                <button :class="this.$data.posterBuilder.unit ? 'switcher' : 'switcher is--right'" 
+                                <button :class="this.$data.posterBuilder.unit ? 'switcher' : 'switcher is--right'"
                                     @click="this.$data.posterBuilder.unit = !this.$data.posterBuilder.unit">
                                     <div></div>
                                 </button>
                                 <span :class="!this.$data.posterBuilder.unit ? 'is--active' : ''">Inches (")</span>
                             </div>
 
-
-                            <ul class="sizes">
-                                <li :class="this.form.variant == 1 ? 'is--active' : ''"><button
-                                        @click="this.form.variant = 1"> <span>Small</span> <span>{{ this.$data.posterBuilder.unit ? '21 x 30 cm' : '8" x 12"' }}</span></button></li>
-                                <li :class="this.form.variant == 2 ? 'is--active' : ''"><button
-                                        @click="this.form.variant = 2"><span>Medium</span> <span>{{ this.$data.posterBuilder.unit ? '50 x 70 cm' : '20" x 27"' }}</span></button></li>
-                                <li :class="this.form.variant == 3 ? 'is--active' : ''"><button
-                                        @click="this.form.variant = 3"><span>Large</span> <span>{{ this.$data.posterBuilder.unit ? '61 x 91 cm' : '24" x 36"' }}</span></button></li>
+                            <ul class="sizes is--margin-top is--no-margin-bottom">
+                                <li :class="this.form.variant == 1 ? 'is--active' : ''">
+                                    <button @click="this.form.variant = 1">
+                                        <span>Small &nbsp; &nbsp; &nbsp; €20.00</span>
+                                        <span>{{ this.$data.posterBuilder.unit ? '21 x 30 cm' : '8" x 12"' }}
+                                        </span>
+                                    </button>
+                                </li>
+                                <li :class="this.form.variant == 2 ? 'is--active' : ''">
+                                    <button @click="this.form.variant = 2">
+                                        <span>Medium &nbsp; &nbsp; &nbsp; €30.00</span>
+                                        <span>{{ this.$data.posterBuilder.unit ? '50 x 70 cm' : '20" x 27"' }}</span>
+                                    </button>
+                                </li>
+                                <li :class="this.form.variant == 3 ? 'is--active' : ''">
+                                    <button @click="this.form.variant = 3">
+                                        <span>Large &nbsp; &nbsp; &nbsp; €40.00</span>
+                                        <span>{{ this.$data.posterBuilder.unit ? '61 x 91 cm' : '24" x 36"' }}</span>
+                                    </button>
+                                </li>
                             </ul>
+
+                            <span class="is--small is--margin-top">* No frame included</span>
                         </div>
                     </div>
                     <div class="module__navigation">

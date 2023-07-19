@@ -39,10 +39,12 @@
                 </li>
             </ul>
 
-            <button class="button is--black is--margin-top" @click="this.submit()" :disabled="!this.form.variant">
+            <button class="button is--black is--margin-top is--margin-bottom" @click="this.submit()" :disabled="!this.form.variant">
                 {{ !this.form.variant ? 'Choose a size' : 'Add to cart' }}
                 <Icon :name="!this.form.variant ? '' : 'cart'" />
             </button>
+
+            <span class="is--small is--margin-top">* No frame included</span>
         </div>
     </div>
 </template>
