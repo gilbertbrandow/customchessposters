@@ -327,17 +327,6 @@ class GamesSeeder extends Seeder
 
             [
                 'poster_id' => 29,
-                'name' => 'A Sign Of What Was To Come',
-                'description' => 'This was the first game to be won by a chess-playing computer against a reigning world champion under normal chess tournament conditions, and in particular, classical time controls.',
-                'date' => '1996-02-10',
-                'white_player' => 49,
-                'black_player' => 24,
-                'world_championship_game' => 0,
-                'opening_id' => 30,
-            ],
-
-            [
-                'poster_id' => 30,
                 'name' => 'Firouzja Puts On A Clinic',
                 'description' => 'In a explosive chess game, the young up and coming talent puts on a show from start to finish.',
                 'date' => '2020-03-22',
@@ -348,7 +337,7 @@ class GamesSeeder extends Seeder
             ],
 
             [
-                'poster_id' => 31,
+                'poster_id' => 30,
                 'name' => 'The First Zambian GM Takes On A Unique Pawn Structure',
                 'description' => 'Simutowe is the first GM from sub-saharan Africa. In this game from the British championships Amon finished with 6½/11, but also produced this gem of a game.',
                 'date' => '2000-01-01',
@@ -356,6 +345,17 @@ class GamesSeeder extends Seeder
                 'black_player' => 53,
                 'world_championship_game' => 0,
                 'opening_id' => 32,
+            ],
+
+            [
+                'poster_id' => 31,
+                'name' => 'A Sign Of What Was To Come',
+                'description' => 'This was the first game to be won by a chess-playing computer against a reigning world champion under normal chess tournament conditions, and in particular, classical time controls.',
+                'date' => '1996-02-10',
+                'white_player' => 49,
+                'black_player' => 24,
+                'world_championship_game' => 0,
+                'opening_id' => 30,
             ],
 
             [
