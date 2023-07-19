@@ -341,10 +341,23 @@
                             <h3>5. The Poster</h3>
                             <p>How big would you like your poster?</p>
 
+                            <div class="switcher-wrp">
+                                <span :class="this.$data.posterBuilder.unit ? 'is--active' : ''">Centimeters (cm)</span>
+                                <button :class="this.$data.posterBuilder.unit ? 'switcher' : 'switcher is--right'" 
+                                    @click="this.$data.posterBuilder.unit = !this.$data.posterBuilder.unit">
+                                    <div></div>
+                                </button>
+                                <span :class="!this.$data.posterBuilder.unit ? 'is--active' : ''">Inches (")</span>
+                            </div>
+
+
                             <ul class="sizes">
-                                <li :class="this.form.variant == 1 ? 'is--active' : ''"><button @click="this.form.variant = 1">21 x 30cm</button></li>
-                                <li :class="this.form.variant == 2 ? 'is--active' : ''"><button @click="this.form.variant = 2">50 x 70cm</button></li>
-                                <li :class="this.form.variant == 3 ? 'is--active' : ''"><button @click="this.form.variant = 3">61 x 91cm</button></li>
+                                <li :class="this.form.variant == 1 ? 'is--active' : ''"><button
+                                        @click="this.form.variant = 1"> {{ this.$data.posterBuilder.unit ? '21 x 30 cm' : '8" x 12"' }}</button></li>
+                                <li :class="this.form.variant == 2 ? 'is--active' : ''"><button
+                                        @click="this.form.variant = 2">{{ this.$data.posterBuilder.unit ? '50 x 70 cm' : '20" x 27"' }}</button></li>
+                                <li :class="this.form.variant == 3 ? 'is--active' : ''"><button
+                                        @click="this.form.variant = 3">{{ this.$data.posterBuilder.unit ? '61 x 91 cm' : '24" x 36"' }}</button></li>
                             </ul>
                         </div>
                     </div>
@@ -360,7 +373,8 @@
                                 <Icon name="arrow-right" />
                             </button>
 
-                            <button v-if="this.$data.posterBuilder.currStep == 4" class="button is--black" :disabled="!this.form.variant" @click="this.addToCart()">
+                            <button v-if="this.$data.posterBuilder.currStep == 4" class="button is--black"
+                                :disabled="!this.form.variant" @click="this.addToCart()">
                                 {{ !this.form.variant ? 'Add to Cart (You need to choose a size)' : 'Add to cart' }}
                                 <Icon :name="!this.form.variant ? '' : 'cart'" />
                             </button>
@@ -448,6 +462,7 @@ export default {
                 },
                 result: "",
                 titleValid: true,
+                unit: true,
             },
 
             poster: this.$page.props.editPoster || {
@@ -572,7 +587,7 @@ export default {
         },
 
         setTheme(id) {
-            this.$data.poster.theme_id = id; 
+            this.$data.poster.theme_id = id;
             this.$data.posterBuilder.currEnvironment = this.$data.themes[id - 1].environment;
         },
 
@@ -890,11 +905,11 @@ export default {
 
         addToCart() {
 
-            this.form.poster_data = this.poster; 
+            this.form.poster_data = this.poster;
 
             this.form.post('/product', {
-                preserveState: true, 
-                preserveScroll: true, 
+                preserveState: true,
+                preserveScroll: true,
                 onSuccess: () => this.form.variant = false,
             });
         }

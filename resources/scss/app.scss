@@ -576,6 +576,45 @@ button {
     margin-left: 0.25em;
 }
 
+.switcher-wrp {
+
+    display: flex;
+    align-items: center;
+    column-gap: 0.5em;
+    font-size: 0.8em;
+
+    span {
+        opacity: 0.5;
+    }
+
+    span.is--active {
+        text-decoration: underline;
+        opacity: 1;
+    }
+
+    .switcher {
+        height: 1.5em;
+        width: 3em;
+        border-radius: 1.5em;
+        background: whitesmoke;
+        outline: 0.12em solid #ebebeb;
+    
+        div {
+            width: 1.5em;
+            height: 1.5em;
+            border-radius: 1.5em;
+            background-color: #000;
+            transition: margin 400ms ease;
+        }
+    }
+
+    .switcher.is--right {
+        div {
+            margin-left: 1.5em;
+        }
+    }
+}
+
 section:first-child {
     padding-top: 4em;
 }
