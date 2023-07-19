@@ -15,6 +15,12 @@ body {
     margin: 0;
 }
 
+body:has(.overlay) {
+   margin: 0; 
+   height: 100%; 
+   overflow: hidden; 
+}
+
 main {
     display: flex;
     flex-direction: column;
@@ -2665,6 +2671,17 @@ label {
     background-color: #fff;
     display: flex;
     justify-content: center;
+
+    .button.is--only-icon.button.is--outline {
+        position: absolute;
+        right: 2em;
+        top: 2em;
+
+        svg {
+            margin: 0;
+            height: 0.6em;
+        }
+    }
 
     h2 {
         font-size: 2em;

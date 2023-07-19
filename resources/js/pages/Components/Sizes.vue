@@ -1,5 +1,9 @@
 <template>
     <div v-if="Object.keys(this.$page.props.addToCart).length" class="content sizes-overlay">
+        <button class="button is--only-icon is--outline" @click="this.$page.props.addToCart = [], this.$page.props.overlay = false">
+                <Icon name="close" />
+        </button>
+
         <div class="container">
             <h2>Choose a size for "{{ this.$page.props.addToCart.title }}"</h2>
 
