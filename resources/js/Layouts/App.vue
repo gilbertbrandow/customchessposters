@@ -92,7 +92,7 @@
         </div>
       </div>
       <div class="footer__bottom">
-        <span>All rättigheter reserverade © {{ new Date().getFullYear() }} Custom Chess Poster. </span>
+        <span>All rättigheter reserverade © {{ new Date().getFullYear() }} Custom Chess Poster </span>
         <span>Powered by <a href="https://0100.se">0100</a></span>
       </div>
     </div>

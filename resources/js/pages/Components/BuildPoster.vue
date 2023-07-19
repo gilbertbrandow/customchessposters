@@ -353,11 +353,11 @@
 
                             <ul class="sizes">
                                 <li :class="this.form.variant == 1 ? 'is--active' : ''"><button
-                                        @click="this.form.variant = 1"> {{ this.$data.posterBuilder.unit ? '21 x 30 cm' : '8" x 12"' }}</button></li>
+                                        @click="this.form.variant = 1"> <span>Small</span> <span>{{ this.$data.posterBuilder.unit ? '21 x 30 cm' : '8" x 12"' }}</span></button></li>
                                 <li :class="this.form.variant == 2 ? 'is--active' : ''"><button
-                                        @click="this.form.variant = 2">{{ this.$data.posterBuilder.unit ? '50 x 70 cm' : '20" x 27"' }}</button></li>
+                                        @click="this.form.variant = 2"><span>Medium</span> <span>{{ this.$data.posterBuilder.unit ? '50 x 70 cm' : '20" x 27"' }}</span></button></li>
                                 <li :class="this.form.variant == 3 ? 'is--active' : ''"><button
-                                        @click="this.form.variant = 3">{{ this.$data.posterBuilder.unit ? '61 x 91 cm' : '24" x 36"' }}</button></li>
+                                        @click="this.form.variant = 3"><span>Large</span> <span>{{ this.$data.posterBuilder.unit ? '61 x 91 cm' : '24" x 36"' }}</span></button></li>
                             </ul>
                         </div>
                     </div>

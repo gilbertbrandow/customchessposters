@@ -350,6 +350,8 @@ button {
     border: none;
     background-color: transparent;
     padding: 0em;
+    font-family: CabinetGrotesk;
+    font-weight: 500;
 }
 
 .button {
@@ -2668,6 +2670,17 @@ label {
 
         button {
             padding: 0.5em 0.75em 0.5em 0.75em;
+            display: flex;
+            flex-direction: column;
+            row-gap: 0.5em;
+
+            span:first-child {
+                font-size: 1.2em;
+            }
+
+            span:last-child {
+                font-size: 0.8em;
+            }
         }
     }
 
