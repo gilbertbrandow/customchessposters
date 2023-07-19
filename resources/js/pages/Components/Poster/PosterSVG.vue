@@ -1,5 +1,5 @@
 <template>
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 2000 3000" :style="{ 'background-color': (this.poster.theme_id == 1) ? '#FBF6EE' : '#f8f5f1', 'fill': (this.poster.theme_id == 1) ? '#41251D' : '#000000', 'font-family': (this.poster.theme_id == 1) ? 'Custom Serif By Ayaka Ito Regular' : 'EB Garamond, serif', }">
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 2000 3000" :style="{ 'background-color': (this.poster.theme_id == 1) ? '#FBF6EE' : '#f8f5f1', 'fill': (this.poster.theme_id == 1) ? '#41251D' : '#000000', 'font-family': (this.poster.theme_id == 1) ? 'Custom Serif By Ayaka Ito Regular' : 'EB Garamond', }">
 
         <!-- The Title -->
         <text id="title" font-size="150" text-anchor="middle" font-weight="400">
@@ -21,7 +21,7 @@
         </text>
 
         <!-- Where and when -->
-        <text id="meta" font-size="40" text-anchor="middle" x="1000" :y="title[1] ? 800 : 600" :style="{ 'font-family': (this.poster.theme_id == 1) ? 'Custom Serif By Ayaka Ito Italic' : '' }">
+        <text id="meta" font-size="40" text-anchor="middle" x="1000" :y="title[1] ? 800 : 600" :style="{ 'font-family': (this.poster.theme_id == 1) ? 'Custom Serif By Ayaka Ito Italic' : 'EB Garamond italic' }">
             <tspan>{{ poster.where }}</tspan>
             <tspan v-if="poster.where && poster.when"> | </tspan>
             <tspan>{{ poster.when }}</tspan>
@@ -53,7 +53,7 @@
             <Game ref="Game" :theme_id="this.$props.poster.theme_id" :fen="this.$props.poster.fen" />
 
             <!-- Diagram comment -->
-            <text id="comment" v-if="this.poster.pgn" y="1690" x="815" text-anchor="middle" font-size="32" :style="{ 'font-family': (this.poster.theme_id == 1) ? 'Custom Serif By Ayaka Ito Italic' : '' }"
+            <text id="comment" v-if="this.poster.pgn" y="1690" x="815" text-anchor="middle" font-size="32" :style="{ 'font-family': (this.poster.theme_id == 1) ? 'Custom Serif By Ayaka Ito Italic' : 'EB Garamond italic' }"
                 v-text="this.$props.poster.move_comment ? diagram_info + ', ' + this.$props.poster.move_comment: diagram_info"></text>
 
         </svg>
@@ -74,26 +74,28 @@
 </template>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;500;600;700;800;900&display=swap');
-@import url(//db.onlinewebfonts.com/c/b1baec3a6d2c2269eecc0140f7378628?family=Custom+Serif+By+Ayaka+Ito);
-</style>
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Prata&display=swap');
-</style>
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap');
 
 @font-face {
-    font-family: Custom Serif By Ayaka Ito Italic;
+    font-family: 'EB Garamond';
+    src: url("../../../../fonts/EBGaramond-Regular.ttf") 
+        format("truetype-variations");
+}
+
+@font-face {
+    font-family: 'EB Garamond italic';
+    src: url("../../../../fonts/EBGaramond-Italic.ttf")
+        format("truetype-variations");
+}
+
+@font-face {
+    font-family: 'Custom Serif By Ayaka Ito Italic';
     src: url("../../../../fonts/Custom-Serif-By-Ayaka-Ito-Italic.ttf")
         format("truetype-variations");
     font-weight: 1 999;
 }
 
 @font-face {
-    font-family: Custom Serif By Ayaka Ito Regular;
+    font-family: 'Custom Serif By Ayaka Ito Regular';
     src: url("../../../../fonts/Custom-Serif-By-Ayaka-Ito-Regular.ttf")
         format("truetype-variations");
     font-weight: 1 999;
