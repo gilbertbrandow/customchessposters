@@ -25,27 +25,6 @@ class OrderController extends Controller
 
     public function show(Request $request) {
 
-        return Inertia::render('Auth/Orders'); 
-    }
-
-    public function test() {
-
-        //Generate png for order-items
-        foreach(Order::first()->orderItems as $item) {
-
-            if($item->product->type == 'poster') {
-                $item->file = (new PosterService())->generatePNG($item->product->poster); 
-                $item->save();
-            }
-        }
-
-
-        dd((new OrderService(Order::first()))->sendOrderToPrintful()); 
-
-        $orderItems = Order::first()->orderItems;
-        
-        foreach($orderItems as $item) {
-            dd($item->products); 
-        }
+        return Inertia::render('Checkout/Confirmation'); 
     }
 }

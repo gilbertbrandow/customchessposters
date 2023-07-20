@@ -7,9 +7,7 @@
     <main>
         <section>
             <div class="container">
-                <h1>Payment recieved for order #{{ this.$page.props.route.params.orderId }}</h1>
-
-                <canvas height="1000px" width="2000px" id="posterCanvas"></canvas>
+                <h1 v-text="this.title"></h1>
             </div>
         </section>
     </main>
@@ -26,6 +24,7 @@ export default {
     data() {
         return {
             stripe: Stripe("pk_test_51MMadbE1I2SLYKPNXR2Hl7kXtba7Yl0DVHPq9LHGeCtWmR5sVNJQpimdm3LSfrHNC0u8XAyPI46vs1uGezp1KdVH00u7FqjZ8C"),
+            title: '',
         }
     },
 
@@ -43,16 +42,16 @@ export default {
 
             switch (paymentIntent.status) {
                 case "succeeded":
-                    console.log("Payment succeeded!");
+                    this.title = "Thank you, we have recieved your order #" + this.$page.props.route.params.orderId;
                     break;
                 case "processing":
-                    console.log("Your payment is processing.");
+                    this.title = "We are still processing the payment for your order #" + this.$page.props.route.params.orderId;
                     break;
                 case "requires_payment_method":
-                    console.log("Your payment was not successful, please try again.");
+                    this.title = "Your payment was not successful, please try again.";
                     break;
                 default:
-                    console.log("Something went wrong.");
+                    this.title = "Something went wrong";
                     break;
             }
         },

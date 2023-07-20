@@ -6,7 +6,6 @@ use App\Models\Order;
 use App\Services\OrderService;
 use App\Services\PosterService;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -48,7 +47,7 @@ class ProcessOrder implements ShouldQueue
 
         (new OrderService($this->order))->sendOrderToPrintful();
 
-        //Update order status to 'processing'
+        //Update order status
         $this->order->status = 'fulfilling'; 
         $this->order->save();
 

@@ -46,7 +46,7 @@ class RecipientController extends Controller
         
         } catch (Exception $e) {
 
-            return redirect()->back()->withErrors(['shippingMethod' => $e->getMessage()]);
+            return back()->withErrors(['shippingMethod' => $e->getMessage()]);
         }
 
         //Create recipient
