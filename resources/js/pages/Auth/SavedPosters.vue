@@ -1,7 +1,7 @@
 <template>
     <section>
         <h1>Your saved designs</h1>
-        <ul class="saved__posters">
+        <ul v-if="this.$page.props.posters.length" class="saved__posters">
             <li v-for="poster in $page.props.posters">
                 <Poster :poster="poster" environment="/images/environments/builder-mockup.jpeg"
                     :controls="{ 'small': true, 'save': false }"></Poster>
@@ -41,6 +41,15 @@
                 </div>
             </li>
         </ul>
+        <div v-else>
+            <p>You currently have no posters saved</p>
+            <div class="button-wrp">
+                <Link :href="route('poster.index')" class="button is--black">Create your own custom poster</Link>
+                <Link :href="route('game.index')" class="button">See our game collection
+                <Icon name="arrow-up" />
+                </Link>
+            </div>
+        </div>
     </section>
 </template>
 

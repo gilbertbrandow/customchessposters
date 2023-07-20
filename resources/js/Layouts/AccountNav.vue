@@ -19,13 +19,6 @@
                 </div>Saved Posters
                 </Link>
             </li>
-            <li :class="{ 'is--active': $page.url === '/orders' }">
-                <Link :href="route('order.show')">
-                <div>
-                    <Icon name="order"></Icon>
-                </div>Orders
-                </Link>
-            </li>
             <li v-if="this.$page.props.auth.user.admin" :class="{ 'is--active': $page.url === '/faq-edit' }">
                 <Link :href="route('faq.edit')">
                 <div>
@@ -38,20 +31,6 @@
                 <div>
                     <Icon name="edit"></Icon>
                 </div>Games
-                </Link>
-            </li>
-            <li :class="{ 'is--active': $page.url === '/shipping-addresses' }">
-                <Link :href="route('home.index')">
-                <div>
-                    <Icon name="bookmark"></Icon>
-                </div>Shipping Address
-                </Link>
-            </li>
-            <li :class="{ 'is--active': $page.url === '/create-review' }">
-                <Link :href="route('home.index')">
-                <div>
-                    <Icon name="bookmark"></Icon>
-                </div>Leave a review
                 </Link>
             </li>
             <li>
