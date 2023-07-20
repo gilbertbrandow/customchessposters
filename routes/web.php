@@ -145,7 +145,7 @@ Route::middleware('auth')->group(function () {
 |--------------------------------------------------------------------------
 */
 
-Route::get('/build-poster', [PosterController::class, 'index'])
+Route::get('/create-poster', [PosterController::class, 'index'])
     ->name('poster.index');
 
 Route::get('/edit-poster/{id}', [PosterController::class, 'show'])
