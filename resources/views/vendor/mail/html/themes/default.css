@@ -285,6 +285,10 @@ img {
     border-radius: 5px;
 }
 
+.text-link {
+    text-decoration: underline;
+}
+
 /* Panels */
 
 .panel {

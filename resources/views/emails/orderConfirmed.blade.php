@@ -6,13 +6,13 @@
     <h2>Order summary</h2>
     @foreach ($order->orderItems as $item)
     <ul class="table">
-        <li><h3>Poster, "{{ $item->product->poster->title }}"</h3></li>
-        <li><span>quantity: </span> <span>{{ $item->quantity }}</span></li>
+        <li><h3>Product: </h3><h3>Poster, "{{ $item->product->poster->title }}"</h3></li>
+        <li><span>Quantity: </span> <span>{{ $item->quantity }}</span></li>
+        <li><span>Dimensions: </span> <span>{{ $item->product->variant->width }} x {{ $item->product->variant->height }} cm</span></li>
+        <li><span>Design: </span><span><a class="text-link" href="{{ 'https://customchessposters.com/edit-poster/' . $item->product->poster->id }}">Click here</a></span></li>
     </ul>
-    <a class="button-black" href="{{ 'https://customchessposters.com/poster/' . $item->product->poster->id }}">See the poster</a>
     <br>
     @endforeach
-    <br><br>
     <h2>Order total</h2>
     <ul class="table">
         <li>
@@ -28,6 +28,9 @@
     <br>
     <h2>Shipping information</h2>
     <ul class="table">
+        <li>
+            <span>Method: </span> <span>{{ $order->shipping }}</span>
+        </li>
         <li>
             <span>Name: </span> <span>{{ $order->shippingAddress->name }}</span>
         </li>
