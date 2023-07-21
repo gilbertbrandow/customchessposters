@@ -1,6 +1,6 @@
 <template>
     <section>
-        <div class="container is--grid-4">
+        <div class="container is--grid-4 is--less-padding-bottom">
             <div v-for="feature in features" :key="feature.id" class="feature">
                 <div class="feature__icn"><Icon :name="feature.icon" /></div>
                 <h2 v-text="feature.title"></h2>

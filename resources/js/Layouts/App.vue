@@ -3,7 +3,8 @@
     <div class="container">
       <Logotype />
       <div class="nav__wrp">
-        <div class="dropdown"><img src="" /> USA / USD $</div>
+        <Link class="text__link" :href="route('game.index')">Game collection</Link>
+        <Link class="text__link" :href="route('poster.index')">Create your poster</Link>
         <Link @mouseover="resetFlash()" :href="route('user.index')" v-if="$page.props.auth" class="nav__button">
         <div class="info"
           :class="[($page.props.flash.account.success && !$page.props.flash.saved.success) ? 'active' : '']">
@@ -92,7 +93,7 @@
         </div>
       </div>
       <div class="footer__bottom">
-        <span>All rättigheter reserverade © {{ new Date().getFullYear() }} Custom Chess Poster </span>
+        <span>All rights reserved © {{ new Date().getFullYear() }} Custom Chess Poster </span>
         <span>Powered by <a href="https://0100.se">0100</a></span>
       </div>
     </div>

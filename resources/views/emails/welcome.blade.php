@@ -4,8 +4,5 @@
 
 <p>We cant wait to see what awesome posters you will create.</p>
 
-@component('mail::button', ['url' =>'https://google.com'])
-Start creating your own poster here!
-@endcomponent
-
+<a class="button-black" href="https://customchessposters.com/create-poster/">Create a poster!</a>
 @endcomponent
