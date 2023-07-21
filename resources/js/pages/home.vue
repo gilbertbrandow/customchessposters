@@ -2,8 +2,7 @@
     <section class="section__hero" ref="hero">
         <div class="container">
             <h1>Create Your Own Personal & Unique Chess Poster</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum
-                tristique. </p>
+            <p>There are more theoretically possible chess games than there are atoms in the known universe. Now there are equally many posters.</p>
             <div class="button-wrp">
                 <Link :href="route('poster.index')" class="button is--black">Create your own poster</Link>
                 <Link :href="route('game.index')" class="button">Game collection

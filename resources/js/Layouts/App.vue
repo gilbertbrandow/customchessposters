@@ -48,8 +48,7 @@
       <div class="footer__top">
         <div class="footer__info">
           <Logotype />
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.
-            Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.
+          <p>Put your favorite game on display. You get complete freedom to design and create your very own poster or choose a design from our game collection. 
           </p>
           <PaymentMethods/>
         </div>

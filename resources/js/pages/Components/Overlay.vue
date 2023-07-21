@@ -98,7 +98,7 @@
                 </div>
                 <div class="field__wrp">
                     <button class="button is--black" :disabled="forgot.processing">
-                        Send me my link! </button>
+                        Send me my link </button>
                     <Link class="link-arrow" :href="route('register.index')" preserve-scroll preserve-state>
                     Dont have an account? Register here
                     <Icon name="arrow-up" />
@@ -207,15 +207,15 @@ export default {
         },
 
         title() {
-            if (this.$page.props.overlay == 'login') return this.$page.props.poster ? 'You need an account to save poster' : 'Log in';
-            else if (this.$page.props.overlay == 'register') return this.$page.props.poster ? 'You need an account to save poster' : 'Register';
+            if (this.$page.props.overlay == 'login') return this.$page.props.poster ? 'You need to sign in to save the poster' : 'Log in';
+            else if (this.$page.props.overlay == 'register') return this.$page.props.poster ? 'You need an account to save the poster' : 'Register';
             else if (this.$page.props.overlay == 'forgot') return 'Forgot password?';
         },
 
         text() {
-            if (this.$page.props.overlay == 'login') return 'Trying to log in';
-            else if (this.$page.props.overlay == 'register') return 'Trying to register';
-            else if (this.$page.props.overlay == 'forgot') return 'Trying to forget';
+            if (this.$page.props.overlay == 'login') return 'Sign in using your email and password.';
+            else if (this.$page.props.overlay == 'register') return 'Enter your name, email and choose a password to become a member!';
+            else if (this.$page.props.overlay == 'forgot') return 'Enter your email below and we will send you a link for you to reset your password.';
 
         }
     },
