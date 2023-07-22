@@ -2967,3 +2967,220 @@ label {
         font-size: 19.2px;
     }
 }
+
+
+@media screen and (max-width: 991px) {
+    body {
+        font-size: 1.5vw;
+    }
+
+    section.is--pt {
+        padding-top: 4em;
+    }
+
+    .container {
+        padding: 4em; 
+        width: calc(100% - 8em);
+    }
+
+    nav {
+        .container {
+            padding: 0em 3em 0em 4em;
+        }
+    }
+
+    nav.is--scrolled {
+        .container {
+            padding-right: 4em;
+        }
+    } 
+
+    .footer__top {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        grid-template-rows: auto auto;
+
+        .footer__info, div:nth-child(2) {
+            grid-row: span 2;
+            grid-column: span 1;
+        }
+    }
+
+    .poster__builder {
+        flex-direction: column-reverse;
+
+        .poster__module {
+            width: auto;
+            margin-right: 0;
+            margin-top: -1em;
+            border-bottom-right-radius: 1em;  
+            padding: 2.5em 2.5em 2em 2.5em;
+        }
+
+        .poster__buttons-wrp {
+            right: auto;
+            left: 2.5em; 
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    body {
+        font-size: 2vw;
+    }
+
+    nav {
+        .logo {
+            font-size: 1.5em;
+        }
+
+        .nav__wrp {
+            .text__link {
+                display: none;
+            }
+        }
+    }
+
+    .footer__top {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: auto auto;
+        row-gap: 2em;
+
+        .footer__info, div:nth-child(2) {
+            grid-row: span 1;
+            grid-column: span 1;
+        }
+    }
+
+    .slide-out {
+        width: 30em;
+    }
+
+    .sizes {
+        font-size: 1em;
+    }
+}
+
+@media screen and  (max-width: 478px) {
+    body {
+        font-size: 3vw;
+    }
+
+    .container {
+        padding: 2em; 
+        width: calc(100% - 4em);
+    }
+
+    nav {
+        .container {
+            padding: 0em 1em 0em 2em;
+        }
+
+        .nav__wrp {
+            column-gap: 0.5em;
+        }
+    }
+
+    nav.is--scrolled {
+        .container {
+            padding-right: 2em;
+        }
+    } 
+
+    .footer__top {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        row-gap: 3em;
+
+        .footer__info {
+            grid-row: 4;
+            grid-column: 1;
+        }
+    }
+
+    .footer__bottom {
+        height: 3em;
+        padding-left: 1em;
+        padding-right: 1em;
+        font-size: 0.8em;
+    }
+
+    .slide-out {
+        width: 100vw;
+    } 
+
+    input.field, select.field, textarea.field {
+        font-size: 16px;
+        padding: 1.25em 1.25em 0.75em 1.1em;
+    }
+
+    .field__wrp:has(.link-arrow) {
+        justify-content: space-between;
+    }
+
+    .poster__module {
+        .row:not(.is--starting-position) {
+            display: inline-block;
+            width: 100%;
+        }
+
+        .manual-moves .link-arrow {
+            margin-top: 1em;
+            margin-bottom: 1em;
+        }
+
+        .row.is--title-result .field__wrp:not(:first-child) {
+            width: auto;
+        }
+
+        .row.is--player-input {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 1em;
+            margin-bottom: 2em;
+
+            .field__wrp:first-child {
+                grid-column: span 2;
+            }
+
+            .field__wrp:not(:first-child) {
+                width: auto;
+            }
+        }
+
+        .module__navigation {
+            flex-direction: column-reverse;
+            align-items: flex-start;
+            margin-top: 2em;
+
+            .module__buttons {
+                margin-top: 2em;
+                display: flex;
+                align-items: center;
+                column-gap: 2em;
+                flex-direction: row-reverse;
+            }
+
+        }
+
+        .tabs {
+            .tabs__header {
+                flex-direction: column;
+                align-items: flex-start;
+                row-gap: 0.5em;
+            }
+
+            .button {
+                font-size: 1em;
+            }
+        }
+    }
+    
+    .sizes {
+        flex-direction: column;
+        align-items: flex-start;
+        row-gap: 1em;
+    }
+}

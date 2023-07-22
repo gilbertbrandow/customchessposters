@@ -1,7 +1,7 @@
 <template>
     <section class="is--pt">
         <div class="container">
-            <h1>Shipping Information</h1>
+            <h1>Shipping Policy</h1>
         </div>
     </section>
 </template>

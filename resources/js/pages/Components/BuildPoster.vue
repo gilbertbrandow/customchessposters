@@ -389,7 +389,7 @@
 
                             <button v-if="this.$data.posterBuilder.currStep == 4" class="button is--black"
                                 :disabled="!this.form.variant" @click="this.addToCart()">
-                                {{ !this.form.variant ? 'Add to Cart (You need to choose a size)' : 'Add to cart' }}
+                                Add To Cart
                                 <Icon :name="!this.form.variant ? '' : 'cart'" />
                             </button>
 

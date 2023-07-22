@@ -98,7 +98,7 @@
                     fill="#016FD0" />
             </svg>
         </div>
-        <svg height="32px" version="1.1" viewBox="0 0 32 32" width="32px" xmlns="http://www.w3.org/2000/svg"
+        <svg height="2em" version="1.1" viewBox="0 0 32 32" width="2em" xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink">
             <title />
             <desc />

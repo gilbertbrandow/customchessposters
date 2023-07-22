@@ -76,7 +76,7 @@
           <h4>Terms & Conditions</h4>
           <ul>
             <li>
-              <Link :href="route('home.shipping')">Shipping information</Link>
+              <Link :href="route('home.shipping')">Shipping policy</Link>
             </li>
             <li>
               <Link :href="route('home.return')">Return policy</Link>
