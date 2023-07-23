@@ -16,9 +16,9 @@ body {
 }
 
 body:has(.overlay) {
-   margin: 0; 
-   height: 100%; 
-   overflow: hidden; 
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
 }
 
 main {
@@ -2968,10 +2968,32 @@ label {
     }
 }
 
-
 @media screen and (max-width: 991px) {
     body {
         font-size: 1.5vw;
+    }
+
+    section.section__hero {
+        flex-direction: column-reverse;
+        padding-left: 2em;
+        padding-right: 2em;
+        padding-bottom: 2em;
+
+        .poster-wrp {
+            width: 100%;
+
+            .poster {
+                top: -9em;
+            }
+        }
+
+        .container {
+            padding-top: 2em;
+            padding-right: 4em;
+            padding-left: 4em;
+            padding-bottom: 0em;
+            width: calc(100% - 4em);
+        }
     }
 
     section.is--pt {
@@ -2979,7 +3001,7 @@ label {
     }
 
     .container {
-        padding: 4em; 
+        padding: 4em;
         width: calc(100% - 8em);
     }
 
@@ -2993,17 +3015,27 @@ label {
         .container {
             padding-right: 4em;
         }
-    } 
+    }
 
     .footer__top {
         display: grid;
         grid-template-columns: 2fr 1fr 1fr;
         grid-template-rows: auto auto;
 
-        .footer__info, div:nth-child(2) {
+        .footer__info,
+        div:nth-child(2) {
             grid-row: span 2;
             grid-column: span 1;
         }
+    }
+
+    .container.is--grid-4 {
+        grid-template-columns: 1fr 1fr;
+        row-gap: 2em;
+    }
+
+    .container.is--grid-4.is--less-padding-bottom {
+        padding-bottom: 0em;
     }
 
     .poster__builder {
@@ -3013,13 +3045,13 @@ label {
             width: auto;
             margin-right: 0;
             margin-top: -1em;
-            border-bottom-right-radius: 1em;  
+            border-bottom-right-radius: 1em;
             padding: 2.5em 2.5em 2em 2.5em;
         }
 
         .poster__buttons-wrp {
             right: auto;
-            left: 2.5em; 
+            left: 2.5em;
         }
     }
 }
@@ -3047,7 +3079,8 @@ label {
         grid-template-rows: auto auto;
         row-gap: 2em;
 
-        .footer__info, div:nth-child(2) {
+        .footer__info,
+        div:nth-child(2) {
             grid-row: span 1;
             grid-column: span 1;
         }
@@ -3057,28 +3090,46 @@ label {
         width: 30em;
     }
 
+    section.section__hero {
+        .poster-wrp {
+            min-height: 36em;
+
+            .poster {
+                top: -5em;
+            }
+        }
+    }
+
     .sizes {
         font-size: 1em;
     }
 }
 
-@media screen and  (max-width: 478px) {
+@media screen and (max-width: 478px) {
     body {
         font-size: 3vw;
     }
 
+    h1 {
+        font-size: 3em;
+    }
+
     .container {
-        padding: 2em; 
+        padding: 2em;
         width: calc(100% - 4em);
     }
 
     nav {
         .container {
-            padding: 0em 1em 0em 2em;
+            padding: 0em 2em 0em 2em;
         }
 
         .nav__wrp {
             column-gap: 0.5em;
+        }
+
+        .logo {
+            display: none;
         }
     }
 
@@ -3086,7 +3137,11 @@ label {
         .container {
             padding-right: 2em;
         }
-    } 
+
+        .logo {
+            display: flex;
+        }
+    }
 
     .footer__top {
         display: grid;
@@ -3107,11 +3162,41 @@ label {
         font-size: 0.8em;
     }
 
+    section.section__hero {
+        padding-right: 1em;
+        padding-left: 1em;
+
+        .poster-wrp {
+            min-height: 26em;
+            height: auto;
+
+            .game__info {
+                width: calc(100% - 2em);
+                padding: 1em;
+                .players {
+                    font-size: 0.6em;
+                }
+            }
+        }
+
+        .container {
+            padding: 1em 1em 0em 1em; 
+            width: calc(100% - 2em);
+        }
+    }
+
+    .container.is--grid-4 {
+        grid-template-columns: 1fr;
+        row-gap: 2em;
+    }
+
     .slide-out {
         width: 100vw;
-    } 
+    }
 
-    input.field, select.field, textarea.field {
+    input.field,
+    select.field,
+    textarea.field {
         font-size: 16px;
         padding: 1.25em 1.25em 0.75em 1.1em;
     }
@@ -3162,7 +3247,6 @@ label {
                 column-gap: 2em;
                 flex-direction: row-reverse;
             }
-
         }
 
         .tabs {
@@ -3177,7 +3261,7 @@ label {
             }
         }
     }
-    
+
     .sizes {
         flex-direction: column;
         align-items: flex-start;
