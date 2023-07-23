@@ -3063,13 +3063,26 @@ label {
             width: auto;
         }
     }
+
+    ul.game__collection {
+        grid-template-columns: 1fr;
+    }
+
+    .filter {
+        .advanced {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .simple .button-wrp {
+            width: 30em;
+        }
+    }
 }
 
 @media screen and (max-width: 767px) {
     body {
         font-size: 2vw;
     }
-
 
     nav {
         .container {
@@ -3082,7 +3095,6 @@ label {
             padding-right: 2em;
         }
     }
-
 
     .container {
         padding: 2em;
@@ -3252,7 +3264,7 @@ label {
         }
 
         .container {
-            padding: 1em 1em 0em 1em; 
+            padding: 1em 1em 0em 1em;
             width: calc(100% - 2em);
         }
     }
@@ -3348,6 +3360,44 @@ label {
     .question {
         h3 {
             font-size: 1.2em;
+        }
+    }
+
+    .filter {
+
+        .advanced {
+            grid-template-columns: 1fr;
+        }
+
+        .simple {
+            flex-direction: column;
+            align-items: flex-start;
+            row-gap: 1em;
+
+            .button-wrp {
+                width: 100%;
+            }
+
+            .field__wrp:last-child {
+                width: 100%;
+            }
+        }
+    }
+
+    ul.game__collection {
+        li {
+            flex-direction: column-reverse;
+
+            .content {
+                margin-right: 0em;
+                padding-right: 1em;
+                padding-top: 2.5em;
+                margin-top: -1.5em;
+
+                .button-wrp {
+                    font-size: 1em;
+                }
+            }
         }
     }
 }
