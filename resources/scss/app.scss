@@ -1234,6 +1234,7 @@ h4 {
     width: 100vw;
     height: 100vh;
     z-index: 99999;
+    overflow: auto;
 }
 
 .overlay:has(.lightbox) {
@@ -1578,7 +1579,6 @@ h4 {
 .slide-out {
     position: relative;
     width: 40em;
-    height: 100%;
     background-color: $base-color;
     display: flex;
     flex-direction: column;
@@ -3158,6 +3158,18 @@ label {
 
     h1 {
         font-size: 3em;
+    }
+
+    h2 {
+        font-size: 2em;
+    }
+
+    h3 {
+        font-size: 1.5em;
+    }
+
+    p {
+        font-size: 1em;
     }
 
     .container {
