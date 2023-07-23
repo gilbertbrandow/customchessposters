@@ -3001,7 +3001,7 @@ label {
     }
 
     .container {
-        padding: 4em;
+        padding: 2em 4em 2em 4em;
         width: calc(100% - 8em);
     }
 
@@ -3052,6 +3052,15 @@ label {
         .poster__buttons-wrp {
             right: auto;
             left: 2.5em;
+        }
+    }
+
+    .container.is--flex {
+        flex-direction: column;
+        row-gap: 2em;
+
+        .content {
+            width: auto;
         }
     }
 }
@@ -3334,5 +3343,11 @@ label {
     .slider__header {
         flex-direction: column;
         row-gap: 1em;
+    }
+
+    .question {
+        h3 {
+            font-size: 1.2em;
+        }
     }
 }
