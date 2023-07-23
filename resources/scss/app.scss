@@ -3167,6 +3167,15 @@ label {
         font-size: 1em;
     }
 
+
+    .sizes-overlay {
+
+        .button.is--only-icon.button.is--outline {
+            right: 1em;
+            top: 1em;
+        }
+    }
+
     .slider__header .filter .simple {
         width: 30em;
     }
@@ -3236,7 +3245,26 @@ label {
 
     .content.slide-out {
         overflow: auto;
-        height: 100vh;
+    }
+
+    ul.cart-items {
+        height: calc(100vh - 15em);
+        li {
+            flex-direction: column;
+
+            .poster {
+                width: 100%;
+            }
+
+            .content {
+                border-radius: 1em;
+                margin-right: 0em;
+                margin-left: 0em;
+                margin-top: -1.5em;
+                padding: 2.5em 1.5em 1.5em 1.5em;
+
+            }
+        }
     }
 
     .footer__bottom {
