@@ -1,6 +1,6 @@
 <template>
     <Overlay></Overlay>
-    <header>
+    <header class="checkout__header">
         <div class="container is--less-padding is--flex is--space-between">
             <Logotype />
             <div class="checkout__navigation">
@@ -16,14 +16,14 @@
                 <span v-else>2. </span>
                 Shipping Methods
                 </Link>
-                <Link :href="route('home.index')">3. Payment</Link>
+                <Link :href="route('payment.index', { orderId: this.$page.props.route.params.orderId })">3. Payment</Link>
 
             </div>
         </div>
     </header>
     <main>
         <section class="is--no-pt">
-            <div class="container is--flex is--less-padding">
+            <div class="container is--flex is--less-padding  is--checkout">
                 <div class="content card">
                     <slot>
                     </slot>
