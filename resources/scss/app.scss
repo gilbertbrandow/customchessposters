@@ -1433,8 +1433,8 @@ h4 {
 ***********************/
 
 .lightbox {
-    width: 75em;
-    height: 50em;
+    max-width: 96vw;
+    max-height: calc(100vh - 4vw);
     border-radius: 1em;
     overflow: hidden;
     background-color: #fff;
@@ -1442,30 +1442,52 @@ h4 {
     align-items: center;
     flex-direction: column;
 
-    .poster__svg-wrp.is--lightbox-small {
-        top: 10.75%;
-        right: 26.75%;
-        width: 24em;
-        height: auto;
+    .poster:has(.poster__svg-wrp.is--lightbox-small) {
+        .poster__svg-wrp.is--lightbox-small {
+            top: 17.75%;
+            right: 26.75%;
+            width: 32%;
+            height: auto;
+        }
+
+        .poster__environment {
+            max-width: 125vh;
+            max-height: 165vw;
+        }
     }
 
-    .poster__svg-wrp.is--lightbox-medium {
-        top: 10.2%;
-        right: 32.7%;
-        width: 23.65em;
-        height: auto;
+    .poster:has(.poster__svg-wrp.is--lightbox-medium) {
+        .poster__svg-wrp.is--lightbox-medium {
+            top: 19.2%;
+            width: 32%;
+            right: 32.7%;
+            height: auto;
+        }
+
+        .poster__environment {
+            max-width: 125vh;
+            max-height: 165vw;
+        }
     }
 
-    .poster__svg-wrp.is--lightbox-large {
-        top: 13.75%;
-        right: 36.75%;
-        width: 30.75%;
-        height: auto;
+    .poster:has(.poster__svg-wrp.is--lightbox-large) {
+        .poster__svg-wrp.is--lightbox-large {
+            top: 17.75%;
+            right: 36.75%;
+            width: 30.75%;
+            height: auto;
+        }
+
+        .poster__environment {
+            max-width: 150vh;
+            max-height: 165vw;
+        }
     }
 
     .lightbox__mask {
-        width: 100%;
-        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         position: relative;
         overflow: hidden;
         border-radius: 1em;
@@ -1477,14 +1499,16 @@ h4 {
     }
 
     .poster {
-        height: 100%;
-        width: 100%;
-        position: absolute;
+        position: relative;
         border-radius: 0em;
+        min-height: 100%;
+        min-width: 100%;
 
         .poster__environment {
-            height: 100%;
+            min-height: 100%;
+            min-width: 100%;
             object-fit: cover;
+            width: auto;
         }
     }
 
@@ -3477,4 +3501,9 @@ label {
             }
         }
     }
+
+    .poster:has(.poster__svg-wrp.is--lightbox-small) {
+        left: -7%; 
+     }
+
 }
