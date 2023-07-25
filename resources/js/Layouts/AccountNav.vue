@@ -3,7 +3,7 @@
         <ul class="account__menu">
             <li>
                 Signed in as <br>
-                <h3 v-text="this.$page.props.auth.user.name"></h3>
+                <h3 v-text="$page.props.auth.user.name"></h3>
             </li>
             <li :class="{ 'is--active': $page.url === '/account' }">
                 <Link :href="route('user.index')">
@@ -19,14 +19,14 @@
                 </div>Saved Posters
                 </Link>
             </li>
-            <li v-if="this.$page.props.auth.user.admin" :class="{ 'is--active': $page.url === '/faq-edit' }">
+            <li v-if="$page.props.auth.user.admin" :class="{ 'is--active': $page.url === '/faq-edit' }">
                 <Link :href="route('faq.edit')">
                 <div>
                     <Icon name="edit"></Icon>
                 </div>FAQs
                 </Link>
             </li>
-            <li v-if="this.$page.props.auth.user.admin" :class="{ 'is--active': $page.url === '/game-edit' }">
+            <li v-if="$page.props.auth.user.admin" :class="{ 'is--active': $page.url === '/game-edit' }">
                 <Link :href="route('game.edit')">
                 <div>
                     <Icon name="edit"></Icon>

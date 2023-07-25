@@ -1,7 +1,7 @@
 <template>
     <section>
         <h1>Your saved designs</h1>
-        <ul v-if="this.$page.props.posters.length" class="saved__posters">
+        <ul v-if="$page.props.posters.length" class="saved__posters">
             <li v-for="poster in $page.props.posters">
                 <Poster :poster="poster" environment="builder-mockup.jpeg"
                     :controls="{ 'small': true, 'save': false }"></Poster>

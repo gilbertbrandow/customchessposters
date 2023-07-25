@@ -4,7 +4,7 @@
             <div class="poster__builder">
                 <div class="poster__module">
                     <div class="is--flex is--space-between">
-                        <h2 v-text="(this.$page.props.editPoster) ? 'Editing poster' : 'Create Your Custom Poster'"></h2>
+                        <h2 v-text="($page.props.editPoster) ? 'Editing poster' : 'Create Your Custom Poster'"></h2>
                         <button v-if="this.$data.controls.update" class="link-arrow is--low-op" @click="resetChanges()">
                             Undo all changes
                             <Icon name="undo" />

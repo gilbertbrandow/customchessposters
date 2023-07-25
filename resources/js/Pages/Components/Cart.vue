@@ -1,6 +1,6 @@
 <template>
-    <div v-if="this.$page.props.overlay == 'cart'" class="content slide-out cart-wrp">
-        <button class="button__rnd-icn" @click="this.$page.props.overlay = false">
+    <div v-if="$page.props.overlay == 'cart'" class="content slide-out cart-wrp">
+        <button class="button__rnd-icn" @click="$page.props.overlay = false">
             <Icon name="close" />
         </button>
         <h2>Cart</h2>

@@ -13,7 +13,7 @@
         <div class="poster-wrp">
             <div class="poster">
                 <div class="poster__svg-wrp">
-                    <Poster :poster="this.$page.props.game.poster" />
+                    <Poster :poster="$page.props.game.poster" />
                 </div>
 
                 <img class="poster__environment" src="../../../public/images/environments/warm.jpg" />
@@ -21,19 +21,19 @@
 
             <div class="game__info">
 
-                <Link :href="route('game.show', this.$page.props.game.id)" class="players">
+                <Link :href="route('game.show', $page.props.game.id)" class="players">
                 <div class="player">
-                    <Flag :country="this.$page.props.game.white_player.country"></Flag>
-                    {{ this.$page.props.game.white_player.name }}
-                    <div v-if="this.$page.props.game.white_player.computer" class="computer">
+                    <Flag :country="$page.props.game.white_player.country"></Flag>
+                    {{ $page.props.game.white_player.name }}
+                    <div v-if="$page.props.game.white_player.computer" class="computer">
                         <Icon name="computer"></Icon>
                     </div>
                 </div>
                 -
                 <div class="player">
-                    <Flag :country="this.$page.props.game.black_player.country"></Flag>
-                    {{ this.$page.props.game.black_player.name }}
-                    <div v-if="this.$page.props.game.black_player.computer" class="computer">
+                    <Flag :country="$page.props.game.black_player.country"></Flag>
+                    {{ $page.props.game.black_player.name }}
+                    <div v-if="$page.props.game.black_player.computer" class="computer">
                         <Icon name="computer"></Icon>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
 
     <BuildPoster />
 
-    <Slider :games="this.$page.props.games" />
+    <Slider :games="$page.props.games" />
 
     <Faq :faqs="$page.props.faqs" />
 </template>

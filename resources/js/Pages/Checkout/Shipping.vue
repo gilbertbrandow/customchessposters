@@ -15,7 +15,7 @@
             <select v-model="this.country" @change="updateCountry($event.target.value)" id="country" class="field"
                 name="country" :class="{ 'is--error': form.errors.country_code }" autocomplete="on">
                 <option :value="null">Country</option>
-                <option v-for="(country, index) in this.$page.props.countries" v-bind:data-index="index"
+                <option v-for="(country, index) in $page.props.countries" v-bind:data-index="index"
                     :value="country.code + ', ' + country.name">{{ country.name }}</option>
             </select>
         </div>
@@ -66,7 +66,7 @@
 
         <div class="field__wrp">
             <button :disabled="form.processing" class="button is--black is--less-border-radius is--flex is--space-between">
-                {{ this.$page.props.address ? 'Update And ' : '' }}Proceeed To Shipping Alternatives
+                {{ $page.props.address ? 'Update And ' : '' }}Proceeed To Shipping Alternatives
                 <Icon name="arrow-right" />
             </button>
             <div v-if="false" v-text="'Test'" class="field__error is--submit"></div>

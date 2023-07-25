@@ -222,12 +222,12 @@ export default {
 
     methods: {
         clickToClose(e) {
-            if (e.target.closest('.overlay') && !e.target.closest('.content')) $page.props.overlay = false, $page.props.lightbox = false, $page.props.addToCart = false;
+            if (e.target.closest('.overlay') && !e.target.closest('.content')) this.$page.props.overlay = false, this.$page.props.lightbox = false, this.$page.props.addToCart = false;
             return
         },
 
         pressToClose(e) {
-            if ($page.props.overlay && e.key == 'Escape') $page.props.overlay = false, $page.props.lightbox = false, $page.props.addToCart = false;
+            if (this.$page.props.overlay && e.key == 'Escape') this.$page.props.overlay = false, this.$page.props.lightbox = false, this.$page.props.addToCart = false;
             return
         },
     },

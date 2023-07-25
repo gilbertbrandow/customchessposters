@@ -1,9 +1,9 @@
 <template>
-    <div class="content lightbox" v-if="Object.keys(this.$page.props.lightbox).length">
+    <div class="content lightbox" v-if="Object.keys($page.props.lightbox).length">
         <div class="lightbox__mask" @click="[this.updateZoom(), this.mouseMove($event)]">
             <div class="poster" :class="[zoom ? 'is--zoomed' : '']">
                 <div class="poster__svg-wrp" :class="this.slides[`${this.currSlide}`].class">
-                    <Poster ref="PosterSVG" :poster="this.$page.props.lightbox" />
+                    <Poster ref="PosterSVG" :poster="$page.props.lightbox" />
                 </div>
                 <img v-if="this.slides[`${this.currSlide}`].size == 's'" class="poster__environment"
                     src="../../../../public/images/environments/environment-small.jpg" />
@@ -30,7 +30,7 @@
                     <button @click="this.nextSlide()">
                         <Icon name="small-arrow" />
                     </button>
-                    <button @click="this.$page.props.overlay = false, this.$page.props.lightbox = false;">
+                    <button @click="$page.props.overlay = false, $page.props.lightbox = false;">
                         <Icon name="close" />
                     </button>
                 </div>

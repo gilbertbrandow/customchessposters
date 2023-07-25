@@ -8,7 +8,7 @@
 
                 <select v-model="this.faq.id" id="faqOption" class="field" name="faqOption" @change="updateCurrFaq($event)">
                     <option value="0">Create new FAQ</option>
-                    <option v-for="faq in this.$page.props.faqs" :value="faq.id">{{ 'Edit: "' + faq.question + '"' }}
+                    <option v-for="faq in $page.props.faqs" :value="faq.id">{{ 'Edit: "' + faq.question + '"' }}
                     </option>
                 </select>
 
@@ -39,7 +39,7 @@
                     Update
                 </button>
 
-                <div v-if="this.$page.props.flash.success" v-text="this.$page.props.flash.success"
+                <div v-if="$page.props.flash.success" v-text="$page.props.flash.success"
                     class="is--error is--success"></div>
             </div>
         </form>

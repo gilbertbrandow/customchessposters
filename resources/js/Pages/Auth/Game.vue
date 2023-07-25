@@ -9,7 +9,7 @@
                 <select v-model="game.id" id="gameOption" class="field" name="gameOption"
                     @change="updateCurrGame($event, game)">
                     <option value="0">Create new game</option>
-                    <option v-for="game in this.$page.props.games" :value="game.id">{{ 'Edit: "' + game.name + '"'
+                    <option v-for="game in $page.props.games" :value="game.id">{{ 'Edit: "' + game.name + '"'
                     }}
                     </option>
                 </select>
@@ -32,7 +32,7 @@
                 <label for="posterOption" class="field__label">Poster</label>
                 <select v-model="game.poster_id" id="posterOption" class="field" name="posterOption">
                     <option value="0">Choose from saved posters</option>
-                    <option v-for="(key, value, index) in this.$page.props.posters" :value="key">{{ 'Use: "' + value + '"'
+                    <option v-for="(key, value, index) in $page.props.posters" :value="key">{{ 'Use: "' + value + '"'
                     }}
                     </option>
                 </select>
@@ -45,7 +45,7 @@
                 <select v-model="game.opening_id" id="opening" class="field" name="opening">
                     <option value="0">Choose opening</option>
                     <option value="-1">Create new opening</option>
-                    <option v-for="opening in this.$page.props.openings" :value="opening.id">{{ opening.eco +
+                    <option v-for="opening in $page.props.openings" :value="opening.id">{{ opening.eco +
                         ', ' + opening.name }}
                     </option>
                 </select>
@@ -58,7 +58,7 @@
                 <select v-model="game.white_player" id="whitePlayer" class="field" name="whitePlayer">
                     <option value="0">Choose player</option>
                     <option value="-1">Create new player</option>
-                    <option v-for="player in this.$page.props.players" :value="player.id">{{ player.name }}
+                    <option v-for="player in $page.props.players" :value="player.id">{{ player.name }}
                     </option>
                 </select>
 
@@ -70,7 +70,7 @@
                 <select v-model="game.black_player" id="blackPlayer" class="field" name="blackPlayer">
                     <option value="0">Choose player</option>
                     <option value="-1">Create new player</option>
-                    <option v-for="player in this.$page.props.players" :value="player.id">{{ player.name }}
+                    <option v-for="player in $page.props.players" :value="player.id">{{ player.name }}
                     </option>
                 </select>
 
@@ -91,7 +91,7 @@
                 <button type="submit" class="button is--black"
                     v-text="game.id != 0 ? 'Update game' : 'Create Game'"></button>
 
-                <div v-if="this.$page.props.flash.success" v-text="this.$page.props.flash.success"
+                <div v-if="$page.props.flash.success" v-text="$page.props.flash.success"
                     class="is--error is--success"></div>
             </div>
 

@@ -1,17 +1,17 @@
 <template>
     <div class="content slide-out"
-        v-if="(this.$page.props.overlay.login || this.$page.props.overlay.register || this.$page.props.overlay.forgot) && (!Object.keys(this.$page.props.overlay.lightbox).length)">
-        <button class="button__rnd-icn" @click="this.$page.props.overlay.visible = false">
+        v-if="($page.props.overlay.login || $page.props.overlay.register || $page.props.overlay.forgot) && (!Object.keys($page.props.overlay.lightbox).length)">
+        <button class="button__rnd-icn" @click="$page.props.overlay.visible = false">
             <Icon name="close" />
         </button>
 
         <h2 v-text="title"></h2>
-        <div v-if="this.$page.props.poster && !this.$page.props.overlay.forgot" class="currentPoster">
-            <div><Icon name="bookmark" /></div>"{{ this.$page.props.poster.title }}"
+        <div v-if="$page.props.poster && !$page.props.overlay.forgot" class="currentPoster">
+            <div><Icon name="bookmark" /></div>"{{ $page.props.poster.title }}"
         </div>
         <p v-text="text"></p>
 
-        <form v-if="this.$page.props.overlay.login" @submit.prevent="submit('login')" class="form">
+        <form v-if="$page.props.overlay.login" @submit.prevent="submit('login')" class="form">
             <div class="field__wrp">
                 <label for="email" class="field__label">Email address</label>
                 <div v-if="login.errors.email" v-text="login.errors.email" class="field__error"></div>
@@ -43,7 +43,7 @@
             </div>
         </form>
 
-        <form v-else-if="this.$page.props.overlay.register" @submit.prevent="submit('register')" class="form">
+        <form v-else-if="$page.props.overlay.register" @submit.prevent="submit('register')" class="form">
             <div class="field__wrp">
                 <label for="name" class="field__label">Name</label>
                 <div v-if="register.errors.name" v-text="register.errors.name" class="field__error"></div>
@@ -82,7 +82,7 @@
             </div>
         </form>
 
-        <form v-else-if="this.$page.props.overlay.forgot" v-if="!$page.props.flash.success"
+        <form v-else-if="$page.props.overlay.forgot" v-if="!$page.props.flash.success"
             @submit.prevent="submit('forgot')" class="form">
             <div class="field__wrp">
                 <label for="email" class="field__label">Email address</label>

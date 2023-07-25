@@ -68,7 +68,7 @@
                 <select v-model="query.player" id="player" :class="[query.player !== null ? 'field active' : 'field']"
                     name="player">
                     <option :value="null">No preference</option>
-                    <option v-for="player in this.$page.props.players" :value="player.id">{{ player.name }}</option>
+                    <option v-for="player in $page.props.players" :value="player.id">{{ player.name }}</option>
                 </select>
             </div>
 
@@ -77,7 +77,7 @@
                 <select v-model="query.country" id="country" :class="[query.country !== null ? 'field active' : 'field']"
                     name="wcc">
                     <option :value="null">No preference</option>
-                    <option v-for="(country, name) in this.$page.props.countries" :value="name">{{ name }}</option>
+                    <option v-for="(country, name) in $page.props.countries" :value="name">{{ name }}</option>
                 </select>
             </div>
 
@@ -86,7 +86,7 @@
                 <select v-model="query.opening" id="wcc" :class="[query.opening !== null ? 'field active' : 'field']"
                     name="wcc">
                     <option :value="null">No preference</option>
-                    <option v-for="opening in this.$page.props.openings" :value="opening.id">{{ opening.eco + ': ' +
+                    <option v-for="opening in $page.props.openings" :value="opening.id">{{ opening.eco + ': ' +
                         opening.name }}</option>
                 </select>
             </div>

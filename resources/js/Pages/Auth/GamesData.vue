@@ -1,5 +1,5 @@
 <template>
-    <template v-for="game in this.$page.props.games">
+    <template v-for="game in $page.props.games">
         [ <br>
         <template v-for="(value, name, index) in game">
             <template v-if="!this.$data.nonFillable.includes(name)">

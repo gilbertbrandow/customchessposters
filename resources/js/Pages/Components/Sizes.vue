@@ -1,11 +1,11 @@
 <template>
-    <div v-if="Object.keys(this.$page.props.addToCart).length" class="content sizes-overlay">
-        <button class="button is--only-icon is--outline" @click="this.$page.props.addToCart = [], this.$page.props.overlay = false">
+    <div v-if="Object.keys($page.props.addToCart).length" class="content sizes-overlay">
+        <button class="button is--only-icon is--outline" @click="$page.props.addToCart = [], $page.props.overlay = false">
                 <Icon name="close" />
         </button>
 
         <div class="container">
-            <h2>Choose a size for "{{ this.$page.props.addToCart.title }}"</h2>
+            <h2>Choose a size for "{{ $page.props.addToCart.title }}"</h2>
 
             <div class="switcher-wrp is--margin-top">
                 <span :class="this.$data.unit ? 'is--active' : ''">Centimeters (cm)</span>

@@ -4,19 +4,19 @@
         <div class="container is--less-padding is--flex is--space-between">
             <Logotype />
             <div class="checkout__navigation">
-                <Link :href="route('shipping.index', { orderId: this.$page.props.route.params.orderId })"
+                <Link :href="route('shipping.index', { orderId: $page.props.route.params.orderId })"
                     :class="{ 'is--active': $page.url.includes('information') }">
-                <Icon v-if="!$page.url.includes('information') && this.$page.props.address" name="checked" />
+                <Icon v-if="!$page.url.includes('information') && $page.props.address" name="checked" />
                 <span v-else>1. </span>
                 Information
                 </Link>
-                <Link :href="route('shippingMethod.index', { orderId: this.$page.props.route.params.orderId })"
+                <Link :href="route('shippingMethod.index', { orderId: $page.props.route.params.orderId })"
                     :class="{ 'is--active': $page.url.includes('shipping-methods') }">
-                <Icon v-if="!$page.url.includes('shipping-method') && this.$page.props.shippingMethod" name="checked" />
+                <Icon v-if="!$page.url.includes('shipping-method') && $page.props.shippingMethod" name="checked" />
                 <span v-else>2. </span>
                 Shipping Methods
                 </Link>
-                <Link :href="route('payment.index', { orderId: this.$page.props.route.params.orderId })">3. Payment</Link>
+                <Link :href="route('payment.index', { orderId: $page.props.route.params.orderId })">3. Payment</Link>
 
             </div>
         </div>
@@ -30,26 +30,26 @@
                 </div>
                 <div class="order__summary">
                     <h3>Your order</h3>
-                    <div class="order__recipient" v-if="this.$page.props.address">
+                    <div class="order__recipient" v-if="$page.props.address">
                         <div class="is--flex is--space-between">
-                            <span><strong>Contact: </strong> {{ this.$page.props.address.email }}</span>
+                            <span><strong>Contact: </strong> {{ $page.props.address.email }}</span>
                             <Link class="text__link"
-                                :href="route('shipping.index', { orderId: this.$page.props.route.params.orderId })">Edit
+                                :href="route('shipping.index', { orderId: $page.props.route.params.orderId })">Edit
                             </Link>
                         </div>
                         <div class="divider"></div>
                         <div class="is--flex is--space-between">
-                            <span><strong>Send to:</strong> {{ this.$page.props.address.country + ', ' +
-                                this.$page.props.address.address1 + ', ' + this.$page.props.address.zip + ' ' +
-                                this.$page.props.address.city }}</span>
+                            <span><strong>Send to:</strong> {{ $page.props.address.country + ', ' +
+                                $page.props.address.address1 + ', ' + $page.props.address.zip + ' ' +
+                                $page.props.address.city }}</span>
                             <Link class="text__link"
-                                :href="route('shipping.index', { orderId: this.$page.props.route.params.orderId })">Edit
+                                :href="route('shipping.index', { orderId: $page.props.route.params.orderId })">Edit
                             </Link>
                         </div>
                     </div>
 
                     <ul class="cart-items" style="height: auto; overflow: visible;">
-                        <li v-for="item in this.$page.props.cart">
+                        <li v-for="item in $page.props.cart">
                             <template v-if="item.type == 'poster'">
                                 <strong class="is--larger" v-text="item.name"></strong>
                                 <div class="is--flex is--margin-top">
@@ -57,7 +57,7 @@
                                     </span>
                                     <span><strong v-text="'$' + item.price / 100"></strong> x {{ item.quantity }}</span>
                                     <button class="text__link"
-                                        @click="this.$page.props.lightbox = item, this.$page.props.overlay = 'lightbox';">
+                                        @click="$page.props.lightbox = item, $page.props.overlay = 'lightbox';">
                                         <span>See Poster Design</span>
                                         <Icon name="fullScreen" />
                                     </button>
@@ -69,13 +69,13 @@
                         <li class="is--flex is--space-between is--border-bottom">
                             <h4>Subtotal</h4><span>$ {{ (subtotal / 100).toFixed(2) }}</span>
                         </li>
-                        <li v-if="this.$page.props.shippingMethod.shipping" class="is--flex is--no-column-gap is--border-bottom">
+                        <li v-if="$page.props.shippingMethod.shipping" class="is--flex is--no-column-gap is--border-bottom">
                             <h4>Shipping </h4>
                             <span class="is--small"
                                 style="flex: 1; margin-left: 1em; text-transform: capitalize;">{{
-                                    this.$page.props.shippingMethod.shipping.toLowerCase().replace(/_/g, ' ') }}</span><span>$
+                                    $page.props.shippingMethod.shipping.toLowerCase().replace(/_/g, ' ') }}</span><span>$
                                 {{
-                                    (this.$page.props.shippingMethod.shipping_cost / 100).toFixed(2) }}</span>
+                                    ($page.props.shippingMethod.shipping_cost / 100).toFixed(2) }}</span>
                         </li>
                         <li class="is--flex is--no-column-gap is--border-bottom">
                             <h4>Total </h4><span class="is--small" style="flex: 1; margin-left: 1em">Including $ {{ (total /
@@ -119,7 +119,7 @@ export default {
 
         total() {
 
-            return this.$page.props.shippingMethod ? this.subtotal + this.$page.props.shippingMethod.shipping_cost : this.subtotal;
+            return this.$page.props.shippingMethod ? subtotal + this.$page.props.shippingMethod.shipping_cost : subtotal;
         }
     },
 

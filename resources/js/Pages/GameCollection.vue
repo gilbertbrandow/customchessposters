@@ -2,26 +2,26 @@
     <section>
         <div class="container">
             <h1>Game Collection</h1>
-           <Filter :results="this.$page.props.games.data.length" :advanced="true"></Filter>
+           <Filter :results="$page.props.games.data.length" :advanced="true"></Filter>
             <ul class="game__collection">
-                <Game v-for="game in this.$page.props.games.data" :game="game"></Game>
+                <Game v-for="game in $page.props.games.data" :game="game"></Game>
             </ul>
-            <aside v-if="this.$page.props.games.data" class="pagination is--flex is--space-between">
-                <span>Showing {{ this.$page.props.games.from }} - {{ this.$page.props.games.to }} of {{ this.$page.props.games.total }} results </span>
+            <aside v-if="$page.props.games.data" class="pagination is--flex is--space-between">
+                <span>Showing {{ $page.props.games.from }} - {{ $page.props.games.to }} of {{ $page.props.games.total }} results </span>
                 <div class="navigation">
 
 
-                    <div class="arrow" :class="[this.$page.props.games.current_page == 1 ? 'inactive' : '']" @click="pageChange(false)"><Icon name="arrow-right"></Icon></div>
+                    <div class="arrow" :class="[$page.props.games.current_page == 1 ? 'inactive' : '']" @click="pageChange(false)"><Icon name="arrow-right"></Icon></div>
                     <div class="pages">
-                        <template  v-for="(link, index) in this.$page.props.games.links">
-                            <div v-if="index > 0 && index < this.$page.props.games.links.length - 1"
+                        <template  v-for="(link, index) in $page.props.games.links">
+                            <div v-if="index > 0 && index < $page.props.games.links.length - 1"
                                 @click="this.pageChange(null, index)" 
                                 :class="[link.active ? 'page-link active' : 'page-link' ]"
                                 v-text="link.label"
                                 ></div>
                         </template>
                     </div>
-                    <div class="arrow" :class="[this.$page.props.games.current_page ==  this.$page.props.games.last_page ? 'inactive' : '']" @click="pageChange(true)"><Icon name="arrow-right"></Icon></div>
+                    <div class="arrow" :class="[$page.props.games.current_page ==  $page.props.games.last_page ? 'inactive' : '']" @click="pageChange(true)"><Icon name="arrow-right"></Icon></div>
                 </div>
             </aside>
         </div>
