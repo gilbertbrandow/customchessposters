@@ -202,10 +202,10 @@ class Game extends Model
                     });
                 });
             })
-            ->when(str_contains($request->sort, 'rating'),  function ($query) use ($request) {
+            ->when($request->sort && str_contains($request->sort, 'rating'),  function ($query) use ($request) {
                 $query->orderByRaw('(`posters`.`white_rating` + `posters`.`black_rating`) ' . explode('-', $request->input('sort'))[1]);
             })
-            ->when(!str_contains($request->sort, 'rating'),  function ($query) use ($orderBy) {
+            ->when(!$request->sort || !str_contains($request->sort, 'rating'),  function ($query) use ($orderBy) {
                 $query->orderBy($orderBy[0], $orderBy[1]);
             });
     }
