@@ -21,7 +21,7 @@
                                     :class="[poster.theme_id == theme.id ? 'is--active' : '']" class="theme">
                                     <div class="theme__colour-wrp">
                                         <div class="theme__colour">
-                                            <div><img style="height: 100%" :src="`../../../../public/images/posters/themes${theme.texture}`"
+                                            <div><img style="height: 100%" :src="`/images/posters/themes${theme.texture}`"
                                                     alt=""></div>
                                             <div :style="{ backgroundColor: theme.colour, }"></div>
                                         </div>
@@ -520,7 +520,7 @@ export default {
                     texture: '/new-waves/waves.svg',
                     colour: '#fbf4ea',
                     poster: '',
-                    environment: '/images/environments/builder-mockup.jpeg',
+                    environment: 'builder-mockup.jpeg',
                 },
 
                 {
@@ -531,7 +531,7 @@ export default {
                     texture: '/old-knowledge/lines.jpg',
                     colour: '#f5f5f5',
                     poster: '',
-                    environment: '/images/environments/builder-mockup.jpeg',
+                    environment: 'builder-mockup.jpeg',
                 }
 
             ],

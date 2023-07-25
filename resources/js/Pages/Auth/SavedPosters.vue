@@ -3,7 +3,7 @@
         <h1>Your saved designs</h1>
         <ul v-if="this.$page.props.posters.length" class="saved__posters">
             <li v-for="poster in $page.props.posters">
-                <Poster :poster="poster" environment="/images/environments/builder-mockup.jpeg"
+                <Poster :poster="poster" environment="builder-mockup.jpeg"
                     :controls="{ 'small': true, 'save': false }"></Poster>
                 <div class="content">
                     <div class="button-wrp">

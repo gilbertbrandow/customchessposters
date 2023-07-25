@@ -73,7 +73,7 @@
         <div class="poster__svg-wrp">
             <Poster :poster="this.poster" />
         </div>
-        <img class="poster__environment" :src="this.environment" />
+        <img class="poster__environment" :src="`/images/environments/${this.environment}`"/>
     </div>
 </template>
 

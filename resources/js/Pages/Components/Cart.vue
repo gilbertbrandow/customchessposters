@@ -10,7 +10,7 @@
             </li>
             <li v-else v-for="item in this.cart">
                 <template v-if="item.type == 'poster'">
-                    <Poster :poster="item" :controls="{'small': true}" environment="/images/environments/builder-mockup.jpeg" />
+                    <Poster :poster="item" :controls="{'small': true}" environment="builder-mockup.jpeg" />
                     <div class="content">
                         <h3 v-text="item.name"></h3>
                         <span>{{ 'Size: ' + item.width + ' x ' + item.height + ' cm, ' }}
