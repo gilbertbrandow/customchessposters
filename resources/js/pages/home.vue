@@ -16,7 +16,7 @@
                     <Poster :poster="this.$page.props.game.poster" />
                 </div>
 
-                <img class="poster__environment" src="/images/environments/warm.jpg" />
+                <img class="poster__environment" src="../../../public/images/environments/warm.jpg" />
             </div>
 
             <div class="game__info">

@@ -21,7 +21,7 @@
                                     :class="[poster.theme_id == theme.id ? 'is--active' : '']" class="theme">
                                     <div class="theme__colour-wrp">
                                         <div class="theme__colour">
-                                            <div><img style="height: 100%" :src="`/images/posters/themes${theme.texture}`"
+                                            <div><img style="height: 100%" :src="`../../../../public/images/posters/themes${theme.texture}`"
                                                     alt=""></div>
                                             <div :style="{ backgroundColor: theme.colour, }"></div>
                                         </div>

@@ -40,12 +40,6 @@
                 </div>
             </form>
         </div>
-        <div class="poster">
-            <img src="/images/environments/warm.webp" alt="" class="poster__environment">
-            <div class="poster__svg-wrp">
-                <img src="/images/posters/poster-test.svg" alt="" class="poster__img">
-            </div>
-        </div>
     </section>
 </template>
 

@@ -6,11 +6,11 @@
                     <Poster ref="PosterSVG" :poster="this.$page.props.lightbox" />
                 </div>
                 <img v-if="this.slides[`${this.currSlide}`].size == 's'" class="poster__environment"
-                    src="/images/environments/environment-small.jpg" />
+                    src="../../../../public/images/environments/environment-small.jpg" />
                 <img v-else-if="this.slides[`${this.currSlide}`].size == 'm'" class="poster__environment"
-                    src="/images/environments/environment-medium.jpg" />
+                    src="../../../../public/images/environments/environment-medium.jpg" />
                 <img v-else-if="this.slides[`${this.currSlide}`].size == 'l'" class="poster__environment"
-                    src="/images/environments/environment-large.jpg" />
+                    src="../../../../public/images/environments/environment-large.jpg" />
             </div>
         </div>
 
