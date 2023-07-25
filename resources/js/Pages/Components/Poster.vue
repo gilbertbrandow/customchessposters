@@ -1,7 +1,7 @@
 <template>
     <div class="poster">
         <div v-if="controls" class="poster__buttons-wrp" :class="[(controls.small) ? 'small' : '']">
-            <button class="button" @click="$page.props.lightbox = this.$props.poster, $page.props.overlay = 'lightbox';">
+            <button class="button" @click="$page.props.lightbox = poster, $page.props.overlay = 'lightbox';">
                 <span v-if="!controls.small">Fullscreen</span>
                 <Icon name="fullScreen" />
                 <div v-if="controls.small" class="info">
@@ -16,18 +16,18 @@
                 <div></div>Edit poster
             </div>
             </Link>
-            <form v-if="controls.save || controls.update" @submit.prevent="submitForm(this.$props.poster, controls.update)">
+            <form v-if="controls.save || controls.update" @submit.prevent="submitForm(poster, controls.update)">
                 <button class="button" type="submit"
-                    :class="[($page.props.auth.user && $page.props.auth.user.saved.includes(this.$props.poster.id) && !controls.update) ? 'saved' : '']"
-                    :disabled="$page.props.auth.user && $page.props.auth.user.saved.includes(this.$props.poster.id) && !controls.update">
+                    :class="[($page.props.auth.user && $page.props.auth.user.saved.includes(poster.id) && !controls.update) ? 'saved' : '']"
+                    :disabled="$page.props.auth.user && $page.props.auth.user.saved.includes(poster.id) && !controls.update">
 
                     <span v-if="!controls.small"
-                        v-text="(controls.update && $page.props.auth.user && $page.props.auth.user.saved.includes(this.$props.poster.id)) ? 'Update poster' : ($page.props.auth.user && $page.props.auth.user.saved.includes(this.$props.poster.id)) ? 'Poster saved' : 'Save this design'"></span>
+                        v-text="(controls.update && $page.props.auth.user && $page.props.auth.user.saved.includes(poster.id)) ? 'Update poster' : ($page.props.auth.user && $page.props.auth.user.saved.includes(poster.id)) ? 'Poster saved' : 'Save this design'"></span>
 
                     <Icon
-                        :name="(controls.update && $page.props.auth.user && $page.props.auth.user.saved.includes(this.$props.poster.id)) ? 'update' : (controls.small) ? 'bookmark-small' : 'bookmark'" />
+                        :name="(controls.update && $page.props.auth.user && $page.props.auth.user.saved.includes(poster.id)) ? 'update' : (controls.small) ? 'bookmark-small' : 'bookmark'" />
 
-                    <div v-if="controls.small && (!$page.props.auth.user || !$page.props.auth.user.saved.includes(this.$props.poster.id))"
+                    <div v-if="controls.small && (!$page.props.auth.user || !$page.props.auth.user.saved.includes(poster.id))"
                         class="info">
                         <div></div>Save poster
                     </div>
@@ -38,14 +38,14 @@
         <div v-if="showPlayers === true" class="players">
             <div class="player">
                 <div class="flag">
-                    <Flag :country="this.$props.poster.white_country"></Flag>
-                    <div :class="[this.$props.poster.white_country_highlight ? 'info show' : 'info']">
-                        <div></div><span>{{ this.$props.poster.white_country }}</span>
+                    <Flag :country="poster.white_country"></Flag>
+                    <div :class="[poster.white_country_highlight ? 'info show' : 'info']">
+                        <div></div><span>{{ poster.white_country }}</span>
                     </div>
                 </div>
-                <span>{{ this.$props.poster.white_name }}</span>
+                <span>{{ poster.white_name }}</span>
 
-                <div v-if="this.$props.poster.white_computer" class="computer">
+                <div v-if="poster.white_computer" class="computer">
                     <Icon name="computer"></Icon>
                     <div class="info">
                         <div></div><span>Player is not human</span>
@@ -55,13 +55,13 @@
             -
             <div class="player">
                 <div class="flag">
-                    <Flag :country="this.$props.poster.black_country"></Flag>
-                    <div :class="[this.$props.poster.black_country_highlight ? 'info show' : 'info']">
-                        <div></div><span>{{ this.$props.poster.black_country }}</span>
+                    <Flag :country="poster.black_country"></Flag>
+                    <div :class="[poster.black_country_highlight ? 'info show' : 'info']">
+                        <div></div><span>{{ poster.black_country }}</span>
                     </div>
                 </div>
-                <span>{{ this.$props.poster.black_name }}</span>
-                <div v-if="this.$props.poster.black_computer" class="computer">
+                <span>{{ poster.black_name }}</span>
+                <div v-if="poster.black_computer" class="computer">
                     <Icon name="computer"></Icon>
                     <div class="info">
                         <div></div><span>Player is not human</span>
@@ -71,7 +71,7 @@
         </div>
 
         <div class="poster__svg-wrp">
-            <Poster :poster="this.$props.poster" />
+            <Poster :poster="poster" />
         </div>
         <img class="poster__environment" :src="`/images/environments/${this.environment}`"/>
     </div>
