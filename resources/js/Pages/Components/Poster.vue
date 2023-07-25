@@ -17,7 +17,7 @@
             </div>
             </Link>
             <form v-if="controls.save || controls.update" @submit.prevent="submitForm(this.poster, controls.update)">
-                <button class="button" type="submit"
+                <!-- <button class="button" type="submit"
                     :class="[(this.$page.props.auth.user && this.$page.props.auth.user.saved.includes(this.poster.id) && !controls.update) ? 'saved' : '']"
                     :disabled="this.$page.props.auth.user && this.$page.props.auth.user.saved.includes(this.poster.id) && !controls.update">
 
@@ -31,7 +31,7 @@
                         class="info">
                         <div></div>Save poster
                     </div>
-                </button>
+                </button> -->
             </form>
         </div>
 
