@@ -2,13 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\Contact;
+use App\Mail\Welcome;
 use App\Models\Order;
 use App\Models\Poster;
+use App\Models\User;
 use App\Services\OrderService;
 use App\Services\PosterService;
+use AWS\CRT\HTTP\Message;
 use Illuminate\Http\Request;
+use Illuminate\Mail\Message as MailMessage;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
+use Mail;
+use Password;
 
 class PosterController extends Controller
 {
@@ -41,6 +48,20 @@ class PosterController extends Controller
 
     public function single($id)
     {
+
+        //$status = Password::sendResetLink(['email' => 'simon@0100.se']); 
+
+        $data['name'] = 'Simon'; 
+        $data['email'] = 'simon@test.se'; 
+        $data['content'] = 'Lorem ipsum dolor set ami'; 
+
+        foreach (User::where('admin', true)->get() as $user) {
+            Mail::to($user->email)->send(new Contact($data));
+        }
+
+        //$status = Password::sendResetLink(['email' => 'simon@0100.se']);
+
+        return;  
 
         $poster = Poster::find($id);
 
