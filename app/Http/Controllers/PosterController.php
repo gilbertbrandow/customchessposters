@@ -45,28 +45,4 @@ class PosterController extends Controller
 
         return redirect('/edit-poster/' . $poster->id)->with('savedSuccess', 'Poster updated successfully!');
     }
-
-    public function single($id)
-    {
-
-        //$status = Password::sendResetLink(['email' => 'simon@0100.se']); 
-
-        $data['name'] = 'Simon'; 
-        $data['email'] = 'simon@test.se'; 
-        $data['content'] = 'Lorem ipsum dolor set ami'; 
-
-        foreach (User::where('admin', true)->get() as $user) {
-            Mail::to($user->email)->send(new Contact($data));
-        }
-
-        //$status = Password::sendResetLink(['email' => 'simon@0100.se']);
-
-        return;  
-
-        $poster = Poster::find($id);
-
-        return (new PosterService())->generatePNG($poster, 6000, 8550);
-
-        return (new OrderService(Order::first()))->sendOrderToPrintful();
-    }
 }
