@@ -78,9 +78,9 @@
                                     ($page.props.shippingMethod.shipping_cost / 100).toFixed(2) }}</span>
                         </li>
                         <li class="is--flex is--no-column-gap is--border-bottom">
-                            <h4>Total </h4><span class="is--small" style="flex: 1; margin-left: 1em">Including $ {{ (total /
+                            <h4>Total </h4><span class="is--small" style="flex: 1; margin-left: 1em">Including $ {{ (($page.props.shippingMethod ? subtotal + $page.props.shippingMethod.shipping_cost : subtotal) /
                                 500).toFixed(2) }} in
-                                taxes</span><span>$ {{ (total / 100).toFixed(2) }}</span>
+                                taxes</span><span>$ {{ (($page.props.shippingMethod ? subtotal + $page.props.shippingMethod.shipping_cost : subtotal) / 100).toFixed(2) }}</span>
                         </li>
                     </ul>
                 </div>
@@ -116,11 +116,6 @@ export default {
 
             return subtotal;
         },
-
-        total() {
-
-            return this.$page.props.shippingMethod ? subtotal + this.$page.props.shippingMethod.shipping_cost : subtotal;
-        }
     },
 
     mounted() {
