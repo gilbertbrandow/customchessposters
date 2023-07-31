@@ -230,6 +230,7 @@ footer {
 
     .is--badge {
         background-color: #fff;
+        flex: inherit;
         border-radius: 0.25em;
         height: 0.75em;
         padding: 0.25em;
@@ -2482,6 +2483,7 @@ select {
     background-size: 0.75em;
     background-position: right 0.75em top 55%;
     background-repeat: no-repeat;
+    color: inherit;
 }
 
 select.field {
