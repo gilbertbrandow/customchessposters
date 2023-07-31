@@ -118,8 +118,11 @@ export default {
                 return;
             }
 
+            let height = target.querySelector('.poster').offsetHeight; 
+
             //Move poster element relative to the x and y. 
-            target.querySelector('.poster').style.top = (50 - Math.max(y, 0) * 100) + '%';
+            target.querySelector('.poster').style.top = ((50 - Math.max(y, 0) * 100) / 100 * height) + 'px';
+
             target.querySelector('.poster').style.right = (Math.max(x, 0) * 100 - 50) + '%';
 
         },
