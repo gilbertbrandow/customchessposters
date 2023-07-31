@@ -30,6 +30,7 @@ main {
 
 a {
     color: #000;
+    fill: #000;
 }
 
 ul {
@@ -217,6 +218,7 @@ footer {
 .payment-methods {
     display: flex;
     align-items: center;
+    justify-content: flex-start;
     column-gap: 0.5em;
 
     div {
@@ -2751,7 +2753,6 @@ label {
 
     li {
         display: flex;
-        align-items: center;
         margin-bottom: 1em;
         width: 100%;
 
@@ -3097,6 +3098,12 @@ label {
             grid-template-columns: 1fr 1fr;
         }
 
+        .field__wrp:first-child {
+            span {
+                display: none;
+            }
+        }
+
         .simple .button-wrp {
             width: 30em;
         }
@@ -3249,11 +3256,10 @@ label {
         padding-left: 2em;
     }
 
-    .container.is--flex.is--checkout { 
+    .container.is--flex.is--checkout {
         padding-right: 0em;
         padding-left: 0em;
     }
-
 }
 
 @media screen and (max-width: 478px) {
@@ -3463,6 +3469,12 @@ label {
     .slider__header {
         flex-direction: column;
         row-gap: 1em;
+
+        .filter {
+            .button {
+                display: none;
+            }
+        }
     }
 
     .question {
@@ -3534,13 +3546,12 @@ label {
     }
 
     .poster:has(.poster__svg-wrp.is--lightbox-small) {
-        left: -7%; 
-     }
+        left: -7%;
+    }
 
-     .container.is--flex.is--checkout {  
+    .container.is--flex.is--checkout {
         .content {
             padding-right: 2em;
         }
-     }
-
+    }
 }
