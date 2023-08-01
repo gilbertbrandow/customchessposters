@@ -9,7 +9,7 @@
             <p>Usually, it takes 3-7 days to fulfill an order, after which it's shipped out. The shipping time
                 depends on your location, but can be estimated as follows:</p>
 
-            <ul style="list-style: circle; padding-left: 2em;">
+            <ul style="list-style: circle; padding-left: 2em; font-size: 1.2em;">
                 <li>USA: 3-4 business days</li>
                 <li>Europe: 6-8 business days</li>
                 <li>Australia: 2-14 business days</li>
@@ -34,7 +34,7 @@
 
             <p>Before getting in touch with us, please help us out by doing the following:</p>
 
-            <ul style="list-style: circle; padding-left: 2em;">
+            <ul style="list-style: circle; padding-left: 2em; font-size: 1.2em;">
                 <li>Check your shipping confirmation email for any mistakes in the delivery address</li>
                 <li>Ask your local post office if they have your package</li>
                 <li>Stop by your neighbors in case the courier left the package with them</li>
