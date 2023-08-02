@@ -7,7 +7,7 @@
                 <Filter :results="this.games.length" :advanced="false"></Filter>
 
                 <div class="slider__navigation">
-                    <button @click="this.changeSlide(false)" class="button is--only-icon is--outline is--flipped" :class="this.$data.currSlide == 0 ? 'is--low-opacity' : ''">
+                    <button @click="this.changeSlide(false)" class="button is--only-icon is--outline is--flipped">
                         <Icon name="arrow-right"></Icon>
                     </button>
                     <button @click="this.changeSlide(true)" class="button is--only-icon is--outline">
@@ -68,7 +68,7 @@ export default {
     methods: {
         changeSlide(direction) {
             if (direction) this.currSlide < this.games.length ? this.currSlide++ : this.currSlide = 0
-            else if (!direction && this.currSlide > 0) this.currSlide--
+            else if (!direction) this.currSlide > 0 ? this.currSlide-- : this.currSlide = this.games.length - 1
         },
     },
 
