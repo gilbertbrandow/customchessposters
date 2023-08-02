@@ -19,7 +19,7 @@ export default {
                 {
                 id: 1,
                 title: 'Your Very Own', 
-                text:'Upload or input your own game in our editor, change style and add players, results, move comment and title. Make it yours.', 
+                text:'Upload or input your own game in our editor, change style and add players, results, move comment and title.', 
                 icon: 'custom',
                 }, 
                 {
