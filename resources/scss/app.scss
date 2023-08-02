@@ -3142,6 +3142,8 @@ label {
         align-items: flex-start;
         padding-bottom: 0em;
         padding-left: 4em;
+        display: flex;
+        justify-content: center;
     }
     .container.is--flex.is--checkout {
         .content {
