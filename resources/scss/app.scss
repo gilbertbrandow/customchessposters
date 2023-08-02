@@ -3467,6 +3467,30 @@ label {
         row-gap: 1em;
     }
 
+    .feature {
+        display: grid;
+        grid-template-columns: auto auto;
+        column-gap: 1em;
+
+        .feature__icn {
+            grid-row: span 2;
+            align-self: center;
+
+            svg {
+                width: 1.75em;
+            }
+        }
+
+        h2 {
+            font-size: 2em;
+        }
+
+        p {
+            margin-top: 0em;
+            font-size: 0.9em;
+        }
+    }
+
     .slider__header {
         flex-direction: column;
         row-gap: 1em;
