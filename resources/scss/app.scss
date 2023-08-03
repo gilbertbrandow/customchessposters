@@ -1220,6 +1220,7 @@ h4 {
     display: flex;
     width: 100vw;
     height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
     z-index: 99999;
     overflow: auto;
 }
@@ -1422,6 +1423,7 @@ h4 {
 .lightbox {
     max-width: 96vw;
     max-height: calc(100vh - 4vw);
+    height: calc(var(--vh, 1vh) * 100 - 4vw);
     border-radius: 1em;
     overflow: hidden;
     background-color: #fff;

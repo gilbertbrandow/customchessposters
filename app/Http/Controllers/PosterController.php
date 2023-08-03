@@ -2,20 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\Contact;
-use App\Mail\Welcome;
-use App\Models\Order;
 use App\Models\Poster;
-use App\Models\User;
-use App\Services\OrderService;
 use App\Services\PosterService;
-use AWS\CRT\HTTP\Message;
 use Illuminate\Http\Request;
-use Illuminate\Mail\Message as MailMessage;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
-use Mail;
-use Password;
 
 class PosterController extends Controller
 {
