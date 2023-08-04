@@ -10,7 +10,7 @@
                     <span v-text="method.name.toLowerCase().replace(/_/g, ' ')"></span>
                     <span v-text="method.desc"></span>
                 </div>
-                <span v-text="'$ ' + (method.cost / 100).toFixed(2)"></span>
+                <span v-text="'€ ' + (method.cost / 100).toFixed(2)"></span>
             </label>
         </div>
 
