@@ -37,6 +37,7 @@ class PaymentController extends Controller
                 'shippingMethod' => fn () => Order::find($request->route('orderId'))->get(['shipping', 'shipping_cost'])[0],
                 'address' => fn () => Order::find($request->route('orderId'))->shippingAddress,
                 'clientSecretKey' => $paymentIntent->client_secret,
+                'stripePublicKey' => env('STRIPE_PK'),
             ]);
 
         } catch (Error $e) {

@@ -25,7 +25,7 @@ export default {
 
     data() {
         return {
-            stripe: Stripe("pk_test_51MMadbE1I2SLYKPNXR2Hl7kXtba7Yl0DVHPq9LHGeCtWmR5sVNJQpimdm3LSfrHNC0u8XAyPI46vs1uGezp1KdVH00u7FqjZ8C"),
+            stripe: Stripe(this.$page.props.stripePublicKey),
             title: 'Loading...',
             desc: '', 
         }

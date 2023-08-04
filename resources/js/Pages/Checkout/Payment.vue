@@ -20,7 +20,7 @@ export default {
 
     data() {
         return {
-            stripe: Stripe("pk_test_51MMadbE1I2SLYKPNXR2Hl7kXtba7Yl0DVHPq9LHGeCtWmR5sVNJQpimdm3LSfrHNC0u8XAyPI46vs1uGezp1KdVH00u7FqjZ8C"),
+            stripe: Stripe(this.$page.props.stripePublicKey),
             elements: null,
         }
     },
@@ -67,7 +67,7 @@ export default {
             const { error } = await this.stripe.confirmPayment({
                 elements,
                 confirmParams: {
-                    return_url: "http://localhost/checkout/" + this.$page.props.route.params.orderId + '/confirmed',
+                    return_url: "/checkout/" + this.$page.props.route.params.orderId + '/confirmed',
                 },
             });
 

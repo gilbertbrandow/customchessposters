@@ -25,6 +25,8 @@ class OrderController extends Controller
 
     public function show(Request $request) {
 
-        return Inertia::render('Checkout/Confirmation'); 
+        return Inertia::render('Checkout/Confirmation', [
+            'stripePublicKey' => env('STRIPE_PK'),
+        ]); 
     }
 }
