@@ -6,6 +6,7 @@
    <link rel="icon" type="image/svg+xml" href="/images/ccp-icn-brown.svg" media="(prefers-color-scheme: light)">
    <link rel="icon" type="image/svg+xml" href="/images/ccp-icn-white.svg" media="(prefers-color-scheme: dark)">
    <script src="https://js.stripe.com/v3/"></script>
+   <title>{{ env('APP_NAME') }}</title>
     @vite(['resources/scss/app.scss']) 
     @inertiaHead
     @routes
