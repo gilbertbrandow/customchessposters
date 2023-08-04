@@ -42,7 +42,9 @@ class PosterService
                     && !Cart::hasPosterNotUser($id, [$userId, $sessionToken])->get())
             ) {
                 //Either user is admin or no relationship found to any game, user or cart except for current
-                $poster = Poster::find($id)->update($posterData);
+                $poster = Poster::find($id); 
+                $poster->update($posterData);
+
             } else {
                 $poster = Poster::create($posterData);
             }
