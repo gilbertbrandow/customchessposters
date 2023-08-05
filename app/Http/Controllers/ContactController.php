@@ -15,12 +15,7 @@ class ContactController extends Controller
     public function index ()
     {
 
-
-        $pf = PrintfulApiClient::createOauthClient(env('PRINTFUL_SK'));
-
-        return Inertia::render('Contact', [
-            'products' => $pf->get('products/268'),
-        ]);
+        return Inertia::render('Contact');
     }  
     
     public function show () 
