@@ -13,13 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('poster_variants', function (Blueprint $table) {
+        Schema::create('poster_frames', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('poster_size_id')->constrained();
-            $table->foreignId('poster_frame_id')->constrained();
-            $table->string('description');
-            $table->integer('price');
-            $table->integer('variant_id');
+            $table->string('name');
+            $table->string('image');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('poster_variants');
+        Schema::dropIfExists('poster_frames');
     }
 };
