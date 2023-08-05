@@ -13,4 +13,14 @@ class PosterVariant extends Model
     {
         return $this->hasMany(Product::class);
     }
+
+    public function posterSize()
+    {
+        return $this->belongsTo(PosterSize::class);
+    }
+
+    public function posterFrame()
+    {
+        return $this->belongsTo(PosterFrame::class);
+    }
 }
