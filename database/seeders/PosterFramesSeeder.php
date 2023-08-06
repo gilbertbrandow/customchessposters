@@ -18,17 +18,17 @@ class PosterFramesSeeder extends Seeder
         $variants = [
 
             [
-                'name' => 'Black frame',
+                'name' => 'Black',
                 'image' => '',
             ],
 
             [
-                'name' => 'Oak frame',
+                'name' => 'Oak',
                 'image' => '',
             ],
 
             [
-                'name' => 'White frame',
+                'name' => 'White',
                 'image' => '',
             ],
         ]; 
