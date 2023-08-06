@@ -17,16 +17,19 @@ class PosterSizesSeeder extends Seeder
     {
         $variants = [
             [
+                'name' => 'Small', 
                 'width' => 21,
                 'height' => 30,
             ],
 
             [
+                'name' => 'Medium', 
                 'width' => 50,
                 'height' => 70,
             ],
 
             [
+                'name' => 'Large', 
                 'width' => 61,
                 'height' => 91,
             ],

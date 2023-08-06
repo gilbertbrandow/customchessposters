@@ -9,6 +9,12 @@ class PosterSize extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name', 
+        'width', 
+        'height', 
+    ]; 
+
     public function posterVariants()
     {
         return $this->hasMany(PosterVariant::class);

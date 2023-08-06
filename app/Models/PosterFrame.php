@@ -9,6 +9,11 @@ class PosterFrame extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name', 
+        'image', 
+    ]; 
+
     public function posterVariants()
     {
         return $this->hasMany(PosterVariant::class);
