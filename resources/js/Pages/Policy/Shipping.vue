@@ -47,6 +47,12 @@
                 If you did find a mistake in your delivery address, we will send you a replacement order, but
                 shipping will be at your own cost.
             </p>
+
+            <br><br>
+            <h2>Where do you ship?</h2>
+            <p>We ship to the entire world except for Afghanistan, Bhutan, Brunei, Belarus, Chad, Crimea, Cuba, Ecuador,
+                Iran, Laos, Libya, Luhansk, and Donetsk regions in Ukraine, Mongolia, North Korea, Russia, Samoa, South
+                Sudan, Syria, Timor-Leste, Turkmenistan, and Yemen.</p>
         </div>
     </section>
 </template>
