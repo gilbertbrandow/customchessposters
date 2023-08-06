@@ -2,7 +2,7 @@
     <aside class="overlay" v-if="$page.props.overlay">
         <Lightbox></Lightbox>
         <Cart />
-        <Sizes/>
+        <Variants/>
         <div class="content slide-out"
             v-if="!$page.props.user && ($page.props.overlay == 'login' || $page.props.overlay == 'register' || $page.props.overlay == 'forgot')">
             <button class="button__rnd-icn" @click="$page.props.overlay = false">
@@ -190,14 +190,14 @@ let submit = ($form) => {
 import Lightbox from './Lightbox.vue';
 import AuthForms from './AuthForms.vue'
 import Cart from './Cart.vue'
-import Sizes from './Sizes.vue'
+import Variants from './Variants.vue'
 
 export default {
 
     components: {
         Lightbox,
         AuthForms,
-        Sizes, 
+        Variants, 
     },
 
     computed: {

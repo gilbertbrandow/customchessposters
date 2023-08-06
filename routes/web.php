@@ -20,6 +20,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SavedPosterController;
 use App\Http\Controllers\RecipientController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\PosterVariantController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -167,6 +168,9 @@ Route::middleware('auth')->group(function () {
 | Ecommerce routes
 |--------------------------------------------------------------------------
 */
+
+Route::get('/poster-variants', [PosterVariantController::class, 'index'])
+    ->name('poster-variants.index');
 
 Route::get('/cart', [CartController::class, 'index'])
     ->name('cart.index');
