@@ -36,9 +36,12 @@
                             <img :src="frame.image" alt="">
                         </div>
                         <span>{{ frame.name }}</span>
-                        <span>+ €20.00</span>
+                        <span>{{ frame.cost }}</span>
                     </button>
                 </li>
+
+                <button v-if="this.$data.properties.frame" class="link-arrow" style="font-size: 0.8em;"
+                    @click="this.$data.properties.frame = null">No frame</button>
             </ul>
 
             <div class="is--flex">
@@ -118,7 +121,6 @@ export default {
                 this.$data.variants.forEach((variant) => {
                     if (variant.poster_size_id == this.$data.properties.size
                         && variant.poster_frame_id == this.$data.properties.frame) {
-                        console.log(variant);
 
                         //Update current variant and change total to its price
                         this.$data.form.variant = variant.variant_id;
@@ -128,10 +130,40 @@ export default {
                         this.$data.sizes.forEach((size) => {
 
                             //If current
-                            if(size.id == variant.poster_size_id) size.cost = 'Selected'; 
-                            else size.cost = '+ €20.00';
+                            if (size.id == variant.poster_size_id) size.cost = 'Selected';
+                            else {
 
-                            //Get cost of variant where match, subtract current price and update cost
+                                //Get cost of variant where match, subtract current price and update cost
+                                this.$data.variants.forEach((variant) => {
+                                    if (variant.poster_size_id == size.id
+                                        && variant.poster_frame_id == this.$data.properties.frame) {
+                                        size.cost = variant.price < this.$data.total
+                                            ? '- €' + ((variant.price - this.$data.total) / -100).toFixed(2) 
+                                            : '+ €' + ((variant.price - this.$data.total) / 100).toFixed(2)
+
+                                        return;
+                                    }
+                                });
+                            }
+                        })
+
+                        this.$data.frames.forEach((frame) => {
+
+                            //If current
+                            if (frame.id == variant.poster_frame_id) frame.cost = 'Selected';
+                            else {
+                                //Get cost of variant where match, subtract current price and update cost
+                                this.$data.variants.forEach((variant) => {
+                                    if (variant.poster_frame_id == frame.id
+                                        && variant.poster_size_id == this.$data.properties.size) {
+                                        frame.cost = variant.price < this.$data.total
+                                            ? '- €' + ((variant.price - this.$data.total) / -100).toFixed(2) 
+                                            : '+ €' + ((variant.price - this.$data.total) / 100).toFixed(2)
+
+                                        return;
+                                    }
+                                });
+                            }
                         })
                     }
                 })

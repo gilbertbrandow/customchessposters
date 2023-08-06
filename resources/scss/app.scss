@@ -2785,6 +2785,10 @@ label {
             }
         }
     }
+
+    li.is--active {
+        border-color: #000;
+    }
 }
 
 .cart-items {
