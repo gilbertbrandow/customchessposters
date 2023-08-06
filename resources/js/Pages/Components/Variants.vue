@@ -17,19 +17,24 @@
                 </button>
                 <span :class="!this.$data.unit ? 'is--active' : ''">Inches (")</span>
             </div>
-            <ul class="sizes is--margin-top">
-                <li v-for="size in this.sizes" :class="this.form.variant == size.id ? 'is--active' : ''">
-                    <button @click="this.form.variant = size.id">
-                        <span>{{ size.name }} ({{ size.width + ' cm x ' + size.height + ' cm' }})</span>
-                        <span>+ €20.00</span>
+            <ul class="sizes is--margin-top is--margin-btm">
+                <li v-for="size in this.sizes" :class="this.properties.size == size.id ? 'is--active' : ''">
+                    <button @click="this.properties.size = size.id">
+                        <span>{{ size.width + ' cm x ' + size.height + ' cm' }}</span>
+                        <span>{{ size.cost }}</span>
                     </button>
                 </li>
             </ul>
 
-            <h3>Choose a frame</h3>
+            <div class="is--flex" style="margin-top: 1.5em; column-gap: 0.25em;">
+                <h3>Choose a frame</h3><span>(Optional)</span>
+            </div>
             <ul class="frames">
-                <li v-for="frame in this.frames" :class="this.form.frame == frame.id ? 'is--active' : ''">
-                    <button @click="this.form.frame = frame.id">
+                <li v-for="frame in this.frames" :class="this.properties.frame == frame.id ? 'is--active' : ''">
+                    <button @click="this.properties.frame = frame.id">
+                        <div class="frame__img">
+                            <img :src="frame.image" alt="">
+                        </div>
                         <span>{{ frame.name }}</span>
                         <span>+ €20.00</span>
                     </button>
@@ -43,7 +48,7 @@
                     <Icon :name="!this.form.variant ? '' : 'cart'" />
                 </button>
 
-                <span>Total: €00.00</span>
+                <span style="font-size: 2em;">€{{ (this.total / 100).toFixed(2) }}</span>
             </div>
         </div>
     </div>
@@ -60,9 +65,15 @@ export default {
 
     data() {
         return {
+            unit: true,
             sizes: null,
             frames: null,
-            unit: true,
+            variants: null,
+            properties: {
+                size: null,
+                frame: null,
+            },
+            total: 0,
             form: useForm({
                 poster_data: this.$page.props.addToCart,
                 variant: null,
@@ -89,13 +100,45 @@ export default {
                 .then(response => (
                     this.$data.sizes = response.data['sizes'],
                     this.$data.frames = response.data['frames'],
-                    console.log(response.data['sizes'])
-
+                    this.$data.variants = response.data['variants']
                 ))
                 .catch((error) => (
                     console.log(error)
-                ))
+                )).finally(() => {
+                    this.$data.properties.size = 1
+                })
         },
+    },
+
+    watch: {
+        properties: {
+            handler() {
+
+                //Whenever any property is changed loop through all varaints and find match
+                this.$data.variants.forEach((variant) => {
+                    if (variant.poster_size_id == this.$data.properties.size
+                        && variant.poster_frame_id == this.$data.properties.frame) {
+                        console.log(variant);
+
+                        //Update current variant and change total to its price
+                        this.$data.form.variant = variant.variant_id;
+                        this.$data.total = variant.price;
+
+                        //Update cost of all sizes and frames
+                        this.$data.sizes.forEach((size) => {
+
+                            //If current
+                            if(size.id == variant.poster_size_id) size.cost = 'Selected'; 
+                            else size.cost = '+ €20.00';
+
+                            //Get cost of variant where match, subtract current price and update cost
+                        })
+                    }
+                })
+            },
+
+            deep: true
+        }
     },
 
     mounted() {
