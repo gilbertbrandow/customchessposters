@@ -60,6 +60,8 @@ class HandleInertiaRequests extends Middleware
 
             'poster'=> $request->session()->get('poster'),
 
+            'unit' => $request->session()->get('unit'),
+
             'flash' => [
 
                     'newsletter' => [
