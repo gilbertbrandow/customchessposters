@@ -24,7 +24,7 @@
             </svg>
         </div>
 
-        <div class="is--badge">
+        <div class="is--badge" style="width: 2em;">
             <svg xmlns="http://www.w3.org/2000/svg" width="378.935" height="121.676" viewBox="0 0 378.935 121.676"
                 style="height: 75%;">
                 <path id="visa-logo"
@@ -33,7 +33,7 @@
             </svg>
         </div>
 
-        <div class="is--badge">
+        <div class="is--badge" style="width: 2em;">
             <svg xmlns="http://www.w3.org/2000/svg" width="381.583" height="235.875" viewBox="0 0 381.583 235.875">
                 <rect id="Rectangle" width="113.49" height="185.408" transform="translate(134.15 25.234)" fill="#f26122" />
                 <path id="Path"
@@ -45,7 +45,7 @@
             </svg>
         </div>
 
-        <div class="is--badge">
+        <div class="is--badge" style="width: 2em;">
             <svg width="56" height="20" viewBox="0 0 56 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                     d="M10.7036 20V11.3433H19.8695L20.8529 12.6252L21.8688 11.3433H55.1386V19.403C55.1386 19.403 54.2685 19.9913 53.2623 20H34.8401L33.7313 18.6354V20H30.0981V17.6706C30.0981 17.6706 29.6018 17.9957 28.5288 17.9957H27.2921V20H21.791L20.809 18.6905L19.812 20H10.7036Z"
