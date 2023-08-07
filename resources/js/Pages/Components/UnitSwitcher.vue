@@ -1,8 +1,7 @@
 <template>
     <div class="switcher-wrp is--margin-top">
         <span :class="this.$page.props.unit ? 'is--active' : ''">Centimeters (cm)</span>
-        <button :class="this.$page.props.unit ? 'switcher' : 'switcher is--right'"
-            @click="this.$page.props.unit = !this.$page.props.unit">
+        <button :class="this.$page.props.unit ? 'switcher' : 'switcher is--right'" @click="this.submit()">
             <div></div>
         </button>
         <span :class="!this.$page.props.unit ? 'is--active' : ''">Inches (")</span>
@@ -10,24 +9,24 @@
 </template>
 
 <script>
-import { useForm } from '@inertiajs/vue3'
+import { router } from '@inertiajs/vue3';
 
 export default {
 
-    data() {
-        return {
-            form: useForm({
-                unit: true,
-            })
-        }
-    },
 
     methods: {
+
         submit() {
-            this.form.post('/unit', {
+            router.visit('/unit', {
+                method: 'post',
+                data: {
+                    unit: !this.$page.props.unit,
+                    overlay: this.$page.props.overlay,
+                    addToCart: this.$page.props.addToCart,
+                },
                 preserveState: true,
                 preserveScroll: true,
-            });
+            })
         },
     }
 }

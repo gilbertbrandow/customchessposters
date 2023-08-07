@@ -9,18 +9,11 @@
 
 
             <h3 class="is--margin-top">Choose a size</h3>
-            <div class="switcher-wrp is--margin-top">
-                <span :class="this.$data.unit ? 'is--active' : ''">Centimeters (cm)</span>
-                <button :class="this.$data.unit ? 'switcher' : 'switcher is--right'"
-                    @click="this.$data.unit = !this.$data.unit">
-                    <div></div>
-                </button>
-                <span :class="!this.$data.unit ? 'is--active' : ''">Inches (")</span>
-            </div>
+            <UnitSwitcher />
             <ul class="sizes is--margin-top is--margin-btm">
                 <li v-for="size in this.sizes" :class="this.properties.size == size.id ? 'is--active' : ''">
                     <button @click="this.properties.size = size.id">
-                        <span>{{ size.width + ' cm x ' + size.height + ' cm' }}</span>
+                        <span>{{ this.$page.props.unit ? size.width + ' cm x ' + size.height + ' cm' : Math.round(size.width * 0.393700787) + '" x ' + Math.round(size.height * 0.393700787) + '"'}}</span>
                         <span>{{ size.cost }}</span>
                     </button>
                 </li>
@@ -60,15 +53,16 @@
 <script>
 import { useForm } from '@inertiajs/vue3'
 import axios from 'axios'
+import UnitSwitcher from './UnitSwitcher.vue'
 
 export default {
     components: {
+        UnitSwitcher,
     },
 
 
     data() {
         return {
-            unit: true,
             sizes: null,
             frames: null,
             variants: null,
