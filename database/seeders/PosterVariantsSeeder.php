@@ -33,7 +33,7 @@ class PosterVariantsSeeder extends Seeder
             [
                 'description' => 'Large',
                 'poster_size_id' => 3,
-                'price' => 3990,
+                'price' => 3490,
                 'variant_id' => 8953,
             ],
             
@@ -41,7 +41,7 @@ class PosterVariantsSeeder extends Seeder
                 'description' => 'Small with black frame',
                 'poster_size_id' => 1,
                 'poster_frame_id' => 1,
-                'price' => 2990,
+                'price' => 3490,
                 'variant_id' => 9356,
             ],
 
@@ -49,7 +49,7 @@ class PosterVariantsSeeder extends Seeder
                 'description' => 'Small with oak frame',
                 'poster_size_id' => 1,
                 'poster_frame_id' => 2,
-                'price' => 3190,
+                'price' => 3990,
                 'variant_id' => 11790,
             ],
 
@@ -57,7 +57,7 @@ class PosterVariantsSeeder extends Seeder
                 'description' => 'Small with white frame',
                 'poster_size_id' => 1,
                 'poster_frame_id' => 3,
-                'price' => 2990,
+                'price' => 3490,
                 'variant_id' => 10296,
             ],
 
@@ -73,7 +73,7 @@ class PosterVariantsSeeder extends Seeder
                 'description' => 'Medium with oak frame',
                 'poster_size_id' => 2,
                 'poster_frame_id' => 2,
-                'price' => 7190,
+                'price' => 7490,
                 'variant_id' => 11792,
             ],
 
