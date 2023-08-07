@@ -37,27 +37,20 @@
                     @click="this.$data.properties.frame = null">No frame {{ this.removeFrameCost }}</button>
             </ul>
 
-            <div class="is--flex">
-                <button class="button is--black is--margin-top is--margin-bottom" @click="this.submit()"
-                    :disabled="!this.form.variant">
-                    {{ !this.form.variant ? 'Choose a size' : 'Add to cart' }}
-                    <Icon :name="!this.form.variant ? '' : 'cart'" />
-                </button>
-
-                <span style="font-size: 2em;">€{{ (this.total / 100).toFixed(2) }}</span>
-            </div>
+            <PosterAddToCart :variant="this.$data.variant" :poster="$page.props.addToCart" :total="this.$data.total"/>
         </div>
     </div>
 </template>
 
 <script>
-import { useForm } from '@inertiajs/vue3'
 import axios from 'axios'
 import UnitSwitcher from './UnitSwitcher.vue'
+import PosterAddToCart from './PosterAddToCart.vue'
 
 export default {
     components: {
         UnitSwitcher,
+        PosterAddToCart, 
     },
 
 
@@ -71,25 +64,11 @@ export default {
                 frame: null,
             },
             total: 0,
-            form: useForm({
-                poster_data: this.$page.props.addToCart,
-                variant: null,
-            })
+            variant: null, 
         }
     },
 
     methods: {
-
-        submit() {
-            this.form.post('/product', {
-                preserveState: true,
-                preserveScroll: true,
-                onSuccess: () => {
-                    this.$page.props.overlay = false;
-                    this.$page.props.addToCart = [];
-                }
-            });
-        },
 
         fetchVariants() {
             axios
@@ -117,7 +96,7 @@ export default {
                         && variant.poster_frame_id == this.$data.properties.frame) {
 
                         //Update current variant and change total to its price
-                        this.$data.form.variant = variant.id;
+                        this.$data.variant = variant.id;
                         this.$data.total = variant.price;
 
                         //Update cost of all sizes and frames
