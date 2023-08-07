@@ -21,7 +21,7 @@
                                     :class="[poster.theme_id == theme.id ? 'is--active' : '']" class="theme">
                                     <div class="theme__colour-wrp">
                                         <div class="theme__colour">
-                                            <div><img style="height: 100%" :src="`/images/posters/themes${theme.texture}`"
+                                            <div :style="{ backgroundColor: theme.colour, }"><img style="height: 100%" :src="`/themes${theme.texture}`"
                                                     alt=""></div>
                                             <div :style="{ backgroundColor: theme.colour, }"></div>
                                         </div>
@@ -517,7 +517,7 @@ export default {
                     price: 19,
                     title: 'New Waves',
                     desc: 'Warm & Modern',
-                    texture: '/new-waves/waves.svg',
+                    texture: '/New Waves/waves.svg',
                     colour: '#fbf4ea',
                     poster: '',
                     environment: 'builder-mockup.jpeg',
@@ -528,7 +528,7 @@ export default {
                     price: 32,
                     title: 'Old Knowledge',
                     desc: 'Vintage & Nostalgic',
-                    texture: '/old-knowledge/lines.jpg',
+                    texture: '/Old Knowledge/lines.svg',
                     colour: '#f5f5f5',
                     poster: '',
                     environment: 'builder-mockup.jpeg',
