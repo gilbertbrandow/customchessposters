@@ -45,6 +45,8 @@ class Order extends Model
             ->join('cart_items', 'carts.id', '=', 'cart_items.cart_id')
             ->join('products', 'products.id', '=', 'cart_items.product_id')
             ->join('poster_variants', 'poster_variants.id', '=', 'products.poster_variant_id')
+            ->join('poster_sizes', 'poster_sizes.id', '=', 'poster_variants.poster_size_id')
+            ->join('poster_frames', 'poster_frames.id', '=', 'poster_variants.poster_frame_id')
             ->join('posters', 'posters.id', '=', 'products.poster_id')
             ->select(
                 'carts.id as cartId',
@@ -53,9 +55,10 @@ class Order extends Model
                 'products.price',
                 'products.name',
                 'products.type',
-                'poster_variants.height',
-                'poster_variants.width',
-                'poster_variants.description',
+                'poster_sizes.height',
+                'poster_sizes.width',
+                'poster_frames.name as frame',
+                'poster_frames.image',
                 'posters.id',
                 'posters.theme_id',
                 'posters.orientation',

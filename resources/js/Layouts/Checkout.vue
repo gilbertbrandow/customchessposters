@@ -51,11 +51,11 @@
                     <ul class="cart-items" style="height: auto; overflow: visible;">
                         <li v-for="item in $page.props.cart">
                             <template v-if="item.type == 'poster'">
-                                <strong class="is--larger" v-text="item.name"></strong>
+                                <strong class="is--larger">Poster: "{{ item.name }}"</strong>
                                 <div class="is--flex is--margin-top">
-                                    <span>{{ 'Size: ' + item.width + ' x ' + item.height + ' cm, ' }}
+                                    <span>{{ ($page.props.unit ? item.width + ' x ' + item.height + ' cm, ' :  Math.round(item.width * 0.393700787) + '" x ' + Math.round(item.height * 0.393700787) + '", ') + (item.frame ? item.frame + ' frame' : '') }}
                                     </span>
-                                    <span><strong v-text="'$' + item.price / 100"></strong> x {{ item.quantity }}</span>
+                                    <span><strong v-text="'$' + (item.price / 100).toFixed(2)"></strong> x {{ item.quantity }}</span>
                                     <button class="text__link"
                                         @click="$page.props.lightbox = item, $page.props.overlay = 'lightbox';">
                                         <span>See Poster Design</span>

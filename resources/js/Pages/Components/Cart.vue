@@ -13,7 +13,7 @@
                     <Poster :poster="item" :controls="{'small': true}" environment="builder-mockup.jpeg" />
                     <div class="content">
                         <h3 v-text="item.name"></h3>
-                        <span>{{ 'Size: ' + item.width + ' x ' + item.height + ' cm, ' }}
+                        <span>{{ ($page.props.unit ? item.width + ' x ' + item.height + ' cm, ' :  Math.round(item.width * 0.393700787) + '" x ' + Math.round(item.height * 0.393700787) + '", ') + (item.frame ? item.frame + ' frame' : '') }}
                             <Link class="text__link" :href="route('poster.show', { 'id': item.id })">see poster</Link>
                         </span>
 
