@@ -165,6 +165,8 @@ export default {
                                 });
                             }
                         })
+
+                        return; 
                     }
                 })
             },

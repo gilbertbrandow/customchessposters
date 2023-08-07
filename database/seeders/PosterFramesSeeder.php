@@ -19,17 +19,17 @@ class PosterFramesSeeder extends Seeder
 
             [
                 'name' => 'Black',
-                'image' => '',
+                'image' => '/images/black-frame.svg',
             ],
 
             [
                 'name' => 'Oak',
-                'image' => '',
+                'image' => '/images/oak-frame.jpg',
             ],
 
             [
                 'name' => 'White',
-                'image' => '',
+                'image' => '/images/white-frame.svg',
             ],
         ]; 
 
