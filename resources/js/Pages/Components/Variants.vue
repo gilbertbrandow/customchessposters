@@ -1,5 +1,5 @@
 <template>
-    <div v-if="Object.keys($page.props.addToCart).length" class="content variants-overlay">
+    <div v-if="$page.props.addToCart &&  Object.keys($page.props.addToCart).length" class="content variants-overlay">
         <button class="button is--only-icon is--outline" @click="$page.props.addToCart = [], $page.props.overlay = false">
             <Icon name="close" />
         </button>
@@ -13,7 +13,7 @@
             <ul class="sizes is--margin-top is--margin-btm">
                 <li v-for="size in this.sizes" :class="this.properties.size == size.id ? 'is--active' : ''">
                     <button @click="this.properties.size = size.id">
-                        <span>{{ this.$page.props.unit ? size.width + ' cm x ' + size.height + ' cm' : Math.round(size.width * 0.393700787) + '" x ' + Math.round(size.height * 0.393700787) + '"'}}</span>
+                        <span>{{ $page.props.unit ? size.width + ' cm x ' + size.height + ' cm' : Math.round(size.width * 0.393700787) + '" x ' + Math.round(size.height * 0.393700787) + '"'}}</span>
                         <span>{{ size.cost }}</span>
                     </button>
                 </li>

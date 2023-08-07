@@ -1,10 +1,10 @@
 <template>
     <div class="switcher-wrp is--margin-top">
-        <span :class="this.$page.props.unit ? 'is--active' : ''">Centimeters (cm)</span>
-        <button :class="this.$page.props.unit ? 'switcher' : 'switcher is--right'" @click="this.submit()">
+        <span :class="$page.props.unit ? 'is--active' : ''">Centimeters (cm)</span>
+        <button :class="$page.props.unit ? 'switcher' : 'switcher is--right'" @click="this.submit()">
             <div></div>
         </button>
-        <span :class="!this.$page.props.unit ? 'is--active' : ''">Inches (")</span>
+        <span :class="!$page.props.unit ? 'is--active' : ''">Inches (")</span>
     </div>
 </template>
 

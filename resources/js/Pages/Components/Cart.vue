@@ -18,7 +18,7 @@
                         </span>
 
                         <div class="is--flex">
-                            <strong v-text="'$' + item.price / 100"></strong> x
+                            <strong v-text="'$' + (item.price / 100).toFixed(2)"></strong> x
                             <input type="number" min="1" :value="item.quantity" @change="this.updateCart(item.itemId, false, $event.target.value)"/>
                             <button class="text__link" type="submit" @click="this.updateCart(item.itemId, true)">Remove item</button>
                         </div>
@@ -26,7 +26,7 @@
                 </template>
             </li>
         </ul>
-        <div class="button is--cart is--flex is--space-between">Total: <span>${{ total / 100 }}</span></div>
+        <div class="button is--cart is--flex is--space-between">Total: <span>${{ (total / 100).toFixed(2) }}</span></div>
         <Link :href="route('checkout.index')" v-if="this.cart && this.cart.length"
             class="button is--black is--less-border-radius is--flex is--space-between">Checkout
             <Icon name="arrow-right" />
