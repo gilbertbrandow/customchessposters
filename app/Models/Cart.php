@@ -56,7 +56,7 @@ class Cart extends Model
             ->join('products', 'products.id', '=', 'cart_items.product_id')
             ->join('poster_variants', 'poster_variants.id', '=', 'products.poster_variant_id')
             ->join('poster_sizes', 'poster_sizes.id', '=', 'poster_variants.poster_size_id')
-            ->join('poster_frames', 'poster_frames.id', '=', 'poster_variants.poster_frame_id')
+            ->join('poster_frames', 'poster_frames.id', '=', 'poster_variants.poster_frame_id', 'left')
             ->join('posters', 'posters.id', '=', 'products.poster_id')
             ->select(
                 'carts.id as cartId',
@@ -101,7 +101,8 @@ class Cart extends Model
             ->where('products.poster_id', '=', $posterId);
     }
 
-    public static function getVariants($token, $id) {
+    public static function getVariants($token, $id)
+    {
 
         return DB::table('carts')->where('session_token', $token)
             ->when($id !== null, function ($query) use ($id) {
@@ -113,6 +114,5 @@ class Cart extends Model
                 'poster_variants.variant_id as variant_id',
                 'cart_items.quantity as quantity',
             );
-
     }
 }
