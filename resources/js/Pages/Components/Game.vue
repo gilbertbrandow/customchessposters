@@ -55,7 +55,7 @@
             <p v-else>{{ this.game.description }}</p>
 
             <div class="button-wrp">
-                <AddToCart :poster="{
+                <PosterChooseVariantButton :poster="{
                     'theme_id': this.game.theme_id,
                     'orientation': this.game.orientation,
                     'starting_position': this.game.starting_position,
@@ -88,7 +88,7 @@
 
 <script>
 import Poster from "./Poster.vue"
-import AddToCart from "./PosterAddToCart.vue"
+import PosterChooseVariantButton from "./PosterChooseVariantButton.vue"
 import Flags from "../../Icons/Flags.vue";
 import { Link } from "@inertiajs/vue3";
 
@@ -98,7 +98,7 @@ export default {
         Poster,
         Flags,
         Link,
-        AddToCart,
+        PosterChooseVariantButton,
     },
 
     props: {

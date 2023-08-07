@@ -12,12 +12,5 @@ export default {
     props: {
         poster: {},
     },
-
-    data() {
-        return {
-            sizes: false,
-            unit: true,
-        }
-    },
 }
 </script>
