@@ -28,7 +28,8 @@ main {
     align-items: center;
 }
 
-a, button {
+a,
+button {
     color: #000;
 }
 
@@ -2711,7 +2712,6 @@ label {
     display: flex;
     column-gap: 0.5em;
     align-items: center;
-    font-size: 1.25em;
 
     li {
         border: 0.06em solid #ebebeb;
@@ -2723,6 +2723,7 @@ label {
             display: flex;
             flex-direction: column;
             row-gap: 0.25em;
+            width: 10em;
 
             span:first-child {
                 font-size: 1.2em;
@@ -2744,7 +2745,6 @@ label {
     display: flex;
     column-gap: 0.5em;
     align-items: center;
-    font-size: 1.25em;
 
     li {
         border: 0.06em solid #ebebeb;
@@ -2754,10 +2754,11 @@ label {
         button {
             padding: 0.5em 0.75em 0.5em 0.5em;
             display: grid;
-            flex-direction: column;
+            justify-content: start;
             grid-template-columns: auto auto;
             column-gap: 0.5em;
             row-gap: 0.25em;
+            width: 10em;
 
             div {
                 grid-row: span 2;
@@ -3285,7 +3286,8 @@ label {
         }
     }
 
-    .sizes {
+    .sizes,
+    .frames {
         font-size: 1em;
     }
 
@@ -3508,9 +3510,15 @@ label {
         }
     }
 
-    .sizes {
-        flex-direction: column;
-        align-items: flex-start;
+    .sizes,
+    .frames {
+        li button {
+            width: 9.25em;
+        }
+    }
+
+    .frames {
+        flex-wrap: wrap;
         row-gap: 1em;
     }
 

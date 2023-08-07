@@ -33,7 +33,7 @@
                     </button>
                 </li>
 
-                <button v-if="this.$data.properties.frame" class="link-arrow" style="font-size: 0.8em;"
+                <button v-if="this.$data.properties.frame" class="link-arrow"
                     @click="this.$data.properties.frame = null">No frame {{ this.removeFrameCost }}</button>
             </ul>
 
