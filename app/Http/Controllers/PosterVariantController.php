@@ -13,7 +13,7 @@ class PosterVariantController extends Controller
         return [
             'sizes' => PosterSize::select('id', 'name', 'width', 'height')->get(), 
             'frames' => PosterFrame::select('id', 'name', 'image')->get(),
-            'variants' => PosterVariant::select('poster_size_id', 'poster_frame_id', 'price', 'variant_id')->get()
+            'variants' => PosterVariant::select('id', 'poster_size_id', 'poster_frame_id', 'price')->get()
         ];
     }
 }

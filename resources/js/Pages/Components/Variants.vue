@@ -117,7 +117,7 @@ export default {
                         && variant.poster_frame_id == this.$data.properties.frame) {
 
                         //Update current variant and change total to its price
-                        this.$data.form.variant = variant.variant_id;
+                        this.$data.form.variant = variant.id;
                         this.$data.total = variant.price;
 
                         //Update cost of all sizes and frames
