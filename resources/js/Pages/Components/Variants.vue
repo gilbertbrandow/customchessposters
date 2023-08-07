@@ -41,7 +41,7 @@
                 </li>
 
                 <button v-if="this.$data.properties.frame" class="link-arrow" style="font-size: 0.8em;"
-                    @click="this.$data.properties.frame = null">No frame</button>
+                    @click="this.$data.properties.frame = null">No frame {{ this.removeFrameCost }}</button>
             </ul>
 
             <div class="is--flex">
@@ -138,7 +138,7 @@ export default {
                                     if (variant.poster_size_id == size.id
                                         && variant.poster_frame_id == this.$data.properties.frame) {
                                         size.cost = variant.price < this.$data.total
-                                            ? '- €' + ((variant.price - this.$data.total) / -100).toFixed(2) 
+                                            ? '- €' + ((variant.price - this.$data.total) / -100).toFixed(2)
                                             : '+ €' + ((variant.price - this.$data.total) / 100).toFixed(2)
 
                                         return;
@@ -157,7 +157,7 @@ export default {
                                     if (variant.poster_frame_id == frame.id
                                         && variant.poster_size_id == this.$data.properties.size) {
                                         frame.cost = variant.price < this.$data.total
-                                            ? '- €' + ((variant.price - this.$data.total) / -100).toFixed(2) 
+                                            ? '- €' + ((variant.price - this.$data.total) / -100).toFixed(2)
                                             : '+ €' + ((variant.price - this.$data.total) / 100).toFixed(2)
 
                                         return;
@@ -166,13 +166,28 @@ export default {
                             }
                         })
 
-                        return; 
+                        return;
                     }
                 })
             },
 
             deep: true
         }
+    },
+
+    computed: {
+        removeFrameCost() {
+            let cost = null;
+
+            this.$data.variants.forEach((variant) => {
+                if (variant.poster_frame_id == null
+                    && variant.poster_size_id == this.$data.properties.size) {
+                    cost = '(- €' + ((variant.price - this.$data.total) / -100).toFixed(2) + ')';
+                }
+            });
+
+            return cost;
+        },
     },
 
     mounted() {
