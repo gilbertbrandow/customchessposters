@@ -129,7 +129,8 @@ export default {
         },
 
         setLightboxHeight() {
-            document.querySelector(".lightbox").style.maxHeight = 'calc(' + window.innerHeight + 'px - 4vw)'; 
+
+            if(Object.keys(this.$page.props.lightbox).length) document.querySelector(".lightbox").style.maxHeight = 'calc(' + window.innerHeight + 'px - 4vw)'; 
             return; 
         }
     },
