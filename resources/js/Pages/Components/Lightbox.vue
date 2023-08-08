@@ -42,6 +42,7 @@
 <script>
 import Poster from './Poster/PosterSVG.vue';
 import Icon from '../../Icons/Icon.vue';
+import { vShow } from 'vue';
 
 export default {
 
@@ -118,7 +119,7 @@ export default {
                 return;
             }
 
-            let height = target.querySelector('.poster').offsetHeight; 
+            let height = target.querySelector('.poster').offsetHeight;
 
             //Move poster element relative to the x and y. 
             target.querySelector('.poster').style.top = ((50 - Math.max(y, 0) * 100) / 100 * height) + 'px';
@@ -126,6 +127,11 @@ export default {
             target.querySelector('.poster').style.right = (Math.max(x, 0) * 100 - 50) + '%';
 
         },
+
+        setLightboxHeight() {
+            document.querySelector(".lightbox").style.maxHeight = 'calc(' + window.innerHeight + 'px - 4vw)'; 
+            return; 
+        }
     },
 
     watch: {
@@ -142,11 +148,14 @@ export default {
     },
 
     mounted() {
-        window.addEventListener('keydown', this.onKeydown); 
-    }, 
+        window.addEventListener('keydown', this.onKeydown);
+        window.addEventListener("resize", this.setLightboxHeight);
+        this.setLightboxHeight();
+    },
 
     beforeUnmount() {
         window.removeEventListener('keydown', this.onKeydown);
+        window.removeEventListener('resize', this.setLightboxHeight);
     }
 }
 </script>
