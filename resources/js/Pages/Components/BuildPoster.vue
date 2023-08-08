@@ -932,25 +932,27 @@ export default {
                 && rect.right <= (window.innerWidth || document.documentElement.clientWidth)
             ) return;
 
-            let y; 
+            let y;
 
             if (rect.height <= (window.innerHeight || document.documentElement.clientHeight)) {
 
-                 //If poster_module can fit on the screen, scroll so that the bottom is at the bottom, with left padding as offset if not entire poster__module height can fit
-                
-                 if(document.querySelector('.poster__builder').heigth <= (window.innerHeight || document.documentElement.clientHeight)) {
+                //If poster_module can fit on the screen, scroll so that the bottom is at the bottom, with left padding as offset if not entire poster__module height can fit
 
-                    //Entire builder can not fit, scroll to bottom but add some offset
-                    y = rect.bottom + window.pageYOffset - (window.innerHeight || document.documentElement.clientHeight) + rect.left;
+                if (document.querySelector('.poster__builder').heigth <= window.innerHeight) {
+
+                    //Entire builder can fit, so center it vertically while taking account to navbar
+                    y = rect.top + window.pageYOffset - ((window.innerHeight || document.documentElement.clientHeight) - rect.height + document.querySelector('nav').getBoundingClientRect().height) / 2;
+                    console.log("Builder can not fit");
 
                 } else {
 
-                    //Entire builder can fit, so center it vertically while taking account to navbar
-                    y = rect.top + window.pageYOffset - ((window.innerHeight || document.documentElement.clientHeight) - rect.height + document.querySelector('nav').getBoundingClientRect().height) / 2; 
+                    //Entire builder can not fit, scroll to bottom but add some offset
+                    y = rect.bottom + window.pageYOffset - (window.innerHeight || document.documentElement.clientHeight) + rect.left;
+                    console.log("Module can fit but not builder");
                 }
             } else {
                 //If poster__module can not fit on screen, scroll to top, with reasonable offset
-                y = rect.top + window.pageYOffset - rect.left * 2;
+                y = rect.top + window.pageYOffset - rect.left * 2; 
             }
 
             window.scrollTo({ top: y });
