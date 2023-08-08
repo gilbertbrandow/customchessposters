@@ -4,7 +4,7 @@
     <ul class="sizes is--margin-top is--margin-btm">
         <li v-for="size in this.sizes" :class="this.properties.size == size.id ? 'is--active' : ''">
             <button @click="this.properties.size = size.id">
-                <span>{{ $page.props.unit ? size.width + ' cm x ' + size.height + ' cm' : Math.round(size.width *
+                <span>{{ $page.props.unit ? size.width + ' x ' + size.height + ' cm' : Math.round(size.width *
                     0.393700787) + '" x ' + Math.round(size.height * 0.393700787) + '"' }}</span>
                 <span>{{ size.cost }}</span>
             </button>
