@@ -21,8 +21,8 @@
                                     :class="[poster.theme_id == theme.id ? 'is--active' : '']" class="theme">
                                     <div class="theme__colour-wrp">
                                         <div class="theme__colour">
-                                            <div :style="{ backgroundColor: theme.colour, }"><img style="height: 100%" :src="`/themes${theme.texture}`"
-                                                    alt=""></div>
+                                            <div :style="{ backgroundColor: theme.colour, }"><img style="height: 100%"
+                                                    :src="`/themes${theme.texture}`" alt=""></div>
                                             <div :style="{ backgroundColor: theme.colour, }"></div>
                                         </div>
                                     </div>
@@ -922,6 +922,40 @@ export default {
 
             if (this.posterBuilder.currStep == 2) window.addEventListener('keydown', this.onKeydown)
             else window.removeEventListener('keydown', this.onKeydown)
+
+            //If poster builder is fully visible, return
+            let rect = document.querySelector('.poster__module').getBoundingClientRect()
+
+            if (rect.top >= 0
+                && rect.left >= 0
+                && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+                && rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            ) return;
+
+            let y; 
+
+            if (rect.height <= (window.innerHeight || document.documentElement.clientHeight)) {
+
+                 //If poster_module can fit on the screen, scroll so that the bottom is at the bottom, with left padding as offset if not entire poster__module height can fit
+                
+                 if(document.querySelector('.poster__builder').heigth <= (window.innerHeight || document.documentElement.clientHeight)) {
+
+                    //Entire builder can not fit, scroll to bottom but add some offset
+                    y = rect.bottom + window.pageYOffset - (window.innerHeight || document.documentElement.clientHeight) + rect.left;
+
+                } else {
+
+                    //Entire builder can fit, so center it vertically while taking account to navbar
+                    y = rect.top + window.pageYOffset - ((window.innerHeight || document.documentElement.clientHeight) - rect.height + document.querySelector('nav').getBoundingClientRect().height) / 2; 
+                }
+            } else {
+                //If poster__module can not fit on screen, scroll to top, with reasonable offset
+                y = rect.top + window.pageYOffset - rect.left * 2;
+            }
+
+            window.scrollTo({ top: y });
+
+            return;
 
         },
 
