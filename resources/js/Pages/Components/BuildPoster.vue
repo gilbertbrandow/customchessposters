@@ -338,7 +338,7 @@
                             </div>
                         </div>
                         <div :class="[posterBuilder.currStep == 4 ? 'is--active' : '']" class="module__step">
-                            <h3>5. The Poster</h3>
+                            <h3 class="is--margin-bottom">5. The Poster</h3>
                             <VariantPicker @variant="this.recieveVariant" />
                         </div>
                     </div>

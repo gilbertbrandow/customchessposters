@@ -1,5 +1,5 @@
 <template>
-    <h3 class="is--margin-top">Choose a size</h3>
+    <span class="is--larger">Choose a size</span>
     <UnitSwitcher />
     <ul class="sizes is--margin-top is--margin-btm">
         <li v-for="size in this.sizes" :class="this.properties.size == size.id ? 'is--active' : ''">
@@ -12,7 +12,7 @@
     </ul>
 
     <div class="is--flex" style="margin-top: 1.5em; column-gap: 0.25em;">
-        <h3>Choose a frame</h3><span>(Optional)</span>
+        <span class="is--larger">Choose a frame</span><span>(Optional)</span>
     </div>
     <ul class="frames">
         <li v-for="frame in this.frames" :class="this.properties.frame == frame.id ? 'is--active' : ''">
@@ -25,8 +25,10 @@
             </button>
         </li>
 
-        <button v-if="this.$data.properties.frame" class="link-arrow" @click="this.$data.properties.frame = null">No frame
-            {{ this.removeFrameCost }}</button>
+        <button v-if="this.$data.properties.frame" class="link-arrow is--margin-left"
+            @click="this.$data.properties.frame = null">
+            No frame {{ this.removeFrameCost }}
+        </button>
     </ul>
 </template>
 
@@ -89,6 +91,8 @@ export default {
                             variant: variant.id,
                             total: variant.price
                         });
+
+                        this.$data.total = variant.price;
 
                         //Update cost of all sizes and frames
                         this.$data.sizes.forEach((size) => {

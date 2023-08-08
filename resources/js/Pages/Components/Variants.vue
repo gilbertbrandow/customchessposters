@@ -5,7 +5,7 @@
         </button>
 
         <div class="container">
-            <h2>Poster "{{ $page.props.addToCart.title }}"</h2>
+            <h2 class="is--margin-bottom">Poster "{{ $page.props.addToCart.title }}"</h2>
 
             <VariantPicker  @variant="recieveVariant"/>
 
