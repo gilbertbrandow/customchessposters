@@ -19,7 +19,7 @@
 
                         <div class="is--flex">
                             <strong v-text="'$' + (item.price / 100).toFixed(2)"></strong> x
-                            <input type="number" min="1" :value="item.quantity" @change="this.updateCart(item.itemId, false, $event.target.value)"/>
+                            <input type="number" min="1" :value="item.quantity" name="quantity" @change="this.updateCart(item.itemId, false, $event.target.value)"/>
                             <button class="text__link" type="submit" @click="this.updateCart(item.itemId, true)">Remove item</button>
                         </div>
                     </div>

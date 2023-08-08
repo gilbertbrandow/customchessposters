@@ -1424,7 +1424,7 @@ h4 {
 .lightbox {
     max-width: 96vw;
     max-height: calc(100vh - 4vw);
-    height: calc(var(--vh, 1vh) * 100 - 4vw);
+    max-height: calc(var(--vh, 1vh) * 100 - 4vw);
     border-radius: 1em;
     overflow: hidden;
     background-color: #fff;

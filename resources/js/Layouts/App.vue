@@ -88,7 +88,7 @@
         </div>
         <div>
           <h4>Social</h4>
-          <a href="mailto:info@customchessposters.com">info@customchessposters.com</a>
+          <a href="mailto:hej@0100.se">hej@0100.se</a>
         </div>
       </div>
       <div class="footer__bottom">
