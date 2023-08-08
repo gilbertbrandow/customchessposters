@@ -20,6 +20,8 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SavedPosterController;
 use App\Http\Controllers\RecipientController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\PosterVariantController;
+use App\Http\Controllers\UnitController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -69,6 +71,16 @@ Route::get('/game/{id}', [GameController::class, 'show'])
 Route::post('/newsletter', [NewsletterController::class, 'create'])
     ->name('newsletter.create');
 
+
+/*
+|--------------------------------------------------------------------------
+| Update session routes
+|--------------------------------------------------------------------------
+|
+*/
+
+Route::post('/unit', [UnitController::class, 'update'])
+    ->name('unit.update');
 
 
 /*
@@ -167,6 +179,9 @@ Route::middleware('auth')->group(function () {
 | Ecommerce routes
 |--------------------------------------------------------------------------
 */
+
+Route::get('/poster-variants', [PosterVariantController::class, 'index'])
+    ->name('poster-variants.index');
 
 Route::get('/cart', [CartController::class, 'index'])
     ->name('cart.index');

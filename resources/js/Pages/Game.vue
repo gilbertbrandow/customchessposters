@@ -52,7 +52,7 @@
 
                         <p>{{ this.$data.game.description }}</p>
                         
-                        <PosterAddToCart :poster="{
+                        <PosterChooseVariantButton :poster="{
                             'theme_id': this.$data.game.theme_id, 
                             'orientation': this.$data.game.orientation, 
                             'starting_position': this.$data.game.starting_position, 
@@ -84,7 +84,7 @@
 import AppLayout from "../Layouts/App.vue";
 import Poster from "./Components/Poster.vue";
 import Flags from "../Icons/Flags.vue";
-import PosterAddToCart from "./Components/PosterAddToCart.vue";
+import PosterChooseVariantButton from "./Components/PosterChooseVariantButton.vue";
 import { Chess } from 'chess.js';
 import { Link } from "@inertiajs/vue3";
 
@@ -96,7 +96,7 @@ export default {
         Poster,
         Flags,
         Link,
-        PosterAddToCart,
+        PosterChooseVariantButton,
     },
 
     data() {

@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('poster_variants', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('poster_size_id')->constrained();
+            $table->foreignId('poster_frame_id')->nullable()->constrained();
             $table->string('description');
-            $table->integer('width');
-            $table->integer('height');
             $table->integer('price');
             $table->integer('variant_id');
             $table->timestamps();

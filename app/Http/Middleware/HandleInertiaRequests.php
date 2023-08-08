@@ -60,6 +60,8 @@ class HandleInertiaRequests extends Middleware
 
             'poster'=> $request->session()->get('poster'),
 
+            'unit' => $request->session()->has('unit') ? $request->session()->get('unit') : true,
+
             'flash' => [
 
                     'newsletter' => [
@@ -90,7 +92,7 @@ class HandleInertiaRequests extends Middleware
 
             'lightbox' => [],
 
-            'addToCart' => [],
+            'addToCart' => $request->session()->get('addToCart'),
             
             'route' => [
                 'params' => $request->route()->parameters(),

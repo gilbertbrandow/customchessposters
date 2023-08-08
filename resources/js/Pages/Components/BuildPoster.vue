@@ -338,41 +338,8 @@
                             </div>
                         </div>
                         <div :class="[posterBuilder.currStep == 4 ? 'is--active' : '']" class="module__step">
-                            <h3>5. The Poster</h3>
-                            <p>How big would you like your poster?</p>
-
-                            <div class="switcher-wrp">
-                                <span :class="this.$data.posterBuilder.unit ? 'is--active' : ''">Centimeters (cm)</span>
-                                <button :class="this.$data.posterBuilder.unit ? 'switcher' : 'switcher is--right'"
-                                    @click="this.$data.posterBuilder.unit = !this.$data.posterBuilder.unit">
-                                    <div></div>
-                                </button>
-                                <span :class="!this.$data.posterBuilder.unit ? 'is--active' : ''">Inches (")</span>
-                            </div>
-
-                            <ul class="sizes is--margin-top is--no-margin-bottom">
-                                <li :class="this.form.variant == 1 ? 'is--active' : ''">
-                                    <button @click="this.form.variant = 1">
-                                        <span>Small &nbsp; &nbsp; &nbsp; €20.00</span>
-                                        <span>{{ this.$data.posterBuilder.unit ? '21 x 30 cm' : '8" x 12"' }}
-                                        </span>
-                                    </button>
-                                </li>
-                                <li :class="this.form.variant == 2 ? 'is--active' : ''">
-                                    <button @click="this.form.variant = 2">
-                                        <span>Medium &nbsp; &nbsp; &nbsp; €30.00</span>
-                                        <span>{{ this.$data.posterBuilder.unit ? '50 x 70 cm' : '20" x 27"' }}</span>
-                                    </button>
-                                </li>
-                                <li :class="this.form.variant == 3 ? 'is--active' : ''">
-                                    <button @click="this.form.variant = 3">
-                                        <span>Large &nbsp; &nbsp; &nbsp; €40.00</span>
-                                        <span>{{ this.$data.posterBuilder.unit ? '61 x 91 cm' : '24" x 36"' }}</span>
-                                    </button>
-                                </li>
-                            </ul>
-
-                            <span class="is--small is--margin-top">* No frame included</span>
+                            <h3 class="is--margin-bottom">5. The Poster</h3>
+                            <VariantPicker @variant="this.recieveVariant" />
                         </div>
                     </div>
                     <div class="module__navigation">
@@ -387,11 +354,14 @@
                                 <Icon name="arrow-right" />
                             </button>
 
-                            <button v-if="this.$data.posterBuilder.currStep == 4" class="button is--black"
-                                :disabled="!this.form.variant" @click="this.addToCart()">
+                            <button v-else class="button is--black" :disabled="!this.form.variant"
+                                @click="this.addToCart()">
                                 Add To Cart
                                 <Icon :name="!this.form.variant ? '' : 'cart'" />
                             </button>
+
+                            <PosterAddToCart v-else :poster="this.$data.poster" :variant="this.$data.variant"
+                                :total="this.$data.total" />
 
                         </div>
                         <div class="module__progress-wrp">
@@ -433,13 +403,15 @@
 import { Chess } from 'chess.js'
 import axios from 'axios'
 import Poster from './Poster.vue'
-import { useForm } from '@inertiajs/vue3'
-
+import VariantPicker from './VariantPicker.vue'
+import PosterAddToCart from './PosterAddToCart.vue'
 
 export default {
 
     components: {
         Poster,
+        VariantPicker,
+        PosterAddToCart
     },
 
     data() {
@@ -500,10 +472,8 @@ export default {
                 where: "Wijk aan Zee, Netherlands",
             },
 
-            form: useForm({
-                poster_data: null,
-                variant: null,
-            }),
+            variant: null,
+            total: 0,
 
             originalPoster: {},
 
@@ -917,15 +887,9 @@ export default {
             }
         },
 
-        addToCart() {
-
-            this.form.poster_data = this.poster;
-
-            this.form.post('/product', {
-                preserveState: true,
-                preserveScroll: true,
-                onSuccess: () => this.form.variant = false,
-            });
+        recieveVariant(emitted) {
+            this.$data.total = emitted.total;
+            this.$data.variant = emitted.variant
         }
 
     },

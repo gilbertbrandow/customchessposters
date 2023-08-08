@@ -1,5 +1,5 @@
 <template>
-    <template v-for="poster in this.$page.props.posters">
+    <template v-for="poster in $page.props.posters">
         [ <br>
         <template v-for="(value, name, index) in poster">
             <template v-if="!this.$data.nonFillable.includes(name)">

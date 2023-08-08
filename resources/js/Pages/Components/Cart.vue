@@ -13,12 +13,12 @@
                     <Poster :poster="item" :controls="{'small': true}" environment="builder-mockup.jpeg" />
                     <div class="content">
                         <h3 v-text="item.name"></h3>
-                        <span>{{ 'Size: ' + item.width + ' x ' + item.height + ' cm, ' }}
+                        <span>{{ ($page.props.unit ? item.width + ' x ' + item.height + ' cm, ' :  Math.round(item.width * 0.393700787) + '" x ' + Math.round(item.height * 0.393700787) + '", ') + (item.frame ? item.frame + ' frame' : '') }}
                             <Link class="text__link" :href="route('poster.show', { 'id': item.id })">see poster</Link>
                         </span>
 
                         <div class="is--flex">
-                            <strong v-text="'$' + item.price / 100"></strong> x
+                            <strong v-text="'$' + (item.price / 100).toFixed(2)"></strong> x
                             <input type="number" min="1" :value="item.quantity" @change="this.updateCart(item.itemId, false, $event.target.value)"/>
                             <button class="text__link" type="submit" @click="this.updateCart(item.itemId, true)">Remove item</button>
                         </div>
@@ -26,7 +26,7 @@
                 </template>
             </li>
         </ul>
-        <div class="button is--cart is--flex is--space-between">Total: <span>${{ total / 100 }}</span></div>
+        <div class="button is--cart is--flex is--space-between">Total: <span>${{ (total / 100).toFixed(2) }}</span></div>
         <Link :href="route('checkout.index')" v-if="this.cart && this.cart.length"
             class="button is--black is--less-border-radius is--flex is--space-between">Checkout
             <Icon name="arrow-right" />

@@ -18,26 +18,95 @@ class PosterVariantsSeeder extends Seeder
         $variants = [
             [
                 'description' => 'Small',
-                'width' => 21,
-                'height' => 30,
-                'price' => 2000,
+                'poster_size_id' => 1,
+                'price' => 1990,
                 'variant_id' => 8947,
             ],
 
             [
                 'description' => 'Medium',
-                'width' => 50,
-                'height' => 70,
-                'price' => 3000,
+                'poster_size_id' => 2,
+                'price' => 2990,
                 'variant_id' => 8952,
             ],
 
             [
                 'description' => 'Large',
-                'width' => 61,
-                'height' => 91,
-                'price' => 4000,
+                'poster_size_id' => 3,
+                'price' => 3490,
                 'variant_id' => 8953,
+            ],
+            
+            [
+                'description' => 'Small with black frame',
+                'poster_size_id' => 1,
+                'poster_frame_id' => 1,
+                'price' => 3490,
+                'variant_id' => 9356,
+            ],
+
+            [
+                'description' => 'Small with oak frame',
+                'poster_size_id' => 1,
+                'poster_frame_id' => 2,
+                'price' => 3990,
+                'variant_id' => 11790,
+            ],
+
+            [
+                'description' => 'Small with white frame',
+                'poster_size_id' => 1,
+                'poster_frame_id' => 3,
+                'price' => 3490,
+                'variant_id' => 10296,
+            ],
+
+            [
+                'description' => 'Medium with black frame',
+                'poster_size_id' => 2,
+                'poster_frame_id' => 1,
+                'price' => 6990,
+                'variant_id' => 9358,
+            ],
+
+            [
+                'description' => 'Medium with oak frame',
+                'poster_size_id' => 2,
+                'poster_frame_id' => 2,
+                'price' => 7490,
+                'variant_id' => 11792,
+            ],
+
+            [
+                'description' => 'Medium with white frame',
+                'poster_size_id' => 2,
+                'poster_frame_id' => 3,
+                'price' => 6990,
+                'variant_id' => 10298,
+            ],
+
+            [
+                'description' => 'Large with black frame',
+                'poster_size_id' => 3,
+                'poster_frame_id' => 1,
+                'price' => 8490,
+                'variant_id' => 9359,
+            ],
+
+            [
+                'description' => 'Large with oak frame',
+                'poster_size_id' => 3,
+                'poster_frame_id' => 2,
+                'price' => 8990,
+                'variant_id' => 11793,
+            ],
+
+            [
+                'description' => 'Large with white frame',
+                'poster_size_id' => 3,
+                'poster_frame_id' => 3,
+                'price' => 8490,
+                'variant_id' => 10299,
             ],
         ]; 
 

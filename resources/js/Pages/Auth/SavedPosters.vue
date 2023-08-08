@@ -7,7 +7,7 @@
                     :controls="{ 'small': true, 'save': false }"></Poster>
                 <div class="content">
                     <div class="button-wrp">
-                        <PosterAddToCart :poster="{
+                        <PosterChooseVariantButton :poster="{
                             'theme_id': poster.theme_id, 
                             'orientation': poster.orientation, 
                             'starting_position': poster.starting_position, 
@@ -73,7 +73,7 @@ function submitForm(id) {
 import App from "../../Layouts/App.vue";
 import AccountNav from "../../Layouts/AccountNav.vue";
 import Poster from "../Components/Poster.vue"
-import PosterAddToCart from '../Components/PosterAddToCart.vue';
+import PosterChooseVariantButton from '../Components/PosterChooseVariantButton.vue';
 
 export default {
     layout: (h, page) => {
@@ -82,6 +82,7 @@ export default {
 
     components: {
         Poster,
+        PosterChooseVariantButton,
     },
 }
 </script>
