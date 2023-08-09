@@ -5,8 +5,8 @@
         <Variants/>
         <div class="content slide-out"
             v-if="!$page.props.user && ($page.props.overlay == 'login' || $page.props.overlay == 'register' || $page.props.overlay == 'forgot')">
-            <button class="button__rnd-icn" @click="$page.props.overlay = false">
-                <Icon name="close" />
+            <button class="link-arrow is--close" @click="$page.props.overlay = false">
+                Close <Icon name="close" />
             </button>
 
             <h2 v-text="title"></h2>

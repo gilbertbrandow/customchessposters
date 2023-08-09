@@ -1,15 +1,15 @@
 <template>
-    <div v-if="$page.props.addToCart &&  Object.keys($page.props.addToCart).length" class="content variants-overlay">
-        <button class="button is--only-icon is--outline" @click="$page.props.addToCart = [], $page.props.overlay = false">
-            <Icon name="close" />
+    <div v-if="$page.props.addToCart && Object.keys($page.props.addToCart).length" class="content variants-overlay">
+        <button class="link-arrow is--close" @click="$page.props.overlay = false">
+            Close <Icon name="close" />
         </button>
 
         <div class="container">
             <h2 class="is--margin-bottom">Poster "{{ $page.props.addToCart.title }}"</h2>
 
-            <VariantPicker  @variant="recieveVariant"/>
+            <VariantPicker @variant="recieveVariant" />
 
-            <PosterAddToCart :variant="this.$data.variant" :poster="$page.props.addToCart" :total="this.$data.total"/>
+            <PosterAddToCart :variant="this.$data.variant" :poster="$page.props.addToCart" :total="this.$data.total" />
         </div>
     </div>
 </template>
@@ -23,20 +23,20 @@ export default {
     components: {
         UnitSwitcher,
         VariantPicker,
-        PosterAddToCart, 
+        PosterAddToCart,
     },
 
 
     data() {
         return {
             total: 0,
-            variant: null, 
+            variant: null,
         }
     },
 
     methods: {
         recieveVariant(emitted) {
-            this.$data.total = emitted.total; 
+            this.$data.total = emitted.total;
             this.$data.variant = emitted.variant
         }
     }

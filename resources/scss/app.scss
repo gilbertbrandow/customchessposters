@@ -1630,10 +1630,15 @@ h4 {
         margin-top: 0em;
     }
 
-    .button__rnd-icn {
+    .link-arrow.is--close {
         position: absolute;
         top: 2em;
         right: 4em;
+
+        svg {
+            margin-left: 0.25em;
+            width: 0.75em;
+        }
     }
 }
 
@@ -2686,14 +2691,14 @@ label {
     display: flex;
     justify-content: center;
 
-    .button.is--only-icon.button.is--outline {
+    .link-arrow.is--close {
         position: absolute;
-        right: 2em;
         top: 2em;
+        right: 4em;
 
         svg {
-            margin: 0;
-            height: 0.6em;
+            margin-left: 0.25em;
+            width: 0.75em;
         }
     }
 
@@ -3619,7 +3624,6 @@ label {
     }
 
     .lightbox {
-
         h3 {
             font-size: 1em;
         }
