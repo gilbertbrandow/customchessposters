@@ -41,7 +41,7 @@
             <div class="banner">
                 <Icon v-if="this.game.world_championship_game" name="king" />
                 <span v-text="(this.game.world_championship_game) ? 'World Championship' : 'Played'"></span><span>{{
-                    this.game.date + ' in ' + this.game.where }}</span>
+                   (this.game.world_championship_game ? new Date(this.game.date).getFullYear() + ' held' : this.game.date) + ' in ' + this.game.where }}</span>
             </div>
 
             <strong class="is--small">{{ this.game.opening_eco + ': ' + this.game.opening_name }}</strong>

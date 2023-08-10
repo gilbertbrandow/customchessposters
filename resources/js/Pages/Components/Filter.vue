@@ -47,8 +47,8 @@
                 <label for="wcc" class="field__label">Filter by World Championship Game</label>
                 <select v-model="query.wcc" id="wcc" :class="[query.wcc !== null ? 'field active' : 'field']" name="wcc">
                     <option selected :value="null">No preference</option>
-                    <option :value="1">Is a WCC game</option>
-                    <option :value="0">Is not a WCC game</option>
+                    <option :value="1">Is a world chess championship game</option>
+                    <option :value="0">Is not a world chess championship game</option>
                 </select>
             </div>
 
