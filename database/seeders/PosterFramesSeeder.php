@@ -24,7 +24,7 @@ class PosterFramesSeeder extends Seeder
 
             [
                 'name' => 'Oak',
-                'image' => '/images/oak-frame.jpg',
+                'image' => '/images/oak-frame.webp',
             ],
 
             [
