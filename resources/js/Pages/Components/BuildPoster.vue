@@ -490,7 +490,7 @@ export default {
                     texture: '/New Waves/waves.svg',
                     colour: '#fbf4ea',
                     poster: '',
-                    environment: 'builder-mockup.jpeg',
+                    environment: 'builder-mockup.webp',
                 },
 
                 {
@@ -501,7 +501,7 @@ export default {
                     texture: '/Old Knowledge/lines.svg',
                     colour: '#f5f5f5',
                     poster: '',
-                    environment: 'builder-mockup.jpeg',
+                    environment: 'builder-mockup.webp',
                 }
 
             ],

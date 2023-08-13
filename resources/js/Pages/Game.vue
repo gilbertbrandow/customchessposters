@@ -72,7 +72,7 @@
                             'where': this.$data.game.where,  
                             }"/>
                     </div>
-                    <Poster :poster="this.$data.game" environment="builder-mockup.jpeg"
+                    <Poster :poster="this.$data.game" environment="builder-mockup.webp"
                         :controls="{ 'save': true, 'edit': true, }"></Poster>
                 </li>
             </ul>

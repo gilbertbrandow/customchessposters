@@ -81,7 +81,7 @@
                 </Link>
             </div>
         </div>
-        <Poster :poster="game" :showPlayers="showPlayersInPoster" environment="builder-mockup.jpeg"
+        <Poster :poster="game" :showPlayers="showPlayersInPoster" environment="builder-mockup.webp"
             :controls="{ 'small': true, 'save': true, 'edit': true, }"></Poster>
     </li>
 </template>
