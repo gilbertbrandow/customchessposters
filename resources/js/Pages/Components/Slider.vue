@@ -7,10 +7,10 @@
                 <Filter :results="this.games.length" :advanced="false"></Filter>
 
                 <div class="slider__navigation">
-                    <button @click="this.changeSlide(false)" class="button is--only-icon is--outline is--flipped">
+                    <button @click="this.changeSlide(false)" name="next slide" class="button is--only-icon is--outline is--flipped">
                         <Icon name="arrow-right"></Icon>
                     </button>
-                    <button @click="this.changeSlide(true)" class="button is--only-icon is--outline">
+                    <button @click="this.changeSlide(true)" name="previous slide" class="button is--only-icon is--outline">
                         <Icon name="arrow-right"></Icon>
                     </button>
                 </div>

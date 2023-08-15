@@ -45,17 +45,17 @@
 
                 <div class="button-wrp">
 
-                    <button class="button" @click="this.resetCurrGame()">
+                    <button class="button" name="replay" @click="this.resetCurrGame()">
                         <Icon name="undo"></Icon>
                     </button>
 
-                    <button v-if="this.status" class="button" @click="this.pause()">
+                    <button v-if="this.status" class="button" name="pause" @click="this.pause()">
                         <Icon name="pause"></Icon>
                     </button>
-                    <button v-else class="button is--play" @click="this.start()">
+                    <button v-else class="button is--play" name="resume" @click="this.start()">
                         <Icon name="play"></Icon>
                     </button>
-                    <button class="button" @click="this.updateGame()">
+                    <button class="button" name="next" @click="this.updateGame()">
                         <Icon name="arrow-right"></Icon>
                     </button>
 
