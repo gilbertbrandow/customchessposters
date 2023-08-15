@@ -73,7 +73,7 @@
         <div class="poster__svg-wrp">
             <Poster :poster="poster" />
         </div>
-        <img class="poster__environment" :src="`/images/environments/${environment}`"/>
+        <img class="poster__environment" :src="`/images/environments/${environment}`" :alt="'Poster: ' + $page.props.lightbox.title + ' shown in a warmly lit room with frame'"/>
     </div>
 </template>
 

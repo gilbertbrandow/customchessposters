@@ -16,7 +16,7 @@
                     <Poster :poster="$page.props.game.poster" />
                 </div>
 
-                <img class="poster__environment" src="../../../public/images/environments/warm.webp" />
+                <img class="poster__environment" :alt="'Poster: ' + $page.props.game.poster.title + ' shown in a warmly lit room with frame'" src="../../../public/images/environments/warm.webp" />
             </div>
 
             <div class="game__info">

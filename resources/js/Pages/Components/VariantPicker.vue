@@ -18,7 +18,7 @@
         <li v-for="frame in this.frames" :class="this.properties.frame == frame.id ? 'is--active' : ''">
             <button @click="this.properties.frame = frame.id">
                 <div class="frame__img">
-                    <img :src="frame.image" alt="">
+                    <img :src="frame.image" :alt="'Image of' + frame.name + 'frame'">
                 </div>
                 <span>{{ frame.name }}</span>
                 <span>{{ frame.cost }}</span>
