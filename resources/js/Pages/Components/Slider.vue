@@ -16,7 +16,6 @@
                 </div>
             </div>
             <div class="slider">
-                <!-- TODO: Make slider responsive -->
                 <ul class="game__collection is--slider" :style="{ 'margin-left': (-22.25 * this.currSlide) + 'em' }">
                     <Game v-for="(game, index) in this.games" :game="game" :small="true" :showPlayersInPoster="true"></Game>
 

@@ -1636,8 +1636,9 @@ h4 {
         right: 4em;
 
         svg {
-            margin-left: 0.25em;
-            width: 0.75em;
+            margin-left: 0.3em;
+            margin-bottom: 0.1em;
+            width: 0.65em;
         }
     }
 }
@@ -2697,8 +2698,9 @@ label {
         right: 4em;
 
         svg {
-            margin-left: 0.25em;
-            width: 0.75em;
+            margin-left: 0.3em;
+            margin-bottom: 0.1em;
+            width: 0.65em;
         }
     }
 
@@ -3130,7 +3132,7 @@ label {
         }
     }
 
-    .poster__buttons-wrp { 
+    .poster__buttons-wrp.small {
         font-size: 1em;
     }
 

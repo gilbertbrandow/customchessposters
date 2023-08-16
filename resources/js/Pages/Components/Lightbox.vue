@@ -56,7 +56,7 @@ export default {
             currSlide: 0,
             zoom: false,
 
-            //Create array to hold each environment and display by for loop in mask. Try to make it work with only one Poster element. 
+            //Create array to hold each environment and display by for loop in mask
             slides: [
                 {
                     title: 'Small (21 x 30 cm)',
