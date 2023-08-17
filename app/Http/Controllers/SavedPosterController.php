@@ -16,7 +16,8 @@ class SavedPosterController extends Controller
     public function index()
     {
         $user = User::find(Auth::id());
-        $posters = $user->posters;
+        $posters = array_reverse($user->posters->toArray()); 
+
         return Inertia::render('Auth/SavedPosters', compact('posters'));
     }
 
