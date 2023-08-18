@@ -49,7 +49,7 @@ class User extends Authenticatable
 
     public function posters()
     {
-        return $this->belongsToMany(Poster::class)->withTimestamps();
+        return $this->belongsToMany(Poster::class)->withTimestamps()->orderByDesc('poster_user.updated_at');
     }
 
     public function recipients()
