@@ -671,6 +671,25 @@ class PostersSeeder extends Seeder
                 'where' => 'Haifa ISR',
             ],
 
+            [
+                'theme_id' => 1,
+                'orientation' => 1,
+                'starting_position' => 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                'pgn' => '1. d4 Nf6 2. Nf3 d5 3. Bf4 g6 4. Nbd2 Bg7 5. e3 O-O 6. c3 b6 7. Be2 c5 8. O-O Nc6 9. Ne5 Bb7 10. Qa4 Qc8 11. b4 c4 12. Bf3 Nxe5 13. Bxe5 Ne4 14. Bxe4 dxe4 15. Bxg7 Kxg7 16. Qb5 Qe6 17. a4 Bd5 18. a5 Rfb8 19. Qa4 b5 20. Qc2 f5 21. Rae1 Rf8 22. f3 g5 23. fxe4 fxe4 24. Rxf8 Rxf8 25. Qd1 Kg6 26. Nf1 h6 27. Ng3 a6 28. Rf1 Rxf1+ 29. Kxf1 Kg7 30. Ke1 Bc6 31. Qh5 Qc8 32. Kf2 Bd5 33. Kg1 Bc6 34. h4 Be8 35. Qe2 gxh4 36. Nxe4 h3 37. g3 Qf5 38. Nf2 Qb1+ 39. Kh2 Qc1 40. Qg4+ Bg6 41. Qe6 Qxc3 42. Qxe7+ Bf7 43. Qe5+ Kf8 44. Qd6+ Kg8 45. Qxa6 Qxe3 46. Qf6 c3 47. a6 Bd5 48. a7 Bf3 49. Kxh3 c2 50. Qg6+ Kh8 51. Qxc2 Qxd4 52. Qf5 Qe3 53. Nd3 Be4 54. Qe5+',
+                'diagram_position' => 29,
+                'fen' => 'r1q2rk1/pb2ppBp/1p4p1/8/QPpPp3/2P1P3/P2N1PPP/R4RK1 b - - 0 15',
+                'result' => '1-0',
+                'title' => 'Quarterfinals',
+                'white_player' => 'Nijat Abasov',
+                'black_player' => 'Saleh Salem',
+                'white_rating' => 2632,
+                'black_rating' => 2661,
+                'white_title' => 'GM',
+                'black_title' => 'GM',
+                'when' => 'FIDE World Cup 2023, 2023.08.12 Round 5.1',
+                'where' => 'Baku AZE',
+            ],
+
 
         ];
 

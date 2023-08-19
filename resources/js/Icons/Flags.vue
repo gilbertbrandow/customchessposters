@@ -463,8 +463,9 @@
         </g>
     </svg>
 
-    <svg v-else-if="country == 'Philippines'" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-        y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+    <svg v-else-if="country == 'Philippines'" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
+        style="enable-background:new 0 0 512 512;" xml:space="preserve">
         <g>
             <rect y="85.337" style="fill:#F0F0F0;" width="512" height="341.326" />
         </g>
@@ -481,6 +482,14 @@
             <polygon style="fill:#FFDA44;" points="210.395,235.569 201.314,248.264 186.435,243.551 195.703,256.11 186.622,268.806 
 		201.431,263.873 210.699,276.431 210.582,260.824 225.391,255.89 210.511,251.177 	" />
         </g>
+    </svg>
+
+    <svg v-else-if="country == 'United Arab Emirates'" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+        y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+        <rect y="85.331" style="fill:#F0F0F0;" width="512" height="341.337" />
+        <rect y="85.331" style="fill:#6DA544;" width="512" height="113.775" />
+        <rect y="312.882" width="512" height="113.775" />
+        <rect y="85.331" style="fill:#A2001D;" width="170.663" height="341.337" />
     </svg>
 </template>
 

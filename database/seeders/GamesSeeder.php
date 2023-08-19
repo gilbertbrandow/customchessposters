@@ -391,6 +391,16 @@ class GamesSeeder extends Seeder
                 'opening_id' => 35,
             ],
 
+            [
+                'poster_id' => 35,
+                'name' => 'Nijat Goes For Glory In Front Of His Home Crowd',
+                'description' => 'NIjat Abasov was seeded 69th coming into the world cup, and ranked 4th in Azerbaijan. Against all odds he eliminated Anish Giri and Peter Svidler. Now he gives it his all to be among the final 16.',
+                'date' => '2023-08-12',
+                'white_player' => 60,
+                'black_player' => 61,
+                'world_championship_game' => 0,
+                'opening_id' => 4,
+            ],
         ];
 
         foreach ($games as $game) {
