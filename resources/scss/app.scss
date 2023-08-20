@@ -3378,9 +3378,26 @@ label {
         grid-template-rows: auto auto;
         row-gap: 3em;
 
+        h4 {
+            font-size: 1.5em;
+            margin-bottom: 0.5em;
+        }
+
+        a {
+            font-size: 1.2em;
+        }
+
+        li {
+            margin-bottom: 0.75em;
+        }
+
         .footer__info {
             grid-row: 4;
             grid-column: 1;
+        }
+
+        .logo {
+            font-size: 2em;
         }
     }
 
