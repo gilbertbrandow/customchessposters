@@ -15,6 +15,7 @@
         "postcss": "^8.1.14",
         "sass": "^1.56.1",
         "vite": "^4.0.0",
+        "vite-plugin-compression": "^0.5.1",
         "vue": "^3.2.37"
     },
     "dependencies": {
