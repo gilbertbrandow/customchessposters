@@ -274,8 +274,9 @@ export default {
         },
 
         getOS() {
-            if (navigator.userAgentData.mobile) return '';
-            else if (navigator.userAgentData.platform.toUpperCase().indexOf('MAC') != -1) return '⌘ + K'
+            if ((navigator.userAgentData && navigator.userAgentData.mobile) || /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) return '';
+            else if ((navigator.userAgentData && navigator.userAgentData.platform.toUpperCase().indexOf('MAC') != -1) 
+            || navigator.userAgent.toUpperCase().indexOf('MAC')) return '⌘ + K'
             else return '⊞ Win + K'
         }
     },
