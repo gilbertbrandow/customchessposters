@@ -3193,12 +3193,17 @@ label {
         }
     }
 
-    .checkout__header .container {
-        align-items: flex-start;
-        padding-bottom: 0em;
-        padding-left: 4em;
+    .checkout__header {
         display: flex;
         justify-content: center;
+
+        .container {
+            align-items: flex-start;
+            padding-bottom: 0em;
+            padding-left: 4em;
+            display: flex;
+            justify-content: center;
+        }
     }
     .container.is--flex.is--checkout {
         .content {
