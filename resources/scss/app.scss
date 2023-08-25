@@ -2863,6 +2863,11 @@ label {
     }
 }
 
+.checkout__header {
+    display: flex;
+    justify-content: center;
+}
+
 .checkout__navigation {
     display: flex;
     align-items: center;
