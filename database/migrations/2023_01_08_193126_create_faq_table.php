@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('question', 50);
             $table->text('answer');
-            $table->boolean('featured');
+            $table->boolean('featured')->nullable();
             $table->timestamps();
         });
     }
