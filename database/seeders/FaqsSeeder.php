@@ -46,7 +46,13 @@ class FaqsSeeder extends Seeder
         ]; 
 
         foreach($faqs as $faq){
-            Faq::create($faq);
+
+            if($record = Faq::where('question', $faq['question'])->where('answer', $faq['answer'])->first()) {
+                $record->update(['featured' => $faq['featured']]); 
+            } else {
+                Faq::create($faq);
+            }
+
         }
     }
 }
