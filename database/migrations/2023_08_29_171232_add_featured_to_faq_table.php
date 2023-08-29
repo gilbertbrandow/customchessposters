@@ -13,11 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('faq_table', function (Blueprint $table) {
-            $table->id();
-            $table->string('question', 50);
-            $table->text('answer');
-            $table->timestamps();
+        Schema::table('faq_table', function (Blueprint $table) {
+            $table->boolean('featured')->nullable();
         });
     }
 
@@ -28,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('faq_table');
+        Schema::table('faq', function (Blueprint $table) {
+            $table->dropColumn('featured');
+        });
     }
 };
