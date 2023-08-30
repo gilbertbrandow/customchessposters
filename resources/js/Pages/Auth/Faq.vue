@@ -30,17 +30,22 @@
                     placeholder="Lorem ipsum dolor set ami"> </textarea>
             </div>
 
+            <div class="is--margin-top"><input v-model="this.faq.featured" :value="1" type="checkbox" id="featured" :checked="this.faq.featured"> <label
+                    for="featured">Featured</label></div>
+
 
             <div v-if="this.faq.id != 0" class="is--margin-top"><input v-model="this.faq.delete" type="checkbox"
                     id="delete"> <label for="delete">Delete post</label></div>
+
+
 
             <div class="is--flex is--margin-top">
                 <button class="button is--black" type="submit">
                     Update
                 </button>
 
-                <div v-if="$page.props.flash.success" v-text="$page.props.flash.success"
-                    class="is--error is--success"></div>
+                <div v-if="$page.props.flash.success" v-text="$page.props.flash.success" class="is--error is--success">
+                </div>
             </div>
         </form>
     </section>
@@ -58,6 +63,7 @@ function resetForm(faq) {
     faq.delete = false;
     faq.question = "";
     faq.answer = "";
+    faq.featured = 0;
 }
 
 let submit = (faq) => {
@@ -96,6 +102,7 @@ export default {
                 delete: false,
                 question: '',
                 answer: '',
+                featured: 0,
             }
         }
     },
@@ -109,6 +116,7 @@ export default {
                 this.faq.delete = false;
                 this.faq.question = '';
                 this.faq.answer = '';
+                this.faq.featured = 0; 
                 return;
             }
 
@@ -118,7 +126,9 @@ export default {
                     this.faq.id = this.$page.props.faqs[i].id;
                     this.faq.question = this.$page.props.faqs[i].question;
                     this.faq.answer = this.$page.props.faqs[i].answer;
-                    break;
+                    this.faq.featured = this.$page.props.faqs[i].featured;
+
+                    return;
                 }
             }
         }

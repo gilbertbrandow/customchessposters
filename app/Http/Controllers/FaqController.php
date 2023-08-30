@@ -32,7 +32,7 @@ class FaqController extends Controller
 
     public function update(Request $request)
     {
-        Faq::find($request->faq['id'])->update(['question' => $request->faq['question'], 'answer' => $request->faq['answer']]);
+        Faq::find($request->faq['id'])->update($request->faq);
         return redirect()->back()->with('success', 'FAQ successfully updated');
     }
 
