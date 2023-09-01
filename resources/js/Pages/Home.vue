@@ -16,7 +16,16 @@
                     <Poster :poster="$page.props.game.poster" />
                 </div>
 
-                <img class="poster__environment" :alt="'Poster: ' + $page.props.game.poster.title + ' shown in a warmly lit room with frame'" src="../../../public/images/environments/warm.webp" />
+                <img class="poster__environment" 
+                :alt="'Poster: ' + $page.props.game.poster.title + ' shown in a warmly lit room with frame'" 
+                src="../../../public/images/environments/warm-400x420.webp" 
+                srcset="
+                ../../../public/images/environments/warm-2382x2500.webp 2382w,
+                ../../../public/images/environments/warm-900x945.webp 900w,
+                ../../../public/images/environments/warm-400x420.webp 400w
+                "
+
+                />
             </div>
 
             <div class="game__info">
