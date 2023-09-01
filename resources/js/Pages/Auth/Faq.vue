@@ -2,11 +2,11 @@
     <section>
         <h1>FAQs</h1>
         <p>This is a graphical interface to edit, create or delete a frequently asked question.</p>
-        <form @submit.prevent="submit(this.$data.faq)" class="form">
+        <form @submit.prevent="submit($data.faq)" class="form">
             <div class="field__wrp">
                 <label for="faqOption" class="field__label">Choose an option</label>
 
-                <select v-model="this.faq.id" id="faqOption" class="field" name="faqOption" @change="updateCurrFaq($event)">
+                <select v-model="faq.id" id="faqOption" class="field" name="faqOption" @change="updateCurrFaq($event)">
                     <option value="0">Create new FAQ</option>
                     <option v-for="faq in $page.props.faqs" :value="faq.id">{{ 'Edit: "' + faq.question + '"' }}
                     </option>
@@ -18,7 +18,7 @@
                 <label v-text="'Question'" for="question" class="field__label"></label>
                 <div v-if="false" class="field__error">
                     Question is not valid </div>
-                <input v-model="this.faq.question" class="field" :class="{ 'is--error': false }" id="question"
+                <input v-model="faq.question" class="field" :class="{ 'is--error': false }" id="question"
                     placeholder="Lorem ipsum dolor set ami?" />
             </div>
 
@@ -26,15 +26,15 @@
                 <label v-text="'Answer'" for="answer" class="field__label"></label>
                 <div v-if="false" class="field__error">
                     Answer is not valid </div>
-                <textarea v-model="this.faq.answer" class="field" :class="{ 'is--error': false }" id="answer"
+                <textarea v-model="faq.answer" class="field" :class="{ 'is--error': false }" id="answer"
                     placeholder="Lorem ipsum dolor set ami"> </textarea>
             </div>
 
-            <div class="is--margin-top"><input v-model="this.faq.featured" :value="1" type="checkbox" id="featured" :checked="this.faq.featured"> <label
+            <div class="is--margin-top"><input v-model="faq.featured" :value="1" type="checkbox" id="featured" :checked="faq.featured"> <label
                     for="featured">Featured</label></div>
 
 
-            <div v-if="this.faq.id != 0" class="is--margin-top"><input v-model="this.faq.delete" type="checkbox"
+            <div v-if="faq.id != 0" class="is--margin-top"><input v-model="faq.delete" type="checkbox"
                     id="delete"> <label for="delete">Delete post</label></div>
 
 
