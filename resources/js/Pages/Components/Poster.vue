@@ -73,7 +73,15 @@
         <div class="poster__svg-wrp">
             <Poster :poster="poster" />
         </div>
-        <img class="poster__environment" :src="`/images/environments/${environment}`" :alt="'Poster: ' + $page.props.lightbox.title + ' shown in a warmly lit room with frame'"/>
+        <img class="poster__environment"
+         src="../../../../public/images/environments/poster-mockup-300x372.webp"
+
+         srcset="
+         ../../../../public/images/environments/poster-mockup-1200x1490.webp 1200w,
+         ../../../../public/images/environments/poster-mockup-600x745.webp 600w,
+         ../../../../public/images/environments/poster-mockup-300x372.webp 300w"
+
+        :alt="'Poster: ' + $page.props.lightbox.title + ' shown in a warmly lit room with frame'" />
     </div>
 </template>
 
