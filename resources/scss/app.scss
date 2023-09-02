@@ -3298,6 +3298,7 @@ label {
     section.section__hero {
         .poster-wrp {
             min-height: 36em;
+            height: auto;
 
             .poster {
                 top: -5em;
@@ -3453,7 +3454,6 @@ label {
 
         .poster-wrp {
             min-height: 26em;
-            height: auto;
 
             .game__info {
                 width: calc(100% - 2em);
