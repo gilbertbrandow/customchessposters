@@ -78,7 +78,8 @@ export default {
 
         touchEnd(touchEnd) {
 
-            //TODO: Add early return of clientY changes to much
+            if(Math.abs(touchEnd.changedTouches[0].clientX - this.xStart) < 20) return; 
+
             if(touchEnd.changedTouches[0].clientX < this.xStart) this.changeSlide(true); 
             else this.changeSlide(false); 
 
