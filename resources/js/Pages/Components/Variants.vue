@@ -1,6 +1,6 @@
 <template>
-    <div v-if="$page.props.addToCart && Object.keys($page.props.addToCart).length" class="content variants-overlay">
-        <button class="link-arrow is--close" @click="$page.props.overlay = false">
+    <div v-if="$page.props.addToCart && Object.keys($page.props.addToCart).length && $page.props.overlay == 'addToCart'" class="content variants-overlay">
+        <button class="link-arrow is--close" @click="this.$page.props.overlay = false">
             Close <Icon name="close" />
         </button>
 
