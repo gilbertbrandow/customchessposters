@@ -15,7 +15,7 @@
                     </button>
                 </div>
             </div>
-            <div class="slider">
+            <div class="slider" @touchstart="touchStart($event)" @touchend="touchEnd($event)">
                 <ul class="game__collection is--slider" :style="{ 'margin-left': (-22.25 * this.currSlide) + 'em' }">
                     <Game v-for="(game, index) in this.games" :game="game" :small="true" :showPlayersInPoster="true"></Game>
 
@@ -61,6 +61,7 @@ export default {
     data() {
         return {
             currSlide: 0,
+            xStart: null, 
         }
     },
 
@@ -69,6 +70,19 @@ export default {
             if (direction) this.currSlide < this.games.length ? this.currSlide++ : this.currSlide = 0
             else if (!direction) this.currSlide > 0 ? this.currSlide-- : this.currSlide = this.games.length - 1
         },
+
+        touchStart(touchStart) {
+            this.xStart = touchStart.changedTouches[0].clientX; 
+            return; 
+        },
+
+        touchEnd(touchEnd) {
+
+            //TODO: Add early return of clientY changes to much
+            if(touchEnd.changedTouches[0].clientX < this.xStart) this.changeSlide(true); 
+            else this.changeSlide(false); 
+
+        }
     },
 
      watch: {
