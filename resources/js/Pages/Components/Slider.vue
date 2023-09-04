@@ -67,8 +67,8 @@ export default {
 
     methods: {
         changeSlide(direction) {
-            if (direction) this.currSlide < this.games.length ? this.currSlide++ : this.currSlide = 0
-            else if (!direction) this.currSlide > 0 ? this.currSlide-- : this.currSlide = this.games.length - 1
+            if (direction && this.currSlide < this.games.length) this.currSlide++;
+            else if (!direction && this.currSlide) this.currSlide--; 
         },
 
         touchStart(touchStart) {
