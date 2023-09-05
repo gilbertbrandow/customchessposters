@@ -67,7 +67,7 @@ export default {
 
     methods: {
         changeSlide(direction) {
-            if (direction && this.currSlide < this.games.length) this.currSlide++;
+            if (direction) this.currSlide < this.games.length ? this.currSlide++ : this.currSlide = 0;
             else if (!direction && this.currSlide) this.currSlide--; 
         },
 
