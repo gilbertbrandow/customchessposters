@@ -67,7 +67,7 @@ export default {
             const { error } = await this.stripe.confirmPayment({
                 elements,
                 confirmParams: {
-                    return_url: "/checkout/" + this.$page.props.route.params.orderId + '/confirmed',
+                    return_url: 'https://customchessposters.com/checkout/' + this.$page.props.route.params.orderId + '/confirmed',
                 },
             });
 
