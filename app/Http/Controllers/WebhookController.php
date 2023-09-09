@@ -30,10 +30,12 @@ class WebhookController extends Controller
         } catch (UnexpectedValueException $e) {
             // Invalid payload
             http_response_code(400);
+            echo $e;
             exit();
         } catch (SignatureVerificationException $e) {
             // Invalid signature
             http_response_code(400);
+            echo $e;
             exit();
         }
 
