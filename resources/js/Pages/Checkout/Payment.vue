@@ -62,14 +62,26 @@ export default {
 
         async submit() {
 
+            let params = {}; 
             const elements = this.elements; 
+            console.log(window.location.origin + '/checkout/' + this.$page.props.route.params.orderId + '/confirmed');
 
-            const { error } = await this.stripe.confirmPayment({
-                elements,
-                confirmParams: {
-                    return_url: 'https://customchessposters.com/checkout/' + this.$page.props.route.params.orderId + '/confirmed',
-                },
-            });
+
+            if (location.hostname === "localhost") {
+                params = {
+                    elements,
+                    redirect: 'if_required',
+                }
+            } else {
+                params = {
+                    elements,
+                    confirmParams: {
+                        return_url: window.location.origin + '/checkout/' + this.$page.props.route.params.orderId + '/confirmed',
+                    },
+                }
+            }
+
+            const { error } = await this.stripe.confirmPayment(params);
 
             if (error.type === "card_error" || error.type === "validation_error") {
                 console.log(error.message);
