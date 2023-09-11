@@ -72,7 +72,7 @@ class PosterService
         $filesystem = Storage::disk('s3');
  
         if (
-            $filesystem->exists($path = 'poster' . $poster->id . '.png')
+            $filesystem->exists($path = 'poster' . $poster->id . $width . 'x' . $height . '.png')
             && $filesystem->lastModified($path) > strtotime($poster->updated_at) && false
         ) return $filesystem->publicUrl($path);
 

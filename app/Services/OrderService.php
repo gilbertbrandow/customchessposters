@@ -53,6 +53,7 @@ class OrderService
                 'retail_price' => $orderItem->product->price * $orderItem->quantity / 100,
                 'files' => ($orderItem->product->type == 'poster' ? [
                     [
+                        "type"=> "default",
                         'url' => $orderItem->file,
                     ],
                 ] : null),
