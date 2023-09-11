@@ -19,8 +19,6 @@ class PosterController extends Controller
     public function show($id)
     {
 
-        (new PosterService())->generatePNG(Poster::find($id));
-
         $editPoster = Poster::find($id);
         
         return Inertia::render('CreatePoster', compact('editPoster'));
