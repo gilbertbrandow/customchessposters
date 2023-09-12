@@ -38,8 +38,11 @@ class ProcessOrder implements ShouldQueue
             
             if($item->product->type == 'poster') {
 
+                //Get dimensions of posters to generate width value for file creation. Height is an arbitrary number to ensure high enough DPI on all sizes
+                $width = intval($item->product->variant->posterSize->width / $item->product->variant->posterSize->height * $height = 8550);
+                
                 //Create and add PNG file to orderItem if poster
-                $item->file = (new PosterService())->generatePNG($item->product->poster); 
+                $item->file = (new PosterService())->generatePNG($item->product->poster, $width, $height);
                 $item->save(); 
             }
             
