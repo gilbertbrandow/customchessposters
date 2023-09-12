@@ -64,7 +64,6 @@ export default {
 
             let params = {}; 
             const elements = this.elements; 
-            console.log(window.location.origin + '/checkout/' + this.$page.props.route.params.orderId + '/confirmed');
 
 
             if (location.hostname === "localhost") {
