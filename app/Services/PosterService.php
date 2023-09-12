@@ -256,15 +256,15 @@ class PosterService
 
         if($poster->pgn) {
             $im->text(
-                diagramInfo($poster->pgn, $poster->move_comment, 
-                $poster->diagram_position), 
-                $width / 2, $boardY + $height / 3000 * 1690, 
+                diagramInfo($poster->pgn, $poster->move_comment ?? '', $poster->diagram_position), 
+                $width / 2,
+                $boardY + $height / 3000 * 1690, 
 
                 function ($font) use ($poster, $height) {
-                $font->file(resource_path($poster->theme->font_italic));
-                $font->size($height / 3000 * 32);
-                $font->align('center');
-                $font->color($poster->theme->color);
+                    $font->file(resource_path($poster->theme->font_italic));
+                    $font->size($height / 3000 * 32);
+                    $font->align('center');
+                    $font->color($poster->theme->color);
                 }
             );
         }
