@@ -72,8 +72,8 @@ class PosterService
         $filesystem = Storage::disk('s3');
  
         if (
-            $filesystem->exists($path = 'poster' . $poster->id . $width . 'x' . $height . '.png')
-            && $filesystem->lastModified($path) > strtotime($poster->updated_at) && false
+            $filesystem->exists($path = 'poster' . $poster->id . '-' . $width . 'x' . $height . '.png')
+            && $filesystem->lastModified($path) > strtotime($poster->updated_at)
         ) return $filesystem->publicUrl($path);
 
         /*
@@ -96,7 +96,7 @@ class PosterService
 
             $im->text(
                 $title[$i], 
-                $width / 2, 
+                intval($width / 2), 
                 $height / 10 + $i * $height / 15, 
                 
                 function ($font) use ($poster, $height) {
@@ -120,7 +120,7 @@ class PosterService
 
             $im->text(
                 $pgn[$i] . ($i + 1 == count($pgn) ? ' | ' . $poster->result : ''), 
-                $width / 2, 
+                intval($width / 2), 
                 $height / 30 * 29 - ($height * 0.0125 * (count($pgn) - 1 - $i)), 
                 
                 function ($font) use ($poster, $height) {
@@ -140,7 +140,7 @@ class PosterService
         */
         $im->text(
             $poster->white_title . ' ' . $poster->white_player . ' - ' . $poster->black_title . ' ' . $poster->black_player, 
-            $width / 2, 
+            intval($width / 2), 
             $height / 6 + $height / 15 * (count($title) - 1), 
             
             function ($font) use ($poster, $height) {
@@ -154,7 +154,7 @@ class PosterService
 
         $im->text(
             $poster->where . ($poster->where && $poster->when ? ' | ' : '') . $poster->when, 
-            $width / 2, 
+            intval($width / 2), 
             $height / 5 + $height / 15 * (count($title) - 1), 
 
             function ($font) use ($poster, $height) {
@@ -173,12 +173,14 @@ class PosterService
         |
         */
 
+        //dd(27 + $boardY = intval(((min($height / 30 * 29 - ($height / 75 * (count($pgn))), $height / 3000 * 2860) - (isset($title[1]) ? $height / 3.75 : $height / 5)) / 2) - (isset($title[1]) ? 0 : $height / 15)));
+
 
         $im->insert(public_path(
             '/themes/'. $poster->theme->path . '/board.svg'), 
             'top-center', 
-            $width / 2, 
-            27 + $boardY = round(((min($height / 30 * 29 - ($height / 75 * (count($pgn))), $height / 3000 * 2860) - (isset($title[1]) ? $height / 3.75 : $height / 5)) / 2) - (isset($title[1]) ? 0 : $height / 15))
+            intval($width / 2), 
+            27 + $boardY = intval(((min($height / 30 * 29 - ($height / 75 * (count($pgn))), $height / 3000 * 2860) - (isset($title[1]) ? $height / 3.75 : $height / 5)) / 2) - (isset($title[1]) ? 0 : $height / 15))
         );
 
         /*
@@ -238,7 +240,7 @@ class PosterService
                 $im->insert(
                     public_path('/themes/'. $poster->theme->path . '/' . (ctype_lower($poster->fen[$i]) ? 'Black' : 'White') . '/' . strtolower($poster->fen[$i]) . '.svg'),
                     'top-left', 
-                    ($width - 4560) / 2 + 570 * $column, 
+                    intval(($width - 4560) / 2) + 570 * $column, 
                     $boardY + 25 + 570 * $row
                 );
 
@@ -257,7 +259,7 @@ class PosterService
         if($poster->pgn) {
             $im->text(
                 diagramInfo($poster->pgn, $poster->move_comment ?? '', $poster->diagram_position), 
-                $width / 2,
+                intval($width / 2),
                 $boardY + $height / 3000 * 1690, 
 
                 function ($font) use ($poster, $height) {
