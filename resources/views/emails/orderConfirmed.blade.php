@@ -8,7 +8,7 @@
     <ul class="table">
         <li><h3>Product: </h3><h3>Poster, "{{ $item->product->poster->title }}"</h3></li>
         <li><span>Quantity: </span> <span>{{ $item->quantity }}</span></li>
-        <li><span>Dimensions: </span> <span>{{ $item->product->variant->width }} x {{ $item->product->variant->height }} cm</span></li>
+        <li><span>Dimensions: </span> <span>{{ $item->product->variant->posterSize->width }} x {{ $item->product->variant->posterSize->height }} cm</span></li>
         <li><span>Design: </span><span><a class="text-link" href="{{ 'https://customchessposters.com/edit-poster/' . $item->product->poster->id }}">Click here</a></span></li>
     </ul>
     <br>
@@ -16,13 +16,13 @@
     <h2>Order total</h2>
     <ul class="table">
         <li>
-            <span>Subtotal: </span> <span>${{ ($order->totalAmount() - $order->shipping_cost) / 100 }}</span>
+            <span>Subtotal: </span> <span> ${{ ($order->totalAmount() - $order->shipping_cost) / 100 }}</span>
         </li>
         <li>
-            <span>Shipping: </span> <span>${{ $order->shipping_cost / 100 }}</span>
+            <span>Shipping: </span> <span> ${{ $order->shipping_cost / 100 }}</span>
         </li>
         <li>
-            <span>Total: </span> <span>${{ $order->totalAmount() / 100 }}</span>
+            <span>Total: </span> <span> ${{ $order->totalAmount() / 100 }}</span>
         </li>
     </ul>
     <br>
