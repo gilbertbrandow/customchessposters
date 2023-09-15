@@ -175,6 +175,15 @@ img {
     padding-bottom: 10px;
     border-bottom: 1px solid #ebebeb;
     margin-bottom: 10px;
+    margin-left: 0px;
+}
+
+.table li span:first-child {
+    width: 100%;
+}
+
+.table li span:last-child {
+    white-space: nowrap;
 }
 
 /* Footer */
