@@ -20,8 +20,6 @@ return new class extends Migration
             $table->string('session_token')->nullable();
             $table->foreignId('cart_id')->unique()->nullable()->constrained();
             $table->foreignId('recipient_id')->nullable()->constrained();
-            $table->string('shipping')->nullable();
-            $table->integer('shipping_cost')->default(0);
             $table->string('payment_intent')->nullable();
             $table->timestamps();
         });
