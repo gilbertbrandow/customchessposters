@@ -23,7 +23,7 @@ class OrderController extends Controller
         return redirect()->route('shipping.index', ['orderId' => $order->id]);
     }
 
-    public function show(Request $request) {
+    public function show() {
 
         return Inertia::render('Checkout/Confirmation', [
             'stripePublicKey' => env('STRIPE_PK'),
