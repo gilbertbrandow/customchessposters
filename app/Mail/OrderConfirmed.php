@@ -3,6 +3,7 @@
 namespace App\Mail;
 
 use App\Models\Order;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailables\Address;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -34,7 +35,8 @@ class OrderConfirmed extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Thank you for your order, Custom Chess Posters',
+            from: new Address(User::where('admin', 1)->first()->email, env('APP_NAME')),
+            subject: 'Thank you for your order!',
         );
     }
 

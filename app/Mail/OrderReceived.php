@@ -36,7 +36,7 @@ class OrderReceived extends Mailable
     public function envelope()
     {
         return new Envelope(
-            from: new Address($this->order->shippingAddress->email, $this->order->shippingAddress->name),
+            from: new Address($this->order->recipient->email, $this->order->recipient->name),
             subject: 'New Order Received',
         );
     }
