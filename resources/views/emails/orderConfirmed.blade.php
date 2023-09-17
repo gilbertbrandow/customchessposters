@@ -1,6 +1,6 @@
 @component('mail::message')
     <h1>Order Confirmation #{{ $order->id }}</h1>
-    <p>{{ explode(' ', $order->shippingAddress->name)[0] }}, thank you for your order. </p>
+    <p>{{ explode(' ', $order->recipient->name)[0] }}, thank you for your order. </p>
     <p>We have recieved it and will contact you again as soon as the order has been shipped. You can read an order summary below.</p>
     <br>
     <h2>Order summary</h2>
@@ -16,7 +16,7 @@
     <h2>Order total</h2>
     <ul class="table">
         <li class="columns">
-            <span>Subtotal: </span> <span> ${{ number_format(($order->totalAmount() - $order->shipping_cost) / 100, 2, '.', '') }}</span>
+            <span>Subtotal: </span> <span> ${{ number_format(($order->totalAmount() - $order->shipping->cost) / 100, 2, '.', '') }}</span>
         </li>
         <li>
             <span>Shipping: </span> <span> ${{ number_format($order->shipping_cost / 100, 2, '.', '') }}</span>
@@ -29,21 +29,21 @@
     <h2>Shipping information</h2>
     <ul class="table">
         <li>
-            <span>Method: </span> <span>{{ $order->shipping }}</span>
+            <span>Method: </span> <span>{{ $order->shipping->name }}</span>
         </li>
         <li>
-            <span>Name: </span> <span>{{ $order->shippingAddress->name }}</span>
+            <span>Name: </span> <span>{{ $order->recipient->name }}</span>
         </li>
         <li>
             <span>Country: </span>
-            <span>{{ $order->shippingAddress->country . ($order->shippingAddress->state_code ? ', ' . $order->shippingAddress->state_code : '') }}</span>
+            <span>{{ $order->recipient->country . ($order->recipient->state_code ? ', ' . $order->recipient->state_code : '') }}</span>
         </li>
         <li>
             <span>Address: </span>
-            <span>{{ $order->shippingAddress->address1 . ', ' . $order->shippingAddress->address2 }}</span>
+            <span>{{ $order->recipient->address1 . ', ' . $order->recipient->address2 }}</span>
         </li>
         <li>
-            <span>City: </span> <span>{{ $order->shippingAddress->city . ', ' . $order->shippingAddress->zip }}</span>
+            <span>City: </span> <span>{{ $order->recipient->city . ', ' . $order->recipient->zip }}</span>
         </li>
     </ul>
     <a class="button-black" href="https://customchessposters.com/create-poster/">Create more posters!</a>
