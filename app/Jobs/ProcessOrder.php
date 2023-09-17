@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Models\Order;
+use App\Models\ShippingMethod;
 use App\Services\OrderService;
 use App\Services\PosterService;
 use Illuminate\Bus\Queueable;
@@ -45,9 +46,15 @@ class ProcessOrder implements ShouldQueue
                 $item->file = (new PosterService())->generatePNG($item->product->poster, $width, $height);
                 $item->save(); 
             }
-            
         }; 
 
+        //Delete all non-used shipping methods
+        ShippingMethod::where([
+            ['order_id', '=', $this->order->id],
+            ['id', '!=', $this->order->shipping_method_id]
+        ])->delete(); 
+
+        //Call order service to send order to printful
         (new OrderService($this->order))->sendOrderToPrintful();
 
         //Update order status
