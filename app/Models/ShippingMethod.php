@@ -15,4 +15,8 @@ class ShippingMethod extends Model
         'desc', 
         'cost',
     ];
+
+    public function order() {
+        $this->belongsTo(Order::class);
+    }
 }
