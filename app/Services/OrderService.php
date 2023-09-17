@@ -41,7 +41,7 @@ class OrderService
 
         $pf = PrintfulApiClient::createOauthClient(env('PRINTFUL_SK'));
 
-        $recipient =  $this->order->shippingAddress;
+        $recipient =  $this->order->recipient;
 
         $items = [];
 
@@ -62,7 +62,7 @@ class OrderService
 
         try {
             $pf->post('orders', [
-                'shipping' => $this->order->shipping,
+                'shipping' => $this->order->shipping->name,
                 'retail_price' => $this->order->totalAmount(),
                 'recipient' => [
                     'name' => $recipient->name,
