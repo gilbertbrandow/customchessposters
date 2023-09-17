@@ -20,10 +20,15 @@ class Order extends Model
         'shipping_cost',
     ];
 
-    public function shippingAddress()
+    public function recipient()
     {
 
         return $this->belongsTo(Recipient::class, 'recipient_id');
+    }
+
+    public function shipping() 
+    {
+        return $this->belongsTo(ShippingMethod::class, 'shipping_method_id');
     }
 
     public function cart()
@@ -101,17 +106,18 @@ class Order extends Model
             ->join('carts', 'carts.id', 'orders.cart_id')
             ->join('cart_items', 'carts.id', '=', 'cart_items.cart_id')
             ->join('products', 'products.id', '=', 'cart_items.product_id')
-            ->selectRaw('SUM(cart_items.quantity * products.price) + shipping_cost AS total')
+            ->join('shipping_methods', 'orders.shipping_method_id', '=', 'shipping_methods.id')
+            ->selectRaw('SUM(cart_items.quantity * products.price) + shipping_methods.cost AS total')
             ->where('orders.id', $id)->groupBy('orders.id');
     }
 
     public function totalAmount() : int
     {
-
         return DB::table('orders')
             ->join('order_items', 'orders.id', '=', 'order_items.order_id')
             ->join('products', 'products.id', '=', 'order_items.product_id')
-            ->selectRaw('SUM(order_items.quantity * products.price) + orders.shipping_cost AS total')
+            ->join('shipping_methods', 'orders.shipping_method_id', '=', 'shipping_methods.id')
+            ->selectRaw('SUM(order_items.quantity * products.price) + shipping_methods.cost AS total')
             ->where('orders.id', $this->id)->groupBy('orders.id')->get()[0]->total;
     }
 }
