@@ -3,7 +3,7 @@
     <form @submit.prevent="submit()" class="form is--no-max-width">
         <div v-for="(method, index) in $page.props.shippingMethods" class="field__wrp radio">
             <input v-model="this.form.method" type="radio" :id="index" name="methods" :value="method.id"
-                :checked="method.name == $page.props.shippingMethod.shipping">
+                :checked="method.name == $page.props.shippingMethod">
             <label :for="index">
                 <Icon :name="method.name == 'STANDARD' ? 'shipping' : 'sustainable-shipping'" />
                 <div class="is--flex">
