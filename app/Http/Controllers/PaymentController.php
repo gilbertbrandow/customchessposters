@@ -14,6 +14,10 @@ class PaymentController extends Controller
 {
     public function index(Request $request)
     {
+        if(!Order::find($request->route('orderId'))->shipping) {
+            return redirect()->route('shippingMethod.index', ['orderId' => $request->route('orderId')]);
+        }
+
         //Use secret key
         Stripe::setApiKey(env('STRIPE_SK'));
 
