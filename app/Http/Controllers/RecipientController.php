@@ -17,14 +17,16 @@ class RecipientController extends Controller
 {
     public function index(Request $request)
     {
+        $order = Order::find($request->route('orderId'));
+
         $countries = Http::get('https://api.printful.com/countries')->json()['result'];
         $keys = array_column($countries, 'name');
         array_multisort($keys, SORT_ASC, $countries);
         
         return Inertia::render('Checkout/Shipping', [
-            'cart' => fn () => Order::getCartItems($request->route('orderId'))->get(),
-            'address' => fn() => Order::find($request->route('orderId'))->recipient,
-            'shippingMethod'=> fn() => Order::find($request->route('orderId'))->shipping,
+            'cart' => fn () => $order->getCartItems()->get(),
+            'address' => fn() => $order->recipient,
+            'shippingMethod'=> fn() => $order->shipping,
             'countries' => fn() => $countries,
         ]);
     }

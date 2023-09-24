@@ -14,9 +14,9 @@ class PaymentController extends Controller
 {
     public function index(Request $request)
     {
-        if(!Order::find($request->route('orderId'))->shipping) {
-            return redirect()->route('shippingMethod.index', ['orderId' => $request->route('orderId')]);
-        }
+        $order = Order::find($request->route('orderId')); 
+
+        if(!$order->shipping) return redirect()->route('shippingMethod.index', ['orderId' => $request->route('orderId')]);
 
         //Use secret key
         Stripe::setApiKey(env('STRIPE_SK'));
@@ -26,7 +26,7 @@ class PaymentController extends Controller
             // Create a PaymentIntent with amount and currency
             $paymentIntent = PaymentIntent::create([
 
-                'amount' => Order::totalCartAmount($request->route('orderId'))->get()[0]->total, 
+                'amount' => $order->CartTotal,
                 'currency' => 'eur',
                 'automatic_payment_methods' => [
                     'enabled' => true,
@@ -34,12 +34,12 @@ class PaymentController extends Controller
             ]);
 
             //Save payment intent on order
-            Order::where('id', $request->route('orderId'))->update(array('payment_intent' => $paymentIntent->id));
+            $order->update(array('payment_intent' => $paymentIntent->id));
 
             return Inertia::render('Checkout/Payment', [
-                'cart' => fn () => Order::getCartItems($request->route('orderId'))->get(),
-                'shippingMethod' => fn () => Order::find($request->route('orderId'))->shipping,
-                'address' => fn () => Order::find($request->route('orderId'))->recipient,
+                'cart' => fn () => $order->getCartItems()->get(),
+                'shippingMethod' => fn () =>  $order->shipping,
+                'address' => fn () => $order->recipient,
                 'clientSecretKey' => $paymentIntent->client_secret,
                 'stripePublicKey' => env('STRIPE_PK'),
             ]);

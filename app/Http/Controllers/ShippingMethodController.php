@@ -11,15 +11,15 @@ class ShippingMethodController extends Controller
 {
     public function index(Request $request) {
 
-        if(!Order::find($request->route('orderId'))->recipient) {
-            return redirect()->route('shippingMethod.index', ['orderId' => $request->route('orderId')]);
-        }
+        $order = Order::find($request->route('orderId')); 
+
+        if(!$order->recipient) return redirect()->route('shippingMethod.index', ['orderId' => $request->route('orderId')]);
 
         return Inertia::render('Checkout/Shipping-methods', [
-            'cart' => fn () => Order::getCartItems($request->route('orderId'))->get(),
-            'shippingMethods' => fn () => ShippingMethod::where('order_id', $request->route('orderId'))->get(),
-            'shippingMethod' => Order::find($request->route('orderId'))->shipping,
-            'address' => fn() => Order::find($request->route('orderId'))->recipient,
+            'cart' => fn () => $order->getCartItems()->get(),
+            'shippingMethods' => fn () => $order->shippingAlternatives,
+            'shippingMethod' => $order->shipping,
+            'address' => fn() => $order->recipient,
         ]); 
     }
 
