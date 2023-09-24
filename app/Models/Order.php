@@ -2,8 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Database\Query\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 class Order extends Model
@@ -20,32 +25,39 @@ class Order extends Model
         'shipping_cost',
     ];
 
-    public function recipient()
+    public function recipient(): BelongsTo
     {
-
         return $this->belongsTo(Recipient::class, 'recipient_id');
     }
 
-    public function shipping() 
+    public function shippingAlternatives(): HasMany
+    {
+        return $this->hasMany(ShippingMethod::class);
+    }
+
+    public function shipping(): BelongsTo
     {
         return $this->belongsTo(ShippingMethod::class, 'shipping_method_id');
     }
 
-    public function cart()
+    public function cart(): BelongsTo
     {
-
         return $this->belongsTo(Cart::class, 'cart_id');
     }
 
-    public function orderItems()
+    public function cartItems(): Collection
     {
+        return $this->cart->cartItems; 
+    }
 
+    public function orderItems(): HasMany
+    {
         return $this->hasMany(OrderItem::class, 'order_id');
     }
 
-    public static function getCartItems($orderId)
+    public function getCartItems(): Builder
     {
-        return DB::table('orders')->where('orders.id', $orderId)
+        return DB::table('orders')->where('orders.id', $this->id)
             ->join('carts', 'orders.cart_id', '=', 'carts.id')
             ->join('cart_items', 'carts.id', '=', 'cart_items.cart_id')
             ->join('products', 'products.id', '=', 'cart_items.product_id')
@@ -99,25 +111,25 @@ class Order extends Model
             );
     }
 
-    public static function totalCartAmount($id)
+    public function getCartTotalAttribute(): int
     {
 
         return DB::table('orders')
             ->join('carts', 'carts.id', 'orders.cart_id')
             ->join('cart_items', 'carts.id', '=', 'cart_items.cart_id')
             ->join('products', 'products.id', '=', 'cart_items.product_id')
-            ->join('shipping_methods', 'orders.shipping_method_id', '=', 'shipping_methods.id')
-            ->selectRaw('SUM(cart_items.quantity * products.price) + shipping_methods.cost AS total')
-            ->where('orders.id', $id)->groupBy('orders.id');
+            ->leftJoin('shipping_methods', 'orders.shipping_method_id', '=', 'shipping_methods.id')
+            ->selectRaw('SUM(cart_items.quantity * products.price) + IFNULL(shipping_methods.cost, 0) AS total')
+            ->where('orders.id', $this->id)->groupBy('orders.id')->get()->first()->total;
     }
 
-    public function totalAmount() : int
+    public function getTotalAttribute(): int
     {
         return DB::table('orders')
             ->join('order_items', 'orders.id', '=', 'order_items.order_id')
             ->join('products', 'products.id', '=', 'order_items.product_id')
             ->join('shipping_methods', 'orders.shipping_method_id', '=', 'shipping_methods.id')
             ->selectRaw('SUM(order_items.quantity * products.price) + shipping_methods.cost AS total')
-            ->where('orders.id', $this->id)->groupBy('orders.id')->get()[0]->total;
+            ->where('orders.id', $this->id)->groupBy('orders.id')->get()->first()->total;
     }
 }
