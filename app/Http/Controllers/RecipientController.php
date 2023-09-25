@@ -42,9 +42,11 @@ class RecipientController extends Controller
             'city' => ['required'],
         ]);
 
+        $order = Order::find($request->route('orderId'));
+
         try {
 
-            $rates = (new CheckoutService())->calculateShipping( Order::getVariants($request->route('orderId'))->get(), $request->country_code, $request->state_code);
+            $rates = (new CheckoutService())->calculateShipping($order->productVariants, $request->country_code, $request->state_code);
         
         } catch (Exception $e) {
 
@@ -59,7 +61,7 @@ class RecipientController extends Controller
             User::find(Auth::id())->recipients()->attach($recipient->id);
         }
 
-        Order::find($request->route('orderId'))->update(['recipient_id' => $recipient->id]);
+        $order->update(['recipient_id' => $recipient->id]);
 
         ShippingMethod::where('order_id', $request->route('orderId'))->delete();
 

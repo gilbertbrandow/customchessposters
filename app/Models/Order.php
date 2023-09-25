@@ -97,10 +97,9 @@ class Order extends Model
             );
     }
 
-    public static function getVariants($id)
+    public function getProductVariantsAttribute(): Collection
     {
-
-        return DB::table('orders')->where('orders.id', $id)
+        return DB::table('orders')->where('orders.id', $this->id)
             ->join('carts', 'cart_id', '=', 'carts.id')
             ->join('cart_items', 'carts.id', '=', 'cart_items.cart_id')
             ->join('products', 'products.id', '=', 'cart_items.product_id')
@@ -108,7 +107,7 @@ class Order extends Model
             ->select(
                 'poster_variants.variant_id as variant_id',
                 'cart_items.quantity as quantity',
-            );
+            )->get();
     }
 
     public function getCartTotalAttribute(): int
