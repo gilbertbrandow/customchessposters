@@ -110,18 +110,6 @@ class Order extends Model
             )->get();
     }
 
-    public function getCartTotalAttribute(): int
-    {
-
-        return DB::table('orders')
-            ->join('carts', 'carts.id', 'orders.cart_id')
-            ->join('cart_items', 'carts.id', '=', 'cart_items.cart_id')
-            ->join('products', 'products.id', '=', 'cart_items.product_id')
-            ->leftJoin('shipping_methods', 'orders.shipping_method_id', '=', 'shipping_methods.id')
-            ->selectRaw('SUM(cart_items.quantity * products.price) + IFNULL(shipping_methods.cost, 0) AS total')
-            ->where('orders.id', $this->id)->groupBy('orders.id')->get()->first()->total;
-    }
-
     public function getTotalAttribute(): int
     {
         return DB::table('orders')

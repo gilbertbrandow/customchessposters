@@ -26,7 +26,7 @@ class PaymentController extends Controller
             // Create a PaymentIntent with amount and currency
             $paymentIntent = PaymentIntent::create([
 
-                'amount' => $order->CartTotal,
+                'amount' => $order->cart->total + $order->shipping->cost,
                 'currency' => 'eur',
                 'automatic_payment_methods' => [
                     'enabled' => true,

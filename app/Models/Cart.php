@@ -45,7 +45,6 @@ class Cart extends Model
             ->selectRaw('SUM(products.price * cart_items.quantity) AS total');
     }
 
-
     public static function getFullCart($token, $id)
     {
 
@@ -114,5 +113,14 @@ class Cart extends Model
                 'poster_variants.variant_id as variant_id',
                 'cart_items.quantity as quantity',
             );
+    }
+
+    public function getTotalAttribute(): int
+    {
+        return DB::table('carts')
+            ->join('cart_items', 'carts.id', '=', 'cart_items.cart_id')
+            ->join('products', 'products.id', '=', 'cart_items.product_id')
+            ->selectRaw('SUM(cart_items.quantity * products.price) AS total')
+            ->where('carts.id', $this->id)->groupBy('carts.id')->get()->first()->total;
     }
 }
