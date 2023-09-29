@@ -12,10 +12,13 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Inertia\Inertia;
+use Inertia\Response as Response;
+use Redirect;
+use Illuminate\Http\RedirectResponse as RedirectResponse;
 
 class RecipientController extends Controller
 {
-    public function index(string $orderId, Request $request)
+    public function index(string $orderId, Request $request): Response
     {
         $order = Order::find($orderId);
 
@@ -31,7 +34,7 @@ class RecipientController extends Controller
         ]);
     }
 
-    public function create(string $orderId, Request $request)
+    public function create(string $orderId, Request $request): RedirectResponse
     {
         $request->validate([
             'email' => ['required', 'email'],
