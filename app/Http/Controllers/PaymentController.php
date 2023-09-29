@@ -12,9 +12,9 @@ use Stripe\Stripe;
 
 class PaymentController extends Controller
 {
-    public function index(Request $request)
+    public function index(string $orderId, Request $request)
     {
-        $order = Order::find($request->route('orderId')); 
+        $order = Order::find($orderId); 
 
         if(!$order->shipping) return redirect()->route('shippingMethod.index', ['orderId' => $request->route('orderId')]);
 

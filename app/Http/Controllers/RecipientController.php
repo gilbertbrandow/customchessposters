@@ -15,9 +15,9 @@ use Inertia\Inertia;
 
 class RecipientController extends Controller
 {
-    public function index(Request $request)
+    public function index(string $orderId, Request $request)
     {
-        $order = Order::find($request->route('orderId'));
+        $order = Order::find($orderId);
 
         $countries = Http::get('https://api.printful.com/countries')->json()['result'];
         $keys = array_column($countries, 'name');
@@ -31,7 +31,7 @@ class RecipientController extends Controller
         ]);
     }
 
-    public function create(Request $request)
+    public function create(string $orderId, Request $request)
     {
         $request->validate([
             'email' => ['required', 'email'],
@@ -42,7 +42,7 @@ class RecipientController extends Controller
             'city' => ['required'],
         ]);
 
-        $order = Order::find($request->route('orderId'));
+        $order = Order::find($orderId);
 
         try {
 
@@ -63,17 +63,17 @@ class RecipientController extends Controller
 
         $order->update(['recipient_id' => $recipient->id]);
 
-        ShippingMethod::where('order_id', $request->route('orderId'))->delete();
+        ShippingMethod::where('order_id', $orderId)->delete();
 
         foreach($rates as $rate) {
             ShippingMethod::create([
-                'order_id' => $request->route('orderId'),
+                'order_id' => $orderId,
                 'name' => $rate['id'],
                 'desc' => $rate['name'],
                 'cost' => $rate['rate'] * 100, 
             ]);
         }
 
-        return redirect()->route('shippingMethod.index', ['orderId' => $request->route('orderId')]);
+        return redirect()->route('shippingMethod.index', ['orderId' => $orderId]);
     }
 }

@@ -9,11 +9,11 @@ use Inertia\Inertia;
 
 class ShippingMethodController extends Controller
 {
-    public function index(Request $request) {
+    public function index(string $orderId, Request $request) {
 
-        $order = Order::find($request->route('orderId')); 
+        $order = Order::find($orderId); 
 
-        if(!$order->recipient) return redirect()->route('shippingMethod.index', ['orderId' => $request->route('orderId')]);
+        if(!$order->recipient) return redirect()->route('shippingMethod.index', ['orderId' => $orderId]);
 
         return Inertia::render('Checkout/Shipping-methods', [
             'cart' => fn () => $order->getCartItems()->get(),
