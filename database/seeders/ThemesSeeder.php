@@ -30,7 +30,7 @@ class ThemesSeeder extends Seeder
                     'path' => 'Old Knowledge',
                     'font_regular' => '/fonts/EBGaramond-Regular.ttf',
                     'font_italic' => '/fonts/EBGaramond-Italic.ttf',
-                    'background' => '#f8f5f1', 
+                    'background' => 'rgba(248, 245, 241)', 
                     'color' => 'rgb(0, 0, 0)',
                 ],
         ];
