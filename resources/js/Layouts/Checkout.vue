@@ -16,7 +16,10 @@
                 <span v-else>2. </span>
                 Shipping Methods
                 </Link>
-                <Link :href="route('payment.index', { orderId: $page.props.route.params.orderId })">3. Payment</Link>
+                <Link :href="route('payment.index', { orderId: $page.props.route.params.orderId })"
+                    :class="{ 'is--active': $page.url.includes('payment') }">
+                3. Payment
+                </Link>
 
             </div>
         </div>
@@ -53,9 +56,12 @@
                             <template v-if="item.type == 'poster'">
                                 <strong class="is--larger">Poster: "{{ item.name }}"</strong>
                                 <div class="is--flex is--margin-top">
-                                    <span>{{ ($page.props.unit ? item.width + ' x ' + item.height + ' cm, ' :  Math.round(item.width * 0.393700787) + '" x ' + Math.round(item.height * 0.393700787) + '", ') + (item.frame ? item.frame + ' frame' : '') }}
+                                    <span>{{ ($page.props.unit ? item.width + ' x ' + item.height + ' cm, ' :
+                                        Math.round(item.width * 0.393700787) + '" x ' + Math.round(item.height *
+                                            0.393700787) + '", ') + (item.frame ? item.frame + ' frame' : '') }}
                                     </span>
-                                    <span><strong v-text="'$' + (item.price / 100).toFixed(2)"></strong> x {{ item.quantity }}</span>
+                                    <span><strong v-text="'$' + (item.price / 100).toFixed(2)"></strong> x {{ item.quantity
+                                    }}</span>
                                     <button class="text__link"
                                         @click="$page.props.lightbox = item, $page.props.overlay = 'lightbox';">
                                         <span>See Poster Design</span>
@@ -71,16 +77,17 @@
                         </li>
                         <li v-if="$page.props.shippingMethod" class="is--flex is--no-column-gap is--border-bottom">
                             <h4>Shipping </h4>
-                            <span class="is--small"
-                                style="flex: 1; margin-left: 1em; text-transform: capitalize;">{{
-                                    $page.props.shippingMethod.name.toLowerCase().replace(/_/g, ' ') }}</span><span>€
+                            <span class="is--small" style="flex: 1; margin-left: 1em; text-transform: capitalize;">{{
+                                $page.props.shippingMethod.name.toLowerCase().replace(/_/g, ' ') }}</span><span>€
                                 {{
                                     ($page.props.shippingMethod.cost / 100).toFixed(2) }}</span>
                         </li>
                         <li class="is--flex is--no-column-gap is--border-bottom">
-                            <h4>Total </h4><span class="is--small" style="flex: 1; margin-left: 1em">Including € {{ (($page.props.shippingMethod ? subtotal + $page.props.shippingMethod.cost : subtotal) /
-                                500).toFixed(2) }} in
-                                taxes</span><span>€ {{ (($page.props.shippingMethod ? subtotal + $page.props.shippingMethod.cost : subtotal) / 100).toFixed(2) }}</span>
+                            <h4>Total </h4><span class="is--small" style="flex: 1; margin-left: 1em">Including € {{
+                                (($page.props.shippingMethod ? subtotal + $page.props.shippingMethod.cost : subtotal) /
+                                    500).toFixed(2) }} in
+                                taxes</span><span>€ {{ (($page.props.shippingMethod ? subtotal +
+                                    $page.props.shippingMethod.cost : subtotal) / 100).toFixed(2) }}</span>
                         </li>
                     </ul>
                 </div>
