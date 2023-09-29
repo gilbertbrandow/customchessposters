@@ -3,7 +3,7 @@
     <form @submit.prevent="submit()" class="form is--no-max-width">
         <div v-for="(method, index) in $page.props.shippingMethods" class="field__wrp radio">
             <input v-model="this.form.method" type="radio" :id="index" name="methods" :value="method.id"
-                :checked="method.name == $page.props.shippingMethod">
+                :checked="$page.props.shippingMethod && method.name == $page.props.shippingMethod.name">
             <label :for="index">
                 <Icon :name="method.name == 'STANDARD' ? 'shipping' : 'sustainable-shipping'" />
                 <div class="is--flex">
@@ -34,7 +34,7 @@ export default {
     data() {
         return {
             form: useForm({
-                method: null,
+                method:  this.$page.props.shippingMethod ? this.$page.props.shippingMethod.id : null,
             }),
         }
     },
