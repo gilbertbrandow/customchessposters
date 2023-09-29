@@ -36,18 +36,18 @@ class PaymentController extends Controller
             //Save payment intent on order
             $order->update(array('payment_intent' => $paymentIntent->id));
 
-            return Inertia::render('Checkout/Payment', [
-                'cart' => fn () => $order->getCartItems()->get(),
-                'shippingMethod' => fn () =>  $order->shipping,
-                'address' => fn () => $order->recipient,
-                'clientSecretKey' => $paymentIntent->client_secret,
-                'stripePublicKey' => env('STRIPE_PK'),
-            ]);
-
         } catch (Error $e) {
             http_response_code(500);
             echo json_encode(['error' => $e->getMessage()]);
         }
+
+        return Inertia::render('Checkout/Payment', [
+            'cart' => fn () => $order->getCartItems()->get(),
+            'shippingMethod' => fn () =>  $order->shipping,
+            'address' => fn () => $order->recipient,
+            'clientSecretKey' => $paymentIntent->client_secret,
+            'stripePublicKey' => env('STRIPE_PK'),
+        ]);
     }
 
     public function create(Request $request)
