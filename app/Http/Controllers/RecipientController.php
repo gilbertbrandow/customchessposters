@@ -13,7 +13,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Inertia\Inertia;
 use Inertia\Response as Response;
-use Redirect;
 use Illuminate\Http\RedirectResponse as RedirectResponse;
 
 class RecipientController extends Controller
