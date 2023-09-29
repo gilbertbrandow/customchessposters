@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->foreignId('shipping_method_id')->after('recipient_id')->nullable()->constrained();
+            $table->foreignId('shipping_method_id')->after('recipient_id')->nullable()->onDelete('cascade');
         });
     }
 
