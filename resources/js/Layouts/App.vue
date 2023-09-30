@@ -27,7 +27,7 @@
         </div>
         <Icon name="bookmark" />
         </Link>
-        <button class="nav__button" @mouseover="resetFlash()" @click="fetchCart()">
+        <button class="nav__button" @mouseover="resetFlash()" @click="this.$page.props.overlay = 'cart'">
           <div class="info" :class="{ active: $page.props.flash.cart.success }">
             <div></div> {{ $page.props.flash.cart.success ? $page.props.flash.cart.success : 'Your cart' }}
           </div>
@@ -105,7 +105,6 @@ import Newsletter from "../Pages/Components/Newsletter.vue"
 import Overlay from "../Pages/Components/Overlay.vue"
 import Logotype from "../Pages/Components/Logotype.vue"
 import PaymentMethods from "../Pages/Components/PaymentMethods.vue"
-import axios from 'axios'
 
 export default {
   components: {
@@ -121,18 +120,6 @@ export default {
       this.$page.props.flash.account.success = '';
       this.$page.props.flash.saved.success = '';
       this.$page.props.flash.cart.success = '';
-    },
-
-    fetchCart() {
-      axios
-        .get('/cart')
-        .then(response => (
-          this.$page.props.overlay = 'cart',
-          this.$page.props.cart = response.data
-        ))
-        .catch((error) => (
-          console.log(error)
-        ))
     },
   }
 }
