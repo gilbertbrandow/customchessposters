@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\ShippingMethod;
 use App\Models\Order;
 use App\Models\Recipient;
@@ -26,7 +27,7 @@ class RecipientController extends Controller
         array_multisort($keys, SORT_ASC, $countries);
         
         return Inertia::render('Checkout/Shipping', [
-            'cart' => fn () => $order->getCartItems()->get(),
+            'cart' => fn () => $order->cart->allItems,
             'address' => fn() => $order->recipient,
             'shippingMethod'=> fn() => $order->shipping,
             'countries' => fn() => $countries,

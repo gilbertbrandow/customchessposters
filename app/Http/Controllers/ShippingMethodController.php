@@ -16,7 +16,7 @@ class ShippingMethodController extends Controller
         if(!$order->recipient) return redirect()->route('shippingMethod.index', ['orderId' => $orderId]);
 
         return Inertia::render('Checkout/Shipping-methods', [
-            'cart' => fn () => $order->getCartItems()->get(),
+            'cart' => fn () => $order->cart->allItems,
             'shippingMethods' => fn () => $order->shippingAlternatives,
             'shippingMethod' => $order->shipping,
             'address' => fn() => $order->recipient,

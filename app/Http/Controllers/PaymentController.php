@@ -42,7 +42,7 @@ class PaymentController extends Controller
         }
 
         return Inertia::render('Checkout/Payment', [
-            'cart' => fn () => $order->getCartItems()->get(),
+            'cart' => fn () => $order->cart->allItems,
             'shippingMethod' => fn () =>  $order->shipping,
             'address' => fn () => $order->recipient,
             'clientSecretKey' => $paymentIntent->client_secret,
