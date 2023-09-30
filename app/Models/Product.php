@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Product extends Model
 {
@@ -12,26 +13,20 @@ class Product extends Model
     protected $table = 'products';
 
     protected $fillable = [
-        'price', 
+        'price',
         'name',
         'type',
         'poster_id',
         'poster_variant_id',
     ];
 
-    public function poster()
+    public function poster(): BelongsTo
     {
         return $this->belongsTo(Poster::class);
     }
 
-    public function variant()
+    public function variant(): BelongsTo
     {
         return $this->belongsTo(PosterVariant::class, 'poster_variant_id', 'id');
     }
-
-    public function cart()
-    {
-        return $this->belongsToMany(Cart::class, 'cart_items');
-    }
-
 }
