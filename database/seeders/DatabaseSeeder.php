@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(CountriesSeeder::class);
         $this->call(PosterSizesSeeder::class);
         $this->call(PosterFramesSeeder::class);
         $this->call(PosterVariantsSeeder::class);
