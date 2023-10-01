@@ -18,10 +18,11 @@ class Checkout
      */
     public function handle(Request $request, Closure $next)
     {
-
-        return Order::where('id', $request->route('orderId'))->where(function ($query) use ($request) { 
-            $query->where ('session_token', $request->session()->get('_token'));
-            $query->orWhere('user_id', Auth::id());
-           })->first() ? $next($request) : abort(403);
+        return Order::where('id', $request->route('orderId'))->where(function ($query) use ($request) {
+            $query->where('user_id', Auth::id());
+            $query->orWhereHas('cart', function ($query) use ($request) {
+                $query->where('session_token', '=', $request->session()->get('_token'));
+            });
+        })->first() ? $next($request) : abort(403);
     }
 }
