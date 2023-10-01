@@ -12,20 +12,19 @@ use Inertia\Inertia;
 
 class OrderController extends Controller
 {
-    public function index(Request $request) {
-
+    public function index(Request $request) 
+    {
         $cart = Cart::where('session_token', $request->session()->get('_token'))->when(Auth::id() !== null, function ($query) {
             $query->orWhere('user_id', Auth::id());
-        })->firstOrFail()->pluck('id');
+        })->first();
 
-        $order = Order::firstOrCreate(['cart_id' => $cart[0], 'user_id' => Auth::id(), 'session_token' => $request->session()->get('_token')]);
+        $order = Order::firstOrCreate(['cart_id' => $cart->id, 'user_id' => Auth::id()]);
         
         return redirect()->route('shipping.index', ['orderId' => $order->id]);
     }
 
-    public function show(string $orderId) 
+    public function show() 
     {
-
         return Inertia::render('Checkout/Confirmation', [
             'stripePublicKey' => env('STRIPE_PK'),
         ]); 
