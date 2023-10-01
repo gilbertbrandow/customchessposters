@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
@@ -29,6 +30,11 @@ class Cart extends Model
     public function cartItems(): HasMany
     {
         return $this->hasMany(CartItem::class);
+    }
+
+    public function order(): HasOne
+    {
+        return $this->hasOne(order::class);
     }
 
     public static function hasPosterNotUser($posterId, $user)

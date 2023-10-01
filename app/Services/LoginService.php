@@ -27,20 +27,22 @@ class LoginService
             }
 
             //Update cart if exists
-            $cart = Cart::where('session_token', $request->session()->get('_token'))->first();
-
-            if ($cart) {
+            if ($cart = Cart::where('session_token', $request->session()->get('_token'))->first()) {
 
                 if ($userCart = Cart::where('user_id', Auth::id())->first()) {
 
-                    //Get all cart items from $cart and update all their cart_id to new cart id
+                    //Get all cart items from cart and update all their cart_id to new cart id
                     CartItem::where('cart_id', '=', $cart->id)
                         ->update(['cart_id' => $userCart->id]);
+
+                    //Delete old order
+                    $cart->order->delete(); 
 
                     //Delete old cart
                     $cart->delete();
 
                 } else {
+                    $cart->order->user_id = Auth::id(); 
                     $cart->user_id = Auth::id();
                     $cart->save();
                 }
