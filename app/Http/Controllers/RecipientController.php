@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cart;
+use App\Models\Country;
 use App\Models\ShippingMethod;
 use App\Models\Order;
 use App\Models\Recipient;
@@ -22,9 +22,7 @@ class RecipientController extends Controller
     {
         $order = Order::find($orderId);
 
-        $countries = Http::get('https://api.printful.com/countries')->json()['result'];
-        $keys = array_column($countries, 'name');
-        array_multisort($keys, SORT_ASC, $countries);
+        $countries = Country::with('states')->orderBy('name')->get(); 
         
         return Inertia::render('Checkout/Shipping', [
             'cart' => fn () => $order->cart->allItems,
