@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id()->startingValue(1200);
             $table->enum('status', ['pending', 'recieved', 'fulfilling', 'shipped', 'completed', 'declined'])->default('pending');
             $table->foreignId('user_id')->nullable()->constrained();
-            $table->string('session_token')->nullable();
             $table->foreignId('cart_id')->unique()->nullable()->constrained();
             $table->foreignId('recipient_id')->nullable()->constrained();
             $table->string('payment_intent')->nullable();
