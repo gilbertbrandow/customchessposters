@@ -1427,8 +1427,8 @@ h4 {
     align-items: center;
     flex-direction: column;
 
-    .poster:has(.poster__svg-wrp.is--lightbox-small) {
-        .poster__svg-wrp.is--lightbox-small {
+    .poster.is--lightbox-small {
+        .poster__svg-wrp {
             top: 17.75%;
             right: 26.75%;
             width: 32%;
@@ -1441,8 +1441,8 @@ h4 {
         }
     }
 
-    .poster:has(.poster__svg-wrp.is--lightbox-medium) {
-        .poster__svg-wrp.is--lightbox-medium {
+    .poster.is--lightbox-medium {
+        .poster__svg-wrp {
             top: 19.2%;
             width: 32%;
             right: 32.7%;
@@ -1455,8 +1455,8 @@ h4 {
         }
     }
 
-    .poster:has(.poster__svg-wrp.is--lightbox-large) {
-        .poster__svg-wrp.is--lightbox-large {
+    .poster.is--lightbox-large {
+        .poster__svg-wrp {
             top: 17.75%;
             right: 36.75%;
             width: 30.75%;
@@ -1479,7 +1479,7 @@ h4 {
         cursor: zoom-in;
     }
 
-    .lightbox__mask:has(.poster.is--zoomed) {
+    .poster.is--zoomed {
         cursor: zoom-out;
     }
 
@@ -2886,7 +2886,7 @@ label {
     }
 
     a.is--active {
-        border: none; 
+        border: none;
         background-color: #000;
         color: #fff;
     }

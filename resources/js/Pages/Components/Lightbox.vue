@@ -1,8 +1,8 @@
 <template>
     <div class="content lightbox" v-if="Object.keys($page.props.lightbox).length">
         <div class="lightbox__mask" @click="[this.updateZoom(), this.mouseMove($event)]">
-            <div class="poster" :class="[zoom ? 'is--zoomed' : '']">
-                <div class="poster__svg-wrp" :class="this.slides[`${this.currSlide}`].class">
+            <div class="poster" :class="[zoom ? 'is--zoomed' : '', this.slides[`${this.currSlide}`].class]">
+                <div class="poster__svg-wrp">
                     <Poster ref="PosterSVG" :poster="$page.props.lightbox" />
                 </div>
                 <img v-if="this.slides[`${this.currSlide}`].size == 's'" class="poster__environment"
