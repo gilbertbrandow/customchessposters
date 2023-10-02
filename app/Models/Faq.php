@@ -15,5 +15,5 @@ class Faq extends Model
         'featured', 
     ];
 
-    protected $table = 'faq_table';
+    protected $table = 'faqs';
 }

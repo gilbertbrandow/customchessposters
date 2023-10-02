@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('faq_table', function (Blueprint $table) {
+        Schema::table('faqs', function (Blueprint $table) {
             $table->boolean('featured')->nullable();
         });
     }
