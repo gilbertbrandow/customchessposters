@@ -18,17 +18,15 @@ use Illuminate\Http\RedirectResponse as RedirectResponse;
 
 class RecipientController extends Controller
 {
-    public function index(string $orderId, Request $request): Response
+    public function index(string $orderId): Response
     {
         $order = Order::find($orderId);
-
-        $countries = Country::with('states')->orderBy('name')->get(); 
         
         return Inertia::render('Checkout/Shipping', [
             'cart' => fn () => $order->cart->allItems,
             'address' => fn() => $order->recipient,
             'shippingMethod'=> fn() => $order->shipping,
-            'countries' => fn() => $countries,
+            'countries' => fn() => Country::with('states')->orderBy('name')->get()
         ]);
     }
 
