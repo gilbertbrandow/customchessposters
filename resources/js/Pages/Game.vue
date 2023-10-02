@@ -1,7 +1,7 @@
 <template>
     <section>
         <div class="container">
-            <ul class="game__collection">
+            <ul class="game__collection is--single">
                 <li class="single">
                     <div class="content">
                         <h1 v-text="this.$data.game.name"></h1>
@@ -28,7 +28,7 @@
                                 ? this.$data.game.black_rating : 'N/A' }})</div>
                         </div>
 
-                        <div class="banner">
+                        <div :class="['banner', this.$data.game.world_championship_game ? 'is--icon' : '']">
                             <Icon v-if="this.$data.game.world_championship_game" name="king" />
                             <span
                                 v-text="(this.$data.game.world_championship_game) ? 'World Championship' : 'Played'"></span><span>{{

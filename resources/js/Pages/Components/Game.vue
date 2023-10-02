@@ -38,9 +38,11 @@
                 </div>
             </div>
 
-            <div class="banner">
+            <div :class="['banner', this.game.world_championship_game ? 'is--icon' : '']">
                 <Icon v-if="this.game.world_championship_game" name="king" />
-                <span>{{ ((this.game.world_championship_game) ? 'World Championship ' : 'Played ') + (this.game.world_championship_game ? new Date(this.game.date).getFullYear() + ' held' : this.game.date) + ' in ' + this.game.where }}</span>
+                <span>{{ ((this.game.world_championship_game) ? 'World Championship ' : 'Played ') +
+                    (this.game.world_championship_game ? new Date(this.game.date).getFullYear() + ' held' : this.game.date)
+                    + ' in ' + this.game.where }}</span>
             </div>
 
             <strong class="is--small">{{ this.game.opening_eco + ': ' + this.game.opening_name }}</strong>

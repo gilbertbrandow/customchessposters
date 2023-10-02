@@ -1910,7 +1910,7 @@ ul.game__collection {
                 }
             }
 
-            .banner:has(svg) {
+            .banner.is--icon {
                 border-radius: 0.5em;
                 background-color: whitesmoke;
                 border: 0.075em solid #ebebeb;
@@ -3484,10 +3484,6 @@ label {
         padding: 1.25em 1.25em 0.75em 1.1em;
     }
 
-    .field__wrp:has(.link-arrow) {
-        justify-content: space-between;
-    }
-
     .poster__module {
         .row:not(.is--starting-position) {
             display: inline-block;
@@ -3635,7 +3631,7 @@ label {
         }
     }
 
-    ul.game__collection:has(li.single) {
+    ul.game__collection.is--single {
         margin-top: 0em;
 
         li.single {
@@ -3660,7 +3656,7 @@ label {
         }
     }
 
-    .poster:has(.poster__svg-wrp.is--lightbox-small) {
+    .poster.is--lightbox-small {
         left: -7%;
     }
 
