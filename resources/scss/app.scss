@@ -15,7 +15,7 @@ body {
     margin: 0;
 }
 
-body:has(.overlay) {
+body.is--fixed {
     margin: 0;
     height: 100%;
     overflow: hidden;
@@ -520,7 +520,7 @@ button {
     cursor: pointer;
 }
 
-.text__link:has(svg) {
+.text__link.is--icon {
     display: flex;
     align-items: center;
     column-gap: 0.5em;

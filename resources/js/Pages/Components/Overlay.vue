@@ -2,11 +2,12 @@
     <aside class="overlay" v-if="$page.props.overlay">
         <Lightbox></Lightbox>
         <Cart />
-        <Variants/>
+        <Variants />
         <div class="content slide-out"
             v-if="!$page.props.user && ($page.props.overlay == 'login' || $page.props.overlay == 'register' || $page.props.overlay == 'forgot')">
             <button class="link-arrow is--close" @click="$page.props.overlay = false">
-                Close <Icon name="close" />
+                Close
+                <Icon name="close" />
             </button>
 
             <h2 v-text="title"></h2>
@@ -178,7 +179,7 @@ let submit = ($form) => {
             },
 
             onSuccess: () => function () {
-                fotgot.reset(); 
+                fotgot.reset();
             },
         });
     }
@@ -197,7 +198,7 @@ export default {
     components: {
         Lightbox,
         AuthForms,
-        Variants, 
+        Variants,
     },
 
     computed: {
@@ -238,9 +239,11 @@ export default {
             if (this.$page.props.overlay) {
                 window.addEventListener('keydown', this.pressToClose)
                 window.addEventListener('click', this.clickToClose)
+                document.body.classList.add('is--fixed');
             } else {
                 window.removeEventListener('keydown', this.pressToClose)
                 window.removeEventListener('click', this.clickToClose)
+                document.body.classList.remove('is--fixed');
             }
         },
     },

@@ -62,7 +62,7 @@
                                     </span>
                                     <span><strong v-text="'$' + (item.price / 100).toFixed(2)"></strong> x {{ item.quantity
                                     }}</span>
-                                    <button class="text__link"
+                                    <button class="text__link is--icon"
                                         @click="$page.props.lightbox = item, $page.props.overlay = 'lightbox';">
                                         <span>See Poster Design</span>
                                         <Icon name="fullScreen" />
