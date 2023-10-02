@@ -106,6 +106,8 @@ export default {
         },
 
         fetchCart() {
+            if(this.$page.props.overlay != 'cart') return; 
+
             axios
                 .get('/cart')
                 .then(response => (
