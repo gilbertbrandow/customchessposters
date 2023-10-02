@@ -1,5 +1,5 @@
 <template>
-    <aside class="overlay" v-if="$page.props.overlay">
+    <aside class="overlay" v-if="$page.props.overlay" :class="($page.props.addToCart) ? 'is--addToCart' : (Object.keys($page.props.lightbox).length ? 'is--lightbox' : '')">
         <Lightbox></Lightbox>
         <Cart />
         <Variants />

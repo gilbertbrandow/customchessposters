@@ -1224,20 +1224,17 @@ h4 {
     height: calc(var(--vh, 1vh) * 100);
     z-index: 99999;
     overflow: auto;
+    align-items: stretch;
+    justify-content: flex-end;
 }
 
-.overlay:has(.lightbox) {
+.overlay.is--lightbox {
     align-items: center;
     justify-content: center;
 }
 
-.overlay:has(.variants-overlay) {
+.overlay.is--addToCart {
     align-items: flex-end;
-}
-
-.overlay:has(.slide-out) {
-    align-items: stretch;
-    justify-content: flex-end;
 }
 
 /**********************
