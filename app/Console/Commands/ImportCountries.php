@@ -22,7 +22,7 @@ class ImportCountries extends Command
      *
      * @var string
      */
-    protected $description = 'Fetches all available countries with states from Printful and loads them in database';
+    protected $description = 'Fetches all available countries with states from Printful and loads them into database';
 
     /**
      * Execute the console command.
@@ -31,7 +31,7 @@ class ImportCountries extends Command
      */
     public function handle()
     {
-        //Fetch curren list of supported countries and states
+        //Fetch current list of supported countries and states
         $response = Http::get('https://api.printful.com/countries')->json();
  
         //Deletes all countries and states in database
