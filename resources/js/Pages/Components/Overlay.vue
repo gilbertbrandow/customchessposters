@@ -1,5 +1,6 @@
 <template>
-    <aside class="overlay" v-if="$page.props.overlay" :class="($page.props.addToCart) ? 'is--addToCart' : (Object.keys($page.props.lightbox).length ? 'is--lightbox' : '')">
+    <aside class="overlay" v-if="$page.props.overlay"
+        :class="($page.props.addToCart) ? 'is--addToCart' : (Object.keys($page.props.lightbox).length ? 'is--lightbox' : '')">
         <Lightbox></Lightbox>
         <Cart />
         <Variants />
@@ -234,7 +235,6 @@ export default {
     },
 
     watch: {
-
         visible() {
             if (this.$page.props.overlay) {
                 window.addEventListener('keydown', this.pressToClose)
@@ -246,6 +246,10 @@ export default {
                 document.body.classList.remove('is--fixed');
             }
         },
+    },
+
+    mounted() {
+        if (!this.$page.props.overlay) document.body.classList.remove('is--fixed');
     },
 }
 </script>
