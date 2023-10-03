@@ -187,13 +187,16 @@ export default {
 
             entries.forEach(({ target, isIntersecting }) => {
 
-                if (isIntersecting) {
+                let nav = document.querySelector('nav'); 
+
+                if(!nav) {
+                    return;
+                } else if (isIntersecting) {
                     this.start();
-                    document.querySelector('nav').classList.remove('is--scrolled');
-                }
-                else {
+                    nav.classList.remove('is--scrolled');
+                } else {
                     this.pause();
-                    document.querySelector('nav').classList.add('is--scrolled');
+                    nav.classList.add('is--scrolled');
                 }
             });
         },
