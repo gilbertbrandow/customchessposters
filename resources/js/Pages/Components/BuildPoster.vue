@@ -22,7 +22,8 @@
                                     <div class="theme__colour-wrp">
                                         <div class="theme__colour">
                                             <div :style="{ backgroundColor: theme.colour, }">
-                                                <img style="height: 100%" :src="`/themes${theme.texture}`" :alt="'Image for the theme ' + theme.title" />
+                                                <img style="height: 100%" :src="`/themes${theme.texture}`"
+                                                    :alt="'Image for the theme ' + theme.title" />
                                             </div>
                                             <div :style="{ backgroundColor: theme.colour, }"></div>
                                         </div>
@@ -623,7 +624,7 @@ export default {
             if (input.length > 10) return [];
 
             //strip input of all non compatible characters, except lowercased letters who capitalized correlate to pieces
-            let regEx = /[^abcdefghABCDEFGH12345678KQBNRkqbnrx+#O\-]/g;
+            let regEx = /[^abcdefghABCDEFGH12345678KQBNROkqbnrox+#O\-]/g;
             input = input.replace(regEx, '');
 
             if (!input) return [];
@@ -633,6 +634,7 @@ export default {
             //Check possible moves if exact match when modifications are made
             moves.forEach(move => {
                 if (move[0] == input[0] && move.includes(input.substr(1)) ||
+                    move[0] == input[0].toUpperCase() ||
                     move[0] == input[0].toUpperCase() && move.includes(input.substr(1)) ||
                     move == input.charAt(0).toUpperCase() + input.slice(1) ||
                     move == input.substr(0, 1) + 'x' + input.substr(1) ||
@@ -831,11 +833,11 @@ export default {
 
             this.$data.posterBuilder.pastePgn.success = true;
 
-            this.$data.poster.diagram_position = this.pgnArray.length;
-
             this.$data.poster.pgn = this.getStrictPgn();
 
             this.tryHeaders();
+
+            this.$data.poster.diagram_position = this.pgnArray.length;
 
         },
 
