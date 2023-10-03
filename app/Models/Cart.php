@@ -39,7 +39,6 @@ class Cart extends Model
 
     public static function hasPosterNotUser($posterId, $user)
     {
-
         return DB::table('carts')
             ->join('cart_items', 'carts.id', '=', 'cart_items.cart_id')
             ->join('products', 'products.id', '=', 'cart_items.product_id')
@@ -48,19 +47,17 @@ class Cart extends Model
             ->where('products.poster_id', '=', $posterId);
     }
 
-    public static function getVariants($token, $id)
+    public function getProductVariantsAttribute(): Collection
     {
-
-        return DB::table('carts')->where('session_token', $token)
-            ->when($id !== null, function ($query) use ($id) {
-                $query->orWhere('user_id', $id);
-            })->join('cart_items', 'carts.id', '=', 'cart_items.cart_id')
+        return DB::table('carts')
+            ->where('carts.id', '=', $this->id)
+            ->join('cart_items', 'carts.id', '=', 'cart_items.cart_id')
             ->join('products', 'products.id', '=', 'cart_items.product_id')
             ->join('poster_variants', 'poster_variants.id', '=', 'products.poster_variant_id')
             ->select(
                 'poster_variants.variant_id as variant_id',
                 'cart_items.quantity as quantity',
-            );
+            )->get();
     }
 
     public function getAllItemsAttribute(): Collection

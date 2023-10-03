@@ -11,7 +11,6 @@ use App\Services\CheckoutService;
 use Auth;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
 use Inertia\Inertia;
 use Inertia\Response as Response;
 use Illuminate\Http\RedirectResponse as RedirectResponse;
@@ -44,9 +43,7 @@ class RecipientController extends Controller
         $order = Order::find($orderId);
 
         try {
-
-            $rates = (new CheckoutService())->calculateShipping($order->productVariants, $request->country_code, $request->state_code);
-        
+            $rates = (new CheckoutService())->calculateShipping($order->cart->productVariants, $request->country_code, $request->state_code);
         } catch (Exception $e) {
 
             return back()->withErrors(['shippingMethod' => $e->getMessage()]);

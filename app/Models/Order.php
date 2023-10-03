@@ -55,19 +55,6 @@ class Order extends Model
         return $this->hasMany(OrderItem::class, 'order_id');
     }
 
-    public function getProductVariantsAttribute(): Collection
-    {
-        return DB::table('orders')->where('orders.id', $this->id)
-            ->join('carts', 'cart_id', '=', 'carts.id')
-            ->join('cart_items', 'carts.id', '=', 'cart_items.cart_id')
-            ->join('products', 'products.id', '=', 'cart_items.product_id')
-            ->join('poster_variants', 'poster_variants.id', '=', 'products.poster_variant_id')
-            ->select(
-                'poster_variants.variant_id as variant_id',
-                'cart_items.quantity as quantity',
-            )->get();
-    }
-
     public function getTotalAttribute(): int
     {
         return DB::table('orders')
