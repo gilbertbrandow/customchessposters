@@ -4,6 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Poster extends Model
 {
@@ -31,13 +35,23 @@ class Poster extends Model
         'where',
     ];
 
-    
-    public function usersSaved()
+    public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class)->withTimestamps();
     }
 
-    public function theme() {
-        return $this->belongsTo(Theme::class); 
+    public function theme(): BelongsTo
+    {
+        return $this->belongsTo(Theme::class);
+    }
+
+    public function game(): HasOne
+    {
+        return $this->hasOne(Game::class);
+    }
+
+    public function products(): HasMany
+    {
+        return $this->hasMany(Product::class);
     }
 }

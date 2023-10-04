@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('games', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('poster_id')->constrained();
+            $table->foreignId('poster_id')->unique()->constrained();
             $table->string('name', 75);
             $table->text('description', 250)->nullabel(); 
             $table->date('date');
@@ -24,7 +24,6 @@ return new class extends Migration
             $table->boolean('world_championship_game');
             $table->foreignId('opening_id')->constrained();
             $table->timestamps();
-
             $table->foreign('white_player')->references('id')->on('players');
             $table->foreign('black_player')->references('id')->on('players');
         

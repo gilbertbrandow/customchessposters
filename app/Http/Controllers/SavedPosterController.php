@@ -42,7 +42,7 @@ class SavedPosterController extends Controller
         $poster = Poster::find($request->deleteSavedPosterId);
 
         //Delete poster if has no relationships with users or is a Game
-        if (!$poster->usersSaved()->count() && !Game::where('poster_id', $poster->id)) $poster->delete();
+        if (!$poster->users()->count() && !Game::where('poster_id', $poster->id)) $poster->delete();
 
         return redirect()->back()->with('savedSuccess', 'Poster was removed');
     }
