@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Theme extends Model
 {
@@ -17,7 +18,8 @@ class Theme extends Model
         'color', 
     ];
 
-    public function poster() {
+    public function poster(): HasMany
+    {
         return $this->hasMany(Poster::class); 
     }
 }

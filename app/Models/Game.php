@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -25,29 +27,28 @@ class Game extends Model
         'opening_id',
     ];
 
-    public function poster()
+    public function poster(): BelongsTo
     {
         return $this->belongsTo(Poster::class);
     }
 
-    public function opening()
+    public function opening(): BelongsTo
     {
         return $this->belongsTo(Opening::class);
     }
 
-    public function whitePlayer()
+    public function whitePlayer(): BelongsTo
     {
         return $this->belongsTo(Player::class, 'white_player', 'id');
     }
 
-    public function blackPlayer()
+    public function blackPlayer(): BelongsTo
     {
         return $this->belongsTo(Player::class, 'black_player', 'id');
     }
 
-    public static function getAll(Request $request)
+    public static function getAll(Request $request): QueryBuilder
     {
-        
         //TODO: Take a parameter, maybe $full or $simple and adapt query. For example search highlighting and which fields are selected
 
         $orderBy = explode('-', $request->input('sort') ?? 'recent-desc');

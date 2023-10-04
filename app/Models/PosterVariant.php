@@ -4,31 +4,33 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class PosterVariant extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'poster_size_id', 
+        'poster_size_id',
         'poster_frame_id',
         'description',
-        'price', 
-        'variant_id', 
+        'price',
+        'variant_id',
     ];
 
-    public function products()
-    {
-        return $this->hasMany(Product::class);
-    }
-
-    public function posterSize()
+    public function posterSize(): BelongsTo
     {
         return $this->belongsTo(PosterSize::class);
     }
 
-    public function posterFrame()
+    public function posterFrame(): BelongsTo
     {
         return $this->belongsTo(PosterFrame::class);
+    }
+
+    public function products(): HasMany
+    {
+        return $this->hasMany(Product::class);
     }
 }

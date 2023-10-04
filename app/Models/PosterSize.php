@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class PosterSize extends Model
 {
@@ -15,7 +16,7 @@ class PosterSize extends Model
         'height', 
     ]; 
 
-    public function posterVariants()
+    public function posterVariants(): HasMany
     {
         return $this->hasMany(PosterVariant::class);
     }
