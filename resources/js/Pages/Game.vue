@@ -51,26 +51,26 @@
                             this.$data.game.opening_name }}</strong>
 
                         <p>{{ this.$data.game.description }}</p>
-                        
+
                         <PosterChooseVariantButton :poster="{
-                            'theme_id': this.$data.game.theme_id, 
-                            'orientation': this.$data.game.orientation, 
-                            'starting_position': this.$data.game.starting_position, 
-                            'pgn': this.$data.game.pgn, 
-                            'diagram_position': this.$data.game.diagram_position, 
-                            'move_comment': this.$data.game.move_comment, 
-                            'fen': this.$data.game.fen, 
-                            'result': this.$data.game.result, 
-                            'title': this.$data.game.title, 
-                            'white_player': this.$data.game.white_player, 
+                            'theme_id': this.$data.game.theme_id,
+                            'orientation': this.$data.game.orientation,
+                            'starting_position': this.$data.game.starting_position,
+                            'pgn': this.$data.game.pgn,
+                            'diagram_position': this.$data.game.diagram_position,
+                            'move_comment': this.$data.game.move_comment,
+                            'fen': this.$data.game.fen,
+                            'result': this.$data.game.result,
+                            'title': this.$data.game.title,
+                            'white_player': this.$data.game.white_player,
                             'black_player': this.$data.game.black_player,
-                            'white_rating': this.$data.game.white_rating, 
-                            'black_rating': this.$data.game.black_rating, 
-                            'white_title': this.$data.game.white_title, 
-                            'black_title': this.$data.game.black_title,  
-                            'when': this.$data.game.when, 
-                            'where': this.$data.game.where,  
-                            }"/>
+                            'white_rating': this.$data.game.white_rating,
+                            'black_rating': this.$data.game.black_rating,
+                            'white_title': this.$data.game.white_title,
+                            'black_title': this.$data.game.black_title,
+                            'when': this.$data.game.when,
+                            'where': this.$data.game.where,
+                        }" />
                     </div>
                     <Poster :poster="this.$data.game" environment="builder-mockup.webp"
                         :controls="{ 'save': true, 'edit': true, }"></Poster>
