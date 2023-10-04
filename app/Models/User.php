@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
@@ -43,19 +46,33 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function setPasswordAttribute($value) {
+    public function setPasswordAttribute($value)
+    {
         $this->attributes['password'] = Hash::make($value);
-    } 
+    }
 
-    public function posters()
+    public function posters(): BelongsToMany
     {
         return $this->belongsToMany(Poster::class)->withTimestamps()->orderByDesc('poster_user.updated_at');
     }
 
-    public function recipients()
+    public function recipients(): BelongsToMany
     {
         return $this->belongsToMany(Recipient::class)->withTimestamps();
     }
 
+    public function cart(): HasOne
+    {
+        return $this->hasOne(Cart::class); 
+    }
 
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class); 
+    }
+
+    public function cartItems(): HasManyThrough
+    {
+        return $this->hasManyThrough(CartItem::class, Cart::class); 
+    }
 }
