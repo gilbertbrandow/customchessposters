@@ -1,12 +1,11 @@
 <?php
 
 namespace App\Http\Middleware;
+
 use App\Models\CartItem;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Middleware;
-use stdClass;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -48,52 +47,54 @@ class HandleInertiaRequests extends Middleware
             'auth' => Auth::check() ? [
                 'user' => [
                     'name' => Auth::user()->name,
-                    'authenticated' => Auth::check(), 
-                    'admin' => Auth::user()->admin, 
-                    'saved' => Auth::user()->posters->pluck('id'), 
-                ], 
+                    'admin' => Auth::user()->admin,
+                    'saved' => Auth::user()->posters->pluck('id'),
+                ],
             ] : false,
 
             'name' => $request->session()->get('name'),
 
-            'cartCount' => CartItem::belongsToUser(Auth::id(), $request->session()->get('_token'))->count(),
+            'cartCount' => CartItem::whereHas('cart', function ($q) use ($request) {
+                $q->where('session_token', '=', $request->session()->get('_token'))
+                ->orWhere('user_id', '=', Auth::check() ? Auth::id() : 0);
+            })->count(),
 
-            'poster'=> $request->session()->get('poster'),
+            'poster' => $request->session()->get('poster'),
 
             'unit' => $request->session()->has('unit') ? $request->session()->get('unit') : true,
 
             'flash' => [
 
-                    'newsletter' => [
-                        'success' => $request->session()->get('newsletterSuccess'),
-                        'error' => $request->session()->get('newsletterError'),
-                    ],
+                'newsletter' => [
+                    'success' => $request->session()->get('newsletterSuccess'),
+                    'error' => $request->session()->get('newsletterError'),
+                ],
 
-                    'account' => [
-                        'success' => $request->session()->get('accountSuccess'),
-                        'error' => $request->session()->get('accountError'),
-                    ],
+                'account' => [
+                    'success' => $request->session()->get('accountSuccess'),
+                    'error' => $request->session()->get('accountError'),
+                ],
 
-                    'saved' => [
-                        'success' => $request->session()->get('savedSuccess'),
-                        'error' => $request->session()->get('savedError'),
-                    ],
+                'saved' => [
+                    'success' => $request->session()->get('savedSuccess'),
+                    'error' => $request->session()->get('savedError'),
+                ],
 
-                    'cart' => [
-                        'success' => $request->session()->get('cartSuccess'),
-                        'error' => $request->session()->get('cartError'),
-                    ],
+                'cart' => [
+                    'success' => $request->session()->get('cartSuccess'),
+                    'error' => $request->session()->get('cartError'),
+                ],
 
-                    'success' => $request->session()->get('success'),
-                    'error' => $request->session()->get('error'),
-            ], 
+                'success' => $request->session()->get('success'),
+                'error' => $request->session()->get('error'),
+            ],
 
             'overlay' => $request->session()->get('overlay'),
 
             'lightbox' => [],
 
             'addToCart' => $request->session()->get('addToCart'),
-            
+
             'route' => [
                 'params' => $request->route()->parameters(),
                 'query' => $request->input(),

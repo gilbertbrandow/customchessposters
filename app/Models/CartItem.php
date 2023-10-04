@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Illuminate\Support\Facades\DB;
 
 class CartItem extends Model
@@ -30,14 +31,8 @@ class CartItem extends Model
         return $this->belongsTo(Product::class);
     }
 
-
-    public static function belongsToUser($id, $token)
+    public function user(): HasOneThrough
     {
-        return DB::table('cart_items')
-            ->join('carts', 'cart_items.cart_id', '=', 'carts.id')
-            ->where('carts.session_token', $token)
-            ->when($id !== null, function ($query) use ($id) {
-                $query->orWhere('carts.user_id', $id);
-            });
+        return $this->hasOneThrough(User::class, Cart::class);
     }
 }
