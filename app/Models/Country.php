@@ -22,4 +22,9 @@ class Country extends Model
     {
         return $this->hasMany(State::class); 
     }
+
+    public function recipients(): HasMany
+    {
+        return $this->hasMany(Recipient::class); 
+    }
 }
