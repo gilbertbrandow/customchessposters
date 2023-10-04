@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class RecipientUser extends Model
 {
@@ -17,12 +18,12 @@ class RecipientUser extends Model
         'user_id'
     ];
 
-    public function recipient()
+    public function recipient(): BelongsTo
     {
         return $this->belongsTo(Recipient::class);
     }
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
