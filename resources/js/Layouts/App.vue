@@ -20,8 +20,8 @@
         </div>
         <Icon name="user" />
         </Link>
-        <Link @mouseover="resetFlash()" :href="route('savedPoster.index')" class="nav__button" preserve-scroll
-          preserve-state>
+        <Link @mouseover="resetFlash()" :href="route('savedPoster.index')" class="nav__button" :preserve-scroll="!$page.props.auth"
+          :preserve-state="!$page.props.auth">
         <div class="info" :class="{ active: $page.props.flash.saved.success }">
           <div></div> {{ $page.props.flash.saved.success ? $page.props.flash.saved.success : 'Your saved designs' }}
         </div>
