@@ -7,6 +7,7 @@ use App\Models\Game;
 use App\Models\Poster;
 use App\Models\PosterUser;
 use App\Models\User;
+use Auth;
 use Image;
 use Storage;
 
@@ -18,9 +19,6 @@ class PosterService
 
     public function create($posterData): Poster
     {
-        //Search in DB for exact record except id
-        array_shift($posterData);
-
         return Poster::firstOrCreate($posterData);
     }
 
@@ -37,14 +35,13 @@ class PosterService
 
             //Check if admin or the id of the poster has any relationship with either a cart, saved poster or game of another user
             if (
-                User::find($userId, 'admin')->admin || (!Game::where('poster_id', '=', $id)->first()
+                Auth::user()->admin || (!Game::where('poster_id', '=', $id)->first()
                     && !PosterUser::where('poster_id', '=', $id)->where('user_id', '!=', $userId)->first()
                     && !Cart::hasPosterNotUser($id, [$userId, $sessionToken])->get())
             ) {
                 //Either user is admin or no relationship found to any game, user or cart except for current
-                $poster = Poster::find($id); 
+                $poster = Poster::find($id);
                 $poster->update($posterData);
-
             } else {
                 $poster = Poster::create($posterData);
             }
@@ -60,8 +57,11 @@ class PosterService
         return $poster;
     }
 
-    public function generatePNG(Poster $poster, $width = 6000, $height = 8550): string
-    {
+    public function generatePNG(
+        Poster $poster,
+        $width = 6000,
+        $height = 8550
+    ): string {
         /*
         |--------------------------------------------------------------------------
         | Connect to filesystem and check if up-to-date file exists
@@ -70,7 +70,7 @@ class PosterService
         */
 
         $filesystem = Storage::disk('s3');
- 
+
         if (
             $filesystem->exists($path = 'poster' . $poster->id . '-' . $width . 'x' . $height . '.png')
             && $filesystem->lastModified($path) > strtotime($poster->updated_at)
@@ -95,10 +95,10 @@ class PosterService
         for ($i = 0; $i < count($title = explode("\n", wordwrap($poster->title, 26))); $i++) {
 
             $im->text(
-                $title[$i], 
-                intval($width / 2), 
-                $height / 10 + $i * $height / 15, 
-                
+                $title[$i],
+                intval($width / 2),
+                $height / 10 + $i * $height / 15,
+
                 function ($font) use ($poster, $height) {
                     $font->file(resource_path($poster->theme->font_regular));
                     $font->size($height / 20);
@@ -119,10 +119,10 @@ class PosterService
         for ($i = 0; $i < count($pgn = ($poster->pgn ? formatPGN($poster->pgn) : [])); $i++) {
 
             $im->text(
-                $pgn[$i] . ($i + 1 == count($pgn) ? ' | ' . $poster->result : ''), 
-                intval($width / 2), 
-                $height / 30 * 29 - ($height * 0.0125 * (count($pgn) - 1 - $i)), 
-                
+                $pgn[$i] . ($i + 1 == count($pgn) ? ' | ' . $poster->result : ''),
+                intval($width / 2),
+                $height / 30 * 29 - ($height * 0.0125 * (count($pgn) - 1 - $i)),
+
                 function ($font) use ($poster, $height) {
                     $font->file(resource_path($poster->theme->font_regular));
                     $font->size($height * 0.006);
@@ -139,10 +139,10 @@ class PosterService
         |
         */
         $im->text(
-            $poster->white_title . ' ' . $poster->white_player . ' - ' . $poster->black_title . ' ' . $poster->black_player, 
-            intval($width / 2), 
-            $height / 6 + $height / 15 * (count($title) - 1), 
-            
+            $poster->white_title . ' ' . $poster->white_player . ' - ' . $poster->black_title . ' ' . $poster->black_player,
+            intval($width / 2),
+            $height / 6 + $height / 15 * (count($title) - 1),
+
             function ($font) use ($poster, $height) {
                 $font->file(resource_path($poster->theme->font_regular));
                 $font->size($height / 300 * 7);
@@ -153,9 +153,9 @@ class PosterService
         );
 
         $im->text(
-            $poster->where . ($poster->where && $poster->when ? ' | ' : '') . $poster->when, 
-            intval($width / 2), 
-            $height / 5 + $height / 15 * (count($title) - 1), 
+            $poster->where . ($poster->where && $poster->when ? ' | ' : '') . $poster->when,
+            intval($width / 2),
+            $height / 5 + $height / 15 * (count($title) - 1),
 
             function ($font) use ($poster, $height) {
                 $font->file(resource_path($poster->theme->font_italic));
@@ -176,10 +176,12 @@ class PosterService
         //dd(27 + $boardY = intval(((min($height / 30 * 29 - ($height / 75 * (count($pgn))), $height / 3000 * 2860) - (isset($title[1]) ? $height / 3.75 : $height / 5)) / 2) - (isset($title[1]) ? 0 : $height / 15)));
 
 
-        $im->insert(public_path(
-            '/themes/'. $poster->theme->path . '/board.svg'), 
-            'top-center', 
-            intval($width / 2), 
+        $im->insert(
+            public_path(
+                '/themes/' . $poster->theme->path . '/board.svg'
+            ),
+            'top-center',
+            intval($width / 2),
             27 + $boardY = intval(((min($height / 30 * 29 - ($height / 75 * (count($pgn))), $height / 3000 * 2860) - (isset($title[1]) ? $height / 3.75 : $height / 5)) / 2) - (isset($title[1]) ? 0 : $height / 15))
         );
 
@@ -193,9 +195,9 @@ class PosterService
         for ($x = 0; $x < 8; $x++) {
 
             $im->text(
-                chr($poster->orientation ? 97 + $x : 104 - $x), 
-                $height / 50 + $height / 15 * ($x + 1), 
-                $boardY - $height / 250, 
+                chr($poster->orientation ? 97 + $x : 104 - $x),
+                $height / 50 + $height / 15 * ($x + 1),
+                $boardY - $height / 250,
 
                 function ($font) use ($poster, $height) {
                     $font->file(resource_path($poster->theme->font_regular));
@@ -205,14 +207,14 @@ class PosterService
             );
 
             $im->text(
-                $poster->orientation ? 8 - $x : $x + 1  . '.', 
-                $height / 3000 * 1875, 
-                $boardY + $height / 300 * 5 + $height / 15 * $x, 
-                
+                $poster->orientation ? 8 - $x : $x + 1  . '.',
+                $height / 3000 * 1875,
+                $boardY + $height / 300 * 5 + $height / 15 * $x,
+
                 function ($font) use ($poster, $height) {
-                $font->file(resource_path($poster->theme->font_regular));
-                $font->size($height / 75);
-                $font->color($poster->theme->color);
+                    $font->file(resource_path($poster->theme->font_regular));
+                    $font->size($height / 75);
+                    $font->color($poster->theme->color);
                 }
             );
         }
@@ -238,9 +240,9 @@ class PosterService
             } else {
 
                 $im->insert(
-                    public_path('/themes/'. $poster->theme->path . '/' . (ctype_lower($poster->fen[$i]) ? 'Black' : 'White') . '/' . strtolower($poster->fen[$i]) . '.svg'),
-                    'top-left', 
-                    intval(($width - 4560) / 2) + 570 * $column, 
+                    public_path('/themes/' . $poster->theme->path . '/' . (ctype_lower($poster->fen[$i]) ? 'Black' : 'White') . '/' . strtolower($poster->fen[$i]) . '.svg'),
+                    'top-left',
+                    intval(($width - 4560) / 2) + 570 * $column,
                     $boardY + 25 + 570 * $row
                 );
 
@@ -256,11 +258,11 @@ class PosterService
         |
         */
 
-        if($poster->pgn) {
+        if ($poster->pgn) {
             $im->text(
-                diagramInfo($poster->pgn, $poster->move_comment ?? '', $poster->diagram_position), 
+                diagramInfo($poster->pgn, $poster->move_comment ?? '', $poster->diagram_position),
                 intval($width / 2),
-                $boardY + $height / 3000 * 1690, 
+                $boardY + $height / 3000 * 1690,
 
                 function ($font) use ($poster, $height) {
                     $font->file(resource_path($poster->theme->font_italic));
@@ -278,7 +280,7 @@ class PosterService
         |
         */
 
-        $im->encode('png'); 
+        $im->encode('png');
         $filesystem->put($path, $im->getEncoded());
 
         return $filesystem->url($path);

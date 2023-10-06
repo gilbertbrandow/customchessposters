@@ -25,7 +25,7 @@
                 </svg>
                 Custom Chess Posters
             </a>
-            <a href="{{ url()->previous() && url()->previous() != url()->current() ? url()->previous() : '/' }}">
+            <a href="{{ (url()->previous() && url()->previous() != url()->current()) ? url()->previous() : '/' }}">
                 Go back
             </a>
         </div>
