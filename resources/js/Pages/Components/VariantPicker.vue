@@ -70,7 +70,7 @@ export default {
                     this.$data.variants = response.data['variants']
                 ))
                 .catch((error) => (
-                    console.log(error)
+                    console.error(error)
                 )).finally(() => {
                     this.$data.properties.size = 1
                 })

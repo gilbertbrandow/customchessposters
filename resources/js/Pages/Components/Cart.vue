@@ -114,7 +114,7 @@ export default {
                     this.$data.cart = response.data
                 ))
                 .catch((error) => (
-                    console.log(error)
+                    console.error(error)
                 ))
         }
     },

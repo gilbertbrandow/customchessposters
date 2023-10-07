@@ -83,9 +83,9 @@ export default {
             const { error } = await this.stripe.confirmPayment(params);
 
             if (error.type === "card_error" || error.type === "validation_error") {
-                console.log(error.message);
+                console.error(error.message);
             } else {
-                console.log("An unexpected error occurred.");
+                console.error("An unexpected error occurred.");
             }
 
         },

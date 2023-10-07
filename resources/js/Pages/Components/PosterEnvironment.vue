@@ -34,7 +34,6 @@ export default {
     computed: {
         environmentObject() {
             let index = this.environment ? this.environment : this.getRandomInt(this.$data.environments.length - 1); 
-            console.log(index); 
             return this.$data.environments[index];
         }
     }
