@@ -45,25 +45,6 @@
 
                             </div>
 
-                            <div class="row is--starting-position">
-                                <div class="field__wrp">
-                                    <label v-text="'Starting position'" for="starting_position"
-                                        class="field__label"></label>
-                                    <div v-if="!posterBuilder.starting_position.valid" class="field__error">
-                                        FEN is not valid </div>
-                                    <input v-model="posterBuilder.starting_position.fen" class="field"
-                                        :class="{ 'is--error': !posterBuilder.starting_position.valid }"
-                                        id="starting_position"
-                                        placeholder="rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1" />
-                                </div>
-                                <button v-if="!this.posterBuilder.starting_position.confirm" class="link-arrow"
-                                    @click="this.poster.pgn.length == 0 ? this.updateStartingFen() : this.posterBuilder.starting_position.confirm = true">Update</button>
-                                <div v-else class="confirm">This will reset the moves. Do you wish to <button
-                                        class="link-arrow" @click="this.updateStartingFen()">continue</button> or
-                                    <button class="link-arrow"
-                                        @click="this.posterBuilder.starting_position.confirm = false">cancel</button>?
-                                </div>
-                            </div>
                             <div v-if="this.posterBuilder.starting_position.fen != 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1' && (this.poster.pgn.length == 0 || this.poster.starting_position == 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1')"
                                 class="link-arrow is--low-op is--margin-top"
                                 @click="this.posterBuilder.starting_position.fen = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1', this.updateStartingFen()">
@@ -85,8 +66,30 @@
                         </div>
                         <div :class="[posterBuilder.currStep == 1 ? 'is--active' : '']" class="module__step">
                             <h3>2. The Moves</h3>
-                            <p>Insert the moves of the game, next step you will pick a position to display. <a
-                                    v-if="poster.pgn" class="text__link" @click="resetBoard()">Reset game</a></p>
+                            <p class="is--no-margin-bottom">
+                                Insert the moves of the game, next step you will pick a position to display. 
+                                <a v-if="poster.pgn" class="text__link" @click="resetBoard()">Reset game</a>
+                            </p>
+
+                            <div class="row is--starting-position is--margin-bottom">
+                                <div class="field__wrp">
+                                    <label v-text="'Starting position'" for="starting_position"
+                                        class="field__label"></label>
+                                    <div v-if="!posterBuilder.starting_position.valid" class="field__error">
+                                        FEN is not valid </div>
+                                    <input v-model="posterBuilder.starting_position.fen" class="field"
+                                        :class="{ 'is--error': !posterBuilder.starting_position.valid }"
+                                        id="starting_position"
+                                        placeholder="rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1" />
+                                </div>
+                                <button v-if="!this.posterBuilder.starting_position.confirm" class="link-arrow"
+                                    @click="this.poster.pgn.length == 0 ? this.updateStartingFen() : this.posterBuilder.starting_position.confirm = true">Update</button>
+                                <div v-else class="confirm">This will reset the moves. Do you wish to <button
+                                        class="link-arrow" @click="this.updateStartingFen()">continue</button> or
+                                    <button class="link-arrow"
+                                        @click="this.posterBuilder.starting_position.confirm = false">cancel</button>?
+                                </div>
+                            </div>
 
                             <div class="tabs">
                                 <div class="tabs__header">
@@ -887,10 +890,10 @@ export default {
 
         recieveVariant(emitted) {
             this.$data.total = emitted.total;
-            this.$data.variant = emitted.variant; 
+            this.$data.variant = emitted.variant;
 
-            if(emitted.frame == 1) this.$data.posterBuilder.environment = 1; 
-            else this.$data.posterBuilder.environment = 0; 
+            if (emitted.frame == 1) this.$data.posterBuilder.environment = 1;
+            else this.$data.posterBuilder.environment = 0;
         }
 
     },
