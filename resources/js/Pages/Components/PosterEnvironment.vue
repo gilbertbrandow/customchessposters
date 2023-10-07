@@ -43,7 +43,7 @@ export default {
 
     computed: {
         environmentObject() {
-            let index = this.environment ? this.environment : this.getRandomInt(this.$data.environments.length);
+            let index = this.environment ?? this.getRandomInt(this.$data.environments.length);
             return this.$data.environments[index];
         }
     }
