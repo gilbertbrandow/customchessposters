@@ -425,7 +425,7 @@ export default {
                 currStep: 0,
                 announcement: true,
                 gameDesc: true,
-                currEnvironment: "",
+                currEnvironment: null,
                 currTab: 0,
                 starting_position: {
                     valid: true,
@@ -492,7 +492,6 @@ export default {
                     texture: '/New Waves/waves.svg',
                     colour: '#fbf4ea',
                     poster: '',
-                    environment: 'builder-mockup.webp',
                 },
 
                 {
@@ -503,7 +502,6 @@ export default {
                     texture: '/Old Knowledge/lines.svg',
                     colour: '#f5f5f5',
                     poster: '',
-                    environment: 'builder-mockup.webp',
                 }
 
             ],
@@ -574,7 +572,6 @@ export default {
 
         setTheme(id) {
             this.$data.poster.theme_id = id;
-            this.$data.posterBuilder.currEnvironment = this.$data.themes[id - 1].environment;
         },
 
         changeStep(index) {

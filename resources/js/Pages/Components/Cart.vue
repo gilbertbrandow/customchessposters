@@ -11,7 +11,7 @@
             </li>
             <li v-else v-for="item in this.cart">
                 <template v-if="item.type == 'poster'">
-                    <Poster :poster="item" :controls="{ 'small': true }" environment="builder-mockup.webp" />
+                    <Poster :poster="item" :controls="{ 'small': true }" />
                     <div class="content">
                         <h3 v-text="item.name"></h3>
                         <span>{{ ($page.props.unit ? item.width + ' x ' + item.height + ' cm, ' : Math.round(item.width *
