@@ -393,7 +393,7 @@
                     </div>
                 </div>
 
-                <Poster :poster="poster" :environment="this.$data.posterBuilder.currEnvironment" :controls="controls">
+                <Poster :poster="poster" :environment="this.$data.posterBuilder.environment" :controls="controls">
                 </Poster>
 
             </div>
@@ -425,7 +425,7 @@ export default {
                 currStep: 0,
                 announcement: true,
                 gameDesc: true,
-                currEnvironment: null,
+                environment: null,
                 currTab: 0,
                 starting_position: {
                     valid: true,
@@ -491,7 +491,6 @@ export default {
                     desc: 'Warm & Modern',
                     texture: '/New Waves/waves.svg',
                     colour: '#fbf4ea',
-                    poster: '',
                 },
 
                 {
@@ -501,7 +500,6 @@ export default {
                     desc: 'Vintage & Nostalgic',
                     texture: '/Old Knowledge/lines.svg',
                     colour: '#f5f5f5',
-                    poster: '',
                 }
 
             ],
@@ -889,7 +887,10 @@ export default {
 
         recieveVariant(emitted) {
             this.$data.total = emitted.total;
-            this.$data.variant = emitted.variant
+            this.$data.variant = emitted.variant; 
+
+            if(emitted.frame == 1) this.$data.posterBuilder.environment = 1; 
+            else this.$data.posterBuilder.environment = 0; 
         }
 
     },
