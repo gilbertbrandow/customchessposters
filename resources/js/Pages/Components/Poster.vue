@@ -73,15 +73,7 @@
         <div class="poster__svg-wrp">
             <Poster :poster="poster" />
         </div>
-        <img class="poster__environment"
-         src="../../../../public/images/environments/poster-mockup-300x372.webp"
-
-         srcset="
-         ../../../../public/images/environments/poster-mockup-1200x1490.webp 1200w,
-         ../../../../public/images/environments/poster-mockup-600x745.webp 600w,
-         ../../../../public/images/environments/poster-mockup-300x372.webp 300w"
-
-        :alt="'Poster: ' + $page.props.lightbox.title + ' shown in a warmly lit room with frame'" />
+        <PosterEnvironment :environment="environment"/>
     </div>
 </template>
 
@@ -91,6 +83,7 @@ import Poster from './Poster/PosterSVG.vue';
 import Flag from '../../Icons/Flags.vue'
 import { useForm } from '@inertiajs/vue3';
 import { Link } from "@inertiajs/vue3";
+import PosterEnvironment from './PosterEnvironment.vue';
 
 let form = useForm({
     posterData: {},
@@ -136,7 +129,7 @@ export default {
     props: {
         poster: {},
         showPlayers: false,
-        environment: "",
+        environment: null,
         controls: true,
     },
 }
