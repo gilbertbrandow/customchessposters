@@ -89,7 +89,8 @@ export default {
                         //Update current variant and change total to its price
                         this.$emit('variant', {
                             variant: variant.id,
-                            total: variant.price
+                            total: variant.price,
+                            frame: variant.poster_frame_id,
                         });
 
                         this.$data.total = variant.price;
