@@ -1,21 +1,21 @@
-import { defineConfig } from 'vite';
-import laravel from 'laravel-vite-plugin';
-import vue from '@vitejs/plugin-vue'
-import viteCompression from 'vite-plugin-compression'
+import { defineConfig } from "vite";
+import laravel from "laravel-vite-plugin";
+import vue from "@vitejs/plugin-vue";
+import viteCompression from "vite-plugin-compression";
 
 export default defineConfig({
     server: {
         hmr: {
-            host: '0.0.0.0',
+            host: "0.0.0.0",
         },
         watch: {
-            usePolling: true
-        }
+            usePolling: true,
+        },
     },
     plugins: [
         vue(),
         laravel({
-            input: ['resources/scss/app.scss', 'resources/js/app.js'],
+            input: ["resources/scss/app.scss", "resources/js/app.js"],
             refresh: true,
         }),
         viteCompression(),
