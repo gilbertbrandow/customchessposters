@@ -1,0 +1,43 @@
+<template>
+    <img class="poster__environment" :src="this.environmentObject.src" :srcset="this.environmentObject.srcset"
+        :alt="this.environmentObject.alt" />
+</template>
+
+<script>
+export default {
+    props: {
+        environment: null,
+    },
+
+    data() {
+        return {
+            environments: [
+                {
+                    alt: 'Poster design shown in a warmly lit room with an oak frame',
+                    src: '/images/environments/poster-mockup-300x372.webp',
+                    srcset: [
+                        '/images/environments/poster-mockup-1200x1490.webp 1200w', 
+                        '/environments/poster-mockup-600x745.webp 600w', 
+                        '/environments/poster-mockup-300x372.webp 300w'
+                    ]
+                },
+            ]
+        }
+    },
+
+    methods: {
+        getRandomInt(max) {
+            return Math.floor(Math.random() * max);
+        }
+    }, 
+
+    computed: {
+        environmentObject() {
+            let index = this.environment ? this.environment : this.getRandomInt(this.$data.environments.length - 1); 
+            console.log(index); 
+            return this.$data.environments[index];
+        }
+    }
+
+}
+</script>
