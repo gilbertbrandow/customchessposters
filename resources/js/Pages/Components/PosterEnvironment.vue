@@ -14,21 +14,21 @@ export default {
             environments: [
                 [
                     {
-                        alt: 'Poster design shown in on a wall with no frame',
-                        src: '/images/environments/poster-mockup-300x373.webp',
+                        alt: 'Poster design shown in on a light grey wall with no frame',
+                        src: '/images/environments/poster-mockup-no-frame-light-grey-300x373.webp',
                         srcset: [
-                            '/images/environments/poster-mockup-1200x1490.webp 1200w',
-                            '/images/environments/poster-mockup-600x745.webp 600w',
-                            '/images/environments/poster-mockup-300x373.webp 300w'
+                            '/images/environments/poster-mockup-no-frame-light-grey-1200x1490.webp 1200w',
+                            '/images/environments/poster-mockup-no-frame-light-grey-600x745.webp 600w',
+                            '/images/environments/poster-mockup-no-frame-light-grey-300x373.webp 300w'
                         ]
                     },
 
                     {
-                        alt: 'Poster design shown on a wall with no frame',
-                        src: '/images/environments/poster-mockup-no-frame-2-600x745.webp',
+                        alt: 'Poster design shown on a dark brown wall with no frame',
+                        src: '/images/environments/poster-mockup-no-frame-dark-brown-600x745.webp',
                         srcset: [
-                            '/images/environments/poster-mockup-no-frame-2-1200x1490.webp 1200w',
-                            '/images/environments/poster-mockup-no-frame-2-600x745.webp 600w',
+                            '/images/environments/poster-mockup-no-frame-dark-brown-1200x1490.webp 1200w',
+                            '/images/environments/poster-mockup-no-frame-dark-brown-600x745.webp 600w',
                         ]
                     },
 
@@ -77,7 +77,7 @@ export default {
         environmentObject() {
             //If null on environment, choose a random mockup from [0], else pick the index. If 0 selected, pick first of no frame mockups
             return this.environment ?
-                 this.$data.environments[index] : 
+                 this.$data.environments[this.environment] : 
                  this.$data.environments[0][this.environment === 0 ? 0 : this.getRandomInt(this.$data.environments[0].length)];
         }
     }
