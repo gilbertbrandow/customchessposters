@@ -14,7 +14,7 @@ export default {
             environments: [
                 {
                     alt: 'Poster design shown in on a wall with no frame',
-                    src: '/images/environments/poster-mockup-300x372.webp',
+                    src: '/images/environments/poster-mockup-300x373.webp',
                     srcset: [
                         '/images/environments/poster-mockup-1200x1490.webp 1200w',
                         '/images/environments/poster-mockup-600x745.webp 600w',
