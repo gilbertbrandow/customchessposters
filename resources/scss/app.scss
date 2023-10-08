@@ -3545,6 +3545,14 @@ label {
         }
     }
 
+    .poster {
+        .poster__buttons-wrp {
+            left: 1em;
+            bottom: 1em;
+            right: auto;
+        }
+    }
+
     .sizes,
     .frames {
         li button {
@@ -3639,12 +3647,6 @@ label {
         margin-top: 0em;
 
         li.single {
-            .poster__buttons-wrp {
-                left: 1em;
-                right: auto;
-                bottom: 1em;
-            }
-
             .content {
                 padding-left: 1.5em;
                 padding-right: 1.5em;
