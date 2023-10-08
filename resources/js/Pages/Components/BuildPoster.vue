@@ -45,13 +45,6 @@
 
                             </div>
 
-                            <div v-if="this.posterBuilder.starting_position.fen != 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1' && (this.poster.pgn.length == 0 || this.poster.starting_position == 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1')"
-                                class="link-arrow is--low-op is--margin-top"
-                                @click="this.posterBuilder.starting_position.fen = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1', this.updateStartingFen()">
-                                Reset to default starting position
-                                <Icon name="undo" />
-                            </div>
-
 
                             <div v-if="posterBuilder.announcement" class="message is--margin-top">
                                 <div @click="posterBuilder.announcement = false">
@@ -83,12 +76,19 @@
                                         placeholder="rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1" />
                                 </div>
                                 <button v-if="!this.posterBuilder.starting_position.confirm" class="link-arrow"
-                                    @click="this.poster.pgn.length == 0 ? this.updateStartingFen() : this.posterBuilder.starting_position.confirm = true">Update</button>
+                                    @click="this.poster.pgn?.length == 0 ? this.updateStartingFen() : this.posterBuilder.starting_position.confirm = true">Update</button>
                                 <div v-else class="confirm">This will reset the moves. Do you wish to <button
                                         class="link-arrow" @click="this.updateStartingFen()">continue</button> or
                                     <button class="link-arrow"
                                         @click="this.posterBuilder.starting_position.confirm = false">cancel</button>?
                                 </div>
+                            </div>
+
+                            <div v-if="this.posterBuilder.starting_position.fen != 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1' && (this.poster.pgn?.length == 0 || this.poster.starting_position == 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1')"
+                                class="link-arrow is--low-op is--margin-bottom"
+                                @click="this.posterBuilder.starting_position.fen = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1', this.updateStartingFen()">
+                                Reset to default starting position
+                                <Icon name="undo" />
                             </div>
 
                             <div class="tabs">
