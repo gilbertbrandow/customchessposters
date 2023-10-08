@@ -67,6 +67,9 @@
                     this.poster.result
                 }}</tspan>
             </tspan>
+            <tspan v-if="!pgnRows.length" x="1000" y="2900">
+                No move has been made
+            </tspan>
         </text>
 
     </svg>
