@@ -230,7 +230,7 @@
 
                                 <h4>You need to make some moves!</h4>
                                 <p>In order to be able to choose a position for your poster, you need to insert some
-                                    moves in the previous step. If you are unsure of how to do that, you can always load
+                                    moves in the previous step. If you are unsure of how to do that, you can always edit
                                     a game from our <a href="/game-collection" class="text__link">Game Collection</a>
                                 </p>
 
@@ -461,9 +461,9 @@ export default {
                 theme_id: 1,
                 orientation: 1,
                 starting_position: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
-                pgn: "",
+                pgn: null,
                 diagram_position: 0,
-                move_comment: "",
+                move_comment: null,
                 fen: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR",
                 result: "",
                 title: "Lorem ipsum dolor sit amet, consectetur adi",
@@ -471,8 +471,8 @@ export default {
                 black_player: "Black Player",
                 white_rating: null,
                 black_rating: null,
-                white_title: null,
-                black_title: null,
+                white_title: "",
+                black_title: "",
                 when: "When it was played",
                 where: "Where it was played",
             },
