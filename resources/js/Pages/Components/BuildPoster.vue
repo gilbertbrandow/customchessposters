@@ -428,7 +428,7 @@ export default {
                 currStep: 0,
                 announcement: true,
                 gameDesc: true,
-                environment: null,
+                environment: 0,
                 currTab: 0,
                 starting_position: {
                     valid: true,
@@ -892,7 +892,7 @@ export default {
             this.$data.total = emitted.total;
             this.$data.variant = emitted.variant;
 
-            if (emitted.frame == 1) this.$data.posterBuilder.environment = 1;
+            if (emitted.frame && emitted.frame < 3) this.$data.posterBuilder.environment = emitted.frame;
             else this.$data.posterBuilder.environment = 0;
         }
 
