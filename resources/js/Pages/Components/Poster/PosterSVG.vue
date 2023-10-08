@@ -1,5 +1,6 @@
 <template>
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 2000 3000" :style="{ 'background-color': (this.poster.theme_id == 1) ? '#FBF6EE' : '#f8f5f1', 'fill': (this.poster.theme_id == 1) ? '#41251D' : '#000000', 'font-family': (this.poster.theme_id == 1) ? 'Custom Serif By Ayaka Ito Regular' : 'EB Garamond', }">
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 2000 3000"
+        :style="{ 'background-color': (this.poster.theme_id == 1) ? '#FBF6EE' : '#f8f5f1', 'fill': (this.poster.theme_id == 1) ? '#41251D' : '#000000', 'font-family': (this.poster.theme_id == 1) ? 'Custom Serif By Ayaka Ito Regular' : 'EB Garamond', }">
 
         <!-- The Title -->
         <text id="title" font-size="150" text-anchor="middle" font-weight="400">
@@ -9,19 +10,32 @@
 
         <!-- Players name, title and ranking -->
         <text id="players" font-size="70" text-anchor="middle" x="1000" font-weight="400" :y="title[1] ? 700 : 500">
-            <tspan v-if="poster.white_title"> {{ poster.white_title + ' ' }}
+            <tspan v-if="poster.white_title"> 
+                {{ poster.white_title + ' ' }}
             </tspan>
-            <tspan v-if="poster.white_player"> {{ poster.white_player + ' ' }} </tspan>
-            <!-- <tspan font-size="40" v-if="poster.white_rating">({{ poster.white_rating + ' FIDE' }}) </tspan> -->
-            <tspan font-size="40"> - </tspan>
-            <tspan v-if="poster.black_title"> {{ poster.black_title + ' ' }}
+            <tspan v-if="poster.white_player"> 
+                {{ poster.white_player + ' ' }} 
             </tspan>
-            <tspan v-if="poster.black_player"> {{ poster.black_player + ' ' }} </tspan>
-            <!--<tspan font-size="40" v-if="poster.black_rating">({{ poster.black_rating + ' FIDE' }}) </tspan> -->
+            <tspan font-size="40" v-if="poster.white_rating">
+                ({{ poster.white_rating }})
+            </tspan>
+            <tspan font-size="40"> 
+                - 
+            </tspan>
+            <tspan v-if="poster.black_title"> 
+                {{ poster.black_title + ' ' }}
+            </tspan>
+            <tspan v-if="poster.black_player"> 
+                {{ poster.black_player + ' ' }} 
+            </tspan>
+            <tspan font-size="40" v-if="poster.black_rating">
+                ({{ poster.black_rating }}) 
+            </tspan>
         </text>
 
         <!-- Where and when -->
-        <text id="meta" font-size="40" text-anchor="middle" x="1000" :y="title[1] ? 800 : 600" :style="{ 'font-family': (this.poster.theme_id == 1) ? 'Custom Serif By Ayaka Ito Italic' : 'EB Garamond italic' }">
+        <text id="meta" font-size="40" text-anchor="middle" x="1000" :y="title[1] ? 800 : 600"
+            :style="{ 'font-family': (this.poster.theme_id == 1) ? 'Custom Serif By Ayaka Ito Italic' : 'EB Garamond italic' }">
             <tspan>{{ poster.where }}</tspan>
             <tspan v-if="poster.where && poster.when"> | </tspan>
             <tspan>{{ poster.when }}</tspan>
@@ -35,26 +49,27 @@
             <text id="rows" font-size="40">
                 <tspan v-for="index in 8" x="1625" :y="70 + (200 * index) - 200">{{
                     poster.orientation ? 9 - index :
-                        index
+                    index
                 }}</tspan>
             </text>
 
             <text id="columns" font-size="40">
                 <tspan v-for="index in 8" :x="20 + (200 * index) - 200" y="0">{{
                     poster.orientation ?
-                        String.fromCharCode(96 + index) : String.fromCharCode(96 + 9 - index)
+                    String.fromCharCode(96 + index) : String.fromCharCode(96 + 9 - index)
                 }}</tspan>
             </text>
 
             <!-- Frame of the board -->
-            <Frame :theme="this.poster.theme_id"/>
+            <Frame :theme="this.poster.theme_id" />
 
             <!-- The board itself with pieces -->
             <Game ref="Game" :theme_id="this.$props.poster.theme_id" :fen="this.$props.poster.fen" />
 
             <!-- Diagram comment -->
-            <text id="comment" v-if="this.poster.pgn" y="1690" x="815" text-anchor="middle" font-size="32" :style="{ 'font-family': (this.poster.theme_id == 1) ? 'Custom Serif By Ayaka Ito Italic' : 'EB Garamond italic' }"
-                v-text="this.$props.poster.move_comment ? diagram_info + ', ' + this.$props.poster.move_comment: diagram_info"></text>
+            <text id="comment" y="1690" x="815" text-anchor="middle" font-size="32"
+                :style="{ 'font-family': (this.poster.theme_id == 1) ? 'Custom Serif By Ayaka Ito Italic' : 'EB Garamond italic' }"
+                v-text="this.$props.poster.move_comment ? this.diagramInfo + ', ' + this.$props.poster.move_comment: this.diagramInfo"></text>
 
         </svg>
 
@@ -68,39 +83,33 @@
                 }}</tspan>
             </tspan>
             <tspan v-if="!pgnRows.length" x="1000" y="2900">
-                No move has been made
+                No move has been made.
             </tspan>
         </text>
 
     </svg>
-
 </template>
 
 <style>
-
 @font-face {
     font-family: 'EB Garamond';
-    src: url("../../../../fonts/EBGaramond-Regular.ttf") 
-        format("truetype-variations");
+    src: url("../../../../fonts/EBGaramond-Regular.ttf") format("truetype-variations");
 }
 
 @font-face {
     font-family: 'EB Garamond italic';
-    src: url("../../../../fonts/EBGaramond-Italic.ttf")
-        format("truetype-variations");
+    src: url("../../../../fonts/EBGaramond-Italic.ttf") format("truetype-variations");
 }
 
 @font-face {
     font-family: 'Custom Serif By Ayaka Ito Italic';
-    src: url("../../../../fonts/Custom-Serif-By-Ayaka-Ito-Italic.ttf")
-        format("truetype-variations");
+    src: url("../../../../fonts/Custom-Serif-By-Ayaka-Ito-Italic.ttf") format("truetype-variations");
     font-weight: 1 999;
 }
 
 @font-face {
     font-family: 'Custom Serif By Ayaka Ito Regular';
-    src: url("../../../../fonts/Custom-Serif-By-Ayaka-Ito-Regular.ttf")
-        format("truetype-variations");
+    src: url("../../../../fonts/Custom-Serif-By-Ayaka-Ito-Regular.ttf") format("truetype-variations");
     font-weight: 1 999;
 }
 </style>
@@ -201,8 +210,8 @@ export default {
             return rows;
         },
 
-        diagram_info() {
-            if (this.poster.diagram_position == 0) return;
+        diagramInfo() {
+            if (!this.poster.diagram_position) return 'Starting position';
 
             let pgn = this.poster.pgn;
 
@@ -212,7 +221,7 @@ export default {
             //Get index of next space
             let spaceIndex = pgn.indexOf(' ', indexOfMove);
 
-            if(spaceIndex == -1) { spaceIndex = pgn.length}
+            if (spaceIndex == -1) { spaceIndex = pgn.length }
 
             //Depending on if half move or not, look until next ' ', or from next ' ' to the one after that
             if (this.poster.diagram_position % 2 != 0) {
@@ -221,7 +230,6 @@ export default {
             } else {
                 //Black move
                 let nextSpaceIndex = (pgn.indexOf(' ', spaceIndex + 1) > 0) ? pgn.indexOf(' ', spaceIndex + 1) : pgn.length;
-                
                 return "Position after Black's move " + Math.round(this.poster.diagram_position / 2) + '. ... ' + pgn.substring(spaceIndex + 1, nextSpaceIndex);
             }
         }
