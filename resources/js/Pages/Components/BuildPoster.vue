@@ -892,7 +892,7 @@ export default {
             this.$data.total = emitted.total;
             this.$data.variant = emitted.variant;
 
-            if (emitted.frame && emitted.frame < 3) this.$data.posterBuilder.environment = emitted.frame;
+            if (emitted.frame && emitted.frame) this.$data.posterBuilder.environment = emitted.frame;
             else this.$data.posterBuilder.environment = 0;
         }
 
