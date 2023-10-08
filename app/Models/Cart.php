@@ -78,6 +78,7 @@ class Cart extends Model
                 'products.type',
                 'poster_sizes.height',
                 'poster_sizes.width',
+                'poster_frames.id as frame_id',
                 'poster_frames.name as frame',
                 'poster_frames.image',
                 'posters.id',
