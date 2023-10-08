@@ -12,15 +12,27 @@ export default {
     data() {
         return {
             environments: [
-                {
-                    alt: 'Poster design shown in on a wall with no frame',
-                    src: '/images/environments/poster-mockup-300x373.webp',
-                    srcset: [
-                        '/images/environments/poster-mockup-1200x1490.webp 1200w',
-                        '/images/environments/poster-mockup-600x745.webp 600w',
-                        '/images/environments/poster-mockup-300x373.webp 300w'
-                    ]
-                },
+                [
+                    {
+                        alt: 'Poster design shown in on a wall with no frame',
+                        src: '/images/environments/poster-mockup-300x373.webp',
+                        srcset: [
+                            '/images/environments/poster-mockup-1200x1490.webp 1200w',
+                            '/images/environments/poster-mockup-600x745.webp 600w',
+                            '/images/environments/poster-mockup-300x373.webp 300w'
+                        ]
+                    },
+
+                    {
+                        alt: 'Poster design shown on a wall with no frame',
+                        src: '/images/environments/poster-mockup-no-frame-2-600x745.webp',
+                        srcset: [
+                            '/images/environments/poster-mockup-no-frame-2-1200x1490.webp 1200w',
+                            '/images/environments/poster-mockup-no-frame-2-600x745.webp 600w',
+                        ]
+                    },
+
+                ],
 
                 {
                     alt: 'Poster design shown in a black frame with sunlight',
@@ -63,8 +75,10 @@ export default {
 
     computed: {
         environmentObject() {
-            let index = this.environment !== null && this.environment < this.$data.environments.length ? this.environment : this.getRandomInt(this.$data.environments.length);
-            return this.$data.environments[index];
+            //If null on environment, choose a random mockup from [0], else pick the index. If 0 selected, pick first of no frame mockups
+            return this.environment ?
+                 this.$data.environments[index] : 
+                 this.$data.environments[0][this.environment === 0 ? 0 : this.getRandomInt(this.$data.environments[0].length)];
         }
     }
 
