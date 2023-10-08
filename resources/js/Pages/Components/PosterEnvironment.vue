@@ -18,7 +18,7 @@ export default {
                     srcset: [
                         '/images/environments/poster-mockup-1200x1490.webp 1200w',
                         '/images/environments/poster-mockup-600x745.webp 600w',
-                        '/images/environments/poster-mockup-300x372.webp 300w'
+                        '/images/environments/poster-mockup-300x373.webp 300w'
                     ]
                 },
 
