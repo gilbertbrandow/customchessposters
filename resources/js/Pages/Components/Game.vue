@@ -82,7 +82,7 @@
                 </Link>
             </div>
         </div>
-        <Poster :poster="game" :showPlayers="showPlayersInPoster" :environment="game.theme_id - 1"
+        <Poster :poster="game" :showPlayers="showPlayersInPoster"
             :controls="{ 'small': true, 'save': true, 'edit': true, }"></Poster>
     </li>
 </template>
