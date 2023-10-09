@@ -62,6 +62,7 @@ class PosterService
         $width = 6000,
         $height = 8550
     ): string {
+
         /*
         |--------------------------------------------------------------------------
         | Connect to filesystem and check if up-to-date file exists
@@ -139,7 +140,7 @@ class PosterService
         |
         */
         $im->text(
-            $poster->white_title . ' ' . $poster->white_player . ' - ' . $poster->black_title . ' ' . $poster->black_player,
+            $poster->white_title . ' ' . $poster->white_player . ($poster->white_rating ? '(' . $poster->white_rating . ')' : '') . ' - ' . $poster->black_title . ' ' . $poster->black_player . ($poster->black_rating ? '(' . $poster->black_ratng . ')' : ''),
             intval($width / 2),
             $height / 6 + $height / 15 * (count($title) - 1),
 
