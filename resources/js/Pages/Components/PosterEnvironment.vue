@@ -14,7 +14,7 @@ export default {
             environments: [
                 [
                     {
-                        alt: 'Poster design shown in on a light grey wall with no frame',
+                        alt: 'Poster design shown on a light grey wall with no frame',
                         src: '/images/environments/poster-mockup-no-frame-light-grey-300x373.webp',
                         srcset: [
                             '/images/environments/poster-mockup-no-frame-light-grey-1200x1490.webp 1200w',
@@ -24,11 +24,12 @@ export default {
                     },
 
                     {
-                        alt: 'Poster design shown on a dark brown wall with no frame',
-                        src: '/images/environments/poster-mockup-no-frame-dark-brown-600x745.webp',
+                        alt: 'Poster design shown on a chestnut-colored wall with no frame',
+                        src: '/images/environments/poster-mockup-no-frame-chestnut-300x373.webp',
                         srcset: [
-                            '/images/environments/poster-mockup-no-frame-dark-brown-1200x1490.webp 1200w',
-                            '/images/environments/poster-mockup-no-frame-dark-brown-600x745.webp 600w',
+                            '/images/environments/poster-mockup-no-frame-chestnut-1200x1490.webp 1200w',
+                            '/images/environments/poster-mockup-no-frame-chestnut-600x745.webp 600w',
+                            '/images/environments/poster-mockup-no-frame-chestnut-300x373.webp 300w',
                         ]
                     },
 
