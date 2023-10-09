@@ -16,10 +16,10 @@
             <tspan v-if="poster.white_player"> 
                 {{ poster.white_player + ' ' }} 
             </tspan>
-            <tspan font-size="40" v-if="poster.white_rating">
+            <tspan v-if="poster.white_rating">
                 ({{ poster.white_rating }})
             </tspan>
-            <tspan font-size="40"> 
+            <tspan> 
                 - 
             </tspan>
             <tspan v-if="poster.black_title"> 
@@ -28,7 +28,7 @@
             <tspan v-if="poster.black_player"> 
                 {{ poster.black_player + ' ' }} 
             </tspan>
-            <tspan font-size="40" v-if="poster.black_rating">
+            <tspan v-if="poster.black_rating">
                 ({{ poster.black_rating }}) 
             </tspan>
         </text>
