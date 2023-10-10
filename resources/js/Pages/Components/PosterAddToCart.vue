@@ -2,7 +2,7 @@
     <div class="is--flex">
         <button class="button is--black" @click="this.submit()" :disabled="!this.$props.variant">
             {{ !this.$props.variant ? 'Choose a size' : 'Add to cart' }}
-            <Icon :name="!this.$props.variant ? '' : 'cart'" />
+            <Icon :name="this.$props.variant ? 'cart' : ''" />
         </button>
 
         <span style="font-size: 2em;">€{{ (this.total / 100).toFixed(2) }}</span>
