@@ -359,12 +359,6 @@
                                 <Icon name="arrow-right" />
                             </button>
 
-                            <button v-else class="button is--black" :disabled="!this.form.variant"
-                                @click="this.addToCart()">
-                                Add To Cart
-                                <Icon :name="!this.form.variant ? '' : 'cart'" />
-                            </button>
-
                             <PosterAddToCart v-else :poster="this.$data.poster" :variant="this.$data.variant"
                                 :total="this.$data.total" />
 
