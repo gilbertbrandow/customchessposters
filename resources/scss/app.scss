@@ -2156,7 +2156,7 @@ ul.game__collection {
         grid-column: span 2;
 
         .content {
-            padding: 2em 6em 2em 3em;
+            padding: 3em 5em 3em 3em;
         }
 
         h1 {
@@ -2164,29 +2164,30 @@ ul.game__collection {
         }
 
         .player {
-            font-size: 1.4em;
+            font-size: 1.2em;
+        }
+
+        .banner {
+            margin-top: 0.5em;
         }
 
         .banner,
         strong {
-            font-size: 1.2em;
-        }
-
-        strong {
-            flex: 1;
-            display: flex;
-            flex-wrap: wrap;
-            align-content: flex-end;
+            font-size: 1em;
         }
 
         p {
-            font-size: 1.2em;
-            margin-bottom: 4em;
-            flex: 0;
+            font-size: 1em;
+            margin-bottom: 1em;
+            flex: 1;
         }
 
         .button-wrp {
             font-size: inherit;
+        }
+
+        ul.frames {
+            margin-bottom: 1em;
         }
     }
 }
@@ -2330,7 +2331,7 @@ ul.is--slider {
     display: flex;
     column-gap: 0em;
     align-items: center;
-    margin-top: 2em;
+    margin-top: 1em;
 
     button {
         border: none;
