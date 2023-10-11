@@ -33,6 +33,11 @@ export default {
                         ]
                     },
 
+                    {
+                        alt: 'Poster design shown on a light blue wall with no frame',
+                        src: '/images/environments/light-blue.jpg',
+                    },
+
                 ],
 
                 {
