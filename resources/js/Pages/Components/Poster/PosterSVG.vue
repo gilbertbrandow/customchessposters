@@ -91,15 +91,6 @@
 </template>
 
 <style>
-@font-face {
-    font-family: 'EB Garamond';
-    src: url("../../../../fonts/EBGaramond-Regular.ttf") format("truetype-variations");
-}
-
-@font-face {
-    font-family: 'EB Garamond italic';
-    src: url("../../../../fonts/EBGaramond-Italic.ttf") format("truetype-variations");
-}
 
 @font-face {
     font-family: 'Custom Serif By Ayaka Ito Italic';
