@@ -20,9 +20,9 @@
                 :alt="'Poster: ' + $page.props.game.poster.title + ' shown in a warmly lit room with frame'" 
                 src="/images/environments/poster-environment-oak-frame-300x315.webp" 
                 srcset="
-                /images/environments/poster-environment-oak-frame-1500x1574.webp 1500w, 
-                /images/environments/poster-environment-oak-frame-750x787.webp 750w, 
-                /images/environments/poster-environment-oak-frame-300x315.webp 300w, 
+                    /images/environments/poster-environment-oak-frame-1500x1574.webp 1500w,
+                    /images/environments/poster-environment-oak-frame-750x787.webp 750w, 
+                    /images/environments/poster-environment-oak-frame-300x315.webp 300w
                 "
                 />
             </div>
