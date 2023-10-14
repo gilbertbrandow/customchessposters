@@ -7,6 +7,18 @@ $base-color: #f8f4f0;
     font-weight: 1 999;
 }
 
+@font-face {
+    font-family: 'Custom Serif';
+    src: url("../fonts/Custom-Serif-By-Ayaka-Ito-Regular.woff2");
+    font-weight: 1 999;
+}
+
+@font-face {
+    font-family: 'Custom Serif';
+    src: url("../fonts/Custom-Serif-By-Ayaka-Ito-Italic.woff2");
+    font-style: italic;
+}
+
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,800;1,400&display=swap');
 
 body {
