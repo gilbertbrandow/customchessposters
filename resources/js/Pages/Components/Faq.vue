@@ -20,7 +20,7 @@
                     </div>
                     <div class="answer">
                         <p v-html="faq.answer"></p>
-                        <p>Last updated at {{ formatDate(faq.updated_at) }}</p>
+                        <p>Last updated {{ faq.updated_at }}</p>
                     </div>
                 </div>
             </div>
@@ -29,8 +29,6 @@
 </template>
 
 <script>
-
-import moment from 'moment'
 
 export default {
 
@@ -42,10 +40,6 @@ export default {
         toggleAnswer(id) {
             this.$refs['question' + id][0].classList.toggle("is--active");
         },
-
-        formatDate(value) {
-            return moment(String(value)).format('DD/MM - YYYY');
-        }
     },
 }
 

@@ -15,5 +15,9 @@ class Faq extends Model
         'featured', 
     ];
 
+    protected $casts = [
+        'updated_at'  => 'date:M d, Y',
+    ];
+
     protected $table = 'faqs';
 }
