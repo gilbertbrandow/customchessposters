@@ -1,6 +1,6 @@
 <template>
     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 2000 3000"
-        :style="{ 'background-color': (this.poster.theme_id == 1) ? '#FBF6EE' : '#f8f5f1', 'fill': (this.poster.theme_id == 1) ? '#41251D' : '#000000', 'font-family': (this.poster.theme_id == 1) ? 'Custom Serif By Ayaka Ito Regular' : 'EB Garamond', }">
+        :style="{ 'background-color': (this.poster.theme_id == 1) ? '#FBF6EE' : '#f8f5f1', 'fill': (this.poster.theme_id == 1) ? '#41251D' : '#000000', 'font-family': (this.poster.theme_id == 1) ? 'Custom Serif' : 'EB Garamond', }">
 
         <!-- The Title -->
         <text id="title" font-size="150" text-anchor="middle" font-weight="400">
@@ -35,7 +35,7 @@
 
         <!-- Where and when -->
         <text id="meta" font-size="40" text-anchor="middle" x="1000" :y="title[1] ? 800 : 600"
-            :style="{ 'font-family': (this.poster.theme_id == 1) ? 'Custom Serif By Ayaka Ito Italic' : 'EB Garamond italic' }">
+            :style="{ 'font-family': (this.poster.theme_id == 1) ? 'Custom Serif' : 'EB Garamond', 'font-style' : 'italic', }">
             <tspan>{{ poster.where }}</tspan>
             <tspan v-if="poster.where && poster.when"> | </tspan>
             <tspan>{{ poster.when }}</tspan>
@@ -89,21 +89,6 @@
 
     </svg>
 </template>
-
-<style>
-
-@font-face {
-    font-family: 'Custom Serif By Ayaka Ito Italic';
-    src: url("../../../../fonts/Custom-Serif-By-Ayaka-Ito-Italic.ttf") format("truetype-variations");
-    font-weight: 1 999;
-}
-
-@font-face {
-    font-family: 'Custom Serif By Ayaka Ito Regular';
-    src: url("../../../../fonts/Custom-Serif-By-Ayaka-Ito-Regular.ttf") format("truetype-variations");
-    font-weight: 1 999;
-}
-</style>
 
 <script>
 
