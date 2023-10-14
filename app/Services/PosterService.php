@@ -174,9 +174,6 @@ class PosterService
         |
         */
 
-        //dd(27 + $boardY = intval(((min($height / 30 * 29 - ($height / 75 * (count($pgn))), $height / 3000 * 2860) - (isset($title[1]) ? $height / 3.75 : $height / 5)) / 2) - (isset($title[1]) ? 0 : $height / 15)));
-
-
         $im->insert(
             public_path(
                 '/themes/' . $poster->theme->path . '/board.svg'
