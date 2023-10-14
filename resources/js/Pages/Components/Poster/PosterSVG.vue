@@ -64,7 +64,7 @@
             <Frame :theme="this.poster.theme_id" />
 
             <!-- The board itself with pieces -->
-            <Game ref="Game" :theme_id="this.$props.poster.theme_id" :fen="this.$props.poster.fen" />
+            <Board ref="Game" :theme_id="this.$props.poster.theme_id" :fen="this.$props.poster.fen" />
 
             <!-- Diagram comment -->
             <text id="comment" y="1690" x="815" text-anchor="middle" font-size="32"
@@ -107,13 +107,13 @@
 
 <script>
 
-import Game from './Game.vue';
+import Board from './Board.vue';
 import Frame from '../../../Themes/Frame.vue';
 
 export default {
 
     components: {
-        Game,
+        Board,
         Frame,
     },
 
