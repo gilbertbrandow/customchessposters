@@ -12,6 +12,7 @@ class PosterFrame extends Model
 
     protected $fillable = [
         'name', 
+        'color',
         'image', 
     ]; 
 
