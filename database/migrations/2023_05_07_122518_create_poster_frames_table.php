@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('poster_frames', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('color');
             $table->string('image');
             $table->timestamps();
         });
