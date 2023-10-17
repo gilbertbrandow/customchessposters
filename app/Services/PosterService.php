@@ -57,6 +57,13 @@ class PosterService
         return $poster;
     }
 
+    /***
+     * @param Poster $poster The poster of which the PNG will be created
+     * @param int $width The width of the PNG in pixels 
+     * @param int $height The height of the PNG in pixels 
+     * @return string The url to the PNG in AWS S3
+     */
+    
     public function generatePNG(
         Poster $poster,
         $width = 6000,
