@@ -690,7 +690,25 @@ class PostersSeeder extends Seeder
                 'where' => 'Baku AZE',
             ],
 
-
+            [
+                'theme_id' => 2,
+                'orientation' => 1,
+                'starting_position' => 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                'pgn' => '1. d4 Nf6 2. c4 e6 3. Nf3 b6 4. a3 Ba6 5. Qc2 Bb7 6. Nc3 c5 7. e4 cxd4 8. Nxd4 Bc5 9. Nf3 Nc6 10. b4 Be7 11. Bb2 Qb8 12. Rd1 O-O 13. Be2 d6 14. O-O Rc8 15. Rfe1 Bf8 16. Bf1 Ne7 17. Nb5 Ne8 18. Ng5 Ng6 19. e5 d5 20. Qb3 Be7 21. Nxf7 Kxf7 22. cxd5 Bxd5 23. Rxd5 exd5 24. Qxd5+ Kf8 25. Nd4 Nf4 26. Qf3 Kg8 27. Qxf4 Qb7 28. Nf5 b5 29. Bxb5 Bf8 30. Bc4+ Kh8 31. Nh6',
+                'diagram_position' => 41,
+                'move_comment' => 'First domino to fall',
+                'fen' => 'rqr1n1k1/pb2bNpp/1p2p1n1/1N1pP3/1PP5/PQ6/1B3PPP/3RRBK1 b - - 0 21',
+                'result' => '1-0',
+                'title' => 'If you are going to beat King Magnus, this is how',
+                'white_player' => 'Alisher Suleymenov',
+                'black_player' => 'Magnus Carlsen',
+                'white_rating' => 2512,
+                'black_rating' => 2839,
+                'white_title' => 'GM',
+                'black_title' => 'GM',
+                'when' => 'Qatar Masters Open 2023, 2023.10.12 Round 2.1',
+                'where' => 'Doha QAT',
+            ],
         ];
 
         foreach ($posters as $poster) {

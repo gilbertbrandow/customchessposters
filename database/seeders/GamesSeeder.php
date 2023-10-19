@@ -401,6 +401,18 @@ class GamesSeeder extends Seeder
                 'world_championship_game' => 0,
                 'opening_id' => 4,
             ],
+
+            [
+                'poster_id' => 36,
+                'name' => 'Morphy-esque Play in a Upset of The Year',
+                'description' => 'Alisher Suleymenov completely smokes Magnus Carlsen of the board in a game for the ages.',
+                'date' => '2023-10-13',
+                'white_player' => 62,
+                'black_player' => 21,
+                'world_championship_game' => 0,
+                'opening_id' => 36,
+            ],
+
         ];
 
         foreach ($games as $game) {
