@@ -14,8 +14,8 @@ class HomeController extends Controller
         return Inertia::render('Home', [
             'faqs' => fn () => Faq::where('featured', true)->take(5)->get(),
             'game' =>  fn () => Game::where('id', '=', random_int(1, Game::count()))->with(['poster', 'whitePlayer', 'blackPlayer'])->first(),
-            'games' => fn() => Game::getAll($request)->take(7)->get(),
-        ]); 
+            'games' => fn () => Game::getAll($request)->take(7)->get(),
+        ]);
     }
 
     /*
@@ -24,22 +24,22 @@ class HomeController extends Controller
     |--------------------------------------------------------------------------
     */
 
-    public function shipping () 
+    public function shipping()
     {
         return Inertia::render('Policy/Shipping');
     }
 
-    public function return () 
+    public function return()
     {
         return Inertia::render('Policy/Return');
     }
 
-    public function privacy () 
+    public function privacy()
     {
         return Inertia::render('Policy/Privacy');
     }
 
-    public function lightbox () 
+    public function lightbox()
     {
         return Inertia::render('Components/Lightbox');
     }
