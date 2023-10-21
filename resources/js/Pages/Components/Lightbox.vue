@@ -6,7 +6,7 @@
                     <Poster ref="PosterSVG" :poster="$page.props.lightbox" />
                 </div>
                 <img v-if="this.slides[`${this.currSlide}`].size == 's'" class="poster__environment"
-                    src="../../../../public/images/environments/environment-small.jpg" :alt="'Small size of: ' + $page.props.lightbox.title + ' shown in a warmly lit room with a dark brown frame'" />
+                    src="../../../../public/images/environments/environment-small.webp" :alt="'Small size of: ' + $page.props.lightbox.title + ' shown in a warmly lit room with a dark brown frame'" />
                 <img v-else-if="this.slides[`${this.currSlide}`].size == 'm'" class="poster__environment"
                     src="../../../../public/images/environments/environment-medium.jpg" :alt="'Medium size of: ' + $page.props.lightbox.title + ' shown with a white frame'"/>
                 <img v-else-if="this.slides[`${this.currSlide}`].size == 'l'" class="poster__environment"
