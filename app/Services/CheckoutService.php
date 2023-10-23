@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use Exception;
+use Illuminate\Support\Collection;
 use Printful\Exceptions\PrintfulApiException;
 use Printful\Exceptions\PrintfulException;
 use Printful\PrintfulApiClient;
@@ -10,8 +11,11 @@ use Printful\PrintfulApiClient;
 class CheckoutService
 {
 
-    public function calculateShipping($items, $country, $state = null)
-    {
+    public function calculateShipping(
+        Collection $items, 
+        string $country, 
+        string $state = null
+    ): array {
         $pf = PrintfulApiClient::createOauthClient(env('PRINTFUL_SK'));
 
         try {
