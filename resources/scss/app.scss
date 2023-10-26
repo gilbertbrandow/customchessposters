@@ -1548,6 +1548,7 @@ h4 {
             height: 1em;
             border-radius: 1em;
             background-color: #bebebe;
+            background-clip: content-box;
             cursor: pointer;
         }
 
@@ -1556,6 +1557,8 @@ h4 {
         }
 
         .active {
+            border: 0.06em #000 solid;
+            padding: 0.25em;
             background-color: #000;
         }
     }
