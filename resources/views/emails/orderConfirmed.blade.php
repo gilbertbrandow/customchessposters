@@ -7,22 +7,24 @@
     @foreach ($order->orderItems as $item)
     <ul class="table">
         <li><h3>Poster, "{{ $item->product->poster->title }}"</h3></li>
-        <li><span>Quantity: </span> <span>{{ $item->quantity }}</span></li>
+        <li><span>Frame: </span> <span>{{ $item->product->variant->posterFrame ? $item->product->variant->posterFrame->name : 'No frame' }}</span></li>
         <li><span>Dimensions: </span> <span>{{ $item->product->variant->posterSize->width }} x {{ $item->product->variant->posterSize->height }} cm</span></li>
         <li><span>Design: </span><span><a class="text-link" href="{{ env('APP_URL') . '/edit-poster/' . $item->product->poster->id }}">Click here</a></span></li>
+        <li><span>Quantity: </span> <span>{{ $item->quantity }}</span></li>
+        <li><span>Price: </span> <span>€{{ number_format($item->product->variant->price / 100, 2, '.', '') }}</span></li>
     </ul>
     <br>
     @endforeach
     <h2>Order total</h2>
     <ul class="table">
         <li class="columns">
-            <span>Subtotal: </span> <span> ${{ number_format(($order->totalAmount() - $order->shipping->cost) / 100, 2, '.', '') }}</span>
+            <span>Subtotal: </span> <span> €{{ number_format(($order->total - $order->shipping->cost) / 100, 2, '.', '') }}</span>
         </li>
         <li>
-            <span>Shipping: </span> <span> ${{ number_format($order->shipping_cost / 100, 2, '.', '') }}</span>
+            <span>Shipping: </span> <span> €{{ number_format($order->shipping->cost / 100, 2, '.', '') }}</span>
         </li>
         <li>
-            <span>Total: </span> <span> ${{ number_format($order->totalAmount() / 100, 2, '.', '') }}</span>
+            <span>Total: </span> <span> €{{ number_format($order->total / 100, 2, '.', '') }}</span>
         </li>
     </ul>
     <br>
