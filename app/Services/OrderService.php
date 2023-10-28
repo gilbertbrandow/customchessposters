@@ -63,7 +63,7 @@ class OrderService
         try {
             $pf->post('orders', [
                 'shipping' => $this->order->shipping->name,
-                'retail_price' => $this->order->totalAmount(),
+                'retail_price' => $this->order->total,
                 'recipient' => [
                     'name' => $recipient->name,
                     'address1' =>  $recipient->address1,

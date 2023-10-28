@@ -22,7 +22,7 @@ class Order extends Model
         'cart_id',
         'recipient_id',
         'shipping',
-        'shipping_cost',
+        'payment_intent',
     ];
 
     public function recipient(): BelongsTo
