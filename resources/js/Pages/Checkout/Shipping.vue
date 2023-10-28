@@ -19,7 +19,7 @@
                     :value="country.code + ', ' + country.name">{{ country.name }}</option>
             </select>
         </div>
-        <div class="field__wrp" v-if="this.states">
+        <div class="field__wrp" v-if="this.states?.length">
             <label for="country" class="field__label">State</label>
             <div v-if="form.errors.state_code" v-text="form.errors.state_code" class="field__error"></div>
             <select v-model="form.state_code" id="country" class="field" name="state"
@@ -119,8 +119,7 @@ export default {
             this.$page.props.countries.forEach(element => {
                 if (element.code == countryArray[0]) {
                     this.states = element.states;
-
-                    return
+                    return;
                 }
             });
         },
@@ -140,12 +139,6 @@ export default {
         setErrors(error) {
             if (error.toLowerCase().includes('country')) this.form.errors.country_code = error;
             else if (error.toLowerCase().includes('state')) this.form.errors.state_code = error;
-        }
-    },
-
-    watch: {
-        country() {
-            this.updateCountry();
         }
     },
 
