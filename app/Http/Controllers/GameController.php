@@ -79,7 +79,9 @@ class GameController extends Controller
             'black_player.country AS black_country',
         )
         ->where('games.id', '=', $id)
-        ->first(); 
+        ->first();
+        
+        if(!$game) abort(404);
 
         return Inertia::render('Game', compact('game'));
 
