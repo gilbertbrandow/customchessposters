@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use stdClass;
 
 class Game extends Model
 {
@@ -45,6 +47,53 @@ class Game extends Model
     public function blackPlayer(): BelongsTo
     {
         return $this->belongsTo(Player::class, 'black_player', 'id');
+    }
+
+    public function getFull(): stdClass
+    {
+        return DB::table('games')
+        ->join('posters', 'games.poster_id', '=', 'posters.id')
+        ->join('openings', 'games.opening_id', '=', 'openings.id')
+        ->join('players as white_player', 'games.white_player', '=', 'white_player.id')
+        ->join('players as black_player', 'games.black_player', '=', 'black_player.id')
+        ->select(
+            'games.id as game_id',
+            'games.name',
+            'games.description',
+            'games.date',
+            'games.world_championship_game',
+            'games.created_at',
+            'games.updated_at as recent',
+            'games.opening_id',
+            'games.white_player',
+            'games.white_player',
+            'posters.id',
+            'posters.theme_id',
+            'posters.orientation',
+            'posters.starting_position',
+            'posters.pgn',
+            'posters.diagram_position',
+            'posters.move_comment',
+            'posters.fen',
+            'posters.result',
+            'posters.title',
+            'posters.white_player',
+            'posters.black_player',
+            'posters.white_rating',
+            'posters.black_rating',
+            'posters.white_title',
+            'posters.black_title',
+            'posters.when',
+            'posters.where',
+            'openings.name as opening_name',
+            'openings.eco as opening_eco',
+            'white_player.name AS white_name',
+            'white_player.country AS white_country',
+            'black_player.name AS black_name',
+            'black_player.country AS black_country',
+        )
+        ->where('games.id', '=', $this->id)
+        ->first();
     }
 
     public static function getAll(Request $request): QueryBuilder
