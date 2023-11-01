@@ -10,9 +10,9 @@ use Stripe\Webhook;
 use UnexpectedValueException;
 use App\Services\OrderService;
 
-class WebhookController extends Controller
+class StripeWebhookController extends Controller
 {
-    public function index()
+    public function handle()
     {
 
         Stripe::setApiKey(env('STRIPE_SK'));

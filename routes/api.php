@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\WebhookController;
+use App\Http\Controllers\StripeWebhookController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,5 +26,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 |--------------------------------------------------------------------------
 */
 
-Route::post('/webhook/stripe', [WebhookController::class, 'index'])
-->name('webhook.stripe');
+Route::post('/webhook/stripe', [StripeWebhookController::class, 'handle'])
+->name('stripe.webhook');
