@@ -10,8 +10,6 @@ class CartController extends Controller
 {
     public function index(Request $request)
     {
-        $cart = Cart::where('session_token', $request->session()->get('_token'))->orWhere('user_id', Auth::id())->first();
-
-        return $cart->allItems;
+        return ($cart = Cart::where('session_token', $request->session()->get('_token'))->orWhere('user_id', Auth::id())->first()) ? $cart->allItems : null;
     }
 }
