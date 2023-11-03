@@ -1577,9 +1577,11 @@ h4 {
             border-radius: 3em;
             cursor: pointer;
             font-size: 1em;
+            padding: 0;
 
             svg {
-                width: 0.75em;
+                margin-left: 0em;
+                width: 1em;
                 filter: invert(100%);
             }
         }

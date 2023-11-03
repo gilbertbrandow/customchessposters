@@ -40,11 +40,11 @@
                     ></div>
                 </div>
                 <div class="lightbox__arrows">
-                    <button @click="this.prevSlide()">
-                        <Icon name="small-arrow" />
+                    <button @click="this.prevSlide()" class="button">
+                        <Icon name="arrow-right"></Icon>
                     </button>
-                    <button @click="this.nextSlide()">
-                        <Icon name="small-arrow" />
+                    <button @click="this.nextSlide()" class="button">
+                        <Icon name="arrow-right"></Icon>
                     </button>
                     <button
                         @click="
