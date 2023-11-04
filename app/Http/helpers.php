@@ -54,11 +54,10 @@ function diagramInfo(string $pgn, string $moveComment, int $diagramPosition): st
     //Depending on if half move or not, look until next ' ', or from next ' ' to the one after that
     if ($diagramPosition % 2 != 0) {
         //White move
-        return "Position after White's move " . round($diagramPosition / 2) . '. ' . substr($pgn, $indexOfMove, $spaceIndex - $indexOfMove). ', ' . $moveComment;
+        return "Position after White's move " . round($diagramPosition / 2) . '. ' . substr($pgn, $indexOfMove, $spaceIndex - $indexOfMove) . ($moveComment ? ', ' . $moveComment : '');
     } else {
         //Black move
         $nextSpaceIndex = (strpos($pgn, ' ', $spaceIndex + 1) > 0) ? strpos($pgn, ' ', $spaceIndex + 1) : strlen($pgn);
-        
-        return "Position after Black's move " . round($diagramPosition / 2) . '. ... ' . substr($pgn, $spaceIndex + 1, $nextSpaceIndex - $spaceIndex) . ', ' . $moveComment;
+        return "Position after Black's move " . round($diagramPosition / 2) . '. ... ' . substr($pgn, $spaceIndex + 1, $nextSpaceIndex - $spaceIndex) . ($moveComment ? ', ' . $moveComment : '');
     } 
 }
