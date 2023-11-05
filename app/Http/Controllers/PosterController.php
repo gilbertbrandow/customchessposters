@@ -19,7 +19,7 @@ class PosterController extends Controller
     public function show($id)
     {
 
-        $editPoster = Poster::find($id);
+        $editPoster = Poster::findOrFail($id);
         
         return Inertia::render('CreatePoster', compact('editPoster'));
     }
