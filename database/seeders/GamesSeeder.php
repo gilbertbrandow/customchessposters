@@ -405,7 +405,7 @@ class GamesSeeder extends Seeder
             [
                 'poster_id' => 36,
                 'name' => 'Morphy-esque Play in a Upset of The Year',
-                'description' => 'Alisher Suleymenov completely smokes Magnus Carlsen of the board in a game for the ages.',
+                'description' => 'Alisher Suleymenov puts on a performance reminiscent of old masters agains the number 1. ranked player in the world.',
                 'date' => '2023-10-13',
                 'white_player' => 62,
                 'black_player' => 21,
