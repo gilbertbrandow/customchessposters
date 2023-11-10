@@ -413,6 +413,17 @@ class GamesSeeder extends Seeder
                 'opening_id' => 36,
             ],
 
+            [
+                'poster_id' => 37,
+                'name' => 'The Current Champions Immortal Game',
+                'description' => 'Ding Liren puts the up-and-coming talent, Bai Jin in a very difficult position with a early and surprising Queen sacrifice.',
+                'date' => '2017-11-04',
+                'white_player' => 63,
+                'black_player' => 5,
+                'world_championship_game' => 0,
+                'opening_id' => 37,
+            ],
+
         ];
 
         foreach ($games as $game) {

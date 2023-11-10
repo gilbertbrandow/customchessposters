@@ -709,6 +709,26 @@ class PostersSeeder extends Seeder
                 'when' => 'Qatar Masters Open 2023, 2023.10.12 Round 2.1',
                 'where' => 'Doha QAT',
             ],
+
+            [
+                'theme_id' => 2,
+                'orientation' => 1,
+                'starting_position' => 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                'pgn' => '1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. Nf3 O-O 5. Bg5 c5 6. e3 cxd4 7. Qxd4 Nc6 8. Qd3 h6 9. Bh4 d5 10. Rd1 g5 11. Bg3 Ne4 12. Nd2 Nc5 13. Qc2 d4 14. Nf3 e5 15. Nxe5 dxc3 16. Rxd8 cxb2+ 17. Ke2 Rxd8 18. Qxb2 Na4 19. Qc2 Nc3+ 20. Kf3 Rd4 21. h3 h5 22. Bh2 g4+ 23. Kg3 Rd2 24. Qb3 Ne4+ 25. Kh4 Be7+ 26. Kxh5 Kg7 27. Bf4 Bf5 28. Bh6+ Kh7 29. Qxb7 Rxf2 30. Bg5 Rh8 31. Nxf7 Bg6+ 32. Kxg4 Ne5+',
+                'diagram_position' => 34,
+                'move_comment' => 'Mayhem on the board.',
+                'fen' => 'r1br2k1/pp3p2/2n4p/2n1N1p1/1bP5/4P1B1/PpQ1KPPP/5B1R w - - 0 18',
+                'result' => '0-1',
+                'title' => 'Unruly Minors',
+                'white_player' => 'Jinshi Bai',
+                'black_player' => 'Ding Liren',
+                'white_rating' => 2553,
+                'black_rating' => 2774,
+                'white_title' => 'GM',
+                'black_title' => 'GM',
+                'when' => 'Chinese Chess League, 2017.11.04 Round 18.4',
+                'where' => 'China CHN',
+            ],
         ];
 
         foreach ($posters as $poster) {

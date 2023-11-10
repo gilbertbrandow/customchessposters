@@ -330,6 +330,11 @@ class PlayersSeeder extends Seeder
                 'name' => 'Suleymenov, Alisher',
                 'country' => 'Kazakhstan',
             ],
+
+            [
+                'name' => 'Jinshi, Bai',
+                'country' => 'China',
+            ],
         ];
 
         foreach ($players as $player) {
