@@ -332,7 +332,7 @@ class PlayersSeeder extends Seeder
             ],
 
             [
-                'name' => 'Jinshi, Bai',
+                'name' => 'Bai, Jinshi',
                 'country' => 'China',
             ],
         ];
