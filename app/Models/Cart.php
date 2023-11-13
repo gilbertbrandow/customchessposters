@@ -36,6 +36,11 @@ class Cart extends Model
         return $this->hasOne(order::class);
     }
 
+    public function getItemsCountAttribute()
+    {
+        return $this->cartItems()->count();
+    }
+
     public static function hasPosterNotUser($posterId, $user)
     {
         return DB::table('carts')
