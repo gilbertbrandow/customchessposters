@@ -32,7 +32,7 @@
             <div></div> {{ $page.props.flash.cart.success ? $page.props.flash.cart.success : 'Your cart' }}
           </div>
           <Icon name="cart" />
-          <div v-if="$page.props.cartCount" v-text="$page.props.cartCount" class="notification"></div>
+          <div v-if="$page.props.cart?.count" v-text="$page.props.cart.count" class="notification"></div>
         </button>
       </div>
     </div>
