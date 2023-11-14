@@ -17,7 +17,7 @@ class ProductResource extends JsonResource
         return [
             'id' => $this->id,
             'type' => $this->type,
-            'frame' => $this->variant->frame,
+            'frame' => $this->variant->poster_frame_id,
             'width' => $this->variant->posterSize->width,
             'height' => $this->variant->posterSize->height,
             'price' => $this->price,
