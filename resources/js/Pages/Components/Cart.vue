@@ -6,25 +6,25 @@
         </button>
         <h2>Cart</h2>
         <ul class="cart-items">
-            <li v-if="!this.cart || !this.cart.length">
+            <li v-if="!this.cart?.items.length">
                 No items in your cart
             </li>
-            <li v-else v-for="item in this.cart">
-                <template v-if="item.type == 'poster'">
-                    <Poster :poster="item" :controls="{ 'small': true }" :environment="item.frame_id ?? 0"/>
+            <li v-else v-for="item in this.cart.items">
+                <template v-if="item.product.type == 'poster'">
+                    <Poster :poster="item.product.poster" :controls="{ 'small': true }" :environment="item.product.frame ?? 0"/>
                     <div class="content">
-                        <h3 v-text="item.name"></h3>
-                        <span>{{ ($page.props.unit ? item.width + ' x ' + item.height + ' cm, ' : Math.round(item.width *
-                            0.393700787) + '" x ' + Math.round(item.height * 0.393700787) + '", ') + (item.frame ?
-                                item.frame + ' frame' : '') }}
-                            <Link class="text__link" :href="route('poster.show', { 'id': item.id })">see poster</Link>
+                        <h3 v-text="item.product.poster.title"></h3>
+                        <span>{{ ($page.props.unit ? item.product.width + ' x ' + item.product.height + ' cm, ' : Math.round(item.width *
+                            0.393700787) + '" x ' + Math.round(item.product.height * 0.393700787) + '", ') + (item.product.frame ?
+                            item.product.frame + ' frame' : '') }}
+                            <Link class="text__link" :href="route('poster.show', { 'id': item.product.poster.id })">see poster</Link>
                         </span>
 
                         <div class="is--flex">
-                            <strong v-text="'$' + (item.price / 100).toFixed(2)"></strong> x
+                            <strong v-text="'$' + (item.product.price / 100).toFixed(2)"></strong> x
                             <input type="number" min="1" :value="item.quantity" name="quantity"
-                                @change="this.updateCart(item.itemId, false, $event.target.value)" />
-                            <button class="text__link" type="submit" @click="this.updateCart(item.itemId, true)">Remove
+                                @change="this.updateCart(item.id, false, $event.target.value)" />
+                            <button class="text__link" type="submit" @click="this.updateCart(item.id, true)">Remove
                                 item</button>
                         </div>
                     </div>
@@ -32,7 +32,7 @@
             </li>
         </ul>
         <div class="button is--cart is--flex is--space-between">Total: <span>${{ total ? (total / 100).toFixed(2) : 0}}</span></div>
-        <Link :href="route('checkout.index')" v-if="this.cart && this.cart.length"
+        <Link :href="route('checkout.index')" v-if="this.cart && this.cart.items.length"
             class="button is--black is--less-border-radius is--flex is--space-between">Checkout
         <Icon name="arrow-right" />
         </Link>
@@ -70,11 +70,13 @@ export default {
 
             if (!this.cart) return;
 
+            console.log(this.cart.items); 
+
             let total = 0;
 
-            this.cart.forEach(element =>
+            this.cart.items.forEach(item =>
 
-                total += element.price * element.quantity
+                total += item.product.price * item.quantity
             );
 
             return total;
@@ -94,11 +96,7 @@ export default {
 
                 onFinish: visit => {
 
-                    //Update cart content only in frontend instead of new axios request
-                    for (let i = 0; i < this.cart.length; i++) {
-                        if (this.cart[i].itemId == id && remove) this.cart.splice(i, 1);
-                        if (this.cart[i].itemId == id && quantity) this.cart[i].quantity = quantity;
-                    }
+                    this.fetchCart();
                 },
             })
 
@@ -106,12 +104,12 @@ export default {
         },
 
         fetchCart() {
-            if(this.$page.props.overlay != 'cart') return; 
+            if(this.$page.props.overlay != 'cart' || !this.$page.props.cart?.id) return; 
 
             axios
-                .get('/cart')
+                .get('/api/carts/' + this.$page.props.cart.id)
                 .then(response => (
-                    this.$data.cart = response.data
+                    this.$data.cart = response.data.data
                 ))
                 .catch((error) => (
                     console.error(error)
