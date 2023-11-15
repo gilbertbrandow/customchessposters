@@ -13,7 +13,6 @@ use App\Http\Controllers\GameController;
 use App\Http\Controllers\OpeningController;
 use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\CartController;
 use App\Http\Controllers\CartItemController;
 use App\Http\Controllers\ShippingMethodController;
 use App\Http\Controllers\OrderController;
@@ -182,9 +181,6 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/poster-variants', [PosterVariantController::class, 'index'])
     ->name('poster-variants.index');
-
-Route::get('/cart', [CartController::class, 'index'])
-    ->name('cart.index');
 
 Route::post('/add-to-cart', [CartController::class, 'update'])
     ->name('cart.update');

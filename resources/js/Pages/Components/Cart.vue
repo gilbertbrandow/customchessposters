@@ -84,7 +84,7 @@ export default {
     },
 
     methods: {
-        updateCart(id, remove, quantity) {
+        updateCartItem(id, remove, quantity) {
 
             router.visit('/cart-item/' + (remove ? 'destroy/' : 'update/') + id, {
                 method: 'post',
@@ -96,14 +96,14 @@ export default {
 
                 onFinish: visit => {
 
-                    this.fetchCart();
+                    this.getCart();
                 },
             })
 
 
         },
 
-        fetchCart() {
+        getCart() {
             if(this.$page.props.overlay != 'cart' || !this.$page.props.cart?.id) return; 
 
             axios
@@ -118,7 +118,7 @@ export default {
     },
 
     mounted() {
-        this.fetchCart(); 
+        this.getCart(); 
     },
 }
 </script>
