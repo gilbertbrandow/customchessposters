@@ -182,9 +182,6 @@ Route::middleware('auth')->group(function () {
 Route::get('/poster-variants', [PosterVariantController::class, 'index'])
     ->name('poster-variants.index');
 
-Route::post('/add-to-cart', [CartController::class, 'update'])
-    ->name('cart.update');
-
 Route::post('/product', [ProductController::class, 'create'])
     ->name('product.create');
 
