@@ -153,7 +153,7 @@ class PosterService
 
             function ($font) use ($poster, $height) {
                 $font->file(resource_path($poster->theme->font_regular));
-                $font->size($height / 300 * 7);
+                $font->size($height / 300 * 6);
                 $font->align('center');
                 $font->valign('middle');
                 $font->color($poster->theme->color);

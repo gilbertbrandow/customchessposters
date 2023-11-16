@@ -20,7 +20,7 @@
         <!-- Players name, title and ranking -->
         <text
             id="players"
-            font-size="70"
+            font-size="60"
             text-anchor="middle"
             x="1000"
             font-weight="400"
@@ -35,7 +35,7 @@
             <tspan v-if="poster.white_rating">
                 ({{ poster.white_rating }})
             </tspan>
-            <tspan>-</tspan>
+            <tspan> - </tspan>
             <tspan v-if="poster.black_title">
                 {{ poster.black_title + " " }}
             </tspan>
@@ -61,7 +61,7 @@
             }"
         >
             <tspan>{{ poster.where }}</tspan>
-            <tspan v-if="poster.where && poster.when">|</tspan>
+            <tspan v-if="poster.where && poster.when"> | </tspan>
             <tspan>{{ poster.when }}</tspan>
         </text>
 
