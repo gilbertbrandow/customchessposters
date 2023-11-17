@@ -185,12 +185,6 @@ Route::get('/poster-variants', [PosterVariantController::class, 'index'])
 Route::post('/product', [ProductController::class, 'create'])
     ->name('product.create');
 
-Route::post('/cart-item/destroy/{id}', [CartItemController::class, 'destroy'])
-    ->name('cartItem.destroy');
-
-Route::post('/cart-item/update/{id}', [CartItemController::class, 'update'])
-    ->name('cartItem.update');
-
 Route::get('/checkout', [OrderController::class, 'index'])
     ->name('checkout.index');
 
