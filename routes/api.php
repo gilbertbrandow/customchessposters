@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\CartController;
+use App\Http\Controllers\API\CartItemController;
 use App\Http\Controllers\StripeWebhookController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +29,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 */
 
 Route::apiResource('carts', CartController::class);
+
+/*
+|--------------------------------------------------------------------------
+| Cart items api routes
+|--------------------------------------------------------------------------
+*/
+
+Route::apiResource('cart-items', CartItemController::class);
 
 
 /*
