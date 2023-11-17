@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\CartController;
 use App\Http\Controllers\API\CartItemController;
 use App\Http\Controllers\StripeWebhookController;
+use App\Http\Controllers\PrintfulWebhookController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -47,3 +48,13 @@ Route::apiResource('cart-items', CartItemController::class);
 
 Route::post('/webhook/stripe', [StripeWebhookController::class, 'handle'])
 ->name('stripe.webhook');
+
+
+/*
+|--------------------------------------------------------------------------
+| Printful webhook routes
+|--------------------------------------------------------------------------
+*/
+
+Route::post('/webhook/printful', [PrintfulWebhookController::class, 'handle'])
+->name('printful.webhook');
