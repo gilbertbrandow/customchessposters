@@ -139,16 +139,14 @@ export default {
                 .put("/api/cart-items/" + id, {
                     quantity: quantity,
                 })
+                .then((response) => this.getCart())
                 .catch((error) => console.error(error));
         },
 
         deleteCartItem(id) {
             axios
                 .delete("/api/cart-items/" + id)
-                .then((response) => 
-                this.getCart(),
-                this.$page.props.cart.count--
-                )
+                .then((response) => this.getCart())
                 .catch((error) => console.error(error));
         },
 
@@ -161,7 +159,12 @@ export default {
 
             axios
                 .get("/api/carts/" + this.$page.props.cart.id)
-                .then((response) => (this.$data.cart = response.data.data))
+                .then(
+                    (response) => (
+                        this.$data.cart = response.data.data,
+                        this.$page.props.cart.count = response.data.data.count
+                    )
+                )
                 .catch((error) => console.error(error));
         },
     },
