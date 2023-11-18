@@ -38,7 +38,7 @@ class Cart extends Model
 
     public function getItemsCountAttribute()
     {
-        return $this->cartItems()->count();
+        return $this->cartItems()->sum('quantity');
     }
 
     public static function hasPosterNotUser($posterId, $user)
