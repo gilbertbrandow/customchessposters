@@ -99,7 +99,6 @@ import Icon from "../../Icons/Icon.vue";
 import Poster from "../Components/Poster.vue";
 import { Link } from "@inertiajs/vue3";
 import { useForm } from "@inertiajs/vue3";
-import { router } from "@inertiajs/vue3";
 import axios from "axios";
 
 export default {
