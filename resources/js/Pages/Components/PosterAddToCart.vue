@@ -1,6 +1,6 @@
 <template>
     <div class="is--flex">
-        <button class="button is--black" @click="this.submit()" :disabled="!this.$props.variant">
+        <button class="button is--black" @click="this.addToCart()" :disabled="!this.$props.variant">
             {{ !this.$props.variant ? 'Choose a size' : 'Add to cart' }}
             <Icon :name="this.$props.variant ? 'cart' : ''" />
         </button>
@@ -26,7 +26,7 @@ export default {
     },
 
     methods: {
-        submit() {
+        addToCart() {
             router.visit('/product', {
                 method: 'post',
                 data: {
