@@ -40,9 +40,9 @@ class StripeWebhookController extends Controller
         switch ($event->type) {
             case 'charge.succeeded':
 
-                $paymentIntent = $event->data->object;  
+                $charge = $event->data->object;  
 
-                $order = Order::where('payment_intent', $paymentIntent->id)->first(); 
+                $order = Order::where('payment_intent', $charge->payment_intent)->first(); 
 
                 (new OrderService($order))->createOrderItems(); 
                 
