@@ -38,7 +38,7 @@ class StripeWebhookController extends Controller
         }
 
         switch ($event->type) {
-            case 'payment_intent.succeeded':
+            case 'charge.succeeded':
 
                 $paymentIntent = $event->data->object;  
 
