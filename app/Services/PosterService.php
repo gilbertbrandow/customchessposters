@@ -183,7 +183,7 @@ class PosterService
 
         $im->insert(
             public_path(
-                '/themes/' . $poster->theme->path . '/board.svg'
+                'themes/' . $poster->theme->path . '/board.svg'
             ),
             'top-center',
             intval($width / 2),
@@ -245,7 +245,7 @@ class PosterService
             } else {
 
                 $im->insert(
-                    public_path('/themes/' . $poster->theme->path . '/' . (ctype_lower($poster->fen[$i]) ? 'Black' : 'White') . '/' . strtolower($poster->fen[$i]) . '.svg'),
+                    public_path('themes/' . $poster->theme->path . '/' . (ctype_lower($poster->fen[$i]) ? 'Black' : 'White') . '/' . strtolower($poster->fen[$i]) . '.svg'),
                     'top-left',
                     intval(($width - 4560) / 2) + 570 * $column,
                     $boardY + 25 + 570 * $row
