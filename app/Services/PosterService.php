@@ -183,7 +183,7 @@ class PosterService
 
         $im->insert(
             public_path(
-                'themes/' . $poster->theme->path . '/board.svg'
+                'themes/' . $poster->theme->path . '/Board.svg'
             ),
             'top-center',
             intval($width / 2),
