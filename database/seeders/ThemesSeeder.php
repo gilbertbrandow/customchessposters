@@ -21,8 +21,8 @@ class ThemesSeeder extends Seeder
                     'path' => 'New Waves',
                     'font_regular' => '/fonts/Custom-Serif-By-Ayaka-Ito-Regular.ttf',
                     'font_italic' => '/fonts/Custom-Serif-By-Ayaka-Ito-Italic.ttf',
-                    'background' => 'rgb(251, 246, 238)', 
-                    'color' => 'rgb(65, 37, 29)',
+                    'background' => '#f8f5f1', 
+                    'color' => '#f8f5f1',
                 ],
 
                 [
@@ -30,8 +30,8 @@ class ThemesSeeder extends Seeder
                     'path' => 'Old Knowledge',
                     'font_regular' => '/fonts/EBGaramond-Regular.ttf',
                     'font_italic' => '/fonts/EBGaramond-Italic.ttf',
-                    'background' => 'rgba(248, 245, 241)', 
-                    'color' => 'rgb(0, 0, 0)',
+                    'background' => '#f8f5f1', 
+                    'color' => '#000',
                 ],
         ];
 
