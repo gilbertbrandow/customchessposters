@@ -19,6 +19,14 @@
                 </div>Saved Posters
                 </Link>
             </li>
+
+            <li :class="{ 'is--active': $page.url === '/orders' }">
+                <Link :href="route('orderUser.index')">
+                <div>
+                    <Icon name="order"></Icon>
+                </div> Orders
+                </Link>
+            </li>
             <li v-if="$page.props.auth.user.admin" :class="{ 'is--active': $page.url === '/faq-edit' }">
                 <Link :href="route('faq.edit')">
                 <div>

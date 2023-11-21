@@ -1,6 +1,7 @@
 <template>
         <section>
         <h1>Orders</h1>
+        {{ this.$page.props.orders }}
     </section>
 </template>
 
