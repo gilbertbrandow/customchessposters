@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\OrderResource;
 use App\Models\order;
 use Illuminate\Http\Request;
 
@@ -37,7 +38,7 @@ class OrderController extends Controller
      */
     public function show(order $order)
     {
-        //
+        return new OrderResource($order);
     }
 
     /**
