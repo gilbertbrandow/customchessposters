@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\CartController;
 use App\Http\Controllers\API\CartItemController;
+use App\Http\Controllers\API\OrderController;
 use App\Http\Controllers\StripeWebhookController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,7 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 /*
 |--------------------------------------------------------------------------
-| Cart api routes
+| Carts api routes
 |--------------------------------------------------------------------------
 */
 
@@ -37,6 +38,14 @@ Route::apiResource('carts', CartController::class);
 */
 
 Route::apiResource('cart-items', CartItemController::class);
+
+/*
+|--------------------------------------------------------------------------
+| Orders api routes
+|--------------------------------------------------------------------------
+*/
+
+Route::apiResource('orders', OrderController::class);
 
 
 /*
