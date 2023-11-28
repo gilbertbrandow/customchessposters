@@ -16,7 +16,9 @@ class OrderResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'items' => OrderItemResource::collection($this->cartItems),
+            'items' => OrderItemResource::collection($this->orderItems),
+            'shipping' => new ShippingMethodResource($this->shipping),
+            'total' => $this->total,
         ];
     }
 }
