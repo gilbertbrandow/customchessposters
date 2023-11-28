@@ -46,6 +46,7 @@ class HandleInertiaRequests extends Middleware
             ],
             'auth' => Auth::check() ? [
                 'user' => [
+                    'id' => Auth::user()->id,
                     'name' => Auth::user()->name,
                     'admin' => Auth::user()->admin,
                     'saved' => Auth::user()->posters->pluck('id'),
