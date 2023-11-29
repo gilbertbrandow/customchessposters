@@ -1,20 +1,39 @@
 <template>
-        <section>
+    <section>
         <h1>Orders</h1>
-        {{ this.$page.props.orders }}
+        {{ this.$data.orders }}
     </section>
 </template>
 
 <script>
 import App from "../../Layouts/App.vue";
 import AccountNav from "../../Layouts/AccountNav.vue";
+import axios from "axios";
 
 export default {
     layout: (h, page) => {
-        return h(App, () => h(AccountNav, () => page))
+        return h(App, () => h(AccountNav, () => page));
     },
 
-    components: {
+    data() {
+        return {
+            orders: [],
+        };
     },
-}
+
+    components: {},
+
+    methods: {
+        getOrders() {
+            axios
+                .get("/api/orders?user=" + this.$page.props.auth.user.id)
+                .then((response) => this.$data.orders = response.data.data)
+                .catch((error) => console.error(error));
+        },
+    },
+
+    mounted() {
+        this.getOrders();
+    },
+};
 </script>
