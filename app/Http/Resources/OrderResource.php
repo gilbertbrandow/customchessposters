@@ -16,6 +16,7 @@ class OrderResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'status' => ucfirst($this->status),
             'items' => OrderItemResource::collection($this->orderItems),
             'shipping' => new ShippingMethodResource($this->shipping),
             'total' => $this->total,
