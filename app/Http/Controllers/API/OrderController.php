@@ -17,7 +17,10 @@ class OrderController extends Controller
      */
     public function index(Request $request)
     {
-        return OrderResource::collection(User::find($request->user)->orders);
+        return OrderResource::collection(
+            Order::where('user_id', '=', $request->user)
+                ->with('shipping', 'orderItems.product.poster')->get()
+        );
     }
 
     /**
