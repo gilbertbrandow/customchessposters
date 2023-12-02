@@ -17,7 +17,18 @@ class ShippingMethodResource extends JsonResource
         return [
             'name' => $this->name,
             'cost' => $this->cost,
-            'delivery' => $this->desc,
+            'estimated_delivery' => $this->when(
+                match ($this->selectedForOrder->status) {
+                    'pending' => false,
+                    'recieved' => true,
+                    'fulfilling' => true,
+                    'shipped' => true,
+                    'confirmed' => false, 
+                    'declined' => false, 
+                },
+                substr($this->desc, strpos($this->desc, ':') + 2, -2)
+            ),
+            'desc' => rtrim(strtok($this->desc, '(')),
         ];
     }
 }
