@@ -14,6 +14,7 @@ class Recipient extends Model
 
     protected $fillable = [
         'email', 
+        'phone',
         'user_id', 
         'session_token',
         'country_code',
