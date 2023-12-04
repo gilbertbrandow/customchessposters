@@ -66,6 +66,8 @@ class OrderService
                 'retail_price' => $this->order->total,
                 'recipient' => [
                     'name' => $recipient->name,
+                    'email' => $recipient->email,
+                    'phone' => $recipient->phone,
                     'address1' =>  $recipient->address1,
                     'city' =>  $recipient->city,
                     'state_code' =>  $recipient->state_code,
