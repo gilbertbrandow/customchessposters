@@ -29,10 +29,11 @@ class RecipientController extends Controller
         ]);
     }
 
-    public function create(string $orderId, Request $request): RedirectResponse
+    public function create(int $orderId, Request $request): RedirectResponse
     {
         $request->validate([
             'email' => ['required', 'email'],
+            'phone' => ['required'],
             'country_code' => ['required'],
             'name' => ['required'],
             'address1' => ['required'],
