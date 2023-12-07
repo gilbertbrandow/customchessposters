@@ -17,8 +17,14 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         return OrderResource::collection(
-            Order::where('user_id', '=', $request->user)
-                ->with('shipping', 'orderItems.product.poster')->get()
+            Order::with('shipping', 'orderItems.product.poster')
+                ->when($request->user, function ($q) use ($request) {
+                    return $q->where('user_id', '=', $request->user);
+                })
+                ->when($request->not_status, function ($q) use ($request) {
+                    return $q->where('status', '!=', $request->not_status);
+                })
+                ->get()
         );
     }
 
