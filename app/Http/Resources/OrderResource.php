@@ -19,6 +19,8 @@ class OrderResource extends JsonResource
             'status' => ucfirst($this->status),
             'items' => OrderItemResource::collection($this->orderItems),
             'shipping' => new ShippingMethodResource($this->shipping),
+            'created' => $this->created_at, 
+            'last_updated' => $this->updated_at,
             'total' => $this->total,
         ];
     }
