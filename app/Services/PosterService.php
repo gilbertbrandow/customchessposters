@@ -247,8 +247,8 @@ class PosterService
                 $im->insert(
                     public_path('themes/' . $poster->theme->path . '/' . (ctype_lower($poster->fen[$i]) ? 'Black' : 'White') . '/' . strtolower($poster->fen[$i]) . '.svg'),
                     'top-left',
-                    intval(($width - 4560) / 2) + 570 * $column,
-                    $boardY + 25 + 570 * $row
+                    intval(($width - 4560) / 2) + 570 * ($poster->orientation ? $column : 7 - $column),
+                    $boardY + 25 + 570 * ($poster->orientation ? $row : 7 - $row),
                 );
 
                 $column++;
