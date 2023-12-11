@@ -3,12 +3,18 @@
         <h1>Orders</h1>
         <div v-for="order in this.orders" class="card" :key="order.id">
             <h2>Order number #{{ order.id }}</h2>
-            <div>{{ order.status }}</div>
-            {{ order.total }}
+            <div class="status" :class="[order.status.toLowerCase()]">{{ order.status }}</div>
             <ul>
                 <li class="is--flex is--space-between is--border-bottom">
                     <h4>Subtotal</h4>
-                    <span>€ {{ ((order.total - order.shipping.cost) / 100).toFixed(2) }}</span>
+                    <span
+                        >€
+                        {{
+                            ((order.total - order.shipping.cost) / 100).toFixed(
+                                2
+                            )
+                        }}</span
+                    >
                 </li>
                 <li class="is--flex is--no-column-gap is--border-bottom">
                     <h4>Shipping</h4>

@@ -825,6 +825,35 @@ h4 {
     }
 }
 
+.status {
+    background-color: whitesmoke;
+    border: 0.1em solid #ccc; 
+    padding: 0.3em 0.75em;
+    display: inline-block;
+    border-radius: 0.5em;
+    font-weight: 600;
+}
+
+.status.recieved {
+    border-color: yellow;
+    background-color: #fdfd96;
+}
+
+.status.fulfilling, .status.shipped {
+    border-color: #5ccd5c;
+    background-color: #ddfad7
+}
+
+.status.completed {
+    border-color: green;
+    background-color: #b2fba5;
+}
+
+.status.declined {
+    border-color: red;
+    background-color: #f9bbbb;
+}
+
 .row {
     display: flex;
     align-items: center;
