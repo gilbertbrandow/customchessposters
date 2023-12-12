@@ -4,8 +4,8 @@
         <div v-for="order in this.orders" class="card" :key="order.id">
             <h2>Order number #{{ order.id }}</h2>
             <div class="status" :class="[order.status.toLowerCase()]">{{ order.status }}</div>
-            <ul>
-                <li class="is--flex is--space-between is--border-bottom">
+            <ul class="is--margin-top-2 is--no-margin-bottom">
+                <li class="is--flex is--space-between is--border-bottom is--margin-bottom">
                     <h4>Subtotal</h4>
                     <span
                         >€
@@ -16,7 +16,7 @@
                         }}</span
                     >
                 </li>
-                <li class="is--flex is--no-column-gap is--border-bottom">
+                <li class="is--flex is--no-column-gap is--border-bottom is--margin-bottom">
                     <h4>Shipping</h4>
                     <span
                         class="is--small"
