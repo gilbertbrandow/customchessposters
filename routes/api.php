@@ -45,8 +45,9 @@ Route::apiResource('cart-items', CartItemController::class);
 |--------------------------------------------------------------------------
 */
 
-Route::apiResource('orders', OrderController::class);
-
+Route::group(['middleware' => 'auth:api'], function () {
+    Route::apiResource('orders', OrderController::class);
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -55,4 +56,4 @@ Route::apiResource('orders', OrderController::class);
 */
 
 Route::post('/webhook/stripe', [StripeWebhookController::class, 'handle'])
-->name('stripe.webhook');
+    ->name('stripe.webhook');
