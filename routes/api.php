@@ -45,7 +45,7 @@ Route::apiResource('cart-items', CartItemController::class);
 |--------------------------------------------------------------------------
 */
 
-Route::group(['middleware' => 'auth:api'], function () {
+Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::apiResource('orders', OrderController::class);
 });
 
