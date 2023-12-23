@@ -95,7 +95,7 @@ export default {
     watch: {
         properties: {
             handler() {
-                //Whenever any property is changed loop through all varaints and find match
+                //Whenever any property is changed loop through all variants and find match
                 this.$data.variants.forEach((variant) => {
                     if (
                         variant.size == this.$data.properties.size &&
