@@ -827,7 +827,7 @@ h4 {
 
 .status {
     background-color: whitesmoke;
-    border: 0.1em solid #ccc; 
+    border: 0.1em solid #ccc;
     padding: 0.3em 0.75em;
     display: inline-block;
     border-radius: 0.5em;
@@ -839,9 +839,10 @@ h4 {
     background-color: #fdfd96;
 }
 
-.status.fulfilling, .status.shipped {
+.status.fulfilling,
+.status.shipped {
     border-color: #5ccd5c;
-    background-color: #ddfad7
+    background-color: #ddfad7;
 }
 
 .status.completed {
@@ -2848,7 +2849,9 @@ label {
 .cart-items {
     height: calc(100vh - 16em);
     overflow: auto;
+}
 
+ul.items {
     li {
         display: flex;
         margin-bottom: 1em;
