@@ -6,6 +6,8 @@
             <div class="status" :class="[order.status.toLowerCase()]">
                 {{ order.status }}
             </div>
+            <br>
+            <br>
             <h4>Items</h4>
             <ul class="items">
                 <li v-for="item in order.items">
@@ -13,7 +15,7 @@
                         <Poster
                             :poster="item.product.poster"
                             :controls="{ small: true }"
-                            :environment="item.product.frame ?? 0"
+                            :environment="item.product.frame.id ?? 0"
                         />
                         <div class="content">
                             <h3 v-text="item.product.poster.title"></h3>
@@ -31,7 +33,7 @@
                                           ) +
                                           '", ') +
                                     (item.product.frame
-                                        ? item.product.frame + " frame"
+                                        ? item.product.frame.name + " frame"
                                         : "")
                                 }}
                                 <Link
@@ -55,6 +57,7 @@
                                 x
                                 <input
                                     type="number"
+                                    disabled
                                     min="1"
                                     :value="item.quantity"
                                     name="quantity"
@@ -65,13 +68,6 @@
                                         )
                                     "
                                 />
-                                <button
-                                    class="text__link"
-                                    type="submit"
-                                    @click="this.deleteCartItem(item.id)"
-                                >
-                                    Remove item
-                                </button>
                             </div>
                         </div>
                     </template>
@@ -119,6 +115,7 @@
                 </li>
             </ul>
         </div>
+        <div v-if="!this.orders.length" >You have no orders to show.</div>
     </section>
 </template>
 
