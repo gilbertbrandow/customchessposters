@@ -11,7 +11,7 @@
             <Icon name="close" />
         </button>
         <h2>Cart</h2>
-        <ul class="cart-items">
+        <ul class="items cart-items">
             <li v-if="!this.cart?.items.length">No items in your cart</li>
             <li v-else v-for="item in this.cart.items">
                 <template v-if="item.product.type == 'poster'">

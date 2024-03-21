@@ -13,9 +13,9 @@ use App\Http\Controllers\GameController;
 use App\Http\Controllers\OpeningController;
 use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\CartItemController;
 use App\Http\Controllers\ShippingMethodController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderUserController;
 use App\Http\Controllers\SavedPosterController;
 use App\Http\Controllers\RecipientController;
 use App\Http\Controllers\PaymentController;
@@ -144,8 +144,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/saved-posters', [SavedPosterController::class, 'index'])
         ->name('savedPoster.index');
 
-    Route::get('/orders', [OrderController::class, 'show'])
-        ->name('order.show');
+    Route::get('/orders', [OrderUserController::class, 'index'])
+        ->name('orderUser.index');
 });
 
 

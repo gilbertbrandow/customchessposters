@@ -2,10 +2,9 @@
 
 namespace App\Http\Resources;
 
-use App\Models\PosterFrame;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PosterFrameResource extends JsonResource
+class OrderResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,8 +16,12 @@ class PosterFrameResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'image' => $this->image,
+            'status' => ucfirst($this->status),
+            'items' => OrderItemResource::collection($this->orderItems),
+            'shipping' => new ShippingMethodResource($this->shipping),
+            'created' => $this->created_at, 
+            'last_updated' => $this->updated_at,
+            'total' => $this->total,
         ];
     }
 }

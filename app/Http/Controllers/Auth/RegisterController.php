@@ -9,6 +9,7 @@ use App\Mail\Welcome;
 use App\Models\User;
 use App\Services\LoginService;
 use Illuminate\Support\Facades\Route;
+use Str;
 
 class RegisterController extends Controller
 {
@@ -21,7 +22,7 @@ class RegisterController extends Controller
         });
 
         if(in_array('auth', $route->gatherMiddleware())) return redirect('/')->with('overlay', 'register');
-        else return redirect()->back()->with('overlay', 'register');
+        else return redirect()->back(fallback: '/')->with('overlay', 'register');
     }
 
     public function create(Request $request)
@@ -30,6 +31,7 @@ class RegisterController extends Controller
             'name' => ['required', 'min:5', 'max:25'],
             'email' => ['required', 'unique:users', 'email'],
             'password' => ['required', 'min:6', 'confirmed'],
+            'api_token' => Str::random(60),
         ]);
 
         $user = User::create($credentials);

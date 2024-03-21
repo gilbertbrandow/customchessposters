@@ -53,7 +53,7 @@ class OrderService
                 'retail_price' => $orderItem->product->price * $orderItem->quantity / 100,
                 'files' => ($orderItem->product->type == 'poster' ? [
                     [
-                        "type"=> "default",
+                        "type" => "default",
                         'url' => $orderItem->file,
                     ],
                 ] : null),
@@ -74,7 +74,7 @@ class OrderService
                     'country_code' =>  $recipient->country_code,
                     'zip' =>  $recipient->zip,
                 ],
-                'items' => $items, 
+                'items' => $items,
             ]);
         } catch (PrintfulApiException $e) {
             // API response status code was not successful

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\CartController;
 use App\Http\Controllers\API\CartItemController;
+use App\Http\Controllers\API\OrderController;
 use App\Http\Controllers\API\PosterVariantController;
 use App\Http\Controllers\StripeWebhookController;
 use Illuminate\Http\Request;
@@ -50,9 +51,19 @@ Route::apiResource('cart-items', CartItemController::class);
 
 /*
 |--------------------------------------------------------------------------
+| Orders api routes
+|--------------------------------------------------------------------------
+*/
+
+Route::group(['middleware' => 'auth:sanctum'], function () {
+    Route::apiResource('orders', OrderController::class);
+});
+
+/*
+|--------------------------------------------------------------------------
 | Stripe webhook routes
 |--------------------------------------------------------------------------
 */
 
 Route::post('/webhook/stripe', [StripeWebhookController::class, 'handle'])
-->name('stripe.webhook');
+    ->name('stripe.webhook');
