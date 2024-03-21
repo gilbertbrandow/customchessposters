@@ -179,9 +179,6 @@ Route::middleware('auth')->group(function () {
 |--------------------------------------------------------------------------
 */
 
-Route::get('/poster-variants', [PosterVariantController::class, 'index'])
-    ->name('poster-variants.index');
-
 Route::post('/product', [ProductController::class, 'create'])
     ->name('product.create');
 

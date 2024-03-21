@@ -8,6 +8,13 @@
                 :class="{ 'is--error': form.errors.email }" autocomplete="on" />
         </div>
 
+        <div class="field__wrp">
+            <label for="phone" class="field__label">Phone</label>
+            <div v-if="form.errors.phone" v-text="form.errors.phone" class="field__error"></div>
+            <input v-model="form.phone" class="field" name="phone" id="phone" type="tel" placeholder="+1 123 456 789"
+                :class="{ 'is--error': form.errors.phone }" autocomplete="on" />
+        </div>
+
         <h3 class="is--margin-top">Shipping address</h3>
         <div class="field__wrp">
             <label for="country" class="field__label">Country</label>
@@ -88,6 +95,7 @@ export default {
             country: this.$page.props.address ? this.$page.props.address.country_code + ', ' + this.$page.props.address.country : null,
             form: useForm({
                 email: this.$page.props.address ? this.$page.props.address.email : '',
+                phone: this.$page.props.address ? this.$page.props.address.phone : '',
                 country_code: this.$page.props.address ? this.$page.props.address.country_code + ', ' + this.$page.props.address.country : null,
                 country: this.$page.props.address ? this.$page.props.address.country : null,
                 state_code: this.$page.props.address ? this.$page.props.address.state_code : null,

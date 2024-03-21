@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\CartController;
 use App\Http\Controllers\API\CartItemController;
 use App\Http\Controllers\API\OrderController;
+use App\Http\Controllers\API\PosterVariantController;
 use App\Http\Controllers\StripeWebhookController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -25,7 +26,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 /*
 |--------------------------------------------------------------------------
-| Carts api routes
+| Poster variants api routes
+|--------------------------------------------------------------------------
+*/
+
+Route::apiResource('poster-variants', PosterVariantController::class);
+
+
+/*
+|--------------------------------------------------------------------------
+| Cart api routes
 |--------------------------------------------------------------------------
 */
 

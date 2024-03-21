@@ -77,7 +77,7 @@ export default {
     methods: {
         fetchVariants() {
             axios
-                .get("/poster-variants")
+                .get("/api/poster-variants")
                 .then(
                     (response) => (
                         (this.$data.sizes = response.data["sizes"]),
@@ -95,17 +95,17 @@ export default {
     watch: {
         properties: {
             handler() {
-                //Whenever any property is changed loop through all varaints and find match
+                //Whenever any property is changed loop through all variants and find match
                 this.$data.variants.forEach((variant) => {
                     if (
-                        variant.poster_size_id == this.$data.properties.size &&
-                        variant.poster_frame_id == this.$data.properties.frame
+                        variant.size == this.$data.properties.size &&
+                        variant.frame == this.$data.properties.frame
                     ) {
                         //Update current variant and change total to its price
                         this.$emit("variant", {
                             variant: variant.id,
                             total: variant.price,
-                            frame: variant.poster_frame_id,
+                            frame: variant.frame,
                         });
 
                         this.$data.total = variant.price;
@@ -113,14 +113,14 @@ export default {
                         //Update cost of all sizes and frames
                         this.$data.sizes.forEach((size) => {
                             //If current
-                            if (size.id == variant.poster_size_id)
+                            if (size.id == variant.size)
                                 size.cost = "Selected";
                             else {
                                 //Get cost of variant where match, subtract current price and update cost
                                 this.$data.variants.forEach((variant) => {
                                     if (
-                                        variant.poster_size_id == size.id &&
-                                        variant.poster_frame_id ==
+                                        variant.size == size.id &&
+                                        variant.frame ==
                                             this.$data.properties.frame
                                     ) {
                                         size.cost =
@@ -146,14 +146,14 @@ export default {
 
                         this.$data.frames.forEach((frame) => {
                             //If current
-                            if (frame.id == variant.poster_frame_id)
+                            if (frame.id == variant.frame)
                                 frame.cost = "Selected";
                             else {
                                 //Get cost of variant where match, subtract current price and update cost
                                 this.$data.variants.forEach((variant) => {
                                     if (
-                                        variant.poster_frame_id == frame.id &&
-                                        variant.poster_size_id ==
+                                        variant.frame == frame.id &&
+                                        variant.size ==
                                             this.$data.properties.size
                                     ) {
                                         frame.cost =
@@ -192,8 +192,8 @@ export default {
 
             this.$data.variants.forEach((variant) => {
                 if (
-                    variant.poster_frame_id == null &&
-                    variant.poster_size_id == this.$data.properties.size
+                    variant.frame == null &&
+                    variant.size == this.$data.properties.size
                 ) {
                     cost =
                         "(- €" +
