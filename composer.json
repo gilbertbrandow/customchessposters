@@ -1,8 +1,7 @@
 {
     "name": "laravel/laravel",
     "type": "project",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "description": "Custom Chess Posters",
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
