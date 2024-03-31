@@ -38,9 +38,7 @@ ENV APP_ENV production
 WORKDIR /app
 
 # Copy the built frontend assets from the previous stage
-COPY --from=frontend-builder /app/public ./public
-
-COPY . .
+COPY --from=frontend-builder /app ./
 
 RUN composer update 
 
