@@ -9,7 +9,7 @@ services:
     volumes:
       - ./storage:/app/storage
     ports:
-      - "8000:80"
+      - '${APP_PORT:-80}:80'
     networks:
       - app
     depends_on:
