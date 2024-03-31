@@ -1,6 +1,24 @@
+# Stage 1: Build frontend assets using Node.js
+FROM node:14 AS frontend-builder
+
+WORKDIR /app
+
+# Copy package.json and package-lock.json
+COPY package.json package-lock.json* ./
+
+# Install npm dependencies
+RUN npm install
+
+# Copy the rest of your frontend source code
+COPY . .
+
+# Build frontend assets
+RUN npm run build
+
+# Next build step
 FROM webdevops/php-nginx:8.1-alpine
 
-# Install Laravel framework system requirements (https://laravel.com/docs/8.x/deployment#optimizing-configuration-loading)
+# Install Laravel framework system requirements
 RUN apk add oniguruma-dev postgresql-dev libxml2-dev libpng-dev
 
 RUN docker-php-ext-install \
@@ -18,6 +36,9 @@ ENV WEB_DOCUMENT_ROOT /app/public
 ENV APP_ENV production
 
 WORKDIR /app
+
+# Copy the built frontend assets from the previous stage
+COPY --from=frontend-builder /app/public ./public
 
 COPY . .
 
