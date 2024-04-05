@@ -1,5 +1,5 @@
 # Stage 1: Build frontend assets using Node.js
-FROM node:14 AS frontend-builder
+FROM arm64v8/node:14 AS frontend-builder
 
 WORKDIR /app
 
