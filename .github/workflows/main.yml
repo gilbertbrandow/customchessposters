@@ -9,7 +9,6 @@ env:
   AWS_REGION: eu-central-1
   ECR_REPOSITORY: customchessposters
   IMAGE_NAME: my-image-name
-  IMAGE_TAG: ${{ github.sha }}
 
 jobs:
   deploy:
@@ -36,7 +35,7 @@ jobs:
         id: build-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          IMAGE_TAG: ${{ github.sha }}
+          IMAGE_TAG: latest
         run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
