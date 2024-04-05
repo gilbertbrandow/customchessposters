@@ -9,6 +9,8 @@ env:
   AWS_REGION: eu-central-1
   ECR_REPOSITORY: customchessposters
   IMAGE_NAME: my-image-name
+  ECS_CLUSTER: cluster-custom-chess-posters
+  ECS_SERVICE: ccp-ecs-service
 
 jobs:
   deploy:
@@ -40,3 +42,12 @@ jobs:
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+
+      - name: Install AWS CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y awscli
+
+      - name: Update ECS service
+        run: |
+          aws ecs update-service --cluster ${ECS_CLUSTER} --service ${ECS_SERVICE} --force-new-deployment
