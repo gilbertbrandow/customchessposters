@@ -12,13 +12,6 @@ RUN npm install
 # Copy the rest of your frontend source code
 COPY . .
 
-# Conditionally install esbuild based on architecture
-RUN if [ "$(arch)" = "aarch64" ]; then \
-        npm install esbuild-linux-arm64; \
-    else \
-        npm install esbuild-linux-64; \
-    fi
-
 # Build frontend assets
 RUN npm run build
 
