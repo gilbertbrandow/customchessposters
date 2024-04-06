@@ -45,5 +45,8 @@ RUN composer update && \
     php artisan view:cache && \
     chown -R application:application .
 
+# Copy database migration script into directory that is executed on container start
+COPY run-migrations.sh /opt/docker/provision/entrypoint.d/custom-run-migrations.sh
+
 # Copy clear cache script into directory that is executed on container start
 COPY clear-cache.sh /opt/docker/provision/entrypoint.d/custom-clear-cache.sh
