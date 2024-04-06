@@ -1,5 +1,3 @@
-ARG APP_KEY
-
 # Start with the PHP and Nginx setup
 FROM webdevops/php-nginx:8.1-alpine AS php-nginx
 
@@ -19,7 +17,6 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Set environment variables
 ENV WEB_DOCUMENT_ROOT /app/public
 ENV APP_ENV production
-ENV APP_KEY=${APP_KEY}
 
 # Set the working directory
 WORKDIR /app
