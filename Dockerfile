@@ -9,6 +9,13 @@ COPY package.json package-lock.json* ./
 # Install npm dependencies
 RUN npm install
 
+# Install esbuild for x86 architecture
+RUN if [ "$(arch)" = "x86_64" ]; then \
+        npm install --arch=x64 esbuild; \
+    else \
+        npm install --arch=arm64 esbuild; \
+    fi
+
 # Copy the rest of your frontend source code
 COPY . .
 
