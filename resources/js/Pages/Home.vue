@@ -4,7 +4,7 @@
             <h1>Create Your Own Personal & Unique Chess Poster</h1>
             <p>
                 There are more theoretically possible chess games than there are
-                atoms in the known universe. Now there are equally many posters.
+                atoms in the known universe. Now there are equally many posters for you to choose from.
             </p>
             <div class="button-wrp">
                 <Link :href="route('poster.index')" class="button is--black"
