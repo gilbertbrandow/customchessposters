@@ -1,3 +1,2 @@
-.gitattributes
-.gitignore
-*.md
+node_modules
+vendor
