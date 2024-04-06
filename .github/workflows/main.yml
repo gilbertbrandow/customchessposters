@@ -46,4 +46,8 @@ jobs:
       - name: Install AWS CLI
         run: |
           sudo apt-get update
-          sudo apt-get install -y aw
+          sudo apt-get install -y awscli
+
+      - name: Update ECS service
+        run: |
+          aws ecs update-service --cluster ${ECS_CLUSTER} --service ${ECS_SERVICE} --force-new-deployment
