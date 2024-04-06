@@ -44,12 +44,3 @@ RUN composer update && \
     php artisan route:cache && \
     php artisan view:cache && \
     chown -R application:application .
-
-# Copy entrypoint script
-COPY entrypoint.sh /entrypoint.sh
-
-# Make entrypoint script executable
-RUN chmod +x /entrypoint.sh
-
-# Set entrypoint
-ENTRYPOINT ["/entrypoint.sh"]
