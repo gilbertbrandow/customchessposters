@@ -16,9 +16,6 @@ jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        architecture: [arm64]
 
     steps:
       - name: Checkout
