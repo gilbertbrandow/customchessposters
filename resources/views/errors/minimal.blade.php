@@ -11,7 +11,7 @@
 <body>
     <header class="checkout__header">
         <div class="container is--less-padding is--flex is--space-between">
-            <a class="logo" href="http://localhost/">
+            <a class="logo" href="/">
                 <svg xmlns="http://www.w3.org/2000/svg" width="143.192" height="146.062" viewBox="0 0 143.192 146.062">
                     <g id="Group_105" data-name="Group 105" transform="translate(0)">
                         <path id="Path_4271" data-name="Path 4271" d="M251.8,837.642h0l.028-.042Z"
