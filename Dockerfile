@@ -44,7 +44,6 @@ RUN npm run build
 RUN composer update && \
     composer install --optimize-autoloader --no-dev && \
     php artisan optimize && \
-    php artisan config:cache && \
     php artisan route:cache && \
     php artisan view:cache && \
     chown -R application:application .
