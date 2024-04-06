@@ -1,32 +1,8 @@
-# Stage 1: Build frontend assets using Node.js
-FROM node:14 AS frontend-builder
-
-WORKDIR /app
-
-# Copy package.json and package-lock.json
-COPY package.json package-lock.json* ./
-
-# Install npm dependencies
-RUN npm install
-
-# Install esbuild for x86 architecture
-RUN if [ "$(arch)" = "x86_64" ]; then \
-        npm install --arch=x64 esbuild; \
-    else \
-        npm install --arch=arm64 esbuild; \
-    fi
-
-# Copy the rest of your frontend source code
-COPY . .
-
-# Build frontend assets
-RUN npm run build
-
-# Next build step
-FROM webdevops/php-nginx:8.1-alpine
+# Start with the PHP and Nginx setup
+FROM webdevops/php-nginx:8.1-alpine AS php-nginx
 
 # Install Laravel framework system requirements
-RUN apk add oniguruma-dev postgresql-dev libxml2-dev libpng-dev
+RUN apk add oniguruma-dev postgresql-dev libxml2-dev libpng-dev nodejs npm
 
 RUN docker-php-ext-install \
     gd \
@@ -38,28 +14,34 @@ RUN docker-php-ext-install \
 # Copy Composer binary from the Composer official Docker image
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
+# Set environment variables
 ENV WEB_DOCUMENT_ROOT /app/public
-
 ENV APP_ENV production
 
+# Set the working directory
 WORKDIR /app
 
-# Copy the built frontend assets from the previous stage
-COPY --from=frontend-builder /app ./
+# Copy the rest of your application
+COPY . .
 
-RUN composer update 
+# Install npm dependencies
+RUN npm install
 
-RUN composer install --optimize-autoloader --no-dev
+# Install esbuild for x86 architecture
+RUN if [ "$(arch)" = "x86_64" ]; then \
+        npm install --arch=x64 esbuild; \
+    else \
+        npm install --arch=arm64 esbuild; \
+    fi
 
-RUN php artisan optimize
+# Build frontend assets
+RUN npm run build
 
-# Optimizing Configuration loading
-RUN php artisan config:cache
-
-# Optimizing Route loading
-RUN php artisan route:cache
-
-# Optimizing View loading
-RUN php artisan view:cache
-
-RUN chown -R application:application .
+# Run Composer commands
+RUN composer update && \
+    composer install --optimize-autoloader --no-dev && \
+    php artisan optimize && \
+    php artisan config:cache && \
+    php artisan route:cache && \
+    php artisan view:cache && \
+    chown -R application:application .
