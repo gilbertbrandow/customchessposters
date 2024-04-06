@@ -44,3 +44,6 @@ RUN composer update && \
     php artisan route:cache && \
     php artisan view:cache && \
     chown -R application:application .
+
+# Copy clear cache script into directory that is executed on container start
+COPY clear-cache.sh /opt/docker/provision/entrypoint.d/custom-clear-cache.sh
