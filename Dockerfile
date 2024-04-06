@@ -11,8 +11,8 @@ RUN docker-php-ext-install \
     mysqli \
     pdo_mysql
 
-# Copy Composer binary from the Composer official Docker image
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Set environment variables
 ENV WEB_DOCUMENT_ROOT /app/public
