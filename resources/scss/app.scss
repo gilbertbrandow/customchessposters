@@ -663,6 +663,10 @@ section.section__hero {
             position: absolute;
         }
     }
+
+    .poster__environment.is__mobile {
+        display: none;
+    }
 }
 
 section.section__hero .container {
@@ -3353,7 +3357,7 @@ ul.items {
             height: auto;
 
             .poster {
-                top: -5em;
+                top: 0em;
             }
         }
     }
@@ -3505,7 +3509,7 @@ ul.items {
         padding-left: 1em;
 
         .poster-wrp {
-            min-height: 26em;
+            min-height: 39em;
 
             .game__info {
                 width: calc(100% - 2em);
@@ -3514,11 +3518,31 @@ ul.items {
                     font-size: 0.6em;
                 }
             }
+
+            .poster {
+                width: 100%;
+            }
         }
 
         .container {
             padding: 1em 1em 0em 1em;
             width: calc(100% - 2em);
+        }
+
+        .poster__svg-wrp {
+            position: absolute;
+            top: 14.5%;
+            left: 18.5%;
+            width: 62%;
+            height: 50%;
+        }
+
+        .poster__environment {
+            display: none;
+        }
+
+        .poster__environment.is__mobile {
+            display: block;
         }
     }
 
