@@ -163,15 +163,15 @@
                     <h4>Contact information</h4>
                     <ul>
                         <li>
-                            Simon Gustafssson
+                            Developer: 
                             <a
                                 target="_blank"
                                 href="https://github.com/gilbertbrandow"
-                                >(@gilbertbrandow)</a
+                                >@gilbertbrandow</a
                             >
                         </li>
                         <li>
-                            <a href="mailto:hej@0100.se">simon@0100.se</a>
+                            <a href="mailto:hej@0100.se">hej@0100.se</a>
                         </li>
                     </ul>
                 </div>
