@@ -6,7 +6,7 @@
                     <div class="content">
                         <h1 v-text="this.$data.game.name"></h1>
 
-                        <div class="is--flex">
+                        <div class="is--flex is--mobile-reversed">
                             <div class="player">
                                 <div class="flag">
                                     <Flags

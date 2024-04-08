@@ -216,7 +216,7 @@ footer {
         }
 
         p {
-            font-size: 0.8em;
+            font-size: 0.9em;
             max-width: 30em;
         }
     }
@@ -3036,7 +3036,7 @@ ul.items {
 }
 
 .question-wrp:hover {
-    border-bottom: 2px solid rgba(0, 0, 0);
+    border-bottom-color:rgba(0, 0, 0);
 }
 
 .question {
@@ -3407,6 +3407,10 @@ ul.items {
     ul.saved__posters {
         grid-template-columns: 1fr 1fr; 
     }
+
+    .question-wrp {
+        border-bottom-width: 1px;
+    }
 }
 
 @media screen and (max-width: 478px) {
@@ -3533,9 +3537,17 @@ ul.items {
 
             .game__info {
                 width: calc(100% - 2em);
-                padding: 1em;
+                padding: 1em 1em 1.5em 1em;
+                justify-content: space-between;
+
                 .players {
-                    font-size: 0.6em;
+                    font-size: 0.9em;
+                }
+
+                .progress-bar {
+                    position: absolute;
+                    bottom: 0.75em;
+                    width: calc(100% - 2em);
                 }
             }
 
@@ -3601,7 +3613,6 @@ ul.items {
             display: grid;
             grid-template-columns: 1fr 1fr;
             column-gap: 1em;
-            margin-bottom: 2em;
 
             .field__wrp:first-child {
                 grid-column: span 2;
@@ -3688,6 +3699,10 @@ ul.items {
         row-gap: 1em;
 
         .filter {
+            flex-direction: column;
+        }
+
+        .filter {
             .button {
                 display: none;
             }
@@ -3746,6 +3761,12 @@ ul.items {
                 padding-right: 1.5em;
                 padding-bottom: 1.5em;
                 padding-top: 2.5em;
+            }
+
+            .is--flex.is--mobile-reversed {
+                flex-direction: column;
+                row-gap: 0.5em;
+                margin-bottom: 1em;
             }
         }
     }
