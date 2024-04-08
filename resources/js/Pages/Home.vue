@@ -36,6 +36,20 @@
                         ../../../public/images/environments/poster-environment-oak-frame-300x315.webp    300w
                     "
                 />
+                <img
+                    class="poster__environment is__mobile"
+                    :alt="
+                        'Poster: ' +
+                        $page.props.game.poster.title +
+                        ' shown in a warmly lit room with frame'
+                    "
+                    src="../../../public/images/environments/poster-mockup-oak-frame-1200x1490.webp"
+                    srcset="
+                        ../../../public/images/environments/poster-mockup-oak-frame-1200x1490.webp 1500w,
+                        ../../../public/images/environments/poster-mockup-oak-frame-600x745.webp    750w,
+                        ../../../public/images/environments/poster-mockup-oak-frame-300x372.webp    300w
+                    "
+                />
             </div>
 
             <div class="game__info">
