@@ -3,8 +3,7 @@
         <div class="container is--flex">
             <div class="content">
                 <h2>Frequently Asked Questions</h2>
-                <p>Here you can find some commonly asked questions, and the answers too them. This list however, can never
-                    be complete and if your question can not be found here, you are more than welcome to contact us.</p>
+                <p>Here you can find some commonly asked questions, and the answers too them. If your question can not be found here, you are more than welcome to contact us.</p>
                 <Link class="link-arrow" :href="route('contact.index')">Can't find the answer to your question? Contact us
                 <Icon name="arrow-up" />
                 </Link>
