@@ -3509,9 +3509,17 @@ ul.items {
 
             .game__info {
                 width: calc(100% - 2em);
-                padding: 1em;
+                padding: 1em 1em 1.5em 1em;
+                justify-content: space-between;
+
                 .players {
-                    font-size: 0.6em;
+                    font-size: 0.9em;
+                }
+
+                .progress-bar {
+                    position: absolute;
+                    bottom: 0.5em;
+                    width: calc(100% - 2em);
                 }
             }
         }
@@ -3557,7 +3565,6 @@ ul.items {
             display: grid;
             grid-template-columns: 1fr 1fr;
             column-gap: 1em;
-            margin-bottom: 2em;
 
             .field__wrp:first-child {
                 grid-column: span 2;
@@ -3642,6 +3649,10 @@ ul.items {
     .slider__header {
         flex-direction: column;
         row-gap: 1em;
+
+        .filter {
+            flex-direction: column;
+        }
 
         .filter {
             .button {

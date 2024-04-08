@@ -430,8 +430,7 @@
                         ]" class="module__step">
                             <h3>4. The Game</h3>
                             <p>
-                                Other interesting information to give your
-                                poster some context.
+                                Put the game and position in some context with some additional information.
                             </p>
 
                             <div class="row is--title-result">
