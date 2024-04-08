@@ -42,11 +42,6 @@ export default {
                         borderRadius: '4px',
                     }
                 },
-                fonts: [{
-                    family: 'CabinetGrotesk',
-                    src: 'url(https://localhost/resources/fonts/CabinetGrotesk-Variable.woff2")',
-                    weight: '500',
-                }],
             });
 
             this.elements.create("payment", {
