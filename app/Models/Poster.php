@@ -23,6 +23,8 @@ class Poster extends Model
         'diagram_position',
         'move_comment',
         'fen',
+        'to', 
+        'from',
         'result',
         'title',
         'white_player',
