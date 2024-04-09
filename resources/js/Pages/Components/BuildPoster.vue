@@ -931,7 +931,11 @@ export default {
                 this.$data.posterBuilder.manualMove.suggestions = [];
 
                 try {
-                    this.$data.chessGame.move(input);
+                    //Extract to and from
+                    const move = this.$data.chessGame.move(input);
+                    this.$data.poster.to = move.to;
+                    this.$data.poster.from = move.from;
+
                 } catch (error) {
                     //Display general error message
                     return;
@@ -1130,16 +1134,19 @@ export default {
         "poster.diagram_position"() {
             if (this.pgnArray.length == this.poster.diagram_position) {
                 this.$data.poster.fen = this.chessGame.fen();
-            } else {
-                let history = this.chessGame.history({ verbose: true });
-                this.$data.poster.fen =
-                    history[this.poster.diagram_position].fen;
+                return;
             }
+
+            let history = this.chessGame.history({ verbose: true });
+            this.$data.poster.fen = history[this.poster.diagram_position].fen;
+            this.$data.poster.to = history[this.poster.diagram_position - 1].to; 
+            this.$data.poster.from = history[this.poster.diagram_position - 1].from; 
         },
-        "posterBuilder.currStep"() {
-            if (this.posterBuilder.currStep == 2)
-                window.addEventListener("keydown", this.onKeydown);
-            else window.removeEventListener("keydown", this.onKeydown);
+
+        'posterBuilder.currStep'() {
+
+            if (this.posterBuilder.currStep == 2) window.addEventListener('keydown', this.onKeydown)
+            else window.removeEventListener('keydown', this.onKeydown)
 
             //If poster builder is fully visible, return
             let rect = document
