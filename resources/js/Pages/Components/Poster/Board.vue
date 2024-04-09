@@ -1,7 +1,11 @@
 <template>
     <svg x="0" y="27" view-box="0 0 1600 1600">
 
-        <Board :theme="theme_id"/>
+        <Board :theme="theme_id" />
+
+
+        <Highlights v-if="this.$parent.poster.to && this.$parent.poster.from" :to="this.$parent.poster.to" :from="this.$parent.poster.from"
+            :orientation="this.$parent.poster.orientation" :theme="this.theme_id" />
 
         <template v-for="piece in pieces" :key="piece">
             <svg width="200" height="200" fill="none" viewbox="0 0 200 200"
@@ -17,17 +21,21 @@
 <script>
 import Board from '../../../Themes/Board.vue';
 import Pieces from '../../../Themes/Pieces.vue';
+import Highlights from '../../../Themes/Highlights.vue';
 
 export default {
 
     components: {
         Pieces,
         Board,
+        Highlights
     },
 
     props: {
         fen: "",
         theme_id: "",
+        to: "",
+        from: "",
     },
 
     data() {
