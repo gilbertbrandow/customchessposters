@@ -933,8 +933,6 @@ export default {
                 try {
                     //Extract to and from
                     const move = this.$data.chessGame.move(input);
-                    this.$data.poster.to = move.to;
-                    this.$data.poster.from = move.from;
 
                 } catch (error) {
                     //Display general error message
@@ -1132,15 +1130,13 @@ export default {
         },
 
         "poster.diagram_position"() {
-            if (this.pgnArray.length == this.poster.diagram_position) {
-                this.$data.poster.fen = this.chessGame.fen();
-                return;
-            }
 
             let history = this.chessGame.history({ verbose: true });
-            this.$data.poster.fen = history[this.poster.diagram_position].fen;
-            this.$data.poster.to = history[this.poster.diagram_position - 1].to; 
-            this.$data.poster.from = history[this.poster.diagram_position - 1].from; 
+
+            this.$data.poster.fen = this.pgnArray.length == this.poster.diagram_position ? this.chessGame.fen() : history[this.poster.diagram_position].fen;
+
+            this.$data.poster.to = history[this.poster.diagram_position - 1].to;
+            this.$data.poster.from = history[this.poster.diagram_position - 1].from;
         },
 
         'posterBuilder.currStep'() {
