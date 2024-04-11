@@ -1135,8 +1135,8 @@ export default {
 
             this.$data.poster.fen = this.pgnArray.length == this.poster.diagram_position ? this.chessGame.fen() : history[this.poster.diagram_position].fen;
 
-            this.$data.poster.to = history[this.poster.diagram_position - 1].to;
-            this.$data.poster.from = history[this.poster.diagram_position - 1].from;
+            this.$data.poster.to = this.$data.poster.diagram_position ? history[this.poster.diagram_position - 1].to : null;
+            this.$data.poster.from = this.$data.poster.diagram_position ? history[this.poster.diagram_position - 1].from : null;
         },
 
         'posterBuilder.currStep'() {
