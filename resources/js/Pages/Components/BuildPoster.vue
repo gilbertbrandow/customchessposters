@@ -1065,7 +1065,7 @@ export default {
                 .catch(
                     (error) => (
                         (this.$data.posterBuilder.uploadLichess.valid = false),
-                        console.log("Error", error)
+                        console.error("Error", error)
                     )
                 );
         },

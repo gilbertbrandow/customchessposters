@@ -156,7 +156,6 @@ export default {
             else if (move + 16 > history.length)
                 move = history.length - 16 > 0 ? history.length - 16 : 6;
 
-            console.log(history[0].to);
             for (let i = -3; i < 17; i++) {
 
                 if (history[move + i])
@@ -186,7 +185,6 @@ export default {
 
         updateMove() {
             if (this.currMove == this.moves.length) return;
-            console.log(this.moves[this.currMove]);
 
             this.$page.props.game.poster.diagram_position =
                 this.moves[this.currMove][0];
