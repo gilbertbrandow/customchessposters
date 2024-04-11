@@ -40,6 +40,27 @@
             </g>
         </svg>
     </template>
+    <template v-else-if="this.$props.theme == 1">
+        <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" :x="this.getX(this.$props.to)" :y="this.getY(this.$props.to)">
+            <g id="Group_110" data-name="Group 110" transform="translate(-8896 -3124)">
+                <rect id="Rectangle_31" data-name="Rectangle 31" width="200" height="200" transform="translate(8896 3124)"
+                    fill="none" />
+                <path id="Path_323" data-name="Path 323"
+                    d="M7228.461,3542.9s17.361-4.816,50.356-4.572,48.871,4.984,81.623,5.549,49.838-1.92,49.838-1.92,2.357,8.835,2.729,54.42c.158,19.328-4.966,44.933-5.441,68.776a339.556,339.556,0,0,0,4.2,59.146s4.288,4.069-41.5,4.018c-21.384-.024-53.208-8.674-81.771-9.657a253.845,253.845,0,0,0-59.886,5.437s-5.56-14.639-5.6-60.51c-.019-23.486,5.741-55.336,7.15-80.833a212.946,212.946,0,0,0-1.7-42.142"
+                    transform="translate(1677.988 -408.316)" fill="none" stroke="#43231d" stroke-width="5" />
+            </g>
+        </svg>
+
+        <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" :x="this.getX(this.$props.from)" :y="this.getY(this.$props.from)">
+            <g id="Group_110" data-name="Group 110" transform="translate(-8896 -3124)">
+                <rect id="Rectangle_31" data-name="Rectangle 31" width="200" height="200" transform="translate(8896 3124)"
+                    fill="none" />
+                <path id="Path_323" data-name="Path 323"
+                    d="M7228.461,3542.9s17.361-4.816,50.356-4.572,48.871,4.984,81.623,5.549,49.838-1.92,49.838-1.92,2.357,8.835,2.729,54.42c.158,19.328-4.966,44.933-5.441,68.776a339.556,339.556,0,0,0,4.2,59.146s4.288,4.069-41.5,4.018c-21.384-.024-53.208-8.674-81.771-9.657a253.845,253.845,0,0,0-59.886,5.437s-5.56-14.639-5.6-60.51c-.019-23.486,5.741-55.336,7.15-80.833a212.946,212.946,0,0,0-1.7-42.142"
+                    transform="translate(1677.988 -408.316)" fill="none" stroke="#43231d" stroke-width="5" />
+            </g>
+        </svg>
+    </template>
 </template>
   
 <script>
