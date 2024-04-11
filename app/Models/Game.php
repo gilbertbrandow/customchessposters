@@ -74,6 +74,8 @@ class Game extends Model
             'posters.diagram_position',
             'posters.move_comment',
             'posters.fen',
+            'posters.to',
+            'posters.from',
             'posters.result',
             'posters.title',
             'posters.white_player',
