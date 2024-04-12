@@ -43,6 +43,6 @@ class PosterController extends Controller
 
         $width = intval($variant->posterSize->width / $variant->posterSize->height * $height = 8550);
 
-        return (new PosterService())->generatePNG($poster, $width, $height);
+        return (new PosterService())->generatePNG($poster, $width, $height, true);
     }
 }

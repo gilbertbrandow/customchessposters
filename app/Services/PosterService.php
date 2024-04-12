@@ -66,7 +66,8 @@ class PosterService
     public function generatePNG(
         Poster $poster,
         $width = 6000,
-        $height = 8550
+        $height = 8550,
+        $noCache = false
     ): string {
 
         /*
@@ -81,6 +82,7 @@ class PosterService
         if (
             $filesystem->exists($path = 'poster' . $poster->id . '-' . $width . 'x' . $height . '.png')
             && $filesystem->lastModified($path) > strtotime($poster->updated_at)
+            && !$noCache
         ) return $filesystem->publicUrl($path);
 
         /*
