@@ -243,21 +243,36 @@ class PosterService
 
                 //New waves theme
                 $im->insert(
-                    public_path('themes/' . $poster->theme->path . '/highlight.svg'),
+                    public_path('themes/' . $poster->theme->path . '/Highlight.svg'),
                     'top-left',
                     intval(($width - 4560) / 2) + 570 * ($poster->orientation ? $columnTo : 7 - $columnTo),
                     $boardY + 25 + 570 * ($poster->orientation ? 7 - $rowTo : $rowTo),
                 );
 
                 $im->insert(
-                    public_path('themes/' . $poster->theme->path . '/highlight.svg'),
+                    public_path('themes/' . $poster->theme->path . '/Highlight.svg'),
                     'top-left',
                     intval(($width - 4560) / 2) + 570 * ($poster->orientation ? $columnFrom : 7 - $columnFrom),
                     $boardY + 25 + 570 * ($poster->orientation ? 7 - $rowFrom : $rowFrom),
                 );
 
             } else if ($poster->theme_id == 2) {
-                //TODO: 
+
+                //Old knowledge theme
+                $im->insert(
+                    public_path('themes/' . $poster->theme->path . '/Highlights/To.svg'),
+                    'top-left',
+                    intval(($width - 4560) / 2) + 570 * ($poster->orientation ? $columnTo : 7 - $columnTo),
+                    $boardY + 25 + 570 * ($poster->orientation ? 7 - $rowTo : $rowTo),
+                );
+
+                $im->insert(
+                    public_path('themes/' . $poster->theme->path . '/Highlights/From' . (($rowFrom + $columnFrom) % 2 == 1 ? 'White' : 'Black') . 'Square.svg'),
+                    'top-left',
+                    intval(($width - 4560) / 2) + 570 * ($poster->orientation ? $columnFrom : 7 - $columnFrom),
+                    $boardY + 25 + 570 * ($poster->orientation ? 7 - $rowFrom : $rowFrom),
+                );
+
             }
         }
 
