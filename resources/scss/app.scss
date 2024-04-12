@@ -987,6 +987,27 @@ h4 {
             color: white;
         }
     }
+
+    .switcher-wrp.is--highlight-last-move {
+        font-size: 1em;
+
+        .switcher {
+            div {
+                opacity: 0.5;
+            }
+        }
+
+        .switcher.is--right {
+            div {
+                opacity: 1;
+            }
+        }
+
+        span {
+            font-size: 1.1em;
+            opacity: 1;
+        }
+    }
 }
 
 .module__header {

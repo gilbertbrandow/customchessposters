@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('posters', function (Blueprint $table) {
-            $table->boolean('highlight_last_move')->after('from')->default(false);
+            $table->boolean('highlight_last_move')->after('from')->default(true);
         });
     }
 

@@ -419,11 +419,21 @@
                                 </p>
                             </div>
 
-                            <div v-else class="field__wrp is--margin-top">
-                                <label for="moveComment" class="field__label">Move comment (optional)</label>
-                                <input v-model="poster.move_comment" class="field" name="moveComment" maxlength="92"
-                                    id="moveComment" placeholder="Lorem ipsum dolor set ami" />
-                            </div>
+                            <template v-else>
+                                <div class="field__wrp is--margin-top">
+                                    <label for="moveComment" class="field__label">Move comment (optional)</label>
+                                    <input v-model="poster.move_comment" class="field" name="moveComment" maxlength="92"
+                                        id="moveComment" placeholder="Lorem ipsum dolor set ami" />
+                                </div>
+                                <div class="switcher-wrp is--highlight-last-move is--margin-top-2">
+                                    <button
+                                        @click="this.$data.poster.highlight_last_move = !this.$data.poster.highlight_last_move"
+                                        :class="this.$data.poster.highlight_last_move ? 'switcher is--right' : 'switcher'">
+                                        <div></div>
+                                    </button>
+                                    <span>Highlight last move</span>
+                                </div>
+                            </template>
                         </div>
                         <div :class="[
                             posterBuilder.currStep == 3 ? 'is--active' : '',
@@ -691,6 +701,9 @@ export default {
                 diagram_position: 0,
                 move_comment: null,
                 fen: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR",
+                to: null,
+                from: null,
+                highlight_last_move: true,
                 result: "",
                 title: "Lorem ipsum dolor sit amet, consectetur adi",
                 white_player: "White Player",
