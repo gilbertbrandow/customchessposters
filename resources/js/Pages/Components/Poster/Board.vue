@@ -4,7 +4,7 @@
         <Board :theme="theme_id" />
 
 
-        <Highlights v-if="this.$parent.poster.to && this.$parent.poster.from" :to="this.$parent.poster.to" :from="this.$parent.poster.from"
+        <Highlights v-if="this.$parent.poster.highlight_last_move && this.$parent.poster.to && this.$parent.poster.from" :to="this.$parent.poster.to" :from="this.$parent.poster.from"
             :orientation="this.$parent.poster.orientation" :theme="this.theme_id" />
 
         <template v-for="piece in pieces" :key="piece">
@@ -91,6 +91,7 @@ export default {
     },
 
     mounted() {
+        console.log(this.$parent.poster)
         this.loadBoard();
     },
 

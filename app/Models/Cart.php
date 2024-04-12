@@ -95,6 +95,7 @@ class Cart extends Model
                 'posters.fen',
                 'posters.to',
                 'posters.from',
+                'posters.highlight_last_move',
                 'posters.result',
                 'posters.title',
                 'posters.white_player',
