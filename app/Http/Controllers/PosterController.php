@@ -18,7 +18,6 @@ class PosterController extends Controller
 
     public function show($id)
     {
-
         $editPoster = Poster::findOrFail($id);
         
         return Inertia::render('CreatePoster', compact('editPoster'));
@@ -26,13 +25,11 @@ class PosterController extends Controller
 
     public function create(Request $request)
     {
-
         return (new PosterService())->create($request->posterData);
     }
 
     public function update(Request $request)
     {
-
         $poster = (new PosterService())->update($request->posterData, Auth::id(), $request->session()->get('_token'));
 
         return redirect('/edit-poster/' . $poster->id)->with('savedSuccess', 'Poster updated successfully!');
