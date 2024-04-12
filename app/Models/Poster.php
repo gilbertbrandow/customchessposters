@@ -25,6 +25,7 @@ class Poster extends Model
         'fen',
         'to', 
         'from',
+        'highlight_last_move',
         'result',
         'title',
         'white_player',
