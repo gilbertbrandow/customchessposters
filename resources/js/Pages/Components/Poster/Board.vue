@@ -91,7 +91,6 @@ export default {
     },
 
     mounted() {
-        console.log(this.$parent.poster)
         this.loadBoard();
     },
 
