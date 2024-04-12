@@ -166,8 +166,8 @@ export default {
                             ? this.$page.props.game.poster.move_comment
                             : "",
                         history[move + i].fen,
-                        history[move + i - 1].to,
-                        history[move + i - 1].from,
+                        move + i - 1 < 0 ? null : history[move + i - 1].to,
+                        move + i - 1 < 0 ? null : history[move + i - 1].from,
                     ]);
                 else if (history[move + i - 1])
                     this.moves.push([
