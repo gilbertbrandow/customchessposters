@@ -269,8 +269,8 @@ class PosterService
                 $im->insert(
                     public_path('themes/' . $poster->theme->path . '/Highlights/From' . (($rowFrom + $columnFrom) % 2 == 1 ? 'White' : 'Black') . 'Square.svg'),
                     'top-left',
-                    intval(($width - 4560) / 2) + 570 * ($poster->orientation ? $columnFrom : 7 - $columnFrom),
-                    $boardY + 25 + 570 * ($poster->orientation ? 7 - $rowFrom : $rowFrom),
+                    intval(($width - 4560) / 2) + 570 * ($poster->orientation ? $columnFrom : 7 - $columnFrom) - 100,
+                    $boardY + 25 + 570 * ($poster->orientation ? 7 - $rowFrom : $rowFrom) - 100,
                 );
 
             }
