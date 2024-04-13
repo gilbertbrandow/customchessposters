@@ -262,8 +262,8 @@ class PosterService
                 $im->insert(
                     public_path('themes/' . $poster->theme->path . '/Highlights/To.svg'),
                     'top-left',
-                    intval(($width - 4560) / 2) + 570 * ($poster->orientation ? $columnTo : 7 - $columnTo),
-                    $boardY + 25 + 570 * ($poster->orientation ? 7 - $rowTo : $rowTo),
+                    intval(($width - 4560) / 2) + 570 * ($poster->orientation ? $columnTo : 7 - $columnTo) - 100,
+                    $boardY + 25 + 570 * ($poster->orientation ? 7 - $rowTo : $rowTo) - 100,
                 );
 
                 $im->insert(
