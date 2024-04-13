@@ -1,16 +1,11 @@
 <template>
-    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-        viewBox="0 0 2000 3000"
-        :style="{
-            'background-color':
-                this.poster.theme_id == 1 ? '#FBF6EE' : '#f8f5f1',
-            fill: this.poster.theme_id == 1 ? '#41251D' : '#000000',
-            'font-family':
-                this.poster.theme_id == 1 ? 'Custom Serif' : 'EB Garamond',
-        }"
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 2000 3000" :style="{
+        'background-color':
+            this.poster.theme_id == 1 ? '#FBF6EE' : '#f8f5f1',
+        fill: this.poster.theme_id == 1 ? '#41251D' : '#000000',
+        'font-family':
+            this.poster.theme_id == 1 ? 'Custom Serif' : 'EB Garamond',
+    }">
         <!-- The Title -->
         <text id="title" font-size="150" text-anchor="middle" font-weight="400">
             <tspan x="1000" y="300">{{ title[0] }}</tspan>
@@ -18,14 +13,7 @@
         </text>
 
         <!-- Players name, title and ranking -->
-        <text
-            id="players"
-            font-size="60"
-            text-anchor="middle"
-            x="1000"
-            font-weight="400"
-            :y="title[1] ? 700 : 500"
-        >
+        <text id="players" font-size="60" text-anchor="middle" x="1000" font-weight="400" :y="title[1] ? 700 : 500">
             <tspan v-if="poster.white_title">
                 {{ poster.white_title + " " }}
             </tspan>
@@ -48,38 +36,23 @@
         </text>
 
         <!-- Where and when -->
-        <text
-            id="meta"
-            font-size="40"
-            text-anchor="middle"
-            x="1000"
-            :y="title[1] ? 800 : 600"
-            :style="{
-                'font-family':
-                    this.poster.theme_id == 1 ? 'Custom Serif' : 'EB Garamond',
-                'font-style': 'italic',
-            }"
-        >
+        <text id="meta" font-size="40" text-anchor="middle" x="1000" :y="title[1] ? 800 : 600" :style="{
+            'font-family':
+                this.poster.theme_id == 1 ? 'Custom Serif' : 'EB Garamond',
+            'font-style': 'italic',
+        }">
             <tspan>{{ poster.where }}</tspan>
             <tspan v-if="poster.where && poster.when"> | </tspan>
             <tspan>{{ poster.when }}</tspan>
         </text>
 
         <!-- The chess -->
-        <svg
-            width="1645"
-            height="1690"
-            viewBox="0 0 1645 1671"
-            x="185"
-            style="overflow: visible"
-            :y="
-                (Math.min(2900 - 40 * pgnRows.length, 2860) -
-                    (title[1] ? 800 : 600)) /
-                    2 +
-                (title[1] ? 800 : 600) -
-                800
-            "
-        >
+        <svg width="1645" height="1690" viewBox="0 0 1645 1671" x="185" style="overflow: visible" :y="(Math.min(2900 - 40 * pgnRows.length, 2860) -
+            (title[1] ? 800 : 600)) /
+            2 +
+            (title[1] ? 800 : 600) -
+            800
+            ">
             <text id="rows" font-size="40">
                 <tspan v-for="index in 8" x="1625" :y="70 + 200 * index - 200">
                     {{ poster.orientation ? 9 - index : index }}
@@ -90,58 +63,39 @@
                 <tspan v-for="index in 8" :x="20 + 200 * index - 200" y="0">
                     {{
                         poster.orientation
-                            ? String.fromCharCode(96 + index)
-                            : String.fromCharCode(96 + 9 - index)
+                        ? String.fromCharCode(96 + index)
+                        : String.fromCharCode(96 + 9 - index)
                     }}
                 </tspan>
             </text>
 
+            <!-- The board itself with pieces -->
+            <Board ref="Game" :theme_id="this.$props.poster.theme_id" :fen="this.$props.poster.fen"
+                :to="this.$props.poster.to" :from="this.$props.poster.from" />
+
             <!-- Frame of the board -->
             <Frame :theme="this.poster.theme_id" />
 
-            <!-- The board itself with pieces -->
-            <Board
-                ref="Game"
-                :theme_id="this.$props.poster.theme_id"
-                :fen="this.$props.poster.fen"
-            />
-
             <!-- Diagram comment -->
-            <text
-                id="comment"
-                y="1690"
-                x="815"
-                text-anchor="middle"
-                font-size="32"
-                :style="{
-                    'font-family':
-                        this.poster.theme_id == 1
-                            ? 'Custom Serif'
-                            : 'EB Garamond',
-                    'font-style': 'italic',
-                }"
-                v-text="
-                    this.$props.poster.move_comment
-                        ? this.diagramInfo +
-                          ', ' +
-                          this.$props.poster.move_comment
-                        : this.diagramInfo
-                "
-            ></text>
+            <text id="comment" y="1690" x="815" text-anchor="middle" font-size="32" :style="{
+                'font-family':
+                    this.poster.theme_id == 1
+                        ? 'Custom Serif'
+                        : 'EB Garamond',
+                'font-style': 'italic',
+            }" v-text="this.$props.poster.move_comment
+    ? this.diagramInfo +
+    ', ' +
+    this.$props.poster.move_comment
+    : this.diagramInfo
+    "></text>
         </svg>
 
         <!-- The PGN -->
         <text font-size="18" text-anchor="middle">
-            <tspan
-                v-for="(row, index) in pgnRows"
-                x="1000"
-                :y="2900 - 40 * (pgnRows.length - 1 - index)"
-            >
+            <tspan v-for="(row, index) in pgnRows" x="1000" :y="2900 - 40 * (pgnRows.length - 1 - index)">
                 {{ row }}
-                <tspan
-                    v-if="index == pgnRows.length - 1 && this.poster.result"
-                    font-weight="800"
-                >
+                <tspan v-if="index == pgnRows.length - 1 && this.poster.result" font-weight="800">
                     | {{ this.poster.result }}
                 </tspan>
             </tspan>
@@ -282,6 +236,7 @@ export default {
             }
         },
     },
+
     methods: {
         containsNumbers(str) {
             return /[0-9]/.test(str);

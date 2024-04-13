@@ -257,4 +257,7 @@ Route::middleware('admin')->group(function () {
 
     Route::post('/player-create', [PlayerController::class, 'create'])
         ->name('player.create');
+
+    Route::get('/poster/{posterId}/create-png/{variantId}', [PosterController::class, 'createPng'])
+        ->name('poster.createPng');
 });

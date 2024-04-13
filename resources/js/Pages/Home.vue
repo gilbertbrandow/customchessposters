@@ -7,12 +7,9 @@
                 atoms in the known universe. Now there are equally many posters for you to choose from.
             </p>
             <div class="button-wrp">
-                <Link :href="route('poster.index')" class="button is--black"
-                    >Create your own poster</Link
-                >
-                <Link :href="route('game.index')" class="button"
-                    >Game collection
-                    <Icon name="arrow-up" />
+                <Link :href="route('poster.index')" class="button is--black">Create your own poster</Link>
+                <Link :href="route('game.index')" class="button">Game collection
+                <Icon name="arrow-up" />
                 </Link>
             </div>
         </div>
@@ -22,66 +19,41 @@
                     <Poster :poster="$page.props.game.poster" />
                 </div>
 
-                <img
-                    class="poster__environment"
-                    :alt="
-                        'Poster: ' +
-                        $page.props.game.poster.title +
-                        ' shown in a warmly lit room with frame'
-                    "
-                    src="../../../public/images/environments/poster-environment-oak-frame-300x315.webp"
-                    srcset="
+                <img class="poster__environment" :alt="'Poster: ' +
+                    $page.props.game.poster.title +
+                    ' shown in a warmly lit room with frame'
+                    " src="../../../public/images/environments/poster-environment-oak-frame-300x315.webp" srcset="
                         ../../../public/images/environments/poster-environment-oak-frame-1500x1574.webp 1500w,
                         ../../../public/images/environments/poster-environment-oak-frame-750x787.webp    750w,
                         ../../../public/images/environments/poster-environment-oak-frame-300x315.webp    300w
-                    "
-                />
-                <img
-                    class="poster__environment is__mobile"
-                    :alt="
-                        'Poster: ' +
-                        $page.props.game.poster.title +
-                        ' shown in a warmly lit room with frame'
-                    "
-                    src="../../../public/images/environments/poster-mockup-oak-frame-1200x1490.webp"
-                    srcset="
+                    " />
+                <img class="poster__environment is__mobile" :alt="'Poster: ' +
+                    $page.props.game.poster.title +
+                    ' shown in a warmly lit room with frame'
+                    " src="../../../public/images/environments/poster-mockup-oak-frame-1200x1490.webp" srcset="
                         ../../../public/images/environments/poster-mockup-oak-frame-1200x1490.webp 1500w,
                         ../../../public/images/environments/poster-mockup-oak-frame-600x745.webp    750w,
                         ../../../public/images/environments/poster-mockup-oak-frame-300x372.webp    300w
-                    "
-                />
+                    " />
             </div>
 
             <div class="game__info">
-                <Link
-                    :href="route('game.show', $page.props.game.id)"
-                    class="players"
-                >
-                    <div class="player">
-                        <Flag
-                            :country="$page.props.game.white_player.country"
-                        ></Flag>
-                        {{ $page.props.game.white_player.name }}
-                        <div
-                            v-if="$page.props.game.white_player.computer"
-                            class="computer"
-                        >
-                            <Icon name="computer"></Icon>
-                        </div>
+                <Link :href="route('game.show', $page.props.game.id)" class="players">
+                <div class="player">
+                    <Flag :country="$page.props.game.white_player.country"></Flag>
+                    {{ $page.props.game.white_player.name }}
+                    <div v-if="$page.props.game.white_player.computer" class="computer">
+                        <Icon name="computer"></Icon>
                     </div>
-                    -
-                    <div class="player">
-                        <Flag
-                            :country="$page.props.game.black_player.country"
-                        ></Flag>
-                        {{ $page.props.game.black_player.name }}
-                        <div
-                            v-if="$page.props.game.black_player.computer"
-                            class="computer"
-                        >
-                            <Icon name="computer"></Icon>
-                        </div>
+                </div>
+                -
+                <div class="player">
+                    <Flag :country="$page.props.game.black_player.country"></Flag>
+                    {{ $page.props.game.black_player.name }}
+                    <div v-if="$page.props.game.black_player.computer" class="computer">
+                        <Icon name="computer"></Icon>
                     </div>
+                </div>
                 </Link>
 
                 <div class="progress-bar">
@@ -89,35 +61,17 @@
                 </div>
 
                 <div class="button-wrp">
-                    <button
-                        class="button"
-                        aria-label="replay"
-                        @click="this.resetCurrGame()"
-                    >
+                    <button class="button" aria-label="replay" @click="this.resetCurrGame()">
                         <Icon name="undo"></Icon>
                     </button>
 
-                    <button
-                        v-if="this.status"
-                        class="button"
-                        aria-label="pause"
-                        @click="this.pause()"
-                    >
+                    <button v-if="this.status" class="button" aria-label="pause" @click="this.pause()">
                         <Icon name="pause"></Icon>
                     </button>
-                    <button
-                        v-else
-                        class="button is--play"
-                        aria-label="resume"
-                        @click="this.start()"
-                    >
+                    <button v-else class="button is--play" aria-label="resume" @click="this.start()">
                         <Icon name="play"></Icon>
                     </button>
-                    <button
-                        class="button"
-                        aria-label="next"
-                        @click="this.updateGame()"
-                    >
+                    <button class="button" aria-label="next" @click="this.updateGame()">
                         <Icon name="arrow-right"></Icon>
                     </button>
                 </div>
@@ -203,34 +157,43 @@ export default {
                 move = history.length - 16 > 0 ? history.length - 16 : 6;
 
             for (let i = -3; i < 17; i++) {
+
                 if (history[move + i])
                     this.moves.push([
                         move + i,
                         move + i ==
-                        this.$page.props.game.poster.diagram_position
+                            this.$page.props.game.poster.diagram_position
                             ? this.$page.props.game.poster.move_comment
                             : "",
                         history[move + i].fen,
+                        move + i - 1 < 0 ? null : history[move + i - 1].to,
+                        move + i - 1 < 0 ? null : history[move + i - 1].from,
                     ]);
                 else if (history[move + i - 1])
                     this.moves.push([
                         move + i,
                         move + i ==
-                        this.$page.props.game.poster.diagram_position
+                            this.$page.props.game.poster.diagram_position
                             ? this.$page.props.game.poster.move_comment
                             : "",
                         this.chessGame.fen(),
+                        history[move + i - 1].to,
+                        history[move + i - 1].from,
                     ]);
             }
         },
 
         updateMove() {
             if (this.currMove == this.moves.length) return;
+
             this.$page.props.game.poster.diagram_position =
                 this.moves[this.currMove][0];
             this.$page.props.game.poster.move_comment =
                 this.moves[this.currMove][1];
             this.$page.props.game.poster.fen = this.moves[this.currMove][2];
+            this.$page.props.game.poster.to = this.moves[this.currMove][3];
+            this.$page.props.game.poster.from = this.moves[this.currMove][4];
+
 
             this.currMove++;
         },

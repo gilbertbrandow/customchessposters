@@ -62,11 +62,12 @@ class PosterService
      * @param int $height The height of the PNG in pixels 
      * @return string The url to the PNG in AWS S3
      */
-    
+
     public function generatePNG(
         Poster $poster,
         $width = 6000,
-        $height = 8550
+        $height = 8550,
+        $noCache = false
     ): string {
 
         /*
@@ -81,6 +82,7 @@ class PosterService
         if (
             $filesystem->exists($path = 'poster' . $poster->id . '-' . $width . 'x' . $height . '.png')
             && $filesystem->lastModified($path) > strtotime($poster->updated_at)
+            && !$noCache
         ) return $filesystem->publicUrl($path);
 
         /*
@@ -223,6 +225,56 @@ class PosterService
             );
         }
 
+        /*
+        |--------------------------------------------------------------------------
+        | Insert square highlighting
+        |--------------------------------------------------------------------------
+        |
+        */
+
+        if ($poster->highlight_last_move) {
+
+            $columnFrom = ord($poster->from[0]) - ord('a');
+            $rowFrom = (int)$poster->from[1] - 1;
+            $columnTo = ord($poster->to[0]) - ord('a');
+            $rowTo = (int)$poster->to[1] - 1;
+
+            if ($poster->theme_id == 1) {
+
+                //New waves theme
+                $im->insert(
+                    public_path('themes/' . $poster->theme->path . '/Highlight.svg'),
+                    'top-left',
+                    intval(($width - 4560) / 2) + 570 * ($poster->orientation ? $columnTo : 7 - $columnTo),
+                    $boardY + 25 + 570 * ($poster->orientation ? 7 - $rowTo : $rowTo),
+                );
+
+                $im->insert(
+                    public_path('themes/' . $poster->theme->path . '/Highlight.svg'),
+                    'top-left',
+                    intval(($width - 4560) / 2) + 570 * ($poster->orientation ? $columnFrom : 7 - $columnFrom),
+                    $boardY + 25 + 570 * ($poster->orientation ? 7 - $rowFrom : $rowFrom),
+                );
+
+            } else if ($poster->theme_id == 2) {
+
+                //Old knowledge theme
+                $im->insert(
+                    public_path('themes/' . $poster->theme->path . '/Highlights/To.svg'),
+                    'top-left',
+                    intval(($width - 4560) / 2) + 570 * ($poster->orientation ? $columnTo : 7 - $columnTo) - 100,
+                    $boardY + 25 + 570 * ($poster->orientation ? 7 - $rowTo : $rowTo) - 100,
+                );
+
+                $im->insert(
+                    public_path('themes/' . $poster->theme->path . '/Highlights/From' . (($rowFrom + $columnFrom) % 2 == 1 ? 'White' : 'Black') . 'Square.svg'),
+                    'top-left',
+                    intval(($width - 4560) / 2) + 570 * ($poster->orientation ? $columnFrom : 7 - $columnFrom) - 100,
+                    $boardY + 25 + 570 * ($poster->orientation ? 7 - $rowFrom : $rowFrom) - 100,
+                );
+
+            }
+        }
 
         /*
         |--------------------------------------------------------------------------

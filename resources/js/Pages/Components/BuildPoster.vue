@@ -419,11 +419,21 @@
                                 </p>
                             </div>
 
-                            <div v-else class="field__wrp is--margin-top">
-                                <label for="moveComment" class="field__label">Move comment (optional)</label>
-                                <input v-model="poster.move_comment" class="field" name="moveComment" maxlength="92"
-                                    id="moveComment" placeholder="Lorem ipsum dolor set ami" />
-                            </div>
+                            <template v-else>
+                                <div class="field__wrp is--margin-top">
+                                    <label for="moveComment" class="field__label">Move comment (optional)</label>
+                                    <input v-model="poster.move_comment" class="field" name="moveComment" maxlength="92"
+                                        id="moveComment" placeholder="Lorem ipsum dolor set ami" />
+                                </div>
+                                <div class="switcher-wrp is--highlight-last-move is--margin-top-2">
+                                    <button
+                                        @click="this.$data.poster.highlight_last_move = !this.$data.poster.highlight_last_move"
+                                        :class="this.$data.poster.highlight_last_move ? 'switcher is--right' : 'switcher'">
+                                        <div></div>
+                                    </button>
+                                    <span>Highlight last move</span>
+                                </div>
+                            </template>
                         </div>
                         <div :class="[
                             posterBuilder.currStep == 3 ? 'is--active' : '',
@@ -691,6 +701,9 @@ export default {
                 diagram_position: 0,
                 move_comment: null,
                 fen: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR",
+                to: null,
+                from: null,
+                highlight_last_move: true,
                 result: "",
                 title: "Lorem ipsum dolor sit amet, consectetur adi",
                 white_player: "White Player",
@@ -931,7 +944,9 @@ export default {
                 this.$data.posterBuilder.manualMove.suggestions = [];
 
                 try {
-                    this.$data.chessGame.move(input);
+                    //Extract to and from
+                    const move = this.$data.chessGame.move(input);
+
                 } catch (error) {
                     //Display general error message
                     return;
@@ -1063,7 +1078,7 @@ export default {
                 .catch(
                     (error) => (
                         (this.$data.posterBuilder.uploadLichess.valid = false),
-                        console.log("Error", error)
+                        console.error("Error", error)
                     )
                 );
         },
@@ -1128,18 +1143,19 @@ export default {
         },
 
         "poster.diagram_position"() {
-            if (this.pgnArray.length == this.poster.diagram_position) {
-                this.$data.poster.fen = this.chessGame.fen();
-            } else {
-                let history = this.chessGame.history({ verbose: true });
-                this.$data.poster.fen =
-                    history[this.poster.diagram_position].fen;
-            }
+
+            let history = this.chessGame.history({ verbose: true });
+
+            this.$data.poster.fen = this.pgnArray.length == this.poster.diagram_position ? this.chessGame.fen() : history[this.poster.diagram_position].fen;
+
+            this.$data.poster.to = this.$data.poster.diagram_position ? history[this.poster.diagram_position - 1].to : null;
+            this.$data.poster.from = this.$data.poster.diagram_position ? history[this.poster.diagram_position - 1].from : null;
         },
-        "posterBuilder.currStep"() {
-            if (this.posterBuilder.currStep == 2)
-                window.addEventListener("keydown", this.onKeydown);
-            else window.removeEventListener("keydown", this.onKeydown);
+
+        'posterBuilder.currStep'() {
+
+            if (this.posterBuilder.currStep == 2) window.addEventListener('keydown', this.onKeydown)
+            else window.removeEventListener('keydown', this.onKeydown)
 
             //If poster builder is fully visible, return
             let rect = document

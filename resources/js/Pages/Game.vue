@@ -275,11 +275,10 @@ export default {
                 this.game.move_comment = "";
             else this.game.move_comment = this.moveComment[1];
 
-            if (history.length == this.game.diagram_position) {
-                this.$data.game.fen = this.chessGame.fen();
-            } else {
-                this.$data.game.fen = history[this.game.diagram_position].fen;
-            }
+            this.game.fen = history.length == this.game.diagram_position ? this.chessGame.fen() : history[this.game.diagram_position].fen;
+
+            this.game.to = this.game.diagram_position ? history[this.game.diagram_position - 1].to : null;
+            this.game.from = this.game.diagram_position ? history[this.game.diagram_position - 1].from : null;
         },
     },
 
