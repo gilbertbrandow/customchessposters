@@ -1,16 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="570" height="570" viewBox="0 0 747 747">
-    <defs>
-      <filter id="Rectangle_16" x="0" y="0" width="747" height="747" filterUnits="userSpaceOnUse">
-        <feOffset input="SourceAlpha"/>
-        <feGaussianBlur stdDeviation="49.5" result="blur"/>
-        <feFlood flood-color="#ff7600" flood-opacity="0.851"/>
-        <feComposite operator="in" in2="blur"/>
-      </filter>
-    </defs>
-    <g id="Group_111" data-name="Group 111" transform="translate(-13764.5 -4949.5)">
-      <g transform="matrix(1, 0, 0, 1, 13764.5, 4949.5)" filter="url(#Rectangle_16)">
-        <rect id="Rectangle_16-2" data-name="Rectangle 16" width="450" height="450" rx="225" transform="translate(148.5 148.5)" fill="#fff"/>
-      </g>
-      <rect id="Rectangle_32" data-name="Rectangle 32" width="570" height="570" transform="translate(13853 5038)" fill="none"/>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="797" height="797" viewBox="0 0 797 797">
+  <defs>
+    <filter id="Circle_16" x="0" y="0" width="797" height="797" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="140" result="blur"/>
+      <feFlood flood-color="#ff7600" flood-opacity="1"/>
+      <feComposite operator="in" in2="blur"/>
+    </filter>
+  </defs>
+  <g id="Group_98" data-name="Group 98" transform="translate(113.5 113.5)">
+    <g transform="matrix(1, 0, 0, 1, -113.5, -113.5)" filter="url(#Circle_16)">
+      <circle id="Circle_16-2" data-name="Circle 16" cx="250" cy="250" r="250" transform="translate(148.5 148.5)" fill="#fff"/>
     </g>
-  </svg>  
+    <rect id="Rectangle_17" data-name="Rectangle 17" width="570" height="570" fill="none"/>
+  </g>
+</svg>
